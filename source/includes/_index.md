@@ -15,11 +15,16 @@ The API index provides information about the endpoints available for the site, a
 	}
 ```
 
-## Getting Store Information ##
+## View Index List ##
 
 ### HTTP Request ###
 
-`GET /wc-api/v2/`
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label-get">GET</i>
+		<h6>/wc-api/v2</h6>
+	</div>
+</div>
 
 Retrieve a set of store information.
 
