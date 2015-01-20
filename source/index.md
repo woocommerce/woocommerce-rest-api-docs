@@ -2,7 +2,7 @@
 title: WooCommerce REST API Documentation
 
 language_tabs:
-  - json: JSON
+  - shell: cURL
 
 toc_footers:
   - <a href="https://github.com/woothemes/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a>
