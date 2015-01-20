@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["json"]);
+          setupLanguages(["shell"]);
         });
       </script>
   </head>
@@ -28,7 +28,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="json">JSON</a>
+              <a href="#" data-language-name="shell">cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -465,13 +465,119 @@
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h2 id='getting-store-information'>Getting Store Information</h2><h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET /wc-api/v2/</code></p>
-
+<h2 id='index-properties'>Index Properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>The name of the site - <code class="prettyprint">get_option( &#39;blogname&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">description</code></td>
+<td>string</td>
+<td>The site&rsquo;s description - <code class="prettyprint">get_option( &#39;blogdescription&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">URL</code></td>
+<td>string</td>
+<td>The site&rsquo;s URL - <code class="prettyprint">get_option( &#39;siteurl&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">wc_version</code></td>
+<td>string</td>
+<td>The active WooCommerce version</td>
+</tr>
+<tr>
+<td><code class="prettyprint">routes</code></td>
+<td>array</td>
+<td>A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL</td>
+</tr>
+<tr>
+<td><code class="prettyprint">meta</code></td>
+<td>array</td>
+<td>A list of WooCommerce settings used in the API. <a href="#code-classprettyprintmetacode-attributes">See the META ATTRIBUTES</a></td>
+</tr>
+</tbody></table>
+<h3 id='code-classprettyprintmetacode-attributes'><code class="prettyprint">meta</code> Attributes</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">timezone</code></td>
+<td>string</td>
+<td>The site&rsquo;s timezone</td>
+</tr>
+<tr>
+<td><code class="prettyprint">currency</code></td>
+<td>string</td>
+<td>Currency ISO Code, e.g. <code class="prettyprint">GBP</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">currency_format</code></td>
+<td>string</td>
+<td>Currency symbol, HTML encoded, e.g. <code class="prettyprint">£</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">price_num_decimals</code></td>
+<td>integer</td>
+<td>Number of decimals</td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_included</code></td>
+<td>boolean</td>
+<td>True if prices include tax, false otherwise</td>
+</tr>
+<tr>
+<td><code class="prettyprint">weight_unit</code></td>
+<td>string</td>
+<td>The unit set for product weights. Valid units are <code class="prettyprint">kg</code>, <code class="prettyprint">g</code>, <code class="prettyprint">lbs</code>, <code class="prettyprint">oz</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">dimension_unit</code></td>
+<td>string</td>
+<td>The unit set for product dimensions. Valid units are <code class="prettyprint">cm</code>, <code class="prettyprint">m</code>, <code class="prettyprint">cm</code>, <code class="prettyprint">mm</code>, <code class="prettyprint">in</code>, and <code class="prettyprint">yd</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">ssl_enabled</code></td>
+<td>boolean</td>
+<td>True if SSL is enabled for the site, false otherwise</td>
+</tr>
+<tr>
+<td><code class="prettyprint">permalinks_enabled</code></td>
+<td>boolean</td>
+<td>Whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly</td>
+</tr>
+<tr>
+<td><code class="prettyprint">links</code></td>
+<td>array</td>
+<td>API help links list</td>
+</tr>
+</tbody></table>
+<h2 id='view-index-list'>View Index List</h2>
 <p>Retrieve a set of store information.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
 <blockquote>
-<p>Store index response:</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -799,7 +905,10 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id='store-properties'>Store Properties</h3><h4 id='base-attributes'>Base Attributes</h4>
+
+          <h1 id='coupons'>Coupons</h1>
+<p>This section lists all API that can be used to create, edit or otherwise manipulate coupons.</p>
+<h2 id='coupon-properties'>Coupon Properties</h2>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -808,101 +917,469 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">name</code></td>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Coupon ID (post ID) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">code</code></td>
 <td>string</td>
-<td>The name of the site - <code class="prettyprint">get_option( &#39;blogname&#39; )</code></td>
+<td>Coupon code, always lowercase <i class="label label-info">mandatory</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>string</td>
+<td>Coupon type, valid core types are: <code class="prettyprint">fixed_cart</code>, <code class="prettyprint">percent</code>, <code class="prettyprint">fixed_product</code> and <code class="prettyprint">percent_product</code>. Default is <code class="prettyprint">fixed_cart</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the coupon was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the coupon was last updated <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">amount</code></td>
+<td>float</td>
+<td>The amount of discount</td>
+</tr>
+<tr>
+<td><code class="prettyprint">individual_use</code></td>
+<td>boolean</td>
+<td>Whether coupon can only be used individually</td>
+</tr>
+<tr>
+<td><code class="prettyprint">product_ids</code></td>
+<td>array</td>
+<td>Array of product ID&rsquo;s the coupon can be used on</td>
+</tr>
+<tr>
+<td><code class="prettyprint">exclude_product_ids</code></td>
+<td>array</td>
+<td>Array of product ID&rsquo;s the coupon cannot be used on</td>
+</tr>
+<tr>
+<td><code class="prettyprint">usage_limit</code></td>
+<td>integer</td>
+<td>How many times the coupon can be used</td>
+</tr>
+<tr>
+<td><code class="prettyprint">usage_limit_per_user</code></td>
+<td>integer</td>
+<td>How many times the coupon can be user per customer</td>
+</tr>
+<tr>
+<td><code class="prettyprint">limit_usage_to_x_items</code></td>
+<td>integer</td>
+<td>Max number of items in the cart the coupon can be applied to</td>
+</tr>
+<tr>
+<td><code class="prettyprint">usage_count</code></td>
+<td>integer</td>
+<td>Number of times the coupon has been used already <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">expiry_date</code></td>
+<td>string</td>
+<td>UTC DateTime`when the coupon expires</td>
+</tr>
+<tr>
+<td><code class="prettyprint">enable_free_shipping</code></td>
+<td>boolean</td>
+<td>Is the coupon for free shipping</td>
+</tr>
+<tr>
+<td><code class="prettyprint">product_category_ids</code></td>
+<td>array</td>
+<td>Array of category ID&rsquo;s the coupon applies to</td>
+</tr>
+<tr>
+<td><code class="prettyprint">exclude_product_category_ids</code></td>
+<td>array</td>
+<td>Array of category ID&rsquo;s the coupon does not apply to</td>
+</tr>
+<tr>
+<td><code class="prettyprint">exclude_sale_items</code></td>
+<td>boolean</td>
+<td>Exclude sale items from the coupon</td>
+</tr>
+<tr>
+<td><code class="prettyprint">minimum_amount</code></td>
+<td>float</td>
+<td>Minimum order amount that needs to be in the cart before coupon applies</td>
+</tr>
+<tr>
+<td><code class="prettyprint">maximum_amount</code></td>
+<td>float</td>
+<td>Maximum order amount allowed when using the coupon</td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_emails</code></td>
+<td>array</td>
+<td>Array of email addresses that can use this coupon</td>
 </tr>
 <tr>
 <td><code class="prettyprint">description</code></td>
 <td>string</td>
-<td>The site&rsquo;s description - <code class="prettyprint">get_option( &#39;blogdescription&#39; )</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">URL</code></td>
-<td>string</td>
-<td>The site&rsquo;s URL - <code class="prettyprint">get_option( &#39;siteurl&#39; )</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">wc_version</code></td>
-<td>string</td>
-<td>The active WooCommerce version</td>
-</tr>
-<tr>
-<td><code class="prettyprint">routes</code></td>
-<td>array</td>
-<td>A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL</td>
-</tr>
-<tr>
-<td><code class="prettyprint">meta</code></td>
-<td>array</td>
-<td>A list of WooCommerce settings used in the API. <a href="#code-classprettyprintmetacode-attributes">See the META ATTRIBUTES</a></td>
+<td>Coupon description</td>
 </tr>
 </tbody></table>
-<h5 id='code-classprettyprintmetacode-attributes'><code class="prettyprint">meta</code> Attributes</h5>
+<h2 id='create-a-coupon'>Create A Coupon</h2>
+<p>This API helps you to create a new coupon.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/wc-api/v2/coupons</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl -X POST https://example.com/wc-api/v2/coupons <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "coupon": {
+    "code": "new-coupon",
+    "type": "percent",
+    "amount": "10",
+    "individual_use": true,
+    "product_ids": [],
+    "exclude_product_ids": [],
+    "usage_limit": "",
+    "usage_limit_per_user": "",
+    "limit_usage_to_x_items": "",
+    "expiry_date": "",
+    "enable_free_shipping": false,
+    "product_category_ids": [],
+    "exclude_product_category_ids": [],
+    "exclude_sale_items": true,
+    "minimum_amount": "100.00",
+    "maximum_amount": "0.00",
+    "customer_emails": [],
+    "description": ""
+  }
+}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-a-coupon'>View A Coupon</h2>
+<p>This API lets you retrieve and view a specific coupon.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons/529 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-list-of-coupons'>View List Of Coupons</h2>
+<p>This API helps you to view all the coupons.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/coupons</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"coupons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">527</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"free-shipping"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed_cart"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T18:35:59Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T18:35:59Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">526</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"christmas-promo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T18:10:58Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T18:10:58Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-25T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Discount for Christmas for orders over $ 200"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='update-a-coupon'>Update A Coupon</h2>
+<p>This API lets you make changes to a coupon.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/coupons/529 <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "coupon": {
+    "amount": "5"
+  }
+}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='delete-a-coupon'>Delete A Coupon</h2>
+<p>This API helps you delete a ticket.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Permanently deleted coupon"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='parameters'>Parameters</h3>
 <table><thead>
 <tr>
-<th>Attribute</th>
+<th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">timezone</code></td>
+<td><code class="prettyprint">force</code></td>
 <td>string</td>
-<td>The site&rsquo;s timezone</td>
-</tr>
-<tr>
-<td><code class="prettyprint">currency</code></td>
-<td>string</td>
-<td>Currency ISO Code, e.g. <code class="prettyprint">GBP</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">currency_format</code></td>
-<td>string</td>
-<td>Currency symbol, HTML encoded, e.g. <code class="prettyprint">£</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">price_num_decimals</code></td>
-<td>integer</td>
-<td>Number of decimals</td>
-</tr>
-<tr>
-<td><code class="prettyprint">tax_included</code></td>
-<td>boolean</td>
-<td>True if prices include tax, false otherwise</td>
-</tr>
-<tr>
-<td><code class="prettyprint">weight_unit</code></td>
-<td>string</td>
-<td>The unit set for product weights. Valid units are <code class="prettyprint">kg</code>, <code class="prettyprint">g</code>, <code class="prettyprint">lbs</code>, <code class="prettyprint">oz</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">dimension_unit</code></td>
-<td>string</td>
-<td>The unit set for product dimensions. Valid units are <code class="prettyprint">cm</code>, <code class="prettyprint">m</code>, <code class="prettyprint">cm</code>, <code class="prettyprint">mm</code>, <code class="prettyprint">in</code>, and <code class="prettyprint">yd</code></td>
-</tr>
-<tr>
-<td><code class="prettyprint">ssl_enabled</code></td>
-<td>boolean</td>
-<td>True if SSL is enabled for the site, false otherwise</td>
-</tr>
-<tr>
-<td><code class="prettyprint">permalinks_enabled</code></td>
-<td>boolean</td>
-<td>Whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly</td>
-</tr>
-<tr>
-<td><code class="prettyprint">links</code></td>
-<td>array</td>
-<td>API help links list</td>
+<td>Use <code class="prettyprint">true</code> whether to permanently delete the coupon, defaults to <code class="prettyprint">false</code>. Note that permanently deleting the coupon will return HTTP 200 rather than HTTP 202.</td>
 </tr>
 </tbody></table>
+<h2 id='view-a-coupon-by-code'>View A Coupon By Code</h2>
+<p>This API lets you use a coupon code to retrieve and view a specific coupon.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons/code/new-coupon <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-          <h1 id='coupons'>Coupons</h1><h2 id='getting-all-coupons'>Getting All Coupons</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-coupon-count'>View Coupon Count</h2>
+<p>This API lets you retrieve a count of all coupons.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/coupons/count</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons/count <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="json">JSON</a>
+                <a href="#" data-language-name="shell">cURL</a>
           </div>
       </div>
     </div>
