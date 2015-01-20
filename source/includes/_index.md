@@ -17,6 +17,10 @@ The API index provides information about the endpoints available for the site, a
 
 ## Getting Store Information ##
 
+### HTTP Request ###
+
+`GET /wc-api/v2/`
+
 Retrieve a set of store information.
 
 > Store index response:
