@@ -15,20 +15,52 @@ The API index provides information about the endpoints available for the site, a
 	}
 ```
 
+## Index Properties ##
+
+|   Attribute   |  Type  |                                                                    Description                                                                    |
+| ------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | string | The name of the site - `get_option( 'blogname' )`                                                                                                 |
+| `description` | string | The site's description - `get_option( 'blogdescription' )`                                                                                        |
+| `URL`         | string | The site's URL - `get_option( 'siteurl' )`                                                                                                        |
+| `wc_version`  | string | The active WooCommerce version                                                                                                                    |
+| `routes`      | array  | A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL |
+| `meta`        | array  | A list of WooCommerce settings used in the API. [See the META ATTRIBUTES](#code-classprettyprintmetacode-attributes)                              |
+
+### `meta` Attributes ###
+
+|      Attribute       |   Type  |                                               Description                                                |
+| -------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `timezone`           | string  | The site's timezone                                                                                      |
+| `currency`           | string  | Currency ISO Code, e.g. `GBP`                                                                            |
+| `currency_format`    | string  | Currency symbol, HTML encoded, e.g. `£`                                                                  |
+| `price_num_decimals` | integer | Number of decimals                                                                                       |
+| `tax_included`       | boolean | True if prices include tax, false otherwise                                                              |
+| `weight_unit`        | string  | The unit set for product weights. Valid units are `kg`, `g`, `lbs`, `oz`                                 |
+| `dimension_unit`     | string  | The unit set for product dimensions. Valid units are `cm`, `m`, `cm`, `mm`, `in`, and `yd`               |
+| `ssl_enabled`        | boolean | True if SSL is enabled for the site, false otherwise                                                     |
+| `permalinks_enabled` | boolean | Whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly |
+| `links`              | array   | API help links list                                                                                      |
+
+
 ## View Index List ##
+
+Retrieve a set of store information.
 
 ### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label-get">GET</i>
+		<i class="label label-get">GET</i>
 		<h6>/wc-api/v2</h6>
 	</div>
 </div>
 
-Retrieve a set of store information.
+```shell
+curl https://example.com/wc-api/v2 \
+	-u consumer_key:consumer_secret
+```
 
-> Store index response:
+> Response:
 
 ```json
 {
@@ -357,32 +389,3 @@ Retrieve a set of store information.
   }
 }
 ```
-
-### Store Properties ###
-
-#### Base Attributes ####
-
-|   Attribute   |  Type  |                                                                    Description                                                                    |
-| ------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | string | The name of the site - `get_option( 'blogname' )`                                                                                                 |
-| `description` | string | The site's description - `get_option( 'blogdescription' )`                                                                                        |
-| `URL`         | string | The site's URL - `get_option( 'siteurl' )`                                                                                                        |
-| `wc_version`  | string | The active WooCommerce version                                                                                                                    |
-| `routes`      | array  | A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL |
-| `meta`        | array  | A list of WooCommerce settings used in the API. [See the META ATTRIBUTES](#code-classprettyprintmetacode-attributes)                              |
-
-##### `meta` Attributes #####
-
-|      Attribute       |   Type  |                                               Description                                                |
-| -------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| `timezone`           | string  | The site's timezone                                                                                      |
-| `currency`           | string  | Currency ISO Code, e.g. `GBP`                                                                            |
-| `currency_format`    | string  | Currency symbol, HTML encoded, e.g. `£`                                                                  |
-| `price_num_decimals` | integer | Number of decimals                                                                                       |
-| `tax_included`       | boolean | True if prices include tax, false otherwise                                                              |
-| `weight_unit`        | string  | The unit set for product weights. Valid units are `kg`, `g`, `lbs`, `oz`                                 |
-| `dimension_unit`     | string  | The unit set for product dimensions. Valid units are `cm`, `m`, `cm`, `mm`, `in`, and `yd`               |
-| `ssl_enabled`        | boolean | True if SSL is enabled for the site, false otherwise                                                     |
-| `permalinks_enabled` | boolean | Whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly |
-| `links`              | array   | API help links list                                                                                      |
-
