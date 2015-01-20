@@ -37,6 +37,7 @@ html, body {
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -341,6 +342,15 @@ html, body {
     display: block;
     clear: both;
   }
+
+	a {
+		color: $link-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
     margin-right: $examples-width;

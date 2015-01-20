@@ -346,7 +346,7 @@ Retrieve a set of store information.
       "ssl_enabled": false,
       "permalinks_enabled": true,
       "links": {
-        "help": "woothemes.github.io/woocommerce-rest-api-docs/"
+        "help": "http://woothemes.github.io/woocommerce-rest-api-docs/"
       }
     }
   }
