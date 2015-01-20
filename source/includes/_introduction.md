@@ -53,14 +53,14 @@ There are two aways to authenticate with the API, depending on whether the site 
 
 You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the API Consumer Key as the username and the API Consumer Secret as the password:
 
-```
+```bash
 $ curl https://www.example.com/wc-api/v1/orders \
     -u consumer_key:consumer_secret
 ```
 
 Occasionally some servers may not properly parse the Authorization header (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters:
 
-```
+``` bash
 $ curl https://www.example.com/wc-api/v1/orders?consumer_key=123&consumer_secret=abc
 ```
 
