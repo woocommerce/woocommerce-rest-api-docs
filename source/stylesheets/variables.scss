@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
 a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -69,19 +69,19 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+	@extend %default-font;
+	font-weight: bold;
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  line-height: 1.5;
+	font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+	font-size: 12px;
+	line-height: 1.5;
 }
 
 
@@ -101,13 +101,13 @@ $search-box-border-color: #666;
 // These settings are probably best left alone.
 
 %break-words {
- -ms-word-break: break-all;
-     word-break: break-all;
+	-ms-word-break: break-all;
+	word-break: break-all;
 
-     /* Non standard for webkit */
-     word-break: break-word;
+	/* Non standard for webkit */
+	word-break: break-word;
 
--webkit-hyphens: auto;
-   -moz-hyphens: auto;
-        hyphens: auto;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 }
