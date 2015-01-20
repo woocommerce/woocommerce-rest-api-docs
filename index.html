@@ -1,0 +1,910 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>WooCommerce REST API Documentation</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["json"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">JSON</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href="https://github.com/woothemes/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a></li>
+            <li><a href="http://docs.woothemes.com/documentation/plugins/woocommerce/">WooCommerce Documentation</a></li>
+            <li><a href="https://github.com/woothemes/woocommerce">WooCommerce Repository</a></li>
+            <li><a href="http://github.com/tripit/slate">Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id='introduction'>Introduction</h1>
+<p>Introduced in WooCommerce 2.1, the REST API allows store data to be created, read, updated, and deleted using the JSON format.</p>
+<h2 id='requirements'>Requirements</h2>
+<p>You must be using WooCommerce 2.1 or newer and the REST API must be enabled under <code class="prettyprint">WooCommerce &gt; Settings</code>. You must enable pretty permalinks, as default permalinks will not work.</p>
+<h2 id='schema'>Schema</h2>
+<p>The API is accessible via this endpoint:</p>
+
+<p><code class="prettyprint">https://www.your-store.com/wc-api/v2</code></p>
+
+<p>You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, as authentication is simpler. The API index will declare if the site supports SSL or not.</p>
+<h2 id='version'>Version</h2>
+<p>The current API version is <code class="prettyprint">v2</code> which takes a first-order position in endpoints. The <code class="prettyprint">v1</code> endpoint is available in WooCommerce 2.1 / 2.2, but it will be removed in a future version.</p>
+<h3 id='differences-between-v1-and-v2-versions'>Differences between v1 and v2 versions</h3>
+<ul>
+<li>v1 supports XML response format, v2 only supports JSON.</li>
+<li>v1 does not support creating or updating (with the exception of order status) any resources, v2 supports full create/read/update/delete for all endpoints.</li>
+<li>v1 does not include order item meta, v2 includes full order item meta (with an optional <code class="prettyprint">filter</code> parameter to include protected order item meta)</li>
+<li>v1 does not include any endpoints for listing a customer&rsquo;s available downloads, v2 includes the <code class="prettyprint">GET /customer/{id}/downloads</code> endpoint.</li>
+<li>v1 includes an endpoint for listing notes for an order, v2 includes full create/read/update/delete endpoints.</li>
+<li>v1 does not include any endpoints for listing product categories, v2 includes two endpoints for product categories (<code class="prettyprint">GET /products/categories</code> and <code class="prettyprint">GET /products/categories/{id}</code>).</li>
+<li>v1 does not include any endpoints for getting valid order statuses, v2 includes an endpoint for listing valid order statuses (<code class="prettyprint">GET /orders/statuses</code>).</li>
+<li>v2 supports the core features added in WooCommerce 2.2, primarily order refunds (via the <code class="prettyprint">/orders/refunds</code> endpoint) and Webhooks (via the <code class="prettyprint">/webhooks</code>).</li>
+</ul>
+<h2 id='requestsresponses'>Requests/Responses</h2>
+<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a <code class="prettyprint">200 OK</code> HTTP status.</p>
+
+<p>Some general information about responses:</p>
+
+<ul>
+<li><p>Dates are returned in <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> format in UTC timezone: <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code></p></li>
+<li><p>Resource IDs are returned as integers.</p></li>
+<li><p>Any decimal monetary amount, such as prices or totals, are returned as strings with two decimal places. The decimal separator (typically either <code class="prettyprint">.</code> or <code class="prettyprint">,</code>) is controlled by the site and is included in the API index. This is by design, in order to make localization of API data easier for the client. You may need to account for this in your implemetation if you will be doing calculations with the returned data (e.g. convert string amounts with commas as the decimal place before performing any calculations)</p></li>
+<li><p>Other amounts, such as item counts, are returned as integers.</p></li>
+<li><p>Blank fields are generally included as <code class="prettyprint">null</code> instead of being blank strings or omitted.</p></li>
+</ul>
+<h2 id='authentication'>Authentication</h2>
+<p>There are two aways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.</p>
+<h3 id='over-https'>Over HTTPS</h3>
+<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the API Consumer Key as the username and the API Consumer Secret as the password:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl https://www.example.com/wc-api/v1/orders <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<p>Occasionally some servers may not properly parse the Authorization header (if you see a &ldquo;Consumer key is missing&rdquo; error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl https://www.example.com/wc-api/v1/orders?consumer_key<span class="o">=</span>123&amp;consumer_secret<span class="o">=</span>abc
+</code></pre>
+<h3 id='over-http'>Over HTTP</h3>
+<p>You must use <a href="http://tools.ietf.org/html/rfc5849">OAuth 1.0a &ldquo;one-legged&rdquo; authentication</a> to ensure API credentials cannot be intercepted. Typically you may use any standard OAuth 1.0a library in your language of choice to handle the authentication, or generate the necessary parameters by following these instructions.</p>
+<h4 id='generating-an-oauth-signature'>Generating an OAuth signature</h4>
+<p>1) Set the HTTP method for the request:</p>
+
+<p><code class="prettyprint">GET</code></p>
+
+<p>2) Set your base request URI &ndash; this is the full request URI without query string parameters &ndash; and URL encode according to RFC 3986:</p>
+<pre class="highlight plaintext"><code>http://www.example.com/wc-api/v1/orders
+</code></pre>
+
+<p>when encoded:</p>
+<pre class="highlight plaintext"><code>http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders
+</code></pre>
+
+<p>3) Collect and normalize your query string parameters. This includes all <code class="prettyprint">oauth_*</code> parameters except for the signature. Parameters should be normalized by URL encoding according to RFC 3986 (<code class="prettyprint">rawurlencode</code> in PHP) and percent(<code class="prettyprint">%</code>) characters should be double-encoded (e.g. <code class="prettyprint">%</code> becomes <code class="prettyprint">%25</code>.</p>
+
+<p>4) Sort the parameters in byte-order (<code class="prettyprint">uksort( $params, &#39;strcmp&#39; )</code> in PHP)</p>
+
+<p>5) Join each parameter with an encoded equals sign (<code class="prettyprint">%3D</code>):</p>
+
+<p><code class="prettyprint">oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>6) Join each parameter key/value with an encoded ampersand (<code class="prettyprint">%26</code>):</p>
+
+<p><code class="prettyprint">oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>7) Form the string to sign by joining the HTTP method, encoded base request URI, and encoded parameter string with an unencoded ampersand symbol (&amp;):</p>
+
+<p><code class="prettyprint">GET&amp;http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders&amp;oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>8) Generate the signature using the string to key and your consumer secret key</p>
+
+<p>If you are having trouble generating a correct signature, you&rsquo;ll want to review your string to sign for errors with encoding. The <a href="https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177">authentication source</a> can also be helpful in understanding how to properly generate the signature.</p>
+<h4 id='oauth-tips'>OAuth Tips</h4>
+<ul>
+<li><p>The OAuth parameters must be added as query string parameters and <em>not</em> included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.</p></li>
+<li><p>The require parameters are: <code class="prettyprint">oauth_consumer_key</code>, <code class="prettyprint">oauth_timestamp</code>, <code class="prettyprint">oauth_nonce</code>, <code class="prettyprint">oauth_signature</code>, and <code class="prettyprint">oauth_signature_method</code>. <code class="prettyprint">oauth_version</code> is not required and must be omitted.</p></li>
+<li><p>HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.</p></li>
+<li><p>The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on <a href="https://dev.twitter.com/discussions/12445">generating a nonce</a> on the Twitter API forums.</p></li>
+<li><p>The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.</p></li>
+<li><p>You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a <code class="prettyprint">www</code> sub-domain, you should use it for requests)</p></li>
+<li><p>Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.</p></li>
+<li><p>You may test your generated signature using LinkedIn&rsquo;s <a href="http://developer.linkedin.com/oauth-test-console">OAuth test console</a> &ndash; leave the member token/secret blank.</p></li>
+<li><p>Twitter has great instructions on <a href="https://dev.twitter.com/docs/auth/creating-signature">generating a signature</a> with OAuth 1.0a, but remember tokens are not used with this implementation.</p></li>
+<li><p>Note that the request body is <em>not</em> signed as per the OAuth spec, see <a href="https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html">Google&rsquo;s OAuth 1.0 extension</a> for details on why.</p></li>
+</ul>
+<h2 id='parameters'>Parameters</h2>
+<p>All endpoints accept optional parameters which can be passed as an HTTP query string parameter, e.g. <code class="prettyprint">GET /orders?status=completed</code>. There are common parameters and endpoint-specific parameters which are documented along with that endpoint.</p>
+<h3 id='filter-parameter'>Filter Parameter</h3>
+<p>All endpoints accept a <code class="prettyprint">filter</code> parameter that scopes individual filters using brackets, like date filtering:</p>
+
+<p><code class="prettyprint">GET /orders?filter[created_at_min]=2013-11-01</code></p>
+
+<p>Multiple <code class="prettyprint">filter</code> parameters can be included and intermixed with other parameters:</p>
+
+<p><code class="prettyprint">GET /orders?status=completed&amp;filter[created_at_min]=2013-11-01&amp;filter[created_at_max]=2013-11-30</code></p>
+
+<p>Note that the following filters are supported for all endpoints except the <code class="prettyprint">reports</code> endpoint, which has it&rsquo;s own set of filters that are documented along with that endpoint.</p>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">created_at_min</code></td>
+<td>given a date, only resources <em>created after the provided date</em> will be returned</td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at_max</code></td>
+<td>given a date, only resources <em>created before the provided date</em> will be returned</td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at_min</code></td>
+<td>given a date, only resources <em>updated after the provided date</em> will be returned</td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at_max</code></td>
+<td>given a date, only resources <em>updated before the provided date</em> will be returned</td>
+</tr>
+<tr>
+<td><code class="prettyprint">q</code></td>
+<td>performs a keyword search and returns resources that match, e.g. <code class="prettyprint">GET /products?filter[q]=search-keyword</code>. Note that search terms should be URL-encoded as they will be decoded internally with <a href="http://us3.php.net/manual/en/function.urldecode.php"><code class="prettyprint">urldecode</code></a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">order</code></td>
+<td>controls the ordering of the resources returned, accepted values are <code class="prettyprint">ASC</code> (default) or <code class="prettyprint">DESC</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">orderby</code></td>
+<td>controls the field that is used for ordering the resources returned. Accepts the same arguments as <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters"><code class="prettyprint">WP_Query</code></a>. Defaults to <code class="prettyprint">date</code>. You can order by <code class="prettyprint">meta_value</code> but you must provide <code class="prettyprint">orderby_meta_key</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">orderby_meta_key</code></td>
+<td>the meta key to order returned resources by when using <code class="prettyprint">orderby=meta_value</code>. For example, you could order products by price using <code class="prettyprint">GET /products?filter[orderby]=meta_value&amp;filter[orderby_meta_key]=_price</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">post_status</code></td>
+<td>limits resources to only those with the specified post status. Most useful for returning unpublished products, e.g. <code class="prettyprint">GET /products?filter[post_status]=draft</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">meta</code></td>
+<td>resource meta is excluded by default, but it can be included by setting <code class="prettyprint">meta=true</code>, e.g. <code class="prettyprint">GET /orders?filter[meta]=true</code>. Protected meta (meta whose key is prefixed with an underscore) is not included in the response</td>
+</tr>
+<tr>
+<td>pagination</td>
+<td>explained below</td>
+</tr>
+</tbody></table>
+
+<p>Note that Dates should be provided in <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> format in UTC timezone: <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>. You may omit the time and timezone if desired.</p>
+<h3 id='fields-parameter'>Fields Parameter</h3>
+<p>You may limit the fields returned in the response using the <code class="prettyprint">fields</code> parameter:</p>
+
+<p><code class="prettyprint">GET /orders?fields=id</code></p>
+
+<p>To include multiple fields, separate them with commas:</p>
+
+<p><code class="prettyprint">GET /orders?fields=id,status</code></p>
+
+<p>You can specify sub-fields using dot-notation:</p>
+
+<p><code class="prettyprint">GET /orders?fields=id,status,payment_details.method_title</code></p>
+
+<p>Sub-fields can&rsquo;t be limited for resources that have multiple structs, like an order&rsquo;s line items. For example, this will return just the line items, but each line item will have the full set of information, not just the product ID:</p>
+
+<p><code class="prettyprint">GET /orders?fields=line_items.product_id</code></p>
+<h2 id='pagination'>Pagination</h2>
+<p>Requests that return multiple items will be paginated to 10 items by default. This default can be changed by the site administrator by changing the <code class="prettyprint">posts_per_page</code> option. Alternatively the items per page can be specifed with the <code class="prettyprint">?filter[limit]</code> parameter:</p>
+
+<p><code class="prettyprint">GET /orders?filter[limit]=15</code></p>
+
+<p>You can specify further pages with the <code class="prettyprint">?page</code> parameter:</p>
+
+<p><code class="prettyprint">GET /orders?page=2</code></p>
+
+<p>You may also specify the offset from the first resource using the <code class="prettyprint">?filter[offset]</code> parameter:</p>
+
+<p><code class="prettyprint">GET /orders?filter[offset]=5</code></p>
+
+<p>Page number is 1-based and ommiting the <code class="prettyprint">?page</code> parameter will return the first page.</p>
+
+<p>The total number of resources and pages are always included in the <code class="prettyprint">X-WC-Total</code> and <code class="prettyprint">X-WC-TotalPages</code> HTTP headers.</p>
+<h2 id='link-header'>Link Header</h2>
+<p>Pagination info is included in the <a href="http://tools.ietf.org/html/rfc5988">Link Header</a>. It&rsquo;s recommended that you follow these values instead of building your own URLs where possible.</p>
+<pre class="highlight plaintext"><code>Link: &lt;https://www.example.com/wc-api/v1/products?page=2&gt;; rel="next",
+&lt;https://www.example.com/wc-api/v1/products?page=3&gt;; rel="last"`
+</code></pre>
+
+<p><em>Linebreak included for readability</em></p>
+
+<p>The possible <code class="prettyprint">rel</code> values are:</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">next</code></td>
+<td>Shows the URL of the immediate next page of results</td>
+</tr>
+<tr>
+<td><code class="prettyprint">last</code></td>
+<td>Shows the URL of the last page of results</td>
+</tr>
+<tr>
+<td><code class="prettyprint">first</code></td>
+<td>Shows the URL of the first page of results</td>
+</tr>
+<tr>
+<td><code class="prettyprint">prev</code></td>
+<td>Shows the URL of the immediate previous page of results</td>
+</tr>
+</tbody></table>
+<h2 id='errors'>Errors</h2>
+<p>Occasionally you might encounter errors when accessing the API. There are four possible types:</p>
+
+<ul>
+<li>Invalid requests, such as using an unsupported HTTP method will result in <code class="prettyprint">400 Bad Request</code>:</li>
+</ul>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_unsupported_method"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Unsupported request method"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<ul>
+<li>Authentication or permission errors, such as incorrect API keys will result in <code class="prettyprint">401 Unauthorized</code>:</li>
+</ul>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_authentication_error"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Consumer Key is invalid"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<ul>
+<li>Requests to resources that don&rsquo;t exist or are missing required parameters will result in <code class="prettyprint">404 Not Found</code>:</li>
+</ul>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_invalid_order"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid order"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<ul>
+<li>Requests that cannot be processed due to a server error will result in <code class="prettyprint">500 Internal Server Error</code>:</li>
+</ul>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_invalid_handler"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"The handler for the route is invalid"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Errors return both an appropriate HTTP status code and response object which contains a <code class="prettyprint">code</code> and <code class="prettyprint">message</code> attribute. If an endpoint has any custom errors, they are documented with that endpoint.</p>
+<h2 id='http-verbs'>HTTP Verbs</h2>
+<p>The API uses the appropriate HTTP verb for each action:</p>
+
+<table><thead>
+<tr>
+<th>Verbe</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">HEAD</code></td>
+<td>Can be used for any endpoint to return just the HTTP header information</td>
+</tr>
+<tr>
+<td><code class="prettyprint">GET</code></td>
+<td>Used for retrieving resources</td>
+</tr>
+<tr>
+<td><code class="prettyprint">PUT</code></td>
+<td>Used for updating resources</td>
+</tr>
+<tr>
+<td><code class="prettyprint">POST</code></td>
+<td>Used for creating resources</td>
+</tr>
+<tr>
+<td><code class="prettyprint">DELETE</code></td>
+<td>Used for deleting resources</td>
+</tr>
+</tbody></table>
+<h2 id='jsonp-support'>JSONP Support</h2>
+<p>The API supports JSONP by default. JSONP responses uses the <code class="prettyprint">application/javascript</code> content-type. You can specify the callback using the <code class="prettyprint">?_jsonp</code> parameter for <code class="prettyprint">GET</code> requests to have the response wrapped in a JSON function:</p>
+<pre class="highlight plaintext"><code>GET /orders/count?_jsonp=ordersCount
+
+\**\ordersCount({"count":8})
+</code></pre>
+
+<p>If the site administrator has chosen to disable it, you will receive a<code class="prettyprint">400 Bad Request</code> error:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_disabled"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"JSONP support is disabled on this site"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>If your callback contains invalid characters, you will receive a <code class="prettyprint">400 Bad Request</code> error:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_callback_invalid"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"The JSONP callback function is invalid"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='webhooks'>Webhooks</h2>
+<p>Webhooks are an experimental feature in the v2 REST API. They must be managed using the REST API endpoints as a UI is not yet available. The <code class="prettyprint">WC_Webhook</code> class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook&rsquo;s actions and processing/delivering/logging the webhook. On <code class="prettyprint">woocommerce_init</code>, active webhooks are loaded and their associated hooks are added.</p>
+
+<p>Each webhook has:</p>
+
+<ul>
+<li>status: active (delivers payload), paused (delivery paused by admin), disabled (delivery paused by failure)</li>
+<li>topic: determines which resource events the webhook is triggered for</li>
+<li>delivery URL: URL where the payload is delivered, must be HTTP or HTTPS</li>
+<li>secret: an optional secret key that is used to generate a HMAC-SHA256 hash of the request body so the receiver can verify authenticity of the webhook</li>
+<li>hooks: an array of hook names that are added and bound to the webhook for processing</li>
+</ul>
+<h3 id='topics'>Topics</h3>
+<p>The topic is a combination resource (e.g. order) and event (e.g. created) and maps to one or more hook names (e.g. <code class="prettyprint">woocommerce_checkout_order_processed</code>). Webhooks can be created using the topic name and the appropriate hooks are automatically added.</p>
+
+<p>Core topics are:</p>
+
+<ul>
+<li><code class="prettyprint">coupon.created, coupon.updated, coupon.deleted</code></li>
+<li><code class="prettyprint">customer.created, customer.updated, customer.deleted</code></li>
+<li><code class="prettyprint">order.created, order.updated, order.deleted</code></li>
+<li><code class="prettyprint">product.created, product.updated, product.deleted</code></li>
+</ul>
+
+<p>Custom topics can also be used which map to a single hook name, so for example you could add a webhook with topic <code class="prettyprint">action.woocommerce_add_to_cart</code> that is triggered on that event. Custom topics pass the first hook argument to the payload, so in this example the <code class="prettyprint">cart_item_key</code> would be included in the payload.</p>
+<h3 id='deliverypayload'>Delivery/Payload</h3>
+<p>Delivery is done using <code class="prettyprint">wp_remote_post()</code> (HTTP POST) and processed in the background by default using wp-cron. A few custom headers are added to the request to help the receiver process the webhook:</p>
+
+<ul>
+<li><code class="prettyprint">X-WC-Webhook-Topic</code> - e.g. <code class="prettyprint">order.updated</code></li>
+<li><code class="prettyprint">X-WC-Webhook-Resource</code> - e.g. <code class="prettyprint">order</code></li>
+<li><code class="prettyprint">X-WC-Webhook-Event</code> - e.g. <code class="prettyprint">updated</code></li>
+<li><code class="prettyprint">X-WC-Webhook-Signature</code> - a base64 encoded HMAC-SHA256 hash of the payload</li>
+<li><code class="prettyprint">X-WC-Webhook-ID</code> - webhook&rsquo;s post ID</li>
+<li><code class="prettyprint">X-WC-Delivery-ID</code> - delivery log ID (a comment)</li>
+</ul>
+
+<p>The payload is JSON encoded and for API resources (coupons,customers,orders,products), the response is exactly the same as if requested via the REST API.</p>
+<h3 id='logging'>Logging</h3>
+<p>Requests/responses are logged as comments on the webhook custom post type. Each delivery log includes:</p>
+
+<ul>
+<li>Request duration</li>
+<li>Request URL, method, headers, and body</li>
+<li>Response Code, message, headers, and body</li>
+</ul>
+
+<p>Only the 25 most recent delivery logs are kept in order to reduce comment table bloat.</p>
+
+<p>After 5 consecutive failed deliveries (as defined by a non HTTP 2xx response code), the webhook is disabled and must be edited via the REST API to re-enable.</p>
+
+<p>Delivery logs can be fetched through the REST API endpoint or in code using <code class="prettyprint">WC_Webhook::get_delivery_logs()</code></p>
+<h3 id='endpoints'>Endpoints</h3>
+<p>See the webhook resource section.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2>
+<ul>
+<li>Nginx - Older configurations of Nginx can cause issues with the API, see <a href="https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737">this issue</a> for details</li>
+</ul>
+<h2 id='tools'>Tools</h2>
+<ul>
+<li><a href="https://github.com/kloon/WooCommerce-REST-API-Client-Library">WooCommerce REST API Client Library</a> - A simple PHP client library by Gerhard Potgieter</li>
+<li><a href="https://code.google.com/p/cocoa-rest-client/">CocoaRestClient</a> - A free, easy to use Mac OS X GUI client for interacting with the API, most useful when your test store has SSL enabled.</li>
+<li><a href="https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12">Paw HTTP Client</a> - Another excellent HTTP client for Mac OS X</li>
+</ul>
+
+          <h1 id='index'>Index</h1>
+<p>The API index provides information about the endpoints available for the site, as well as store-specific information. No authentication is required to access the API index, however if the REST API is disabled, you will receive a <code class="prettyprint">404 Not Found</code> error.</p>
+
+<blockquote>
+<p>404 Not Found response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_disabled"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"The WooCommerce API is disabled on this site"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='getting-store-information'>Getting Store Information</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code class="prettyprint">GET /wc-api/v2/</code></p>
+
+<p>Retrieve a set of store information.</p>
+
+<blockquote>
+<p>Store index response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WooCommerce"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just a WooCommerce store"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"wc_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.3.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"/"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/customers"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers/count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/customers/count"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers/email/&lt;email&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers/&lt;id&gt;/orders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/customers/&lt;id&gt;/downloads"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/orders"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/orders/count"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/orders/statuses"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/&lt;order_id&gt;/notes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/&lt;order_id&gt;/notes/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/&lt;order_id&gt;/refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/orders/&lt;order_id&gt;/refunds/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/products"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/products/count"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/&lt;id&gt;/reviews"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/categories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/products/categories"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/categories/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/products/sku/&lt;sku&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/coupons"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/coupons"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/coupons/count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/coupons/count"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/coupons/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/coupons/code/&lt;code&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/reports"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/reports"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/reports/sales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/reports/sales"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/reports/sales/top_sellers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/reports/sales/top_sellers"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/webhooks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/webhooks"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/webhooks/count"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/wc-api/v2/webhooks/count"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/webhooks/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PATCH"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DELETE"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"accepts_data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/webhooks/&lt;webhook_id&gt;/deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"/webhooks/&lt;webhook_id&gt;/deliveries/&lt;id&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"supports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"HEAD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"GET"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Sao_Paulo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency_format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&amp;#36;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price_num_decimals"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tax_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"weight_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dimension_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ssl_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permalinks_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"help"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woothemes.github.io/woocommerce-rest-api-docs/"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='store-properties'>Store Properties</h3><h4 id='base-attributes'>Base Attributes</h4>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>The name of the site - <code class="prettyprint">get_option( &#39;blogname&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">description</code></td>
+<td>string</td>
+<td>The site&rsquo;s description - <code class="prettyprint">get_option( &#39;blogdescription&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">URL</code></td>
+<td>string</td>
+<td>The site&rsquo;s URL - <code class="prettyprint">get_option( &#39;siteurl&#39; )</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">wc_version</code></td>
+<td>string</td>
+<td>The active WooCommerce version</td>
+</tr>
+<tr>
+<td><code class="prettyprint">routes</code></td>
+<td>array</td>
+<td>A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL</td>
+</tr>
+<tr>
+<td><code class="prettyprint">meta</code></td>
+<td>array</td>
+<td>A list of WooCommerce settings used in the API. <a href="#code-classprettyprintmetacode-attributes">See the META ATTRIBUTES</a></td>
+</tr>
+</tbody></table>
+<h5 id='code-classprettyprintmetacode-attributes'><code class="prettyprint">meta</code> Attributes</h5>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">timezone</code></td>
+<td>string</td>
+<td>The site&rsquo;s timezone</td>
+</tr>
+<tr>
+<td><code class="prettyprint">currency</code></td>
+<td>string</td>
+<td>Currency ISO Code, e.g. <code class="prettyprint">GBP</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">currency_format</code></td>
+<td>string</td>
+<td>Currency symbol, HTML encoded, e.g. <code class="prettyprint">£</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">price_num_decimals</code></td>
+<td>integer</td>
+<td>Number of decimals</td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_included</code></td>
+<td>boolean</td>
+<td>True if prices include tax, false otherwise</td>
+</tr>
+<tr>
+<td><code class="prettyprint">weight_unit</code></td>
+<td>string</td>
+<td>The unit set for product weights. Valid units are <code class="prettyprint">kg</code>, <code class="prettyprint">g</code>, <code class="prettyprint">lbs</code>, <code class="prettyprint">oz</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">dimension_unit</code></td>
+<td>string</td>
+<td>The unit set for product dimensions. Valid units are <code class="prettyprint">cm</code>, <code class="prettyprint">m</code>, <code class="prettyprint">cm</code>, <code class="prettyprint">mm</code>, <code class="prettyprint">in</code>, and <code class="prettyprint">yd</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">ssl_enabled</code></td>
+<td>boolean</td>
+<td>True if SSL is enabled for the site, false otherwise</td>
+</tr>
+<tr>
+<td><code class="prettyprint">permalinks_enabled</code></td>
+<td>boolean</td>
+<td>Whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly</td>
+</tr>
+<tr>
+<td><code class="prettyprint">links</code></td>
+<td>array</td>
+<td>API help links list</td>
+</tr>
+</tbody></table>
+
+          <h1 id='coupons'>Coupons</h1><h2 id='getting-all-coupons'>Getting All Coupons</h2>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">JSON</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

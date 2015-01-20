@@ -1,3 +1,0 @@
-# Coupons #
-
-## Getting All Coupons ##
