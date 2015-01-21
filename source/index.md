@@ -18,6 +18,7 @@ includes:
   - v2/index
   - v2/coupons
   - v2/customers
+  - v2/reports
   - v2/webhooks
 
 search: true

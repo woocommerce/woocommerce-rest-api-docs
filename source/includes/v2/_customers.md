@@ -51,14 +51,6 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `postcode`   | string | Postal code                                         |
 | `country`    | string | ISO code of the country                             |
 
-## Parameters ##
-
-All `GET` endpoints (except for customer orders) support date filtering via using the following parameters:
-
-| Parameter |  Type |                                     Description                                     |
-| --------- | ----- | ----------------------------------------------------------------------------------- |
-| `filter`  | array | Use `created_at_min` or `created_at_max`. e.g. `?filter[created_at_min]=2015-01-01` |
-
 ## Create A Customer ##
 
 This API helps you to create a new customer.
