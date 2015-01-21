@@ -1542,22 +1542,6 @@
 <td>ISO code of the country</td>
 </tr>
 </tbody></table>
-<h2 id='parameters'>Parameters</h2>
-<p>All <code class="prettyprint">GET</code> endpoints (except for customer orders) support date filtering via using the following parameters:</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code class="prettyprint">filter</code></td>
-<td>array</td>
-<td>Use <code class="prettyprint">created_at_min</code> or <code class="prettyprint">created_at_max</code>. e.g. <code class="prettyprint">?filter[created_at_min]=2015-01-01</code></td>
-</tr>
-</tbody></table>
 <h2 id='create-a-customer'>Create A Customer</h2>
 <p>This API helps you to create a new customer.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -2142,6 +2126,192 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id='reports'>Reports</h1>
+<p>This section lists all API that can be used view reports.</p>
+<h2 id='reports-parameters'>Reports Parameters</h2>
+<p>You can specify the period for which request to retrieve sales or specify a min/max date: </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">filter[period]</code></td>
+<td>string</td>
+<td>The supported periods are: <code class="prettyprint">week</code>, <code class="prettyprint">month</code>, <code class="prettyprint">last_month</code>, and <code class="prettyprint">year</code>. If you use an invalid period, <code class="prettyprint">week</code> is used. If you don&rsquo;t specify a period, the current day is used</td>
+</tr>
+<tr>
+<td><code class="prettyprint">filter[date_min]</code></td>
+<td>string</td>
+<td>Return sales for a specific start date. The date need to be in the <code class="prettyprint">YYYY-MM-AA</code> format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">filter[date_max]</code></td>
+<td>string</td>
+<td>Return sales for a specific end date. The dates need to be in the <code class="prettyprint">YYYY-MM-AA</code> format. Required to set the <code class="prettyprint">filter[date_min]</code> too</td>
+</tr>
+</tbody></table>
+<h2 id='view-list-of-reports'>View List of Reports</h2>
+<p>This API lets you retrieve and view a simple list of available reports.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/reports</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/reports <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"sales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sales/top_sellers"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-list-of-sales-report'>View List Of Sales Report</h2>
+<p>This API lets you retrieve and view a list of sales report.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/reports/sales</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/reports/sales?filter[date_min]<span class="o">=</span>2015-01-18&amp;filter[date_max]<span class="o">=</span>2015-01-21 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"total_sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"580.10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"average_sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"145.03"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26.10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totals_grouped_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"2015-01-18"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-17.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"2015-01-19"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"2015-01-20"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"2015-01-21"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"sales"</span><span class="p">:</span><span class="w"> </span><span class="s2">"597.10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26.10"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"total_customers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-list-of-top-sellers-report'>View List of Top Sellers Report</h2>
+<p>This API lets you retrieve and view a list of top sellers report.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/reports/sales/top_sellers</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/reports/sales/top_sellers?filter[period]<span class="o">=</span>last_month <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"top_sellers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Ninja"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flying Ninja"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"70"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Ninja"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ninja Silhouette"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Woo Logo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Woo Album #1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Woo Album #4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ninja Silhouette"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
