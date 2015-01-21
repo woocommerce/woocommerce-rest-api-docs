@@ -412,7 +412,7 @@ This API helps you delete a customer.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/customers/529 \
+curl -X DELETE https://example.com/wc-api/v2/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -596,7 +596,7 @@ curl https://example.com/wc-api/v2/customers/2/downloads \
 {
   "downloads": [
     {
-      "download_url": "https://test.woo.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@woothemes.com&key=99999999999999999999999999999999",
+      "download_url": "https://example.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@woothemes.com&key=99999999999999999999999999999999",
       "download_id": "99999999999999999999999999999999",
       "product_id": 96,
       "download_name": "Woo Album #4 &ndash; Woo Album",
