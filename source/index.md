@@ -1,5 +1,5 @@
 ---
-title: WooCommerce REST API Documentation
+title: WooCommerce REST API Documentation v2
 
 language_tabs:
   - shell: cURL
@@ -11,10 +11,10 @@ toc_footers:
   - <a href="http://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
-  - introduction
-  - index
-  - coupons
-  - customers
+  - v2/introduction
+  - v2/index
+  - v2/coupons
+  - v2/customers
 
 search: true
 ---
