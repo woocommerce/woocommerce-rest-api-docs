@@ -103,7 +103,7 @@ curl -X POST https://example.com/wc-api/v2/coupons \
 
 ## View A Coupon ##
 
-This API lets you retrieve and view a specific coupon.
+This API lets you retrieve and view a specific coupon by ID or code.
 
 ### HTTP Request ###
 
@@ -111,6 +111,13 @@ This API lets you retrieve and view a specific coupon.
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
 		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
 	</div>
 </div>
 
@@ -335,55 +342,6 @@ curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force=true \
 | Parameter |  Type  |                                                                          Description                                                                           |
 | --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `force`   | string | Use `true` whether to permanently delete the coupon, defaults to `false`. Note that permanently deleting the coupon will return HTTP 200 rather than HTTP 202. |
-
-## View A Coupon By Code ##
-
-This API lets you use a coupon code to retrieve and view a specific coupon.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v2/coupons/code/new-coupon \
-	-u consumer_key:consumer_secret
-```
-
-> Response:
-
-```json
-{
-  "coupon": {
-    "id": 529,
-    "code": "new-coupon",
-    "type": "percent",
-    "created_at": "2015-01-20T19:05:27Z",
-    "updated_at": "2015-01-20T19:05:27Z",
-    "amount": "10.00",
-    "individual_use": true,
-    "product_ids": [],
-    "exclude_product_ids": [],
-    "usage_limit": null,
-    "usage_limit_per_user": null,
-    "limit_usage_to_x_items": 0,
-    "usage_count": 0,
-    "expiry_date": null,
-    "enable_free_shipping": false,
-    "product_category_ids": [],
-    "exclude_product_category_ids": [],
-    "exclude_sale_items": true,
-    "minimum_amount": "100.00",
-    "maximum_amount": "0.00",
-    "customer_emails": [],
-    "description": ""
-  }
-}
-```
 
 ## View Coupon Count ##
 

@@ -156,7 +156,7 @@ curl -X POST https://example.com/wc-api/v2/customers \
 
 ## View A Customer ##
 
-This API lets you retrieve and view a specific customer.
+This API lets you retrieve and view a specific customer by ID or email.
 
 ### HTTP Request ###
 
@@ -164,6 +164,13 @@ This API lets you retrieve and view a specific customer.
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
 		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/customers/email/&lt;email&gt;</h6>
 	</div>
 </div>
 
