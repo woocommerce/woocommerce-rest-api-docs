@@ -1094,12 +1094,19 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h2 id='view-a-coupon'>View A Coupon</h2>
-<p>This API lets you retrieve and view a specific coupon.</p>
+<p>This API lets you retrieve and view a specific coupon by ID or code.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
         <h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
     </div>
 </div>
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons/529 <span class="se">\</span>
@@ -1312,49 +1319,6 @@
 <td>Use <code class="prettyprint">true</code> whether to permanently delete the coupon, defaults to <code class="prettyprint">false</code>. Note that permanently deleting the coupon will return HTTP 200 rather than HTTP 202.</td>
 </tr>
 </tbody></table>
-<h2 id='view-a-coupon-by-code'>View A Coupon By Code</h2>
-<p>This API lets you use a coupon code to retrieve and view a specific coupon.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-get">GET</i>
-        <h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
-    </div>
-</div>
-<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/coupons/code/new-coupon <span class="se">\</span>
-    -u consumer_key:consumer_secret
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">529</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-coupon"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"percent"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-20T19:05:27Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"individual_use"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"exclude_product_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"usage_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"usage_limit_per_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"limit_usage_to_x_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"usage_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"expiry_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"enable_free_shipping"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"exclude_product_category_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"exclude_sale_items"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"minimum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"maximum_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"customer_emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <h2 id='view-coupon-count'>View Coupon Count</h2>
 <p>This API lets you retrieve a count of all coupons.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -1681,12 +1645,19 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h2 id='view-a-customer'>View A Customer</h2>
-<p>This API lets you retrieve and view a specific customer.</p>
+<p>This API lets you retrieve and view a specific customer by ID or email.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
         <h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/customers/email/&lt;email&gt;</h6>
     </div>
 </div>
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2/customers/2 <span class="se">\</span>
