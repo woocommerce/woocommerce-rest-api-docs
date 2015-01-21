@@ -501,10 +501,10 @@
 <tr>
 <td><code class="prettyprint">meta</code></td>
 <td>array</td>
-<td>A list of WooCommerce settings used in the API. <a href="#code-classprettyprintmetacode-attributes">See the META ATTRIBUTES</a></td>
+<td>A list of WooCommerce settings used in the API. <a href="#meta-properties">See the META PROPERTIES</a></td>
 </tr>
 </tbody></table>
-<h3 id='code-classprettyprintmetacode-attributes'><code class="prettyprint">meta</code> Attributes</h3>
+<h3 id='meta-properties'>Meta Properties</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1373,6 +1373,317 @@
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id='customers'>Customers</h1>
+<p>This section lists all API that can be used to create, edit or otherwise manipulate customers.</p>
+<h2 id='customers-properties'>Customers Properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Customer ID (user ID) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the customer was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">email</code></td>
+<td>string</td>
+<td>Customer email address <i class="label label-info">mandatory</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">first_name</code></td>
+<td>string</td>
+<td>Customer first name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_name</code></td>
+<td>string</td>
+<td>Customer last name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">username</code></td>
+<td>string</td>
+<td>Customer username <i class="label label-info">cannot be changed</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">password</code></td>
+<td>string</td>
+<td>Customer password <i class="label label-info">mandatory</i> <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_order_id</code></td>
+<td>integer</td>
+<td>Last order ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_order_date</code></td>
+<td>string</td>
+<td>UTC DateTime of the customer last order <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">orders_count</code></td>
+<td>integer</td>
+<td>Quantity of orders that the customer have <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_spent</code></td>
+<td>integer</td>
+<td>Total amount spent <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">avatar_url</code></td>
+<td>string</td>
+<td>Gravatar URL</td>
+</tr>
+<tr>
+<td><code class="prettyprint">billing_address</code></td>
+<td>array</td>
+<td>List of Billing Address fields. <a href="#billing-address-properties">See the BILLING ADDRESS PROPERTIES</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_address</code></td>
+<td>array</td>
+<td>List of Shipping Address fields. <a href="#shipping-address-properties">See the SHIPPING ADDRESS PROPERTIES</a></td>
+</tr>
+</tbody></table>
+<h3 id='billing-address-properties'>Billing Address Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">first_name</code></td>
+<td>string</td>
+<td>First name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_name</code></td>
+<td>string</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">company</code></td>
+<td>string</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">address_1</code></td>
+<td>string</td>
+<td>Address line 1</td>
+</tr>
+<tr>
+<td><code class="prettyprint">address_2</code></td>
+<td>string</td>
+<td>Address line 2</td>
+</tr>
+<tr>
+<td><code class="prettyprint">city</code></td>
+<td>string</td>
+<td>City name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">state</code></td>
+<td>string</td>
+<td>ISO code or name of the state, province or district</td>
+</tr>
+<tr>
+<td><code class="prettyprint">postcode</code></td>
+<td>string</td>
+<td>Postal code</td>
+</tr>
+<tr>
+<td><code class="prettyprint">country</code></td>
+<td>string</td>
+<td>ISO code of the country</td>
+</tr>
+<tr>
+<td><code class="prettyprint">email</code></td>
+<td>string</td>
+<td>Email address</td>
+</tr>
+<tr>
+<td><code class="prettyprint">phone</code></td>
+<td>string</td>
+<td>Phone</td>
+</tr>
+</tbody></table>
+<h3 id='shipping-address-properties'>Shipping Address Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">first_name</code></td>
+<td>string</td>
+<td>First name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_name</code></td>
+<td>string</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">company</code></td>
+<td>string</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">address_1</code></td>
+<td>string</td>
+<td>Address line 1</td>
+</tr>
+<tr>
+<td><code class="prettyprint">address_2</code></td>
+<td>string</td>
+<td>Address line 2</td>
+</tr>
+<tr>
+<td><code class="prettyprint">city</code></td>
+<td>string</td>
+<td>City name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">state</code></td>
+<td>string</td>
+<td>ISO code or name of the state, province or district</td>
+</tr>
+<tr>
+<td><code class="prettyprint">postcode</code></td>
+<td>string</td>
+<td>Postal code</td>
+</tr>
+<tr>
+<td><code class="prettyprint">country</code></td>
+<td>string</td>
+<td>ISO code of the country</td>
+</tr>
+</tbody></table>
+<h2 id='parameters'>Parameters</h2>
+<p>All <code class="prettyprint">GET</code> endpoints (except for customer orders) support date filtering via using the following parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">filter</code></td>
+<td>array</td>
+<td>Use <code class="prettyprint">created_at_min</code> or <code class="prettyprint">created_at_max</code>. e.g. <code class="prettyprint">?filter[created_at_min]=2015-01-01</code></td>
+</tr>
+</tbody></table>
+<h2 id='view-list-of-customers'>View List Of Customers</h2>
+<p>This API helps you to view all the customers.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/customers</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/customers <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"customers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-05T18:34:19Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@woothemes.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-14T16:47:30Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1034.58"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@woothemes.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-10T14:25:39Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joao.silva@woothemes.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"João"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silva"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joao.silva"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-10T14:26:30Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"429.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"João"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Brasil, 432"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeiro"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RJ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BR"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joao.silva@woothemes.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(55) 5555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"João"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Av. Brasil, 432"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rio de Janeiro"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RJ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345-000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BR"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
