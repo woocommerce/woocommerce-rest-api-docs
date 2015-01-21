@@ -306,7 +306,7 @@ curl -X PUT https://example.com/wc-api/v2/coupons/529 \
 
 ## Delete A Coupon ##
 
-This API helps you delete a ticket.
+This API helps you delete a coupon.
 
 ### HTTP Request ###
 
