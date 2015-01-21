@@ -343,7 +343,7 @@ curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force=true \
 | --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `force`   | string | Use `true` whether to permanently delete the coupon, defaults to `false`. Note that permanently deleting the coupon will return HTTP 200 rather than HTTP 202. |
 
-## View Coupon Count ##
+## View Coupons Count ##
 
 This API lets you retrieve a count of all coupons.
 

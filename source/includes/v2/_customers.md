@@ -423,3 +423,232 @@ curl -X DELETE https://example.com/wc-api/v2/customers/529 \
   "message": "Permanently deleted customer"
 }
 ```
+
+## View Customer Orders ##
+
+This API lets you retrieve the customers orders.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/customers/&lt;id&gt;/orders</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/customers/2/orders \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "orders": [
+    {
+      "id": 531,
+      "order_number": 531,
+      "created_at": "2015-01-21T12:02:13Z",
+      "updated_at": "2015-01-21T12:02:13Z",
+      "completed_at": "2015-01-21T12:02:13Z",
+      "status": "on-hold",
+      "currency": "USD",
+      "total": "30.00",
+      "subtotal": "20.00",
+      "total_line_items_quantity": 1,
+      "total_tax": "0.00",
+      "total_shipping": "10.00",
+      "cart_tax": "0.00",
+      "shipping_tax": "0.00",
+      "total_discount": "0.00",
+      "cart_discount": "0.00",
+      "shipping_methods": "Flat Rate",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": false
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@woothemes.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0",
+      "customer_id": "2",
+      "view_order_url": "https://example.com/my-account/view-order/531",
+      "line_items": [
+        {
+          "id": 417,
+          "subtotal": "20.00",
+          "subtotal_tax": "0.00",
+          "total": "20.00",
+          "total_tax": "0.00",
+          "price": "20.00",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Premium Quality",
+          "product_id": 19,
+          "sku": "",
+          "meta": []
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 418,
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@woothemes.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "531",
+        "last_order_date": "2015-01-21T12:02:13Z",
+        "orders_count": 1,
+        "total_spent": "0.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@woothemes.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    }
+  ]
+}
+```
+
+<aside class="notice">
+View the [Orders Properties](#orders-properties) for more details on this response.
+</aside>
+
+## View Customer Downloads ##
+
+This API lets you retrieve the customers downloads.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/customers/&lt;id&gt;/downloads</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/customers/2/downloads \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "downloads": [
+    {
+      "download_url": "https://test.woo.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@woothemes.com&key=99999999999999999999999999999999",
+      "download_id": "99999999999999999999999999999999",
+      "product_id": 96,
+      "download_name": "Woo Album #4 &ndash; Woo Album",
+      "order_id": 532,
+      "order_key": "wc_order_9999999999999",
+      "downloads_remaining": "5",
+      "access_expires": null,
+      "file": {
+        "name": "Woo Album",
+        "file": "http://example.com/wp-content/uploads/woocommerce_uploads/2015/01/album.zip"
+      }
+    }
+  ]
+}
+```
+
+### Downloads Properties ###
+
+|       Attribute       |   Type  |                                           Description                                           |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------- |
+| `download_url`        | string  | Download file URL                                                                               |
+| `download_id`         | string  | Download ID                                                                                     |
+| `product_id`          | integer | Downloadable product ID                                                                         |
+| `download_name`       | string  | Downloadable file name                                                                          |
+| `order_id`            | integer | Order ID                                                                                        |
+| `order_key`           | string  | Order Key                                                                                       |
+| `downloads_remaining` | string  | Amount of downloads remaining. An empty string means that is "Unlimited"                        |
+| `access_expires`      | string  | UTC DateTime when the download access expires. `null` means "Never"                             |
+| `file`                | array   | List for downloadable files, each one have a `name` (file name) and `file` (file URL) attribute |
+
+## View Customers Count ##
+
+This API lets you retrieve a count of all customers.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/customers/count</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/customers/count \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "count": 10
+}
+```
