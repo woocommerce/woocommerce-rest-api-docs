@@ -5,5 +5,5 @@ This section lists all API that can be used to create, edit or otherwise manipul
 @TODO
 
 <aside class="warning">
-Documentation in construction.
+Documentation under construction.
 </aside>
