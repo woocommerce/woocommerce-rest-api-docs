@@ -14,6 +14,7 @@ includes:
   - introduction
   - index
   - coupons
+  - customers
 
 search: true
 ---

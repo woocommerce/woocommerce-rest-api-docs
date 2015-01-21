@@ -24,9 +24,9 @@ The API index provides information about the endpoints available for the site, a
 | `URL`         | string | The site's URL - `get_option( 'siteurl' )`                                                                                                        |
 | `wc_version`  | string | The active WooCommerce version                                                                                                                    |
 | `routes`      | array  | A list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL |
-| `meta`        | array  | A list of WooCommerce settings used in the API. [See the META ATTRIBUTES](#code-classprettyprintmetacode-attributes)                              |
+| `meta`        | array  | A list of WooCommerce settings used in the API. [See the META PROPERTIES](#meta-properties)                                                       |
 
-### `meta` Attributes ###
+### Meta Properties ###
 
 |      Attribute       |   Type  |                                               Description                                                |
 | -------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
