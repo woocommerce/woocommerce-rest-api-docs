@@ -2054,7 +2054,7 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id='downloads-properties'>Downloads Properties</h3>
+<h3 id='customer-downloads-properties'>Customer Downloads Properties</h3>
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2146,6 +2146,625 @@ Documentation under construction.
 <p><aside class="warning">
 Documentation under construction.
 </aside></p>
+<h2 id='products-properties'>Products Properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">title</code></td>
+<td>string</td>
+<td>Product name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Product ID (post ID) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the product was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the product was last updated <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>string</td>
+<td>Product type. By default in WooCommerce the following types are available: <code class="prettyprint">simple</code>, <code class="prettyprint">grouped</code>, <code class="prettyprint">external</code>, <code class="prettyprint">variable</code>. Default is <code class="prettyprint">simple</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td>string</td>
+<td>Product status (post status)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">downloadable</code></td>
+<td>boolean</td>
+<td>If the product is downloadable or not. Downloadable products give access to a file upon purchase</td>
+</tr>
+<tr>
+<td><code class="prettyprint">virtual</code></td>
+<td>boolean</td>
+<td>If the product is virtual or not. Virtual products are intangible and aren&rsquo;t shipped</td>
+</tr>
+<tr>
+<td><code class="prettyprint">permalink</code></td>
+<td>string</td>
+<td>Product URL (post permalink) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sku</code></td>
+<td>string</td>
+<td>SKU refers to a Stock-keeping unit, a unique identifier for each distinct product and service that can be purchased</td>
+</tr>
+<tr>
+<td><code class="prettyprint">price</code></td>
+<td>float</td>
+<td>Current product price. This is setted from <code class="prettyprint">regular_price</code> and <code class="prettyprint">sale_price</code> <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">regular_price</code></td>
+<td>float</td>
+<td>Product regular price</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price</code></td>
+<td>float</td>
+<td>Product sale price</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price_dates_from</code></td>
+<td>float</td>
+<td>Sets the sale start date. Date in the <code class="prettyprint">YYYY-MM-DD</code> format <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price_dates_to</code></td>
+<td>float</td>
+<td>Sets the sale end date. Date in the <code class="prettyprint">YYYY-MM-DD</code> format <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">price_html</code></td>
+<td>string</td>
+<td>Price formatted in HTML, e.g. <code class="prettyprint">&lt;del&gt;&lt;span class=\&quot;amount\&quot;&gt;&amp;#36;&amp;nbsp;3.00&lt;/span&gt;&lt;/del&gt; &lt;ins&gt;&lt;span class=\&quot;amount\&quot;&gt;&amp;#36;&amp;nbsp;2.00&lt;/span&gt;&lt;/ins&gt;</code> <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">taxable</code></td>
+<td>boolean</td>
+<td>Show if the product is taxable or not <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_status</code></td>
+<td>string</td>
+<td>Tax status. The options are: <code class="prettyprint">taxable</code>, <code class="prettyprint">shipping</code> (Shipping only) and <code class="prettyprint">none</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_class</code></td>
+<td>string</td>
+<td>Tax class</td>
+</tr>
+<tr>
+<td><code class="prettyprint">managing_stock</code></td>
+<td>boolean</td>
+<td>Enable stock management at product level</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stock_quantity</code></td>
+<td>integer</td>
+<td>Stock quantity. If is a variable product this value will be used to control stock for all variations, unless you define stock at variation level.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">in_stock</code></td>
+<td>boolean</td>
+<td>Controls whether or not the product is listed as &ldquo;in stock&rdquo; or &ldquo;out of stock&rdquo; on the frontend.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">backorders_allowed</code></td>
+<td>boolean</td>
+<td>Shows if backorders are allowed <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">backordered</code></td>
+<td>boolean</td>
+<td>Shows if a product is on backorder (if the product have the stock_quantity negative) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">backorders</code></td>
+<td>mixed</td>
+<td>If managing stock, this controls whether or not backorders are allowed. If enabled, stock quantity can go below 0. The options are: <code class="prettyprint">false</code> (Do not allow), <code class="prettyprint">notify</code> (Allow, but notify customer), and <code class="prettyprint">true</code> (Allow) <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sold_individually</code></td>
+<td>boolean</td>
+<td>When <code class="prettyprint">true</code> this only allow one item to be bought in a single order</td>
+</tr>
+<tr>
+<td><code class="prettyprint">purchaseable</code></td>
+<td>boolean</td>
+<td>Shows if the product can be bought <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">featured</code></td>
+<td>boolean</td>
+<td>Featured Product</td>
+</tr>
+<tr>
+<td><code class="prettyprint">visible</code></td>
+<td>boolean</td>
+<td>Shows whether or not the product is visible in the catalog <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">catalog_visibility</code></td>
+<td>string</td>
+<td>Catalog visibility. The following options are available: <code class="prettyprint">visible</code> (Catalog and search), <code class="prettyprint">catalog</code> (Only in catalog), <code class="prettyprint">search</code> (Only in search) and <code class="prettyprint">hidden</code> (Hidden from all)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">on_sale</code></td>
+<td>boolean</td>
+<td>Shows if the product is on sale or not <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">weight</code></td>
+<td>string</td>
+<td>Product weight in decimal format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">dimensions</code></td>
+<td>array</td>
+<td>List of the product dimensions. See <a href="#dimensions-properties">Dimensions Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_required</code></td>
+<td>boolean</td>
+<td>Shows if the product need to be shipped or not <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_taxable</code></td>
+<td>boolean</td>
+<td>Shows whether or not the product shipping is taxable <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_class</code></td>
+<td>string</td>
+<td>Shipping class slug. Shipping classes are used by certain shipping methods to group similar products</td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_class_id</code></td>
+<td>integer</td>
+<td>Shipping class ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">description</code></td>
+<td>string</td>
+<td>Product description</td>
+</tr>
+<tr>
+<td><code class="prettyprint">short_description</code></td>
+<td>string</td>
+<td>Product short description</td>
+</tr>
+<tr>
+<td><code class="prettyprint">reviews_allowed</code></td>
+<td>boolean</td>
+<td>Shows/define if reviews are allowed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">average_rating</code></td>
+<td>string</td>
+<td>Reviews average rating <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">rating_count</code></td>
+<td>integer</td>
+<td>Amount of reviews that the product have <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">related_ids</code></td>
+<td>array</td>
+<td>List of related products IDs (<code class="prettyprint">integer</code>) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">upsell_ids</code></td>
+<td>array</td>
+<td>List of up-sell products IDs (<code class="prettyprint">integer</code>). Up-sells are products which you recommend instead of the currently viewed product, for example, products that are more profitable or better quality or more expensive</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cross_sell_ids</code></td>
+<td>array</td>
+<td>List of cross-sell products IDs. Cross-sells are products which you promote in the cart, based on the current product</td>
+</tr>
+<tr>
+<td><code class="prettyprint">parent_id</code></td>
+<td>integer</td>
+<td>Product parent ID (post_parent)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">categories</code></td>
+<td>array</td>
+<td>List of product categories names (<code class="prettyprint">string</code>). In write-mode need to pass a array of categories IDs (<code class="prettyprint">integer</code>) (<a href="http://codex.wordpress.org/Function_Reference/wp_set_object_terms">uses wp_set_object_terms()</a>)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">tags</code></td>
+<td>array</td>
+<td>List of product tags names (<code class="prettyprint">string</code>). In write-mode need to pass a array of tags IDs (<code class="prettyprint">integer</code>) (<a href="http://codex.wordpress.org/Function_Reference/wp_set_object_terms">uses wp_set_object_terms()</a>)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">images</code></td>
+<td>array</td>
+<td>List of products images. See <a href="#images-properties">Images Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">featured_src</code></td>
+<td>string</td>
+<td>Featured image URL <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">attributes</code></td>
+<td>array</td>
+<td>List of product attributes. See <a href="#attributes-properties">Attributes Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">downloads</code></td>
+<td>array</td>
+<td>List of downloadable files. See <a href="#downloads-properties">Downloads Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">download_limit</code></td>
+<td>integer</td>
+<td>Amount of times the product can be downloaded. In write-mode you can sent a blank string for unlimited re-downloads. e.g <code class="prettyprint">&#39;&#39;</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">download_expiry</code></td>
+<td>integer</td>
+<td>Number of days that the customer has up to be able to download the product. In write-mode you can sent a blank string for never expiry. e.g <code class="prettyprint">&#39;&#39;</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">download_type</code></td>
+<td>string</td>
+<td>Download type, this controls the <a href="http://schema.org/">schema</a>. The available options are: <code class="prettyprint">&#39;&#39;</code> (Standard Product), <code class="prettyprint">application</code> (Application/Software) and <code class="prettyprint">music</code> (Music)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">purchase_note</code></td>
+<td>string</td>
+<td>Optional note to send the customer after purchase.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_sales</code></td>
+<td>integer</td>
+<td>Amount of sales <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">variations</code></td>
+<td>array</td>
+<td>List of products variations. See <a href="#variations-properties">Variations Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">parent</code></td>
+<td>array</td>
+<td>List the product parent data when query for a variation <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">product_url</code></td>
+<td>string</td>
+<td>Product external URL. Only for <code class="prettyprint">external</code> products <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">button_text</code></td>
+<td>string</td>
+<td>Product external button text. Only for <code class="prettyprint">external</code> products <i class="label label-info">write-only</i></td>
+</tr>
+</tbody></table>
+<h3 id='dimensions-properties'>Dimensions Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">length</code></td>
+<td>string</td>
+<td>Product length in decimal format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">width</code></td>
+<td>string</td>
+<td>Product width in decimal format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">height</code></td>
+<td>string</td>
+<td>Product height in decimal format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">unit</code></td>
+<td>string</td>
+<td>Product name <i class="label label-info">read-only</i></td>
+</tr>
+</tbody></table>
+<h3 id='images-properties'>Images Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Image ID (attachment ID)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the image was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the image was last updated <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">src</code></td>
+<td>string</td>
+<td>Image URL. In write-mode you can use to send new images</td>
+</tr>
+<tr>
+<td><code class="prettyprint">title</code></td>
+<td>string</td>
+<td>Image title (attachment title) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">alt</code></td>
+<td>string</td>
+<td>Image alt text (attachment image alt text) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">position</code></td>
+<td>integer</td>
+<td>Image position. <code class="prettyprint">0</code> means that the image is featured</td>
+</tr>
+</tbody></table>
+<h3 id='attributes-properties'>Attributes Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>Attribute name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">slug</code></td>
+<td>string</td>
+<td>Attribute slug</td>
+</tr>
+<tr>
+<td><code class="prettyprint">position</code></td>
+<td>string</td>
+<td>Attribute position</td>
+</tr>
+<tr>
+<td><code class="prettyprint">visible</code></td>
+<td>boolean</td>
+<td>Shows/define if the attribute is visible on the &ldquo;Additional Information&rdquo; tab in the product&rsquo;s page</td>
+</tr>
+<tr>
+<td><code class="prettyprint">variation</code></td>
+<td>boolean</td>
+<td>Shows/define if the attribute can be used as variation</td>
+</tr>
+<tr>
+<td><code class="prettyprint">options</code></td>
+<td>array</td>
+<td>List of available attributes names</td>
+</tr>
+<tr>
+<td><code class="prettyprint">position</code></td>
+<td>integer</td>
+<td>List of terms of the attribute in the product</td>
+</tr>
+</tbody></table>
+<h3 id='downloads-properties'>Downloads Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>string</td>
+<td>File ID (file md5 hash) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>File name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">file</code></td>
+<td>string</td>
+<td>File URL. In write-mode you can use this property to send new files</td>
+</tr>
+</tbody></table>
+<h3 id='variations-properties'>Variations Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Variation ID (post ID) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the variation was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the variation was last updated <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">downloadable</code></td>
+<td>boolean</td>
+<td>If the variation is downloadable or not. Downloadable variations give access to a file upon purchase</td>
+</tr>
+<tr>
+<td><code class="prettyprint">virtual</code></td>
+<td>boolean</td>
+<td>If the variation is virtual or not. Virtual variations are intangible and aren&rsquo;t shipped</td>
+</tr>
+<tr>
+<td><code class="prettyprint">permalink</code></td>
+<td>string</td>
+<td>Variation URL (post permalink) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sku</code></td>
+<td>string</td>
+<td>SKU refers to a Stock-keeping unit, a unique identifier for each distinct product and service that can be purchased</td>
+</tr>
+<tr>
+<td><code class="prettyprint">price</code></td>
+<td>float</td>
+<td>Current variation price. This is setted from <code class="prettyprint">regular_price</code> and <code class="prettyprint">sale_price</code> <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">regular_price</code></td>
+<td>float</td>
+<td>Variation regular price</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price</code></td>
+<td>float</td>
+<td>Variation sale price</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price_dates_from</code></td>
+<td>float</td>
+<td>Sets the sale start date. Date in the <code class="prettyprint">YYYY-MM-DD</code> format <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sale_price_dates_to</code></td>
+<td>float</td>
+<td>Sets the sale end date. Date in the <code class="prettyprint">YYYY-MM-DD</code> format <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">taxable</code></td>
+<td>boolean</td>
+<td>Show if the variation is taxable or not <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_status</code></td>
+<td>string</td>
+<td>Tax status. The options are: <code class="prettyprint">taxable</code>, <code class="prettyprint">shipping</code> (Shipping only) and <code class="prettyprint">none</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_class</code></td>
+<td>string</td>
+<td>Tax class</td>
+</tr>
+<tr>
+<td><code class="prettyprint">managing_stock</code></td>
+<td>boolean</td>
+<td>Enable stock management at variation level</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stock_quantity</code></td>
+<td>integer</td>
+<td>Stock quantity. If is a variable variation this value will be used to control stock for all variations, unless you define stock at variation level.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">in_stock</code></td>
+<td>boolean</td>
+<td>Controls whether or not the variation is listed as &ldquo;in stock&rdquo; or &ldquo;out of stock&rdquo; on the frontend.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">backordered</code></td>
+<td>boolean</td>
+<td>Shows if a variation is on backorder (if the variation have the stock_quantity negative) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">purchaseable</code></td>
+<td>boolean</td>
+<td>Shows if the variation can be bought <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">visible</code></td>
+<td>boolean</td>
+<td>Shows whether or not the product parent is visible in the catalog <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">on_sale</code></td>
+<td>boolean</td>
+<td>Shows if the variation is on sale or not <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">weight</code></td>
+<td>string</td>
+<td>Variation weight in decimal format</td>
+</tr>
+<tr>
+<td><code class="prettyprint">dimensions</code></td>
+<td>array</td>
+<td>List of the variation dimensions. See <a href="#dimensions-properties">Dimensions Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_class</code></td>
+<td>string</td>
+<td>Shipping class slug. Shipping classes are used by certain shipping methods to group similar products</td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_class_id</code></td>
+<td>integer</td>
+<td>Shipping class ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">images</code></td>
+<td>array</td>
+<td>Variation featured image. See <a href="#images-properties">Images Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">attributes</code></td>
+<td>array</td>
+<td>List of variation attributes. Similar to a <code class="prettyprint">simple</code> or <code class="prettyprint">variable</code> product, but for <code class="prettyprint">variation</code> indicate the attributes used to form the variation. See <a href="#attributes-properties">Attributes Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">downloads</code></td>
+<td>array</td>
+<td>List of downloadable files. See <a href="#downloads-properties">Downloads Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">download_limit</code></td>
+<td>integer</td>
+<td>Amount of times the variation can be downloaded. In write-mode you can sent a blank string for unlimited re-downloads. e.g <code class="prettyprint">&#39;&#39;</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">download_expiry</code></td>
+<td>integer</td>
+<td>Number of days that the customer has up to be able to download the varition. In write-mode you can sent a blank string for never expiry. e.g <code class="prettyprint">&#39;&#39;</code></td>
+</tr>
+</tbody></table>
 
           <h1 id='reports'>Reports</h1>
 <p>This section lists all API that can be used view reports.</p>
