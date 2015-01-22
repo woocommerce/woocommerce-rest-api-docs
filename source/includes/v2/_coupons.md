@@ -289,7 +289,7 @@ curl -X PUT https://example.com/wc-api/v2/coupons/529 \
     "code": "new-coupon",
     "type": "percent",
     "created_at": "2015-01-20T19:05:27Z",
-    "updated_at": "2015-01-20T19:05:27Z",
+    "updated_at": "2015-01-20T19:10:33Z",
     "amount": "5.00",
     "individual_use": true,
     "product_ids": [],
