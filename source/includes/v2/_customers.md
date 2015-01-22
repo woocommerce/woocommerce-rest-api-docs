@@ -605,7 +605,7 @@ curl https://example.com/wc-api/v2/customers/2/downloads \
 }
 ```
 
-### Downloads Properties ###
+### Customer Downloads Properties ###
 
 |       Attribute       |   Type  |                                           Description                                           |
 | --------------------- | ------- | ----------------------------------------------------------------------------------------------- |
