@@ -2,12 +2,6 @@
 
 This section lists all API that can be used to create, edit or otherwise manipulate products.
 
-@TODO
-
-<aside class="warning">
-Documentation under construction.
-</aside>
-
 ## Products Properties ##
 
 |        Attribute        |   Type  |                                                                                                                           Description                                                                                                                            |
@@ -628,3 +622,675 @@ curl -X POST https://example.com/wc-api/v2/products \
   }
 }
 ```
+
+## View A Product ##
+
+This API lets you retrieve and view a specific product by ID or sku.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/sku/&lt;sku&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/products/546 \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "product": {
+    "title": "Premium Quality",
+    "id": 546,
+    "created_at": "2015-01-22T19:46:16Z",
+    "updated_at": "2015-01-22T19:46:16Z",
+    "type": "simple",
+    "status": "publish",
+    "downloadable": false,
+    "virtual": false,
+    "permalink": "https://example.com/product/premium-quality/",
+    "sku": "",
+    "price": "21.99",
+    "regular_price": "21.99",
+    "sale_price": null,
+    "price_html": "<span class=\"amount\">&#36;&nbsp;21.99</span>",
+    "taxable": true,
+    "tax_status": "taxable",
+    "tax_class": "",
+    "managing_stock": false,
+    "stock_quantity": 0,
+    "in_stock": true,
+    "backorders_allowed": false,
+    "backordered": false,
+    "sold_individually": false,
+    "purchaseable": true,
+    "featured": false,
+    "visible": true,
+    "catalog_visibility": "visible",
+    "on_sale": false,
+    "weight": null,
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "",
+      "unit": "cm"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": null,
+    "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+    "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+    "reviews_allowed": true,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "related_ids": [
+      37,
+      47,
+      31,
+      19,
+      22
+    ],
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "categories": [
+      "Clothing",
+      "T-shirts"
+    ],
+    "tags": [],
+    "images": [
+      {
+        "id": 547,
+        "created_at": "2015-01-22T19:46:16Z",
+        "updated_at": "2015-01-22T19:46:16Z",
+        "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+        "title": "",
+        "alt": "",
+        "position": 0
+      },
+      {
+        "id": 548,
+        "created_at": "2015-01-22T19:46:17Z",
+        "updated_at": "2015-01-22T19:46:17Z",
+        "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+        "title": "",
+        "alt": "",
+        "position": 1
+      }
+    ],
+    "featured_src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+    "attributes": [],
+    "downloads": [],
+    "download_limit": 0,
+    "download_expiry": 0,
+    "download_type": "",
+    "purchase_note": "",
+    "total_sales": 0,
+    "variations": [],
+    "parent": []
+  }
+}
+```
+
+## View List Of Products ##
+
+This API helps you to view all the products.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/products \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "products": [
+    {
+      "title": "Premium Quality",
+      "id": 546,
+      "created_at": "2015-01-22T19:46:16Z",
+      "updated_at": "2015-01-22T19:46:16Z",
+      "type": "simple",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example.com/product/premium-quality/",
+      "sku": "",
+      "price": "21.99",
+      "regular_price": "21.99",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;21.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        37,
+        47,
+        31,
+        19,
+        22
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 547,
+          "created_at": "2015-01-22T19:46:16Z",
+          "updated_at": "2015-01-22T19:46:16Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 548,
+          "created_at": "2015-01-22T19:46:17Z",
+          "updated_at": "2015-01-22T19:46:17Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        }
+      ],
+      "featured_src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+      "attributes": [],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [],
+      "parent": []
+    },
+    {
+      "title": "Ship Your Idea",
+      "id": 604,
+      "created_at": "2015-01-22T20:37:14Z",
+      "updated_at": "2015-01-22T20:37:14Z",
+      "type": "variable",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example/product/ship-your-idea/",
+      "sku": "",
+      "price": "19.99",
+      "regular_price": "0.00",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;19.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        40,
+        37,
+        47,
+        577,
+        34
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 605,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-01-22T20:37:14Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 606,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        },
+        {
+          "id": 607,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 2
+        },
+        {
+          "id": 608,
+          "created_at": "2015-01-22T20:37:16Z",
+          "updated_at": "2015-01-22T20:37:16Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 3
+        }
+      ],
+      "featured_src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+      "attributes": [
+        {
+          "name": "Color",
+          "slug": "color",
+          "position": 0,
+          "visible": false,
+          "variation": true,
+          "options": [
+            "Black",
+            "Green"
+          ]
+        }
+      ],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [
+        {
+          "id": 609,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-01-22T20:37:14Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=black",
+          "sku": "",
+          "price": "19.99",
+          "regular_price": "19.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 610,
+              "created_at": "2015-01-22T20:37:18Z",
+              "updated_at": "2015-01-22T20:37:18Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "black"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        },
+        {
+          "id": 611,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-01-22T20:37:14Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=green",
+          "sku": "",
+          "price": "19.99",
+          "regular_price": "19.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 612,
+              "created_at": "2015-01-22T20:37:19Z",
+              "updated_at": "2015-01-22T20:37:19Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "green"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        }
+      ],
+      "parent": []
+    }
+  ]
+}
+```
+
+## Update A Product ##
+
+This API lets you make changes to a product.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v2/products/546 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "product": {
+    "regular_price": "24.54"
+  }
+}'
+```
+
+> Response:
+
+```json
+{
+  "product": {
+    "title": "Premium Quality",
+    "id": 546,
+    "created_at": "2015-01-22T19:46:16Z",
+    "updated_at": "2015-01-22T19:55:31Z",
+    "type": "simple",
+    "status": "publish",
+    "downloadable": false,
+    "virtual": false,
+    "permalink": "https://example.com/product/premium-quality/",
+    "sku": "",
+    "price": "24.54",
+    "regular_price": "24.54",
+    "sale_price": null,
+    "price_html": "<span class=\"amount\">&#36;&nbsp;24.54</span>",
+    "taxable": true,
+    "tax_status": "taxable",
+    "tax_class": "",
+    "managing_stock": false,
+    "stock_quantity": 0,
+    "in_stock": true,
+    "backorders_allowed": false,
+    "backordered": false,
+    "sold_individually": false,
+    "purchaseable": true,
+    "featured": false,
+    "visible": true,
+    "catalog_visibility": "visible",
+    "on_sale": false,
+    "weight": null,
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": "",
+      "unit": "cm"
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": null,
+    "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+    "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+    "reviews_allowed": true,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "related_ids": [
+      37,
+      47,
+      31,
+      19,
+      22
+    ],
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "categories": [
+      "Clothing",
+      "T-shirts"
+    ],
+    "tags": [],
+    "images": [
+      {
+        "id": 547,
+        "created_at": "2015-01-22T19:46:16Z",
+        "updated_at": "2015-01-22T19:46:16Z",
+        "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+        "title": "",
+        "alt": "",
+        "position": 0
+      },
+      {
+        "id": 548,
+        "created_at": "2015-01-22T19:46:17Z",
+        "updated_at": "2015-01-22T19:46:17Z",
+        "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+        "title": "",
+        "alt": "",
+        "position": 1
+      }
+    ],
+    "featured_src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+    "attributes": [],
+    "downloads": [],
+    "download_limit": 0,
+    "download_expiry": 0,
+    "download_type": "",
+    "purchase_note": "",
+    "total_sales": 0,
+    "variations": [],
+    "parent": []
+  }
+}
+```
+
+## Delete A Product ##
+
+This API helps you delete a product.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wc-api/v2/products/546/?force=true \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "message": "Permanently deleted product"
+}
+```
+
+### Parameters ###
+
+| Parameter |  Type  |                                                                           Description                                                                            |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `force`   | string | Use `true` whether to permanently delete the product, defaults to `false`. Note that permanently deleting the product will return HTTP 200 rather than HTTP 202. |
+
+## View Products Count ##
+
+This API lets you retrieve a count of all products.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/count</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/products/count \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "count": 2
+}
+```
+
+## View List of Product Reviews ##
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## View A Product Category ##
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+
+## View List of Product Categories ##
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
