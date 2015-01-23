@@ -1960,7 +1960,7 @@ Retrieve a list of reviews for a product specified by it's ID:
       "created_at" : "2013-06-07T15:53:31Z",
       "verified" : false,
       "reviewer_name" : "Maria",
-      "reviewer_email" : "maria@woothemes.com"
+      "reviewer_email" : "maria@example.com"
     },
     {
       "review" : "This hoodie gets me lots of looks while out in public, I got the blue one and it's awesome. Not sure if people are looking at my hoodie only, or also at my rocking bod.",
@@ -1969,7 +1969,7 @@ Retrieve a list of reviews for a product specified by it's ID:
       "created_at" : "2013-06-07T13:24:52Z",
       "verified" : false,
       "reviewer_name" : "Ryan",
-      "reviewer_email" : "ryan@woothemes.com"
+      "reviewer_email" : "ryan@example.com"
     },
     {
       "review" : "Another great quality product that anyone who see's me wearing has asked where to purchase one of their own.",
@@ -1978,7 +1978,7 @@ Retrieve a list of reviews for a product specified by it's ID:
       "created_at" : "2013-06-07T13:03:29Z",
       "verified" : false,
       "reviewer_name" : "Stuart",
-      "reviewer_email" : "stuart@woothemes.com"
+      "reviewer_email" : "stuart@example.com"
     }
   ]
 }

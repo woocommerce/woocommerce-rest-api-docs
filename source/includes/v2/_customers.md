@@ -70,7 +70,7 @@ curl -X POST https://example.com/wc-api/v2/customers \
 	-H "Content-Type: application/json" \
 	-d '{
   "customer": {
-    "email": "john.doe@woothemes.com",
+    "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
     "username": "john.doe",
@@ -84,7 +84,7 @@ curl -X POST https://example.com/wc-api/v2/customers \
       "state": "CA",
       "postcode": "94103",
       "country": "US",
-      "email": "john.doe@woothemes.com",
+      "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
     "shipping_address": {
@@ -109,7 +109,7 @@ curl -X POST https://example.com/wc-api/v2/customers \
   "customer": {
     "id": 2,
     "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@woothemes.com",
+    "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
     "username": "john.doe",
@@ -128,7 +128,7 @@ curl -X POST https://example.com/wc-api/v2/customers \
       "state": "CA",
       "postcode": "94103",
       "country": "US",
-      "email": "john.doe@woothemes.com",
+      "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
     "shipping_address": {
@@ -178,7 +178,7 @@ curl https://example.com/wc-api/v2/customers/2 \
   "customer": {
     "id": 2,
     "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@woothemes.com",
+    "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
     "username": "john.doe",
@@ -197,7 +197,7 @@ curl https://example.com/wc-api/v2/customers/2 \
       "state": "CA",
       "postcode": "94103",
       "country": "US",
-      "email": "john.doe@woothemes.com",
+      "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
     "shipping_address": {
@@ -241,7 +241,7 @@ curl https://example.com/wc-api/v2/customers \
     {
       "id": 2,
       "created_at": "2015-01-05T18:34:19Z",
-      "email": "john.doe@woothemes.com",
+      "email": "john.doe@example.com",
       "first_name": "John",
       "last_name": "Doe",
       "username": "john.doe",
@@ -260,7 +260,7 @@ curl https://example.com/wc-api/v2/customers \
         "state": "CA",
         "postcode": "94103",
         "country": "US",
-        "email": "john.doe@woothemes.com",
+        "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
       },
       "shipping_address": {
@@ -278,7 +278,7 @@ curl https://example.com/wc-api/v2/customers \
     {
       "id": 3,
       "created_at": "2015-01-10T14:25:39Z",
-      "email": "joao.silva@woothemes.com",
+      "email": "joao.silva@example.com",
       "first_name": "João",
       "last_name": "Silva",
       "username": "joao.silva",
@@ -297,7 +297,7 @@ curl https://example.com/wc-api/v2/customers \
         "state": "RJ",
         "postcode": "12345-000",
         "country": "BR",
-        "email": "joao.silva@woothemes.com",
+        "email": "joao.silva@example.com",
         "phone": "(55) 5555-5555"
       },
       "shipping_address": {
@@ -353,7 +353,7 @@ curl -X PUT https://example.com/wc-api/v2/customer/2 \
   "customer": {
     "id": 2,
     "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@woothemes.com",
+    "email": "john.doe@example.com",
     "first_name": "James",
     "last_name": "Doe",
     "username": "john.doe",
@@ -372,7 +372,7 @@ curl -X PUT https://example.com/wc-api/v2/customer/2 \
       "state": "CA",
       "postcode": "94103",
       "country": "US",
-      "email": "john.doe@woothemes.com",
+      "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
     "shipping_address": {
@@ -472,7 +472,7 @@ curl https://example.com/wc-api/v2/customers/2/orders \
         "state": "CA",
         "postcode": "94103",
         "country": "US",
-        "email": "john.doe@woothemes.com",
+        "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
       },
       "shipping_address": {
@@ -521,7 +521,7 @@ curl https://example.com/wc-api/v2/customers/2/orders \
       "customer": {
         "id": 2,
         "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@woothemes.com",
+        "email": "john.doe@example.com",
         "first_name": "",
         "last_name": "",
         "username": "john.doe",
@@ -540,7 +540,7 @@ curl https://example.com/wc-api/v2/customers/2/orders \
           "state": "CA",
           "postcode": "94103",
           "country": "US",
-          "email": "john.doe@woothemes.com",
+          "email": "john.doe@example.com",
           "phone": "(555) 555-5555"
         },
         "shipping_address": {
@@ -588,7 +588,7 @@ curl https://example.com/wc-api/v2/customers/2/downloads \
 {
   "downloads": [
     {
-      "download_url": "https://example.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@woothemes.com&key=99999999999999999999999999999999",
+      "download_url": "https://example.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@example.com&key=99999999999999999999999999999999",
       "download_id": "99999999999999999999999999999999",
       "product_id": 96,
       "download_name": "Woo Album #4 &ndash; Woo Album",
