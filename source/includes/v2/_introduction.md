@@ -6,6 +6,10 @@ Introduced in WooCommerce 2.1, the REST API allows store data to be created, rea
 
 You must be using WooCommerce 2.1 or newer and the REST API must be enabled under `WooCommerce > Settings`. You must enable pretty permalinks, as default permalinks will not work.
 
+<aside class="notice">
+Many endpoints were improving with new versions of WooCommerce, so we always recommend keeping your WooCommerce updated to work properly with this documentation.
+</aside>
+
 ## Schema
 
 The API is accessible via this endpoint:
@@ -16,7 +20,7 @@ You may access the API over either HTTP or HTTPS. HTTPS is recommended where pos
 
 ## Version
 
-The current API version is `v2` which takes a first-order position in endpoints. The `v1` endpoint is available in WooCommerce 2.1 / 2.2, but it will be removed in a future version.
+The current API version is `v2` which takes a first-order position in endpoints. The `v1` endpoint is available in WooCommerce 2.1 / 2.2 / 2.3, but it will be removed in a future version.
 
 ### Differences between v1 and v2 versions
 
@@ -51,17 +55,21 @@ There are two aways to authenticate with the API, depending on whether the site 
 
 ### Over HTTPS
 
-You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the API Consumer Key as the username and the API Consumer Secret as the password:
+You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the API Consumer Key as the username and the API Consumer Secret as the password.
 
-```bash
-$ curl https://www.example.com/wc-api/v1/orders \
+> HTTP Basic Auth example
+
+```shell
+curl https://www.example.com/wc-api/v2/orders \
     -u consumer_key:consumer_secret
 ```
 
-Occasionally some servers may not properly parse the Authorization header (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters:
+Occasionally some servers may not properly parse the Authorization header (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters.
 
-``` bash
-$ curl https://www.example.com/wc-api/v1/orders?consumer_key=123&consumer_secret=abc
+> Example for servers that not properly parse the Authorization header:
+
+```shell
+curl https://www.example.com/wc-api/v2/orders?consumer_key=123&consumer_secret=abc
 ```
 
 ### Over HTTP
@@ -75,15 +83,11 @@ You must use [OAuth 1.0a "one-legged" authentication](http://tools.ietf.org/html
 
 2) Set your base request URI -- this is the full request URI without query string parameters -- and URL encode according to RFC 3986:
 
-```
-http://www.example.com/wc-api/v1/orders
-```
+`http://www.example.com/wc-api/v1/orders`
 
 when encoded:
 
-```
-http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders
-```
+`http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders`
 
 3) Collect and normalize your query string parameters. This includes all `oauth_*` parameters except for the signature. Parameters should be normalized by URL encoding according to RFC 3986 (`rawurlencode` in PHP) and percent(`%`) characters should be double-encoded (e.g. `%` becomes `%25`.
 
@@ -221,9 +225,14 @@ The possible `rel` values are:
 
 Occasionally you might encounter errors when accessing the API. There are four possible types:
 
-* Invalid requests, such as using an unsupported HTTP method will result in `400 Bad Request`:
+* Invalid requests, such as using an unsupported HTTP method will result in `400 Bad Request`.
+* Authentication or permission errors, such as incorrect API keys will result in `401 Unauthorized`.
+* Requests to resources that don't exist or are missing required parameters will result in `404 Not Found`.
+* Requests that cannot be processed due to a server error will result in `500 Internal Server Error`.
 
-```
+> `400 Bad Request` example:
+
+```json
 {
   "errors" : [
     {
@@ -234,9 +243,9 @@ Occasionally you might encounter errors when accessing the API. There are four p
 }
 ```
 
-* Authentication or permission errors, such as incorrect API keys will result in `401 Unauthorized`:
+> `401 Unauthorized` example:
 
-```
+```json
 {
   "errors" : [
     {
@@ -247,9 +256,9 @@ Occasionally you might encounter errors when accessing the API. There are four p
 }
 ```
 
-* Requests to resources that don't exist or are missing required parameters will result in `404 Not Found`:
+> `404 Not Found` example:
 
-```
+```json
 {
   "errors" : [
     {
@@ -260,9 +269,9 @@ Occasionally you might encounter errors when accessing the API. There are four p
 }
 ```
 
-* Requests that cannot be processed due to a server error will result in `500 Internal Server Error`:
+> `500 Internal Server Error` example:
 
-```
+```json
 {
   "errors" : [
     {
@@ -291,32 +300,46 @@ The API uses the appropriate HTTP verb for each action:
 
 The API supports JSONP by default. JSONP responses uses the `application/javascript` content-type. You can specify the callback using the `?_jsonp` parameter for `GET` requests to have the response wrapped in a JSON function:
 
-```
-GET /orders/count?_jsonp=ordersCount
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/count?_jsonp=ordersCount</h6>
+	</div>
+</div>
 
+```shell
+curl https://example.com/wc-api/v2/orders/count?_jsonp=ordersCount \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```
 \**\ordersCount({"count":8})
 ```
 
-If the site administrator has chosen to disable it, you will receive a`400 Bad Request` error:
+> If the site administrator has chosen to disable it, you will receive a `400 Bad Request` error:
 
-```
+```json
 {
-  "errors" : [
+  "errors": [
     {
-      "code" : "woocommerce_api_jsonp_disabled",
-      "message" : "JSONP support is disabled on this site"
+      "code": "woocommerce_api_jsonp_disabled",
+      "message": "JSONP support is disabled on this site"
     }
   ]
 }
 ```
-If your callback contains invalid characters, you will receive a `400 Bad Request` error:
 
-```
+> If your callback contains invalid characters, you will receive a `400 Bad Request` error:
+
+
+```json
 {
-  "errors" : [
+  "errors": [
     {
-      "code" : "woocommerce_api_jsonp_callback_invalid",
-      "message" : "The JSONP callback function is invalid"
+      "code": "woocommerce_api_jsonp_callback_invalid",
+      "message": "The JSONP callback function is invalid"
     }
   ]
 }
