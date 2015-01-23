@@ -1272,11 +1272,55 @@ curl https://example.com/wc-api/v2/products/count \
 
 ## View List of Product Reviews ##
 
-@TODO
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/&lt;id&gt;/reviews</h6>
+	</div>
+</div>
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+```shell
+curl https://example.com/wc-api/v2/products/546/reviews \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "product_reviews": [
+    {
+      "id": 4,
+      "created_at": "2013-06-07T11:57:45Z",
+      "review": "This t-shirt is awesome! Would recommend to everyone!\n\nI'm ordering mine next week",
+      "rating": "5",
+      "reviewer_name": "Andrew",
+      "reviewer_email": "andrew@example.com",
+      "verified": false
+    },
+    {
+      "id": 3,
+      "created_at": "2013-06-07T11:53:49Z",
+      "review": "Wonderful quality, and an awesome design. WooThemes ftw!",
+      "rating": "4",
+      "reviewer_name": "Cobus Bester",
+      "reviewer_email": "cobus@example.com",
+      "verified": false
+    }
+  ]
+}
+```
+
+### Product Reviews Properties ###
+
+|    Attribute     |   Type  |                                        Description                                        |
+| ---------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `id`             | integer | Review ID (comment ID) <i class="label label-info">read-only</i>                          |
+| `created_at`     | string  | UTC DateTime when the review was created <i class="label label-info">read-only</i>        |
+| `rating`         | string  | Review rating (0 to 5) <i class="label label-info">read-only</i>                          |
+| `reviewer_name`  | string  | Reviewer name <i class="label label-info">read-only</i>                                   |
+| `reviewer_email` | string  | Reviewer email <i class="label label-info">read-only</i>                                  |
+| `verified`       | boolean | Shows if the reviewer bought the product or not <i class="label label-info">read-only</i> |
 
 ## View A Product Category ##
 
