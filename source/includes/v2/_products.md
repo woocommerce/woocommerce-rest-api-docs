@@ -1324,17 +1324,123 @@ curl https://example.com/wc-api/v2/products/546/reviews \
 
 ## View A Product Category ##
 
-@TODO
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/categories/&lt;id&gt;</h6>
+	</div>
+</div>
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+```shell
+curl https://example.com/wc-api/v2/products/categories/9 \
+	-u consumer_key:consumer_secret
+```
 
+> Response:
+
+```json
+{
+  "product_category": {
+    "id": 9,
+    "name": "Clothing",
+    "slug": "clothing",
+    "parent": 0,
+    "description": "",
+    "count": 23
+  }
+}
+```
+
+### Product Category Properties ###
+
+|   Attribute   |   Type  |                                        Description                                        |
+| ------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                           |
+| `name`        | string  | Category Name <i class="label label-info">read-only</i>                                   |
+| `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                   |
+| `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                 |
+| `description` | string  | Category description <i class="label label-info">read-only</i>                            |
+| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i> |
 
 ## View List of Product Categories ##
 
-@TODO
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/products/categories</h6>
+	</div>
+</div>
 
-<aside class="warning">
-Documentation under construction.
+```shell
+curl https://example.com/wc-api/v2/products/categories \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "product_categories": [
+    {
+      "id": 15,
+      "name": "Albums",
+      "slug": "albums",
+      "parent": 11,
+      "description": "",
+      "count": 4
+    },
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing",
+      "parent": 0,
+      "description": "",
+      "count": 23
+    },
+    {
+      "id": 10,
+      "name": "Hoodies",
+      "slug": "hoodies",
+      "parent": 9,
+      "description": "",
+      "count": 6
+    },
+    {
+      "id": 11,
+      "name": "Music",
+      "slug": "music",
+      "parent": 0,
+      "description": "",
+      "count": 6
+    },
+    {
+      "id": 12,
+      "name": "Posters",
+      "slug": "posters",
+      "parent": 0,
+      "description": "",
+      "count": 5
+    },
+    {
+      "id": 13,
+      "name": "Singles",
+      "slug": "singles",
+      "parent": 11,
+      "description": "",
+      "count": 2
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts",
+      "parent": 9,
+      "description": "",
+      "count": 17
+    }
+  ]
+}
+```
+
+<aside class="notice">
+View the [Product Category Properties](#product-category-properties) for more details on this response.
 </aside>
