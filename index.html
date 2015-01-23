@@ -54,6 +54,10 @@
 <p>Introduced in WooCommerce 2.1, the REST API allows store data to be created, read, updated, and deleted using the JSON format.</p>
 <h2 id='requirements'>Requirements</h2>
 <p>You must be using WooCommerce 2.1 or newer and the REST API must be enabled under <code class="prettyprint">WooCommerce &gt; Settings</code>. You must enable pretty permalinks, as default permalinks will not work.</p>
+
+<p><aside class="notice">
+Many endpoints were improving with new versions of WooCommerce, so we always recommend keeping your WooCommerce updated to work properly with this documentation.
+</aside></p>
 <h2 id='schema'>Schema</h2>
 <p>The API is accessible via this endpoint:</p>
 
@@ -61,7 +65,7 @@
 
 <p>You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, as authentication is simpler. The API index will declare if the site supports SSL or not.</p>
 <h2 id='version'>Version</h2>
-<p>The current API version is <code class="prettyprint">v2</code> which takes a first-order position in endpoints. The <code class="prettyprint">v1</code> endpoint is available in WooCommerce 2.1 / 2.2, but it will be removed in a future version.</p>
+<p>The current API version is <code class="prettyprint">v2</code> which takes a first-order position in endpoints. The <code class="prettyprint">v1</code> endpoint is available in WooCommerce 2.1 / 2.2 / 2.3, but it will be removed in a future version.</p>
 <h3 id='differences-between-v1-and-v2-versions'>Differences between v1 and v2 versions</h3>
 <ul>
 <li>v1 supports XML response format, v2 only supports JSON.</li>
@@ -88,13 +92,21 @@
 <h2 id='authentication'>Authentication</h2>
 <p>There are two aways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.</p>
 <h3 id='over-https'>Over HTTPS</h3>
-<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the API Consumer Key as the username and the API Consumer Secret as the password:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://www.example.com/wc-api/v1/orders <span class="se">\</span>
+<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the API Consumer Key as the username and the API Consumer Secret as the password.</p>
+
+<blockquote>
+<p>HTTP Basic Auth example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://www.example.com/wc-api/v2/orders <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
 
-<p>Occasionally some servers may not properly parse the Authorization header (if you see a &ldquo;Consumer key is missing&rdquo; error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://www.example.com/wc-api/v1/orders?consumer_key<span class="o">=</span>123&amp;consumer_secret<span class="o">=</span>abc
+<p>Occasionally some servers may not properly parse the Authorization header (if you see a &ldquo;Consumer key is missing&rdquo; error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters.</p>
+
+<blockquote>
+<p>Example for servers that not properly parse the Authorization header:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://www.example.com/wc-api/v2/orders?consumer_key<span class="o">=</span>123&amp;consumer_secret<span class="o">=</span>abc
 </code></pre>
 <h3 id='over-http'>Over HTTP</h3>
 <p>You must use <a href="http://tools.ietf.org/html/rfc5849">OAuth 1.0a &ldquo;one-legged&rdquo; authentication</a> to ensure API credentials cannot be intercepted. Typically you may use any standard OAuth 1.0a library in your language of choice to handle the authentication, or generate the necessary parameters by following these instructions.</p>
@@ -104,12 +116,12 @@
 <p><code class="prettyprint">GET</code></p>
 
 <p>2) Set your base request URI &ndash; this is the full request URI without query string parameters &ndash; and URL encode according to RFC 3986:</p>
-<pre class="highlight plaintext"><code>http://www.example.com/wc-api/v1/orders
-</code></pre>
+
+<p><code class="prettyprint">http://www.example.com/wc-api/v1/orders</code></p>
 
 <p>when encoded:</p>
-<pre class="highlight plaintext"><code>http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders
-</code></pre>
+
+<p><code class="prettyprint">http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders</code></p>
 
 <p>3) Collect and normalize your query string parameters. This includes all <code class="prettyprint">oauth_*</code> parameters except for the signature. Parameters should be normalized by URL encoding according to RFC 3986 (<code class="prettyprint">rawurlencode</code> in PHP) and percent(<code class="prettyprint">%</code>) characters should be double-encoded (e.g. <code class="prettyprint">%</code> becomes <code class="prettyprint">%25</code>.</p>
 
@@ -278,8 +290,15 @@
 <p>Occasionally you might encounter errors when accessing the API. There are four possible types:</p>
 
 <ul>
-<li>Invalid requests, such as using an unsupported HTTP method will result in <code class="prettyprint">400 Bad Request</code>:</li>
+<li>Invalid requests, such as using an unsupported HTTP method will result in <code class="prettyprint">400 Bad Request</code>.</li>
+<li>Authentication or permission errors, such as incorrect API keys will result in <code class="prettyprint">401 Unauthorized</code>.</li>
+<li>Requests to resources that don&rsquo;t exist or are missing required parameters will result in <code class="prettyprint">404 Not Found</code>.</li>
+<li>Requests that cannot be processed due to a server error will result in <code class="prettyprint">500 Internal Server Error</code>.</li>
 </ul>
+
+<blockquote>
+<p><code class="prettyprint">400 Bad Request</code> example:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -290,9 +309,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<ul>
-<li>Authentication or permission errors, such as incorrect API keys will result in <code class="prettyprint">401 Unauthorized</code>:</li>
-</ul>
+<blockquote>
+<p><code class="prettyprint">401 Unauthorized</code> example:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -303,9 +322,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<ul>
-<li>Requests to resources that don&rsquo;t exist or are missing required parameters will result in <code class="prettyprint">404 Not Found</code>:</li>
-</ul>
+<blockquote>
+<p><code class="prettyprint">404 Not Found</code> example:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -316,9 +335,9 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<ul>
-<li>Requests that cannot be processed due to a server error will result in <code class="prettyprint">500 Internal Server Error</code>:</li>
-</ul>
+<blockquote>
+<p><code class="prettyprint">500 Internal Server Error</code> example:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -362,28 +381,44 @@
 </tbody></table>
 <h2 id='jsonp-support'>JSONP Support</h2>
 <p>The API supports JSONP by default. JSONP responses uses the <code class="prettyprint">application/javascript</code> content-type. You can specify the callback using the <code class="prettyprint">?_jsonp</code> parameter for <code class="prettyprint">GET</code> requests to have the response wrapped in a JSON function:</p>
-<pre class="highlight plaintext"><code>GET /orders/count?_jsonp=ordersCount
 
-\**\ordersCount({"count":8})
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/count?_jsonp=ordersCount</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/count?_jsonp<span class="o">=</span>ordersCount <span class="se">\</span>
+    -u consumer_key:consumer_secret
 </code></pre>
 
-<p>If the site administrator has chosen to disable it, you will receive a<code class="prettyprint">400 Bad Request</code> error:</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>\**\ordersCount({"count":8})
+</code></pre>
+
+<blockquote>
+<p>If the site administrator has chosen to disable it, you will receive a <code class="prettyprint">400 Bad Request</code> error:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_disabled"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"JSONP support is disabled on this site"</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_disabled"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JSONP support is disabled on this site"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
 <p>If your callback contains invalid characters, you will receive a <code class="prettyprint">400 Bad Request</code> error:</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_callback_invalid"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"The JSONP callback function is invalid"</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"woocommerce_api_jsonp_callback_invalid"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The JSONP callback function is invalid"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
