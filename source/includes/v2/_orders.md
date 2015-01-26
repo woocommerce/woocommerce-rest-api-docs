@@ -863,7 +863,7 @@ This API lets you make changes to an order.
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/orders/2 \
+curl -X PUT https://example.com/wc-api/v2/orders/645 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1138,11 +1138,38 @@ This API helps you to create a new note for an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X POST https://example.com/wc-api/v2/orders/645/notes \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order_note": {
+    "note": "Order ok!!!"
+  }
+}'
+```
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+> Response:
+
+```json
+{
+  "order_note": {
+    "id": "416",
+    "created_at": "2015-01-26T20:56:44Z",
+    "note": "Order ok!!!",
+    "customer_note": false
+  }
+}
+```
+
+### Order Notes Properties ###
+
+|    Attribute    |   Type  |                                                    Description                                                     |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `id`            | integer | Order note ID <i class="label label-info">read-only</i>                                                            |
+| `created_at`    | string  | UTC DateTime when the order note was created <i class="label label-info">read-only</i>                             |
+| `note`          | string  | Order note <i class="label label-info">required</i>                                                                |
+| `customer_note` | boolean | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false` |
 
 ## View An Order Note ##
 
@@ -1157,10 +1184,26 @@ This API lets you retrieve and view a specific note from an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl https://example.com/wc-api/v2/orders/645/notes/416 \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_note": {
+    "id": "416",
+    "created_at": "2015-01-26T20:56:44Z",
+    "note": "Order ok!!!",
+    "customer_note": false
+  }
+}
+```
+
+<aside class="notice">
+View the [Order Notes Properties](#order-notes-properties) for more details on this response.
 </aside>
 
 ## View List Of Notes From An Order ##
@@ -1176,10 +1219,46 @@ This API helps you to view all the notes from an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl https://example.com/wc-api/v2/orders/645/notes \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_notes": [
+    {
+      "id": "416",
+      "created_at": "2015-01-26T20:56:44Z",
+      "note": "Order ok!!!",
+      "customer_note": false
+    },
+    {
+      "id": "415",
+      "created_at": "2015-01-26T20:16:14Z",
+      "note": "Order status changed from Processing to Completed.",
+      "customer_note": false
+    },
+    {
+      "id": "412",
+      "created_at": "2015-01-26T20:00:21Z",
+      "note": "Order item stock reduced successfully.",
+      "customer_note": false
+    },
+    {
+      "id": "411",
+      "created_at": "2015-01-26T20:00:09Z",
+      "note": "Order status changed from Pending Payment to Processing.",
+      "customer_note": false
+    }
+  ]
+}
+```
+
+<aside class="notice">
+View the [Order Notes Properties](#order-notes-properties) for more details on this response.
 </aside>
 
 ## Update An Order Note ##
@@ -1195,10 +1274,32 @@ This API lets you make changes to an order note.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X PUT https://example.com/wc-api/v2/orders/645/notes/416 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order_note": {
+    "note": "Ok!"
+  }
+}'
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_note": {
+    "id": "416",
+    "created_at": "2015-01-26T20:56:44Z",
+    "note": "Ok!",
+    "customer_note": false
+  }
+}
+```
+
+<aside class="notice">
+View the [Order Notes Properties](#order-notes-properties) for more details on this response.
 </aside>
 
 ## Delete An Order Note ##
@@ -1214,11 +1315,18 @@ This API helps you delete an order note.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X DELETE https://example.com/wc-api/v2/orders/645/notes/416 \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+> Response:
+
+```json
+{
+  "message": "Permanently deleted order note"
+}
+```
 
 ## Create A Refund For An Order ##
 
