@@ -1451,12 +1451,12 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <tr>
 <td><code class="prettyprint">billing_address</code></td>
 <td>array</td>
-<td>List of Billing Address fields. <a href="#billing-address-properties">See the BILLING ADDRESS PROPERTIES</a></td>
+<td>List of Billing Address fields. See <a href="#billing-address-properties">Billing Address Properties</a></td>
 </tr>
 <tr>
 <td><code class="prettyprint">shipping_address</code></td>
 <td>array</td>
-<td>List of Shipping Address fields. <a href="#shipping-address-properties">See the SHIPPING ADDRESS PROPERTIES</a></td>
+<td>List of Shipping Address fields. See <a href="#shipping-address-properties">Shipping Address Properties</a></td>
 </tr>
 </tbody></table>
 <h3 id='billing-address-properties'>Billing Address Properties</h3>
@@ -2172,6 +2172,423 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
 <p><aside class="warning">
 Documentation under construction.
 </aside></p>
+<h2 id='orders-properties'>Orders Properties</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Order ID (post ID) <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">order_number</code></td>
+<td>integer</td>
+<td>Order number</td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the order was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">updated_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the order was last updated <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">completed_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the order was last completed <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td>string</td>
+<td>Order status. By default are available the status: <code class="prettyprint">pending</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">on-hold</code>, <code class="prettyprint">completed</code>, <code class="prettyprint">cancelled</code>, <code class="prettyprint">refunded</code> and <code class="prettyprint">failed</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">currency</code></td>
+<td>string</td>
+<td>Currency in ISO format, e.g <code class="prettyprint">USD</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total</code></td>
+<td>float</td>
+<td>Order total <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">subtotal</code></td>
+<td>float</td>
+<td>Order subtotal <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_line_items_quantity</code></td>
+<td>integer</td>
+<td>Total of order items <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_tax</code></td>
+<td>float</td>
+<td>Order tax total <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_shipping</code></td>
+<td>float</td>
+<td>Order shipping total <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">cart_tax</code></td>
+<td>float</td>
+<td>Order cart tax <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_tax</code></td>
+<td>float</td>
+<td>Order shipping tax <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_discount</code></td>
+<td>float</td>
+<td>Order total discount <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_methods</code></td>
+<td>string</td>
+<td>Text list of the shipping methods used in the order <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">payment_details</code></td>
+<td>array</td>
+<td>List of payment details. See <a href="#payment-details-properties">Payment Details Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">billing_address</code></td>
+<td>array</td>
+<td>List of customer billing address. See <a href="#billing-address-properties">Customer Billing Address Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_address</code></td>
+<td>array</td>
+<td>List of customer shipping address. See <a href="#shipping-address-properties">Customer Shipping Address Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">note</code></td>
+<td>string</td>
+<td>Customer order notes</td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_ip</code></td>
+<td>string</td>
+<td>Customer IP address <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_user_agent</code></td>
+<td>string</td>
+<td>Customer User-Agent <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_id</code></td>
+<td>integer</td>
+<td>Customer ID (user ID)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">view_order_url</code></td>
+<td>string</td>
+<td>URL to view the order in frontend <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">line_items</code></td>
+<td>array</td>
+<td>List of order line items. See <a href="#line-items-properties">Line Items Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">shipping_lines</code></td>
+<td>array</td>
+<td>List of shipping line items. See <a href="#shipping-lines-properties">Shipping Lines Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_lines</code></td>
+<td>array</td>
+<td>List of tax line items. See <a href="#tax-lines-properties">Tax Lines Properties</a> <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">fee_lines</code></td>
+<td>array</td>
+<td>List of fee line items. See <a href="#fee-lines-properites">Fee Lines Properites</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">coupon_lines</code></td>
+<td>array</td>
+<td>List of cupon line items. See <a href="#coupon-lines-properties">Coupon Lines Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer</code></td>
+<td>array</td>
+<td>Customer data. See <a href="#customers-properties">Customer Properties</a></td>
+</tr>
+</tbody></table>
+<h3 id='payment-details-properties'>Payment Details Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">method_id</code></td>
+<td>string</td>
+<td>Payment method ID <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">method_title</code></td>
+<td>string</td>
+<td>Payment method title <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">paid</code></td>
+<td>boolean</td>
+<td>Shows/define if the order is paid using this payment method. Use <code class="prettyprint">true</code> to complate the payment</td>
+</tr>
+<tr>
+<td><code class="prettyprint">transaction_id</code></td>
+<td>string</td>
+<td>Transaction ID, an optional field to set the transacion ID when complate one payment (to set this you need set the <code class="prettyprint">paid</code> as <code class="prettyprint">true</code> too)</td>
+</tr>
+</tbody></table>
+<h3 id='line-items-properties'>Line Items Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Line item ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">subtotal</code></td>
+<td>float</td>
+<td>Line item subtotal</td>
+</tr>
+<tr>
+<td><code class="prettyprint">subtotal_tax</code></td>
+<td>float</td>
+<td>Line item tax subtotal</td>
+</tr>
+<tr>
+<td><code class="prettyprint">total</code></td>
+<td>float</td>
+<td>Line item total</td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_tax</code></td>
+<td>float</td>
+<td>Line item tax total</td>
+</tr>
+<tr>
+<td><code class="prettyprint">price</code></td>
+<td>float</td>
+<td>Product price <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">quantity</code></td>
+<td>integer</td>
+<td>Quantity</td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_class</code></td>
+<td>string</td>
+<td>Product tax class <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>Product name <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">product_id</code></td>
+<td>integer</td>
+<td>Product ID <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">sku</code></td>
+<td>string</td>
+<td>Product SKU <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">meta</code></td>
+<td>array</td>
+<td>List of product meta items. See <a href="#products-meta-items-properties">Products Meta Items Properties</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">variation</code></td>
+<td>array</td>
+<td>List of product variation attributes. e.g: <code class="prettyprint">&quot;variation&quot;: [{&quot;color&quot;: &quot;Black&quot;}, {&quot;size&quot;: &quot;XGG&quot;}]</code> <i class="label label-info">write-only</i></td>
+</tr>
+</tbody></table>
+<h4 id='products-meta-items-properties'>Products Meta Items Properties</h4>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">key</code></td>
+<td>string</td>
+<td>Meta item key</td>
+</tr>
+<tr>
+<td><code class="prettyprint">label</code></td>
+<td>string</td>
+<td>Meta item label</td>
+</tr>
+<tr>
+<td><code class="prettyprint">value</code></td>
+<td>string</td>
+<td>Meta item value</td>
+</tr>
+</tbody></table>
+<h3 id='shipping-lines-properties'>Shipping Lines Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Shipping line ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">method_id</code></td>
+<td>string</td>
+<td>Shipping method ID <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">method_title</code></td>
+<td>string</td>
+<td>Shipping method title <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total</code></td>
+<td>float</td>
+<td>Total amount</td>
+</tr>
+</tbody></table>
+<h3 id='tax-lines-properties'>Tax Lines Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Tax rate line ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">rate_id</code></td>
+<td>integer</td>
+<td>Tax rate ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">code</code></td>
+<td>string</td>
+<td>Tax rate code <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">title</code></td>
+<td>string</td>
+<td>Tax rate title/name <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">total</code></td>
+<td>float</td>
+<td>Tax rate total <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">compound</code></td>
+<td>boolean</td>
+<td>Shows if is or not a compound rate. Compound tax rates are applied on top of other tax rates. <i class="label label-info">read-only</i></td>
+</tr>
+</tbody></table>
+<h3 id='fee-lines-properites'>Fee Lines Properites</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Fee line ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">title</code></td>
+<td>string</td>
+<td>Shipping method title <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">taxable</code></td>
+<td>boolean</td>
+<td>Shows/define if the fee is taxable <i class="label label-info">write-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tax_class</code></td>
+<td>string</td>
+<td>Tax class, requered in write-mode if the fee is taxable</td>
+</tr>
+<tr>
+<td><code class="prettyprint">total</code></td>
+<td>float</td>
+<td>Total amount</td>
+</tr>
+<tr>
+<td><code class="prettyprint">total_tax</code></td>
+<td>float</td>
+<td>Tax total</td>
+</tr>
+</tbody></table>
+<h3 id='coupon-lines-properties'>Coupon Lines Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Coupon line ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">code</code></td>
+<td>string</td>
+<td>Coupon code <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">amount</code></td>
+<td>float</td>
+<td>Total amount <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
 
           <h1 id='products'>Products</h1>
 <p>This section lists all API that can be used to create, edit or otherwise manipulate products.</p>
