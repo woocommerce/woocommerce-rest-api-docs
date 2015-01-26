@@ -1341,11 +1341,40 @@ This API helps you to create a new refund for an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X POST https://example.com/wc-api/v2/orders/645/refunds \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order_refund": {
+    "amount": 10
+  }
+}'
+```
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+> Response:
+
+```json
+{
+  "order_refund": {
+    "id": 649,
+    "created_at": "2015-01-26T19:29:32Z",
+    "amount": "10.00",
+    "reason": "",
+    "line_items": []
+  }
+}
+```
+
+### Order Refunds Properties ###
+
+|  Attribute   |   Type  |                                       Description                                        |
+| ------------ | ------- | ---------------------------------------------------------------------------------------- |
+| `id`         | integer | Order note ID <i class="label label-info">read-only</i>                                  |
+| `created_at` | string  | UTC DateTime when the order refund was created <i class="label label-info">read-only</i> |
+| `amount`     | float   | Refund amount <i class="label label-info">required</i>                                   |
+| `reason`     | string  | Reason for refund                                                                        |
+| `line_items` | array   | List of order items to refund. See [Line Items Properties](line-items-properties)        |
 
 ## View An Order Refund ##
 
@@ -1360,10 +1389,27 @@ This API lets you retrieve and view a specific refund from an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl https://example.com/wc-api/v2/orders/645/refunds/649 \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_refund": {
+    "id": 649,
+    "created_at": "2015-01-26T19:29:32Z",
+    "amount": "10.00",
+    "reason": "",
+    "line_items": []
+  }
+}
+```
+
+<aside class="notice">
+View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
 </aside>
 
 ## View List Of Refunds From An Order ##
@@ -1379,10 +1425,65 @@ This API helps you to view all the refunds from an order.
 	</div>
 </div>
 
-@TODO
+```shell
+curl https://example.com/wc-api/v2/orders/645/refunds \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_refunds": [
+    {
+      "id": 649,
+      "created_at": "2015-01-26T19:29:32Z",
+      "amount": "10.00",
+      "reason": "",
+      "line_items": []
+    },
+    {
+      "id": 647,
+      "created_at": "2015-01-26T19:19:06Z",
+      "amount": "21.99",
+      "reason": "",
+      "line_items": [
+        {
+          "id": 514,
+          "subtotal": "-21.99",
+          "subtotal_tax": "0.00",
+          "total": "-21.99",
+          "total_tax": "0.00",
+          "price": "-21.99",
+          "quantity": 1,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 515,
+          "subtotal": "0.00",
+          "subtotal_tax": "0.00",
+          "total": "0.00",
+          "total_tax": "0.00",
+          "price": "0.00",
+          "quantity": 0,
+          "tax_class": null,
+          "name": "Ship Your Idea",
+          "product_id": 613,
+          "sku": "",
+          "meta": []
+        }
+      ]
+    }
+  ]
+}
+```
+
+<aside class="notice">
+View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
 </aside>
 
 ## Update An Order Refund ##
@@ -1398,10 +1499,33 @@ This API lets you make changes to an order refund.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X PUT https://example.com/wc-api/v2/orders/645/refunds/649 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order_refund": {
+    "reason": "Because was it necessary!"
+  }
+}'
+```
 
-<aside class="warning">
-Documentation under construction.
+> Response:
+
+```json
+{
+  "order_refund": {
+    "id": 649,
+    "created_at": "2015-01-26T19:29:32Z",
+    "amount": "10.00",
+    "reason": "Because was it necessary!",
+    "line_items": []
+  }
+}
+```
+
+<aside class="notice">
+View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
 </aside>
 
 ## Delete An Order Refund ##
@@ -1417,8 +1541,15 @@ This API helps you delete an order refund.
 	</div>
 </div>
 
-@TODO
+```shell
+curl -X DELETE https://example.com/wc-api/v2/orders/645/refunds/649 \
+	-u consumer_key:consumer_secret
+```
 
-<aside class="warning">
-Documentation under construction.
-</aside>
+> Response:
+
+```json
+{
+  "message": "Permanently deleted refund"
+}
+```
