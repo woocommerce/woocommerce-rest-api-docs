@@ -3313,7 +3313,7 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
         <h6>/wc-api/v2/orders/&lt;id&gt;</h6>
     </div>
 </div>
-<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/orders/2 <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/orders/645 <span class="se">\</span>
     -u consumer_key:consumer_secret <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s1">'{
@@ -3573,12 +3573,57 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
         <h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X POST https://example.com/wc-api/v2/orders/645/notes <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order_note": {
+    "note": "Order ok!!!"
+  }
+}'</span>
+</code></pre>
 
-<p>@TODO</p>
-
-<p><aside class="warning">
-Documentation under construction.
-</aside></p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_note"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:56:44Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order ok!!!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='order-notes-properties'>Order Notes Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Order note ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the order note was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">note</code></td>
+<td>string</td>
+<td>Order note <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_note</code></td>
+<td>boolean</td>
+<td>Shows/define if the note is only for reference or for the customer (the user will be notified). Default is <code class="prettyprint">false</code></td>
+</tr>
+</tbody></table>
 <h2 id='view-an-order-note'>View An Order Note</h2>
 <p>This API lets you retrieve and view a specific note from an order.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -3588,11 +3633,25 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/645/notes/416 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_note"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:56:44Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order ok!!!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside></p>
 <h2 id='view-list-of-notes-from-an-order'>View List Of Notes From An Order</h2>
 <p>This API helps you to view all the notes from an order.</p>
@@ -3603,11 +3662,45 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/645/notes <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:56:44Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order ok!!!"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"415"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:16:14Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order status changed from Processing to Completed."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"412"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order item stock reduced successfully."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"411"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:09Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order status changed from Pending Payment to Processing."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside></p>
 <h2 id='update-an-order-note'>Update An Order Note</h2>
 <p>This API lets you make changes to an order note.</p>
@@ -3618,11 +3711,31 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/orders/645/notes/416 <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order_note": {
+    "note": "Ok!"
+  }
+}'</span>
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_note"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:56:44Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ok!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside></p>
 <h2 id='delete-an-order-note'>Delete An Order Note</h2>
 <p>This API helps you delete an order note.</p>
@@ -3633,12 +3746,17 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v2/orders/645/notes/416 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
-
-<p><aside class="warning">
-Documentation under construction.
-</aside></p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Permanently deleted order note"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h2 id='create-a-refund-for-an-order'>Create A Refund For An Order</h2>
 <p>This API helps you to create a new refund for an order.</p>
 <h3 id='http-request'>HTTP Request</h3>
