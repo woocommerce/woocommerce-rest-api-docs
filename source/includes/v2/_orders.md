@@ -2,46 +2,40 @@
 
 This section lists all API that can be used to create, edit or otherwise manipulate orders.
 
-@TODO
-
-<aside class="warning">
-Documentation under construction.
-</aside>
-
 ## Orders Properties ##
 
-|          Attribute          |   Type  |                                                               Description                                                                |
-| --------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                        | integer | Order ID (post ID) <i class="label label-info">read-only</i>                                                                             |
-| `order_number`              | integer | Order number                                                                                                                             |
-| `created_at`                | string  | UTC DateTime when the order was created <i class="label label-info">read-only</i>                                                        |
-| `updated_at`                | string  | UTC DateTime when the order was last updated <i class="label label-info">read-only</i>                                                   |
-| `completed_at`              | string  | UTC DateTime when the order was last completed <i class="label label-info">read-only</i>                                                 |
-| `status`                    | string  | Order status. By default are available the status: `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed` |
-| `currency`                  | string  | Currency in ISO format, e.g `USD`                                                                                                        |
-| `total`                     | float   | Order total <i class="label label-info">read-only</i>                                                                                    |
-| `subtotal`                  | float   | Order subtotal <i class="label label-info">read-only</i>                                                                                 |
-| `total_line_items_quantity` | integer | Total of order items <i class="label label-info">read-only</i>                                                                           |
-| `total_tax`                 | float   | Order tax total <i class="label label-info">read-only</i>                                                                                |
-| `total_shipping`            | float   | Order shipping total <i class="label label-info">read-only</i>                                                                           |
-| `cart_tax`                  | float   | Order cart tax <i class="label label-info">read-only</i>                                                                                 |
-| `shipping_tax`              | float   | Order shipping tax <i class="label label-info">read-only</i>                                                                             |
-| `total_discount`            | float   | Order total discount <i class="label label-info">read-only</i>                                                                           |
-| `shipping_methods`          | string  | Text list of the shipping methods used in the order <i class="label label-info">read-only</i>                                            |
-| `payment_details`           | array   | List of payment details. See [Payment Details Properties](#payment-details-properties)                                                   |
-| `billing_address`           | array   | List of customer billing address. See [Customer Billing Address Properties](#billing-address-properties)                                 |
-| `shipping_address`          | array   | List of customer shipping address. See [Customer Shipping Address Properties](#shipping-address-properties)                              |
-| `note`                      | string  | Customer order notes                                                                                                                     |
-| `customer_ip`               | string  | Customer IP address <i class="label label-info">read-only</i>                                                                            |
-| `customer_user_agent`       | string  | Customer User-Agent <i class="label label-info">read-only</i>                                                                            |
-| `customer_id`               | integer | Customer ID (user ID)                                                                                                                    |
-| `view_order_url`            | string  | URL to view the order in frontend <i class="label label-info">read-only</i>                                                              |
-| `line_items`                | array   | List of order line items. See [Line Items Properties](#line-items-properties)                                                            |
-| `shipping_lines`            | array   | List of shipping line items. See [Shipping Lines Properties](#shipping-lines-properties)                                                 |
-| `tax_lines`                 | array   | List of tax line items. See [Tax Lines Properties](#tax-lines-properties) <i class="label label-info">read-only</i>                      |
-| `fee_lines`                 | array   | List of fee line items. See [Fee Lines Properites](#fee-lines-properites)                                                                |
-| `coupon_lines`              | array   | List of cupon line items. See [Coupon Lines Properties](#coupon-lines-properties)                                                        |
-| `customer`                  | array   | Customer data. See [Customer Properties](#customers-properties)                                                                          |
+|          Attribute          |   Type  |                                                                                                Description                                                                                                |
+| --------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                        | integer | Order ID (post ID) <i class="label label-info">read-only</i>                                                                                                                                              |
+| `order_number`              | integer | Order number                                                                                                                                                                                              |
+| `created_at`                | string  | UTC DateTime when the order was created <i class="label label-info">read-only</i>                                                                                                                         |
+| `updated_at`                | string  | UTC DateTime when the order was last updated <i class="label label-info">read-only</i>                                                                                                                    |
+| `completed_at`              | string  | UTC DateTime when the order was last completed <i class="label label-info">read-only</i>                                                                                                                  |
+| `status`                    | string  | Order status. By default are available the status: `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. See [View List of Order Statuses](#view-list-of-order-statuses) |
+| `currency`                  | string  | Currency in ISO format, e.g `USD`                                                                                                                                                                         |
+| `total`                     | float   | Order total <i class="label label-info">read-only</i>                                                                                                                                                     |
+| `subtotal`                  | float   | Order subtotal <i class="label label-info">read-only</i>                                                                                                                                                  |
+| `total_line_items_quantity` | integer | Total of order items <i class="label label-info">read-only</i>                                                                                                                                            |
+| `total_tax`                 | float   | Order tax total <i class="label label-info">read-only</i>                                                                                                                                                 |
+| `total_shipping`            | float   | Order shipping total <i class="label label-info">read-only</i>                                                                                                                                            |
+| `cart_tax`                  | float   | Order cart tax <i class="label label-info">read-only</i>                                                                                                                                                  |
+| `shipping_tax`              | float   | Order shipping tax <i class="label label-info">read-only</i>                                                                                                                                              |
+| `total_discount`            | float   | Order total discount <i class="label label-info">read-only</i>                                                                                                                                            |
+| `shipping_methods`          | string  | Text list of the shipping methods used in the order <i class="label label-info">read-only</i>                                                                                                             |
+| `payment_details`           | array   | List of payment details. See [Payment Details Properties](#payment-details-properties)                                                                                                                    |
+| `billing_address`           | array   | List of customer billing address. See [Customer Billing Address Properties](#billing-address-properties)                                                                                                  |
+| `shipping_address`          | array   | List of customer shipping address. See [Customer Shipping Address Properties](#shipping-address-properties)                                                                                               |
+| `note`                      | string  | Customer order notes                                                                                                                                                                                      |
+| `customer_ip`               | string  | Customer IP address <i class="label label-info">read-only</i>                                                                                                                                             |
+| `customer_user_agent`       | string  | Customer User-Agent <i class="label label-info">read-only</i>                                                                                                                                             |
+| `customer_id`               | integer | Customer ID (user ID)                                                                                                                                                                                     |
+| `view_order_url`            | string  | URL to view the order in frontend <i class="label label-info">read-only</i>                                                                                                                               |
+| `line_items`                | array   | List of order line items. See [Line Items Properties](#line-items-properties)                                                                                                                             |
+| `shipping_lines`            | array   | List of shipping line items. See [Shipping Lines Properties](#shipping-lines-properties)                                                                                                                  |
+| `tax_lines`                 | array   | List of tax line items. See [Tax Lines Properties](#tax-lines-properties) <i class="label label-info">read-only</i>                                                                                       |
+| `fee_lines`                 | array   | List of fee line items. See [Fee Lines Properites](#fee-lines-properites)                                                                                                                                 |
+| `coupon_lines`              | array   | List of cupon line items. See [Coupon Lines Properties](#coupon-lines-properties)                                                                                                                         |
+| `customer`                  | array   | Customer data. See [Customer Properties](#customers-properties)                                                                                                                                           |
 
 ### Payment Details Properties ###
 
@@ -49,26 +43,26 @@ Documentation under construction.
 | ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `method_id`      | string  | Payment method ID <i class="label label-info">required</i>                                                                               |
 | `method_title`   | string  | Payment method title <i class="label label-info">required</i>                                                                            |
-| `paid`           | boolean | Shows/define if the order is paid using this payment method. Use `true` to complate the payment                                          |
+| `paid`           | boolean | Shows/define if the order is paid using this payment method. Use `true` to complate the payment.                                         |
 | `transaction_id` | string  | Transaction ID, an optional field to set the transacion ID when complate one payment (to set this you need set the `paid` as `true` too) |
 
 ### Line Items Properties ###
 
-|   Attribute    |   Type  |                                                                                          Description                                                                                           |
-| -------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | Line item ID <i class="label label-info">read-only</i>                                                                                                                                         |
-| `subtotal`     | float   | Line item subtotal                                                                                                                                                                             |
-| `subtotal_tax` | float   | Line item tax subtotal                                                                                                                                                                         |
-| `total`        | float   | Line item total                                                                                                                                                                                |
-| `total_tax`    | float   | Line item tax total                                                                                                                                                                            |
-| `price`        | float   | Product price <i class="label label-info">read-only</i>                                                                                                                                        |
-| `quantity`     | integer | Quantity                                                                                                                                                                                       |
-| `tax_class`    | string  | Product tax class <i class="label label-info">read-only</i>                                                                                                                                    |
-| `name`         | string  | Product name <i class="label label-info">read-only</i>                                                                                                                                         |
-| `product_id`   | integer | Product ID <i class="label label-info">required</i>                                                                                                                                           |
-| `sku`          | string  | Product SKU <i class="label label-info">read-only</i>                                                                                                                                          |
-| `meta`         | array   | List of product meta items. See [Products Meta Items Properties](#products-meta-items-properties)                                                                                              |
-| `variation`    | array   | List of product variation attributes. e.g: `"variation": [{"color": "Black"}, {"size": "XGG"}]` <i class="label label-info">write-only</i> |
+|   Attribute    |   Type  |                                                                                           Description                                                                                           |
+| -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Line item ID <i class="label label-info">read-only</i>                                                                                                                                          |
+| `subtotal`     | float   | Line item subtotal                                                                                                                                                                              |
+| `subtotal_tax` | float   | Line item tax subtotal                                                                                                                                                                          |
+| `total`        | float   | Line item total                                                                                                                                                                                 |
+| `total_tax`    | float   | Line item tax total                                                                                                                                                                             |
+| `price`        | float   | Product price <i class="label label-info">read-only</i>                                                                                                                                         |
+| `quantity`     | integer | Quantity                                                                                                                                                                                        |
+| `tax_class`    | string  | Product tax class <i class="label label-info">read-only</i>                                                                                                                                     |
+| `name`         | string  | Product name <i class="label label-info">read-only</i>                                                                                                                                          |
+| `product_id`   | integer | Product ID <i class="label label-info">required</i>                                                                                                                                             |
+| `sku`          | string  | Product SKU <i class="label label-info">read-only</i>                                                                                                                                           |
+| `meta`         | array   | List of product meta items. See [Products Meta Items Properties](#products-meta-items-properties)                                                                                               |
+| `variations`   | array   | List of product variation attributes. e.g: `"variation": [{"pa_color": "Black"}, {"pa_size": "XGG"}]` (Use `pa_` prefix when is a product attribute) <i class="label label-info">write-only</i> |
 
 #### Products Meta Items Properties ####
 
@@ -116,3 +110,1207 @@ Documentation under construction.
 | `id`      | integer | Coupon line ID <i class="label label-info">read-only</i> |
 | `code`    | string  | Coupon code <i class="label label-info">required</i>     |
 | `amount`  | float   | Total amount <i class="label label-info">required</i>    |
+
+## Create An Order ##
+
+This API helps you to create a new order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v2/orders</h6>
+	</div>
+</div>
+
+> Example of create a paid order:
+
+```shell
+curl -X POST https://example.com/wc-api/v2/orders \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order": {
+    "payment_details": {
+      "method_id": "bacs",
+      "method_title": "Direct Bank Transfer",
+      "paid": true
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@example.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "customer_id": 2,
+    "line_items": [
+      {
+        "product_id": 546,
+        "quantity": 2
+      },
+      {
+        "product_id": 613,
+        "quantity": 1,
+        "variations": {
+          "pa_color": "Black"
+        }
+      }
+    ],
+    "shipping_lines": [
+      {
+        "method_id": "flat_rate",
+        "method_title": "Flat Rate",
+        "total": 10
+      }
+    ]
+  }
+}'
+```
+
+> Response:
+
+```json
+{
+  "order": {
+    "id": 645,
+    "order_number": 645,
+    "created_at": "2015-01-26T20:00:21Z",
+    "updated_at": "2015-01-26T20:00:21Z",
+    "completed_at": "2015-01-26T20:00:21Z",
+    "status": "processing",
+    "currency": "USD",
+    "total": "79.87",
+    "subtotal": "63.97",
+    "total_line_items_quantity": 3,
+    "total_tax": "5.90",
+    "total_shipping": "10.00",
+    "cart_tax": "5.40",
+    "shipping_tax": "0.50",
+    "total_discount": "0.00",
+    "shipping_methods": "Flat Rate",
+    "payment_details": {
+      "method_id": "bacs",
+      "method_title": "Direct Bank Transfer",
+      "paid": true
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@example.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "note": "",
+    "customer_ip": "127.0.0.1",
+    "customer_user_agent": "WordPress/4.1; http://example.com",
+    "customer_id": 2,
+    "view_order_url": "https://example.com/my-account/view-order/645",
+    "line_items": [
+      {
+        "id": 504,
+        "subtotal": "43.98",
+        "subtotal_tax": "4.40",
+        "total": "43.98",
+        "total_tax": "4.40",
+        "price": "21.99",
+        "quantity": 2,
+        "tax_class": "reduced-rate",
+        "name": "Premium Quality",
+        "product_id": 546,
+        "sku": "",
+        "meta": []
+      },
+      {
+        "id": 505,
+        "subtotal": "19.99",
+        "subtotal_tax": "1.00",
+        "total": "19.99",
+        "total_tax": "1.00",
+        "price": "19.99",
+        "quantity": 1,
+        "tax_class": null,
+        "name": "Ship Your Idea",
+        "product_id": 613,
+        "sku": "",
+        "meta": [
+          {
+            "key": "pa_color",
+            "label": "Color",
+            "value": "Black"
+          }
+        ]
+      }
+    ],
+    "shipping_lines": [
+      {
+        "id": 506,
+        "method_id": "flat_rate",
+        "method_title": "Flat Rate",
+        "total": "10.00"
+      }
+    ],
+    "tax_lines": [
+      {
+        "id": 507,
+        "rate_id": "5",
+        "code": "US-CA-TAX-1",
+        "title": "Tax",
+        "total": "4.40",
+        "compound": false
+      },
+      {
+        "id": 508,
+        "rate_id": "4",
+        "code": "US-STANDARD-1",
+        "title": "Standard",
+        "total": "1.50",
+        "compound": false
+      }
+    ],
+    "fee_lines": [],
+    "coupon_lines": [],
+    "customer": {
+      "id": 2,
+      "created_at": "2014-11-19T18:34:19Z",
+      "email": "john.doe@example.com",
+      "first_name": "",
+      "last_name": "",
+      "username": "john.doe",
+      "last_order_id": "645",
+      "last_order_date": "2015-01-26T20:00:21Z",
+      "orders_count": 2,
+      "total_spent": "19.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    }
+  }
+}
+```
+
+## View An Order ##
+
+This API lets you retrieve and view a specific order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/orders/645 \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "order": {
+    "id": 645,
+    "order_number": 645,
+    "created_at": "2015-01-26T20:00:21Z",
+    "updated_at": "2015-01-26T20:00:21Z",
+    "completed_at": "2015-01-26T20:00:21Z",
+    "status": "processing",
+    "currency": "USD",
+    "total": "79.87",
+    "subtotal": "63.97",
+    "total_line_items_quantity": 3,
+    "total_tax": "5.90",
+    "total_shipping": "10.00",
+    "cart_tax": "5.40",
+    "shipping_tax": "0.50",
+    "total_discount": "0.00",
+    "shipping_methods": "Flat Rate",
+    "payment_details": {
+      "method_id": "bacs",
+      "method_title": "Direct Bank Transfer",
+      "paid": true
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@example.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "note": "",
+    "customer_ip": "127.0.0.1",
+    "customer_user_agent": "WordPress/4.1; http://example.com",
+    "customer_id": 2,
+    "view_order_url": "https://example.com/my-account/view-order/645",
+    "line_items": [
+      {
+        "id": 504,
+        "subtotal": "43.98",
+        "subtotal_tax": "4.40",
+        "total": "43.98",
+        "total_tax": "4.40",
+        "price": "21.99",
+        "quantity": 2,
+        "tax_class": "reduced-rate",
+        "name": "Premium Quality",
+        "product_id": 546,
+        "sku": "",
+        "meta": []
+      },
+      {
+        "id": 505,
+        "subtotal": "19.99",
+        "subtotal_tax": "1.00",
+        "total": "19.99",
+        "total_tax": "1.00",
+        "price": "19.99",
+        "quantity": 1,
+        "tax_class": null,
+        "name": "Ship Your Idea",
+        "product_id": 613,
+        "sku": "",
+        "meta": [
+          {
+            "key": "pa_color",
+            "label": "Color",
+            "value": "Black"
+          }
+        ]
+      }
+    ],
+    "shipping_lines": [
+      {
+        "id": 506,
+        "method_id": "flat_rate",
+        "method_title": "Flat Rate",
+        "total": "10.00"
+      }
+    ],
+    "tax_lines": [
+      {
+        "id": 507,
+        "rate_id": "5",
+        "code": "US-CA-TAX-1",
+        "title": "Tax",
+        "total": "4.40",
+        "compound": false
+      },
+      {
+        "id": 508,
+        "rate_id": "4",
+        "code": "US-STANDARD-1",
+        "title": "Standard",
+        "total": "1.50",
+        "compound": false
+      }
+    ],
+    "fee_lines": [],
+    "coupon_lines": [],
+    "customer": {
+      "id": 2,
+      "created_at": "2014-11-19T18:34:19Z",
+      "email": "john.doe@example.com",
+      "first_name": "",
+      "last_name": "",
+      "username": "john.doe",
+      "last_order_id": "645",
+      "last_order_date": "2015-01-26T20:00:21Z",
+      "orders_count": 2,
+      "total_spent": "19.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    }
+  }
+}
+```
+
+## View List Of Orders ##
+
+This API helps you to view all the orders.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/orders \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "orders": [
+    {
+      "id": 645,
+      "order_number": 645,
+      "created_at": "2015-01-26T20:00:21Z",
+      "updated_at": "2015-01-26T20:00:21Z",
+      "completed_at": "2015-01-26T20:00:21Z",
+      "status": "processing",
+      "currency": "USD",
+      "total": "79.87",
+      "subtotal": "63.97",
+      "total_line_items_quantity": 3,
+      "total_tax": "5.90",
+      "total_shipping": "10.00",
+      "cart_tax": "5.40",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Flat Rate",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": true
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "WordPress/4.1; http://example.com",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/645",
+      "line_items": [
+        {
+          "id": 504,
+          "subtotal": "43.98",
+          "subtotal_tax": "4.40",
+          "total": "43.98",
+          "total_tax": "4.40",
+          "price": "21.99",
+          "quantity": 2,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 505,
+          "subtotal": "19.99",
+          "subtotal_tax": "1.00",
+          "total": "19.99",
+          "total_tax": "1.00",
+          "price": "19.99",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Ship Your Idea",
+          "product_id": 613,
+          "sku": "",
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 506,
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 507,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 508,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    },
+    {
+      "id": 644,
+      "order_number": 644,
+      "created_at": "2015-01-26T19:33:42Z",
+      "updated_at": "2015-01-26T19:33:42Z",
+      "completed_at": "2015-01-26T19:33:42Z",
+      "status": "on-hold",
+      "currency": "USD",
+      "total": "44.14",
+      "subtotal": "30.99",
+      "total_line_items_quantity": 2,
+      "total_tax": "3.15",
+      "total_shipping": "10.00",
+      "cart_tax": "2.65",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Flat Rate",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": false
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/644",
+      "line_items": [
+        {
+          "id": 499,
+          "subtotal": "21.99",
+          "subtotal_tax": "2.20",
+          "total": "21.99",
+          "total_tax": "2.20",
+          "price": "21.99",
+          "quantity": 1,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 500,
+          "subtotal": "9.00",
+          "subtotal_tax": "0.45",
+          "total": "9.00",
+          "total_tax": "0.45",
+          "price": "9.00",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Woo Album #4",
+          "product_id": 96,
+          "sku": "",
+          "meta": []
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 501,
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 502,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 503,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    }
+  ]
+}
+```
+
+## Update An Order ##
+
+This API lets you make changes to an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v2/orders/2 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "order": {
+    "status": "completed"
+  }
+}'
+```
+
+> Response:
+
+```json
+{
+  "order": {
+    "id": 645,
+    "order_number": 645,
+    "created_at": "2015-01-26T20:00:21Z",
+    "updated_at": "2015-01-26T20:00:21Z",
+    "completed_at": "2015-01-26T20:00:21Z",
+    "status": "completed",
+    "currency": "USD",
+    "total": "79.87",
+    "subtotal": "63.97",
+    "total_line_items_quantity": 3,
+    "total_tax": "5.90",
+    "total_shipping": "10.00",
+    "cart_tax": "5.40",
+    "shipping_tax": "0.50",
+    "total_discount": "0.00",
+    "shipping_methods": "Flat Rate",
+    "payment_details": {
+      "method_id": "bacs",
+      "method_title": "Direct Bank Transfer",
+      "paid": true
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@example.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "note": "",
+    "customer_ip": "127.0.0.1",
+    "customer_user_agent": "WordPress/4.1; http://example.com",
+    "customer_id": 2,
+    "view_order_url": "https://example.com/my-account/view-order/645",
+    "line_items": [
+      {
+        "id": 504,
+        "subtotal": "43.98",
+        "subtotal_tax": "4.40",
+        "total": "43.98",
+        "total_tax": "4.40",
+        "price": "21.99",
+        "quantity": 2,
+        "tax_class": "reduced-rate",
+        "name": "Premium Quality",
+        "product_id": 546,
+        "sku": "",
+        "meta": []
+      },
+      {
+        "id": 505,
+        "subtotal": "19.99",
+        "subtotal_tax": "1.00",
+        "total": "19.99",
+        "total_tax": "1.00",
+        "price": "19.99",
+        "quantity": 1,
+        "tax_class": null,
+        "name": "Ship Your Idea",
+        "product_id": 613,
+        "sku": "",
+        "meta": [
+          {
+            "key": "pa_color",
+            "label": "Color",
+            "value": "Black"
+          }
+        ]
+      }
+    ],
+    "shipping_lines": [
+      {
+        "id": 506,
+        "method_id": "flat_rate",
+        "method_title": "Flat Rate",
+        "total": "10.00"
+      }
+    ],
+    "tax_lines": [
+      {
+        "id": 507,
+        "rate_id": "5",
+        "code": "US-CA-TAX-1",
+        "title": "Tax",
+        "total": "4.40",
+        "compound": false
+      },
+      {
+        "id": 508,
+        "rate_id": "4",
+        "code": "US-STANDARD-1",
+        "title": "Standard",
+        "total": "1.50",
+        "compound": false
+      }
+    ],
+    "fee_lines": [],
+    "coupon_lines": [],
+    "customer": {
+      "id": 2,
+      "created_at": "2014-11-19T18:34:19Z",
+      "email": "john.doe@example.com",
+      "first_name": "",
+      "last_name": "",
+      "username": "john.doe",
+      "last_order_id": "645",
+      "last_order_date": "2015-01-26T20:00:21Z",
+      "orders_count": 2,
+      "total_spent": "19.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    }
+  }
+}
+```
+
+## Delete An Order ##
+
+This API helps you delete an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wc-api/v2/orders/645/?force=true \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "message": "Permanently deleted order"
+}
+```
+
+### Parameters ###
+
+| Parameter |  Type  |                                                                         Description                                                                          |
+| --------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `force`   | string | Use `true` whether to permanently delete the order, defaults to `false`. Note that permanently deleting the order will return HTTP 200 rather than HTTP 202. |
+
+## View Orders Count ##
+
+This API lets you retrieve a count of all orders.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/count</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/orders/count \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "count": 2
+}
+```
+
+## View List Of Order Statuses ##
+
+This API lets you retrieve a list of orders statuses available.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/statuses</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v2/orders/statuses \
+	-u consumer_key:consumer_secret
+```
+
+> Response:
+
+```json
+{
+  "order_statuses": {
+    "pending": "Pending Payment",
+    "processing": "Processing",
+    "on-hold": "On Hold",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "refunded": "Refunded",
+    "failed": "Failed"
+  }
+}
+```
+
+## Create A Note For An Order ##
+
+This API helps you to create a new note for an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## View An Order Note ##
+
+This API lets you retrieve and view a specific note from an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## View List Of Notes From An Order ##
+
+This API helps you to view all the notes from an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## Update An Order Note ##
+
+This API lets you make changes to an order note.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## Delete An Order Note ##
+
+This API helps you delete an order note.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## Create A Refund For An Order ##
+
+This API helps you to create a new refund for an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## View An Order Refund ##
+
+This API lets you retrieve and view a specific refund from an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## View List Of Refunds From An Order ##
+
+This API helps you to view all the refunds from an order.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## Update An Order Refund ##
+
+This API lets you make changes to an order refund.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
+
+## Delete An Order Refund ##
+
+This API helps you delete an order refund.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+	</div>
+</div>
+
+@TODO
+
+<aside class="warning">
+Documentation under construction.
+</aside>
