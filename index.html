@@ -1830,10 +1830,10 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-put">PUT</i>
-        <h6>/wc-api/v2/customer/&lt;id&gt;</h6>
+        <h6>/wc-api/v2/customers/&lt;id&gt;</h6>
     </div>
 </div>
-<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/customer/2 <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/customers/2 <span class="se">\</span>
     -u consumer_key:consumer_secret <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s1">'{
@@ -1946,7 +1946,6 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
       </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cart_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
@@ -1980,7 +1979,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
       </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/531"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -2166,12 +2165,6 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
 
           <h1 id='orders'>Orders</h1>
 <p>This section lists all API that can be used to create, edit or otherwise manipulate orders.</p>
-
-<p>@TODO</p>
-
-<p><aside class="warning">
-Documentation under construction.
-</aside></p>
 <h2 id='orders-properties'>Orders Properties</h2>
 <table><thead>
 <tr>
@@ -2208,7 +2201,7 @@ Documentation under construction.
 <tr>
 <td><code class="prettyprint">status</code></td>
 <td>string</td>
-<td>Order status. By default are available the status: <code class="prettyprint">pending</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">on-hold</code>, <code class="prettyprint">completed</code>, <code class="prettyprint">cancelled</code>, <code class="prettyprint">refunded</code> and <code class="prettyprint">failed</code></td>
+<td>Order status. By default are available the status: <code class="prettyprint">pending</code>, <code class="prettyprint">processing</code>, <code class="prettyprint">on-hold</code>, <code class="prettyprint">completed</code>, <code class="prettyprint">cancelled</code>, <code class="prettyprint">refunded</code> and <code class="prettyprint">failed</code>. See <a href="#view-list-of-order-statuses">View List of Order Statuses</a></td>
 </tr>
 <tr>
 <td><code class="prettyprint">currency</code></td>
@@ -2352,7 +2345,7 @@ Documentation under construction.
 <tr>
 <td><code class="prettyprint">paid</code></td>
 <td>boolean</td>
-<td>Shows/define if the order is paid using this payment method. Use <code class="prettyprint">true</code> to complate the payment</td>
+<td>Shows/define if the order is paid using this payment method. Use <code class="prettyprint">true</code> to complate the payment.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">transaction_id</code></td>
@@ -2429,9 +2422,9 @@ Documentation under construction.
 <td>List of product meta items. See <a href="#products-meta-items-properties">Products Meta Items Properties</a></td>
 </tr>
 <tr>
-<td><code class="prettyprint">variation</code></td>
+<td><code class="prettyprint">variations</code></td>
 <td>array</td>
-<td>List of product variation attributes. e.g: <code class="prettyprint">&quot;variation&quot;: [{&quot;color&quot;: &quot;Black&quot;}, {&quot;size&quot;: &quot;XGG&quot;}]</code> <i class="label label-info">write-only</i></td>
+<td>List of product variation attributes. e.g: <code class="prettyprint">&quot;variation&quot;: [{&quot;pa_color&quot;: &quot;Black&quot;}, {&quot;pa_size&quot;: &quot;XGG&quot;}]</code> (Use <code class="prettyprint">pa_</code> prefix when is a product attribute) <i class="label label-info">write-only</i></td>
 </tr>
 </tbody></table>
 <h4 id='products-meta-items-properties'>Products Meta Items Properties</h4>
@@ -2589,6 +2582,1138 @@ Documentation under construction.
 <td>Total amount <i class="label label-info">required</i></td>
 </tr>
 </tbody></table>
+<h2 id='create-an-order'>Create An Order</h2>
+<p>This API helps you to create a new order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/wc-api/v2/orders</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Example of create a paid order:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST https://example.com/wc-api/v2/orders <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order": {
+    "payment_details": {
+      "method_id": "bacs",
+      "method_title": "Direct Bank Transfer",
+      "paid": true
+    },
+    "billing_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@example.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "customer_id": 2,
+    "line_items": [
+      {
+        "product_id": 546,
+        "quantity": 2
+      },
+      {
+        "product_id": 613,
+        "quantity": 1,
+        "variations": {
+          "pa_color": "Black"
+        }
+      }
+    ],
+    "shipping_lines": [
+      {
+        "method_id": "flat_rate",
+        "method_title": "Flat Rate",
+        "total": 10
+      }
+    ]
+  }
+}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.87"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63.97"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_line_items_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.40"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WordPress/4.1; http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/645"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">505</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">613</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pa_color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"shipping_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">506</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flat_rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tax_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">507</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-CA-TAX-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-STANDARD-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.50"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"fee_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"coupon_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-19T18:34:19Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"645"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-an-order'>View An Order</h2>
+<p>This API lets you retrieve and view a specific order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/645 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.87"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63.97"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_line_items_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.40"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WordPress/4.1; http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/645"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">505</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">613</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pa_color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"shipping_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">506</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flat_rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tax_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">507</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-CA-TAX-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-STANDARD-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.50"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"fee_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"coupon_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-19T18:34:19Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"645"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-list-of-orders'>View List Of Orders</h2>
+<p>This API helps you to view all the orders.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.87"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63.97"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_line_items_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.90"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.40"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"paid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WordPress/4.1; http://example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/645"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">505</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">613</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pa_color"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Color"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"shipping_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">506</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flat_rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"tax_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">507</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-CA-TAX-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-STANDARD-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.50"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"fee_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"coupon_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-19T18:34:19Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"645"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">644</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">644</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:33:42Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:33:42Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:33:42Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on-hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44.14"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.99"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_line_items_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.15"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.65"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.50"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"paid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/644"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">499</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.20"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.20"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Woo Album #4"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"shipping_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">501</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flat_rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"tax_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">502</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-CA-TAX-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">503</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-STANDARD-1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.50"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"fee_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"coupon_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-19T18:34:19Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"645"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='update-an-order'>Update An Order</h2>
+<p>This API lets you make changes to an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/orders/2 <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order": {
+    "status": "completed"
+  }
+}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">645</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79.87"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63.97"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_line_items_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.90"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_shipping"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cart_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.40"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.50"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shipping_methods"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payment_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bacs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_user_agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WordPress/4.1; http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"view_order_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com/my-account/view-order/645"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">504</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.98"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">505</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.99"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">613</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pa_color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Color"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"shipping_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">506</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flat_rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"method_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flat Rate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tax_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">507</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-CA-TAX-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.40"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">508</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US-STANDARD-1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.50"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"compound"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"fee_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"coupon_lines"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-19T18:34:19Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"645"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T20:00:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orders_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_spent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"969 Market"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94103"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='delete-an-order'>Delete An Order</h2>
+<p>This API helps you delete an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v2/orders/645/?force<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Permanently deleted order"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">force</code></td>
+<td>string</td>
+<td>Use <code class="prettyprint">true</code> whether to permanently delete the order, defaults to <code class="prettyprint">false</code>. Note that permanently deleting the order will return HTTP 200 rather than HTTP 202.</td>
+</tr>
+</tbody></table>
+<h2 id='view-orders-count'>View Orders Count</h2>
+<p>This API lets you retrieve a count of all orders.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/count</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/count <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='view-list-of-order-statuses'>View List Of Order Statuses</h2>
+<p>This API lets you retrieve a list of orders statuses available.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/statuses</h6>
+    </div>
+</div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/statuses <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_statuses"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending Payment"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"processing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Processing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"on-hold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On Hold"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Completed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cancelled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refunded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refunded"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"failed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Failed"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h2 id='create-a-note-for-an-order'>Create A Note For An Order</h2>
+<p>This API helps you to create a new note for an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='view-an-order-note'>View An Order Note</h2>
+<p>This API lets you retrieve and view a specific note from an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='view-list-of-notes-from-an-order'>View List Of Notes From An Order</h2>
+<p>This API helps you to view all the notes from an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='update-an-order-note'>Update An Order Note</h2>
+<p>This API lets you make changes to an order note.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='delete-an-order-note'>Delete An Order Note</h2>
+<p>This API helps you delete an order note.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='create-a-refund-for-an-order'>Create A Refund For An Order</h2>
+<p>This API helps you to create a new refund for an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='view-an-order-refund'>View An Order Refund</h2>
+<p>This API lets you retrieve and view a specific refund from an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='view-list-of-refunds-from-an-order'>View List Of Refunds From An Order</h2>
+<p>This API helps you to view all the refunds from an order.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='update-an-order-refund'>Update An Order Refund</h2>
+<p>This API lets you make changes to an order refund.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
+<h2 id='delete-an-order-refund'>Delete An Order Refund</h2>
+<p>This API helps you delete an order refund.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+    </div>
+</div>
+
+<p>@TODO</p>
+
+<p><aside class="warning">
+Documentation under construction.
+</aside></p>
 
           <h1 id='products'>Products</h1>
 <p>This section lists all API that can be used to create, edit or otherwise manipulate products.</p>
@@ -4330,7 +5455,7 @@ Documentation under construction.
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h2 id='view-list-of-product-reviews'>View List of Product Reviews</h2>
+<h2 id='view-list-of-product-reviews'>View List Of Product Reviews</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
@@ -4470,7 +5595,7 @@ Documentation under construction.
 <td>Shows the quantity of products in this category <i class="label label-info">read-only</i></td>
 </tr>
 </tbody></table>
-<h2 id='view-list-of-product-categories'>View List of Product Categories</h2>
+<h2 id='view-list-of-product-categories'>View List Of Product Categories</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
@@ -4578,7 +5703,7 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
 <td>Return sales for a specific end date. The dates need to be in the <code class="prettyprint">YYYY-MM-AA</code> format. Required to set the <code class="prettyprint">filter[date_min]</code> too</td>
 </tr>
 </tbody></table>
-<h2 id='view-list-of-reports'>View List of Reports</h2>
+<h2 id='view-list-of-reports'>View List Of Reports</h2>
 <p>This API lets you retrieve and view a simple list of available reports.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <div class="api-endpoint">
@@ -4669,7 +5794,7 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h2 id='view-list-of-top-sellers-report'>View List of Top Sellers Report</h2>
+<h2 id='view-list-of-top-sellers-report'>View List Of Top Sellers Report</h2>
 <p>This API lets you retrieve and view a list of top sellers report.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <div class="api-endpoint">
