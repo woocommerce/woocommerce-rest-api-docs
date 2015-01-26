@@ -325,12 +325,12 @@ This API lets you make changes to a customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/customer/&lt;id&gt;</h6>
+		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/customer/2 \
+curl -X PUT https://example.com/wc-api/v2/customers/2 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -455,7 +455,6 @@ curl https://example.com/wc-api/v2/customers/2/orders \
       "cart_tax": "0.00",
       "shipping_tax": "0.00",
       "total_discount": "0.00",
-      "cart_discount": "0.00",
       "shipping_methods": "Flat Rate",
       "payment_details": {
         "method_id": "bacs",
@@ -489,7 +488,7 @@ curl https://example.com/wc-api/v2/customers/2/orders \
       "note": "",
       "customer_ip": "127.0.0.1",
       "customer_user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0",
-      "customer_id": "2",
+      "customer_id": 2,
       "view_order_url": "https://example.com/my-account/view-order/531",
       "line_items": [
         {

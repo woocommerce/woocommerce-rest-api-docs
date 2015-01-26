@@ -12,7 +12,7 @@ You can specify the period for which request to retrieve sales or specify a min/
 | `filter[date_min]` | string | Return sales for a specific start date. The date need to be in the `YYYY-MM-AA` format                                                                                     |
 | `filter[date_max]` | string | Return sales for a specific end date. The dates need to be in the `YYYY-MM-AA` format. Required to set the `filter[date_min]` too                                          |
 
-## View List of Reports ##
+## View List Of Reports ##
 
 This API lets you retrieve and view a simple list of available reports.
 
@@ -115,7 +115,7 @@ curl https://example.com/wc-api/v2/reports/sales?filter[date_min]=2015-01-18&fil
 }
 ```
 
-## View List of Top Sellers Report ##
+## View List Of Top Sellers Report ##
 
 This API lets you retrieve and view a list of top sellers report.
 

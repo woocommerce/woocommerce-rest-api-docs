@@ -1270,7 +1270,7 @@ curl https://example.com/wc-api/v2/products/count \
 }
 ```
 
-## View List of Product Reviews ##
+## View List Of Product Reviews ##
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1362,7 +1362,7 @@ curl https://example.com/wc-api/v2/products/categories/9 \
 | `description` | string  | Category description <i class="label label-info">read-only</i>                            |
 | `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i> |
 
-## View List of Product Categories ##
+## View List Of Product Categories ##
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
