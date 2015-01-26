@@ -5,14 +5,14 @@ The API index provides information about the endpoints available for the site, a
 > 404 Not Found response:
 
 ```json
-	{
-	  "errors" : [
-	    {
-	      "code" : "woocommerce_api_disabled",
-	      "message" : "The WooCommerce API is disabled on this site"
-	    }
-	  ]
-	}
+{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_disabled",
+      "message" : "The WooCommerce API is disabled on this site"
+    }
+  ]
+}
 ```
 
 ## Index Properties ##
