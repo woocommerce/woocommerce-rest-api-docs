@@ -3766,12 +3766,63 @@ View the <a href="#order-notes-properties">Order Notes Properties</a> for more d
         <h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X POST https://example.com/wc-api/v2/orders/645/refunds <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order_refund": {
+    "amount": 10
+  }
+}'</span>
+</code></pre>
 
-<p>@TODO</p>
-
-<p><aside class="warning">
-Documentation under construction.
-</aside></p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_refund"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">649</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:29:32Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='order-refunds-properties'>Order Refunds Properties</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td>
+<td>integer</td>
+<td>Order note ID <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">created_at</code></td>
+<td>string</td>
+<td>UTC DateTime when the order refund was created <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">amount</code></td>
+<td>float</td>
+<td>Refund amount <i class="label label-info">required</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">reason</code></td>
+<td>string</td>
+<td>Reason for refund</td>
+</tr>
+<tr>
+<td><code class="prettyprint">line_items</code></td>
+<td>array</td>
+<td>List of order items to refund. See <a href="line-items-properties">Line Items Properties</a></td>
+</tr>
+</tbody></table>
 <h2 id='view-an-order-refund'>View An Order Refund</h2>
 <p>This API lets you retrieve and view a specific refund from an order.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -3781,11 +3832,26 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/645/refunds/649 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_refund"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">649</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:29:32Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside></p>
 <h2 id='view-list-of-refunds-from-an-order'>View List Of Refunds From An Order</h2>
 <p>This API helps you to view all the refunds from an order.</p>
@@ -3796,11 +3862,64 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl https://example.com/wc-api/v2/orders/645/refunds <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">649</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:29:32Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">647</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:19:06Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21.99"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">514</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-21.99"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reduced-rate"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium Quality"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">546</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">515</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"subtotal_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tax_class"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">613</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sku"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside></p>
 <h2 id='update-an-order-refund'>Update An Order Refund</h2>
 <p>This API lets you make changes to an order refund.</p>
@@ -3811,11 +3930,32 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X PUT https://example.com/wc-api/v2/orders/645/refunds/649 <span class="se">\</span>
+    -u consumer_key:consumer_secret <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{
+  "order_refund": {
+    "reason": "Because was it necessary!"
+  }
+}'</span>
+</code></pre>
 
-<p>@TODO</p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"order_refund"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">649</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-26T19:29:32Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Because was it necessary!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"line_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<p><aside class="warning">
-Documentation under construction.
+<p><aside class="notice">
+View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside></p>
 <h2 id='delete-an-order-refund'>Delete An Order Refund</h2>
 <p>This API helps you delete an order refund.</p>
@@ -3826,12 +3966,17 @@ Documentation under construction.
         <h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
     </div>
 </div>
+<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v2/orders/645/refunds/649 <span class="se">\</span>
+    -u consumer_key:consumer_secret
+</code></pre>
 
-<p>@TODO</p>
-
-<p><aside class="warning">
-Documentation under construction.
-</aside></p>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Permanently deleted refund"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id='products'>Products</h1>
 <p>This section lists all API that can be used to create, edit or otherwise manipulate products.</p>
