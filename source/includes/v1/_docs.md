@@ -2,7 +2,9 @@
 
 With v2.1, WooCommerce includes a REST API that allows store data to be accessed in either JSON or XML format. The current version is read-only (with a single exception for updating the status of an order), but future versions will allow updating, creating, and deleting resources.
 
-**Note: This documentation is for the v1 API which is now deprecated. Please use the `v2` endpoint and [read the v2 documentation](http://woothemes.github.io/woocommerce-rest-api-docs/).**
+<aside class="warning">
+**Note:** This documentation is for the v1 API which is now deprecated. Please use the `v2` endpoint and [read the v2 documentation](http://woothemes.github.io/woocommerce-rest-api-docs/).
+</aside>
 
 ## Requirements
 
@@ -2010,9 +2012,9 @@ You can specify either the period for which to retrieve sales or specify a start
 
 `GET /reports/sales?filter[period]=month` will return sales for the current month
 
-To return sales for a specific start/end date, set the `start_date` and `end_date` filter parameter:
+To return sales for a specific start/end date, set the `date_min` and `date_max` filter parameter:
 
-`GET /reports/sales?filter[start_date]=2013-12-01&filter[end_date]=2013-12-09` will return sales between December 1st and December 9th, inclusive.
+`GET /reports/sales?filter[date_min]=2013-12-01&filter[date_max]=2013-12-09` will return sales between December 1st and December 9th, inclusive.
 
 If you don't specify an end date, the current date will be used.
 
