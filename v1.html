@@ -54,7 +54,9 @@
           <h1 id='introduction'>Introduction</h1>
 <p>With v2.1, WooCommerce includes a REST API that allows store data to be accessed in either JSON or XML format. The current version is read-only (with a single exception for updating the status of an order), but future versions will allow updating, creating, and deleting resources.</p>
 
-<p><strong>Note: This documentation is for the v1 API which is now deprecated. Please use the <code class="prettyprint">v2</code> endpoint and <a href="http://woothemes.github.io/woocommerce-rest-api-docs/">read the v2 documentation</a>.</strong></p>
+<p><aside class="warning">
+<strong>Note:</strong> This documentation is for the v1 API which is now deprecated. Please use the <code class="prettyprint">v2</code> endpoint and <a href="http://woothemes.github.io/woocommerce-rest-api-docs/">read the v2 documentation</a>.
+</aside></p>
 <h2 id='requirements'>Requirements</h2>
 <p>You must be using WooCommerce 2.1 and the REST API must be enabled under WooCommerce &gt; Settings. You must enable pretty permalinks (default permalinks will not work).</p>
 <h2 id='schema'>Schema</h2>
@@ -1909,9 +1911,9 @@ ordersCount({"count":8})
 
 <p><code class="prettyprint">GET /reports/sales?filter[period]=month</code> will return sales for the current month</p>
 
-<p>To return sales for a specific start/end date, set the <code class="prettyprint">start_date</code> and <code class="prettyprint">end_date</code> filter parameter:</p>
+<p>To return sales for a specific start/end date, set the <code class="prettyprint">date_min</code> and <code class="prettyprint">date_max</code> filter parameter:</p>
 
-<p><code class="prettyprint">GET /reports/sales?filter[start_date]=2013-12-01&amp;filter[end_date]=2013-12-09</code> will return sales between December 1st and December 9th, inclusive.</p>
+<p><code class="prettyprint">GET /reports/sales?filter[date_min]=2013-12-01&amp;filter[date_max]=2013-12-09</code> will return sales between December 1st and December 9th, inclusive.</p>
 
 <p>If you don&rsquo;t specify an end date, the current date will be used.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
