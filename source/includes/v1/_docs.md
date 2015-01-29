@@ -2,10 +2,6 @@
 
 With v2.1, WooCommerce includes a REST API that allows store data to be accessed in either JSON or XML format. The current version is read-only (with a single exception for updating the status of an order), but future versions will allow updating, creating, and deleting resources.
 
-<aside class="warning">
-**Note:** This documentation is for the v1 API which is now deprecated. Please use the `v2` endpoint and [read the v2 documentation](http://woothemes.github.io/woocommerce-rest-api-docs/).
-</aside>
-
 ## Requirements
 
 You must be using WooCommerce 2.1 and the REST API must be enabled under WooCommerce > Settings. You must enable pretty permalinks (default permalinks will not work).

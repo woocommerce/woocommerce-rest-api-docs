@@ -505,7 +505,7 @@ html, body {
 
 		&.warning {
 			background-color: $aside-warning-bg;
-			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
+			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 5%));
 		}
 
 		&.success {
@@ -662,6 +662,50 @@ html, body {
 		margin-bottom: 5px;
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// PAGE WARNING
+////////////////////////////////////////////////////////////////////////////////
+
+body.has-warning {
+	margin-top: 30px;
+
+	.tocify-wrapper {
+		top: 30px;
+	}
+}
+
+#warning-top {
+	background-color: $aside-warning-bg;
+	@include text-shadow(0 1px 0 lighten($aside-warning-bg, 5%));
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	line-height: 2.5;
+	overflow: hidden;
+	box-shadow: 0 0 5px black;
+	font-weight: bold;
+
+	a {
+		color: $link-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.info:before {
+		@extend %icon-exclamation-sign;
+		vertical-align: middle;
+		padding-right: 0.5em;
+		font-size: 14px;
+	}
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
