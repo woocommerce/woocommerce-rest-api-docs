@@ -35,7 +35,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `purchaseable`          | boolean | Shows if the product can be bought <i class="label label-info">read-only</i>                                                                                                                                                                                     |
 | `featured`              | boolean | Featured Product                                                                                                                                                                                                                                                 |
 | `visible`               | boolean | Shows whether or not the product is visible in the catalog <i class="label label-info">read-only</i>                                                                                                                                                             |
-| `catalog_visibility`    | string  | Catalog visibility. The following options are available: `visible` (Catalog and search), `catalog` (Only in catalog), `search` (Only in search) and `hidden` (Hidden from all). Default is `hidden`                                                              |
+| `catalog_visibility`    | string  | Catalog visibility. The following options are available: `visible` (Catalog and search), `catalog` (Only in catalog), `search` (Only in search) and `hidden` (Hidden from all). Default is `visible`                                                             |
 | `on_sale`               | boolean | Shows if the product is on sale or not <i class="label label-info">read-only</i>                                                                                                                                                                                 |
 | `weight`                | string  | Product weight in decimal format                                                                                                                                                                                                                                 |
 | `dimensions`            | array   | List of the product dimensions. See [Dimensions Properties](#dimensions-properties)                                                                                                                                                                              |
@@ -178,7 +178,6 @@ curl -X POST https://example.com/wc-api/v2/products \
     "title": "Premium Quality",
     "type": "simple",
     "regular_price": "21.99",
-    "catalog_visibility": "visible",
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
@@ -307,7 +306,6 @@ curl -X POST https://example.com/wc-api/v2/products \
   "product": {
     "title": "Ship Your Idea",
     "type": "variable",
-    "catalog_visibility": "visible",
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
