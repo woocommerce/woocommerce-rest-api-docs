@@ -125,7 +125,7 @@ If you are having trouble generating a correct signature, you'll want to review 
 
 * Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.
 
-* You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedin.com/oauth-test-console) -- leave the member token/secret blank.
+* You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedinlabs.com/oauth-test/) -- leave the member token/secret blank.
 
 * Twitter has great instructions on [generating a signature](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
 
