@@ -151,7 +151,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <li><p>The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.</p></li>
 <li><p>You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a <code class="prettyprint">www</code> sub-domain, you should use it for requests)</p></li>
 <li><p>Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.</p></li>
-<li><p>You may test your generated signature using LinkedIn&rsquo;s <a href="http://developer.linkedin.com/oauth-test-console">OAuth test console</a> &ndash; leave the member token/secret blank.</p></li>
+<li><p>You may test your generated signature using LinkedIn&rsquo;s <a href="http://developer.linkedinlabs.com/oauth-test/">OAuth test console</a> &ndash; leave the member token/secret blank.</p></li>
 <li><p>Twitter has great instructions on <a href="https://dev.twitter.com/docs/auth/creating-signature">generating a signature</a> with OAuth 1.0a, but remember tokens are not used with this implementation.</p></li>
 <li><p>Note that the request body is <em>not</em> signed as per the OAuth spec, see <a href="https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html">Google&rsquo;s OAuth 1.0 extension</a> for details on why.</p></li>
 </ul>
