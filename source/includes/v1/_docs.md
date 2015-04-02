@@ -36,7 +36,7 @@ Some general information about responses:
 
 ## Authentication
 
-There are two aways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.
+There are two ways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.
 
 ### Over HTTPS
 
