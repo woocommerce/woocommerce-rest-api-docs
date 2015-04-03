@@ -96,11 +96,10 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | ----------- | ------- | -------------------------------------------------------------------------------------------------- |
 | `name`      | string  | Attribute name                                                                                     |
 | `slug`      | string  | Attribute slug                                                                                     |
-| `position`  | string  | Attribute position                                                                                 |
+| `position`  | integer | Attribute position                                                                                 |
 | `visible`   | boolean | Shows/define if the attribute is visible on the "Additional Information" tab in the product's page |
 | `variation` | boolean | Shows/define if the attribute can be used as variation                                             |
 | `options`   | array   | List of available term names of the attribute                                                      |
-| `position`  | integer | List of terms of the attribute in the product                                                      |
 
 ### Default Attributes Properties ###
 
