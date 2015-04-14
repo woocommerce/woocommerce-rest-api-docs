@@ -48,21 +48,21 @@ This section lists all API that can be used to create, edit or otherwise manipul
 
 ### Line Items Properties ###
 
-|   Attribute    |   Type  |                                                                                           Description                                                                                           |
-| -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | Line item ID <i class="label label-info">read-only</i>                                                                                                                                          |
-| `subtotal`     | float   | Line item subtotal                                                                                                                                                                              |
-| `subtotal_tax` | float   | Line item tax subtotal                                                                                                                                                                          |
-| `total`        | float   | Line item total                                                                                                                                                                                 |
-| `total_tax`    | float   | Line item tax total                                                                                                                                                                             |
-| `price`        | float   | Product price <i class="label label-info">read-only</i>                                                                                                                                         |
-| `quantity`     | integer | Quantity                                                                                                                                                                                        |
-| `tax_class`    | string  | Product tax class <i class="label label-info">read-only</i>                                                                                                                                     |
-| `name`         | string  | Product name <i class="label label-info">read-only</i>                                                                                                                                          |
-| `product_id`   | integer | Product ID <i class="label label-info">required</i>                                                                                                                                             |
-| `sku`          | string  | Product SKU <i class="label label-info">read-only</i>                                                                                                                                           |
-| `meta`         | array   | List of product meta items. See [Products Meta Items Properties](#products-meta-items-properties)                                                                                               |
-| `variations`   | array   | List of product variation attributes. e.g: `"variation": [{"pa_color": "Black"}, {"pa_size": "XGG"}]` (Use `pa_` prefix when is a product attribute) <i class="label label-info">write-only</i> |
+|   Attribute    |   Type  |                                                                                         Description                                                                                         |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Line item ID <i class="label label-info">read-only</i>                                                                                                                                      |
+| `subtotal`     | float   | Line item subtotal                                                                                                                                                                          |
+| `subtotal_tax` | float   | Line item tax subtotal                                                                                                                                                                      |
+| `total`        | float   | Line item total                                                                                                                                                                             |
+| `total_tax`    | float   | Line item tax total                                                                                                                                                                         |
+| `price`        | float   | Product price <i class="label label-info">read-only</i>                                                                                                                                     |
+| `quantity`     | integer | Quantity                                                                                                                                                                                    |
+| `tax_class`    | string  | Product tax class <i class="label label-info">read-only</i>                                                                                                                                 |
+| `name`         | string  | Product name <i class="label label-info">read-only</i>                                                                                                                                      |
+| `product_id`   | integer | Product ID <i class="label label-info">required</i>                                                                                                                                         |
+| `sku`          | string  | Product SKU <i class="label label-info">read-only</i>                                                                                                                                       |
+| `meta`         | array   | List of product meta items. See [Products Meta Items Properties](#products-meta-items-properties)                                                                                           |
+| `variations`   | array   | List of product variation attributes. e.g: `"variation": {"pa_color": "Black", "pa_size": "XGG"}` (Use `pa_` prefix when is a product attribute) <i class="label label-info">write-only</i> |
 
 #### Products Meta Items Properties ####
 
