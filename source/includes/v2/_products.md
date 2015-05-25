@@ -1089,6 +1089,14 @@ curl https://example.com/wc-api/v2/products \
 }
 ```
 
+#### Available Filters ####
+
+|   Filter   |  Type  |                 Description                  |
+| ---------- | ------ | -------------------------------------------- |
+| `type`     | string | Products by type. eg: `simple` or `variable` |
+| `category` | string | Products by category.                        |
+| `sku`      | string | Filter a product by SKU.                     |
+
 ## Update A Product ##
 
 This API lets you make changes to a product.
@@ -1268,6 +1276,13 @@ curl https://example.com/wc-api/v2/products/count \
   "count": 2
 }
 ```
+
+#### Available Filters ####
+
+|   Filter   |  Type  |                 Description                  |
+| ---------- | ------ | -------------------------------------------- |
+| `type`     | string | Products by type. eg: `simple` or `variable` |
+| `category` | string | Products by category.                        |
 
 ## View List Of Product Reviews ##
 

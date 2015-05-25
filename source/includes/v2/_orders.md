@@ -849,6 +849,12 @@ curl https://example.com/wc-api/v2/orders \
 }
 ```
 
+#### Available Filters ####
+
+|  Filter  |  Type  |                    Description                    |
+| -------- | ------ | ------------------------------------------------- |
+| `status` | string | Orders by status. eg: `processing` or `cancelled` |
+
 ## Update An Order ##
 
 This API lets you make changes to an order.
@@ -1090,6 +1096,12 @@ curl https://example.com/wc-api/v2/orders/count \
   "count": 2
 }
 ```
+
+#### Available Filters ####
+
+|  Filter  |  Type  |                    Description                    |
+| -------- | ------ | ------------------------------------------------- |
+| `status` | string | Orders by status. eg: `processing` or `cancelled` |
 
 ## View List Of Order Statuses ##
 
