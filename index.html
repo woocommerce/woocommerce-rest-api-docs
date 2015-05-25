@@ -144,16 +144,17 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <p>If you are having trouble generating a correct signature, you&rsquo;ll want to review your string to sign for errors with encoding. The <a href="https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177">authentication source</a> can also be helpful in understanding how to properly generate the signature.</p>
 <h4 id='oauth-tips'>OAuth Tips</h4>
 <ul>
-<li><p>The OAuth parameters must be added as query string parameters and <em>not</em> included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.</p></li>
-<li><p>The require parameters are: <code class="prettyprint">oauth_consumer_key</code>, <code class="prettyprint">oauth_timestamp</code>, <code class="prettyprint">oauth_nonce</code>, <code class="prettyprint">oauth_signature</code>, and <code class="prettyprint">oauth_signature_method</code>. <code class="prettyprint">oauth_version</code> is not required and must be omitted.</p></li>
-<li><p>HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.</p></li>
-<li><p>The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on <a href="https://dev.twitter.com/discussions/12445">generating a nonce</a> on the Twitter API forums.</p></li>
-<li><p>The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.</p></li>
-<li><p>You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a <code class="prettyprint">www</code> sub-domain, you should use it for requests)</p></li>
-<li><p>Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.</p></li>
-<li><p>You may test your generated signature using LinkedIn&rsquo;s <a href="http://developer.linkedinlabs.com/oauth-test/">OAuth test console</a> &ndash; leave the member token/secret blank.</p></li>
-<li><p>Twitter has great instructions on <a href="https://dev.twitter.com/docs/auth/creating-signature">generating a signature</a> with OAuth 1.0a, but remember tokens are not used with this implementation.</p></li>
-<li><p>Note that the request body is <em>not</em> signed as per the OAuth spec, see <a href="https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html">Google&rsquo;s OAuth 1.0 extension</a> for details on why.</p></li>
+<li>The OAuth parameters must be added as query string parameters and <em>not</em> included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.</li>
+<li>The require parameters are: <code class="prettyprint">oauth_consumer_key</code>, <code class="prettyprint">oauth_timestamp</code>, <code class="prettyprint">oauth_nonce</code>, <code class="prettyprint">oauth_signature</code>, and <code class="prettyprint">oauth_signature_method</code>. <code class="prettyprint">oauth_version</code> is not required and must be omitted.</li>
+<li>HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.</li>
+<li>The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on <a href="https://dev.twitter.com/discussions/12445">generating a nonce</a> on the Twitter API forums.</li>
+<li>The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.</li>
+<li>You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a <code class="prettyprint">www</code> sub-domain, you should use it for requests)</li>
+<li>Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.</li>
+<li>You may test your generated signature using LinkedIn&rsquo;s <a href="http://developer.linkedinlabs.com/oauth-test/">OAuth test console</a> &ndash; leave the member token/secret blank.</li>
+<li>Twitter has great instructions on <a href="https://dev.twitter.com/docs/auth/creating-signature">generating a signature</a> with OAuth 1.0a, but remember tokens are not used with this implementation.</li>
+<li>Note that the request body is <em>not</em> signed as per the OAuth spec, see <a href="https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html">Google&rsquo;s OAuth 1.0 extension</a> for details on why.</li>
+<li>If including filter fields in your request, it saves a lot of trouble if you can order your filter fields alphabetically before submitting. Many Oauth libraries won&rsquo;t order subquery fields properly, resulting in invalid signatures.</li>
 </ul>
 <h2 id='parameters'>Parameters</h2>
 <p>All endpoints accept optional parameters which can be passed as an HTTP query string parameter, e.g. <code class="prettyprint">GET /orders?status=completed</code>. There are common parameters and endpoint-specific parameters which are documented along with that endpoint.</p>
@@ -215,7 +216,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <td>resource meta is excluded by default, but it can be included by setting <code class="prettyprint">meta=true</code>, e.g. <code class="prettyprint">GET /orders?filter[meta]=true</code>. Protected meta (meta whose key is prefixed with an underscore) is not included in the response</td>
 </tr>
 <tr>
-<td>pagination</td>
+<td><code class="prettyprint">pagination</code></td>
 <td>explained below</td>
 </tr>
 </tbody></table>
@@ -1827,6 +1828,20 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">role</code></td>
+<td>string</td>
+<td>Customers by status. eg: <code class="prettyprint">customer</code> or <code class="prettyprint">subscriber</code></td>
+</tr>
+</tbody></table>
 <h2 id='update-a-customer'>Update A Customer</h2>
 <p>This API lets you make changes to a customer.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -2165,6 +2180,20 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">role</code></td>
+<td>string</td>
+<td>Customers by status. eg: <code class="prettyprint">customer</code> or <code class="prettyprint">subscriber</code></td>
+</tr>
+</tbody></table>
 
 				<h1 id='orders'>Orders</h1>
 <p>This section lists all API that can be used to create, edit or otherwise manipulate orders.</p>
@@ -3307,6 +3336,20 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td>string</td>
+<td>Orders by status. eg: <code class="prettyprint">processing</code> or <code class="prettyprint">cancelled</code></td>
+</tr>
+</tbody></table>
 <h2 id='update-an-order'>Update An Order</h2>
 <p>This API lets you make changes to an order.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -3539,6 +3582,20 @@ View the <a href="#orders-properties">Orders Properties</a> for more details on 
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td>string</td>
+<td>Orders by status. eg: <code class="prettyprint">processing</code> or <code class="prettyprint">cancelled</code></td>
+</tr>
+</tbody></table>
 <h2 id='view-list-of-order-statuses'>View List Of Order Statuses</h2>
 <p>This API lets you retrieve a list of orders statuses available.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -5554,6 +5611,30 @@ View the <a href="#order-refunds-properties">Order Refunds Properties</a> for mo
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>string</td>
+<td>Products by type. eg: <code class="prettyprint">simple</code> or <code class="prettyprint">variable</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">category</code></td>
+<td>string</td>
+<td>Products by category.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sku</code></td>
+<td>string</td>
+<td>Filter a product by SKU.</td>
+</tr>
+</tbody></table>
 <h2 id='update-a-product'>Update A Product</h2>
 <p>This API lets you make changes to a product.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -5724,6 +5805,25 @@ View the <a href="#order-refunds-properties">Order Refunds Properties</a> for mo
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>string</td>
+<td>Products by type. eg: <code class="prettyprint">simple</code> or <code class="prettyprint">variable</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">category</code></td>
+<td>string</td>
+<td>Products by category.</td>
+</tr>
+</tbody></table>
 <h2 id='view-list-of-product-reviews'>View List Of Product Reviews</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
@@ -5946,28 +6046,28 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
 
 				<h1 id='reports'>Reports</h1>
 <p>This section lists all API that can be used view reports.</p>
-<h2 id='reports-parameters'>Reports Parameters</h2>
-<p>You can specify the period for which request to retrieve sales or specify a min/max date: </p>
+<h2 id='reports-filters'>Reports Filters</h2>
+<p>Use the following filters for any type of report to specify the period of sales: </p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Filter</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">filter[period]</code></td>
+<td><code class="prettyprint">period</code></td>
 <td>string</td>
 <td>The supported periods are: <code class="prettyprint">week</code>, <code class="prettyprint">month</code>, <code class="prettyprint">last_month</code>, and <code class="prettyprint">year</code>. If you use an invalid period, <code class="prettyprint">week</code> is used. If you don&rsquo;t specify a period, the current day is used</td>
 </tr>
 <tr>
-<td><code class="prettyprint">filter[date_min]</code></td>
+<td><code class="prettyprint">date_min</code></td>
 <td>string</td>
 <td>Return sales for a specific start date. The date need to be in the <code class="prettyprint">YYYY-MM-AA</code> format</td>
 </tr>
 <tr>
-<td><code class="prettyprint">filter[date_max]</code></td>
+<td><code class="prettyprint">date_max</code></td>
 <td>string</td>
 <td>Return sales for a specific end date. The dates need to be in the <code class="prettyprint">YYYY-MM-AA</code> format. Required to set the <code class="prettyprint">filter[date_min]</code> too</td>
 </tr>
@@ -6435,6 +6535,20 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h4 id='available-filters'>Available Filters</h4>
+<table><thead>
+<tr>
+<th>Filter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">status</code></td>
+<td>string</td>
+<td>Webhooks by status. The following options are available: <code class="prettyprint">active</code> or <code class="prettyprint">paused</code> and <code class="prettyprint">disabled</code></td>
+</tr>
+</tbody></table>
 <h2 id='update-a-webhook'>Update A Webhook</h2>
 <p>This API lets you make changes to a webhook.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -6514,10 +6628,10 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id='parameters'>Parameters</h3>
+<h4 id='available-filters'>Available Filters</h4>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Filter</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -6525,12 +6639,7 @@ View the <a href="#product-category-properties">Product Category Properties</a> 
 <tr>
 <td><code class="prettyprint">status</code></td>
 <td>string</td>
-<td>Get a total count of webhooks with the given status</td>
-</tr>
-<tr>
-<td><code class="prettyprint">filter</code></td>
-<td>string</td>
-<td>See <a href="#filter-parameter">Parameters &gt; Filter Parameter</a> documention</td>
+<td>Webhooks by status. The following options are available: <code class="prettyprint">active</code> or <code class="prettyprint">paused</code> and <code class="prettyprint">disabled</code></td>
 </tr>
 </tbody></table>
 <h2 id='view-a-webhooks-delivery'>View A Webhooks Delivery</h2>
