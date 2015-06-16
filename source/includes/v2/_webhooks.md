@@ -192,6 +192,12 @@ curl https://example.com/wc-api/v2/webhooks \
 }
 ```
 
+#### Available Filters ####
+
+|  Filter  |  Type  |                                         Description                                          |
+| -------- | ------ | -------------------------------------------------------------------------------------------- |
+| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
+
 ## Update A Webhook ##
 
 This API lets you make changes to a webhook.
@@ -289,12 +295,11 @@ curl https://example.com/wc-api/v2/webhooks/count \
 }
 ```
 
-### Parameters ###
+#### Available Filters ####
 
-| Parameter |  Type  |                            Description                             |
-| --------- | ------ | ------------------------------------------------------------------ |
-| `status`  | string | Get a total count of webhooks with the given status                |
-| `filter`  | string | See [Parameters > Filter Parameter](#filter-parameter) documention |
+|  Filter  |  Type  |                                         Description                                          |
+| -------- | ------ | -------------------------------------------------------------------------------------------- |
+| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
 
 ## View A Webhooks Delivery ##
 

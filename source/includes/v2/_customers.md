@@ -316,6 +316,12 @@ curl https://example.com/wc-api/v2/customers \
 }
 ```
 
+#### Available Filters ####
+
+| Filter |  Type  |                     Description                     |
+| ------ | ------ | --------------------------------------------------- |
+| `role` | string | Customers by status. eg: `customer` or `subscriber` |
+
 ## Update A Customer ##
 
 This API lets you make changes to a customer.
@@ -643,3 +649,9 @@ curl https://example.com/wc-api/v2/customers/count \
   "count": 10
 }
 ```
+
+#### Available Filters ####
+
+| Filter |  Type  |                     Description                     |
+| ------ | ------ | --------------------------------------------------- |
+| `role` | string | Customers by status. eg: `customer` or `subscriber` |
