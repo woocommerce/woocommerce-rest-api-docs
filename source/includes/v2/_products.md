@@ -182,8 +182,8 @@ curl -X POST https://example.com/wc-api/v2/products \
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
-      "Clothing",
-      "T-shirts"
+      9,
+      14
     ],
     "images": [
       {
@@ -310,8 +310,8 @@ curl -X POST https://example.com/wc-api/v2/products \
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
-      "Clothing",
-      "T-shirts"
+      9,
+      14
     ],
     "images": [
       {
