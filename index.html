@@ -699,6 +699,10 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2 <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
