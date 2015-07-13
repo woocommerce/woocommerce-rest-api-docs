@@ -60,6 +60,12 @@ curl https://example.com/wc-api/v2 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
