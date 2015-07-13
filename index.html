@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","javascript"]);
+          setupLanguages(["shell","javascript","python"]);
         });
       </script>
   </head>
@@ -30,6 +30,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="javascript">Node.js</a>
+              <a href="#" data-language-name="python">Python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -539,6 +540,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <ul>
 <li><a href="https://www.npmjs.com/package/woocommerce-api">Node.js</a></li>
+<li><a href="https://pypi.python.org/pypi/WooCommerce">Python</a></li>
 </ul>
 <pre class="highlight javascript"><code><span class="c1">// Install:</span>
 <span class="c1">// npm install --save woocommerce-api</span>
@@ -552,6 +554,19 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="na">consumerSecret</span><span class="p">:</span> <span class="s1">'consumer_secret'</span><span class="p">,</span> <span class="c1">// Your consumer secret</span>
   <span class="na">version</span><span class="p">:</span> <span class="s1">'v2'</span> <span class="c1">// WooCommerce API version</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="c"># Install:</span>
+<span class="c"># pip install woocommerce</span>
+
+<span class="c"># Setup:</span>
+<span class="kn">from</span> <span class="nn">woocommerce</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">wcapi</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s">"http://example.com"</span><span class="p">,</span>
+    <span class="n">consumer_key</span><span class="o">=</span><span class="s">"consumer_key"</span><span class="p">,</span>
+    <span class="n">consumer_secret</span><span class="o">=</span><span class="s">"consumer_secret"</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s">"v2"</span>
+<span class="p">)</span>
 </code></pre>
 
 <h2 id="tools">Tools</h2>
@@ -702,6 +717,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -1224,6 +1241,31 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"coupon"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"code"</span><span class="p">:</span> <span class="s">"new-coupon3"</span><span class="p">,</span>
+        <span class="s">"type"</span><span class="p">:</span> <span class="s">"percent"</span><span class="p">,</span>
+        <span class="s">"amount"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span>
+        <span class="s">"individual_use"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"product_ids"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"exclude_product_ids"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"usage_limit"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+        <span class="s">"usage_limit_per_user"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+        <span class="s">"limit_usage_to_x_items"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+        <span class="s">"expiry_date"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+        <span class="s">"enable_free_shipping"</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="s">"product_category_ids"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"exclude_product_category_ids"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"exclude_sale_items"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"minimum_amount"</span><span class="p">:</span> <span class="s">"100.00"</span><span class="p">,</span>
+        <span class="s">"maximum_amount"</span><span class="p">:</span> <span class="s">"0.00"</span><span class="p">,</span>
+        <span class="s">"customer_emails"</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s">"description"</span><span class="p">:</span> <span class="s">""</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"coupons"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1282,6 +1324,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1332,6 +1376,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'coupons'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -1446,6 +1492,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"coupon"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"amount"</span><span class="p">:</span> <span class="s">"5"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1497,6 +1551,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1540,6 +1596,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'coupons/count'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -1842,6 +1900,41 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"customer"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"email"</span><span class="p">:</span> <span class="s">"john.doe@example.com"</span><span class="p">,</span>
+        <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+        <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Doe"</span><span class="p">,</span>
+        <span class="s">"username"</span><span class="p">:</span> <span class="s">"john.doe"</span><span class="p">,</span>
+        <span class="s">"billing_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Doe"</span><span class="p">,</span>
+            <span class="s">"company"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"address_1"</span><span class="p">:</span> <span class="s">"969 Market"</span><span class="p">,</span>
+            <span class="s">"address_2"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Francisco"</span><span class="p">,</span>
+            <span class="s">"state"</span><span class="p">:</span> <span class="s">"CA"</span><span class="p">,</span>
+            <span class="s">"postcode"</span><span class="p">:</span> <span class="s">"94103"</span><span class="p">,</span>
+            <span class="s">"country"</span><span class="p">:</span> <span class="s">"US"</span><span class="p">,</span>
+            <span class="s">"email"</span><span class="p">:</span> <span class="s">"john.doe@example.com"</span><span class="p">,</span>
+            <span class="s">"phone"</span><span class="p">:</span> <span class="s">"(555) 555-5555"</span>
+        <span class="p">},</span>
+        <span class="s">"shipping_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Doe"</span><span class="p">,</span>
+            <span class="s">"company"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"address_1"</span><span class="p">:</span> <span class="s">"969 Market"</span><span class="p">,</span>
+            <span class="s">"address_2"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Francisco"</span><span class="p">,</span>
+            <span class="s">"state"</span><span class="p">:</span> <span class="s">"CA"</span><span class="p">,</span>
+            <span class="s">"postcode"</span><span class="p">:</span> <span class="s">"94103"</span><span class="p">,</span>
+            <span class="s">"country"</span><span class="p">:</span> <span class="s">"US"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"customers"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1913,6 +2006,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/2"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1976,6 +2071,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'customers'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -2120,6 +2217,20 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"customer"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"James"</span><span class="p">,</span>
+        <span class="s">"billing_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"James"</span>
+        <span class="p">},</span>
+        <span class="s">"shipping_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"James"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"customers/2"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2184,6 +2295,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"customers/2"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2211,6 +2324,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'customers/2/orders'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/2/orders"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -2361,6 +2476,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/2/downloads"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2459,6 +2576,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'customers/count'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -3051,6 +3170,61 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"payment_details"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"method_id"</span><span class="p">:</span> <span class="s">"bacs"</span><span class="p">,</span>
+            <span class="s">"method_title"</span><span class="p">:</span> <span class="s">"Direct Bank Transfer"</span><span class="p">,</span>
+            <span class="s">"paid"</span><span class="p">:</span> <span class="bp">True</span>
+        <span class="p">},</span>
+        <span class="s">"billing_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Doe"</span><span class="p">,</span>
+            <span class="s">"address_1"</span><span class="p">:</span> <span class="s">"969 Market"</span><span class="p">,</span>
+            <span class="s">"address_2"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Francisco"</span><span class="p">,</span>
+            <span class="s">"state"</span><span class="p">:</span> <span class="s">"CA"</span><span class="p">,</span>
+            <span class="s">"postcode"</span><span class="p">:</span> <span class="s">"94103"</span><span class="p">,</span>
+            <span class="s">"country"</span><span class="p">:</span> <span class="s">"US"</span><span class="p">,</span>
+            <span class="s">"email"</span><span class="p">:</span> <span class="s">"john.doe@example.com"</span><span class="p">,</span>
+            <span class="s">"phone"</span><span class="p">:</span> <span class="s">"(555) 555-5555"</span>
+        <span class="p">},</span>
+        <span class="s">"shipping_address"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">"first_name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span>
+            <span class="s">"last_name"</span><span class="p">:</span> <span class="s">"Doe"</span><span class="p">,</span>
+            <span class="s">"address_1"</span><span class="p">:</span> <span class="s">"969 Market"</span><span class="p">,</span>
+            <span class="s">"address_2"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span>
+            <span class="s">"city"</span><span class="p">:</span> <span class="s">"San Francisco"</span><span class="p">,</span>
+            <span class="s">"state"</span><span class="p">:</span> <span class="s">"CA"</span><span class="p">,</span>
+            <span class="s">"postcode"</span><span class="p">:</span> <span class="s">"94103"</span><span class="p">,</span>
+            <span class="s">"country"</span><span class="p">:</span> <span class="s">"US"</span>
+        <span class="p">},</span>
+        <span class="s">"customer_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">"line_items"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"product_id"</span><span class="p">:</span> <span class="mi">546</span><span class="p">,</span>
+                <span class="s">"quantity"</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"product_id"</span><span class="p">:</span> <span class="mi">613</span><span class="p">,</span>
+                <span class="s">"quantity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s">"variations"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s">"pa_color"</span><span class="p">:</span> <span class="s">"Black"</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"shipping_lines"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"method_id"</span><span class="p">:</span> <span class="s">"flat_rate"</span><span class="p">,</span>
+                <span class="s">"method_title"</span><span class="p">:</span> <span class="s">"Flat Rate"</span><span class="p">,</span>
+                <span class="s">"total"</span><span class="p">:</span> <span class="mi">10</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"orders"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -3231,6 +3405,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -3410,6 +3586,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'orders'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -3768,6 +3946,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="s">"completed"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"orders/645"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -3948,6 +4134,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"orders/645"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -3992,6 +4180,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -4035,6 +4225,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'orders/statuses'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/statuses"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4083,6 +4275,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'orders/645/notes'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order_note"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"note"</span><span class="p">:</span> <span class="s">"Order ok!!!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"orders/645/notes"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4148,6 +4348,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/notes/416"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -4184,6 +4386,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'orders/645/notes'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/notes"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4254,6 +4458,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order_note"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"note"</span><span class="p">:</span> <span class="s">"Ok!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"orders/645/notes/416"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -4290,6 +4502,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'orders/645/notes/416'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"orders/645/notes/416"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4330,6 +4544,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'orders/645/refunds'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order_refund"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"amount"</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"orders/645/refunds"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4401,6 +4623,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/refunds/649"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -4438,6 +4662,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'orders/645/refunds'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/refunds"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -4527,6 +4753,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"order_refund"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"reason"</span><span class="p">:</span> <span class="s">"Because was it necessary!"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"orders/645/refunds/649"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -4564,6 +4798,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'orders/645/refunds/649'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"orders/645/refunds/649"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -5316,6 +5552,32 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"product"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Premium Quality"</span><span class="p">,</span>
+        <span class="s">"type"</span><span class="p">:</span> <span class="s">"simple"</span><span class="p">,</span>
+        <span class="s">"regular_price"</span><span class="p">:</span> <span class="s">"21.99"</span><span class="p">,</span>
+        <span class="s">"description"</span><span class="p">:</span> <span class="s">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."</span><span class="p">,</span>
+        <span class="s">"short_description"</span><span class="p">:</span> <span class="s">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</span><span class="p">,</span>
+        <span class="s">"categories"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="mi">9</span><span class="p">,</span>
+            <span class="mi">14</span>
+        <span class="p">],</span>
+        <span class="s">"images"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"products"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -5595,6 +5857,93 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"product"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"title"</span><span class="p">:</span> <span class="s">"Ship Your Idea"</span><span class="p">,</span>
+        <span class="s">"type"</span><span class="p">:</span> <span class="s">"variable"</span><span class="p">,</span>
+        <span class="s">"description"</span><span class="p">:</span> <span class="s">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."</span><span class="p">,</span>
+        <span class="s">"short_description"</span><span class="p">:</span> <span class="s">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</span><span class="p">,</span>
+        <span class="s">"categories"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="mi">9</span><span class="p">,</span>
+            <span class="mi">14</span>
+        <span class="p">],</span>
+        <span class="s">"images"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="mi">3</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"attributes"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"name"</span><span class="p">:</span> <span class="s">"Color"</span><span class="p">,</span>
+                <span class="s">"slug"</span><span class="p">:</span> <span class="s">"color"</span><span class="p">,</span>
+                <span class="s">"position"</span><span class="p">:</span> <span class="s">"0"</span><span class="p">,</span>
+                <span class="s">"visible"</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+                <span class="s">"variation"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+                <span class="s">"options"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s">"Black"</span><span class="p">,</span>
+                    <span class="s">"Green"</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"default_attributes"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"name"</span><span class="p">:</span> <span class="s">"Color"</span><span class="p">,</span>
+                <span class="s">"slug"</span><span class="p">:</span> <span class="s">"color"</span><span class="p">,</span>
+                <span class="s">"option"</span><span class="p">:</span> <span class="s">"Black"</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s">"variations"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s">"regular_price"</span><span class="p">:</span> <span class="s">"19.99"</span><span class="p">,</span>
+                <span class="s">"image"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg"</span><span class="p">,</span>
+                        <span class="s">"position"</span><span class="p">:</span> <span class="mi">0</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="s">"attributes"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Color"</span><span class="p">,</span>
+                        <span class="s">"slug"</span><span class="p">:</span> <span class="s">"color"</span><span class="p">,</span>
+                        <span class="s">"option"</span><span class="p">:</span> <span class="s">"black"</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s">"regular_price"</span><span class="p">:</span> <span class="s">"19.99"</span><span class="p">,</span>
+                <span class="s">"image"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"src"</span><span class="p">:</span> <span class="s">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg"</span><span class="p">,</span>
+                        <span class="s">"position"</span><span class="p">:</span> <span class="mi">0</span>
+                    <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="s">"attributes"</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s">"name"</span><span class="p">:</span> <span class="s">"Color"</span><span class="p">,</span>
+                        <span class="s">"slug"</span><span class="p">:</span> <span class="s">"color"</span><span class="p">,</span>
+                        <span class="s">"option"</span><span class="p">:</span> <span class="s">"green"</span>
+                    <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"products"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -5855,6 +6204,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/546"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -5972,6 +6323,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'products'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -6357,6 +6710,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"product"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"regular_price"</span><span class="p">:</span> <span class="s">"24.54"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"products/546"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -6475,6 +6836,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"products/546"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -6518,6 +6881,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'products/count'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -6563,6 +6928,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'products/546/reviews'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/546/reviews"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -6648,6 +7015,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/categories/9"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -6719,6 +7088,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'products/categories'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/categories"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -6841,6 +7212,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"reports"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -6871,6 +7244,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'reports/sales?filter[date_min]=2015-01-18&amp;filter[date_max]=2015-01-21'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"reports/sales?filter[date_min]=2015-01-18&amp;filter[date_max]=2015-01-21"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -6947,6 +7322,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'reports/sales/top_sellers?filter[period]=last_month'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"reports/sales/top_sellers?filter[period]=last_month"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7227,6 +7604,17 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"webhook"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"name"</span><span class="p">:</span> <span class="s">"An add to cart webhook"</span><span class="p">,</span>
+        <span class="s">"secret"</span><span class="p">:</span> <span class="s">"my-super-secret-private-key"</span><span class="p">,</span>
+        <span class="s">"topic"</span><span class="p">:</span> <span class="s">"action.woocommerce_add_to_cart"</span><span class="p">,</span>
+        <span class="s">"delivery_url"</span><span class="p">:</span> <span class="s">"http://requestb.in/1exdwip1"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"webhooks"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -7268,6 +7656,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/535"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -7308,6 +7698,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7396,6 +7788,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
+<pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"webhook"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">"status"</span><span class="p">:</span> <span class="s">"paused"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"webhooks/535"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -7433,9 +7833,11 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v2/webhooks/535 <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'webhooks/535'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'webhooks/535'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"webhooks/535"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7461,9 +7863,11 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2/webhooks/count <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/count'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/count'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7505,9 +7909,11 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2/webhooks/535/deliveries/378 <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/535/deliveries/378'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/535/deliveries/378'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/535/deliveries/378"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7567,9 +7973,11 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight shell"><code>curl https://example.com/wc-api/v2/webhooks/535/deliveries <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/535/deliveries'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'webhooks/535/deliveries'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/535/deliveries"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
@@ -7648,6 +8056,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">cURL</a>
                 <a href="#" data-language-name="javascript">Node.js</a>
+                <a href="#" data-language-name="python">Python</a>
           </div>
       </div>
     </div>
