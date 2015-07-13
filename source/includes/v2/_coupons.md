@@ -70,6 +70,35 @@ curl -X POST https://example.com/wc-api/v2/coupons \
 }'
 ```
 
+```javascript
+var data = {
+  coupon: {
+    code: 'new-coupon',
+    type: 'percent',
+    amount: '10',
+    individual_use: true,
+    product_ids: [],
+    exclude_product_ids: [],
+    usage_limit: '',
+    usage_limit_per_user: '',
+    limit_usage_to_x_items: '',
+    expiry_date: '',
+    enable_free_shipping: false,
+    product_category_ids: [],
+    exclude_product_category_ids: [],
+    exclude_sale_items: true,
+    minimum_amount: '100.00',
+    maximum_amount: '0.00',
+    customer_emails: [],
+    description: ''
+  }
+};
+
+WooCommerce.post('coupons', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -126,6 +155,12 @@ curl https://example.com/wc-api/v2/coupons/529 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('coupons/529', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -173,6 +208,12 @@ This API helps you to view all the coupons.
 ```shell
 curl https://example.com/wc-api/v2/coupons \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('coupons', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -280,6 +321,18 @@ curl -X PUT https://example.com/wc-api/v2/coupons/529 \
 }'
 ```
 
+```javascript
+var data = {
+  coupon: {
+    amount: '5'
+  }
+};
+
+WooCommerce.put('coupons/529', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -329,6 +382,12 @@ curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -359,6 +418,12 @@ This API lets you retrieve a count of all coupons.
 ```shell
 curl https://example.com/wc-api/v2/coupons/count \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('coupons/count', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:

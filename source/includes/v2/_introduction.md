@@ -398,6 +398,27 @@ See the webhook resource section.
 
 * Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
 
+## Official Libraries ##
+
+- [Node.js](https://www.npmjs.com/package/woocommerce-api)
+
+
+```javascript
+// Install:
+// npm install --save woocommerce-api
+
+// Setup:
+var WooCommerceAPI = require('woocommerce-api');
+
+var WooCommerce = new WooCommerceAPI({
+  url: 'http://example.com', // Your store URL
+  consumerKey: 'consumer_key', // Your consumer key
+  consumerSecret: 'consumer_secret', // Your consumer secret
+  version: 'v2' // WooCommerce API version
+});
+```
+
+
 ## Tools ##
 
 * [WooCommerce REST API Client Library](https://github.com/kloon/WooCommerce-REST-API-Client-Library) - A simple PHP client library by Gerhard Potgieter.

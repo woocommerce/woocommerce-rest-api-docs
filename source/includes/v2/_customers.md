@@ -102,6 +102,45 @@ curl -X POST https://example.com/wc-api/v2/customers \
 }'
 ```
 
+```javascript
+var data = {
+  customer: {
+    email: 'john.doe@example.com',
+    first_name: 'John',
+    last_name: 'Doe',
+    username: 'john.doe',
+    billing_address: {
+      first_name: 'John',
+      last_name: 'Doe',
+      company: '',
+      address_1: '969 Market',
+      address_2: '',
+      city: 'San Francisco',
+      state: 'CA',
+      postcode: '94103',
+      country: 'US',
+      email: 'john.doe@example.com',
+      phone: '(555) 555-5555'
+    },
+    shipping_address: {
+      first_name: 'John',
+      last_name: 'Doe',
+      company: '',
+      address_1: '969 Market',
+      address_2: '',
+      city: 'San Francisco',
+      state: 'CA',
+      postcode: '94103',
+      country: 'US'
+    }
+  }
+};
+
+WooCommerce.post('customers', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -171,6 +210,12 @@ curl https://example.com/wc-api/v2/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('customers/2', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -231,6 +276,12 @@ This API helps you to view all the customers.
 ```shell
 curl https://example.com/wc-api/v2/customers \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('customers', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -343,13 +394,31 @@ curl -X PUT https://example.com/wc-api/v2/customers/2 \
   "customer": {
     "first_name": "James",
     "billing_address": {
-      "first_name" "James"
+      "first_name": "James"
     },
     "shipping_address": {
-      "first_name" "James"
+      "first_name": "James"
     }
   }
 }'
+```
+
+```javascript
+var data = {
+  customer: {
+    first_name: 'James',
+    billing_address: {
+      first_name: 'James'
+    },
+    shipping_address: {
+      first_name: 'James'
+    }
+  }
+};
+
+WooCommerce.put('customers/2', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -414,6 +483,12 @@ curl -X DELETE https://example.com/wc-api/v2/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.delete('customers/2', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -438,6 +513,12 @@ This API lets you retrieve the customers orders.
 ```shell
 curl https://example.com/wc-api/v2/customers/2/orders \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('customers/2/orders', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -566,7 +647,7 @@ curl https://example.com/wc-api/v2/customers/2/orders \
 ```
 
 <aside class="notice">
-View the [Orders Properties](#orders-properties) for more details on this response.
+	View the <a href="#orders-properties">Orders Properties</a> for more details on this response.
 </aside>
 
 ## View Customer Downloads ##
@@ -585,6 +666,12 @@ This API lets you retrieve the customers downloads.
 ```shell
 curl https://example.com/wc-api/v2/customers/2/downloads \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('customers/2/downloads', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -640,6 +727,12 @@ This API lets you retrieve a count of all customers.
 ```shell
 curl https://example.com/wc-api/v2/customers/count \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('customers/count', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:

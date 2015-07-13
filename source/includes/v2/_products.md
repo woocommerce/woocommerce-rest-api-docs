@@ -199,6 +199,36 @@ curl -X POST https://example.com/wc-api/v2/products \
 }'
 ```
 
+```javascript
+var data = {
+  product: {
+    title: 'Premium Quality',
+    type: 'simple',
+    regular_price: '21.99',
+    description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+    short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+    categories: [
+      9,
+      14
+    ],
+    images: [
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg',
+        position: 0
+      },
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg',
+        position: 1
+      }
+    ]
+  }
+};
+
+WooCommerce.post('products', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -387,6 +417,97 @@ curl -X POST https://example.com/wc-api/v2/products \
     ]
   }
 }'
+```
+
+```javascript
+var data = {
+  product: {
+    title: 'Ship Your Idea',
+    type: 'variable',
+    description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+    short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+    categories: [
+      9,
+      14
+    ],
+    images: [
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+        position: 0
+      },
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg',
+        position: 1
+      },
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+        position: 2
+      },
+      {
+        src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg',
+        position: 3
+      }
+    ],
+    attributes: [
+      {
+        name: 'Color',
+        slug: 'color',
+        position: '0',
+        visible: false,
+        variation: true,
+        options: [
+          'Black',
+          'Green'
+        ]
+      }
+    ],
+    default_attributes: [
+      {
+        name: 'Color',
+        slug: 'color',
+        option: 'Black'
+      }
+    ],
+    variations: [
+      {
+        regular_price: '19.99',
+        image: [
+          {
+            src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+            position: 0
+          }
+        ],
+        attributes: [
+          {
+            name: 'Color',
+            slug: 'color',
+            option: 'black'
+          }
+        ]
+      },
+      {
+        regular_price: '19.99',
+        image: [
+          {
+            src: 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+            position: 0
+          }
+        ],
+        attributes: [
+          {
+            name: 'Color',
+            slug: 'color',
+            option: 'green'
+          }
+        ]
+      }
+    ]
+  }
+};
+
+WooCommerce.post('products', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -647,6 +768,12 @@ curl https://example.com/wc-api/v2/products/546 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('products/546', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -761,6 +888,12 @@ This API helps you to view all the products.
 ```shell
 curl https://example.com/wc-api/v2/products \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1121,6 +1254,18 @@ curl -X PUT https://example.com/wc-api/v2/products/546 \
 }'
 ```
 
+```javascript
+var data = {
+  product: {
+    regular_price: '24.54'
+  }
+};
+
+WooCommerce.put('products/546', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1237,6 +1382,12 @@ curl -X DELETE https://example.com/wc-api/v2/products/546/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.delete('products/546/?force=true', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1269,6 +1420,12 @@ curl https://example.com/wc-api/v2/products/count \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('products/count', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1296,6 +1453,12 @@ curl https://example.com/wc-api/v2/products/count \
 ```shell
 curl https://example.com/wc-api/v2/products/546/reviews \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/546/reviews', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1350,6 +1513,12 @@ curl https://example.com/wc-api/v2/products/categories/9 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('products/categories/9', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1388,6 +1557,12 @@ curl https://example.com/wc-api/v2/products/categories/9 \
 ```shell
 curl https://example.com/wc-api/v2/products/categories \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/categories', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1456,5 +1631,5 @@ curl https://example.com/wc-api/v2/products/categories \
 ```
 
 <aside class="notice">
-View the [Product Category Properties](#product-category-properties) for more details on this response.
+	View the <a href="#product-category-properties">Product Category Properties</a> for more details on this response.
 </aside>
