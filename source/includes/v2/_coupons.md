@@ -99,6 +99,33 @@ WooCommerce.post('coupons', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "coupon": {
+        "code": "new-coupon3",
+        "type": "percent",
+        "amount": "10",
+        "individual_use": True,
+        "product_ids": [],
+        "exclude_product_ids": [],
+        "usage_limit": "",
+        "usage_limit_per_user": "",
+        "limit_usage_to_x_items": "",
+        "expiry_date": "",
+        "enable_free_shipping": False,
+        "product_category_ids": [],
+        "exclude_product_category_ids": [],
+        "exclude_sale_items": True,
+        "minimum_amount": "100.00",
+        "maximum_amount": "0.00",
+        "customer_emails": [],
+        "description": ""
+    }
+}
+
+print(wcapi.post("coupons", data).text)
+```
+
 > Response:
 
 ```json
@@ -161,6 +188,10 @@ WooCommerce.get('coupons/529', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("coupons/529").text)
+```
+
 > Response:
 
 ```json
@@ -214,6 +245,10 @@ curl https://example.com/wc-api/v2/coupons \
 WooCommerce.get('coupons', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("coupons").text)
 ```
 
 > Response:
@@ -333,6 +368,16 @@ WooCommerce.put('coupons/529', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "coupon": {
+        "amount": "5"
+    }
+}
+
+print(wcapi.put("coupons/529", data).text)
+```
+
 > Response:
 
 ```json
@@ -388,6 +433,10 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.delete("coupons/529").text)
+```
+
 > Response:
 
 ```json
@@ -424,6 +473,10 @@ curl https://example.com/wc-api/v2/coupons/count \
 WooCommerce.get('coupons/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("coupons/count").text)
 ```
 
 > Response:

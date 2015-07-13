@@ -36,6 +36,10 @@ WooCommerce.get('reports', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("reports").text)
+```
+
 > Response:
 
 ```json
@@ -69,6 +73,10 @@ curl https://example.com/wc-api/v2/reports/sales?filter[date_min]=2015-01-18&fil
 WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").text)
 ```
 
 > Response:
@@ -149,6 +157,10 @@ curl https://example.com/wc-api/v2/reports/sales/top_sellers?filter[period]=last
 WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").text)
 ```
 
 > Response:

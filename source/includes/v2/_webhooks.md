@@ -90,6 +90,19 @@ WooCommerce.post('webhooks', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "webhook": {
+        "name": "An add to cart webhook",
+        "secret": "my-super-secret-private-key",
+        "topic": "action.woocommerce_add_to_cart",
+        "delivery_url": "http://requestb.in/1exdwip1"
+    }
+}
+
+print(wcapi.post("webhooks", data).text)
+```
+
 > Response:
 
 ```json
@@ -135,6 +148,10 @@ WooCommerce.get('webhooks/535', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("webhooks/535").text)
+```
+
 > Response:
 
 ```json
@@ -178,6 +195,10 @@ curl https://example.com/wc-api/v2/webhooks \
 WooCommerce.get('webhooks', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("webhooks").text)
 ```
 
 > Response:
@@ -261,6 +282,16 @@ WooCommerce.put('webhooks/535', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "webhook": {
+        "status": "paused"
+    }
+}
+
+print(wcapi.put("webhooks/535", data).text)
+```
+
 > Response:
 
 ```json
@@ -301,9 +332,13 @@ curl -X DELETE https://example.com/wc-api/v2/webhooks/535 \
 ```
 
 ```javascript
-WooCommerce.delete('webhooks/535', data, function(err, data, res) {
+WooCommerce.delete('webhooks/535', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.delete("webhooks/535").text)
 ```
 
 > Response:
@@ -333,9 +368,13 @@ curl https://example.com/wc-api/v2/webhooks/count \
 ```
 
 ```javascript
-WooCommerce.get('webhooks/count', data, function(err, data, res) {
+WooCommerce.get('webhooks/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("webhooks/count").text)
 ```
 
 > Response:
@@ -371,9 +410,13 @@ curl https://example.com/wc-api/v2/webhooks/535/deliveries/378 \
 ```
 
 ```javascript
-WooCommerce.get('webhooks/535/deliveries/378', data, function(err, data, res) {
+WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("webhooks/535/deliveries/378").text)
 ```
 
 > Response:
@@ -437,9 +480,13 @@ curl https://example.com/wc-api/v2/webhooks/535/deliveries \
 ```
 
 ```javascript
-WooCommerce.get('webhooks/535/deliveries', data, function(err, data, res) {
+WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("webhooks/535/deliveries").text)
 ```
 
 > Response:

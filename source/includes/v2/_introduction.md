@@ -401,6 +401,7 @@ See the webhook resource section.
 ## Official Libraries ##
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
+- [Python](https://pypi.python.org/pypi/WooCommerce)
 
 
 ```javascript
@@ -418,6 +419,20 @@ var WooCommerce = new WooCommerceAPI({
 });
 ```
 
+```python
+# Install:
+# pip install woocommerce
+
+# Setup:
+from woocommerce import API
+
+wcapi = API(
+    url="http://example.com",
+    consumer_key="consumer_key",
+    consumer_secret="consumer_secret",
+    version="v2"
+)
+```
 
 ## Tools ##
 

@@ -243,6 +243,63 @@ WooCommerce.post('orders', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "order": {
+        "payment_details": {
+            "method_id": "bacs",
+            "method_title": "Direct Bank Transfer",
+            "paid": True
+        },
+        "billing_address": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "address_1": "969 Market",
+            "address_2": "",
+            "city": "San Francisco",
+            "state": "CA",
+            "postcode": "94103",
+            "country": "US",
+            "email": "john.doe@example.com",
+            "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "address_1": "969 Market",
+            "address_2": "",
+            "city": "San Francisco",
+            "state": "CA",
+            "postcode": "94103",
+            "country": "US"
+        },
+        "customer_id": 2,
+        "line_items": [
+            {
+                "product_id": 546,
+                "quantity": 2
+            },
+            {
+                "product_id": 613,
+                "quantity": 1,
+                "variations": {
+                    "pa_color": "Black"
+                }
+            }
+        ],
+        "shipping_lines": [
+            {
+                "method_id": "flat_rate",
+                "method_title": "Flat Rate",
+                "total": 10
+            }
+        ]
+    }
+}
+
+print(wcapi.post("orders", data).text)
+```
+
 > Response:
 
 ```json
@@ -427,6 +484,10 @@ WooCommerce.get('orders/645', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("orders/645").text)
+```
+
 > Response:
 
 ```json
@@ -609,6 +670,10 @@ curl https://example.com/wc-api/v2/orders \
 WooCommerce.get('orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("orders").text)
 ```
 
 > Response:
@@ -962,6 +1027,16 @@ WooCommerce.put('orders/645', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "order": {
+        "status": "completed"
+    }
+}
+
+print(wcapi.put("orders/645", data).text)
+```
+
 > Response:
 
 ```json
@@ -1146,6 +1221,10 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.delete("orders/645").text)
+```
+
 > Response:
 
 ```json
@@ -1184,6 +1263,10 @@ WooCommerce.get('orders/count', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("orders/count").text)
+```
+
 > Response:
 
 ```json
@@ -1220,6 +1303,10 @@ curl https://example.com/wc-api/v2/orders/statuses \
 WooCommerce.get('orders/statuses', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("orders/statuses").text)
 ```
 
 > Response:
@@ -1274,6 +1361,16 @@ WooCommerce.post('orders/645/notes', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "order_note": {
+        "note": "Order ok!!!"
+    }
+}
+
+print(wcapi.post("orders/645/notes", data).text)
+```
+
 > Response:
 
 ```json
@@ -1320,6 +1417,10 @@ WooCommerce.get('orders/645/notes/416', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("orders/645/notes/416").text)
+```
+
 > Response:
 
 ```json
@@ -1359,6 +1460,10 @@ curl https://example.com/wc-api/v2/orders/645/notes \
 WooCommerce.get('orders/645/notes', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("orders/645/notes").text)
 ```
 
 > Response:
@@ -1434,6 +1539,16 @@ WooCommerce.put('orders/645/notes/416', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "order_note": {
+        "note": "Ok!"
+    }
+}
+
+print(wcapi.put("orders/645/notes/416", data).text)
+```
+
 > Response:
 
 ```json
@@ -1473,6 +1588,10 @@ curl -X DELETE https://example.com/wc-api/v2/orders/645/notes/416 \
 WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.delete("orders/645/notes/416").text)
 ```
 
 > Response:
@@ -1517,6 +1636,16 @@ var data = {
 WooCommerce.post('orders/645/refunds', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+data = {
+    "order_refund": {
+        "amount": 10
+    }
+}
+
+print(wcapi.post("orders/645/refunds", data).text)
 ```
 
 > Response:
@@ -1567,6 +1696,10 @@ WooCommerce.get('orders/645/refunds/649', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("orders/645/refunds/649").text)
+```
+
 > Response:
 
 ```json
@@ -1607,6 +1740,10 @@ curl https://example.com/wc-api/v2/orders/645/refunds \
 WooCommerce.get('orders/645/refunds', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("orders/645/refunds").text)
 ```
 
 > Response:
@@ -1701,6 +1838,16 @@ WooCommerce.put('orders/645/refunds/649', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "order_refund": {
+        "reason": "Because was it necessary!"
+    }
+}
+
+print(wcapi.put("orders/645/refunds/649", data).text)
+```
+
 > Response:
 
 ```json
@@ -1741,6 +1888,10 @@ curl -X DELETE https://example.com/wc-api/v2/orders/645/refunds/649 \
 WooCommerce.delete('orders/645/refunds/649', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.delete("orders/645/refunds/649").text)
 ```
 
 > Response:

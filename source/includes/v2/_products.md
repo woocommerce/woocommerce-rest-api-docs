@@ -229,6 +229,34 @@ WooCommerce.post('products', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "product": {
+        "title": "Premium Quality",
+        "type": "simple",
+        "regular_price": "21.99",
+        "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+        "categories": [
+            9,
+            14
+        ],
+        "images": [
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+                "position": 0
+            },
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+                "position": 1
+            }
+        ]
+    }
+}
+
+print(wcapi.post("products", data).text)
+```
+
 > Response:
 
 ```json
@@ -510,6 +538,95 @@ WooCommerce.post('products', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "product": {
+        "title": "Ship Your Idea",
+        "type": "variable",
+        "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+        "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+        "categories": [
+            9,
+            14
+        ],
+        "images": [
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+                "position": 0
+            },
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg",
+                "position": 1
+            },
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+                "position": 2
+            },
+            {
+                "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg",
+                "position": 3
+            }
+        ],
+        "attributes": [
+            {
+                "name": "Color",
+                "slug": "color",
+                "position": "0",
+                "visible": False,
+                "variation": True,
+                "options": [
+                    "Black",
+                    "Green"
+                ]
+            }
+        ],
+        "default_attributes": [
+            {
+                "name": "Color",
+                "slug": "color",
+                "option": "Black"
+            }
+        ],
+        "variations": [
+            {
+                "regular_price": "19.99",
+                "image": [
+                    {
+                        "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+                        "position": 0
+                    }
+                ],
+                "attributes": [
+                    {
+                        "name": "Color",
+                        "slug": "color",
+                        "option": "black"
+                    }
+                ]
+            },
+            {
+                "regular_price": "19.99",
+                "image": [
+                    {
+                        "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+                        "position": 0
+                    }
+                ],
+                "attributes": [
+                    {
+                        "name": "Color",
+                        "slug": "color",
+                        "option": "green"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+print(wcapi.post("products", data).text)
+```
+
 > Response:
 
 ```json
@@ -774,6 +891,10 @@ WooCommerce.get('products/546', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("products/546").text)
+```
+
 > Response:
 
 ```json
@@ -894,6 +1015,10 @@ curl https://example.com/wc-api/v2/products \
 WooCommerce.get('products', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("products").text)
 ```
 
 > Response:
@@ -1266,6 +1391,16 @@ WooCommerce.put('products/546', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "product": {
+        "regular_price": "24.54"
+    }
+}
+
+print(wcapi.put("products/546", data).text)
+```
+
 > Response:
 
 ```json
@@ -1388,6 +1523,10 @@ WooCommerce.delete('products/546/?force=true', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.delete("products/546").text)
+```
+
 > Response:
 
 ```json
@@ -1426,6 +1565,10 @@ WooCommerce.get('products/count', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("products/count").text)
+```
+
 > Response:
 
 ```json
@@ -1459,6 +1602,10 @@ curl https://example.com/wc-api/v2/products/546/reviews \
 WooCommerce.get('products/546/reviews', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("products/546/reviews").text)
 ```
 
 > Response:
@@ -1519,6 +1666,10 @@ WooCommerce.get('products/categories/9', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("products/categories/9").text)
+```
+
 > Response:
 
 ```json
@@ -1563,6 +1714,10 @@ curl https://example.com/wc-api/v2/products/categories \
 WooCommerce.get('products/categories', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("products/categories").text)
 ```
 
 > Response:

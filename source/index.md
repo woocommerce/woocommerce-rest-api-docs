@@ -4,6 +4,7 @@ title: WooCommerce REST API Documentation v2
 language_tabs:
   - shell: cURL
   - javascript: Node.js
+  - python: Python
 
 toc_footers:
   - <a href="https://github.com/woothemes/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a>

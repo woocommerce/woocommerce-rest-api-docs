@@ -66,6 +66,10 @@ WooCommerce.get('', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("").text)
+```
+
 > Response:
 
 ```json

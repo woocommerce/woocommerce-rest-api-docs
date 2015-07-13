@@ -141,6 +141,43 @@ WooCommerce.post('customers', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "customer": {
+        "email": "john.doe@example.com",
+        "first_name": "John",
+        "last_name": "Doe",
+        "username": "john.doe",
+        "billing_address": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "company": "",
+            "address_1": "969 Market",
+            "address_2": "",
+            "city": "San Francisco",
+            "state": "CA",
+            "postcode": "94103",
+            "country": "US",
+            "email": "john.doe@example.com",
+            "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "company": "",
+            "address_1": "969 Market",
+            "address_2": "",
+            "city": "San Francisco",
+            "state": "CA",
+            "postcode": "94103",
+            "country": "US"
+        }
+    }
+}
+
+print(wcapi.post("customers", data).text)
+```
+
 > Response:
 
 ```json
@@ -216,6 +253,10 @@ WooCommerce.get('customers/2', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("customers/2").text)
+```
+
 > Response:
 
 ```json
@@ -282,6 +323,10 @@ curl https://example.com/wc-api/v2/customers \
 WooCommerce.get('customers', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("customers").text)
 ```
 
 > Response:
@@ -421,6 +466,22 @@ WooCommerce.put('customers/2', data, function(err, data, res) {
 });
 ```
 
+```python
+data = {
+    "customer": {
+        "first_name": "James",
+        "billing_address": {
+            "first_name": "James"
+        },
+        "shipping_address": {
+            "first_name": "James"
+        }
+    }
+}
+
+print(wcapi.put("customers/2", data).text)
+```
+
 > Response:
 
 ```json
@@ -489,6 +550,10 @@ WooCommerce.delete('customers/2', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.delete("customers/2").text)
+```
+
 > Response:
 
 ```json
@@ -519,6 +584,10 @@ curl https://example.com/wc-api/v2/customers/2/orders \
 WooCommerce.get('customers/2/orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("customers/2/orders").text)
 ```
 
 > Response:
@@ -674,6 +743,10 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 });
 ```
 
+```python
+print(wcapi.get("customers/2/downloads").text)
+```
+
 > Response:
 
 ```json
@@ -733,6 +806,10 @@ curl https://example.com/wc-api/v2/customers/count \
 WooCommerce.get('customers/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```python
+print(wcapi.get("customers/count").text)
 ```
 
 > Response:
