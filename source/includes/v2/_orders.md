@@ -184,6 +184,65 @@ curl -X POST https://example.com/wc-api/v2/orders \
 }'
 ```
 
+```javascript
+var data = {
+  order: {
+    payment_details: {
+      method_id: 'bacs',
+      method_title: 'Direct Bank Transfer',
+      paid: true
+    },
+    billing_address: {
+      first_name: 'John',
+      last_name: 'Doe',
+      address_1: '969 Market',
+      address_2: '',
+      city: 'San Francisco',
+      state: 'CA',
+      postcode: '94103',
+      country: 'US',
+      email: 'john.doe@example.com',
+      phone: '(555) 555-5555'
+    },
+    shipping_address: {
+      first_name: 'John',
+      last_name: 'Doe',
+      address_1: '969 Market',
+      address_2: '',
+      city: 'San Francisco',
+      state: 'CA',
+      postcode: '94103',
+      country: 'US'
+    },
+    customer_id: 2,
+    line_items: [
+      {
+        product_id: 546,
+        quantity: 2
+      },
+      {
+        product_id: 613,
+        quantity: 1,
+        variations: {
+          pa_color: 'Black'
+        }
+      }
+    ],
+    shipping_lines: [
+      {
+        method_id: 'flat_rate',
+        method_title: 'Flat Rate',
+        total: 10
+      }
+    ]
+  }
+};
+
+WooCommerce.post('orders', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -362,6 +421,12 @@ curl https://example.com/wc-api/v2/orders/645 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('orders/645', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -538,6 +603,12 @@ This API helps you to view all the orders.
 ```shell
 curl https://example.com/wc-api/v2/orders \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('orders', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -879,6 +950,18 @@ curl -X PUT https://example.com/wc-api/v2/orders/645 \
 }'
 ```
 
+```javascript
+var data = {
+  order: {
+    status: 'completed'
+  }
+};
+
+WooCommerce.put('orders/645', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1057,6 +1140,12 @@ curl -X DELETE https://example.com/wc-api/v2/orders/645/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1089,6 +1178,12 @@ curl https://example.com/wc-api/v2/orders/count \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('orders/count', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1119,6 +1214,12 @@ This API lets you retrieve a list of orders statuses available.
 ```shell
 curl https://example.com/wc-api/v2/orders/statuses \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('orders/statuses', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1161,6 +1262,18 @@ curl -X POST https://example.com/wc-api/v2/orders/645/notes \
 }'
 ```
 
+```javascript
+var data = {
+  order_note: {
+    note: 'Order ok!!!'
+  }
+};
+
+WooCommerce.post('orders/645/notes', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1201,6 +1314,12 @@ curl https://example.com/wc-api/v2/orders/645/notes/416 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('orders/645/notes/416', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1215,7 +1334,7 @@ curl https://example.com/wc-api/v2/orders/645/notes/416 \
 ```
 
 <aside class="notice">
-View the [Order Notes Properties](#order-notes-properties) for more details on this response.
+	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside>
 
 ## View List Of Notes From An Order ##
@@ -1234,6 +1353,12 @@ This API helps you to view all the notes from an order.
 ```shell
 curl https://example.com/wc-api/v2/orders/645/notes \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('orders/645/notes', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1270,7 +1395,7 @@ curl https://example.com/wc-api/v2/orders/645/notes \
 ```
 
 <aside class="notice">
-View the [Order Notes Properties](#order-notes-properties) for more details on this response.
+	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside>
 
 ## Update An Order Note ##
@@ -1297,6 +1422,18 @@ curl -X PUT https://example.com/wc-api/v2/orders/645/notes/416 \
 }'
 ```
 
+```javascript
+var data = {
+  order_note: {
+    note: 'Ok!'
+  }
+};
+
+WooCommerce.put('orders/645/notes/416', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1311,7 +1448,7 @@ curl -X PUT https://example.com/wc-api/v2/orders/645/notes/416 \
 ```
 
 <aside class="notice">
-View the [Order Notes Properties](#order-notes-properties) for more details on this response.
+	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
 </aside>
 
 ## Delete An Order Note ##
@@ -1330,6 +1467,12 @@ This API helps you delete an order note.
 ```shell
 curl -X DELETE https://example.com/wc-api/v2/orders/645/notes/416 \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1362,6 +1505,18 @@ curl -X POST https://example.com/wc-api/v2/orders/645/refunds \
     "amount": 10
   }
 }'
+```
+
+```javascript
+var data = {
+  order_refund: {
+    amount: 10
+  }
+};
+
+WooCommerce.post('orders/645/refunds', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1406,6 +1561,12 @@ curl https://example.com/wc-api/v2/orders/645/refunds/649 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('orders/645/refunds/649', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1421,7 +1582,7 @@ curl https://example.com/wc-api/v2/orders/645/refunds/649 \
 ```
 
 <aside class="notice">
-View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
+	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside>
 
 ## View List Of Refunds From An Order ##
@@ -1440,6 +1601,12 @@ This API helps you to view all the refunds from an order.
 ```shell
 curl https://example.com/wc-api/v2/orders/645/refunds \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('orders/645/refunds', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -1495,7 +1662,7 @@ curl https://example.com/wc-api/v2/orders/645/refunds \
 ```
 
 <aside class="notice">
-View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
+	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside>
 
 ## Update An Order Refund ##
@@ -1522,6 +1689,18 @@ curl -X PUT https://example.com/wc-api/v2/orders/645/refunds/649 \
 }'
 ```
 
+```javascript
+var data = {
+  order_refund: {
+    reason: 'Because was it necessary!'
+  }
+};
+
+WooCommerce.put('orders/645/refunds/649', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -1537,7 +1716,7 @@ curl -X PUT https://example.com/wc-api/v2/orders/645/refunds/649 \
 ```
 
 <aside class="notice">
-View the [Order Refunds Properties](#order-refunds-properties) for more details on this response.
+	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
 </aside>
 
 ## Delete An Order Refund ##
@@ -1556,6 +1735,12 @@ This API helps you delete an order refund.
 ```shell
 curl -X DELETE https://example.com/wc-api/v2/orders/645/refunds/649 \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('orders/645/refunds/649', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:

@@ -30,6 +30,12 @@ curl https://example.com/wc-api/v2/reports \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('reports', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -57,6 +63,12 @@ This API lets you retrieve and view a list of sales report.
 ```shell
 curl https://example.com/wc-api/v2/reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21 \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -131,6 +143,12 @@ This API lets you retrieve and view a list of top sellers report.
 ```shell
 curl https://example.com/wc-api/v2/reports/sales/top_sellers?filter[period]=last_month \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:

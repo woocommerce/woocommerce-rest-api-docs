@@ -75,6 +75,21 @@ curl -X POST https://example.com/wc-api/v2/webhooks \
 }'
 ```
 
+```javascript
+var data = {
+  webhook: {
+    name: 'An add to cart webhook',
+    secret: 'my-super-secret-private-key',
+    topic: 'action.woocommerce_add_to_cart',
+    delivery_url: 'http://requestb.in/1exdwip1'
+  }
+};
+
+WooCommerce.post('webhooks', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -114,6 +129,12 @@ curl https://example.com/wc-api/v2/webhooks/535 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('webhooks/535', function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -151,6 +172,12 @@ This API helps you to view all the webhooks.
 ```shell
 curl https://example.com/wc-api/v2/webhooks \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('webhooks', function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -222,6 +249,18 @@ curl -X PUT https://example.com/wc-api/v2/webhook/535 \
 }'
 ```
 
+```javascript
+var data = {
+  webhook: {
+    status: 'paused'
+  }
+}
+
+WooCommerce.put('webhooks/535', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -261,6 +300,12 @@ curl -X DELETE https://example.com/wc-api/v2/webhooks/535 \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.delete('webhooks/535', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
 > Response:
 
 ```json
@@ -285,6 +330,12 @@ This API lets you retrieve a count of all webhooks.
 ```shell
 curl https://example.com/wc-api/v2/webhooks/count \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('webhooks/count', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -317,6 +368,12 @@ This API lets you retrieve and view a specific webhook delivery.
 ```shell
 curl https://example.com/wc-api/v2/webhooks/535/deliveries/378 \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('webhooks/535/deliveries/378', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
@@ -358,7 +415,7 @@ curl https://example.com/wc-api/v2/webhooks/535/deliveries/378 \
 ```
 
 <aside class="notice">
-View the [Delivery Properties](#delivery-properties) for more details on this response.
+	View the <a href="#delivery-properties">Delivery Properties</a> for more details on this response.
 </aside>
 
 ## View List Of Webhooks Deliveries ##
@@ -377,6 +434,12 @@ This API helps you to view all deliveries from a specific webhooks.
 ```shell
 curl https://example.com/wc-api/v2/webhooks/535/deliveries \
 	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('webhooks/535/deliveries', data, function(err, data, res) {
+  console.log(res);
+});
 ```
 
 > Response:
