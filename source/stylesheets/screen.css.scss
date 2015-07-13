@@ -37,7 +37,6 @@ html, body {
 	-webkit-text-size-adjust: none; /* Never autoresize text */
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,25 +49,17 @@ html, body {
 }
 
 @mixin embossed-bg {
-	@include background(
-		linear-gradient(top,
-										rgba(#000, 0.2),
-										rgba(#000, 0) 8px),
-		linear-gradient(bottom,
-										rgba(#000, 0.2),
-										rgba(#000, 0) 8px),
-		linear-gradient(top,
-										rgba($nav-embossed-border-top, 1),
-										rgba($nav-embossed-border-top, 0) 1.5px),
-		linear-gradient(bottom,
-										rgba($nav-embossed-border-bottom, 1),
-										rgba($nav-embossed-border-bottom, 0) 1.5px),
-		$nav-subitem-bg
-	);
+	background:
+		linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
+		linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
+		linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
+		linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
+		$nav-subitem-bg;
 }
 
 .tocify-wrapper {
-	@include transition(left ease-in-out 0.3s);
+	transition: left 0.3s ease-in-out;
+
 	overflow-y: auto;
 	overflow-x: hidden;
 	position: fixed;
@@ -103,7 +94,7 @@ html, body {
 			border-width: 0 0 1px 0;
 			border-color: $search-box-border-color;
 			padding: 6px 0 6px 20px;
-			@include box-sizing(border-box);
+			box-sizing: border-box;
 			margin: $nav-v-padding $nav-padding;
 			width: $nav-width - 30;
 			outline: none;
@@ -126,13 +117,13 @@ html, body {
 
 	.search-results {
 		margin-top: 0;
-		@include box-sizing(border-box);
+		box-sizing: border-box;
 		height: 0;
 		overflow-y: auto;
 		overflow-x: hidden;
-		@include transition-property(height margin);
-		@include transition-duration(180ms);
-		@include transition-timing-function(ease-in-out);
+		transition-property: height, margin;
+		transition-duration: 180ms;
+		transition-timing-function: ease-in-out;
 		&.visible {
 			height: 30%;
 			margin-bottom: 1em;
@@ -176,14 +167,14 @@ html, body {
 
 	li {
 		color: $nav-text;
-		@include transition-property('background');
-		@include transition-timing-function('linear');
-		@include transition-duration(230ms);
+		transition-property: background;
+		transition-timing-function: linear;
+		transition-duration: 230ms;
 	}
 
 	// This is the currently selected ToC entry
 	.tocify-focus {
-		@include box-shadow(0px 1px 0px $nav-active-shadow);
+		box-shadow: 0px 1px 0px $nav-active-shadow;
 		background-color: $nav-active-bg;
 		color: $nav-active-text;
 	}
@@ -236,8 +227,8 @@ html, body {
 		$side-pad: $main-padding / 2 - 8px;
 		padding: $side-pad $side-pad $side-pad;
 		background-color: rgba($main-bg, 0.7);
-		@include transform-origin(0, 0);
-		@include transform(rotate(-90deg) translate(-100%, 0));
+		transform-origin: 0 0;
+		transform: rotate(-90deg) translate(-100%, 0);
 		border-radius: 0 0 0 5px;
 	}
 	padding: 0 1.5em 5em 0; // increase touch size area
@@ -256,7 +247,7 @@ html, body {
 		vertical-align: bottom;
 	}
 
-	@include transition(left ease-in-out 0.3s);
+	transition: left 0.3s ease-in-out;
 
 	&:hover { opacity: 1; }
 	&.open {left: $nav-width}
@@ -308,8 +299,9 @@ html, body {
 		text-decoration: none;
 		padding: 0 10px;
 		line-height: 30px;
+		outline: 0;
 
-		&:active {
+		&:active, &:focus {
 			background-color: $lang-select-pressed-bg;
 			color: $lang-select-pressed-text;
 		}
@@ -343,19 +335,10 @@ html, body {
 		clear: both;
 	}
 
-	a {
-		color: $link-color;
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
 	&>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
 		margin-right: $examples-width;
 		padding: 0 $main-padding;
-		@include box-sizing(border-box);
+		box-sizing: border-box;
 		display: block;
 		@include text-shadow($main-embossed-text-shadow);
 
@@ -380,9 +363,7 @@ html, body {
 		margin-bottom: $h1-margin-bottom;
 		margin-top: 2em;
 		border-top: 1px solid #ddd;
-		@include background-image(
-			linear-gradient(top, #fff, #f9f9f9)
-		);
+		background-image: linear-gradient(to bottom, #fff, #f9f9f9);
 	}
 
 	h1:first-child, div:first-child + h1 {
@@ -398,9 +379,7 @@ html, body {
 		border-top: 1px solid #ccc;
 		padding-top: 1.2em;
 		padding-bottom: 1.2em;
-		@include background-image(
-			linear-gradient(top, rgba(#fff,0.4), rgba(#fff, 0))
-		);
+		background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
 	}
 
 	// h2s right after h1s should bump right up
@@ -412,10 +391,9 @@ html, body {
 
 	h3, h4, h5, h6 {
 		@extend %header-font;
-		font-size: 12px;
+		font-size: 15px;
 		margin-top: 2.5em;
 		margin-bottom: 0.8em;
-		text-transform: uppercase;
 	}
 
 	h4, h5, h6 {
@@ -431,7 +409,7 @@ html, body {
 	table {
 		margin-bottom: 1em;
 		overflow: auto;
-		th, td {
+		th,td {
 			text-align: left;
 			vertical-align: top;
 			line-height: 1.6;
@@ -457,10 +435,6 @@ html, body {
 
 		tr:nth-child(even)>td {
 			background-color: lighten($main-bg,2.4%);
-		}
-
-		tr > td:first-child {
-			white-space: nowrap;
 		}
 	}
 
@@ -505,7 +479,7 @@ html, body {
 
 		&.warning {
 			background-color: $aside-warning-bg;
-			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 5%));
+			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
 		}
 
 		&.success {
@@ -538,73 +512,8 @@ html, body {
 		border-radius: 4px;
 		border: 1px solid #F7E633;
 		@include text-shadow(1px 1px 0 #666);
-		@include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
+		background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
 	}
-
-	// API endpoint
-	.api-endpoint {
-		margin-right: $examples-width;
-		padding: 0 $main-padding;
-		@include box-sizing(border-box);
-		display: block;
-		@extend %left-col;
-
-		.endpoint-data {
-			background-color: $code-bg;
-			color: #fff;
-			border-radius: 5px;
-			border-top: 1px solid #000;
-			border-bottom: 1px solid #404040;
-			@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
-			margin: 15px 0;
-			height: 38px;
-
-			i {
-				display: inline-block;
-				margin: 5px;
-				padding: 4px 12px;
-				line-height: 20px;
-			}
-
-			h6 {
-				display: inline-block;
-				margin: 0;
-				@extend %code-font;
-				text-transform: lowercase;
-				font-weight: 400;
-			}
-		}
-	}
-}
-
-.label {
-	border-radius: 2px;
-	text-transform: uppercase;
-	font-style: normal;
-	white-space: nowrap;
-}
-
-.label-get {
-	background: #008000;
-}
-
-.label-post,
-.label-put {
-	background: #4e92d7;
-}
-
-.label-delete {
-	background: #ca4949;
-}
-
-.label-info {
-	background: #efefef;
-	color: #999;
-	float: right;
-	font-weight: 700;
-	font-size: 70%;
-	padding: 2px 4px;
-	margin-left: 5px;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -621,10 +530,10 @@ html, body {
 		margin: 0;
 		width: $examples-width;
 
-		float: right;
-		clear: right;
+		float:right;
+		clear:right;
 
-		@include box-sizing(border-box);
+		box-sizing: border-box;
 		@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
 
 		@extend %right-col;
@@ -653,59 +562,6 @@ html, body {
 		}
 	}
 }
-
-.github-buttons {
-	padding-top: 10px;
-
-	iframe {
-		display: block;
-		margin-bottom: 5px;
-	}
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// PAGE WARNING
-////////////////////////////////////////////////////////////////////////////////
-
-body.has-warning {
-	margin-top: 30px;
-
-	.tocify-wrapper {
-		top: 30px;
-	}
-}
-
-#warning-top {
-	background-color: $aside-warning-bg;
-	@include text-shadow(0 1px 0 lighten($aside-warning-bg, 5%));
-	position: fixed;
-	z-index: 99999;
-	top: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	line-height: 2.5;
-	overflow: hidden;
-	box-shadow: 0 0 5px black;
-	font-weight: bold;
-
-	a {
-		color: $link-color;
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	.info:before {
-		@extend %icon-exclamation-sign;
-		vertical-align: middle;
-		padding-right: 0.5em;
-		font-size: 14px;
-	}
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
@@ -760,5 +616,145 @@ body.has-warning {
 
 	%right-col + %left-col {
 		margin-top: $main-padding;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM CONTENT STYLES
+////////////////////////////////////////////////////////////////////////////////
+.content {
+	a {
+		color: $link-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// API ENDPOINT
+////////////////////////////////////////////////////////////////////////////////
+.api-endpoint {
+	margin-right: $examples-width;
+	padding: 0 $main-padding;
+	@include box-sizing(border-box);
+	display: block;
+	@extend %left-col;
+
+	.endpoint-data {
+		background-color: $code-bg;
+		color: #fff;
+		border-radius: 5px;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #404040;
+		@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
+		margin: 15px 0;
+		height: 38px;
+
+		i {
+			display: inline-block;
+			margin: 5px;
+			padding: 4px 12px;
+			line-height: 20px;
+		}
+
+		h6 {
+			display: inline-block;
+			margin: 0;
+			@extend %code-font;
+			text-transform: lowercase;
+			font-weight: 400;
+		}
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// LABEL
+////////////////////////////////////////////////////////////////////////////////
+.label {
+	border-radius: 2px;
+	text-transform: uppercase;
+	font-style: normal;
+	white-space: nowrap;
+}
+
+.label-get {
+	background: #008000;
+}
+
+.label-post,
+.label-put {
+	background: #4e92d7;
+}
+
+.label-delete {
+	background: #ca4949;
+}
+
+.label-info {
+	background: #efefef;
+	color: #999;
+	float: right;
+	font-weight: 700;
+	font-size: 70%;
+	padding: 2px 4px;
+	margin-left: 5px;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// PAGE WARNING
+////////////////////////////////////////////////////////////////////////////////
+
+body.has-warning {
+	margin-top: 30px;
+
+	.tocify-wrapper {
+		top: 30px;
+	}
+}
+
+#warning-top {
+	background-color: $aside-warning-bg;
+	@include text-shadow(0 1px 0 lighten($aside-warning-bg, 5%));
+	position: fixed;
+	z-index: 99999;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	line-height: 2.5;
+	overflow: hidden;
+	box-shadow: 0 0 5px black;
+	font-weight: bold;
+
+	a {
+		color: $link-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.info:before {
+		@extend %icon-exclamation-sign;
+		vertical-align: middle;
+		padding-right: 0.5em;
+		font-size: 14px;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// GITHUB BUTTONS
+////////////////////////////////////////////////////////////////////////////////
+
+.github-buttons {
+	padding-top: 10px;
+
+	iframe {
+		display: block;
+		margin-bottom: 5px;
 	}
 }
