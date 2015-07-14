@@ -126,6 +126,35 @@ data = {
 print(wcapi.post("coupons", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'coupon' => array(
+        'code' => 'new-coupon3',
+        'type' => 'percent',
+        'amount' => '10',
+        'individual_use' => true,
+        'product_ids' => array(),
+        'exclude_product_ids' => array(),
+        'usage_limit' => '',
+        'usage_limit_per_user' => '',
+        'limit_usage_to_x_items' => '',
+        'expiry_date' => '',
+        'enable_free_shipping' => false,
+        'product_category_ids' => array(),
+        'exclude_product_category_ids' => array(),
+        'exclude_sale_items' => true,
+        'minimum_amount' => '100.00',
+        'maximum_amount' => '0.00',
+        'customer_emails' => array(),
+        'description' => ''
+    )
+);
+
+print_r($woocommerce->coupons->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -192,6 +221,10 @@ WooCommerce.get('coupons/529', function(err, data, res) {
 print(wcapi.get("coupons/529").text)
 ```
 
+```php
+<?php print_r($woocommerce->coupons->get(529)); ?>
+```
+
 > Response:
 
 ```json
@@ -249,6 +282,10 @@ WooCommerce.get('coupons', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons").text)
+```
+
+```php
+<?php print_r($woocommerce->coupons->get()); ?>
 ```
 
 > Response:
@@ -378,6 +415,18 @@ data = {
 print(wcapi.put("coupons/529", data).text)
 ```
 
+```php
+<?php
+$data = array(
+	'coupon' => array(
+		'amount' => '5'
+	)
+);
+
+print_r($woocommerce->coupons->update(529, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -434,7 +483,11 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("coupons/529").text)
+print(wcapi.delete("coupons/529?force=true").text)
+```
+
+```php
+<?php print_r($woocommerce->coupons->delete(529, true)); ?>
 ```
 
 > Response:
@@ -477,6 +530,10 @@ WooCommerce.get('coupons/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons/count").text)
+```
+
+```php
+<?php print_r($woocommerce->coupons->get_count()); ?>
 ```
 
 > Response:

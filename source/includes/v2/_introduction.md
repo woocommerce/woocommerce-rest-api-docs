@@ -402,7 +402,7 @@ See the webhook resource section.
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
-
+- [PHP](https://packagist.org/packages/woothemes/woocommerce-api)
 
 ```javascript
 // Install:
@@ -434,10 +434,24 @@ wcapi = API(
 )
 ```
 
+```php
+<?php
+// Install:
+// composer require "woothemes/woocommerce-api:2.*"
+
+// Setup:
+include_once('vendor/autoload.php');
+
+$woocommerce = new WC_API_Client(
+    'http://example.com/',
+    'consumer_key',
+    'consumer_secret'
+);
+?>
+```
+
 ## Tools ##
 
-* [WooCommerce REST API Client Library](https://github.com/kloon/WooCommerce-REST-API-Client-Library) - A simple PHP client library by Gerhard Potgieter.
-* [WooCommerce API Client](https://github.com/mac2000/woo-commerce-api-client) - Guzzle wrapper around WooCommerce v2 API plus missign api helpers.
 * [CocoaRestClient](http://mmattozzi.github.io/cocoa-rest-client/) - A free, easy to use Mac OS X GUI client for interacting with the API, most useful when your test store has SSL enabled.
 * [Paw HTTP Client](https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12) - Another excellent HTTP client for Mac OS X.
 * [RESTClient, a debugger for RESTful web services](https://addons.mozilla.org/en-US/firefox/addon/restclient/) - Free Firefox add-on.

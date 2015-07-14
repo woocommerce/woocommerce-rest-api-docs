@@ -70,6 +70,10 @@ WooCommerce.get('', function(err, data, res) {
 print(wcapi.get("").text)
 ```
 
+```php
+<?php print_r($woocommerce->index->get()); ?>
+```
+
 > Response:
 
 ```json
