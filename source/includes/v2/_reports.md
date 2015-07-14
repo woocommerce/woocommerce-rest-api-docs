@@ -37,14 +37,14 @@ WooCommerce.get('reports', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("reports").text)
+print(wcapi.get("reports").json())
 ```
 
 ```php
 <?php print_r($woocommerce->reports->get()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -80,7 +80,7 @@ WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 ```
 
 ```python
-print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").text)
+print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").json())
 ```
 
 ```php
@@ -96,7 +96,7 @@ print_r($woocommerce->reports->get_sales($args));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -177,7 +177,7 @@ WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(
 ```
 
 ```python
-print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").text)
+print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").json())
 ```
 
 ```php
@@ -192,7 +192,7 @@ print_r($woocommerce->reports->get_top_sellers($args));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {

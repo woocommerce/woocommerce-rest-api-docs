@@ -67,14 +67,14 @@ WooCommerce.get('', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("").text)
+print(wcapi.get("").json())
 ```
 
 ```php
 <?php print_r($woocommerce->index->get()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {

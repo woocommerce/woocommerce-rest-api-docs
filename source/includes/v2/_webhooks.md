@@ -100,7 +100,7 @@ data = {
     }
 }
 
-print(wcapi.post("webhooks", data).text)
+print(wcapi.post("webhooks", data).json())
 ```
 
 ```php
@@ -118,7 +118,7 @@ print_r($woocommerce->webhooks->create($data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -164,14 +164,14 @@ WooCommerce.get('webhooks/535', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("webhooks/535").text)
+print(wcapi.get("webhooks/535").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->get(535)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -217,14 +217,14 @@ WooCommerce.get('webhooks', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("webhooks").text)
+print(wcapi.get("webhooks").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->get()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -312,7 +312,7 @@ data = {
     }
 }
 
-print(wcapi.put("webhooks/535", data).text)
+print(wcapi.put("webhooks/535", data).json())
 ```
 
 ```php
@@ -327,7 +327,7 @@ print_r($woocommerce->webhooks->updaste(535, $data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -373,14 +373,14 @@ WooCommerce.delete('webhooks/535', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("webhooks/535").text)
+print(wcapi.delete("webhooks/535").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->delete(535)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -413,14 +413,14 @@ WooCommerce.get('webhooks/count', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("webhooks/count").text)
+print(wcapi.get("webhooks/count").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->get_count()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -459,14 +459,14 @@ WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("webhooks/535/deliveries/378").text)
+print(wcapi.get("webhooks/535/deliveries/378").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->get_deliveries(378)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -533,14 +533,14 @@ WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("webhooks/535/deliveries").text)
+print(wcapi.get("webhooks/535/deliveries").json())
 ```
 
 ```php
 <?php print_r($woocommerce->webhooks->get_deliveries()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {

@@ -254,7 +254,7 @@ data = {
     }
 }
 
-print(wcapi.post("products", data).text)
+print(wcapi.post("products", data).json())
 ```
 
 ```php
@@ -287,7 +287,7 @@ print_r($woocommerce->products->create($data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -654,7 +654,7 @@ data = {
     }
 }
 
-print(wcapi.post("products", data).text)
+print(wcapi.post("products", data).json())
 ```
 
 ```php
@@ -748,7 +748,7 @@ print_r($woocommerce->products->create($data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1013,14 +1013,14 @@ WooCommerce.get('products/546', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products/546").text)
+print(wcapi.get("products/546").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get(546)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1143,14 +1143,14 @@ WooCommerce.get('products', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products").text)
+print(wcapi.get("products").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1527,7 +1527,7 @@ data = {
     }
 }
 
-print(wcapi.put("products/546", data).text)
+print(wcapi.put("products/546", data).json())
 ```
 
 ```php
@@ -1542,7 +1542,7 @@ print_r($woocommerce->products->update(546, $data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1665,14 +1665,14 @@ WooCommerce.delete('products/546/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/546/?force=true").text)
+print(wcapi.delete("products/546/?force=true").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->delete(546, true)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1711,14 +1711,14 @@ WooCommerce.get('products/count', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products/count").text)
+print(wcapi.get("products/count").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get_count()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1754,14 +1754,14 @@ WooCommerce.get('products/546/reviews', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products/546/reviews").text)
+print(wcapi.get("products/546/reviews").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get_reviews(546)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1820,14 +1820,14 @@ WooCommerce.get('products/categories/9', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products/categories/9").text)
+print(wcapi.get("products/categories/9").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get_categories(9)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -1874,14 +1874,14 @@ WooCommerce.get('products/categories', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("products/categories").text)
+print(wcapi.get("products/categories").json())
 ```
 
 ```php
 <?php print_r($woocommerce->products->get_categories()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {

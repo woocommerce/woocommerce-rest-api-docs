@@ -123,7 +123,7 @@ data = {
     }
 }
 
-print(wcapi.post("coupons", data).text)
+print(wcapi.post("coupons", data).json())
 ```
 
 ```php
@@ -155,7 +155,7 @@ print_r($woocommerce->coupons->create($data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -218,14 +218,14 @@ WooCommerce.get('coupons/529', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("coupons/529").text)
+print(wcapi.get("coupons/529").json())
 ```
 
 ```php
 <?php print_r($woocommerce->coupons->get(529)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -281,14 +281,14 @@ WooCommerce.get('coupons', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("coupons").text)
+print(wcapi.get("coupons").json())
 ```
 
 ```php
 <?php print_r($woocommerce->coupons->get()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -412,7 +412,7 @@ data = {
     }
 }
 
-print(wcapi.put("coupons/529", data).text)
+print(wcapi.put("coupons/529", data).json())
 ```
 
 ```php
@@ -427,7 +427,7 @@ print_r($woocommerce->coupons->update(529, $data));
 ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -483,14 +483,14 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("coupons/529?force=true").text)
+print(wcapi.delete("coupons/529?force=true").json())
 ```
 
 ```php
 <?php print_r($woocommerce->coupons->delete(529, true)); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
@@ -529,14 +529,14 @@ WooCommerce.get('coupons/count', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.get("coupons/count").text)
+print(wcapi.get("coupons/count").json())
 ```
 
 ```php
 <?php print_r($woocommerce->coupons->get_count()); ?>
 ```
 
-> Response:
+> JSON response example:
 
 ```json
 {
