@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","javascript","python"]);
+          setupLanguages(["shell","javascript","python","php"]);
         });
       </script>
   </head>
@@ -31,6 +31,7 @@
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="javascript">Node.js</a>
               <a href="#" data-language-name="python">Python</a>
+              <a href="#" data-language-name="php">PHP</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -541,6 +542,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <ul>
 <li><a href="https://www.npmjs.com/package/woocommerce-api">Node.js</a></li>
 <li><a href="https://pypi.python.org/pypi/WooCommerce">Python</a></li>
+<li><a href="https://packagist.org/packages/woothemes/woocommerce-api">PHP</a></li>
 </ul>
 <pre class="highlight javascript"><code><span class="c1">// Install:</span>
 <span class="c1">// npm install --save woocommerce-api</span>
@@ -568,12 +570,24 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
     <span class="n">version</span><span class="o">=</span><span class="s">"v2"</span>
 <span class="p">)</span>
 </code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// Install:
+// composer require "woothemes/woocommerce-api:2.*"
+</span>
+<span class="c1">// Setup:
+</span><span class="k">include_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+
+<span class="nv">$woocommerce</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WC_API_Client</span><span class="p">(</span>
+    <span class="s1">'http://example.com/'</span><span class="p">,</span>
+    <span class="s1">'consumer_key'</span><span class="p">,</span>
+    <span class="s1">'consumer_secret'</span>
+<span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <h2 id="tools">Tools</h2>
 
 <ul>
-<li><a href="https://github.com/kloon/WooCommerce-REST-API-Client-Library">WooCommerce REST API Client Library</a> - A simple PHP client library by Gerhard Potgieter.</li>
-<li><a href="https://github.com/mac2000/woo-commerce-api-client">WooCommerce API Client</a> - Guzzle wrapper around WooCommerce v2 API plus missign api helpers.</li>
 <li><a href="http://mmattozzi.github.io/cocoa-rest-client/">CocoaRestClient</a> - A free, easy to use Mac OS X GUI client for interacting with the API, most useful when your test store has SSL enabled.</li>
 <li><a href="https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12">Paw HTTP Client</a> - Another excellent HTTP client for Mac OS X.</li>
 <li><a href="https://addons.mozilla.org/en-US/firefox/addon/restclient/">RESTClient, a debugger for RESTful web services</a> - Free Firefox add-on.</li>
@@ -719,6 +733,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">index</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1266,6 +1282,33 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"coupons"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'coupon'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'code'</span> <span class="o">=&gt;</span> <span class="s1">'new-coupon3'</span><span class="p">,</span>
+        <span class="s1">'type'</span> <span class="o">=&gt;</span> <span class="s1">'percent'</span><span class="p">,</span>
+        <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'10'</span><span class="p">,</span>
+        <span class="s1">'individual_use'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'product_ids'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>
+        <span class="s1">'exclude_product_ids'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>
+        <span class="s1">'usage_limit'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'usage_limit_per_user'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'limit_usage_to_x_items'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'expiry_date'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'enable_free_shipping'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s1">'product_category_ids'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>
+        <span class="s1">'exclude_product_category_ids'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>
+        <span class="s1">'exclude_sale_items'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s1">'minimum_amount'</span> <span class="o">=&gt;</span> <span class="s1">'100.00'</span><span class="p">,</span>
+        <span class="s1">'maximum_amount'</span> <span class="o">=&gt;</span> <span class="s1">'0.00'</span><span class="p">,</span>
+        <span class="s1">'customer_emails'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(),</span>
+        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">''</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1326,6 +1369,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">529</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1378,6 +1423,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1500,6 +1547,16 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'coupon'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'5'</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">529</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1551,7 +1608,9 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
-<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"coupons/529"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"coupons/529?force=true"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">529</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1598,6 +1657,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons/count"</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -8057,6 +8118,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
                 <a href="#" data-language-name="shell">cURL</a>
                 <a href="#" data-language-name="javascript">Node.js</a>
                 <a href="#" data-language-name="python">Python</a>
+                <a href="#" data-language-name="php">PHP</a>
           </div>
       </div>
     </div>
