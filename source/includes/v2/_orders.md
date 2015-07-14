@@ -300,6 +300,65 @@ data = {
 print(wcapi.post("orders", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order' => array(
+        'payment_details' => array(
+            'method_id' => 'bacs',
+            'method_title' => 'Direct Bank Transfer',
+            'paid' => true
+        ),
+        'billing_address' => array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ),
+        'shipping_address' => array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        ),
+        'customer_id' => 2,
+        'line_items' => array(
+            array(
+                'product_id' => 546,
+                'quantity' => 2
+            ),
+            array(
+                'product_id' => 613,
+                'quantity' => 1,
+                'variations' => array(
+                    'pa_color' => 'Black'
+                )
+            )
+        ),
+        'shipping_lines' => array(
+            array(
+                'method_id' => 'flat_rate',
+                'method_title' => 'Flat Rate',
+                'total' => 10
+            )
+        )
+    )
+);
+
+print_r($woocommerce->orders->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -488,6 +547,10 @@ WooCommerce.get('orders/645', function(err, data, res) {
 print(wcapi.get("orders/645").text)
 ```
 
+```php
+<?php print_r($woocommerce->orders->get(645)); ?>
+```
+
 > Response:
 
 ```json
@@ -674,6 +737,10 @@ WooCommerce.get('orders', function(err, data, res) {
 
 ```python
 print(wcapi.get("orders").text)
+```
+
+```php
+<?php print_r($woocommerce->orders->get()); ?>
 ```
 
 > Response:
@@ -1037,6 +1104,18 @@ data = {
 print(wcapi.put("orders/645", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order' => array(
+        'status' => 'completed'
+    )
+);
+
+print_r($woocommerce->orders->update(645, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1222,7 +1301,11 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("orders/645").text)
+print(wcapi.delete("orders/645/?force=true").text)
+```
+
+```php
+<?php print_r($woocommerce->orders->delete(645, true)); ?>
 ```
 
 > Response:
@@ -1267,6 +1350,10 @@ WooCommerce.get('orders/count', function(err, data, res) {
 print(wcapi.get("orders/count").text)
 ```
 
+```php
+<?php print_r($woocommerce->orders->get_count()); ?>
+```
+
 > Response:
 
 ```json
@@ -1307,6 +1394,10 @@ WooCommerce.get('orders/statuses', function(err, data, res) {
 
 ```python
 print(wcapi.get("orders/statuses").text)
+```
+
+```php
+<?php print_r($woocommerce->orders->get_statuses()); ?>
 ```
 
 > Response:
@@ -1371,6 +1462,18 @@ data = {
 print(wcapi.post("orders/645/notes", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order_note' => array(
+        'note' => 'Order ok!!!'
+    )
+);
+
+print_r($woocommerce->order_notes->create(645, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1421,6 +1524,10 @@ WooCommerce.get('orders/645/notes/416', function(err, data, res) {
 print(wcapi.get("orders/645/notes/416").text)
 ```
 
+```php
+<?php print_r($woocommerce->order_notes->get(645, 416)); ?>
+```
+
 > Response:
 
 ```json
@@ -1464,6 +1571,10 @@ WooCommerce.get('orders/645/notes', function(err, data, res) {
 
 ```python
 print(wcapi.get("orders/645/notes").text)
+```
+
+```php
+<?php print_r($woocommerce->order_notes->get(645)); ?>
 ```
 
 > Response:
@@ -1549,6 +1660,18 @@ data = {
 print(wcapi.put("orders/645/notes/416", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order_note' => array(
+        'note' => 'Ok!'
+    )
+);
+
+print_r($woocommerce->order_notes->update(645, 416, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1592,6 +1715,10 @@ WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
 
 ```python
 print(wcapi.delete("orders/645/notes/416").text)
+```
+
+```php
+<?php print_r($woocommerce->order_notes->delete(645, 416)); ?>
 ```
 
 > Response:
@@ -1648,6 +1775,18 @@ data = {
 print(wcapi.post("orders/645/refunds", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order_refund' => array(
+        'amount' => 10
+    )
+);
+
+print_r($woocommerce->order_refunds->create(645, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1700,6 +1839,10 @@ WooCommerce.get('orders/645/refunds/649', function(err, data, res) {
 print(wcapi.get("orders/645/refunds/649").text)
 ```
 
+```php
+<?php print_r($woocommerce->order_refunds->get(645, 649)); ?>
+```
+
 > Response:
 
 ```json
@@ -1744,6 +1887,10 @@ WooCommerce.get('orders/645/refunds', function(err, data, res) {
 
 ```python
 print(wcapi.get("orders/645/refunds").text)
+```
+
+```php
+<?php print_r($woocommerce->order_refunds->get(645)); ?>
 ```
 
 > Response:
@@ -1848,6 +1995,18 @@ data = {
 print(wcapi.put("orders/645/refunds/649", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'order_refund' => array(
+        'reason' => 'Because was it necessary!'
+    )
+);
+
+print_r($woocommerce->order_refunds->update(645, 649, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1892,6 +2051,10 @@ WooCommerce.delete('orders/645/refunds/649', function(err, data, res) {
 
 ```python
 print(wcapi.delete("orders/645/refunds/649").text)
+```
+
+```php
+<?php print_r($woocommerce->order_refunds->delete(645, 649)); ?>
 ```
 
 > Response:

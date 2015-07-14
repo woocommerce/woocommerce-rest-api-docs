@@ -40,6 +40,10 @@ WooCommerce.get('reports', function(err, data, res) {
 print(wcapi.get("reports").text)
 ```
 
+```php
+<?php print_r($woocommerce->reports->get()); ?>
+```
+
 > Response:
 
 ```json
@@ -77,6 +81,19 @@ WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 
 ```python
 print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").text)
+```
+
+```php
+<?php
+$args = array(
+	'filter' => array(
+		'date_min' => '2015-01-18',
+		'date_max' => '2015-01-21'
+	)
+);
+
+print_r($woocommerce->reports->get_sales($args));
+?>
 ```
 
 > Response:
@@ -161,6 +178,18 @@ WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(
 
 ```python
 print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").text)
+```
+
+```php
+<?php
+$args = array(
+	'filter' => array(
+		'period' => 'last_month'
+	)
+);
+
+print_r($woocommerce->reports->get_top_sellers($args));
+?>
 ```
 
 > Response:

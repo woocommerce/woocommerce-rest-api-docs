@@ -103,6 +103,21 @@ data = {
 print(wcapi.post("webhooks", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'webhook' => array(
+        'name' => 'An add to cart webhook',
+        'secret' => 'my-super-secret-private-key',
+        'topic' => 'action.woocommerce_add_to_cart',
+        'delivery_url' => 'http://requestb.in/1exdwip1'
+    )
+);
+
+print_r($woocommerce->webhooks->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -152,6 +167,10 @@ WooCommerce.get('webhooks/535', function(err, data, res) {
 print(wcapi.get("webhooks/535").text)
 ```
 
+```php
+<?php print_r($woocommerce->webhooks->get(535)); ?>
+```
+
 > Response:
 
 ```json
@@ -199,6 +218,10 @@ WooCommerce.get('webhooks', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks").text)
+```
+
+```php
+<?php print_r($woocommerce->webhooks->get()); ?>
 ```
 
 > Response:
@@ -292,6 +315,18 @@ data = {
 print(wcapi.put("webhooks/535", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'webhook' => array(
+        'status' => 'paused'
+    )
+);
+
+print_r($woocommerce->webhooks->updaste(535, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -341,6 +376,10 @@ WooCommerce.delete('webhooks/535', function(err, data, res) {
 print(wcapi.delete("webhooks/535").text)
 ```
 
+```php
+<?php print_r($woocommerce->webhooks->delete(535)); ?>
+```
+
 > Response:
 
 ```json
@@ -375,6 +414,10 @@ WooCommerce.get('webhooks/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/count").text)
+```
+
+```php
+<?php print_r($woocommerce->webhooks->get_count()); ?>
 ```
 
 > Response:
@@ -417,6 +460,10 @@ WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/535/deliveries/378").text)
+```
+
+```php
+<?php print_r($woocommerce->webhooks->get_deliveries(378)); ?>
 ```
 
 > Response:
@@ -487,6 +534,10 @@ WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/535/deliveries").text)
+```
+
+```php
+<?php print_r($woocommerce->webhooks->get_deliveries()); ?>
 ```
 
 > Response:

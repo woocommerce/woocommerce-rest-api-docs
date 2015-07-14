@@ -257,6 +257,36 @@ data = {
 print(wcapi.post("products", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'product' => array(
+        'title' => 'Premium Quality',
+        'type' => 'simple',
+        'regular_price' => '21.99',
+        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+        'categories' => array(
+            9,
+            14
+        ),
+        'images' => array(
+            array(
+                'src' => 'http =>//example.com/wp-content/uploads/2015/01/premium-quality-front.jpg',
+                'position' => 0
+            ),
+            array(
+                'src' => 'http =>//example.com/wp-content/uploads/2015/01/premium-quality-back.jpg',
+                'position' => 1
+            )
+        )
+    )
+);
+
+print_r($woocommerce->products->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -627,6 +657,97 @@ data = {
 print(wcapi.post("products", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'product' => array(
+        'title' => 'Ship Your Idea',
+        'type' => 'variable',
+        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+        'categories' => array(
+            9,
+            14
+        ),
+        'images' => array(
+            array(
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+                'position' => 0
+            ),
+            array(
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg',
+                'position' => 1
+            ),
+            array(
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+                'position' => 2
+            ),
+            array(
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg',
+                'position' => 3
+            )
+        ),
+        'attributes' => array(
+            array(
+                'name' => 'Color',
+                'slug' => 'color',
+                'position' => '0',
+                'visible' => False,
+                'variation' => True,
+                'options' => array(
+                    'Black',
+                    'Green'
+                )
+            )
+        ),
+        'default_attributes' => array(
+            array(
+                'name' => 'Color',
+                'slug' => 'color',
+                'option' => 'Black'
+            )
+        ),
+        'variations' => array(
+            array(
+                'regular_price' => '19.99',
+                'image' => array(
+                    array(
+                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+                        'position' => 0
+                    )
+                ),
+                'attributes' => array(
+                    array(
+                        'name' => 'Color',
+                        'slug' => 'color',
+                        'option' => 'black'
+                    )
+                )
+            ),
+            array(
+                'regular_price' => '19.99',
+                'image' => array(
+                    array(
+                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+                        'position' => 0
+                    )
+                ),
+                'attributes' => array(
+                    array(
+                        'name' => 'Color',
+                        'slug' => 'color',
+                        'option' => 'green'
+                    )
+                )
+            )
+        )
+    )
+);
+
+print_r($woocommerce->products->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -895,6 +1016,10 @@ WooCommerce.get('products/546', function(err, data, res) {
 print(wcapi.get("products/546").text)
 ```
 
+```php
+<?php print_r($woocommerce->products->get(546)); ?>
+```
+
 > Response:
 
 ```json
@@ -1019,6 +1144,10 @@ WooCommerce.get('products', function(err, data, res) {
 
 ```python
 print(wcapi.get("products").text)
+```
+
+```php
+<?php print_r($woocommerce->products->get()); ?>
 ```
 
 > Response:
@@ -1401,6 +1530,18 @@ data = {
 print(wcapi.put("products/546", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'product' => array(
+        'regular_price': '24.54'
+    )
+);
+
+print_r($woocommerce->products->update(546, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -1524,7 +1665,11 @@ WooCommerce.delete('products/546/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/546").text)
+print(wcapi.delete("products/546/?force=true").text)
+```
+
+```php
+<?php print_r($woocommerce->products->delete(546, true)); ?>
 ```
 
 > Response:
@@ -1569,6 +1714,10 @@ WooCommerce.get('products/count', function(err, data, res) {
 print(wcapi.get("products/count").text)
 ```
 
+```php
+<?php print_r($woocommerce->products->get_count()); ?>
+```
+
 > Response:
 
 ```json
@@ -1606,6 +1755,10 @@ WooCommerce.get('products/546/reviews', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/546/reviews").text)
+```
+
+```php
+<?php print_r($woocommerce->products->get_reviews(546)); ?>
 ```
 
 > Response:
@@ -1670,6 +1823,10 @@ WooCommerce.get('products/categories/9', function(err, data, res) {
 print(wcapi.get("products/categories/9").text)
 ```
 
+```php
+<?php print_r($woocommerce->products->get_categories(9)); ?>
+```
+
 > Response:
 
 ```json
@@ -1718,6 +1875,10 @@ WooCommerce.get('products/categories', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/categories").text)
+```
+
+```php
+<?php print_r($woocommerce->products->get_categories()); ?>
 ```
 
 > Response:

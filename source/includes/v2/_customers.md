@@ -178,6 +178,45 @@ data = {
 print(wcapi.post("customers", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'customer' => array(
+        'email' => 'john.doe@example.com',
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'username' => 'john.doe',
+        'billing_address' => array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ),
+        'shipping_address' => array(
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        )
+    )
+);
+
+print_r($woocommerce->customers->create($data));
+?>
+```
+
 > Response:
 
 ```json
@@ -257,6 +296,10 @@ WooCommerce.get('customers/2', function(err, data, res) {
 print(wcapi.get("customers/2").text)
 ```
 
+```php
+<?php print_r($woocommerce->customers->get(2)); ?>
+```
+
 > Response:
 
 ```json
@@ -327,6 +370,10 @@ WooCommerce.get('customers', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers").text)
+```
+
+```php
+<?php print_r($woocommerce->customers->get()); ?>
 ```
 
 > Response:
@@ -482,6 +529,24 @@ data = {
 print(wcapi.put("customers/2", data).text)
 ```
 
+```php
+<?php
+$data = array(
+    'customer' => array(
+        'first_name' => 'James',
+        'billing_address' => array(
+            'first_name' => 'James'
+        ),
+        'shipping_address' => array(
+            'first_name' => 'James'
+        )
+    )
+);
+
+print_r($woocommerce->customers->update(2, $data));
+?>
+```
+
 > Response:
 
 ```json
@@ -554,6 +619,10 @@ WooCommerce.delete('customers/2', function(err, data, res) {
 print(wcapi.delete("customers/2").text)
 ```
 
+```php
+<?php print_r($woocommerce->customers->delete(2)); ?>
+```
+
 > Response:
 
 ```json
@@ -588,6 +657,10 @@ WooCommerce.get('customers/2/orders', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/2/orders").text)
+```
+
+```php
+<?php print_r($woocommerce->customers->get_orders(2)); ?>
 ```
 
 > Response:
@@ -747,6 +820,10 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 print(wcapi.get("customers/2/downloads").text)
 ```
 
+```php
+<?php print_r($woocommerce->customers->get_downloads(2)); ?>
+```
+
 > Response:
 
 ```json
@@ -810,6 +887,10 @@ WooCommerce.get('customers/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/count").text)
+```
+
+```php
+<?php print_r($woocommerce->customers->get_count()); ?>
 ```
 
 > Response:
