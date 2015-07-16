@@ -217,6 +217,43 @@ print_r($woocommerce->customers->create($data));
 ?>
 ```
 
+```ruby
+data = {
+  customer: {
+    email: "john.doe@example.com",
+    first_name: "John",
+    last_name: "Doe",
+    username: "john.doe",
+    billing_address: {
+      first_name: "John",
+      last_name: "Doe",
+      company: "",
+      address_1: "969 Market",
+      address_2: "",
+      city: "San Francisco",
+      state: "CA",
+      postcode: "94103",
+      country: "US",
+      email: "john.doe@example.com",
+      phone: "(555) 555-5555"
+    },
+    shipping_address: {
+      first_name: "John",
+      last_name: "Doe",
+      company: "",
+      address_1: "969 Market",
+      address_2: "",
+      city: "San Francisco",
+      state: "CA",
+      postcode: "94103",
+      country: "US"
+    }
+  }
+}
+
+woocommerce.post("customers", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -300,6 +337,10 @@ print(wcapi.get("customers/2").json())
 <?php print_r($woocommerce->customers->get(2)); ?>
 ```
 
+```ruby
+woocommerce.get("customers/2").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -374,6 +415,10 @@ print(wcapi.get("customers").json())
 
 ```php
 <?php print_r($woocommerce->customers->get()); ?>
+```
+
+```ruby
+woocommerce.get("customers").parsed_response
 ```
 
 > JSON response example:
@@ -547,6 +592,22 @@ print_r($woocommerce->customers->update(2, $data));
 ?>
 ```
 
+```ruby
+data = {
+  customer: {
+    first_name: "James",
+    billing_address: {
+      first_name: "James"
+    },
+    shipping_address: {
+      first_name: "James"
+    }
+  }
+}
+
+woocommerce.put("customers/2", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -623,6 +684,10 @@ print(wcapi.delete("customers/2").json())
 <?php print_r($woocommerce->customers->delete(2)); ?>
 ```
 
+```ruby
+woocommerce.delete("customers/2").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -661,6 +726,10 @@ print(wcapi.get("customers/2/orders").json())
 
 ```php
 <?php print_r($woocommerce->customers->get_orders(2)); ?>
+```
+
+```ruby
+woocommerce.get("customers/2/orders").parsed_response
 ```
 
 > JSON response example:
@@ -824,6 +893,10 @@ print(wcapi.get("customers/2/downloads").json())
 <?php print_r($woocommerce->customers->get_downloads(2)); ?>
 ```
 
+```ruby
+woocommerce.get("customers/2/downloads").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -891,6 +964,10 @@ print(wcapi.get("customers/count").json())
 
 ```php
 <?php print_r($woocommerce->customers->get_count()); ?>
+```
+
+```ruby
+woocommerce.get("customers/count").parsed_response
 ```
 
 > JSON response example:

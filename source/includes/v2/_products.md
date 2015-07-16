@@ -287,6 +287,34 @@ print_r($woocommerce->products->create($data));
 ?>
 ```
 
+```ruby
+data = {
+  product: {
+    title: "Premium Quality",
+    type: "simple",
+    regular_price: "21.99",
+    description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+    short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+    categories: [
+      9,
+      14
+    ],
+    images: [
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+        position: 0
+      },
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+        position: 1
+      }
+    ]
+  }
+}
+
+woocommerce.post("products", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -748,6 +776,95 @@ print_r($woocommerce->products->create($data));
 ?>
 ```
 
+```ruby
+data = {
+  product: {
+    title: "Ship Your Idea",
+    type: "variable",
+    description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+    short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+    categories: [
+      9,
+      14
+    ],
+    images: [
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+        position: 0
+      },
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg",
+        position: 1
+      },
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+        position: 2
+      },
+      {
+        src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg",
+        position: 3
+      }
+    ],
+    attributes: [
+      {
+        name: "Color",
+        slug: "color",
+        position: "0",
+        visible: false,
+        variation: true,
+        options: [
+          "Black",
+          "Green"
+        ]
+      }
+    ],
+    default_attributes: [
+      {
+        name: "Color",
+        slug: "color",
+        option: "Black"
+      }
+    ],
+    variations: [
+      {
+        regular_price: "19.99",
+        image: [
+          {
+            src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+            position: 0
+          }
+        ],
+        attributes: [
+          {
+            name: "Color",
+            slug: "color",
+            option: "black"
+          }
+        ]
+      },
+      {
+        regular_price: "19.99",
+        image: [
+          {
+            src: "http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+            position: 0
+          }
+        ],
+        attributes: [
+          {
+            name: "Color",
+            slug: "color",
+            option: "green"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+woocommerce.post("products", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1020,6 +1137,10 @@ print(wcapi.get("products/546").json())
 <?php print_r($woocommerce->products->get(546)); ?>
 ```
 
+```ruby
+woocommerce.get("products/546").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1148,6 +1269,10 @@ print(wcapi.get("products").json())
 
 ```php
 <?php print_r($woocommerce->products->get()); ?>
+```
+
+```ruby
+woocommerce.get("products").parsed_response
 ```
 
 > JSON response example:
@@ -1542,6 +1667,16 @@ print_r($woocommerce->products->update(546, $data));
 ?>
 ```
 
+```ruby
+data = {
+  product: {
+    regular_price: "24.54"
+  }
+}
+
+woocommerce.put("products/546", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1672,6 +1807,10 @@ print(wcapi.delete("products/546/?force=true").json())
 <?php print_r($woocommerce->products->delete(546, true)); ?>
 ```
 
+```ruby
+woocommerce.delete("products/546").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1718,6 +1857,10 @@ print(wcapi.get("products/count").json())
 <?php print_r($woocommerce->products->get_count()); ?>
 ```
 
+```ruby
+woocommerce.get("products/count").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1759,6 +1902,10 @@ print(wcapi.get("products/546/reviews").json())
 
 ```php
 <?php print_r($woocommerce->products->get_reviews(546)); ?>
+```
+
+```ruby
+woocommerce.get("products/546/reviews").parsed_response
 ```
 
 > JSON response example:
@@ -1827,6 +1974,10 @@ print(wcapi.get("products/categories/9").json())
 <?php print_r($woocommerce->products->get_categories(9)); ?>
 ```
 
+```ruby
+woocommerce.get("products/categories/9").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -1879,6 +2030,10 @@ print(wcapi.get("products/categories").json())
 
 ```php
 <?php print_r($woocommerce->products->get_categories()); ?>
+```
+
+```ruby
+woocommerce.get("products/categories").parsed_response
 ```
 
 > JSON response example:

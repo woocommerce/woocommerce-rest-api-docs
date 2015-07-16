@@ -403,6 +403,7 @@ See the webhook resource section.
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
 - [PHP](https://packagist.org/packages/woothemes/woocommerce-api)
+- [Ruby](https://rubygems.org/gems/woocommerce_api)
 
 ```javascript
 // Install:
@@ -449,6 +450,27 @@ $woocommerce = new WC_API_Client(
 );
 ?>
 ```
+
+```ruby
+# Install:
+# gem install woocommerce_api
+
+# Setup:
+require "woocommerce_api"
+
+woocommerce = WooCommerce::API.new(
+  "http://example.com",
+  "consumer_key",
+  "consumer_secret",
+  {
+    version: "v2"
+  }
+)
+```
+
+<aside class="notice">
+	Use the tabs at the top-right corner to see how to install and use each library.
+</aside>
 
 ## Tools ##
 

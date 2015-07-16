@@ -6,6 +6,7 @@ language_tabs:
   - javascript: Node.js
   - python: Python
   - php: PHP
+  - ruby: Ruby
 
 toc_footers:
   - <a href="https://github.com/woothemes/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a>

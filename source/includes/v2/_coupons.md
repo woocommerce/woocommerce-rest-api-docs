@@ -155,6 +155,33 @@ print_r($woocommerce->coupons->create($data));
 ?>
 ```
 
+```ruby
+data = {
+  coupon: {
+    code: "new-coupon",
+    type: "percent",
+    amount: "10",
+    individual_use: true,
+    product_ids: [],
+    exclude_product_ids: [],
+    usage_limit: "",
+    usage_limit_per_user: "",
+    limit_usage_to_x_items: "",
+    expiry_date: "",
+    enable_free_shipping: false,
+    product_category_ids: [],
+    exclude_product_category_ids: [],
+    exclude_sale_items: true,
+    minimum_amount: "100.00",
+    maximum_amount: "0.00",
+    customer_emails: [],
+    description: ""
+  }
+}
+
+woocommerce.post("coupons", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -225,6 +252,10 @@ print(wcapi.get("coupons/529").json())
 <?php print_r($woocommerce->coupons->get(529)); ?>
 ```
 
+```ruby
+woocommerce.get("coupons/529").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -286,6 +317,10 @@ print(wcapi.get("coupons").json())
 
 ```php
 <?php print_r($woocommerce->coupons->get()); ?>
+```
+
+```ruby
+woocommerce.get("coupons").parsed_response
 ```
 
 > JSON response example:
@@ -427,6 +462,16 @@ print_r($woocommerce->coupons->update(529, $data));
 ?>
 ```
 
+```ruby
+data {
+  coupon: {
+    amount: "5"
+  }
+}
+
+woocommerce.put("coupons/529", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -490,6 +535,10 @@ print(wcapi.delete("coupons/529?force=true").json())
 <?php print_r($woocommerce->coupons->delete(529, true)); ?>
 ```
 
+```ruby
+woocommerce.delete("coupons/529?force=true").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -534,6 +583,10 @@ print(wcapi.get("coupons/count").json())
 
 ```php
 <?php print_r($woocommerce->coupons->get_count()); ?>
+```
+
+```ruby
+woocommerce.get("coupons/count").parsed_response
 ```
 
 > JSON response example:

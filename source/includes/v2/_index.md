@@ -74,6 +74,10 @@ print(wcapi.get("").json())
 <?php print_r($woocommerce->index->get()); ?>
 ```
 
+```ruby
+woocommerce.get("").parsed_response
+```
+
 > JSON response example:
 
 ```json

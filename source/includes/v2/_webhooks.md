@@ -118,6 +118,19 @@ print_r($woocommerce->webhooks->create($data));
 ?>
 ```
 
+```ruby
+data = {
+  webhook: {
+    name: "An add to cart webhook",
+    secret: "my-super-secret-private-key",
+    topic: "action.woocommerce_add_to_cart",
+    delivery_url: "http://requestb.in/1exdwip1"
+  }
+}
+
+woocommerce.post("webhooks", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -171,6 +184,10 @@ print(wcapi.get("webhooks/535").json())
 <?php print_r($woocommerce->webhooks->get(535)); ?>
 ```
 
+```ruby
+woocommerce.get("webhooks/535").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -222,6 +239,10 @@ print(wcapi.get("webhooks").json())
 
 ```php
 <?php print_r($woocommerce->webhooks->get()); ?>
+```
+
+```ruby
+woocommerce.get("webhooks").parsed_response
 ```
 
 > JSON response example:
@@ -327,6 +348,16 @@ print_r($woocommerce->webhooks->updaste(535, $data));
 ?>
 ```
 
+```ruby
+data = {
+  webhook: {
+    status: "paused"
+  }
+}
+
+woocommerce.put("webhooks/535", data).parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -380,6 +411,10 @@ print(wcapi.delete("webhooks/535").json())
 <?php print_r($woocommerce->webhooks->delete(535)); ?>
 ```
 
+```ruby
+woocommerce.delete("webhooks/535").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -418,6 +453,10 @@ print(wcapi.get("webhooks/count").json())
 
 ```php
 <?php print_r($woocommerce->webhooks->get_count()); ?>
+```
+
+```ruby
+woocommerce.get("webhooks/count").parsed_response
 ```
 
 > JSON response example:
@@ -464,6 +503,10 @@ print(wcapi.get("webhooks/535/deliveries/378").json())
 
 ```php
 <?php print_r($woocommerce->webhooks->get_deliveries(378)); ?>
+```
+
+```ruby
+woocommerce.get("webhooks/535/deliveries/378").parsed_response
 ```
 
 > JSON response example:
@@ -538,6 +581,10 @@ print(wcapi.get("webhooks/535/deliveries").json())
 
 ```php
 <?php print_r($woocommerce->webhooks->get_deliveries()); ?>
+```
+
+```ruby
+woocommerce.get("webhooks/535/deliveries").parsed_response
 ```
 
 > JSON response example:

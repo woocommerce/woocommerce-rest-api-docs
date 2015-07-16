@@ -44,6 +44,10 @@ print(wcapi.get("reports").json())
 <?php print_r($woocommerce->reports->get()); ?>
 ```
 
+```ruby
+woocommerce.get("reports").parsed_response
+```
+
 > JSON response example:
 
 ```json
@@ -94,6 +98,10 @@ $args = array(
 
 print_r($woocommerce->reports->get_sales($args));
 ?>
+```
+
+```ruby
+woocommerce.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").parsed_response
 ```
 
 > JSON response example:
@@ -190,6 +198,10 @@ $args = array(
 
 print_r($woocommerce->reports->get_top_sellers($args));
 ?>
+```
+
+```ruby
+woocommerce.get("reports/sales/top_sellers?filter[period]=last_month").parsed_response
 ```
 
 > JSON response example:
