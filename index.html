@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","javascript","python","php"]);
+          setupLanguages(["shell","javascript","python","php","ruby"]);
         });
       </script>
   </head>
@@ -32,6 +32,7 @@
               <a href="#" data-language-name="javascript">Node.js</a>
               <a href="#" data-language-name="python">Python</a>
               <a href="#" data-language-name="php">PHP</a>
+              <a href="#" data-language-name="ruby">Ruby</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -543,6 +544,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <li><a href="https://www.npmjs.com/package/woocommerce-api">Node.js</a></li>
 <li><a href="https://pypi.python.org/pypi/WooCommerce">Python</a></li>
 <li><a href="https://packagist.org/packages/woothemes/woocommerce-api">PHP</a></li>
+<li><a href="https://rubygems.org/gems/woocommerce_api">Ruby</a></li>
 </ul>
 <pre class="highlight javascript"><code><span class="c1">// Install:</span>
 <span class="c1">// npm install --save woocommerce-api</span>
@@ -584,6 +586,25 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="p">);</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="c1"># Install:</span>
+<span class="c1"># gem install woocommerce_api</span>
+
+<span class="c1"># Setup:</span>
+<span class="nb">require</span> <span class="s2">"woocommerce_api"</span>
+
+<span class="n">woocommerce</span> <span class="o">=</span> <span class="no">WooCommerce</span><span class="o">::</span><span class="no">API</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+  <span class="s2">"http://example.com"</span><span class="p">,</span>
+  <span class="s2">"consumer_key"</span><span class="p">,</span>
+  <span class="s2">"consumer_secret"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">version: </span><span class="s2">"v2"</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<aside class="notice">
+    Use the tabs at the top-right corner to see how to install and use each library.
+</aside>
 
 <h2 id="tools">Tools</h2>
 
@@ -735,6 +756,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">""</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">index</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">""</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -1309,6 +1332,31 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">coupon: </span><span class="p">{</span>
+    <span class="ss">code: </span><span class="s2">"new-coupon"</span><span class="p">,</span>
+    <span class="ss">type: </span><span class="s2">"percent"</span><span class="p">,</span>
+    <span class="ss">amount: </span><span class="s2">"10"</span><span class="p">,</span>
+    <span class="ss">individual_use: </span><span class="kp">true</span><span class="p">,</span>
+    <span class="ss">product_ids: </span><span class="p">[],</span>
+    <span class="ss">exclude_product_ids: </span><span class="p">[],</span>
+    <span class="ss">usage_limit: </span><span class="s2">""</span><span class="p">,</span>
+    <span class="ss">usage_limit_per_user: </span><span class="s2">""</span><span class="p">,</span>
+    <span class="ss">limit_usage_to_x_items: </span><span class="s2">""</span><span class="p">,</span>
+    <span class="ss">expiry_date: </span><span class="s2">""</span><span class="p">,</span>
+    <span class="ss">enable_free_shipping: </span><span class="kp">false</span><span class="p">,</span>
+    <span class="ss">product_category_ids: </span><span class="p">[],</span>
+    <span class="ss">exclude_product_category_ids: </span><span class="p">[],</span>
+    <span class="ss">exclude_sale_items: </span><span class="kp">true</span><span class="p">,</span>
+    <span class="ss">minimum_amount: </span><span class="s2">"100.00"</span><span class="p">,</span>
+    <span class="ss">maximum_amount: </span><span class="s2">"0.00"</span><span class="p">,</span>
+    <span class="ss">customer_emails: </span><span class="p">[],</span>
+    <span class="ss">description: </span><span class="s2">""</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"coupons"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -1371,6 +1419,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">529</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"coupons/529"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -1425,6 +1475,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"coupons"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -1557,6 +1609,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">529</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="p">{</span>
+  <span class="ss">coupon: </span><span class="p">{</span>
+    <span class="ss">amount: </span><span class="s2">"5"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"coupons/529"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -1612,6 +1672,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">529</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"coupons/529?force=true"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -1659,6 +1721,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"coupons/count"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">coupons</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"coupons/count"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -2033,6 +2097,41 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">customer: </span><span class="p">{</span>
+    <span class="ss">email: </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span>
+    <span class="ss">first_name: </span><span class="s2">"John"</span><span class="p">,</span>
+    <span class="ss">last_name: </span><span class="s2">"Doe"</span><span class="p">,</span>
+    <span class="ss">username: </span><span class="s2">"john.doe"</span><span class="p">,</span>
+    <span class="ss">billing_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"John"</span><span class="p">,</span>
+      <span class="ss">last_name: </span><span class="s2">"Doe"</span><span class="p">,</span>
+      <span class="ss">company: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">address_1: </span><span class="s2">"969 Market"</span><span class="p">,</span>
+      <span class="ss">address_2: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">city: </span><span class="s2">"San Francisco"</span><span class="p">,</span>
+      <span class="ss">state: </span><span class="s2">"CA"</span><span class="p">,</span>
+      <span class="ss">postcode: </span><span class="s2">"94103"</span><span class="p">,</span>
+      <span class="ss">country: </span><span class="s2">"US"</span><span class="p">,</span>
+      <span class="ss">email: </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span>
+      <span class="ss">phone: </span><span class="s2">"(555) 555-5555"</span>
+    <span class="p">},</span>
+    <span class="ss">shipping_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"John"</span><span class="p">,</span>
+      <span class="ss">last_name: </span><span class="s2">"Doe"</span><span class="p">,</span>
+      <span class="ss">company: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">address_1: </span><span class="s2">"969 Market"</span><span class="p">,</span>
+      <span class="ss">address_2: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">city: </span><span class="s2">"San Francisco"</span><span class="p">,</span>
+      <span class="ss">state: </span><span class="s2">"CA"</span><span class="p">,</span>
+      <span class="ss">postcode: </span><span class="s2">"94103"</span><span class="p">,</span>
+      <span class="ss">country: </span><span class="s2">"US"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"customers"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -2108,6 +2207,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"customers/2"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -2175,6 +2276,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"customers"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -2349,6 +2452,20 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">customer: </span><span class="p">{</span>
+    <span class="ss">first_name: </span><span class="s2">"James"</span><span class="p">,</span>
+    <span class="ss">billing_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"James"</span>
+    <span class="p">},</span>
+    <span class="ss">shipping_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"James"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"customers/2"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -2417,6 +2534,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"customers/2"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -2448,6 +2567,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/2/orders"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">get_orders</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"customers/2/orders"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -2602,6 +2723,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">get_downloads</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"customers/2/downloads"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -2704,6 +2827,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"customers/count"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">customers</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"customers/count"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -3408,6 +3533,61 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order: </span><span class="p">{</span>
+    <span class="ss">payment_details: </span><span class="p">{</span>
+      <span class="ss">method_id: </span><span class="s2">"bacs"</span><span class="p">,</span>
+      <span class="ss">method_title: </span><span class="s2">"Direct Bank Transfer"</span><span class="p">,</span>
+      <span class="ss">paid: </span><span class="kp">true</span>
+    <span class="p">},</span>
+    <span class="ss">billing_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"John"</span><span class="p">,</span>
+      <span class="ss">last_name: </span><span class="s2">"Doe"</span><span class="p">,</span>
+      <span class="ss">address_1: </span><span class="s2">"969 Market"</span><span class="p">,</span>
+      <span class="ss">address_2: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">city: </span><span class="s2">"San Francisco"</span><span class="p">,</span>
+      <span class="ss">state: </span><span class="s2">"CA"</span><span class="p">,</span>
+      <span class="ss">postcode: </span><span class="s2">"94103"</span><span class="p">,</span>
+      <span class="ss">country: </span><span class="s2">"US"</span><span class="p">,</span>
+      <span class="ss">email: </span><span class="s2">"john.doe@example.com"</span><span class="p">,</span>
+      <span class="ss">phone: </span><span class="s2">"(555) 555-5555"</span>
+    <span class="p">},</span>
+    <span class="ss">shipping_address: </span><span class="p">{</span>
+      <span class="ss">first_name: </span><span class="s2">"John"</span><span class="p">,</span>
+      <span class="ss">last_name: </span><span class="s2">"Doe"</span><span class="p">,</span>
+      <span class="ss">address_1: </span><span class="s2">"969 Market"</span><span class="p">,</span>
+      <span class="ss">address_2: </span><span class="s2">""</span><span class="p">,</span>
+      <span class="ss">city: </span><span class="s2">"San Francisco"</span><span class="p">,</span>
+      <span class="ss">state: </span><span class="s2">"CA"</span><span class="p">,</span>
+      <span class="ss">postcode: </span><span class="s2">"94103"</span><span class="p">,</span>
+      <span class="ss">country: </span><span class="s2">"US"</span>
+    <span class="p">},</span>
+    <span class="ss">customer_id: </span><span class="mi">2</span><span class="p">,</span>
+    <span class="ss">line_items: </span><span class="p">[</span>
+        <span class="p">{</span>
+          <span class="ss">product_id: </span><span class="mi">546</span><span class="p">,</span>
+          <span class="ss">quantity: </span><span class="mi">2</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="ss">product_id: </span><span class="mi">613</span><span class="p">,</span>
+          <span class="ss">quantity: </span><span class="mi">1</span><span class="p">,</span>
+          <span class="ss">variations: </span><span class="p">{</span>
+            <span class="ss">pa_color: </span><span class="s2">"Black"</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="ss">shipping_lines: </span><span class="p">[</span>
+        <span class="p">{</span>
+          <span class="ss">method_id: </span><span class="s2">"flat_rate"</span><span class="p">,</span>
+          <span class="ss">method_title: </span><span class="s2">"Flat Rate"</span><span class="p">,</span>
+          <span class="ss">total: </span><span class="mi">10</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -3592,6 +3772,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">645</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/645"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -3775,6 +3957,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4151,6 +4335,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order: </span><span class="p">{</span>
+    <span class="ss">status: </span><span class="s2">"completed"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"orders/645"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4335,6 +4527,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"orders/645/?force=true"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4383,6 +4577,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/count"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4430,6 +4626,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/statuses"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">orders</span><span class="o">-&gt;</span><span class="na">get_statuses</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/statuses"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4496,6 +4694,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_notes</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order_note: </span><span class="p">{</span>
+    <span class="ss">note: </span><span class="s2">"Order ok!!!"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"orders/645/notes"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4565,6 +4771,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_notes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">416</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/645/notes/416"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4605,6 +4813,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/notes"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_notes</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">645</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/645/notes"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4693,6 +4903,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_notes</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">416</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order_note: </span><span class="p">{</span>
+    <span class="ss">note: </span><span class="s2">"Ok!"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"orders/645/notes/416"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4733,6 +4951,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"orders/645/notes/416"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_notes</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">416</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"orders/645/notes/416"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4791,6 +5011,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_refunds</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order_refund: </span><span class="p">{</span>
+    <span class="ss">amount: </span><span class="mi">10</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"orders/645/refunds"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -4866,6 +5094,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_refunds</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">649</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/645/refunds/649"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -4907,6 +5137,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"orders/645/refunds"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_refunds</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">645</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"orders/645/refunds"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -5014,6 +5246,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_refunds</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">649</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">order_refund: </span><span class="p">{</span>
+    <span class="ss">reason: </span><span class="s2">"Because was it necessary!"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"orders/645/refunds/649"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -5055,6 +5295,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"orders/645/refunds/649"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">order_refunds</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">645</span><span class="p">,</span> <span class="mi">649</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"orders/645/refunds/649"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -5861,6 +6103,32 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">product: </span><span class="p">{</span>
+    <span class="ss">title: </span><span class="s2">"Premium Quality"</span><span class="p">,</span>
+    <span class="ss">type: </span><span class="s2">"simple"</span><span class="p">,</span>
+    <span class="ss">regular_price: </span><span class="s2">"21.99"</span><span class="p">,</span>
+    <span class="ss">description: </span><span class="s2">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."</span><span class="p">,</span>
+    <span class="ss">short_description: </span><span class="s2">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</span><span class="p">,</span>
+    <span class="ss">categories: </span><span class="p">[</span>
+      <span class="mi">9</span><span class="p">,</span>
+      <span class="mi">14</span>
+    <span class="p">],</span>
+    <span class="ss">images: </span><span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">0</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"products"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -6316,6 +6584,93 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">product: </span><span class="p">{</span>
+    <span class="ss">title: </span><span class="s2">"Ship Your Idea"</span><span class="p">,</span>
+    <span class="ss">type: </span><span class="s2">"variable"</span><span class="p">,</span>
+    <span class="ss">description: </span><span class="s2">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo."</span><span class="p">,</span>
+    <span class="ss">short_description: </span><span class="s2">"Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."</span><span class="p">,</span>
+    <span class="ss">categories: </span><span class="p">[</span>
+      <span class="mi">9</span><span class="p">,</span>
+      <span class="mi">14</span>
+    <span class="p">],</span>
+    <span class="ss">images: </span><span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">0</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">1</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">2</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="mi">3</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="ss">attributes: </span><span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">name: </span><span class="s2">"Color"</span><span class="p">,</span>
+        <span class="ss">slug: </span><span class="s2">"color"</span><span class="p">,</span>
+        <span class="ss">position: </span><span class="s2">"0"</span><span class="p">,</span>
+        <span class="ss">visible: </span><span class="kp">false</span><span class="p">,</span>
+        <span class="ss">variation: </span><span class="kp">true</span><span class="p">,</span>
+        <span class="ss">options: </span><span class="p">[</span>
+          <span class="s2">"Black"</span><span class="p">,</span>
+          <span class="s2">"Green"</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="ss">default_attributes: </span><span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">name: </span><span class="s2">"Color"</span><span class="p">,</span>
+        <span class="ss">slug: </span><span class="s2">"color"</span><span class="p">,</span>
+        <span class="ss">option: </span><span class="s2">"Black"</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="ss">variations: </span><span class="p">[</span>
+      <span class="p">{</span>
+        <span class="ss">regular_price: </span><span class="s2">"19.99"</span><span class="p">,</span>
+        <span class="ss">image: </span><span class="p">[</span>
+          <span class="p">{</span>
+            <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg"</span><span class="p">,</span>
+            <span class="ss">position: </span><span class="mi">0</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="ss">attributes: </span><span class="p">[</span>
+          <span class="p">{</span>
+            <span class="ss">name: </span><span class="s2">"Color"</span><span class="p">,</span>
+            <span class="ss">slug: </span><span class="s2">"color"</span><span class="p">,</span>
+            <span class="ss">option: </span><span class="s2">"black"</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="ss">regular_price: </span><span class="s2">"19.99"</span><span class="p">,</span>
+        <span class="ss">image: </span><span class="p">[</span>
+          <span class="p">{</span>
+            <span class="ss">src: </span><span class="s2">"http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg"</span><span class="p">,</span>
+            <span class="ss">position: </span><span class="mi">0</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="ss">attributes: </span><span class="p">[</span>
+          <span class="p">{</span>
+            <span class="ss">name: </span><span class="s2">"Color"</span><span class="p">,</span>
+            <span class="ss">slug: </span><span class="s2">"color"</span><span class="p">,</span>
+            <span class="ss">option: </span><span class="s2">"green"</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"products"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -6580,6 +6935,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">546</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products/546"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -6701,6 +7058,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -7104,6 +7463,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="mi">546</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">product: </span><span class="p">{</span>
+    <span class="ss">regular_price: </span><span class="s2">"24.54"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"products/546"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -7226,6 +7593,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">546</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"products/546"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -7273,6 +7642,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/count"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products/count"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -7322,6 +7693,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/546/reviews"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get_reviews</span><span class="p">(</span><span class="mi">546</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products/546/reviews"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -7411,6 +7784,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get_categories</span><span class="p">(</span><span class="mi">9</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products/categories/9"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -7486,6 +7861,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"products/categories"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">products</span><span class="o">-&gt;</span><span class="na">get_categories</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"products/categories"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -7612,6 +7989,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">reports</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"reports"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -7655,6 +8034,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">reports</span><span class="o">-&gt;</span><span class="na">get_sales</span><span class="p">(</span><span class="nv">$args</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"reports/sales?filter[date_min]=2015-01-18&amp;filter[date_max]=2015-01-21"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -7743,6 +8124,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">reports</span><span class="o">-&gt;</span><span class="na">get_top_sellers</span><span class="p">(</span><span class="nv">$args</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"reports/sales/top_sellers?filter[period]=last_month"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -8047,6 +8430,17 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">webhook: </span><span class="p">{</span>
+    <span class="ss">name: </span><span class="s2">"An add to cart webhook"</span><span class="p">,</span>
+    <span class="ss">secret: </span><span class="s2">"my-super-secret-private-key"</span><span class="p">,</span>
+    <span class="ss">topic: </span><span class="s2">"action.woocommerce_add_to_cart"</span><span class="p">,</span>
+    <span class="ss">delivery_url: </span><span class="s2">"http://requestb.in/1exdwip1"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="s2">"webhooks"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -8092,6 +8486,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="mi">535</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"webhooks/535"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -8136,6 +8532,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"webhooks"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -8242,6 +8640,14 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">updaste</span><span class="p">(</span><span class="mi">535</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">webhook: </span><span class="p">{</span>
+    <span class="ss">status: </span><span class="s2">"paused"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"webhooks/535"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -8287,6 +8693,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="mi">535</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"webhooks/535"</span><span class="p">).</span><span class="nf">parsed_response</span>
+</code></pre>
 
 <blockquote>
 <p>JSON response example:</p>
@@ -8318,6 +8726,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/count"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">get_count</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"webhooks/count"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -8366,6 +8776,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/535/deliveries/378"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">get_deliveries</span><span class="p">(</span><span class="mi">378</span><span class="p">));</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"webhooks/535/deliveries/378"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -8432,6 +8844,8 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 <pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"webhooks/535/deliveries"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">webhooks</span><span class="o">-&gt;</span><span class="na">get_deliveries</span><span class="p">());</span> <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"webhooks/535/deliveries"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
@@ -8512,6 +8926,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
                 <a href="#" data-language-name="javascript">Node.js</a>
                 <a href="#" data-language-name="python">Python</a>
                 <a href="#" data-language-name="php">PHP</a>
+                <a href="#" data-language-name="ruby">Ruby</a>
           </div>
       </div>
     </div>
