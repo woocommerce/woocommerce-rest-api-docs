@@ -96,7 +96,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 
 |  Attribute  |   Type  |                                            Description                                             |
 | ----------- | ------- | -------------------------------------------------------------------------------------------------- |
-| `name`      | string  | Attribute name                                                                                     |
+| `name`      | string  | Attribute name <i class="label label-info">required</i>                                            |
 | `slug`      | string  | Attribute slug                                                                                     |
 | `position`  | integer | Attribute position                                                                                 |
 | `visible`   | boolean | Shows/define if the attribute is visible on the "Additional Information" tab in the product's page |
