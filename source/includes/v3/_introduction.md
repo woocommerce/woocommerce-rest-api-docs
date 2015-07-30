@@ -56,7 +56,7 @@ The `v1` and `v2` will be removed in future versions.
 
 The API is accessible via this endpoint:
 
-`https://www.your-store.com/wc-api/v2`
+`https://www.your-store.com/wc-api/v3`
 
 You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, as authentication is simpler. The API index will declare if the site supports SSL or not.
 
