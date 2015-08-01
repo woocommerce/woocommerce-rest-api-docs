@@ -16,13 +16,15 @@ trim_trailing_whitespace = false
 [*.txt]
 trim_trailing_whitespace = false
 
-[*.json]
-insert_final_newline = false
+[*.{rb,scss,json}]
 indent_size = 2
 tab_width = 2
 indent_style = space
 
-[*.scss]
-indent_size = 2
-tab_width = 2
+[*.json]
+insert_final_newline = false
+
+[*.py]
+indent_size = 4
+tab_width = 4
 indent_style = space
