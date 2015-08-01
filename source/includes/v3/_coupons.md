@@ -38,12 +38,12 @@ This API helps you to create a new coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/coupons</h6>
+		<h6>/wc-api/v3/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/coupons \
+curl -X POST https://example.com/wc-api/v3/coupons \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -222,19 +222,19 @@ This API lets you retrieve and view a specific coupon by ID or code.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
+		<h6>/wc-api/v3/coupons/code/&lt;code&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons/529 \
+curl https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -296,12 +296,12 @@ This API helps you to view all the coupons.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons</h6>
+		<h6>/wc-api/v3/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons \
+curl https://example.com/wc-api/v3/coupons \
 	-u consumer_key:consumer_secret
 ```
 
@@ -413,12 +413,12 @@ This API lets you make changes to a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/coupons/529 \
+curl -X PUT https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -512,12 +512,12 @@ This API helps you delete a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/coupons/529/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -562,12 +562,12 @@ This API lets you retrieve a count of all coupons.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/count</h6>
+		<h6>/wc-api/v3/coupons/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons/count \
+curl https://example.com/wc-api/v3/coupons/count \
 	-u consumer_key:consumer_secret
 ```
 
