@@ -21,12 +21,12 @@ This API lets you retrieve and view a simple list of available reports.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/reports</h6>
+		<h6>/wc-api/v3/reports</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/reports \
+curl https://example.com/wc-api/v3/reports \
 	-u consumer_key:consumer_secret
 ```
 
@@ -68,12 +68,12 @@ This API lets you retrieve and view a list of sales report.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/reports/sales</h6>
+		<h6>/wc-api/v3/reports/sales</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21 \
+curl https://example.com/wc-api/v3/reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -169,12 +169,12 @@ This API lets you retrieve and view a list of top sellers report.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/reports/sales/top_sellers</h6>
+		<h6>/wc-api/v3/reports/sales/top_sellers</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/reports/sales/top_sellers?filter[period]=last_month \
+curl https://example.com/wc-api/v3/reports/sales/top_sellers?filter[period]=last_month \
 	-u consumer_key:consumer_secret
 ```
 

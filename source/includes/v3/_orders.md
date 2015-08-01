@@ -120,14 +120,14 @@ This API helps you to create a new order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/orders</h6>
+		<h6>/wc-api/v3/orders</h6>
 	</div>
 </div>
 
 > Example of create a paid order:
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/orders \
+curl -X POST https://example.com/wc-api/v3/orders \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -585,12 +585,12 @@ This API lets you retrieve and view a specific order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/645 \
+curl https://example.com/wc-api/v3/orders/645 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -781,12 +781,12 @@ This API helps you to view all the orders.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders</h6>
+		<h6>/wc-api/v3/orders</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders \
+curl https://example.com/wc-api/v3/orders \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1132,12 +1132,12 @@ This API lets you make changes to an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/orders/645 \
+curl -X PUT https://example.com/wc-api/v3/orders/645 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1360,12 +1360,12 @@ This API helps you delete an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/orders/645/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/orders/645/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1410,12 +1410,12 @@ This API lets you retrieve a count of all orders.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/count</h6>
+		<h6>/wc-api/v3/orders/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/count \
+curl https://example.com/wc-api/v3/orders/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1460,12 +1460,12 @@ This API lets you retrieve a list of orders statuses available.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/statuses</h6>
+		<h6>/wc-api/v3/orders/statuses</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/statuses \
+curl https://example.com/wc-api/v3/orders/statuses \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1512,12 +1512,12 @@ This API helps you to create a new note for an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/orders/645/notes \
+curl -X POST https://example.com/wc-api/v3/orders/645/notes \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1602,12 +1602,12 @@ This API lets you retrieve and view a specific note from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/645/notes/416 \
+curl https://example.com/wc-api/v3/orders/645/notes/416 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1655,12 +1655,12 @@ This API helps you to view all the notes from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/notes</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/645/notes \
+curl https://example.com/wc-api/v3/orders/645/notes \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1728,12 +1728,12 @@ This API lets you make changes to an order note.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/orders/645/notes/416 \
+curl -X PUT https://example.com/wc-api/v3/orders/645/notes/416 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1813,12 +1813,12 @@ This API helps you delete an order note.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/orders/645/notes/416 \
+curl -X DELETE https://example.com/wc-api/v3/orders/645/notes/416 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1857,12 +1857,12 @@ This API helps you to create a new refund for an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/orders/645/refunds \
+curl -X POST https://example.com/wc-api/v3/orders/645/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1949,12 +1949,12 @@ This API lets you retrieve and view a specific refund from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/645/refunds/649 \
+curl https://example.com/wc-api/v3/orders/645/refunds/649 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -2003,12 +2003,12 @@ This API helps you to view all the refunds from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/645/refunds \
+curl https://example.com/wc-api/v3/orders/645/refunds \
 	-u consumer_key:consumer_secret
 ```
 
@@ -2095,12 +2095,12 @@ This API lets you make changes to an order refund.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/orders/645/refunds/649 \
+curl -X PUT https://example.com/wc-api/v3/orders/645/refunds/649 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -2181,12 +2181,12 @@ This API helps you delete an order refund.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
+		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/orders/645/refunds/649 \
+curl -X DELETE https://example.com/wc-api/v3/orders/645/refunds/649 \
 	-u consumer_key:consumer_secret
 ```
 

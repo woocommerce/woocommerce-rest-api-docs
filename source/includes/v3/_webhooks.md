@@ -57,12 +57,12 @@ This API helps you to create a new webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/webhooks</h6>
+		<h6>/wc-api/v3/webhooks</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/webhooks \
+curl -X POST https://example.com/wc-api/v3/webhooks \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -161,12 +161,12 @@ This API lets you retrieve and view a specific webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/webhooks/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/webhooks/535 \
+curl https://example.com/wc-api/v3/webhooks/535 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -218,12 +218,12 @@ This API helps you to view all the webhooks.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/webhooks</h6>
+		<h6>/wc-api/v3/webhooks</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/webhooks \
+curl https://example.com/wc-api/v3/webhooks \
 	-u consumer_key:consumer_secret
 ```
 
@@ -299,12 +299,12 @@ This API lets you make changes to a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/webhook/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/webhook/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/webhook/535 \
+curl -X PUT https://example.com/wc-api/v3/webhook/535 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -388,12 +388,12 @@ This API helps you delete a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/webhooks/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/webhooks/535 \
+curl -X DELETE https://example.com/wc-api/v3/webhooks/535 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -432,12 +432,12 @@ This API lets you retrieve a count of all webhooks.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/webhooks/count</h6>
+		<h6>/wc-api/v3/webhooks/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/webhooks/count \
+curl https://example.com/wc-api/v3/webhooks/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -482,12 +482,12 @@ This API lets you retrieve and view a specific webhook delivery.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/webhooks/&lt;id&gt;/deliveries/&lt;delivery_id&gt;</h6>
+		<h6>/wc-api/v3/webhooks/&lt;id&gt;/deliveries/&lt;delivery_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/webhooks/535/deliveries/378 \
+curl https://example.com/wc-api/v3/webhooks/535/deliveries/378 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -560,12 +560,12 @@ This API helps you to view all deliveries from a specific webhooks.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/webhooks/&lt;id&gt;/deliveries</h6>
+		<h6>/wc-api/v3/webhooks/&lt;id&gt;/deliveries</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/webhooks/535/deliveries \
+curl https://example.com/wc-api/v3/webhooks/535/deliveries \
 	-u consumer_key:consumer_secret
 ```
 

@@ -164,14 +164,14 @@ This API helps you to create a new product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/products</h6>
+		<h6>/wc-api/v3/products</h6>
 	</div>
 </div>
 
 > Example of how to create a `simple` product:
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/products \
+curl -X POST https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -416,7 +416,7 @@ woocommerce.post("products", data).parsed_response
 > Example of how to create a `variable` product:
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/products \
+curl -X POST https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1107,19 +1107,19 @@ This API lets you retrieve and view a specific product by ID or sku.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/sku/&lt;sku&gt;</h6>
+		<h6>/wc-api/v3/products/sku/&lt;sku&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/546 \
+curl https://example.com/wc-api/v3/products/546 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1248,12 +1248,12 @@ This API helps you to view all the products.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products</h6>
+		<h6>/wc-api/v3/products</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products \
+curl https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1618,12 +1618,12 @@ This API lets you make changes to a product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/products/546 \
+curl -X PUT https://example.com/wc-api/v3/products/546 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1784,12 +1784,12 @@ This API helps you delete a product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/products/546/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/products/546/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1834,12 +1834,12 @@ This API lets you retrieve a count of all products.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/count</h6>
+		<h6>/wc-api/v3/products/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/count \
+curl https://example.com/wc-api/v3/products/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1881,12 +1881,12 @@ woocommerce.get("products/count").parsed_response
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;/reviews</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;/reviews</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/546/reviews \
+curl https://example.com/wc-api/v3/products/546/reviews \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1951,12 +1951,12 @@ woocommerce.get("products/546/reviews").parsed_response
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/categories/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/categories/9 \
+curl https://example.com/wc-api/v3/products/categories/9 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -2009,12 +2009,12 @@ woocommerce.get("products/categories/9").parsed_response
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/categories</h6>
+		<h6>/wc-api/v3/products/categories</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/categories \
+curl https://example.com/wc-api/v3/products/categories \
 	-u consumer_key:consumer_secret
 ```
 
