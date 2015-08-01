@@ -87,7 +87,7 @@ You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authenti
 > HTTP Basic Auth example
 
 ```shell
-curl https://www.example.com/wc-api/v2/orders \
+curl https://www.example.com/wc-api/v3/orders \
     -u consumer_key:consumer_secret
 ```
 
@@ -96,7 +96,7 @@ Occasionally some servers may not properly parse the Authorization header (if yo
 > Example for servers that not properly parse the Authorization header:
 
 ```shell
-curl https://www.example.com/wc-api/v2/orders?consumer_key=123&consumer_secret=abc
+curl https://www.example.com/wc-api/v3/orders?consumer_key=123&consumer_secret=abc
 ```
 
 ### Over HTTP ###
@@ -323,12 +323,12 @@ The API supports JSONP by default. JSONP responses uses the `application/javascr
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/count?_jsonp=ordersCount</h6>
+		<h6>/wc-api/v3/orders/count?_jsonp=ordersCount</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/count?_jsonp=ordersCount \
+curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 	-u consumer_key:consumer_secret
 ```
 
@@ -366,6 +366,8 @@ curl https://example.com/wc-api/v2/orders/count?_jsonp=ordersCount \
 ```
 
 ## Webhooks ##
+
+@TODO needs update! Now we have an visual endpoint for it!
 
 Webhooks are an experimental feature in the v2 REST API. They must be managed using the REST API endpoints as a UI is not yet available. The `WC_Webhook` class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook's actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
 
@@ -443,7 +445,7 @@ var WooCommerce = new WooCommerceAPI({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  version: 'v2' // WooCommerce API version
+  version: 'v3' // WooCommerce API version
 });
 ```
 
@@ -458,14 +460,14 @@ wcapi = API(
     url="http://example.com",
     consumer_key="consumer_key",
     consumer_secret="consumer_secret",
-    version="v2"
+    version="v3"
 )
 ```
 
 ```php
 <?php
 // Install:
-// composer require "woothemes/woocommerce-api:2.*"
+// composer require "woothemes/woocommerce-api:3.*"
 
 // Setup:
 include_once('vendor/autoload.php');
@@ -490,7 +492,7 @@ woocommerce = WooCommerce::API.new(
   "consumer_key",
   "consumer_secret",
   {
-    version: "v2"
+    version: "v3"
   }
 )
 ```
