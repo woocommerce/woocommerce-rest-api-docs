@@ -60,12 +60,12 @@ This API helps you to create a new customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/customers</h6>
+		<h6>/wc-api/v3/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/customers \
+curl -X POST https://example.com/wc-api/v3/customers \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -307,19 +307,19 @@ This API lets you retrieve and view a specific customer by ID or email.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/email/&lt;email&gt;</h6>
+		<h6>/wc-api/v3/customers/email/&lt;email&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2 \
+curl https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -394,12 +394,12 @@ This API helps you to view all the customers.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers</h6>
+		<h6>/wc-api/v3/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers \
+curl https://example.com/wc-api/v3/customers \
 	-u consumer_key:consumer_secret
 ```
 
@@ -519,12 +519,12 @@ This API lets you make changes to a customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/customers/2 \
+curl -X PUT https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -661,12 +661,12 @@ This API helps you delete a customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/customers/2 \
+curl -X DELETE https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -705,12 +705,12 @@ This API lets you retrieve the customers orders.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;/orders</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;/orders</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2/orders \
+curl https://example.com/wc-api/v3/customers/2/orders \
 	-u consumer_key:consumer_secret
 ```
 
@@ -870,12 +870,12 @@ This API lets you retrieve the customers downloads.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;/downloads</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;/downloads</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2/downloads \
+curl https://example.com/wc-api/v3/customers/2/downloads \
 	-u consumer_key:consumer_secret
 ```
 
@@ -943,12 +943,12 @@ This API lets you retrieve a count of all customers.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/count</h6>
+		<h6>/wc-api/v3/customers/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/count \
+curl https://example.com/wc-api/v3/customers/count \
 	-u consumer_key:consumer_secret
 ```
 
