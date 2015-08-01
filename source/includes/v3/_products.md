@@ -1775,6 +1775,458 @@ woocommerce.put("products/546", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Products ##
+
+This API helps you to bulk create/update multiple products.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/products/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/products/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "products": [
+    {
+      "id": 546,
+      "regular_price": "29.99"
+    },
+    {
+      "id": 604,
+      "variations": [
+        {
+          "id": 609,
+          "regular_price": "29.99"
+        },
+        {
+          "id": 611,
+          "regular_price": "29.99"
+        }
+      ]
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  products: [
+    {
+      id: 546,
+      regular_price: "29.99"
+    },
+    {
+      id: 604,
+      variations: [
+        {
+          id: 609,
+          regular_price: "29.99"
+        },
+        {
+          id: 611,
+          regular_price: "29.99"
+        }
+      ]
+    }
+  ]
+};
+
+WooCommerce.put('products/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "products": [
+        {
+            "id": 546,
+            "regular_price": "29.99"
+        },
+        {
+            "id": 604,
+            "variations": [
+                {
+                    "id": 609,
+                    "regular_price": "29.99"
+                },
+                {
+                    "id": 611,
+                    "regular_price": "29.99"
+                }
+            ]
+        }
+    ]
+}
+
+print(wcapi.put("products/bulk", data).json())
+```
+
+```php
+
+```
+
+```ruby
+data = {
+  products: [
+    {
+      id: 546,
+      regular_price: "29.99"
+    },
+    {
+      id: 604,
+      variations: [
+        {
+          id: 609,
+          regular_price: "29.99"
+        },
+        {
+          id: 611,
+          regular_price: "29.99"
+        }
+      ]
+    }
+  ]
+}
+
+woocommerce.put("products/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "products": [
+    {
+      "title": "Premium Quality",
+      "id": 546,
+      "created_at": "2015-01-22T19:46:16Z",
+      "updated_at": "2015-07-27T14:22:32Z",
+      "type": "simple",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example.com/product/premium-quality/",
+      "sku": "",
+      "price": "29.99",
+      "regular_price": "29.99",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;29.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        37,
+        47,
+        31,
+        19,
+        22
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 547,
+          "created_at": "2015-01-22T19:46:16Z",
+          "updated_at": "2015-01-22T19:46:16Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 548,
+          "created_at": "2015-01-22T19:46:17Z",
+          "updated_at": "2015-01-22T19:46:17Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        }
+      ],
+      "featured_src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+      "attributes": [],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [],
+      "parent": []
+    },
+    {
+      "title": "Ship Your Idea",
+      "id": 604,
+      "created_at": "2015-01-22T20:37:14Z",
+      "updated_at": "2015-07-27T14:22:32Z",
+      "type": "variable",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example/product/ship-your-idea/",
+      "sku": "",
+      "price": "29.99",
+      "regular_price": "0.00",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;29.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        40,
+        37,
+        47,
+        577,
+        34
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 605,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-01-22T20:37:14Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 606,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        },
+        {
+          "id": 607,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 2
+        },
+        {
+          "id": 608,
+          "created_at": "2015-01-22T20:37:16Z",
+          "updated_at": "2015-01-22T20:37:16Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 3
+        }
+      ],
+      "featured_src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+      "attributes": [
+        {
+          "name": "Color",
+          "slug": "color",
+          "position": 0,
+          "visible": false,
+          "variation": true,
+          "options": [
+            "Black",
+            "Green"
+          ]
+        }
+      ],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [
+        {
+          "id": 609,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-07-27T14:22:32Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=black",
+          "sku": "",
+          "price": "29.99",
+          "regular_price": "29.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 610,
+              "created_at": "2015-01-22T20:37:18Z",
+              "updated_at": "2015-07-27T14:22:32Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "black"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        },
+        {
+          "id": 611,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-07-27T14:22:32Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=green",
+          "sku": "",
+          "price": "29.99",
+          "regular_price": "29.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 612,
+              "created_at": "2015-01-22T20:37:19Z",
+              "updated_at": "2015-01-22T20:37:19Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "green"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        }
+      ],
+      "parent": []
+    }
+  ]
+}
+```
+
 ## Delete A Product ##
 
 This API helps you delete a product.

@@ -652,6 +652,387 @@ woocommerce.put("customers/2", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Customers ##
+
+This API helps you to bulk create/update multiple customers.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/customers/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/customers/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "customers": [
+    {
+      "email": "john.doe2@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "john.doe2",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    },
+    {
+      "email": "joao.silva2@example.com",
+      "first_name": "João",
+      "last_name": "Silva",
+      "username": "joao.silva2",
+      "billing_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR",
+        "email": "joao.silva@example.com",
+        "phone": "(55) 5555-5555"
+      },
+      "shipping_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR"
+      }
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  customers: [
+    {
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
+      billing_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      }
+    },
+    {
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
+      billing_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555"
+      },
+      shipping_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR"
+      }
+    }
+  ]
+};
+
+WooCommerce.put('customers/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "customers": [
+        {
+            "email": "john.doe2@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john.doe2",
+            "billing_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US",
+                "email": "john.doe@example.com",
+                "phone": "(555) 555-5555"
+            },
+            "shipping_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US"
+            }
+        },
+        {
+            "email": "joao.silva2@example.com",
+            "first_name": "João",
+            "last_name": "Silva",
+            "username": "joao.silva2",
+            "billing_address": {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR",
+                "email": "joao.silva@example.com",
+                "phone": "(55) 5555-5555"
+            },
+            "shipping_address": {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR"
+            }
+        }
+    ]
+}
+
+print(wcapi.put("customers/bulk", data).json())
+```
+
+```php
+
+```
+
+```ruby
+data = {
+  customers: [
+    {
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
+      billing_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      }
+    },
+    {
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
+      billing_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555"
+      },
+      shipping_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR"
+      }
+    }
+  ]
+}
+
+woocommerce.put("customers/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "customers": [
+    {
+      "id": 4,
+      "created_at": "2015-07-31T14:20:46Z",
+      "email": "john.doe2@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "john.doe2",
+      "last_order_id": null,
+      "last_order_date": null,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    },
+    {
+      "id": 5,
+      "created_at": "2015-07-31T14:20:46Z",
+      "email": "joao.silva2@example.com",
+      "first_name": "João",
+      "last_name": "Silva",
+      "username": "joao.silva2",
+      "last_order_id": null,
+      "last_order_date": null,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR",
+        "email": "joao.silva@example.com",
+        "phone": "(55) 5555-5555"
+      },
+      "shipping_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR"
+      }
+    }
+  ]
+}
+```
+
 ## Delete A Customer ##
 
 This API helps you delete a customer.

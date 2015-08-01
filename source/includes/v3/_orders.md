@@ -1351,6 +1351,405 @@ woocommerce.put("orders/645", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Orders ##
+
+This API helps you to bulk create/update multiple orders.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/orders/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/orders/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "orders": [
+    {
+      "id": 645,
+      "shipping_methods": "Local Delivery"
+    },
+    {
+      "id": 644,
+      "shipping_methods": "Local Delivery"
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  orders: [
+    {
+      id: 645,
+      shipping_methods: "Local Delivery"
+    },
+    {
+      id: 644,
+      shipping_methods: "Local Delivery"
+    }
+  ]
+};
+
+WooCommerce.put('orders/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "orders": [
+        {
+            "id": 645,
+            "shipping_methods": "Local Delivery"
+        },
+        {
+            "id": 644,
+            "shipping_methods": "Local Delivery"
+        }
+    ]
+}
+
+print(wcapi.put("orders/bulk", data).json())
+```
+
+```php
+
+```
+
+```ruby
+data = {
+  orders: [
+    {
+      id: 645,
+      shipping_methods: "Local Delivery"
+    },
+    {
+      id: 644,
+      shipping_methods: "Local Delivery"
+    }
+  ]
+}
+
+woocommerce.put("orders/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "orders": [
+    {
+      "id": 645,
+      "order_number": 645,
+      "created_at": "2015-01-26T20:00:21Z",
+      "updated_at": "2015-07-31T11:45:12Z",
+      "completed_at": "2015-01-26T20:00:21Z",
+      "status": "processing",
+      "currency": "USD",
+      "total": "79.87",
+      "subtotal": "63.97",
+      "total_line_items_quantity": 3,
+      "total_tax": "5.90",
+      "total_shipping": "10.00",
+      "cart_tax": "5.40",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Local Delivery",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": true
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "WordPress/4.1; http://example.com",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/645",
+      "line_items": [
+        {
+          "id": 504,
+          "subtotal": "43.98",
+          "subtotal_tax": "4.40",
+          "total": "43.98",
+          "total_tax": "4.40",
+          "price": "21.99",
+          "quantity": 2,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 505,
+          "subtotal": "19.99",
+          "subtotal_tax": "1.00",
+          "total": "19.99",
+          "total_tax": "1.00",
+          "price": "19.99",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Ship Your Idea",
+          "product_id": 613,
+          "sku": "",
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 506,
+          "method_id": "flat_rate",
+          "method_title": "Local Delivery",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 507,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 508,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    },
+    {
+      "id": 644,
+      "order_number": 644,
+      "created_at": "2015-01-26T19:33:42Z",
+      "updated_at": "2015-07-31T11:45:12Z",
+      "completed_at": "2015-01-26T19:33:42Z",
+      "status": "on-hold",
+      "currency": "USD",
+      "total": "44.14",
+      "subtotal": "30.99",
+      "total_line_items_quantity": 2,
+      "total_tax": "3.15",
+      "total_shipping": "10.00",
+      "cart_tax": "2.65",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Flat Rate",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": false
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/644",
+      "line_items": [
+        {
+          "id": 499,
+          "subtotal": "21.99",
+          "subtotal_tax": "2.20",
+          "total": "21.99",
+          "total_tax": "2.20",
+          "price": "21.99",
+          "quantity": 1,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 500,
+          "subtotal": "9.00",
+          "subtotal_tax": "0.45",
+          "total": "9.00",
+          "total_tax": "0.45",
+          "price": "9.00",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Woo Album #4",
+          "product_id": 96,
+          "sku": "",
+          "meta": []
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 501,
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 502,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 503,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    }
+  ]
+}
+```
+
 ## Delete An Order ##
 
 This API helps you delete an order.
