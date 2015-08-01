@@ -1111,13 +1111,6 @@ This API lets you retrieve and view a specific product by ID or sku.
 	</div>
 </div>
 
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/products/sku/&lt;sku&gt;</h6>
-	</div>
-</div>
-
 ```shell
 curl https://example.com/wc-api/v3/products/546 \
 	-u consumer_key:consumer_secret
