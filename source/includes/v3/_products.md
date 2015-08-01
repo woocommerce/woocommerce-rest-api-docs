@@ -2440,6 +2440,8 @@ woocommerce.get("products/categories/9").parsed_response
     "slug": "clothing",
     "parent": 0,
     "description": "",
+    "display": "default",
+    "image": "",
     "count": 23
   }
 }
@@ -2447,14 +2449,16 @@ woocommerce.get("products/categories/9").parsed_response
 
 ### Product Category Properties ###
 
-|   Attribute   |   Type  |                                        Description                                        |
-| ------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                           |
-| `name`        | string  | Category Name <i class="label label-info">read-only</i>                                   |
-| `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                   |
-| `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                 |
-| `description` | string  | Category description <i class="label label-info">read-only</i>                            |
-| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i> |
+|   Attribute   |   Type  |                                                                       Description                                                                       |
+| ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                                                                         |
+| `name`        | string  | Category Name <i class="label label-info">read-only</i>                                                                                                 |
+| `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                                                                                 |
+| `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                                                                               |
+| `description` | string  | Category description <i class="label label-info">read-only</i>                                                                                          |
+| `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` <i class="label label-info">read-only</i> |
+| `image`       | string  | Category image URL <i class="label label-info">read-only</i>                                                                                            |
+| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
 
 ## View List Of Product Categories ##
 
@@ -2499,6 +2503,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "albums",
       "parent": 11,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 4
     },
     {
@@ -2507,6 +2513,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "clothing",
       "parent": 0,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 23
     },
     {
@@ -2515,6 +2523,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "hoodies",
       "parent": 9,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 6
     },
     {
@@ -2523,6 +2533,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "music",
       "parent": 0,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 6
     },
     {
@@ -2531,6 +2543,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "posters",
       "parent": 0,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 5
     },
     {
@@ -2539,6 +2553,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "singles",
       "parent": 11,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 2
     },
     {
@@ -2547,6 +2563,8 @@ woocommerce.get("products/categories").parsed_response
       "slug": "t-shirts",
       "parent": 9,
       "description": "",
+      "display": "default",
+      "image": "",
       "count": 17
     }
   ]
