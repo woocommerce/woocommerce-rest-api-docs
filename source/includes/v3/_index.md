@@ -91,7 +91,7 @@ woocommerce.get("").parsed_response
         "meta": {
             "currency": "USD",
             "currency_format": "&#36;",
-            "currency_position": "left",
+            "currency_position": "left_space",
             "decimal_separator": ",",
             "dimension_unit": "in",
             "generate_password": false,
