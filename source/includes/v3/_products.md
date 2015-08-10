@@ -979,7 +979,7 @@ woocommerce.post("products", data).parsed_response
 
 ## View A Product ##
 
-This API lets you retrieve and view a specific product by ID or sku.
+This API lets you retrieve and view a specific product by ID.
 
 ### HTTP Request ###
 
@@ -2089,22 +2089,22 @@ This API helps you delete a product.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/products/546/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/products/546?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/546/?force=true', function(err, data, res) {
+WooCommerce.delete('products/546?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```python
-print(wcapi.delete("products/546/?force=true").json())
+print(wcapi.delete("products/546?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("products/546").parsed_response
+woocommerce.delete("products/546?force=true").parsed_response
 ```
 
 > JSON response example:
@@ -2168,73 +2168,332 @@ woocommerce.get("products/count").parsed_response
 | `type`     | string | Products by type. eg: `simple` or `variable` |
 | `category` | string | Products by category.                        |
 
-## View List Of Product Reviews ##
+## Create A Product Attribute ##
+
+This API helps you to create a new product attribute.
+
+### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/products/&lt;id&gt;/reviews</h6>
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/products/attributes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/products/546/reviews \
-	-u consumer_key:consumer_secret
+curl -X POST https://example.com/wc-api/v3/products/attributes \
+    -u consumer_key:consumer_secret \
+    -H "Content-Type: application/json" \
+    -d '{
+  "product_attribute": {
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}'
 ```
 
 ```javascript
-WooCommerce.get('products/546/reviews', function(err, data, res) {
+var data = {
+  product_attribute: {
+    name: "Color",
+    slug: "pa_color",
+    type: "select",
+    order_by: "menu_order",
+    has_archives: true
+  }
+};
+
+WooCommerce.post('products/attributes', data, function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```python
-print(wcapi.get("products/546/reviews").json())
+data = {
+    "product_attribute": {
+        "name": "Color",
+        "slug": "pa_color",
+        "type": "select",
+        "order_by": "menu_order",
+        "has_archives": True
+    }
+}
+
+print(wcapi.post("products/attributes", data).json())
 ```
 
 ```ruby
-woocommerce.get("products/546/reviews").parsed_response
+data = {
+  product_attribute: {
+    name: "Color",
+    slug: "pa_color",
+    type: "select",
+    order_by: "menu_order",
+    has_archives: true
+  }
+}
+
+woocommerce.post("products/attributes", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "product_reviews": [
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}
+```
+
+### Product Attribute Properties ###
+
+|   Attribute    |   Type  |                                                     Description                                                      |
+| -------------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Attribute ID <i class="label label-info">read-only</i>                                                               |
+| `name`         | string  | Attribute name                                                                                                       |
+| `slug`         | string  | Attribute slug                                                                                                       |
+| `type`         | string  | Attribute type, the types available include by default are: `select` and `text` (some plugins can include new types) |
+| `order_by`     | string  | Default sort order. Available: `menu_order`, `name`, `name_num` and `id`                                             |
+| `has_archives` | boolean | Enable/Disable attribute archives                                                                                    |
+
+## View A Product Attribute ##
+
+This API lets you retrieve and view a specific product attribute by ID.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/attributes/1', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/attributes/1").json())
+```
+
+```ruby
+woocommerce.get("products/attributes/1").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}
+```
+
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
+
+## View List Of Product Attributes ##
+
+This API helps you to view all the product attributes.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/attributes</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/attributes \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/attributes', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/attributes").json())
+```
+
+```ruby
+woocommerce.get("products/attributes").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attributes": [
     {
-      "id": 4,
-      "created_at": "2013-06-07T11:57:45Z",
-      "review": "This t-shirt is awesome! Would recommend to everyone!\n\nI'm ordering mine next week",
-      "rating": "5",
-      "reviewer_name": "Andrew",
-      "reviewer_email": "andrew@example.com",
-      "verified": false
+      "id": 1,
+      "name": "Color",
+      "slug": "pa_color",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": true
     },
     {
-      "id": 3,
-      "created_at": "2013-06-07T11:53:49Z",
-      "review": "Wonderful quality, and an awesome design. WooThemes ftw!",
-      "rating": "4",
-      "reviewer_name": "Cobus Bester",
-      "reviewer_email": "cobus@example.com",
-      "verified": false
+      "id": 2,
+      "name": "Size",
+      "slug": "pa_size",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": false
     }
   ]
 }
 ```
 
-### Product Reviews Properties ###
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
 
-|    Attribute     |   Type  |                                        Description                                        |
-| ---------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `id`             | integer | Review ID (comment ID) <i class="label label-info">read-only</i>                          |
-| `created_at`     | string  | UTC DateTime when the review was created <i class="label label-info">read-only</i>        |
-| `rating`         | string  | Review rating (0 to 5) <i class="label label-info">read-only</i>                          |
-| `reviewer_name`  | string  | Reviewer name <i class="label label-info">read-only</i>                                   |
-| `reviewer_email` | string  | Reviewer email <i class="label label-info">read-only</i>                                  |
-| `verified`       | boolean | Shows if the reviewer bought the product or not <i class="label label-info">read-only</i> |
+## Update A Product Attribute ##
+
+This API lets you make changes to a product attribute.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "product_attribute": {
+    "order_by": "name"
+  }
+}'
+```
+
+```javascript
+var data = {
+  product_attribute: {
+    order_by: 'name'
+  }
+};
+
+WooCommerce.put('products/attributes/1', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "product_attribute": {
+        "order_by": "name"
+    }
+}
+
+print(wcapi.put("products/attributes/1", data).json())
+```
+
+```ruby
+data = {
+  product_attribute: {
+    order_by: "name"
+  }
+}
+
+woocommerce.put("products/attributes/1", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "name",
+    "has_archives": true
+  }
+}
+```
+
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
+
+## Delete A Product Attribute ##
+
+This API helps you delete a product attribute.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('products/attributes/1', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.delete("products/attributes/1").json())
+```
+
+```ruby
+woocommerce.delete("products/attributes/1").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "message": "Deleted product_attribute"
+}
+```
 
 ## View A Product Category ##
+
+This API lets you retrieve a product category.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2284,7 +2543,7 @@ woocommerce.get("products/categories/9").parsed_response
 |   Attribute   |   Type  |                                                                       Description                                                                       |
 | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                                                                         |
-| `name`        | string  | Category Name <i class="label label-info">read-only</i>                                                                                                 |
+| `name`        | string  | Category name <i class="label label-info">read-only</i>                                                                                                 |
 | `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                                                                                 |
 | `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                                                                               |
 | `description` | string  | Category description <i class="label label-info">read-only</i>                                                                                          |
@@ -2292,7 +2551,10 @@ woocommerce.get("products/categories/9").parsed_response
 | `image`       | string  | Category image URL <i class="label label-info">read-only</i>                                                                                            |
 | `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
 
+
 ## View List Of Product Categories ##
+
+This API lets you retrieve all product categories.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2404,6 +2666,8 @@ woocommerce.get("products/categories").parsed_response
 </aside>
 
 ## View List Of Product Orders ##
+
+This API lets you retrieve all product orders.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2743,3 +3007,71 @@ woocommerce.get("products/546/orders").parsed_response
 <aside class="notice">
 	View the <a href="#orders-properties">Order Properties</a> for more details on this response.
 </aside>
+
+## View List Of Product Reviews ##
+
+This API lets you retrieve all reviews of a product.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/&lt;id&gt;/reviews</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/546/reviews \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/546/reviews', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/546/reviews").json())
+```
+
+```ruby
+woocommerce.get("products/546/reviews").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_reviews": [
+    {
+      "id": 4,
+      "created_at": "2013-06-07T11:57:45Z",
+      "review": "This t-shirt is awesome! Would recommend to everyone!\n\nI'm ordering mine next week",
+      "rating": "5",
+      "reviewer_name": "Andrew",
+      "reviewer_email": "andrew@example.com",
+      "verified": false
+    },
+    {
+      "id": 3,
+      "created_at": "2013-06-07T11:53:49Z",
+      "review": "Wonderful quality, and an awesome design. WooThemes ftw!",
+      "rating": "4",
+      "reviewer_name": "Cobus Bester",
+      "reviewer_email": "cobus@example.com",
+      "verified": false
+    }
+  ]
+}
+```
+
+### Product Reviews Properties ###
+
+|    Attribute     |   Type  |                                        Description                                        |
+| ---------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `id`             | integer | Review ID (comment ID) <i class="label label-info">read-only</i>                          |
+| `created_at`     | string  | UTC DateTime when the review was created <i class="label label-info">read-only</i>        |
+| `rating`         | string  | Review rating (0 to 5) <i class="label label-info">read-only</i>                          |
+| `reviewer_name`  | string  | Reviewer name <i class="label label-info">read-only</i>                                   |
+| `reviewer_email` | string  | Reviewer email <i class="label label-info">read-only</i>                                  |
+| `verified`       | boolean | Shows if the reviewer bought the product or not <i class="label label-info">read-only</i> |
