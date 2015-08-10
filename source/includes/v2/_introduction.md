@@ -37,7 +37,7 @@ The `v1` and `v2` will be removed in future versions.
 
 ### Differences between v3 and old versions ###
 
-* v3 implement full basic authentication ([conforms to the Basic auth spec)](http://www.w3.org/Protocols/HTTP/1.0/spec.html)).
+* v3 implement full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
 * v3 fixes the OAuth implementation to be compliant with the [Oauth 1.0a specs](http://tools.ietf.org/html/rfc5849).
 * v3 include a new endpoint to get all product orders.
 * v3 have new endpoints to allow bulk actions as edition and creation of products, orders, customers and coupons.
