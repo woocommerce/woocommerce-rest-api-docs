@@ -178,45 +178,6 @@ data = {
 print(wcapi.post("customers", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'customer' => array(
-        'email' => 'john.doe@example.com',
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-        'username' => 'john.doe',
-        'billing_address' => array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US',
-            'email' => 'john.doe@example.com',
-            'phone' => '(555) 555-5555'
-        ),
-        'shipping_address' => array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US'
-        )
-    )
-);
-
-print_r($woocommerce->customers->create($data));
-?>
-```
-
 ```ruby
 data = {
   customer: {
@@ -333,10 +294,6 @@ WooCommerce.get('customers/2', function(err, data, res) {
 print(wcapi.get("customers/2").json())
 ```
 
-```php
-<?php print_r($woocommerce->customers->get(2)); ?>
-```
-
 ```ruby
 woocommerce.get("customers/2").parsed_response
 ```
@@ -411,10 +368,6 @@ WooCommerce.get('customers', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get()); ?>
 ```
 
 ```ruby
@@ -572,24 +525,6 @@ data = {
 }
 
 print(wcapi.put("customers/2", data).json())
-```
-
-```php
-<?php
-$data = array(
-    'customer' => array(
-        'first_name' => 'James',
-        'billing_address' => array(
-            'first_name' => 'James'
-        ),
-        'shipping_address' => array(
-            'first_name' => 'James'
-        )
-    )
-);
-
-print_r($woocommerce->customers->update(2, $data));
-?>
 ```
 
 ```ruby
@@ -877,10 +812,6 @@ data = {
 print(wcapi.put("customers/bulk", data).json())
 ```
 
-```php
-
-```
-
 ```ruby
 data = {
   customers: [
@@ -1061,10 +992,6 @@ WooCommerce.delete('customers/2', function(err, data, res) {
 print(wcapi.delete("customers/2").json())
 ```
 
-```php
-<?php print_r($woocommerce->customers->delete(2)); ?>
-```
-
 ```ruby
 woocommerce.delete("customers/2").parsed_response
 ```
@@ -1103,10 +1030,6 @@ WooCommerce.get('customers/2/orders', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/2/orders").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get_orders(2)); ?>
 ```
 
 ```ruby
@@ -1270,10 +1193,6 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 print(wcapi.get("customers/2/downloads").json())
 ```
 
-```php
-<?php print_r($woocommerce->customers->get_downloads(2)); ?>
-```
-
 ```ruby
 woocommerce.get("customers/2/downloads").parsed_response
 ```
@@ -1341,10 +1260,6 @@ WooCommerce.get('customers/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/count").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get_count()); ?>
 ```
 
 ```ruby

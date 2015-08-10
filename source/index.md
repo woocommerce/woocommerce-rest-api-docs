@@ -5,7 +5,6 @@ language_tabs:
   - shell: cURL
   - javascript: Node.js
   - python: Python
-  - php: PHP
   - ruby: Ruby
 
 toc_footers:

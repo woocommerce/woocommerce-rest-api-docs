@@ -103,21 +103,6 @@ data = {
 print(wcapi.post("webhooks", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'webhook' => array(
-        'name' => 'An add to cart webhook',
-        'secret' => 'my-super-secret-private-key',
-        'topic' => 'action.woocommerce_add_to_cart',
-        'delivery_url' => 'http://requestb.in/1exdwip1'
-    )
-);
-
-print_r($woocommerce->webhooks->create($data));
-?>
-```
-
 ```ruby
 data = {
   webhook: {
@@ -180,10 +165,6 @@ WooCommerce.get('webhooks/535', function(err, data, res) {
 print(wcapi.get("webhooks/535").json())
 ```
 
-```php
-<?php print_r($woocommerce->webhooks->get(535)); ?>
-```
-
 ```ruby
 woocommerce.get("webhooks/535").parsed_response
 ```
@@ -235,10 +216,6 @@ WooCommerce.get('webhooks', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks").json())
-```
-
-```php
-<?php print_r($woocommerce->webhooks->get()); ?>
 ```
 
 ```ruby
@@ -336,18 +313,6 @@ data = {
 print(wcapi.put("webhooks/535", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'webhook' => array(
-        'status' => 'paused'
-    )
-);
-
-print_r($woocommerce->webhooks->updaste(535, $data));
-?>
-```
-
 ```ruby
 data = {
   webhook: {
@@ -407,10 +372,6 @@ WooCommerce.delete('webhooks/535', function(err, data, res) {
 print(wcapi.delete("webhooks/535").json())
 ```
 
-```php
-<?php print_r($woocommerce->webhooks->delete(535)); ?>
-```
-
 ```ruby
 woocommerce.delete("webhooks/535").parsed_response
 ```
@@ -449,10 +410,6 @@ WooCommerce.get('webhooks/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/count").json())
-```
-
-```php
-<?php print_r($woocommerce->webhooks->get_count()); ?>
 ```
 
 ```ruby
@@ -499,10 +456,6 @@ WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/535/deliveries/378").json())
-```
-
-```php
-<?php print_r($woocommerce->webhooks->get_deliveries(378)); ?>
 ```
 
 ```ruby
@@ -577,10 +530,6 @@ WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
 
 ```python
 print(wcapi.get("webhooks/535/deliveries").json())
-```
-
-```php
-<?php print_r($woocommerce->webhooks->get_deliveries()); ?>
 ```
 
 ```ruby

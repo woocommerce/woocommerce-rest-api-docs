@@ -126,35 +126,6 @@ data = {
 print(wcapi.post("coupons", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'coupon' => array(
-        'code' => 'new-coupon',
-        'type' => 'percent',
-        'amount' => '10',
-        'individual_use' => true,
-        'product_ids' => array(),
-        'exclude_product_ids' => array(),
-        'usage_limit' => '',
-        'usage_limit_per_user' => '',
-        'limit_usage_to_x_items' => '',
-        'expiry_date' => '',
-        'enable_free_shipping' => false,
-        'product_category_ids' => array(),
-        'exclude_product_category_ids' => array(),
-        'exclude_sale_items' => true,
-        'minimum_amount' => '100.00',
-        'maximum_amount' => '0.00',
-        'customer_emails' => array(),
-        'description' => ''
-    )
-);
-
-print_r($woocommerce->coupons->create($data));
-?>
-```
-
 ```ruby
 data = {
   coupon: {
@@ -248,10 +219,6 @@ WooCommerce.get('coupons/529', function(err, data, res) {
 print(wcapi.get("coupons/529").json())
 ```
 
-```php
-<?php print_r($woocommerce->coupons->get(529)); ?>
-```
-
 ```ruby
 woocommerce.get("coupons/529").parsed_response
 ```
@@ -313,10 +280,6 @@ WooCommerce.get('coupons', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->get()); ?>
 ```
 
 ```ruby
@@ -450,18 +413,6 @@ data = {
 print(wcapi.put("coupons/529", data).json())
 ```
 
-```php
-<?php
-$data = array(
-	'coupon' => array(
-		'amount' => '5'
-	)
-);
-
-print_r($woocommerce->coupons->update(529, $data));
-?>
-```
-
 ```ruby
 data = {
   coupon: {
@@ -582,10 +533,6 @@ data = {
 }
 
 print(wcapi.put("coupons/bulk", data).json())
-```
-
-```php
-
 ```
 
 ```ruby
@@ -718,10 +665,6 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 print(wcapi.delete("coupons/529?force=true").json())
 ```
 
-```php
-<?php print_r($woocommerce->coupons->delete(529, true)); ?>
-```
-
 ```ruby
 woocommerce.delete("coupons/529?force=true").parsed_response
 ```
@@ -766,10 +709,6 @@ WooCommerce.get('coupons/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons/count").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->get_count()); ?>
 ```
 
 ```ruby

@@ -431,7 +431,6 @@ See the webhook resource section.
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
-- [PHP](https://packagist.org/packages/woothemes/woocommerce-api)
 - [Ruby](https://rubygems.org/gems/woocommerce_api)
 
 ```javascript
@@ -462,22 +461,6 @@ wcapi = API(
     consumer_secret="consumer_secret",
     version="v3"
 )
-```
-
-```php
-<?php
-// Install:
-// composer require "woothemes/woocommerce-api:3.*"
-
-// Setup:
-include_once('vendor/autoload.php');
-
-$woocommerce = new WC_API_Client(
-    'http://example.com/',
-    'consumer_key',
-    'consumer_secret'
-);
-?>
 ```
 
 ```ruby
