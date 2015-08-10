@@ -102,7 +102,7 @@ WooCommerce.post('coupons', data, function(err, data, res) {
 ```python
 data = {
     "coupon": {
-        "code": "new-coupon3",
+        "code": "new-coupon",
         "type": "percent",
         "amount": "10",
         "individual_use": True,
@@ -130,7 +130,7 @@ print(wcapi.post("coupons", data).json())
 <?php
 $data = array(
     'coupon' => array(
-        'code' => 'new-coupon3',
+        'code' => 'new-coupon',
         'type' => 'percent',
         'amount' => '10',
         'individual_use' => true,
