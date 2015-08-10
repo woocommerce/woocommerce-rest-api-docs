@@ -164,14 +164,14 @@ This API helps you to create a new product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/products</h6>
+		<h6>/wc-api/v3/products</h6>
 	</div>
 </div>
 
 > Example of how to create a `simple` product:
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/products \
+curl -X POST https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -255,36 +255,6 @@ data = {
 }
 
 print(wcapi.post("products", data).json())
-```
-
-```php
-<?php
-$data = array(
-    'product' => array(
-        'title' => 'Premium Quality',
-        'type' => 'simple',
-        'regular_price' => '21.99',
-        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        'categories' => array(
-            9,
-            14
-        ),
-        'images' => array(
-            array(
-                'src' => 'http =>//example.com/wp-content/uploads/2015/01/premium-quality-front.jpg',
-                'position' => 0
-            ),
-            array(
-                'src' => 'http =>//example.com/wp-content/uploads/2015/01/premium-quality-back.jpg',
-                'position' => 1
-            )
-        )
-    )
-);
-
-print_r($woocommerce->products->create($data));
-?>
 ```
 
 ```ruby
@@ -416,7 +386,7 @@ woocommerce.post("products", data).parsed_response
 > Example of how to create a `variable` product:
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/products \
+curl -X POST https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -683,97 +653,6 @@ data = {
 }
 
 print(wcapi.post("products", data).json())
-```
-
-```php
-<?php
-$data = array(
-    'product' => array(
-        'title' => 'Ship Your Idea',
-        'type' => 'variable',
-        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-        'categories' => array(
-            9,
-            14
-        ),
-        'images' => array(
-            array(
-                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
-                'position' => 0
-            ),
-            array(
-                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg',
-                'position' => 1
-            ),
-            array(
-                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
-                'position' => 2
-            ),
-            array(
-                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg',
-                'position' => 3
-            )
-        ),
-        'attributes' => array(
-            array(
-                'name' => 'Color',
-                'slug' => 'color',
-                'position' => '0',
-                'visible' => False,
-                'variation' => True,
-                'options' => array(
-                    'Black',
-                    'Green'
-                )
-            )
-        ),
-        'default_attributes' => array(
-            array(
-                'name' => 'Color',
-                'slug' => 'color',
-                'option' => 'Black'
-            )
-        ),
-        'variations' => array(
-            array(
-                'regular_price' => '19.99',
-                'image' => array(
-                    array(
-                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
-                        'position' => 0
-                    )
-                ),
-                'attributes' => array(
-                    array(
-                        'name' => 'Color',
-                        'slug' => 'color',
-                        'option' => 'black'
-                    )
-                )
-            ),
-            array(
-                'regular_price' => '19.99',
-                'image' => array(
-                    array(
-                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
-                        'position' => 0
-                    )
-                ),
-                'attributes' => array(
-                    array(
-                        'name' => 'Color',
-                        'slug' => 'color',
-                        'option' => 'green'
-                    )
-                )
-            )
-        )
-    )
-);
-
-print_r($woocommerce->products->create($data));
-?>
 ```
 
 ```ruby
@@ -1100,26 +979,19 @@ woocommerce.post("products", data).parsed_response
 
 ## View A Product ##
 
-This API lets you retrieve and view a specific product by ID or sku.
+This API lets you retrieve and view a specific product by ID.
 
 ### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
-	</div>
-</div>
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/sku/&lt;sku&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/546 \
+curl https://example.com/wc-api/v3/products/546 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1131,10 +1003,6 @@ WooCommerce.get('products/546', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/546").json())
-```
-
-```php
-<?php print_r($woocommerce->products->get(546)); ?>
 ```
 
 ```ruby
@@ -1248,12 +1116,12 @@ This API helps you to view all the products.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products</h6>
+		<h6>/wc-api/v3/products</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products \
+curl https://example.com/wc-api/v3/products \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1265,10 +1133,6 @@ WooCommerce.get('products', function(err, data, res) {
 
 ```python
 print(wcapi.get("products").json())
-```
-
-```php
-<?php print_r($woocommerce->products->get()); ?>
 ```
 
 ```ruby
@@ -1618,12 +1482,12 @@ This API lets you make changes to a product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/products/546 \
+curl -X PUT https://example.com/wc-api/v3/products/546 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1653,18 +1517,6 @@ data = {
 }
 
 print(wcapi.put("products/546", data).json())
-```
-
-```php
-<?php
-$data = array(
-    'product' => array(
-        'regular_price': '24.54'
-    )
-);
-
-print_r($woocommerce->products->update(546, $data));
-?>
 ```
 
 ```ruby
@@ -1775,6 +1627,454 @@ woocommerce.put("products/546", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Products ##
+
+This API helps you to bulk create/update multiple products.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/products/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/products/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "products": [
+    {
+      "id": 546,
+      "regular_price": "29.99"
+    },
+    {
+      "id": 604,
+      "variations": [
+        {
+          "id": 609,
+          "regular_price": "29.99"
+        },
+        {
+          "id": 611,
+          "regular_price": "29.99"
+        }
+      ]
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  products: [
+    {
+      id: 546,
+      regular_price: "29.99"
+    },
+    {
+      id: 604,
+      variations: [
+        {
+          id: 609,
+          regular_price: "29.99"
+        },
+        {
+          id: 611,
+          regular_price: "29.99"
+        }
+      ]
+    }
+  ]
+};
+
+WooCommerce.put('products/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "products": [
+        {
+            "id": 546,
+            "regular_price": "29.99"
+        },
+        {
+            "id": 604,
+            "variations": [
+                {
+                    "id": 609,
+                    "regular_price": "29.99"
+                },
+                {
+                    "id": 611,
+                    "regular_price": "29.99"
+                }
+            ]
+        }
+    ]
+}
+
+print(wcapi.put("products/bulk", data).json())
+```
+
+```ruby
+data = {
+  products: [
+    {
+      id: 546,
+      regular_price: "29.99"
+    },
+    {
+      id: 604,
+      variations: [
+        {
+          id: 609,
+          regular_price: "29.99"
+        },
+        {
+          id: 611,
+          regular_price: "29.99"
+        }
+      ]
+    }
+  ]
+}
+
+woocommerce.put("products/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "products": [
+    {
+      "title": "Premium Quality",
+      "id": 546,
+      "created_at": "2015-01-22T19:46:16Z",
+      "updated_at": "2015-07-27T14:22:32Z",
+      "type": "simple",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example.com/product/premium-quality/",
+      "sku": "",
+      "price": "29.99",
+      "regular_price": "29.99",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;29.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        37,
+        47,
+        31,
+        19,
+        22
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 547,
+          "created_at": "2015-01-22T19:46:16Z",
+          "updated_at": "2015-01-22T19:46:16Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 548,
+          "created_at": "2015-01-22T19:46:17Z",
+          "updated_at": "2015-01-22T19:46:17Z",
+          "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        }
+      ],
+      "featured_src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
+      "attributes": [],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [],
+      "parent": []
+    },
+    {
+      "title": "Ship Your Idea",
+      "id": 604,
+      "created_at": "2015-01-22T20:37:14Z",
+      "updated_at": "2015-07-27T14:22:32Z",
+      "type": "variable",
+      "status": "publish",
+      "downloadable": false,
+      "virtual": false,
+      "permalink": "https://example/product/ship-your-idea/",
+      "sku": "",
+      "price": "29.99",
+      "regular_price": "0.00",
+      "sale_price": null,
+      "price_html": "<span class=\"amount\">&#36;&nbsp;29.99</span>",
+      "taxable": true,
+      "tax_status": "taxable",
+      "tax_class": "",
+      "managing_stock": false,
+      "stock_quantity": 0,
+      "in_stock": true,
+      "backorders_allowed": false,
+      "backordered": false,
+      "sold_individually": false,
+      "purchaseable": true,
+      "featured": false,
+      "visible": true,
+      "catalog_visibility": "visible",
+      "on_sale": false,
+      "weight": null,
+      "dimensions": {
+        "length": "",
+        "width": "",
+        "height": "",
+        "unit": "cm"
+      },
+      "shipping_required": true,
+      "shipping_taxable": true,
+      "shipping_class": "",
+      "shipping_class_id": null,
+      "description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+      "short_description": "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\n",
+      "reviews_allowed": true,
+      "average_rating": "0.00",
+      "rating_count": 0,
+      "related_ids": [
+        40,
+        37,
+        47,
+        577,
+        34
+      ],
+      "upsell_ids": [],
+      "cross_sell_ids": [],
+      "parent_id": 0,
+      "categories": [
+        "Clothing",
+        "T-shirts"
+      ],
+      "tags": [],
+      "images": [
+        {
+          "id": 605,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-01-22T20:37:14Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 0
+        },
+        {
+          "id": 606,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 1
+        },
+        {
+          "id": 607,
+          "created_at": "2015-01-22T20:37:15Z",
+          "updated_at": "2015-01-22T20:37:15Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+          "title": "",
+          "alt": "",
+          "position": 2
+        },
+        {
+          "id": 608,
+          "created_at": "2015-01-22T20:37:16Z",
+          "updated_at": "2015-01-22T20:37:16Z",
+          "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg",
+          "title": "",
+          "alt": "",
+          "position": 3
+        }
+      ],
+      "featured_src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+      "attributes": [
+        {
+          "name": "Color",
+          "slug": "color",
+          "position": 0,
+          "visible": false,
+          "variation": true,
+          "options": [
+            "Black",
+            "Green"
+          ]
+        }
+      ],
+      "downloads": [],
+      "download_limit": 0,
+      "download_expiry": 0,
+      "download_type": "",
+      "purchase_note": "",
+      "total_sales": 0,
+      "variations": [
+        {
+          "id": 609,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-07-27T14:22:32Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=black",
+          "sku": "",
+          "price": "29.99",
+          "regular_price": "29.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 610,
+              "created_at": "2015-01-22T20:37:18Z",
+              "updated_at": "2015-07-27T14:22:32Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "black"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        },
+        {
+          "id": 611,
+          "created_at": "2015-01-22T20:37:14Z",
+          "updated_at": "2015-07-27T14:22:32Z",
+          "downloadable": false,
+          "virtual": false,
+          "permalink": "https://example/product/ship-your-idea-10/?attribute_pa_color=green",
+          "sku": "",
+          "price": "29.99",
+          "regular_price": "29.99",
+          "sale_price": null,
+          "taxable": true,
+          "tax_status": "taxable",
+          "tax_class": "",
+          "managing_stock": false,
+          "stock_quantity": 0,
+          "in_stock": true,
+          "backordered": false,
+          "purchaseable": true,
+          "visible": true,
+          "on_sale": false,
+          "weight": null,
+          "dimensions": {
+            "length": "",
+            "width": "",
+            "height": "",
+            "unit": "cm"
+          },
+          "shipping_class": "",
+          "shipping_class_id": null,
+          "image": [
+            {
+              "id": 612,
+              "created_at": "2015-01-22T20:37:19Z",
+              "updated_at": "2015-01-22T20:37:19Z",
+              "src": "http://example/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg",
+              "title": "",
+              "alt": "",
+              "position": 0
+            }
+          ],
+          "attributes": [
+            {
+              "name": "Color",
+              "slug": "color",
+              "option": "green"
+            }
+          ],
+          "downloads": [],
+          "download_limit": 0,
+          "download_expiry": 0
+        }
+      ],
+      "parent": []
+    }
+  ]
+}
+```
+
 ## Delete A Product ##
 
 This API helps you delete a product.
@@ -1784,31 +2084,27 @@ This API helps you delete a product.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/products/546/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/products/546?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/546/?force=true', function(err, data, res) {
+WooCommerce.delete('products/546?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```python
-print(wcapi.delete("products/546/?force=true").json())
-```
-
-```php
-<?php print_r($woocommerce->products->delete(546, true)); ?>
+print(wcapi.delete("products/546?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("products/546").parsed_response
+woocommerce.delete("products/546?force=true").parsed_response
 ```
 
 > JSON response example:
@@ -1834,12 +2130,12 @@ This API lets you retrieve a count of all products.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/count</h6>
+		<h6>/wc-api/v3/products/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/count \
+curl https://example.com/wc-api/v3/products/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1851,10 +2147,6 @@ WooCommerce.get('products/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/count").json())
-```
-
-```php
-<?php print_r($woocommerce->products->get_count()); ?>
 ```
 
 ```ruby
@@ -1876,87 +2168,342 @@ woocommerce.get("products/count").parsed_response
 | `type`     | string | Products by type. eg: `simple` or `variable` |
 | `category` | string | Products by category.                        |
 
-## View List Of Product Reviews ##
+## Create A Product Attribute ##
+
+This API helps you to create a new product attribute.
+
+### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/&lt;id&gt;/reviews</h6>
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/products/attributes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/546/reviews \
-	-u consumer_key:consumer_secret
+curl -X POST https://example.com/wc-api/v3/products/attributes \
+    -u consumer_key:consumer_secret \
+    -H "Content-Type: application/json" \
+    -d '{
+  "product_attribute": {
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}'
 ```
 
 ```javascript
-WooCommerce.get('products/546/reviews', function(err, data, res) {
+var data = {
+  product_attribute: {
+    name: "Color",
+    slug: "pa_color",
+    type: "select",
+    order_by: "menu_order",
+    has_archives: true
+  }
+};
+
+WooCommerce.post('products/attributes', data, function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```python
-print(wcapi.get("products/546/reviews").json())
-```
+data = {
+    "product_attribute": {
+        "name": "Color",
+        "slug": "pa_color",
+        "type": "select",
+        "order_by": "menu_order",
+        "has_archives": True
+    }
+}
 
-```php
-<?php print_r($woocommerce->products->get_reviews(546)); ?>
+print(wcapi.post("products/attributes", data).json())
 ```
 
 ```ruby
-woocommerce.get("products/546/reviews").parsed_response
+data = {
+  product_attribute: {
+    name: "Color",
+    slug: "pa_color",
+    type: "select",
+    order_by: "menu_order",
+    has_archives: true
+  }
+}
+
+woocommerce.post("products/attributes", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "product_reviews": [
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}
+```
+
+### Product Attribute Properties ###
+
+|   Attribute    |   Type  |                                                     Description                                                      |
+| -------------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Attribute ID <i class="label label-info">read-only</i>                                                               |
+| `name`         | string  | Attribute name                                                                                                       |
+| `slug`         | string  | Attribute slug                                                                                                       |
+| `type`         | string  | Attribute type, the types available include by default are: `select` and `text` (some plugins can include new types) |
+| `order_by`     | string  | Default sort order. Available: `menu_order`, `name`, `name_num` and `id`                                             |
+| `has_archives` | boolean | Enable/Disable attribute archives                                                                                    |
+
+## View A Product Attribute ##
+
+This API lets you retrieve and view a specific product attribute by ID.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/attributes/1', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/attributes/1").json())
+```
+
+```ruby
+woocommerce.get("products/attributes/1").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": true
+  }
+}
+```
+
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
+
+## View List Of Product Attributes ##
+
+This API helps you to view all the product attributes.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/attributes</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/attributes \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/attributes', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/attributes").json())
+```
+
+```ruby
+woocommerce.get("products/attributes").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attributes": [
     {
-      "id": 4,
-      "created_at": "2013-06-07T11:57:45Z",
-      "review": "This t-shirt is awesome! Would recommend to everyone!\n\nI'm ordering mine next week",
-      "rating": "5",
-      "reviewer_name": "Andrew",
-      "reviewer_email": "andrew@example.com",
-      "verified": false
+      "id": 1,
+      "name": "Color",
+      "slug": "pa_color",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": true
     },
     {
-      "id": 3,
-      "created_at": "2013-06-07T11:53:49Z",
-      "review": "Wonderful quality, and an awesome design. WooThemes ftw!",
-      "rating": "4",
-      "reviewer_name": "Cobus Bester",
-      "reviewer_email": "cobus@example.com",
-      "verified": false
+      "id": 2,
+      "name": "Size",
+      "slug": "pa_size",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": false
     }
   ]
 }
 ```
 
-### Product Reviews Properties ###
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
 
-|    Attribute     |   Type  |                                        Description                                        |
-| ---------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `id`             | integer | Review ID (comment ID) <i class="label label-info">read-only</i>                          |
-| `created_at`     | string  | UTC DateTime when the review was created <i class="label label-info">read-only</i>        |
-| `rating`         | string  | Review rating (0 to 5) <i class="label label-info">read-only</i>                          |
-| `reviewer_name`  | string  | Reviewer name <i class="label label-info">read-only</i>                                   |
-| `reviewer_email` | string  | Reviewer email <i class="label label-info">read-only</i>                                  |
-| `verified`       | boolean | Shows if the reviewer bought the product or not <i class="label label-info">read-only</i> |
+## Update A Product Attribute ##
 
-## View A Product Category ##
+This API lets you make changes to a product attribute.
+
+### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/products/categories/&lt;id&gt;</h6>
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/products/categories/9 \
+curl -X PUT https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "product_attribute": {
+    "order_by": "name"
+  }
+}'
+```
+
+```javascript
+var data = {
+  product_attribute: {
+    order_by: 'name'
+  }
+};
+
+WooCommerce.put('products/attributes/1', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "product_attribute": {
+        "order_by": "name"
+    }
+}
+
+print(wcapi.put("products/attributes/1", data).json())
+```
+
+```ruby
+data = {
+  product_attribute: {
+    order_by: "name"
+  }
+}
+
+woocommerce.put("products/attributes/1", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_attribute": {
+    "id": 1,
+    "name": "Color",
+    "slug": "pa_color",
+    "type": "select",
+    "order_by": "name",
+    "has_archives": true
+  }
+}
+```
+
+<aside class="notice">
+	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
+</aside>
+
+## Delete A Product Attribute ##
+
+This API helps you delete a product attribute.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v3/products/attributes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wc-api/v3/products/attributes/1 \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('products/attributes/1', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.delete("products/attributes/1").json())
+```
+
+```ruby
+woocommerce.delete("products/attributes/1").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "message": "Deleted product_attribute"
+}
+```
+
+## View A Product Category ##
+
+This API lets you retrieve a product category.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/categories/9 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1968,10 +2515,6 @@ WooCommerce.get('products/categories/9', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/categories/9").json())
-```
-
-```php
-<?php print_r($woocommerce->products->get_categories(9)); ?>
 ```
 
 ```ruby
@@ -2000,7 +2543,7 @@ woocommerce.get("products/categories/9").parsed_response
 |   Attribute   |   Type  |                                                                       Description                                                                       |
 | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                                                                         |
-| `name`        | string  | Category Name <i class="label label-info">read-only</i>                                                                                                 |
+| `name`        | string  | Category name <i class="label label-info">read-only</i>                                                                                                 |
 | `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                                                                                 |
 | `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                                                                               |
 | `description` | string  | Category description <i class="label label-info">read-only</i>                                                                                          |
@@ -2008,7 +2551,10 @@ woocommerce.get("products/categories/9").parsed_response
 | `image`       | string  | Category image URL <i class="label label-info">read-only</i>                                                                                            |
 | `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
 
+
 ## View List Of Product Categories ##
+
+This API lets you retrieve all product categories.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2030,10 +2576,6 @@ WooCommerce.get('products/categories', function(err, data, res) {
 
 ```python
 print(wcapi.get("products/categories").json())
-```
-
-```php
-<?php print_r($woocommerce->products->get_categories()); ?>
 ```
 
 ```ruby
@@ -2122,3 +2664,414 @@ woocommerce.get("products/categories").parsed_response
 <aside class="notice">
 	View the <a href="#product-category-properties">Product Category Properties</a> for more details on this response.
 </aside>
+
+## View List Of Product Orders ##
+
+This API lets you retrieve all product orders.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/&lt;id&gt;/orders</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/546/orders \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/546/orders', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/546/orders").json())
+```
+
+```ruby
+woocommerce.get("products/546/orders").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "orders": [
+    {
+      "id": 645,
+      "order_number": 645,
+      "created_at": "2015-01-26T20:00:21Z",
+      "updated_at": "2015-07-31T11:45:12Z",
+      "completed_at": "2015-01-26T20:00:21Z",
+      "status": "processing",
+      "currency": "USD",
+      "total": "79.87",
+      "subtotal": "63.97",
+      "total_line_items_quantity": 3,
+      "total_tax": "5.90",
+      "total_shipping": "10.00",
+      "cart_tax": "5.40",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Local Delivery",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": true
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "WordPress/4.1; http://example.com",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/645",
+      "line_items": [
+        {
+          "id": 504,
+          "subtotal": "43.98",
+          "subtotal_tax": "4.40",
+          "total": "43.98",
+          "total_tax": "4.40",
+          "price": "21.99",
+          "quantity": 2,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 505,
+          "subtotal": "19.99",
+          "subtotal_tax": "1.00",
+          "total": "19.99",
+          "total_tax": "1.00",
+          "price": "19.99",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Ship Your Idea",
+          "product_id": 613,
+          "sku": "",
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 506,
+          "method_id": "flat_rate",
+          "method_title": "Local Delivery",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 507,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 508,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    },
+    {
+      "id": 644,
+      "order_number": 644,
+      "created_at": "2015-01-26T19:33:42Z",
+      "updated_at": "2015-07-31T11:45:12Z",
+      "completed_at": "2015-01-26T19:33:42Z",
+      "status": "on-hold",
+      "currency": "USD",
+      "total": "44.14",
+      "subtotal": "30.99",
+      "total_line_items_quantity": 2,
+      "total_tax": "3.15",
+      "total_shipping": "10.00",
+      "cart_tax": "2.65",
+      "shipping_tax": "0.50",
+      "total_discount": "0.00",
+      "shipping_methods": "Flat Rate",
+      "payment_details": {
+        "method_id": "bacs",
+        "method_title": "Direct Bank Transfer",
+        "paid": false
+      },
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "note": "",
+      "customer_ip": "127.0.0.1",
+      "customer_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36",
+      "customer_id": 2,
+      "view_order_url": "https://example.com/my-account/view-order/644",
+      "line_items": [
+        {
+          "id": 499,
+          "subtotal": "21.99",
+          "subtotal_tax": "2.20",
+          "total": "21.99",
+          "total_tax": "2.20",
+          "price": "21.99",
+          "quantity": 1,
+          "tax_class": "reduced-rate",
+          "name": "Premium Quality",
+          "product_id": 546,
+          "sku": "",
+          "meta": []
+        },
+        {
+          "id": 500,
+          "subtotal": "9.00",
+          "subtotal_tax": "0.45",
+          "total": "9.00",
+          "total_tax": "0.45",
+          "price": "9.00",
+          "quantity": 1,
+          "tax_class": null,
+          "name": "Woo Album #4",
+          "product_id": 96,
+          "sku": "",
+          "meta": []
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 501,
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": "10.00"
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 502,
+          "rate_id": "5",
+          "code": "US-CA-TAX-1",
+          "title": "Tax",
+          "total": "4.40",
+          "compound": false
+        },
+        {
+          "id": 503,
+          "rate_id": "4",
+          "code": "US-STANDARD-1",
+          "title": "Standard",
+          "total": "1.50",
+          "compound": false
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "customer": {
+        "id": 2,
+        "created_at": "2014-11-19T18:34:19Z",
+        "email": "john.doe@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "john.doe",
+        "last_order_id": "645",
+        "last_order_date": "2015-01-26T20:00:21Z",
+        "orders_count": 2,
+        "total_spent": "19.00",
+        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "billing_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US",
+          "email": "john.doe@example.com",
+          "phone": "(555) 555-5555"
+        },
+        "shipping_address": {
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "",
+          "address_1": "969 Market",
+          "address_2": "",
+          "city": "San Francisco",
+          "state": "CA",
+          "postcode": "94103",
+          "country": "US"
+        }
+      }
+    }
+  ]
+}
+```
+
+<aside class="notice">
+	View the <a href="#orders-properties">Order Properties</a> for more details on this response.
+</aside>
+
+## View List Of Product Reviews ##
+
+This API lets you retrieve all reviews of a product.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/products/&lt;id&gt;/reviews</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wc-api/v3/products/546/reviews \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('products/546/reviews', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.get("products/546/reviews").json())
+```
+
+```ruby
+woocommerce.get("products/546/reviews").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_reviews": [
+    {
+      "id": 4,
+      "created_at": "2013-06-07T11:57:45Z",
+      "review": "This t-shirt is awesome! Would recommend to everyone!\n\nI'm ordering mine next week",
+      "rating": "5",
+      "reviewer_name": "Andrew",
+      "reviewer_email": "andrew@example.com",
+      "verified": false
+    },
+    {
+      "id": 3,
+      "created_at": "2013-06-07T11:53:49Z",
+      "review": "Wonderful quality, and an awesome design. WooThemes ftw!",
+      "rating": "4",
+      "reviewer_name": "Cobus Bester",
+      "reviewer_email": "cobus@example.com",
+      "verified": false
+    }
+  ]
+}
+```
+
+### Product Reviews Properties ###
+
+|    Attribute     |   Type  |                                        Description                                        |
+| ---------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `id`             | integer | Review ID (comment ID) <i class="label label-info">read-only</i>                          |
+| `created_at`     | string  | UTC DateTime when the review was created <i class="label label-info">read-only</i>        |
+| `rating`         | string  | Review rating (0 to 5) <i class="label label-info">read-only</i>                          |
+| `reviewer_name`  | string  | Reviewer name <i class="label label-info">read-only</i>                                   |
+| `reviewer_email` | string  | Reviewer email <i class="label label-info">read-only</i>                                  |
+| `verified`       | boolean | Shows if the reviewer bought the product or not <i class="label label-info">read-only</i> |

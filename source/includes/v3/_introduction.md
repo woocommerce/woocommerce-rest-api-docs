@@ -56,7 +56,7 @@ The `v1` and `v2` will be removed in future versions.
 
 The API is accessible via this endpoint:
 
-`https://www.your-store.com/wc-api/v2`
+`https://www.your-store.com/wc-api/v3`
 
 You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, as authentication is simpler. The API index will declare if the site supports SSL or not.
 
@@ -87,7 +87,7 @@ You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authenti
 > HTTP Basic Auth example
 
 ```shell
-curl https://www.example.com/wc-api/v2/orders \
+curl https://www.example.com/wc-api/v3/orders \
     -u consumer_key:consumer_secret
 ```
 
@@ -96,7 +96,7 @@ Occasionally some servers may not properly parse the Authorization header (if yo
 > Example for servers that not properly parse the Authorization header:
 
 ```shell
-curl https://www.example.com/wc-api/v2/orders?consumer_key=123&consumer_secret=abc
+curl https://www.example.com/wc-api/v3/orders?consumer_key=123&consumer_secret=abc
 ```
 
 ### Over HTTP ###
@@ -145,7 +145,6 @@ If you are having trouble generating a correct signature, you'll want to review 
 * The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on [generating a nonce](https://dev.twitter.com/discussions/12445) on the Twitter API forums.
 * The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.
 * You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a `www` sub-domain, you should use it for requests)
-* Some OAuth libraries add an ampersand to the provided secret key before generating the signature. WooCommerce does *not* adhere to the OAuth spec in this regard and the ampersand should be removed prior to generating the signature. An ampersand at the end of the string will result in an invalid signature.
 * You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedinlabs.com/oauth-test/) -- leave the member token/secret blank.
 * Twitter has great instructions on [generating a signature](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
 * Note that the request body is *not* signed as per the OAuth spec, see [Google's OAuth 1.0 extension](https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html) for details on why.
@@ -323,12 +322,12 @@ The API supports JSONP by default. JSONP responses uses the `application/javascr
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/orders/count?_jsonp=ordersCount</h6>
+		<h6>/wc-api/v3/orders/count?_jsonp=ordersCount</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/orders/count?_jsonp=ordersCount \
+curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 	-u consumer_key:consumer_secret
 ```
 
@@ -366,6 +365,8 @@ curl https://example.com/wc-api/v2/orders/count?_jsonp=ordersCount \
 ```
 
 ## Webhooks ##
+
+@TODO needs update! Now we have an visual endpoint for it!
 
 Webhooks are an experimental feature in the v2 REST API. They must be managed using the REST API endpoints as a UI is not yet available. The `WC_Webhook` class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook's actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
 
@@ -429,7 +430,6 @@ See the webhook resource section.
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
-- [PHP](https://packagist.org/packages/woothemes/woocommerce-api)
 - [Ruby](https://rubygems.org/gems/woocommerce_api)
 
 ```javascript
@@ -443,7 +443,7 @@ var WooCommerce = new WooCommerceAPI({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  version: 'v2' // WooCommerce API version
+  version: 'v3' // WooCommerce API version
 });
 ```
 
@@ -458,24 +458,8 @@ wcapi = API(
     url="http://example.com",
     consumer_key="consumer_key",
     consumer_secret="consumer_secret",
-    version="v2"
+    version="v3"
 )
-```
-
-```php
-<?php
-// Install:
-// composer require "woothemes/woocommerce-api:2.*"
-
-// Setup:
-include_once('vendor/autoload.php');
-
-$woocommerce = new WC_API_Client(
-    'http://example.com/',
-    'consumer_key',
-    'consumer_secret'
-);
-?>
 ```
 
 ```ruby
@@ -490,7 +474,7 @@ woocommerce = WooCommerce::API.new(
   "consumer_key",
   "consumer_secret",
   {
-    version: "v2"
+    version: "v3"
   }
 )
 ```

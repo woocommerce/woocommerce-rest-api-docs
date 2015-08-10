@@ -60,12 +60,12 @@ This API helps you to create a new customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/customers</h6>
+		<h6>/wc-api/v3/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/customers \
+curl -X POST https://example.com/wc-api/v3/customers \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -178,45 +178,6 @@ data = {
 print(wcapi.post("customers", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'customer' => array(
-        'email' => 'john.doe@example.com',
-        'first_name' => 'John',
-        'last_name' => 'Doe',
-        'username' => 'john.doe',
-        'billing_address' => array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US',
-            'email' => 'john.doe@example.com',
-            'phone' => '(555) 555-5555'
-        ),
-        'shipping_address' => array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US'
-        )
-    )
-);
-
-print_r($woocommerce->customers->create($data));
-?>
-```
-
 ```ruby
 data = {
   customer: {
@@ -307,19 +268,19 @@ This API lets you retrieve and view a specific customer by ID or email.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/email/&lt;email&gt;</h6>
+		<h6>/wc-api/v3/customers/email/&lt;email&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2 \
+curl https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -331,10 +292,6 @@ WooCommerce.get('customers/2', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/2").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get(2)); ?>
 ```
 
 ```ruby
@@ -394,12 +351,12 @@ This API helps you to view all the customers.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers</h6>
+		<h6>/wc-api/v3/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers \
+curl https://example.com/wc-api/v3/customers \
 	-u consumer_key:consumer_secret
 ```
 
@@ -411,10 +368,6 @@ WooCommerce.get('customers', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get()); ?>
 ```
 
 ```ruby
@@ -519,12 +472,12 @@ This API lets you make changes to a customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/customers/2 \
+curl -X PUT https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -572,24 +525,6 @@ data = {
 }
 
 print(wcapi.put("customers/2", data).json())
-```
-
-```php
-<?php
-$data = array(
-    'customer' => array(
-        'first_name' => 'James',
-        'billing_address' => array(
-            'first_name' => 'James'
-        ),
-        'shipping_address' => array(
-            'first_name' => 'James'
-        )
-    )
-);
-
-print_r($woocommerce->customers->update(2, $data));
-?>
 ```
 
 ```ruby
@@ -652,6 +587,383 @@ woocommerce.put("customers/2", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Customers ##
+
+This API helps you to bulk create/update multiple customers.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/customers/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/customers/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "customers": [
+    {
+      "email": "john.doe2@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "john.doe2",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    },
+    {
+      "email": "joao.silva2@example.com",
+      "first_name": "João",
+      "last_name": "Silva",
+      "username": "joao.silva2",
+      "billing_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR",
+        "email": "joao.silva@example.com",
+        "phone": "(55) 5555-5555"
+      },
+      "shipping_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR"
+      }
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  customers: [
+    {
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
+      billing_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      }
+    },
+    {
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
+      billing_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555"
+      },
+      shipping_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR"
+      }
+    }
+  ]
+};
+
+WooCommerce.put('customers/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "customers": [
+        {
+            "email": "john.doe2@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "username": "john.doe2",
+            "billing_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US",
+                "email": "john.doe@example.com",
+                "phone": "(555) 555-5555"
+            },
+            "shipping_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "company": "",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US"
+            }
+        },
+        {
+            "email": "joao.silva2@example.com",
+            "first_name": "João",
+            "last_name": "Silva",
+            "username": "joao.silva2",
+            "billing_address": {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR",
+                "email": "joao.silva@example.com",
+                "phone": "(55) 5555-5555"
+            },
+            "shipping_address": {
+                "first_name": "João",
+                "last_name": "Silva",
+                "company": "",
+                "address_1": "Av. Brasil, 432",
+                "address_2": "",
+                "city": "Rio de Janeiro",
+                "state": "RJ",
+                "postcode": "12345-000",
+                "country": "BR"
+            }
+        }
+    ]
+}
+
+print(wcapi.put("customers/bulk", data).json())
+```
+
+```ruby
+data = {
+  customers: [
+    {
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
+      billing_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping_address: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      }
+    },
+    {
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
+      billing_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555"
+      },
+      shipping_address: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR"
+      }
+    }
+  ]
+}
+
+woocommerce.put("customers/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "customers": [
+    {
+      "id": 4,
+      "created_at": "2015-07-31T14:20:46Z",
+      "email": "john.doe2@example.com",
+      "first_name": "John",
+      "last_name": "Doe",
+      "username": "john.doe2",
+      "last_order_id": null,
+      "last_order_date": null,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      }
+    },
+    {
+      "id": 5,
+      "created_at": "2015-07-31T14:20:46Z",
+      "email": "joao.silva2@example.com",
+      "first_name": "João",
+      "last_name": "Silva",
+      "username": "joao.silva2",
+      "last_order_id": null,
+      "last_order_date": null,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "billing_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR",
+        "email": "joao.silva@example.com",
+        "phone": "(55) 5555-5555"
+      },
+      "shipping_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR"
+      }
+    }
+  ]
+}
+```
+
 ## Delete A Customer ##
 
 This API helps you delete a customer.
@@ -661,12 +973,12 @@ This API helps you delete a customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/customers/2 \
+curl -X DELETE https://example.com/wc-api/v3/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -678,10 +990,6 @@ WooCommerce.delete('customers/2', function(err, data, res) {
 
 ```python
 print(wcapi.delete("customers/2").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->delete(2)); ?>
 ```
 
 ```ruby
@@ -705,12 +1013,12 @@ This API lets you retrieve the customers orders.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;/orders</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;/orders</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2/orders \
+curl https://example.com/wc-api/v3/customers/2/orders \
 	-u consumer_key:consumer_secret
 ```
 
@@ -722,10 +1030,6 @@ WooCommerce.get('customers/2/orders', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/2/orders").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get_orders(2)); ?>
 ```
 
 ```ruby
@@ -870,12 +1174,12 @@ This API lets you retrieve the customers downloads.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/&lt;id&gt;/downloads</h6>
+		<h6>/wc-api/v3/customers/&lt;id&gt;/downloads</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/2/downloads \
+curl https://example.com/wc-api/v3/customers/2/downloads \
 	-u consumer_key:consumer_secret
 ```
 
@@ -887,10 +1191,6 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/2/downloads").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get_downloads(2)); ?>
 ```
 
 ```ruby
@@ -943,12 +1243,12 @@ This API lets you retrieve a count of all customers.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/customers/count</h6>
+		<h6>/wc-api/v3/customers/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/customers/count \
+curl https://example.com/wc-api/v3/customers/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -960,10 +1260,6 @@ WooCommerce.get('customers/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("customers/count").json())
-```
-
-```php
-<?php print_r($woocommerce->customers->get_count()); ?>
 ```
 
 ```ruby

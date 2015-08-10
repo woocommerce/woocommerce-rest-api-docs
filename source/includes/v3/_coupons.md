@@ -38,12 +38,12 @@ This API helps you to create a new coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v2/coupons</h6>
+		<h6>/wc-api/v3/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v2/coupons \
+curl -X POST https://example.com/wc-api/v3/coupons \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -126,35 +126,6 @@ data = {
 print(wcapi.post("coupons", data).json())
 ```
 
-```php
-<?php
-$data = array(
-    'coupon' => array(
-        'code' => 'new-coupon',
-        'type' => 'percent',
-        'amount' => '10',
-        'individual_use' => true,
-        'product_ids' => array(),
-        'exclude_product_ids' => array(),
-        'usage_limit' => '',
-        'usage_limit_per_user' => '',
-        'limit_usage_to_x_items' => '',
-        'expiry_date' => '',
-        'enable_free_shipping' => false,
-        'product_category_ids' => array(),
-        'exclude_product_category_ids' => array(),
-        'exclude_sale_items' => true,
-        'minimum_amount' => '100.00',
-        'maximum_amount' => '0.00',
-        'customer_emails' => array(),
-        'description' => ''
-    )
-);
-
-print_r($woocommerce->coupons->create($data));
-?>
-```
-
 ```ruby
 data = {
   coupon: {
@@ -222,19 +193,19 @@ This API lets you retrieve and view a specific coupon by ID or code.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/code/&lt;code&gt;</h6>
+		<h6>/wc-api/v3/coupons/code/&lt;code&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons/529 \
+curl https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -246,10 +217,6 @@ WooCommerce.get('coupons/529', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons/529").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->get(529)); ?>
 ```
 
 ```ruby
@@ -296,12 +263,12 @@ This API helps you to view all the coupons.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons</h6>
+		<h6>/wc-api/v3/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons \
+curl https://example.com/wc-api/v3/coupons \
 	-u consumer_key:consumer_secret
 ```
 
@@ -313,10 +280,6 @@ WooCommerce.get('coupons', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->get()); ?>
 ```
 
 ```ruby
@@ -413,12 +376,12 @@ This API lets you make changes to a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v2/coupons/529 \
+curl -X PUT https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -450,20 +413,8 @@ data = {
 print(wcapi.put("coupons/529", data).json())
 ```
 
-```php
-<?php
-$data = array(
-	'coupon' => array(
-		'amount' => '5'
-	)
-);
-
-print_r($woocommerce->coupons->update(529, $data));
-?>
-```
-
 ```ruby
-data {
+data = {
   coupon: {
     amount: "5"
   }
@@ -503,6 +454,189 @@ woocommerce.put("coupons/529", data).parsed_response
 }
 ```
 
+## Create/Update Multiple Coupons ##
+
+This API helps you to bulk create/update multiple coupons.
+
+To update is necessary to send objects containing IDs and to create new not just send the ID.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/coupons/bulk</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/coupons/bulk \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "coupons": [
+    {
+      "id": 529,
+      "amount": "15.00"
+    },
+    {
+      "id": 527,
+      "minimum_amount": "55.00"
+    },
+    {
+      "id": 526,
+      "amount": "20.00"
+    }
+  ]
+}'
+```
+
+```javascript
+var data = {
+  coupons: [
+    {
+      id: 529,
+      amount: "15.00"
+    },
+    {
+      id: 527,
+      minimum_amount: "55.00"
+    },
+    {
+      id: 526,
+      amount: "20.00"
+    }
+  ]
+};
+
+WooCommerce.put('coupons/bulk', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "coupons": [
+        {
+            "id": 529,
+            "amount": "15.00"
+        },
+        {
+            "id": 527,
+            "minimum_amount": "55.00"
+        },
+        {
+            "id": 526,
+            "amount": "20.00"
+        }
+    ]
+}
+
+print(wcapi.put("coupons/bulk", data).json())
+```
+
+```ruby
+data = {
+  coupons: [
+    {
+      id: 529,
+      amount: "15.00"
+    },
+    {
+      id: 527,
+      minimum_amount: "55.00"
+    },
+    {
+      id: 526,
+      amount: "20.00"
+    }
+  ]
+}
+
+woocommerce.put("coupons/bulk", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "coupons": [
+    {
+      "id": 529,
+      "code": "new-coupon",
+      "type": "percent",
+      "created_at": "2015-01-20T19:05:27Z",
+      "updated_at": "2015-07-31T12:10:33Z",
+      "amount": "15.00",
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "usage_count": 0,
+      "expiry_date": null,
+      "enable_free_shipping": false,
+      "product_category_ids": [],
+      "exclude_product_category_ids": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "100.00",
+      "maximum_amount": "0.00",
+      "customer_emails": [],
+      "description": ""
+    },
+    {
+      "id": 527,
+      "code": "free-shipping",
+      "type": "fixed_cart",
+      "created_at": "2015-01-20T18:35:59Z",
+      "updated_at": "2015-07-31T12:10:33Z",
+      "amount": "0.00",
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "usage_count": 0,
+      "expiry_date": null,
+      "enable_free_shipping": true,
+      "product_category_ids": [],
+      "exclude_product_category_ids": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "55.00",
+      "maximum_amount": "0.00",
+      "customer_emails": [],
+      "description": ""
+    },
+    {
+      "id": 526,
+      "code": "christmas-promo",
+      "type": "percent",
+      "created_at": "2015-01-20T18:10:58Z",
+      "updated_at": "2015-07-31T12:10:33Z",
+      "amount": "20.00",
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": 1,
+      "limit_usage_to_x_items": 0,
+      "usage_count": 0,
+      "expiry_date": "2015-12-25T00:00:00Z",
+      "enable_free_shipping": false,
+      "product_category_ids": [],
+      "exclude_product_category_ids": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "200.00",
+      "maximum_amount": "0.00",
+      "customer_emails": [],
+      "description": "Discount for Christmas for orders over $ 200"
+    }
+  ]
+}
+```
+
 ## Delete A Coupon ##
 
 This API helps you delete a coupon.
@@ -512,12 +646,12 @@ This API helps you delete a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v2/coupons/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v2/coupons/529/?force=true \
+curl -X DELETE https://example.com/wc-api/v3/coupons/529/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -529,10 +663,6 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 
 ```python
 print(wcapi.delete("coupons/529?force=true").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->delete(529, true)); ?>
 ```
 
 ```ruby
@@ -562,12 +692,12 @@ This API lets you retrieve a count of all coupons.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2/coupons/count</h6>
+		<h6>/wc-api/v3/coupons/count</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2/coupons/count \
+curl https://example.com/wc-api/v3/coupons/count \
 	-u consumer_key:consumer_secret
 ```
 
@@ -579,10 +709,6 @@ WooCommerce.get('coupons/count', function(err, data, res) {
 
 ```python
 print(wcapi.get("coupons/count").json())
-```
-
-```php
-<?php print_r($woocommerce->coupons->get_count()); ?>
 ```
 
 ```ruby

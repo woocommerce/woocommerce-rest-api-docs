@@ -54,12 +54,12 @@ Retrieve a set of store information.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v2</h6>
+		<h6>/wc-api/v3</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v2 \
+curl https://example.com/wc-api/v3 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -73,10 +73,6 @@ WooCommerce.get('', function(err, data, res) {
 print(wcapi.get("").json())
 ```
 
-```php
-<?php print_r($woocommerce->index->get()); ?>
-```
-
 ```ruby
 woocommerce.get("").parsed_response
 ```
@@ -86,7 +82,7 @@ woocommerce.get("").parsed_response
 ```json
 {
     "store": {
-        "URL": "http://example.com",
+        "URL": "https://example.com",
         "description": "",
         "meta": {
             "currency": "USD",
@@ -101,16 +97,16 @@ woocommerce.get("").parsed_response
             "permalinks_enabled": true,
             "price_num_decimals": 2,
             "ssl_enabled": true,
-            "tax_included": false,
+            "tax_included": true,
             "thousand_separator": ".",
-            "timezone": "America/Sao_Paulo",
+            "timezone": "America/Los_Angeles",
             "weight_unit": "lbs"
         },
         "name": "WooCommerce Dev",
         "routes": {
             "/": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/"
+                    "self": "https://example.com/wc-api/v3/"
                 },
                 "supports": [
                     "HEAD",
@@ -120,7 +116,7 @@ woocommerce.get("").parsed_response
             "/coupons": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/coupons"
+                    "self": "https://example.com/wc-api/v3/coupons"
                 },
                 "supports": [
                     "HEAD",
@@ -142,7 +138,7 @@ woocommerce.get("").parsed_response
             "/coupons/bulk": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/coupons/bulk"
+                    "self": "https://example.com/wc-api/v3/coupons/bulk"
                 },
                 "supports": [
                     "POST",
@@ -158,7 +154,7 @@ woocommerce.get("").parsed_response
             },
             "/coupons/count": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/coupons/count"
+                    "self": "https://example.com/wc-api/v3/coupons/count"
                 },
                 "supports": [
                     "HEAD",
@@ -168,7 +164,7 @@ woocommerce.get("").parsed_response
             "/customers": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/customers"
+                    "self": "https://example.com/wc-api/v3/customers"
                 },
                 "supports": [
                     "HEAD",
@@ -202,7 +198,7 @@ woocommerce.get("").parsed_response
             "/customers/bulk": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/customers/bulk"
+                    "self": "https://example.com/wc-api/v3/customers/bulk"
                 },
                 "supports": [
                     "POST",
@@ -212,7 +208,7 @@ woocommerce.get("").parsed_response
             },
             "/customers/count": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/customers/count"
+                    "self": "https://example.com/wc-api/v3/customers/count"
                 },
                 "supports": [
                     "HEAD",
@@ -228,7 +224,7 @@ woocommerce.get("").parsed_response
             "/orders": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/orders"
+                    "self": "https://example.com/wc-api/v3/orders"
                 },
                 "supports": [
                     "HEAD",
@@ -288,7 +284,7 @@ woocommerce.get("").parsed_response
             "/orders/bulk": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/orders/bulk"
+                    "self": "https://example.com/wc-api/v3/orders/bulk"
                 },
                 "supports": [
                     "POST",
@@ -298,7 +294,7 @@ woocommerce.get("").parsed_response
             },
             "/orders/count": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/orders/count"
+                    "self": "https://example.com/wc-api/v3/orders/count"
                 },
                 "supports": [
                     "HEAD",
@@ -307,7 +303,7 @@ woocommerce.get("").parsed_response
             },
             "/orders/statuses": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/orders/statuses"
+                    "self": "https://example.com/wc-api/v3/orders/statuses"
                 },
                 "supports": [
                     "HEAD",
@@ -317,7 +313,7 @@ woocommerce.get("").parsed_response
             "/products": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/products"
+                    "self": "https://example.com/wc-api/v3/products"
                 },
                 "supports": [
                     "HEAD",
@@ -351,7 +347,7 @@ woocommerce.get("").parsed_response
             "/products/attributes": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/products/attributes"
+                    "self": "https://example.com/wc-api/v3/products/attributes"
                 },
                 "supports": [
                     "HEAD",
@@ -373,7 +369,7 @@ woocommerce.get("").parsed_response
             "/products/bulk": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/products/bulk"
+                    "self": "https://example.com/wc-api/v3/products/bulk"
                 },
                 "supports": [
                     "POST",
@@ -383,7 +379,7 @@ woocommerce.get("").parsed_response
             },
             "/products/categories": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/products/categories"
+                    "self": "https://example.com/wc-api/v3/products/categories"
                 },
                 "supports": [
                     "HEAD",
@@ -398,14 +394,8 @@ woocommerce.get("").parsed_response
             },
             "/products/count": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/products/count"
+                    "self": "https://example.com/wc-api/v3/products/count"
                 },
-                "supports": [
-                    "HEAD",
-                    "GET"
-                ]
-            },
-            "/products/sku/<sku>": {
                 "supports": [
                     "HEAD",
                     "GET"
@@ -413,7 +403,7 @@ woocommerce.get("").parsed_response
             },
             "/reports": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/reports"
+                    "self": "https://example.com/wc-api/v3/reports"
                 },
                 "supports": [
                     "HEAD",
@@ -422,7 +412,7 @@ woocommerce.get("").parsed_response
             },
             "/reports/sales": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/reports/sales"
+                    "self": "https://example.com/wc-api/v3/reports/sales"
                 },
                 "supports": [
                     "HEAD",
@@ -431,7 +421,7 @@ woocommerce.get("").parsed_response
             },
             "/reports/sales/top_sellers": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/reports/sales/top_sellers"
+                    "self": "https://example.com/wc-api/v3/reports/sales/top_sellers"
                 },
                 "supports": [
                     "HEAD",
@@ -441,7 +431,7 @@ woocommerce.get("").parsed_response
             "/webhooks": {
                 "accepts_data": true,
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/webhooks"
+                    "self": "https://example.com/wc-api/v3/webhooks"
                 },
                 "supports": [
                     "HEAD",
@@ -474,7 +464,7 @@ woocommerce.get("").parsed_response
             },
             "/webhooks/count": {
                 "meta": {
-                    "self": "http://example.com/wc-api/v2/webhooks/count"
+                    "self": "https://example.com/wc-api/v3/webhooks/count"
                 },
                 "supports": [
                     "HEAD",
@@ -482,7 +472,7 @@ woocommerce.get("").parsed_response
                 ]
             }
         },
-        "wc_version": "2.3.13"
+        "wc_version": "2.4.0"
     }
 }
 ```
