@@ -370,7 +370,7 @@ ordersCount({"count":8})
 <li> <code class="prettyprint">wc_version</code>: the active WooCommerce version</li>
 </ul>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /</code></h3>
+<h3 id="get"><code class="prettyprint">GET /</code></h3>
 
 <p>Retrieve a set of store information:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -563,7 +563,7 @@ ordersCount({"count":8})
 
 <p>@TODO</p>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /coupons</code></h3>
+<h3 id="get-coupons"><code class="prettyprint">GET /coupons</code></h3>
 
 <p>Retrieve a list of coupons:</p>
 <pre class="highlight plaintext"><code>"coupons" : [
@@ -598,7 +598,7 @@ ordersCount({"count":8})
 }
 </code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /coupons/count</code></h3>
+<h3 id="get-coupons-count"><code class="prettyprint">GET /coupons/count</code></h3>
 
 <p>Retrieve a count of all coupons:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -606,9 +606,9 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /coupons/#{id}</code></h3>
+<h3 id="get-coupons-id"><code class="prettyprint">GET /coupons/#{id}</code></h3>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /coupons/code/{code}</code></h3>
+<h3 id="get-coupons-code-code"><code class="prettyprint">GET /coupons/code/{code}</code></h3>
 
 <p>Retrieve a single coupon specified by it&rsquo;s ID or code.</p>
 
@@ -652,7 +652,7 @@ ordersCount({"count":8})
 
 <p>@TODO</p>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /customers</code></h3>
+<h3 id="get-customers"><code class="prettyprint">GET /customers</code></h3>
 
 <p>Retrieve a list of customers:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -698,7 +698,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /customers/count</code></h3>
+<h3 id="get-customers-count"><code class="prettyprint">GET /customers/count</code></h3>
 
 <p>Retrieve a count of all customers:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -706,7 +706,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /customers/#{id}</code></h3>
+<h3 id="get-customers-id"><code class="prettyprint">GET /customers/#{id}</code></h3>
 
 <p>Retrieve a single customer specified by their ID:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -750,7 +750,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /customers/#{id}/orders</code></h3>
+<h3 id="get-customers-id-orders"><code class="prettyprint">GET /customers/#{id}/orders</code></h3>
 
 <p>Retrieve a list of orders for a customer specified by their ID:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -881,7 +881,7 @@ ordersCount({"count":8})
 
 <p>@TODO</p>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /orders</code></h3>
+<h3 id="get-orders"><code class="prettyprint">GET /orders</code></h3>
 
 <p>Retrieve a list of orders</p>
 
@@ -1006,7 +1006,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /orders/count</code></h3>
+<h3 id="get-orders-count"><code class="prettyprint">GET /orders/count</code></h3>
 
 <p>Retrieve a count of all orders:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1014,7 +1014,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /orders/#{id}</code></h3>
+<h3 id="get-orders-id"><code class="prettyprint">GET /orders/#{id}</code></h3>
 
 <p>Retrieve a single order specified by it&rsquo;s ID:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1135,7 +1135,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">PUT /orders/#{id}?status={status}</code></h3>
+<h3 id="put-orders-id-status-status"><code class="prettyprint">PUT /orders/#{id}?status={status}</code></h3>
 
 <p>Update the status for an order specified by it&rsquo;s ID</p>
 
@@ -1264,7 +1264,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /orders/#{id}/notes</code></h3>
+<h3 id="get-orders-id-notes"><code class="prettyprint">GET /orders/#{id}/notes</code></h3>
 
 <p>Retrieve a list of notes for an order specified by it&rsquo;s ID:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1299,7 +1299,7 @@ ordersCount({"count":8})
 
 <p>@TODO</p>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /products</code></h3>
+<h3 id="get-products"><code class="prettyprint">GET /products</code></h3>
 
 <p>Retrieve a list of products</p>
 
@@ -1399,7 +1399,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /products/count</code></h3>
+<h3 id="get-products-count"><code class="prettyprint">GET /products/count</code></h3>
 
 <p>Retrieve a count of all products</p>
 
@@ -1409,7 +1409,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /products/#{id}</code></h3>
+<h3 id="get-products-id"><code class="prettyprint">GET /products/#{id}</code></h3>
 
 <p>Retrieve a product specified by it&rsquo;s ID</p>
 
@@ -1944,7 +1944,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /products/#{id}/reviews</code></h3>
+<h3 id="get-products-id-reviews"><code class="prettyprint">GET /products/#{id}/reviews</code></h3>
 
 <p>Retrieve a list of reviews for a product specified by it&rsquo;s ID:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1986,7 +1986,7 @@ ordersCount({"count":8})
 
 <p>@TODO</p>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /reports</code></h3>
+<h3 id="get-reports"><code class="prettyprint">GET /reports</code></h3>
 
 <p>Retrieve a simple list of available reports:</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1996,7 +1996,7 @@ ordersCount({"count":8})
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="code-class-prettyprint-code"><code class="prettyprint">GET /reports/sales</code></h3>
+<h3 id="get-reports-sales"><code class="prettyprint">GET /reports/sales</code></h3>
 
 <p>Retrieve a sales report</p>
 
