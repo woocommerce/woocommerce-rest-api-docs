@@ -286,9 +286,9 @@ woocommerce.get("webhooks").parsed_response
 
 #### Available Filters ####
 
-|  Filter  |  Type  |                                         Description                                          |
-| -------- | ------ | -------------------------------------------------------------------------------------------- |
-| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
+|  Filter  |  Type  |                                                    Description                                                    |
+| -------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
+| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled`. Default is `active` |
 
 ## Update A Webhook ##
 
