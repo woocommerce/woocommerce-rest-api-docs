@@ -25,6 +25,7 @@ includes:
   - v3/products
   - v3/reports
   - v3/webhooks
+  - v3/authentication-endpoint
 
 search: true
 ---
