@@ -425,6 +425,7 @@ See the webhook resource section.
 ## Troubleshooting ##
 
 * Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
+* `mod_security` - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details
 
 ## Official Libraries ##
 
