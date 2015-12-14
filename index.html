@@ -513,9 +513,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <h2 id="webhooks">Webhooks</h2>
 
-<p>@TODO needs update! Now we have an visual endpoint for it!</p>
-
-<p>Webhooks are an experimental feature in the v2 REST API. They must be managed using the REST API endpoints as a UI is not yet available. The <code class="prettyprint">WC_Webhook</code> class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook&rsquo;s actions and processing/delivering/logging the webhook. On <code class="prettyprint">woocommerce_init</code>, active webhooks are loaded and their associated hooks are added.</p>
+<p>Webhooks can be maneged by our interface or using the REST API endpoints. The <code class="prettyprint">WC_Webhook</code> class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook&rsquo;s actions and processing/delivering/logging the webhook. On <code class="prettyprint">woocommerce_init</code>, active webhooks are loaded and their associated hooks are added.</p>
 
 <p>Each webhook has:</p>
 
@@ -575,13 +573,17 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <h3 id="endpoints">Endpoints</h3>
 
-<p>See the webhook resource section.</p>
+<p><a href="#webhooks7">See the webhook resource section</a>.</p>
+
+<h3 id="visual-interface">Visual Interface</h3>
+
+<p>You can find the Webhooks interface going to &ldquo;WooCommerce&rdquo; &gt; &ldquo;Settings&rdquo; &gt; &ldquo;API&rdquo; &gt; &ldquo;Webhooks&rdquo;, see our <a href="https://docs.woothemes.com/document/webhooks/">Visual Webhooks docs</a> for more details.</p>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
 <ul>
 <li>Nginx - Older configurations of Nginx can cause issues with the API, see <a href="https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737">this issue</a> for details</li>
-<li><code class="prettyprint">mod_security</code> - When activated may be blocking <code class="prettyprint">POST</code>, <code class="prettyprint">PUT</code> and <code class="prettyprint">DELETE</code> requests, usually showing <code class="prettyprint">501 Method Not Implemented</code> error, see <a href="https://github.com/woothemes/woocommerce/issues/9838">this issue</a> for details</li>
+<li>ModSecurity - When activated may be blocking <code class="prettyprint">POST</code>, <code class="prettyprint">PUT</code> and <code class="prettyprint">DELETE</code> requests, usually showing <code class="prettyprint">501 Method Not Implemented</code> error, see <a href="https://github.com/woothemes/woocommerce/issues/9838">this issue</a> for details</li>
 </ul>
 
 <h2 id="official-libraries">Official Libraries</h2>
