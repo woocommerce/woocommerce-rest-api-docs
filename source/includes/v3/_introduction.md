@@ -366,9 +366,7 @@ curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 
 ## Webhooks ##
 
-@TODO needs update! Now we have an visual endpoint for it!
-
-Webhooks are an experimental feature in the v2 REST API. They must be managed using the REST API endpoints as a UI is not yet available. The `WC_Webhook` class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook's actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
+Webhooks can be maneged by our interface or using the REST API endpoints. The `WC_Webhook` class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook's actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
 
 Each webhook has:
 
@@ -420,12 +418,16 @@ Delivery logs can be fetched through the REST API endpoint or in code using `WC_
 
 ### Endpoints ###
 
-See the webhook resource section.
+[See the webhook resource section](#webhooks7).
+
+### Visual Interface ###
+
+You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woothemes.com/document/webhooks/) for more details.
 
 ## Troubleshooting ##
 
 * Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
-* `mod_security` - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details
+* ModSecurity - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details
 
 ## Official Libraries ##
 
