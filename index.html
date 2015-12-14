@@ -581,6 +581,7 @@ Many endpoints were improving with new versions of WooCommerce, so we always rec
 
 <ul>
 <li>Nginx - Older configurations of Nginx can cause issues with the API, see <a href="https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737">this issue</a> for details</li>
+<li><code class="prettyprint">mod_security</code> - When activated may be blocking <code class="prettyprint">POST</code>, <code class="prettyprint">PUT</code> and <code class="prettyprint">DELETE</code> requests, usually showing <code class="prettyprint">501 Method Not Implemented</code> error, see <a href="https://github.com/woothemes/woocommerce/issues/9838">this issue</a> for details</li>
 </ul>
 
 <h2 id="official-libraries">Official Libraries</h2>
