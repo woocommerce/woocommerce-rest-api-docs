@@ -26,19 +26,68 @@ The following image illustrates how it's done:
 
 You must use the `/wc-auth/v1/authorize` endpoint and pass the above parameters as query string.
 
-> Example of how do it in PHP:
+> Example of how build an authentication URL:
 
+```shell
+# Bash example
+STORE_URL='http://example.com'
+ENDPOINT='/wc-auth/v1/authorize'
+PARAMS="app_name=My App Name&scope=read_write&user_id=123&return_url=http://app.com/return-page&callback_url=https://app.com/callback-endpoint"
+QUERY_STRING="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$PARAMS")"
+QUERY_STRING=$(echo $QUERY_STRING | sed -e "s/%20/\+/g" -e "s/%3D/\=/g" -e "s/%26/\&/g")
+
+echo "$STORE_URL$ENDPOINT?$QUERY_STRING"
 ```
-$store_url = 'http://example.com';
-$endpoint  = '/wc-auth/v1/authorize';
-$params    = array(
-	'app_name'     => 'My App Name',
-	'scope'        => 'read_write',
-	'user_id'      => 123,
-	'return_url'   => 'http://app.com/return-page',
-	'callback_url' => 'https://app.com/callback-endpoint'
-);
-echo $store_url . $endpoint . '?' . http_build_query( $params );
+
+```javascript
+var querystring = require('querystring');
+
+var store_url = 'http://example.com';
+var endpoint = '/wc-auth/v1/authorize';
+var params = {
+  app_name: 'My App Name',
+  scope: 'read_write',
+  user_id: 123,
+  return_url: 'http://app.com/return-page',
+  callback_url: 'https://app.com/callback-endpoint'
+};
+var query_string = querystring.stringify(params).replace(/%20/g, '+');
+
+console.log(store_url + endpoint + '?' + query_string);
+```
+
+```python
+from urllib.parse import urlencode
+
+store_url = 'http://example.com'
+endpoint = '/wc-auth/v1/authorize'
+params = {
+    "app_name": "My App Name",
+    "scope": "read_write",
+    "user_id": 123,
+    "return_url": "http://app.com/return-page",
+    "callback_url": "https://app.com/callback-endpoint"
+}
+query_string = urlencode(params)
+
+print("%s%s?%s" % (store_url, endpoint, query_string))
+```
+
+```ruby
+require "uri"
+
+store_url = 'http://example.com'
+endpoint = '/wc-auth/v1/authorize'
+params = {
+  app_name: "My App Name",
+  scope: "read_write",
+  user_id: 123,
+  return_url: "http://app.com/return-page",
+  callback_url: "https://app.com/callback-endpoint"
+}
+query_string = URI.encode_www_form(params)
+
+puts "#{store_url}#{endpoint}?#{query_string}"
 ```
 
 > Example the JSON posted with the API Keys
