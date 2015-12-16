@@ -88,9 +88,13 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `created_at` | string  | UTC DateTime when the image was created <i class="label label-info">read-only</i>      |
 | `updated_at` | string  | UTC DateTime when the image was last updated <i class="label label-info">read-only</i> |
 | `src`        | string  | Image URL. In write-mode you can use to send new images                                |
-| `title`      | string  | Image title (attachment title) <i class="label label-info">read-only</i>               |
-| `alt`        | string  | Image alt text (attachment image alt text) <i class="label label-info">read-only</i>   |
+| `title`      | string  | Image title (attachment title)                                                         |
+| `alt`        | string  | Image alt text (attachment image alt text)                                             |
 | `position`   | integer | Image position. `0` means that the image is featured                                   |
+
+<aside class="notice">
+	`alt` and `title` attributes are writable starting in WooCommerce 2.5.
+</aside>
 
 ### Attributes Properties ###
 
