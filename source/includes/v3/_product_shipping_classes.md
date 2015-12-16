@@ -4,14 +4,14 @@ This section lists all API that can be used to create, edit or otherwise manipul
 
 ## Product Shipping Class Properties ##
 
-|   Attribute   |   Type  |                                        Description                                        |
-| ------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `id`          | integer | Shipping Class ID (term ID) <i class="label label-info">read-only</i>                     |
-| `name`        | string  | Shipping Class name <i class="label label-info">required</i>                              |
-| `slug`        | string  | Shipping Class slug                                                                       |
-| `parent`      | integer | Shipping Class parent                                                                     |
-| `description` | string  | Shipping Class description                                                                |
-| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i> |
+|   Attribute   |   Type  |                                           Description                                           |
+| ------------- | ------- | ----------------------------------------------------------------------------------------------- |
+| `id`          | integer | Shipping Class ID (term ID) <i class="label label-info">read-only</i>                           |
+| `name`        | string  | Shipping Class name <i class="label label-info">required</i>                                    |
+| `slug`        | string  | Shipping Class slug                                                                             |
+| `parent`      | integer | Shipping Class parent                                                                           |
+| `description` | string  | Shipping Class description                                                                      |
+| `count`       | boolean | Shows the quantity of products in this shipping class <i class="label label-info">read-only</i> |
 
 ## Create A Product Shipping Class ##
 
