@@ -90,6 +90,10 @@ woocommerce.post("products/categories", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## View A Product Category ##
 
 This API lets you retrieve a product category.
@@ -319,6 +323,10 @@ woocommerce.put("products/categories/9", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## Delete A Product Category ##
 
 This API helps you delete a product category.
@@ -358,3 +366,7 @@ woocommerce.delete("products/categories/9").parsed_response
   "message": "Deleted product_category"
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>

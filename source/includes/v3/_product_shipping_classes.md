@@ -86,6 +86,10 @@ woocommerce.post("products/shipping_classes", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## View A Product Shipping Class ##
 
 This API lets you retrieve a product shipping class.
@@ -130,6 +134,10 @@ woocommerce.get("products/shipping_classes/35").parsed_response
   }
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
 
 ## View List Of Product Shipping Classes ##
 
@@ -185,6 +193,10 @@ woocommerce.get("products/shipping_classes").parsed_response
   ]
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
 
 ## Update A Product Shipping Class ##
 
@@ -257,6 +269,10 @@ woocommerce.put("products/shipping_classes/35", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## Delete A Product Shipping Class ##
 
 This API helps you delete a product shipping class.
@@ -296,3 +312,7 @@ woocommerce.delete("products/shipping_class/35").parsed_response
   "message": "Deleted product_shipping_class"
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>

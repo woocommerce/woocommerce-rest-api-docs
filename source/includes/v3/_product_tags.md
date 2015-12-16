@@ -84,6 +84,10 @@ woocommerce.post("products/tags", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## View A Product Tag ##
 
 This API lets you retrieve a product shipping class.
@@ -127,6 +131,10 @@ woocommerce.get("products/tags/37").parsed_response
   }
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
 
 ## View List Of Product Tags ##
 
@@ -180,6 +188,10 @@ woocommerce.get("products/tags").parsed_response
   ]
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
 
 ## Update A Product Tag ##
 
@@ -251,6 +263,10 @@ woocommerce.put("products/tags/37", data).parsed_response
 }
 ```
 
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
+
 ## Delete A Product Tag ##
 
 This API helps you delete a product shipping class.
@@ -290,3 +306,7 @@ woocommerce.delete("products/tag/37").parsed_response
   "message": "Deleted product_tag"
 }
 ```
+
+<aside class="notice">
+	Endpoint introduced since WooCommerce 2.5.
+</aside>
