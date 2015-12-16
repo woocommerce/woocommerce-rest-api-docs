@@ -4,16 +4,91 @@ This section lists all API that can be used to create, edit or otherwise manipul
 
 ## Product Category Properties ##
 
-|   Attribute   |   Type  |                                                                       Description                                                                       |
-| ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                                                                         |
-| `name`        | string  | Category name <i class="label label-info">read-only</i>                                                                                                 |
-| `slug`        | string  | Category slug <i class="label label-info">read-only</i>                                                                                                 |
-| `parent`      | integer | Category parent <i class="label label-info">read-only</i>                                                                                               |
-| `description` | string  | Category description <i class="label label-info">read-only</i>                                                                                          |
-| `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` <i class="label label-info">read-only</i> |
-| `image`       | string  | Category image URL <i class="label label-info">read-only</i>                                                                                            |
-| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
+|   Attribute   |   Type  |                                                  Description                                                  |
+| ------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                               |
+| `name`        | string  | Category name <i class="label label-info">required</i>                                                        |
+| `slug`        | string  | Category slug                                                                                                 |
+| `parent`      | integer | Category parent                                                                                               |
+| `description` | string  | Category description                                                                                          |
+| `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` |
+| `image`       | string  | Category image URL                                                                                            |
+| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                     |
+
+## Create A Product Category ##
+
+This API helps you to create a new product category.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wc-api/v3/products/categories</h6>
+	</div>
+</div>
+
+> Example of how to create a product category:
+
+```shell
+curl -X POST https://example.com/wc-api/v3/products/categories \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "product_category": {
+    "name": "Clothing"
+  }
+}'
+```
+
+```javascript
+var data = {
+  product_category: {
+    name: 'Clothing'
+  }
+};
+
+WooCommerce.post('products/categories', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "product_category": {
+        "name": "Clothing"
+    }
+}
+
+print(wcapi.post("products/categories", data).json())
+```
+
+```ruby
+data = {
+  product_category: {
+    name: "Clothing"
+  }
+}
+
+woocommerce.post("products/categories", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_category": {
+    "id": 9,
+    "name": "Clothing",
+    "slug": "clothing",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "count": 0
+  }
+}
+```
 
 ## View A Product Category ##
 
@@ -171,6 +246,115 @@ woocommerce.get("products/categories").parsed_response
 }
 ```
 
-<aside class="notice">
-	View the <a href="#product-category-properties">Product Category Properties</a> for more details on this response.
-</aside>
+## Update A Product Category ##
+
+This API lets you make changes to a product category.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wc-api/v3/products/categories/9 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "product_category": {
+    "description": "All kinds of clothes."
+  }
+}'
+```
+
+```javascript
+var data = {
+  product_category: {
+    description: 'All kinds of clothes.'
+  }
+};
+
+WooCommerce.put('products/categories/9', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+data = {
+    "product_category": {
+        "description": "All kinds of clothes."
+    }
+}
+
+print(wcapi.put("products/categories/9", data).json())
+```
+
+```ruby
+data = {
+  product_category: {
+    description: "All kinds of clothes."
+  }
+}
+
+woocommerce.put("products/categories/9", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "product_category": {
+    "id": 9,
+    "name": "Clothing",
+    "slug": "clothing",
+    "parent": 0,
+    "description": "All kinds of clothes.",
+    "display": "default",
+    "image": "",
+    "count": 23
+  }
+}
+```
+
+## Delete A Product Category ##
+
+This API helps you delete a product category.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wc-api/v3/products/category/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wc-api/v3/products/category/9 \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('products/category/9', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```python
+print(wcapi.delete("products/category/9").json())
+```
+
+```ruby
+woocommerce.delete("products/category/9").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "message": "Deleted product_category"
+}
+```

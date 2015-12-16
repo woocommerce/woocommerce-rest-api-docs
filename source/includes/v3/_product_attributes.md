@@ -145,10 +145,6 @@ woocommerce.get("products/attributes/1").parsed_response
 }
 ```
 
-<aside class="notice">
-	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
-</aside>
-
 ## View List Of Product Attributes ##
 
 This API helps you to view all the product attributes.
@@ -205,10 +201,6 @@ woocommerce.get("products/attributes").parsed_response
   ]
 }
 ```
-
-<aside class="notice">
-	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
-</aside>
 
 ## Update A Product Attribute ##
 
@@ -280,10 +272,6 @@ woocommerce.put("products/attributes/1", data).parsed_response
   }
 }
 ```
-
-<aside class="notice">
-	View the <a href="#product-attribute-properties">Product Attribute Properties</a> for more details on this response.
-</aside>
 
 ## Delete A Product Attribute ##
 
