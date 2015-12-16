@@ -328,27 +328,27 @@ This API helps you delete a product category.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/products/category/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/products/category/9 \
+curl -X DELETE https://example.com/wc-api/v3/products/categories/9 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/category/9', function(err, data, res) {
+WooCommerce.delete('products/categories/9', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```python
-print(wcapi.delete("products/category/9").json())
+print(wcapi.delete("products/categories/9").json())
 ```
 
 ```ruby
-woocommerce.delete("products/category/9").parsed_response
+woocommerce.delete("products/categories/9").parsed_response
 ```
 
 > JSON response example:
