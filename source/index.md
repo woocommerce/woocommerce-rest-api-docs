@@ -23,6 +23,10 @@ includes:
   - v3/customers
   - v3/orders
   - v3/products
+  - v3/_product_attributes.md
+  - v3/_product_categories.md
+  - v3/_product_shipping_classes.md
+  - v3/_product_tags.md
   - v3/reports
   - v3/webhooks
   - v3/authentication-endpoint
