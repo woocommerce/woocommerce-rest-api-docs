@@ -496,15 +496,15 @@ var data = {
   coupons: [
     {
       id: 529,
-      amount: "15.00"
+      amount: '15.00'
     },
     {
       id: 527,
-      minimum_amount: "55.00"
+      minimum_amount: '55.00'
     },
     {
       id: 526,
-      amount: "20.00"
+      amount: '20.00'
     }
   ]
 };

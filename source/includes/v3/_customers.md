@@ -676,33 +676,33 @@ curl -X PUT https://example.com/wc-api/v3/customers/bulk \
 var data = {
   customers: [
     {
-      email: "john.doe2@example.com",
-      first_name: "John",
-      last_name: "Doe",
-      username: "john.doe2",
+      email: 'john.doe2@example.com',
+      first_name: 'John',
+      last_name: 'Doe',
+      username: 'john.doe2',
       billing_address: {
-        first_name: "John",
-        last_name: "Doe",
-        company: "",
-        address_1: "969 Market",
-        address_2: "",
-        city: "San Francisco",
-        state: "CA",
-        postcode: "94103",
-        country: "US",
-        email: "john.doe@example.com",
-        phone: "(555) 555-5555"
+        first_name: 'John',
+        last_name: 'Doe',
+        company: '',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US',
+        email: 'john.doe@example.com',
+        phone: '(555) 555-5555'
       },
       shipping_address: {
-        first_name: "John",
-        last_name: "Doe",
-        company: "",
-        address_1: "969 Market",
-        address_2: "",
-        city: "San Francisco",
-        state: "CA",
-        postcode: "94103",
-        country: "US"
+        first_name: 'John',
+        last_name: 'Doe',
+        company: '',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US'
       }
     },
     {

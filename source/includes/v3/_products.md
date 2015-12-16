@@ -1685,18 +1685,18 @@ var data = {
   products: [
     {
       id: 546,
-      regular_price: "29.99"
+      regular_price: '29.99'
     },
     {
       id: 604,
       variations: [
         {
           id: 609,
-          regular_price: "29.99"
+          regular_price: '29.99'
         },
         {
           id: 611,
-          regular_price: "29.99"
+          regular_price: '29.99'
         }
       ]
     }

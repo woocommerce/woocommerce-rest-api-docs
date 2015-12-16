@@ -44,10 +44,10 @@ curl -X POST https://example.com/wc-api/v3/products/attributes \
 ```javascript
 var data = {
   product_attribute: {
-    name: "Color",
-    slug: "pa_color",
-    type: "select",
-    order_by: "menu_order",
+    name: 'Color',
+    slug: 'pa_color',
+    type: 'select',
+    order_by: 'menu_order',
     has_archives: true
   }
 };

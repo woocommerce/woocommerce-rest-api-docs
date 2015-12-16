@@ -1325,11 +1325,11 @@ var data = {
   orders: [
     {
       id: 645,
-      shipping_methods: "Local Delivery"
+      shipping_methods: 'Local Delivery'
     },
     {
       id: 644,
-      shipping_methods: "Local Delivery"
+      shipping_methods: 'Local Delivery'
     }
   ]
 };
