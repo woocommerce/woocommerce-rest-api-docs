@@ -709,6 +709,16 @@ woocommerce.get("orders/645").parsed_response
 }
 ```
 
+#### Available Filters ####
+
+|  Filter  |  Type  |                                          Description                                          |
+| -------- | ------ | --------------------------------------------------------------------------------------------- |
+| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
+
+<aside class="notice">
+	`expand` filter is available starting from WooCommerce 2.5.
+</aside>
+
 ## View List Of Orders ##
 
 This API helps you to view all the orders.
@@ -1052,9 +1062,14 @@ woocommerce.get("orders").parsed_response
 
 #### Available Filters ####
 
-|  Filter  |  Type  |                    Description                    |
-| -------- | ------ | ------------------------------------------------- |
-| `status` | string | Orders by status. eg: `processing` or `cancelled` |
+|  Filter  |  Type  |                                          Description                                          |
+| -------- | ------ | --------------------------------------------------------------------------------------------- |
+| `status` | string | Orders by status. eg: `processing` or `cancelled`                                             |
+| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
+
+<aside class="notice">
+	`expand` filter is available starting from WooCommerce 2.5.
+</aside>
 
 ## Update An Order ##
 
