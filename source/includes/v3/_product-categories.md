@@ -1,6 +1,6 @@
 # Product - Categories #
 
-This section lists all API that can be used to create, edit or otherwise manipulate product categories.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate product categories.
 
 ## Product Category Properties ##
 

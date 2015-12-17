@@ -1,6 +1,6 @@
 # Taxes #
 
-This section lists all API that can be used to create, edit or otherwise manipulate taxes.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate taxes.
 
 ## Taxes Properties ##
 

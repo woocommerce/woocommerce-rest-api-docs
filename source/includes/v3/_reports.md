@@ -1,10 +1,10 @@
 # Reports #
 
-This section lists all API that can be used view reports.
+This section lists all API endpoints that can be used view reports.
 
 ## Reports Filters ##
 
-Use the following filters for any type of report to specify the period of sales: 
+Use the following filters for any type of report to specify the period of sales:
 
 |   Filter   |  Type  |                                                                                Description                                                                                 |
 | ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

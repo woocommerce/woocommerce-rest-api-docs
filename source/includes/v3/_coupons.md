@@ -1,6 +1,6 @@
 # Coupons #
 
-This section lists all API that can be used to create, edit or otherwise manipulate coupons.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate coupons.
 
 ## Coupon Properties ##
 
@@ -29,7 +29,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `customer_emails`              | array   | Array of email addresses that can use this coupon                                                                          |
 | `description`                  | string  | Coupon description                                                                                                         |
 
-## Create A Coupon ##
+## Create a Coupon ##
 
 This API helps you to create a new coupon.
 
@@ -184,7 +184,7 @@ woocommerce.post("coupons", data).parsed_response
 }
 ```
 
-## View A Coupon ##
+## View a Coupon ##
 
 This API lets you retrieve and view a specific coupon by ID or code.
 
@@ -367,7 +367,7 @@ woocommerce.get("coupons").parsed_response
 }
 ```
 
-## Update A Coupon ##
+## Update a Coupon ##
 
 This API lets you make changes to a coupon.
 
@@ -637,7 +637,7 @@ woocommerce.put("coupons/bulk", data).parsed_response
 }
 ```
 
-## Delete A Coupon ##
+## Delete a Coupon ##
 
 This API helps you delete a coupon.
 

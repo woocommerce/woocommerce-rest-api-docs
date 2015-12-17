@@ -1,6 +1,6 @@
 # Customers #
 
-This section lists all API that can be used to create, edit or otherwise manipulate customers.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate customers.
 
 ## Customers Properties ##
 

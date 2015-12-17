@@ -1,6 +1,6 @@
 # Webhooks #
 
-This section lists all API that can be used to create, edit or otherwise manipulate webhooks.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate webhooks.
 
 ## Webhooks Properties ##
 

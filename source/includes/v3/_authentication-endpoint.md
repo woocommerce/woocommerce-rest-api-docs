@@ -1,32 +1,30 @@
 # Authentication Endpoint #
 
-Staring in WooCommerce 2.4 we introduced our Authentication Endpoint, where any app can easy allow users to generate API keys and send back automatically to the app.
-
-This makes integration with WooCommerce API much simpler, since the user only needs to access a URL, click in the "accept" button and will be redirected back to the app and the API keys are sent back in a POST request.
+Starting in WooCommerce 2.4 we introduced an Authentication Endpoint, This can be used by any app to allow users to generate API keys. This makes integration with WooCommerce API simpler because the user only needs to access a URL and click "accept". After being redirected back to the app, the API keys will be sent in a POST request.
 
 The following image illustrates how it's done:
 
 ![Authentication Endpoint flow](images/woocommerce-auth-endpoint-flow.png)
 
 <aside class="warning">
-	Note that this endpoint works exclusively for users to generate API keys and facilitate integration between the WooCommerce REST API and an application. In no way is this endpoint proposes to be used as login method for customers.
+	Note that this endpoint works exclusively for users to generate API keys and facilitate integration between the WooCommerce REST API and an application. In no way is this endpoint proposed to be used as login method for customers.
 </aside>
 
 ## URL parameters ##
 
-|   Paramenter   |  Type  |                                                                                  Description                                                                                  |
+|   Parameter   |  Type  |                                                                                  Description                                                                                  |
 | -------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `app_name`     | string | Your app name <i class="label label-info">mandatory</i>                                                                                                                       |
 | `scope`        | string | Level of access. Available: `read`, `write` and `read_write` <i class="label label-info">mandatory</i>                                                                        |
 | `user_id`      | string | User ID in your app. For your internal reference, used when the user is redirected back to your app. NOT THE USER ID IN WOOCOMMERCE <i class="label label-info">mandatory</i> |
-| `return_url`   | string | URL that will be used for receive the user back in your app <i class="label label-info">mandatory</i>                                                                         |
-| `callback_url` | string | URL that will receive the generated API key. Important to note that this URL should be over **SSL** <i class="label label-info">mandatory</i>                                 |
+| `return_url`   | string | URL the user will be redirected to after authentication <i class="label label-info">mandatory</i>                                                                         |
+| `callback_url` | string | URL that will receive the generated API key. Note: this URL should be over **HTTPS** <i class="label label-info">mandatory</i>                                 |
 
 ## Creating Authentication Endpoint URL ##
 
-You must use the `/wc-auth/v1/authorize` endpoint and pass the above parameters as query string.
+You must use the `/wc-auth/v1/authorize` endpoint and pass the above parameters as a query string.
 
-> Example of how build an authentication URL:
+> Example of how to build an authentication URL:
 
 ```shell
 # Bash example
@@ -90,7 +88,7 @@ query_string = URI.encode_www_form(params)
 puts "#{store_url}#{endpoint}?#{query_string}"
 ```
 
-> Example the JSON posted with the API Keys
+> Example of JSON posted with the API Keys
 
 ```
 {
@@ -102,14 +100,14 @@ puts "#{store_url}#{endpoint}?#{query_string}"
 }
 ```
 
-Example of the screen that the user will access:
+Example of the screen that the user will see:
 
 ![Authentication Endpoint example](images/woocommerce-auth-endpoint-example.png)
 
 ## Notes and Tips ##
 
-- While redirecting the user using `return_url` are also sent `success` and `user_id` parameters as query strings.
-- `success` sends `0` if the user denied or `1` if authenticated successfully.
-- Use `user_id` to identify the user when redirected back (`return_url`) to your app and also to save the API Keys in your `callback_url`.
-- This will send the API Keys in JSON format to the `callback_url`, so it's important to remember that some languages such as PHP will not display it inside the `$_POST` global variable, in PHP you can access it using `$HTTP_RAW_POST_DATA` (for old PHP versions) or `file_get_contents('php://input');`.
+- While redirecting the user using `return_url`, you are also sent `success` and `user_id` parameters as query strings.
+- `success` sends `0` if the user denied, or `1` if authenticated successfully.
+- Use `user_id` to identify the user when redirected back to the (`return_url`) and also remember to save the API Keys when your `callback_url` is posted to after auth.
+- The auth endpoint will send the API Keys in JSON format to the `callback_url`, so it's important to remember that some languages such as PHP will not display it inside the `$_POST` global variable, in PHP you can access it using `$HTTP_RAW_POST_DATA` (for old PHP versions) or `file_get_contents('php://input');`.
 - This authentication endpoint is used only to make easy integration with WooCommerce REST API. THIS NOT INTENDED TO BE USED AS A LOGIN ENDPOINT FOR CUSTOMERS!

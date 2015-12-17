@@ -1,6 +1,6 @@
 # Products #
 
-This section lists all API that can be used to create, edit or otherwise manipulate products.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate products.
 
 ## Products Properties ##
 

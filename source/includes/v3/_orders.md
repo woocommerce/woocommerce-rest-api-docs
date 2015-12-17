@@ -1,6 +1,6 @@
 # Orders #
 
-This section lists all API that can be used to create, edit or otherwise manipulate orders.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate orders.
 
 ## Orders Properties ##
 
