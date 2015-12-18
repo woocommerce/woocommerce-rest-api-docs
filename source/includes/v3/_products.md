@@ -2174,10 +2174,18 @@ woocommerce.get("products/count").parsed_response
 
 #### Available Filters ####
 
-|   Filter   |  Type  |                 Description                  |
-| ---------- | ------ | -------------------------------------------- |
-| `type`     | string | Products by type. eg: `simple` or `variable` |
-| `category` | string | Products by category.                        |
+|      Filter      |  Type  |                     Description                      |
+| ---------------- | ------ | ---------------------------------------------------- |
+| `type`           | string | Products by type. eg: `simple` or `variable`.        |
+| `category`       | string | Products by category.                                |
+| `tag`            | string | Products by tag.                                     |
+| `shipping_class` | string | Products by shipping class.                          |
+| `pa_*`           | string | Products by attributes. eg: `filter[pa_color]=black` |
+| `sku`            | string | Filter a product by SKU.                             |
+
+<aside class="notice">
+	`tag`, `shipping_class` and `pa_*` filters are available starting from WooCommerce 2.5.
+</aside>
 
 ## View List of Product Orders ##
 
