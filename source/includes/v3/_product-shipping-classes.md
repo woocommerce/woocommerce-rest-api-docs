@@ -139,7 +139,7 @@ woocommerce.get("products/shipping_classes/35").parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## View List Of Product Shipping Classes ##
+## View List of Product Shipping Classes ##
 
 This API lets you retrieve all product shipping classes.
 

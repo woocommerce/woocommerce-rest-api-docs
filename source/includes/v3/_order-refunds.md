@@ -128,7 +128,7 @@ woocommerce.get("orders/645/refunds/649").parsed_response
 }
 ```
 
-## View List Of Refunds From an Order ##
+## View List of Refunds From an Order ##
 
 This API helps you to view all the refunds from an order.
 

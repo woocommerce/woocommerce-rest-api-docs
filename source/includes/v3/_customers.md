@@ -342,7 +342,7 @@ woocommerce.get("customers/2").parsed_response
 }
 ```
 
-## View List Of Customers ##
+## View List of Customers ##
 
 This API helps you to view all the customers.
 

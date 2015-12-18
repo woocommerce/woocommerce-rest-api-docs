@@ -190,7 +190,7 @@ woocommerce.get("webhooks/535").parsed_response
 }
 ```
 
-## View List Of Webhooks ##
+## View List of Webhooks ##
 
 This API helps you to view all the webhooks.
 
@@ -504,7 +504,7 @@ woocommerce.get("webhooks/535/deliveries/378").parsed_response
 	View the <a href="#delivery-properties">Delivery Properties</a> for more details on this response.
 </aside>
 
-## View List Of Webhooks Deliveries ##
+## View List of Webhooks Deliveries ##
 
 This API helps you to view all deliveries from a specific webhooks.
 

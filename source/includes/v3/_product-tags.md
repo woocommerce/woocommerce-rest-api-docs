@@ -136,7 +136,7 @@ woocommerce.get("products/tags/37").parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## View List Of Product Tags ##
+## View List of Product Tags ##
 
 This API lets you retrieve all product shipping classes.
 

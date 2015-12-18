@@ -145,7 +145,7 @@ woocommerce.get("products/attributes/1").parsed_response
 }
 ```
 
-## View List Of Product Attributes ##
+## View List of Product Attributes ##
 
 This API helps you to view all the product attributes.
 

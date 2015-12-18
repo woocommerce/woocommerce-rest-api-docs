@@ -719,7 +719,7 @@ woocommerce.get("orders/645").parsed_response
 	`expand` filter is available starting from WooCommerce 2.5.
 </aside>
 
-## View List Of Orders ##
+## View List of Orders ##
 
 This API helps you to view all the orders.
 
@@ -1775,7 +1775,7 @@ woocommerce.get("orders/count").parsed_response
 | -------- | ------ | ------------------------------------------------- |
 | `status` | string | Orders by status. eg: `processing` or `cancelled` |
 
-## View List Of Order Statuses ##
+## View List of Order Statuses ##
 
 This API lets you retrieve a list of orders statuses available.
 

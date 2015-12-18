@@ -125,7 +125,7 @@ woocommerce.get("orders/645/notes/416").parsed_response
 }
 ```
 
-## View List Of Notes From an Order ##
+## View List of Notes From an Order ##
 
 This API helps you to view all the notes from an order.
 

@@ -1111,7 +1111,7 @@ woocommerce.get("products/546").parsed_response
 }
 ```
 
-## View List Of Products ##
+## View List of Products ##
 
 This API helps you to view all the products.
 
@@ -2179,7 +2179,7 @@ woocommerce.get("products/count").parsed_response
 | `type`     | string | Products by type. eg: `simple` or `variable` |
 | `category` | string | Products by category.                        |
 
-## View List Of Product Orders ##
+## View List of Product Orders ##
 
 This API lets you retrieve all product orders.
 
@@ -2522,7 +2522,7 @@ woocommerce.get("products/546/orders").parsed_response
 	View the <a href="#orders-properties">Order Properties</a> for more details on this response.
 </aside>
 
-## View List Of Product Reviews ##
+## View List of Product Reviews ##
 
 This API lets you retrieve all reviews of a product.
 

@@ -12,7 +12,7 @@ Use the following filters for any type of report to specify the period of sales:
 | `date_min` | string | Return sales for a specific start date. The date need to be in the `YYYY-MM-AA` format                                                                                     |
 | `date_max` | string | Return sales for a specific end date. The dates need to be in the `YYYY-MM-AA` format. Required to set the `filter[date_min]` too                                          |
 
-## View List Of Reports ##
+## View List of Reports ##
 
 This API lets you retrieve and view a simple list of available reports.
 
@@ -55,7 +55,7 @@ woocommerce.get("reports").parsed_response
 }
 ```
 
-## View List Of Sales Report ##
+## View List of Sales Report ##
 
 This API lets you retrieve and view a list of sales report.
 
@@ -143,7 +143,7 @@ woocommerce.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 }
 ```
 
-## View List Of Top Sellers Report ##
+## View List of Top Sellers Report ##
 
 This API lets you retrieve and view a list of top sellers report.
 

@@ -141,7 +141,7 @@ woocommerce.get("products/categories/9").parsed_response
 }
 ```
 
-## View List Of Product Categories ##
+## View List of Product Categories ##
 
 This API lets you retrieve all product categories.
 

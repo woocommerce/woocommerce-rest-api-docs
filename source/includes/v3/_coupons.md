@@ -254,7 +254,7 @@ woocommerce.get("coupons/529").parsed_response
 }
 ```
 
-## View List Of Coupons ##
+## View List of Coupons ##
 
 This API helps you to view all the coupons.
 
