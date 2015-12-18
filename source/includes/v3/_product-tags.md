@@ -14,7 +14,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Create a Product Tag ##
 
-This API helps you to create a new product shipping class.
+This API helps you to create a new product tag.
 
 ### HTTP Request ###
 
@@ -25,7 +25,7 @@ This API helps you to create a new product shipping class.
 	</div>
 </div>
 
-> Example of how to create a product shipping class:
+> Example of how to create a product tag:
 
 ```shell
 curl -X POST https://example.com/wc-api/v3/products/tags \
@@ -90,7 +90,7 @@ woocommerce.post("products/tags", data).parsed_response
 
 ## View a Product Tag ##
 
-This API lets you retrieve a product shipping class.
+This API lets you retrieve a product tag.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -138,7 +138,7 @@ woocommerce.get("products/tags/37").parsed_response
 
 ## View List of Product Tags ##
 
-This API lets you retrieve all product shipping classes.
+This API lets you retrieve all product tag.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -195,7 +195,7 @@ woocommerce.get("products/tags").parsed_response
 
 ## Update a Product Tag ##
 
-This API lets you make changes to a product shipping class.
+This API lets you make changes to a product tag.
 
 ### HTTP Request ###
 
@@ -269,7 +269,7 @@ woocommerce.put("products/tags/37", data).parsed_response
 
 ## Delete a Product Tag ##
 
-This API helps you delete a product shipping class.
+This API helps you delete a product tag.
 
 ### HTTP Request ###
 
