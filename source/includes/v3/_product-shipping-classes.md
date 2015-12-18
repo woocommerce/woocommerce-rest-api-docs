@@ -13,7 +13,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `description` | string  | Shipping Class description                                                                      |
 | `count`       | boolean | Shows the quantity of products in this shipping class <i class="label label-info">read-only</i> |
 
-## Create A Product Shipping Class ##
+## Create a Product Shipping Class ##
 
 This API helps you to create a new product shipping class.
 
@@ -90,7 +90,7 @@ woocommerce.post("products/shipping_classes", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## View A Product Shipping Class ##
+## View a Product Shipping Class ##
 
 This API lets you retrieve a product shipping class.
 
@@ -198,7 +198,7 @@ woocommerce.get("products/shipping_classes").parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## Update A Product Shipping Class ##
+## Update a Product Shipping Class ##
 
 This API lets you make changes to a product shipping class.
 
@@ -273,7 +273,7 @@ woocommerce.put("products/shipping_classes/35", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## Delete A Product Shipping Class ##
+## Delete a Product Shipping Class ##
 
 This API helps you delete a product shipping class.
 

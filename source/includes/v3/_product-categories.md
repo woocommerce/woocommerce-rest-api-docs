@@ -15,7 +15,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `image`       | string  | Category image URL                                                                                            |
 | `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                     |
 
-## Create A Product Category ##
+## Create a Product Category ##
 
 This API helps you to create a new product category.
 
@@ -94,7 +94,7 @@ woocommerce.post("products/categories", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## View A Product Category ##
+## View a Product Category ##
 
 This API lets you retrieve a product category.
 
@@ -250,7 +250,7 @@ woocommerce.get("products/categories").parsed_response
 }
 ```
 
-## Update A Product Category ##
+## Update a Product Category ##
 
 This API lets you make changes to a product category.
 
@@ -327,7 +327,7 @@ woocommerce.put("products/categories/9", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## Delete A Product Category ##
+## Delete a Product Category ##
 
 This API helps you delete a product category.
 

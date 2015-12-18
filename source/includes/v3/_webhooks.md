@@ -48,7 +48,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `X-WC-Webhook-ID`          | integer | The webhook's ID                                                                           |
 | `X-WC-Webhook-Delivery-ID` | integer | The delivery ID                                                                            |
 
-## Create A Webhook ##
+## Create a Webhook ##
 
 This API helps you to create a new webhook.
 
@@ -137,7 +137,7 @@ woocommerce.post("webhooks", data).parsed_response
 }
 ```
 
-## View A Webhook ##
+## View a Webhook ##
 
 This API lets you retrieve and view a specific webhook.
 
@@ -267,7 +267,7 @@ woocommerce.get("webhooks").parsed_response
 | -------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
 | `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled`. Default is `active` |
 
-## Update A Webhook ##
+## Update a Webhook ##
 
 This API lets you make changes to a webhook.
 
@@ -344,7 +344,7 @@ woocommerce.put("webhooks/535", data).parsed_response
 }
 ```
 
-## Delete A Webhook ##
+## Delete a Webhook ##
 
 This API helps you delete a webhook.
 
@@ -430,7 +430,7 @@ woocommerce.get("webhooks/count").parsed_response
 | -------- | ------ | -------------------------------------------------------------------------------------------- |
 | `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
 
-## View A Webhooks Delivery ##
+## View a Webhooks Delivery ##
 
 This API lets you retrieve and view a specific webhook delivery.
 

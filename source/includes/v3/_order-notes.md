@@ -11,7 +11,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `note`          | string  | Order note <i class="label label-info">required</i>                                                                |
 | `customer_note` | boolean | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false` |
 
-## Create A Note For An Order ##
+## Create a Note For an Order ##
 
 This API helps you to create a new note for an order.
 
@@ -80,7 +80,7 @@ woocommerce.post("orders/645/notes", data).parsed_response
 }
 ```
 
-## View An Order Note ##
+## View an Order Note ##
 
 This API lets you retrieve and view a specific note from an order.
 
@@ -125,7 +125,7 @@ woocommerce.get("orders/645/notes/416").parsed_response
 }
 ```
 
-## View List Of Notes From An Order ##
+## View List Of Notes From an Order ##
 
 This API helps you to view all the notes from an order.
 
@@ -190,7 +190,7 @@ woocommerce.get("orders/645/notes").parsed_response
 }
 ```
 
-## Update An Order Note ##
+## Update an Order Note ##
 
 This API lets you make changes to an order note.
 
@@ -259,7 +259,7 @@ woocommerce.put("orders/645/notes/416", data).parsed_response
 }
 ```
 
-## Delete An Order Note ##
+## Delete an Order Note ##
 
 This API helps you delete an order note.
 

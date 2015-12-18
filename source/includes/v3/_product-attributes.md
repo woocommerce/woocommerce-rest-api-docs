@@ -13,7 +13,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `order_by`     | string  | Default sort order. Available: `menu_order`, `name`, `name_num` and `id`                                             |
 | `has_archives` | boolean | Enable/Disable attribute archives                                                                                    |
 
-## Create A Product Attribute ##
+## Create a Product Attribute ##
 
 This API helps you to create a new product attribute.
 
@@ -100,7 +100,7 @@ woocommerce.post("products/attributes", data).parsed_response
 }
 ```
 
-## View A Product Attribute ##
+## View a Product Attribute ##
 
 This API lets you retrieve and view a specific product attribute by ID.
 
@@ -202,7 +202,7 @@ woocommerce.get("products/attributes").parsed_response
 }
 ```
 
-## Update A Product Attribute ##
+## Update a Product Attribute ##
 
 This API lets you make changes to a product attribute.
 
@@ -273,7 +273,7 @@ woocommerce.put("products/attributes/1", data).parsed_response
 }
 ```
 
-## Delete A Product Attribute ##
+## Delete a Product Attribute ##
 
 This API helps you delete a product attribute.
 

@@ -12,7 +12,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `reason`     | string  | Reason for refund                                                                        |
 | `line_items` | array   | List of order items to refund. See [Line Items Properties](line-items-properties)        |
 
-## Create A Refund For An Order ##
+## Create a Refund For an Order ##
 
 This API helps you to create a new refund for an order.
 
@@ -82,7 +82,7 @@ woocommerce.post("orders/645/refunds", data).parsed_response
 }
 ```
 
-## View An Order Refund ##
+## View an Order Refund ##
 
 This API lets you retrieve and view a specific refund from an order.
 
@@ -128,7 +128,7 @@ woocommerce.get("orders/645/refunds/649").parsed_response
 }
 ```
 
-## View List Of Refunds From An Order ##
+## View List Of Refunds From an Order ##
 
 This API helps you to view all the refunds from an order.
 
@@ -212,7 +212,7 @@ woocommerce.get("orders/645/refunds").parsed_response
 }
 ```
 
-## Update An Order Refund ##
+## Update an Order Refund ##
 
 This API lets you make changes to an order refund.
 
@@ -282,7 +282,7 @@ woocommerce.put("orders/645/refunds/649", data).parsed_response
 }
 ```
 
-## Delete An Order Refund ##
+## Delete an Order Refund ##
 
 This API helps you delete an order refund.
 

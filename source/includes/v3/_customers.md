@@ -51,7 +51,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `postcode`   | string | Postal code                                         |
 | `country`    | string | ISO code of the country                             |
 
-## Create A Customer ##
+## Create a Customer ##
 
 This API helps you to create a new customer.
 
@@ -259,7 +259,7 @@ woocommerce.post("customers", data).parsed_response
 }
 ```
 
-## View A Customer ##
+## View a Customer ##
 
 This API lets you retrieve and view a specific customer by ID or email.
 
@@ -463,7 +463,7 @@ woocommerce.get("customers").parsed_response
 | ------ | ------ | --------------------------------------------------- |
 | `role` | string | Customers by status. eg: `customer` or `subscriber` |
 
-## Update A Customer ##
+## Update a Customer ##
 
 This API lets you make changes to a customer.
 
@@ -964,7 +964,7 @@ woocommerce.put("customers/bulk", data).parsed_response
 }
 ```
 
-## Delete A Customer ##
+## Delete a Customer ##
 
 This API helps you delete a customer.
 

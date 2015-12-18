@@ -111,7 +111,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `code`    | string  | Coupon code <i class="label label-info">required</i>     |
 | `amount`  | float   | Total amount <i class="label label-info">required</i>    |
 
-## Create An Order ##
+## Create an Order ##
 
 This API helps you to create a new order.
 
@@ -517,7 +517,7 @@ woocommerce.post("orders", data).parsed_response
 }
 ```
 
-## View An Order ##
+## View an Order ##
 
 This API lets you retrieve and view a specific order.
 
@@ -1071,7 +1071,7 @@ woocommerce.get("orders").parsed_response
 	`expand` filter is available starting from WooCommerce 2.5.
 </aside>
 
-## Update An Order ##
+## Update an Order ##
 
 This API lets you make changes to an order.
 
@@ -1682,7 +1682,7 @@ woocommerce.put("orders/bulk", data).parsed_response
 }
 ```
 
-## Delete An Order ##
+## Delete an Order ##
 
 This API helps you delete an order.
 

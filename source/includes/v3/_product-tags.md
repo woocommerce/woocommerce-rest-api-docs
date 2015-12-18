@@ -12,7 +12,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `description` | string  | Tag description                                                                      |
 | `count`       | boolean | Shows the quantity of products in this tag <i class="label label-info">read-only</i> |
 
-## Create A Product Tag ##
+## Create a Product Tag ##
 
 This API helps you to create a new product shipping class.
 
@@ -88,7 +88,7 @@ woocommerce.post("products/tags", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## View A Product Tag ##
+## View a Product Tag ##
 
 This API lets you retrieve a product shipping class.
 
@@ -193,7 +193,7 @@ woocommerce.get("products/tags").parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## Update A Product Tag ##
+## Update a Product Tag ##
 
 This API lets you make changes to a product shipping class.
 
@@ -267,7 +267,7 @@ woocommerce.put("products/tags/37", data).parsed_response
 	Endpoint introduced since WooCommerce 2.5.
 </aside>
 
-## Delete A Product Tag ##
+## Delete a Product Tag ##
 
 This API helps you delete a product shipping class.
 

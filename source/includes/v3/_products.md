@@ -159,7 +159,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `download_limit`        | integer | Amount of times the variation can be downloaded. In write-mode you can sent a blank string for unlimited re-downloads. e.g `''`                                                                        |
 | `download_expiry`       | integer | Number of days that the customer has up to be able to download the varition. In write-mode you can sent a blank string for never expiry. e.g `''`                                                      |
 
-## Create A Product ##
+## Create a Product ##
 
 This API helps you to create a new product.
 
@@ -981,7 +981,7 @@ woocommerce.post("products", data).parsed_response
 }
 ```
 
-## View A Product ##
+## View a Product ##
 
 This API lets you retrieve and view a specific product by ID.
 
@@ -1484,7 +1484,7 @@ woocommerce.get("products").parsed_response
 	`tag`, `shipping_class` and `pa_*` filters are available starting from WooCommerce 2.5.
 </aside>
 
-## Update A Product ##
+## Update a Product ##
 
 This API lets you make changes to a product.
 
@@ -2086,7 +2086,7 @@ woocommerce.put("products/bulk", data).parsed_response
 }
 ```
 
-## Delete A Product ##
+## Delete a Product ##
 
 This API helps you delete a product.
 
