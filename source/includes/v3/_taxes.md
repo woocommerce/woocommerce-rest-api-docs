@@ -1,6 +1,6 @@
 # Taxes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate taxes.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate tax rates.
 
 ## Taxes Properties ##
 
@@ -37,7 +37,7 @@ curl -X POST https://example.com/wc-api/v3/taxes \
     -u consumer_key:consumer_secret \
     -H "Content-Type: application/json" \
     -d '{
-  "product_attribute": {
+  "tax": {
     "country": "US",
     "state": "AL",
     "rate": "4",
@@ -49,7 +49,7 @@ curl -X POST https://example.com/wc-api/v3/taxes \
 
 ```javascript
 var data = {
-  product_attribute: {
+  tax: {
     country: 'US',
     state: 'AL',
     rate: '4',
@@ -65,7 +65,7 @@ WooCommerce.post('taxes', data, function(err, data, res) {
 
 ```python
 data = {
-    "product_attribute": {
+    "tax": {
         "country": "US",
         "state": "AL",
         "rate": "4",
@@ -79,7 +79,7 @@ print(wcapi.post("taxes", data).json())
 
 ```ruby
 data = {
-  product_attribute: {
+  tax: {
     country: "US",
     state: "AL",
     rate: "4",
