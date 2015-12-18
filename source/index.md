@@ -30,6 +30,7 @@ includes:
   - v3/product-tags
   - v3/reports
   - v3/taxes
+  - v3/tax-classes
   - v3/webhooks
   - v3/authentication-endpoint
 
