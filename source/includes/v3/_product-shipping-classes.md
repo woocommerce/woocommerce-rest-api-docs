@@ -92,7 +92,7 @@ woocommerce.post("products/shipping_classes", data).parsed_response
 
 ## View a Product Shipping Class ##
 
-This API lets you retrieve a product shipping class.
+This API lets you retrieve a product shipping class by ID.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

@@ -96,7 +96,7 @@ woocommerce.post("products/categories", data).parsed_response
 
 ## View a Product Category ##
 
-This API lets you retrieve a product category.
+This API lets you retrieve a product category by ID.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

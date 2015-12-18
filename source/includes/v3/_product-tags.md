@@ -90,7 +90,7 @@ woocommerce.post("products/tags", data).parsed_response
 
 ## View a Product Tag ##
 
-This API lets you retrieve a product tag.
+This API lets you retrieve a product tag by ID.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
