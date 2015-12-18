@@ -22,6 +22,8 @@ includes:
   - v3/coupons
   - v3/customers
   - v3/orders
+  - v3/order-notes
+  - v3/order-refunds
   - v3/products
   - v3/product-attributes
   - v3/product-categories
