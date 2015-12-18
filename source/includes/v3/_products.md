@@ -70,6 +70,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `parent`                        | array   | List the product parent data when query for a variation <i class="label label-info">read-only</i>                                                                                                                                                                |
 | `product_url`                   | string  | Product external URL. Only for `external` products <i class="label label-info">write-only</i>                                                                                                                                                                    |
 | `button_text`                   | string  | Product external button text. Only for `external` products <i class="label label-info">write-only</i>                                                                                                                                                            |
+| `menu_order`                    | integer | Menu order, used to custom sort products                                                                                                                                                                                                                         |
+
+<aside class="notice">
+	`menu_order` attribute is available starting from WooCommerce 2.5.
+</aside>
 
 ### Dimensions Properties ###
 
@@ -382,7 +387,9 @@ woocommerce.post("products", data).parsed_response
     "purchase_note": "",
     "total_sales": 0,
     "variations": [],
-    "parent": []
+    "parent": [],
+    "grouped_products": [],
+    "menu_order": 0
   }
 }
 ```
@@ -976,7 +983,9 @@ woocommerce.post("products", data).parsed_response
         "download_expiry": 0
       }
     ],
-    "parent": []
+    "parent": [],
+    "grouped_products": [],
+    "menu_order": 0
   }
 }
 ```
@@ -1106,7 +1115,9 @@ woocommerce.get("products/546").parsed_response
     "purchase_note": "",
     "total_sales": 0,
     "variations": [],
-    "parent": []
+    "parent": [],
+    "grouped_products": [],
+    "menu_order": 0
   }
 }
 ```
@@ -1237,7 +1248,9 @@ woocommerce.get("products").parsed_response
       "purchase_note": "",
       "total_sales": 0,
       "variations": [],
-      "parent": []
+      "parent": [],
+      "grouped_products": [],
+      "menu_order": 0
     },
     {
       "title": "Ship Your Idea",
@@ -1463,7 +1476,9 @@ woocommerce.get("products").parsed_response
           "download_expiry": 0
         }
       ],
-      "parent": []
+      "parent": [],
+      "grouped_products": [],
+      "menu_order": 0
     }
   ]
 }
@@ -1633,7 +1648,9 @@ woocommerce.put("products/546", data).parsed_response
     "purchase_note": "",
     "total_sales": 0,
     "variations": [],
-    "parent": []
+    "parent": [],
+    "grouped_products": [],
+    "menu_order": 0
   }
 }
 ```
@@ -1854,7 +1871,9 @@ woocommerce.put("products/bulk", data).parsed_response
       "purchase_note": "",
       "total_sales": 0,
       "variations": [],
-      "parent": []
+      "parent": [],
+      "grouped_products": [],
+      "menu_order": 0
     },
     {
       "title": "Ship Your Idea",
@@ -2080,7 +2099,9 @@ woocommerce.put("products/bulk", data).parsed_response
           "download_expiry": 0
         }
       ],
-      "parent": []
+      "parent": [],
+      "grouped_products": [],
+      "menu_order": 0
     }
   ]
 }
