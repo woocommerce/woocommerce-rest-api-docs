@@ -10,7 +10,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `created_at` | string  | UTC DateTime when the order refund was created <i class="label label-info">read-only</i> |
 | `amount`     | float   | Refund amount <i class="label label-info">required</i>                                   |
 | `reason`     | string  | Reason for refund                                                                        |
-| `line_items` | array   | List of order items to refund. See [Line Items Properties](line-items-properties)        |
+| `line_items` | array   | List of order items to refund. See [Line Items Properties](#line-items-properties)       |
 
 ## Create a Refund For an Order ##
 
