@@ -25,6 +25,7 @@ includes:
   - v3/order-refunds
   - v3/products
   - v3/product-attributes
+  - v3/product-attribute-terms
   - v3/product-categories
   - v3/product-shipping-classes
   - v3/product-tags
