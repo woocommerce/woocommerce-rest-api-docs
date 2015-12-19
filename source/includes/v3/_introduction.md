@@ -7,7 +7,7 @@ Introduced in WooCommerce 2.1, the REST API allows WooCommerce data to be create
 You must be using WooCommerce 2.1 or newer and the REST API must be enabled under `WooCommerce > Settings`. You must enable pretty permalinks in `Settings > Permalinks` (default permalinks will not work).
 
 <aside class="notice">
-Endpoints may be improved with each release of WooCommerce, so we always recommend keeping WooCommerce up to date to reflect this documentation.
+	Endpoints may be improved with each release of WooCommerce, so we always recommend keeping WooCommerce up to date to reflect this documentation.
 </aside>
 
 ## Version ##

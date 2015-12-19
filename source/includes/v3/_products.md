@@ -73,7 +73,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `menu_order`                    | integer | Menu order, used to custom sort products                                                                                                                                                                                                                         |
 
 <aside class="notice">
-	`menu_order` attribute is available starting from WooCommerce 2.5.
+	<code>menu_order</code> attribute is available starting from WooCommerce 2.5.
 </aside>
 
 ### Dimensions Properties ###
@@ -98,7 +98,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `position`   | integer | Image position. `0` means that the image is featured                                   |
 
 <aside class="notice">
-	`alt` and `title` attributes are writable starting from WooCommerce 2.5.
+	<code>alt</code> and <code>title</code> attributes are writable starting from WooCommerce 2.5.
 </aside>
 
 ### Attributes Properties ###
@@ -1496,7 +1496,7 @@ woocommerce.get("products").parsed_response
 | `sku`            | string | Filter a product by SKU.                             |
 
 <aside class="notice">
-	`tag`, `shipping_class` and `pa_*` filters are available starting from WooCommerce 2.5.
+	<code>tag<code>, <code>shipping_class</code> and <code>pa_*</code> filters are available starting from WooCommerce 2.5.
 </aside>
 
 ## Update a Product ##
@@ -2205,7 +2205,7 @@ woocommerce.get("products/count").parsed_response
 | `sku`            | string | Filter a product by SKU.                             |
 
 <aside class="notice">
-	`tag`, `shipping_class` and `pa_*` filters are available starting from WooCommerce 2.5.
+	<code>tag</code>, <code>shipping_class</code> and <code>pa_*</code> filters are available starting from WooCommerce 2.5.
 </aside>
 
 ## View List of Product Orders ##

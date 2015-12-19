@@ -716,7 +716,7 @@ woocommerce.get("orders/645").parsed_response
 | `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
 
 <aside class="notice">
-	`expand` filter is available starting from WooCommerce 2.5.
+	<code>expand</code> filter is available starting from WooCommerce 2.5.
 </aside>
 
 ## View List of Orders ##
@@ -1068,7 +1068,7 @@ woocommerce.get("orders").parsed_response
 | `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
 
 <aside class="notice">
-	`expand` filter is available starting from WooCommerce 2.5.
+	<code>expand</code> filter is available starting from WooCommerce 2.5.
 </aside>
 
 ## Update an Order ##
