@@ -54,6 +54,23 @@ var query_string = querystring.stringify(params).replace(/%20/g, '+');
 console.log(store_url + endpoint + '?' + query_string);
 ```
 
+```php
+<?php
+$store_url = 'http://example.com';
+$endpoint = '/wc-auth/v1/authorize';
+$params = [
+    'app_name' => 'My App Name',
+    'scope' => 'write',
+    'user_id' => 123,
+    'return_url' => 'http://app.com',
+    'callback_url' => 'https://app.com'
+];
+$query_string = http_build_query( $params );
+
+echo $store_url . $endpoint . '?' . $query_string;
+?>
+```
+
 ```python
 from urllib.parse import urlencode
 
