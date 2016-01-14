@@ -50,7 +50,7 @@ curl -X POST https://example.com/wc-api/v3/coupons \
   "coupon": {
     "code": "new-coupon",
     "type": "percent",
-    "amount": "10",
+    "amount": 10,
     "individual_use": true,
     "product_ids": [],
     "exclude_product_ids": [],
@@ -75,7 +75,7 @@ var data = {
   coupon: {
     code: 'new-coupon',
     type: 'percent',
-    amount: '10',
+    amount: 10,
     individual_use: true,
     product_ids: [],
     exclude_product_ids: [],
@@ -99,12 +99,41 @@ WooCommerce.post('coupons', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'coupon' => [
+        'code' => 'new-coupon',
+        'type' => 'percent',
+        'amount' => 10,
+        'individual_use' => true,
+        'product_ids' => [],
+        'exclude_product_ids' => [],
+        'usage_limit' => '',
+        'usage_limit_per_user' => '',
+        'limit_usage_to_x_items' => '',
+        'expiry_date' => '',
+        'enable_free_shipping' => false,
+        'product_category_ids' => [],
+        'exclude_product_category_ids' => [],
+        'exclude_sale_items' => true,
+        'minimum_amount' => '100.00',
+        'maximum_amount' => '0.00',
+        'customer_emails' => [],
+        'description' => ''
+    ]
+];
+
+print_r($woocommerce->post('coupons', $data));
+?>
+```
+
 ```python
 data = {
     "coupon": {
         "code": "new-coupon",
         "type": "percent",
-        "amount": "10",
+        "amount": 10,
         "individual_use": True,
         "product_ids": [],
         "exclude_product_ids": [],
@@ -131,7 +160,7 @@ data = {
   coupon: {
     code: "new-coupon",
     type: "percent",
-    amount: "10",
+    amount: 10,
     individual_use: true,
     product_ids: [],
     exclude_product_ids: [],
@@ -197,13 +226,6 @@ This API lets you retrieve and view a specific coupon by ID or code.
 	</div>
 </div>
 
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/coupons/code/&lt;code&gt;</h6>
-	</div>
-</div>
-
 ```shell
 curl https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret
@@ -213,6 +235,10 @@ curl https://example.com/wc-api/v3/coupons/529 \
 WooCommerce.get('coupons/529', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('coupons/529')); ?>
 ```
 
 ```python
@@ -276,6 +302,10 @@ curl https://example.com/wc-api/v3/coupons \
 WooCommerce.get('coupons', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('coupons')); ?>
 ```
 
 ```python
@@ -386,7 +416,7 @@ curl -X PUT https://example.com/wc-api/v3/coupons/529 \
 	-H "Content-Type: application/json" \
 	-d '{
   "coupon": {
-    "amount": "5"
+    "amount": 5
   }
 }'
 ```
@@ -394,7 +424,7 @@ curl -X PUT https://example.com/wc-api/v3/coupons/529 \
 ```javascript
 var data = {
   coupon: {
-    amount: '5'
+    amount: 5
   }
 };
 
@@ -403,10 +433,22 @@ WooCommerce.put('coupons/529', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php 
+$data = [
+    'coupon' => [
+        'amount' => 5
+    ]
+];
+
+print_r($woocommerce->put('coupons/529', $data)); 
+?>
+```
+
 ```python
 data = {
     "coupon": {
-        "amount": "5"
+        "amount": 5
     }
 }
 
@@ -416,7 +458,7 @@ print(wcapi.put("coupons/529", data).json())
 ```ruby
 data = {
   coupon: {
-    amount: "5"
+    amount: 5
   }
 }
 
@@ -470,7 +512,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/coupons/bulk \
+curl -X POST https://example.com/wc-api/v3/coupons/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -509,9 +551,32 @@ var data = {
   ]
 };
 
-WooCommerce.put('coupons/bulk', data, function(err, data, res) {
+WooCommerce.post('coupons/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php 
+$data = [
+    'coupons' => [
+        [
+            'id' => 529,
+            'amount' => '15.00'
+        ],
+        [
+            'id' => 527,
+            'minimum_amount' => '55.00'
+        ],
+        [
+            'id' => 526,
+            'amount': '20.00'
+        ]
+    ]
+];
+
+print_r($woocommerce->post('coupons/bulk', $data)); 
+?>
 ```
 
 ```python
@@ -532,7 +597,7 @@ data = {
     ]
 }
 
-print(wcapi.put("coupons/bulk", data).json())
+print(wcapi.post("coupons/bulk", data).json())
 ```
 
 ```ruby
@@ -553,7 +618,7 @@ data = {
   ]
 }
 
-woocommerce.put("coupons/bulk", data).parsed_response
+woocommerce.post("coupons/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -661,12 +726,16 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('coupons/529', ['force' => true])); ?>
+```
+
 ```python
 print(wcapi.delete("coupons/529?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("coupons/529?force=true").parsed_response
+woocommerce.delete("coupons/529", force: true).parsed_response
 ```
 
 > JSON response example:
@@ -705,6 +774,10 @@ curl https://example.com/wc-api/v3/coupons/count \
 WooCommerce.get('coupons/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('coupons/count')); ?>
 ```
 
 ```python

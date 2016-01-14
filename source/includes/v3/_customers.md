@@ -141,6 +141,45 @@ WooCommerce.post('customers', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'customer' => [
+        'email' => 'john.doe@example.com',
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'username' => 'john.doe',
+        'billing_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ],
+        'shipping_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        ]
+    ]
+];
+
+print_r($woocommerce->post('customers', $data));
+?>
+```
+
 ```python
 data = {
     "customer": {
@@ -290,6 +329,10 @@ WooCommerce.get('customers/2', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('customers/2')); ?>
+```
+
 ```python
 print(wcapi.get("customers/2").json())
 ```
@@ -364,6 +407,10 @@ curl https://example.com/wc-api/v3/customers \
 WooCommerce.get('customers', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers')); ?>
 ```
 
 ```python
@@ -511,6 +558,24 @@ WooCommerce.put('customers/2', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php 
+$data = [
+    'customer' => [
+        'first_name' => 'James',
+        'billing_address' => [
+            'first_name' => 'James'
+        ],
+        'shipping_address' => [
+            'first_name' => 'James'
+        ]
+    ]
+];
+
+print_r($woocommerce->put('customers/2', $data));
+?>
+```
+
 ```python
 data = {
     "customer": {
@@ -603,7 +668,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/customers/bulk \
+curl -X POST https://example.com/wc-api/v3/customers/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -738,9 +803,80 @@ var data = {
   ]
 };
 
-WooCommerce.put('customers/bulk', data, function(err, data, res) {
+WooCommerce.post('customers/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php 
+$data = [
+    'customers': [
+        [
+            'email': 'john.doe2@example.com',
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'username': 'john.doe2',
+            'billing_address': [
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'company': '',
+                'address_1': '969 Market',
+                'address_2': '',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'postcode': '94103',
+                'country': 'US',
+                'email': 'john.doe@example.com',
+                'phone': '(555) 555-5555'
+            ],
+            'shipping_address': [
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'company': '',
+                'address_1': '969 Market',
+                'address_2': '',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'postcode': '94103',
+                'country': 'US'
+            ]
+        ],
+        [
+            'email': 'joao.silva2@example.com',
+            'first_name': 'João',
+            'last_name': 'Silva',
+            'username': 'joao.silva2',
+            'billing_address': [
+                'first_name': 'João',
+                'last_name': 'Silva',
+                'company': '',
+                'address_1': 'Av. Brasil, 432',
+                'address_2': '',
+                'city': 'Rio de Janeiro',
+                'state': 'RJ',
+                'postcode': '12345-000',
+                'country': 'BR',
+                'email': 'joao.silva@example.com',
+                'phone': '(55) 5555-5555'
+            ],
+            'shipping_address': [
+                'first_name': 'João',
+                'last_name': 'Silva',
+                'company': '',
+                'address_1': 'Av. Brasil, 432',
+                'address_2': '',
+                'city': 'Rio de Janeiro',
+                'state': 'RJ',
+                'postcode': '12345-000',
+                'country': 'BR'
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('customers/bulk', $data));
+?>
 ```
 
 ```python
@@ -809,7 +945,7 @@ data = {
     ]
 }
 
-print(wcapi.put("customers/bulk", data).json())
+print(wcapi.post("customers/bulk", data).json())
 ```
 
 ```ruby
@@ -878,7 +1014,7 @@ data = {
   ]
 }
 
-woocommerce.put("customers/bulk", data).parsed_response
+woocommerce.post("customers/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -988,6 +1124,10 @@ WooCommerce.delete('customers/2', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('customers/2')); ?>
+```
+
 ```python
 print(wcapi.delete("customers/2").json())
 ```
@@ -1026,6 +1166,10 @@ curl https://example.com/wc-api/v3/customers/2/orders \
 WooCommerce.get('customers/2/orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers/2/orders')); ?>
 ```
 
 ```python
@@ -1189,6 +1333,10 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('customers/2/downloads')); ?>
+```
+
 ```python
 print(wcapi.get("customers/2/downloads").json())
 ```
@@ -1256,6 +1404,10 @@ curl https://example.com/wc-api/v3/customers/count \
 WooCommerce.get('customers/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers/count')); ?>
 ```
 
 ```python

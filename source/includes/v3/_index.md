@@ -74,6 +74,10 @@ WooCommerce.get('', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('')); ?>
+```
+
 ```python
 print(wcapi.get("").json())
 ```

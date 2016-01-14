@@ -36,6 +36,10 @@ WooCommerce.get('reports', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('reports')); ?>
+```
+
 ```python
 print(wcapi.get("reports").json())
 ```
@@ -79,12 +83,32 @@ WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 });
 ```
 
+```php
+<?php
+$query = [
+    'filter' => [
+        'date_min' => '2015-01-18', 
+        'date_max' => '2015-01-21'
+    ]
+];
+
+print_r($woocommerce->get('reports/sales', $query));
+?>
+```
+
 ```python
 print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").json())
 ```
 
 ```ruby
-woocommerce.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").parsed_response
+query = {
+  filter: {
+    date_min: "2015-01-18",
+    date_max: "2015-01-21"
+  }
+}
+
+woocommerce.get("reports/sales", query).parsed_response
 ```
 
 > JSON response example:
@@ -167,12 +191,30 @@ WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(
 });
 ```
 
+```php
+<?php
+$query = [
+    'filter' => [
+        'period' => 'last_month'
+    ]
+];
+
+print_r($woocommerce->get('reports/sales/top_sellers', $query));
+?>
+```
+
 ```python
 print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").json())
 ```
 
 ```ruby
-woocommerce.get("reports/sales/top_sellers?filter[period]=last_month").parsed_response
+query = {
+  filter: {
+    period: "last_month"
+  }
+}
+
+woocommerce.get("reports/sales/top_sellers", query).parsed_response
 ```
 
 > JSON response example:

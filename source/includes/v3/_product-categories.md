@@ -53,6 +53,18 @@ WooCommerce.post('products/categories', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_category' => [
+        'name' => 'Clothing'
+    ]
+];
+
+print_r($woocommerce->post('products/categories', $data));
+?>
+```
+
 ```python
 data = {
     "product_category": {
@@ -116,6 +128,10 @@ WooCommerce.get('products/categories/9', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/categories/9')); ?>
+```
+
 ```python
 print(wcapi.get("products/categories/9").json())
 ```
@@ -161,6 +177,10 @@ curl https://example.com/wc-api/v3/products/categories \
 WooCommerce.get('products/categories', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/categories')); ?>
 ```
 
 ```python
@@ -286,6 +306,18 @@ WooCommerce.put('products/categories/9', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_category' => [
+        'description' => 'All kinds of clothes.'
+    ]
+];
+
+print_r($woocommerce->put('products/categories/9', $data));
+?>
+```
+
 ```python
 data = {
     "product_category": {
@@ -349,6 +381,10 @@ curl -X DELETE https://example.com/wc-api/v3/products/categories/9 \
 WooCommerce.delete('products/categories/9', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('products/categories/9')); ?>
 ```
 
 ```python

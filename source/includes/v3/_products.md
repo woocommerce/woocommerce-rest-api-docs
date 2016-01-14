@@ -238,6 +238,36 @@ WooCommerce.post('products', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product' => [
+        'title' => 'Premium Quality',
+        'type' => 'simple',
+        'regular_price' => '21.99',
+        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+        'categories' => [
+            9,
+            14
+        ],
+        'images' => [
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg',
+                'position' => 0
+            ],
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/premium-quality-back.jpg',
+                'position' => 1
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('products', $data));
+?>
+```
+
 ```python
 data = {
     "product": {
@@ -575,6 +605,97 @@ var data = {
 WooCommerce.post('products', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'product' => [
+        'title' => 'Ship Your Idea',
+        'type' => 'variable',
+        'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
+        'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+        'categories' => [
+            9,
+            14
+        ],
+        'images' => [
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+                'position' => 0
+            ],
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-back.jpg',
+                'position' => 1
+            ],
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+                'position' => 2
+            ],
+            [
+                'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-back.jpg',
+                'position' => 3
+            ]
+        ],
+        'attributes' => [
+            [
+                'name' => 'Color',
+                'slug' => 'color',
+                'position' => '0',
+                'visible' => false,
+                'variation' => true,
+                'options' => [
+                    'Black',
+                    'Green'
+                ]
+            ]
+        ],
+        'default_attributes' => [
+            [
+                'name' => 'Color',
+                'slug' => 'color',
+                'option' => 'Black'
+            ]
+        ],
+        'variations' => [
+            [
+                'regular_price' => '19.99',
+                'image' => [
+                    [
+                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
+                        'position' => 0
+                    ]
+                ],
+                'attributes' => [
+                    [
+                        'name' => 'Color',
+                        'slug' => 'color',
+                        'option' => 'black'
+                    ]
+                ]
+            ],
+            [
+                'regular_price' => '19.99',
+                'image' => [
+                    [
+                        'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-green-front.jpg',
+                        'position' => 0
+                    ]
+                ],
+                'attributes' => [
+                    [
+                        'name' => 'Color',
+                        'slug' => 'color',
+                        'option' => 'green'
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('products', $data));
+?>
 ```
 
 ```python
@@ -1014,6 +1135,10 @@ WooCommerce.get('products/546', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/546')); ?>
+```
+
 ```python
 print(wcapi.get("products/546").json())
 ```
@@ -1144,6 +1269,10 @@ curl https://example.com/wc-api/v3/products \
 WooCommerce.get('products', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products')); ?>
 ```
 
 ```python
@@ -1496,7 +1625,7 @@ woocommerce.get("products").parsed_response
 | `sku`            | string | Filter a product by SKU.                             |
 
 <aside class="notice">
-	<code>tag<code>, <code>shipping_class</code> and <code>pa_*</code> filters are available starting from WooCommerce 2.5.
+	<code>tag</code>, <code>shipping_class</code> and <code>pa_*</code> filters are available starting from WooCommerce 2.5.
 </aside>
 
 ## Update a Product ##
@@ -1533,6 +1662,18 @@ var data = {
 WooCommerce.put('products/546', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'product' => [
+        'regular_price' => '24.54'
+    ]
+];
+
+print_r($woocommerce->put('products/546', $data));
+?>
 ```
 
 ```python
@@ -1671,7 +1812,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/products/bulk \
+curl -X POST https://example.com/wc-api/v3/products/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1720,9 +1861,37 @@ var data = {
   ]
 };
 
-WooCommerce.put('products/bulk', data, function(err, data, res) {
+WooCommerce.post('products/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'products' => [
+        [
+            'id' => 546,
+            'regular_price' => '29.99'
+        ],
+        [
+            'id' => 604,
+            'variations' => [
+                [
+                    'id' => 609,
+                    'regular_price' => '29.99'
+                ],
+                [
+                    'id' => 611,
+                    'regular_price' => '29.99'
+                ]
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('products/bulk', $data));
+?>
 ```
 
 ```python
@@ -1748,7 +1917,7 @@ data = {
     ]
 }
 
-print(wcapi.put("products/bulk", data).json())
+print(wcapi.post("products/bulk", data).json())
 ```
 
 ```ruby
@@ -1774,7 +1943,7 @@ data = {
   ]
 }
 
-woocommerce.put("products/bulk", data).parsed_response
+woocommerce.post("products/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -2131,6 +2300,10 @@ WooCommerce.delete('products/546?force=true', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('products/546', ['force' => true])); ?>
+```
+
 ```python
 print(wcapi.delete("products/546?force=true").json())
 ```
@@ -2175,6 +2348,10 @@ curl https://example.com/wc-api/v3/products/count \
 WooCommerce.get('products/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/count')); ?>
 ```
 
 ```python
@@ -2228,6 +2405,10 @@ curl https://example.com/wc-api/v3/products/546/orders \
 WooCommerce.get('products/546/orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/546/orders')); ?>
 ```
 
 ```python
@@ -2571,6 +2752,10 @@ curl https://example.com/wc-api/v3/products/546/reviews \
 WooCommerce.get('products/546/reviews', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/546/reviews')); ?>
 ```
 
 ```python

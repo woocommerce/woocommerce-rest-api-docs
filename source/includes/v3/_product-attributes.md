@@ -57,6 +57,22 @@ WooCommerce.post('products/attributes', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_attribute' => [
+        'name' => 'Color',
+        'slug' => 'pa_color',
+        'type' => 'select',
+        'order_by' => 'menu_order',
+        'has_archives' => true
+    ]
+];
+
+print_r($woocommerce->post('products/attributes', $data));
+?>
+```
+
 ```python
 data = {
     "product_attribute": {
@@ -122,6 +138,10 @@ WooCommerce.get('products/attributes/1', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/attributes/1')); ?>
+```
+
 ```python
 print(wcapi.get("products/attributes/1").json())
 ```
@@ -167,6 +187,10 @@ curl https://example.com/wc-api/v3/products/attributes \
 WooCommerce.get('products/attributes', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/attributes')); ?>
 ```
 
 ```python
@@ -238,6 +262,18 @@ WooCommerce.put('products/attributes/1', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_attribute' => [
+        'order_by' => 'name'
+    ]
+];
+
+print_r($woocommerce->put('products/attributes/1', $data));
+?>
+```
+
 ```python
 data = {
     "product_attribute": {
@@ -295,6 +331,10 @@ curl -X DELETE https://example.com/wc-api/v3/products/attributes/1 \
 WooCommerce.delete('products/attributes/1', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('products/attributes/1')); ?>
 ```
 
 ```python

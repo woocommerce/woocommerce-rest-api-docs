@@ -47,6 +47,18 @@ WooCommerce.post('products/attributes/1/terms', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_attribute_term' => [
+        'name' => 'Black'
+    ]
+];
+
+print_r($woocommerce->post('products/attributes/1/terms', $data));
+?>
+```
+
 ```python
 data = {
     "product_attribute_term": {
@@ -106,6 +118,10 @@ WooCommerce.get('products/attributes/1/terms/18', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/attributes/1/terms/18')); ?>
+```
+
 ```python
 print(wcapi.get("products/attributes/1/terms/18").json())
 ```
@@ -151,6 +167,10 @@ curl https://example.com/wc-api/v3/products/attributes/1/terms \
 WooCommerce.get('products/attributes/1/terms', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/attributes/1/terms')); ?>
 ```
 
 ```python
@@ -252,6 +272,18 @@ WooCommerce.put('products/attributes/1/terms/18', data, function(err, data, res)
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_attribute_term' => [
+        'name' => 'BLACK'
+    ]
+];
+
+print_r($woocommerce->put('products/attributes/1/terms/18', $data));
+?>
+```
+
 ```python
 data = {
     "product_attribute_term": {
@@ -311,6 +343,10 @@ curl -X DELETE https://example.com/wc-api/v3/products/attributes/1/terms/18 \
 WooCommerce.delete('products/attributes/1/terms/18', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('products/attributes/1/terms/18')); ?>
 ```
 
 ```python

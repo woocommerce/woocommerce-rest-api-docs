@@ -51,6 +51,18 @@ WooCommerce.post('products/shipping_classes', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_shipping_class' => [
+        'name' => 'Priority'
+    ]
+];
+
+print_r($woocommerce->post('products/shipping_classes', $data));
+?>
+```
+
 ```python
 data = {
     "product_shipping_class": {
@@ -112,6 +124,10 @@ WooCommerce.get('products/shipping_classes/35', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/shipping_classes/35')); ?>
+```
+
 ```python
 print(wcapi.get("products/shipping_classes/35").json())
 ```
@@ -159,6 +175,10 @@ curl https://example.com/wc-api/v3/products/shipping_classes \
 WooCommerce.get('products/shipping_classes', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/shipping_classes')); ?>
 ```
 
 ```python
@@ -234,6 +254,18 @@ WooCommerce.put('products/shipping_classes/35', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_shipping_class' => [
+        'description' => 'Priority mail.'
+    ]
+];
+
+print_r($woocommerce->put('products/shipping_classes/35', $data));
+?>
+```
+
 ```python
 data = {
     "product_shipping_class": {
@@ -295,6 +327,10 @@ curl -X DELETE https://example.com/wc-api/v3/products/shipping_class/35 \
 WooCommerce.delete('products/shipping_class/35', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('products/shipping_classes/35')); ?>
 ```
 
 ```python

@@ -50,6 +50,18 @@ WooCommerce.post('products/tags', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_tag': [
+        'name': 'Leather Shoes'
+    ]
+];
+
+print_r($woocommerce->post('products/tags', $data));
+?>
+```
+
 ```python
 data = {
     "product_tag": {
@@ -110,6 +122,10 @@ WooCommerce.get('products/tags/37', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('products/tags/37')); ?>
+```
+
 ```python
 print(wcapi.get("products/tags/37").json())
 ```
@@ -156,6 +172,10 @@ curl https://example.com/wc-api/v3/products/tags \
 WooCommerce.get('products/tags', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('products/tags')); ?>
 ```
 
 ```python
@@ -229,6 +249,18 @@ WooCommerce.put('products/tags/37', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'product_tag': [
+        'description': 'Genuine leather.'
+    ]
+];
+
+print_r($woocommerce->put('products/tags/37', $data));
+?>
+```
+
 ```python
 data = {
     "product_tag": {
@@ -289,6 +321,10 @@ curl -X DELETE https://example.com/wc-api/v3/products/tag/37 \
 WooCommerce.delete('products/tag/37', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('products/tags/37')); ?>
 ```
 
 ```python

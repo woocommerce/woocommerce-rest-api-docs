@@ -90,6 +90,21 @@ WooCommerce.post('webhooks', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'webhook' => [
+        'name' => 'An add to cart webhook',
+        'secret' => 'my-super-secret-private-key',
+        'topic' => 'action.woocommerce_add_to_cart',
+        'delivery_url' => 'http://requestb.in/1exdwip1'
+    ]
+];
+
+print_r($woocommerce->post('webhooks', $data));
+?>
+```
+
 ```python
 data = {
     "webhook": {
@@ -161,6 +176,10 @@ WooCommerce.get('webhooks/535', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('webhooks/535')); ?>
+```
+
 ```python
 print(wcapi.get("webhooks/535").json())
 ```
@@ -212,6 +231,10 @@ curl https://example.com/wc-api/v3/webhooks \
 WooCommerce.get('webhooks', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks')); ?>
 ```
 
 ```python
@@ -303,6 +326,18 @@ WooCommerce.put('webhooks/535', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'webhook' => [
+        'status' => 'paused'
+    ]
+];
+
+print_r($woocommerce->put('webhooks/535', $data));
+?>
+```
+
 ```python
 data = {
     "webhook": {
@@ -368,6 +403,10 @@ WooCommerce.delete('webhooks/535', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('webhooks/535')); ?>
+```
+
 ```python
 print(wcapi.delete("webhooks/535").json())
 ```
@@ -406,6 +445,10 @@ curl https://example.com/wc-api/v3/webhooks/count \
 WooCommerce.get('webhooks/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/count')); ?>
 ```
 
 ```python
@@ -452,6 +495,10 @@ curl https://example.com/wc-api/v3/webhooks/535/deliveries/378 \
 WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/535/deliveries/378')); ?>
 ```
 
 ```python
@@ -526,6 +573,10 @@ curl https://example.com/wc-api/v3/webhooks/535/deliveries \
 WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/535/deliveries')); ?>
 ```
 
 ```python

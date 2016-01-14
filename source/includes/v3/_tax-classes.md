@@ -45,6 +45,18 @@ WooCommerce.post('taxes/classes', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'tax_class' => [
+        'name' => 'Zero Rate'
+    ]
+];
+
+print_r($woocommerce->post('taxes/classes', $data));
+?>
+```
+
 ```python
 data = {
     "tax_class": {
@@ -102,6 +114,10 @@ curl https://example.com/wc-api/v3/taxes/classes \
 WooCommerce.get('taxes/classes', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('taxes/classes')); ?>
 ```
 
 ```python
@@ -165,6 +181,10 @@ WooCommerce.delete('taxes/classes/zero-rate', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('taxes/classes/zero-rate')); ?>
+```
+
 ```python
 print(wcapi.delete("taxes/classes/zero-rate").json())
 ```
@@ -207,6 +227,10 @@ curl https://example.com/wc-api/v3/taxes/classes/count \
 WooCommerce.get('taxes/classes/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('taxes/classes/count')); ?>
 ```
 
 ```python

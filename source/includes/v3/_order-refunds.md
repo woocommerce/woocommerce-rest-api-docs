@@ -48,6 +48,18 @@ WooCommerce.post('orders/645/refunds', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order_refund' => [
+        'amount' => 10
+    ]
+];
+
+print_r($woocommerce->post('orders/645/refunds', $data));
+?>
+```
+
 ```python
 data = {
     "order_refund": {
@@ -106,6 +118,10 @@ WooCommerce.get('orders/645/refunds/649', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('orders/645/refunds/649')); ?>
+```
+
 ```python
 print(wcapi.get("orders/645/refunds/649").json())
 ```
@@ -150,6 +166,10 @@ curl https://example.com/wc-api/v3/orders/645/refunds \
 WooCommerce.get('orders/645/refunds', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders/645/refunds')); ?>
 ```
 
 ```python
@@ -248,6 +268,18 @@ WooCommerce.put('orders/645/refunds/649', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order_refund' => [
+        'reason' => 'Because was it necessary!'
+    ]
+];
+
+print_r($woocommerce->put('orders/645/refunds/649', $data));
+?>
+```
+
 ```python
 data = {
     "order_refund": {
@@ -304,6 +336,10 @@ curl -X DELETE https://example.com/wc-api/v3/orders/645/refunds/649 \
 WooCommerce.delete('orders/645/refunds/649', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('orders/645/refunds/649')); ?>
 ```
 
 ```python

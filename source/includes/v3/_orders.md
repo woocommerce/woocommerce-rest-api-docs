@@ -243,6 +243,65 @@ WooCommerce.post('orders', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order' => [
+        'payment_details' => [
+            'method_id' => 'bacs',
+            'method_title' => 'Direct Bank Transfer',
+            'paid' => true
+        ],
+        'billing_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ],
+        'shipping_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        ],
+        'customer_id' => 2,
+        'line_items' => [
+            [
+                'product_id' => 546,
+                'quantity' => 2
+            ],
+            [
+                'product_id' => 613,
+                'quantity' => 1,
+                'variations' => [
+                    'pa_color' => 'Black'
+                ]
+            ]
+        ],
+        'shipping_lines' => [
+            [
+                'method_id' => 'flat_rate',
+                'method_title' => 'Flat Rate',
+                'total' => 10
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('orders', $data));
+?>
+```
+
 ```python
 data = {
     "order": {
@@ -541,6 +600,10 @@ WooCommerce.get('orders/645', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('orders/645')); ?>
+```
+
 ```python
 print(wcapi.get("orders/645").json())
 ```
@@ -741,6 +804,10 @@ curl https://example.com/wc-api/v3/orders \
 WooCommerce.get('orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders')); ?>
 ```
 
 ```python
@@ -1107,6 +1174,18 @@ WooCommerce.put('orders/645', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order' => [
+        'status' => 'completed'
+    ]
+];
+
+print_r($woocommerce->put('orders/645', $data));
+?>
+```
+
 ```python
 data = {
     "order": {
@@ -1303,7 +1382,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/orders/bulk \
+curl -X POST https://example.com/wc-api/v3/orders/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1334,9 +1413,28 @@ var data = {
   ]
 };
 
-WooCommerce.put('orders/bulk', data, function(err, data, res) {
+WooCommerce.post('orders/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'orders' => [
+        [
+            'id' => 645,
+            'shipping_methods' => 'Local Delivery'
+        ],
+        [
+            'id' => 644,
+            'shipping_methods' => 'Local Delivery'
+        ]
+    ]
+];
+
+print_r($woocommerce->post('orders/bulk', $data));
+?>
 ```
 
 ```python
@@ -1353,7 +1451,7 @@ data = {
     ]
 }
 
-print(wcapi.put("orders/bulk", data).json())
+print(wcapi.post("orders/bulk", data).json())
 ```
 
 ```ruby
@@ -1370,7 +1468,7 @@ data = {
   ]
 }
 
-woocommerce.put("orders/bulk", data).parsed_response
+woocommerce.post("orders/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -1706,13 +1804,17 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('orders/645', ['force' => true])); ?>
+```
+
 ```python
 print(wcapi.delete("orders/645/?force=true").json())
 ```
 
 
 ```ruby
-woocommerce.delete("orders/645/?force=true").parsed_response
+woocommerce.delete("orders/645/", force: true).parsed_response
 ```
 
 > JSON response example:
@@ -1751,6 +1853,10 @@ curl https://example.com/wc-api/v3/orders/count \
 WooCommerce.get('orders/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders/count')); ?>
 ```
 
 ```python
@@ -1797,6 +1903,10 @@ curl https://example.com/wc-api/v3/orders/statuses \
 WooCommerce.get('orders/statuses', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders/statuses')); ?>
 ```
 
 ```python

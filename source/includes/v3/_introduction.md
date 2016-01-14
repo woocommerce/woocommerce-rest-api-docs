@@ -429,6 +429,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 ## Official Libraries ##
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
+- [PHP](https://packagist.org/packages/automattic/woocommerce)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
 - [Ruby](https://rubygems.org/gems/woocommerce_api)
 
@@ -447,6 +448,27 @@ var WooCommerce = new WooCommerceAPI({
 });
 ```
 
+```php
+<?php 
+// Install:
+// composer require automattic/woocommerce
+
+// Setup:
+require __DIR__ . '/vendor/autoload.php';
+
+use Automattic\WooCommerce\Client;
+
+$woocommerce = new Client(
+    'http://example.com', // Your store URL
+    'consumer_key', // Your consumer key
+    'consumer_secret', // Your consumer secret
+    [
+        'version' => 'v3' // WooCommerce API version
+    ]
+);
+?>
+```
+
 ```python
 # Install:
 # pip install woocommerce
@@ -455,10 +477,10 @@ var WooCommerce = new WooCommerceAPI({
 from woocommerce import API
 
 wcapi = API(
-    url="http://example.com",
-    consumer_key="consumer_key",
-    consumer_secret="consumer_secret",
-    version="v3"
+    url="http://example.com", # Your store URL
+    consumer_key="consumer_key", # Your consumer key
+    consumer_secret="consumer_secret", # Your consumer secret
+    version="v3" # WooCommerce API version
 )
 ```
 
@@ -470,11 +492,11 @@ wcapi = API(
 require "woocommerce_api"
 
 woocommerce = WooCommerce::API.new(
-  "http://example.com",
-  "consumer_key",
-  "consumer_secret",
+  "http://example.com", # Your store URL
+  "consumer_key", # Your consumer key
+  "consumer_secret", # Your consumer secret
   {
-    version: "v3"
+    version: "v3" # WooCommerce API version
   }
 )
 ```

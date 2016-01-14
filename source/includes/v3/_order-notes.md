@@ -47,6 +47,18 @@ WooCommerce.post('orders/645/notes', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order_note' => [
+        'note' => 'Order ok!!!'
+    ]
+];
+
+print_r($woocommerce->post('orders/645/notes', $data));
+?>
+```
+
 ```python
 data = {
     "order_note": {
@@ -104,6 +116,10 @@ WooCommerce.get('orders/645/notes/416', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('orders/645/notes/416')); ?>
+```
+
 ```python
 print(wcapi.get("orders/645/notes/416").json())
 ```
@@ -147,6 +163,10 @@ curl https://example.com/wc-api/v3/orders/645/notes \
 WooCommerce.get('orders/645/notes', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders/645/notes')); ?>
 ```
 
 ```python
@@ -226,6 +246,18 @@ WooCommerce.put('orders/645/notes/416', data, function(err, data, res) {
 });
 ```
 
+```php
+<?php
+$data = [
+    'order_note' => [
+        'note' => 'Ok!'
+    ]
+];
+
+print_r($woocommerce->put('orders/645/notes/416', $data));
+?>
+```
+
 ```python
 data = {
     "order_note": {
@@ -281,6 +313,10 @@ curl -X DELETE https://example.com/wc-api/v3/orders/645/notes/416 \
 WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('orders/645/notes/416')); ?>
 ```
 
 ```python
