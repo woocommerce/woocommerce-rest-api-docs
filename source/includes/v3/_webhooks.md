@@ -1,6 +1,6 @@
 # Webhooks #
 
-This section lists all API that can be used to create, edit or otherwise manipulate webhooks.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate webhooks.
 
 ## Webhooks Properties ##
 
@@ -48,7 +48,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `X-WC-Webhook-ID`          | integer | The webhook's ID                                                                           |
 | `X-WC-Webhook-Delivery-ID` | integer | The delivery ID                                                                            |
 
-## Create A Webhook ##
+## Create a Webhook ##
 
 This API helps you to create a new webhook.
 
@@ -88,6 +88,21 @@ var data = {
 WooCommerce.post('webhooks', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'webhook' => [
+        'name' => 'An add to cart webhook',
+        'secret' => 'my-super-secret-private-key',
+        'topic' => 'action.woocommerce_add_to_cart',
+        'delivery_url' => 'http://requestb.in/1exdwip1'
+    ]
+];
+
+print_r($woocommerce->post('webhooks', $data));
+?>
 ```
 
 ```python
@@ -137,7 +152,7 @@ woocommerce.post("webhooks", data).parsed_response
 }
 ```
 
-## View A Webhook ##
+## View a Webhook ##
 
 This API lets you retrieve and view a specific webhook.
 
@@ -159,6 +174,10 @@ curl https://example.com/wc-api/v3/webhooks/535 \
 WooCommerce.get('webhooks/535', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/535')); ?>
 ```
 
 ```python
@@ -190,7 +209,7 @@ woocommerce.get("webhooks/535").parsed_response
 }
 ```
 
-## View List Of Webhooks ##
+## View List of Webhooks ##
 
 This API helps you to view all the webhooks.
 
@@ -212,6 +231,10 @@ curl https://example.com/wc-api/v3/webhooks \
 WooCommerce.get('webhooks', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks')); ?>
 ```
 
 ```python
@@ -267,7 +290,7 @@ woocommerce.get("webhooks").parsed_response
 | -------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
 | `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled`. Default is `active` |
 
-## Update A Webhook ##
+## Update a Webhook ##
 
 This API lets you make changes to a webhook.
 
@@ -301,6 +324,18 @@ var data = {
 WooCommerce.put('webhooks/535', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'webhook' => [
+        'status' => 'paused'
+    ]
+];
+
+print_r($woocommerce->put('webhooks/535', $data));
+?>
 ```
 
 ```python
@@ -344,7 +379,7 @@ woocommerce.put("webhooks/535", data).parsed_response
 }
 ```
 
-## Delete A Webhook ##
+## Delete a Webhook ##
 
 This API helps you delete a webhook.
 
@@ -366,6 +401,10 @@ curl -X DELETE https://example.com/wc-api/v3/webhooks/535 \
 WooCommerce.delete('webhooks/535', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('webhooks/535')); ?>
 ```
 
 ```python
@@ -408,6 +447,10 @@ WooCommerce.get('webhooks/count', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('webhooks/count')); ?>
+```
+
 ```python
 print(wcapi.get("webhooks/count").json())
 ```
@@ -430,7 +473,7 @@ woocommerce.get("webhooks/count").parsed_response
 | -------- | ------ | -------------------------------------------------------------------------------------------- |
 | `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
 
-## View A Webhooks Delivery ##
+## View a Webhooks Delivery ##
 
 This API lets you retrieve and view a specific webhook delivery.
 
@@ -452,6 +495,10 @@ curl https://example.com/wc-api/v3/webhooks/535/deliveries/378 \
 WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/535/deliveries/378')); ?>
 ```
 
 ```python
@@ -504,7 +551,7 @@ woocommerce.get("webhooks/535/deliveries/378").parsed_response
 	View the <a href="#delivery-properties">Delivery Properties</a> for more details on this response.
 </aside>
 
-## View List Of Webhooks Deliveries ##
+## View List of Webhooks Deliveries ##
 
 This API helps you to view all deliveries from a specific webhooks.
 
@@ -526,6 +573,10 @@ curl https://example.com/wc-api/v3/webhooks/535/deliveries \
 WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('webhooks/535/deliveries')); ?>
 ```
 
 ```python

@@ -1,6 +1,6 @@
 # Orders #
 
-This section lists all API that can be used to create, edit or otherwise manipulate orders.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate orders.
 
 ## Orders Properties ##
 
@@ -111,7 +111,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `code`    | string  | Coupon code <i class="label label-info">required</i>     |
 | `amount`  | float   | Total amount <i class="label label-info">required</i>    |
 
-## Create An Order ##
+## Create an Order ##
 
 This API helps you to create a new order.
 
@@ -241,6 +241,65 @@ var data = {
 WooCommerce.post('orders', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'order' => [
+        'payment_details' => [
+            'method_id' => 'bacs',
+            'method_title' => 'Direct Bank Transfer',
+            'paid' => true
+        ],
+        'billing_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ],
+        'shipping_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        ],
+        'customer_id' => 2,
+        'line_items' => [
+            [
+                'product_id' => 546,
+                'quantity' => 2
+            ],
+            [
+                'product_id' => 613,
+                'quantity' => 1,
+                'variations' => [
+                    'pa_color' => 'Black'
+                ]
+            ]
+        ],
+        'shipping_lines' => [
+            [
+                'method_id' => 'flat_rate',
+                'method_title' => 'Flat Rate',
+                'total' => 10
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('orders', $data));
+?>
 ```
 
 ```python
@@ -517,7 +576,7 @@ woocommerce.post("orders", data).parsed_response
 }
 ```
 
-## View An Order ##
+## View an Order ##
 
 This API lets you retrieve and view a specific order.
 
@@ -539,6 +598,10 @@ curl https://example.com/wc-api/v3/orders/645 \
 WooCommerce.get('orders/645', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders/645')); ?>
 ```
 
 ```python
@@ -709,7 +772,17 @@ woocommerce.get("orders/645").parsed_response
 }
 ```
 
-## View List Of Orders ##
+#### Available Filters ####
+
+|  Filter  |  Type  |                                          Description                                          |
+| -------- | ------ | --------------------------------------------------------------------------------------------- |
+| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
+
+<aside class="notice">
+	<code>expand</code> filter is available starting from WooCommerce 2.5.
+</aside>
+
+## View List of Orders ##
 
 This API helps you to view all the orders.
 
@@ -731,6 +804,10 @@ curl https://example.com/wc-api/v3/orders \
 WooCommerce.get('orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('orders')); ?>
 ```
 
 ```python
@@ -1052,11 +1129,16 @@ woocommerce.get("orders").parsed_response
 
 #### Available Filters ####
 
-|  Filter  |  Type  |                    Description                    |
-| -------- | ------ | ------------------------------------------------- |
-| `status` | string | Orders by status. eg: `processing` or `cancelled` |
+|  Filter  |  Type  |                                          Description                                          |
+| -------- | ------ | --------------------------------------------------------------------------------------------- |
+| `status` | string | Orders by status. eg: `processing` or `cancelled`                                             |
+| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
 
-## Update An Order ##
+<aside class="notice">
+	<code>expand</code> filter is available starting from WooCommerce 2.5.
+</aside>
+
+## Update an Order ##
 
 This API lets you make changes to an order.
 
@@ -1090,6 +1172,18 @@ var data = {
 WooCommerce.put('orders/645', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'order' => [
+        'status' => 'completed'
+    ]
+];
+
+print_r($woocommerce->put('orders/645', $data));
+?>
 ```
 
 ```python
@@ -1288,7 +1382,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/orders/bulk \
+curl -X POST https://example.com/wc-api/v3/orders/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1310,18 +1404,37 @@ var data = {
   orders: [
     {
       id: 645,
-      shipping_methods: "Local Delivery"
+      shipping_methods: 'Local Delivery'
     },
     {
       id: 644,
-      shipping_methods: "Local Delivery"
+      shipping_methods: 'Local Delivery'
     }
   ]
 };
 
-WooCommerce.put('orders/bulk', data, function(err, data, res) {
+WooCommerce.post('orders/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'orders' => [
+        [
+            'id' => 645,
+            'shipping_methods' => 'Local Delivery'
+        ],
+        [
+            'id' => 644,
+            'shipping_methods' => 'Local Delivery'
+        ]
+    ]
+];
+
+print_r($woocommerce->post('orders/bulk', $data));
+?>
 ```
 
 ```python
@@ -1338,7 +1451,7 @@ data = {
     ]
 }
 
-print(wcapi.put("orders/bulk", data).json())
+print(wcapi.post("orders/bulk", data).json())
 ```
 
 ```ruby
@@ -1355,7 +1468,7 @@ data = {
   ]
 }
 
-woocommerce.put("orders/bulk", data).parsed_response
+woocommerce.post("orders/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -1667,7 +1780,7 @@ woocommerce.put("orders/bulk", data).parsed_response
 }
 ```
 
-## Delete An Order ##
+## Delete an Order ##
 
 This API helps you delete an order.
 
@@ -1691,13 +1804,17 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->delete('orders/645', ['force' => true])); ?>
+```
+
 ```python
 print(wcapi.delete("orders/645/?force=true").json())
 ```
 
 
 ```ruby
-woocommerce.delete("orders/645/?force=true").parsed_response
+woocommerce.delete("orders/645/", force: true).parsed_response
 ```
 
 > JSON response example:
@@ -1738,6 +1855,10 @@ WooCommerce.get('orders/count', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('orders/count')); ?>
+```
+
 ```python
 print(wcapi.get("orders/count").json())
 ```
@@ -1760,7 +1881,7 @@ woocommerce.get("orders/count").parsed_response
 | -------- | ------ | ------------------------------------------------- |
 | `status` | string | Orders by status. eg: `processing` or `cancelled` |
 
-## View List Of Order Statuses ##
+## View List of Order Statuses ##
 
 This API lets you retrieve a list of orders statuses available.
 
@@ -1784,6 +1905,10 @@ WooCommerce.get('orders/statuses', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('orders/statuses')); ?>
+```
+
 ```python
 print(wcapi.get("orders/statuses").json())
 ```
@@ -1805,646 +1930,5 @@ woocommerce.get("orders/statuses").parsed_response
     "refunded": "Refunded",
     "failed": "Failed"
   }
-}
-```
-
-## Create A Note For An Order ##
-
-This API helps you to create a new note for an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
-	</div>
-</div>
-
-```shell
-curl -X POST https://example.com/wc-api/v3/orders/645/notes \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order_note": {
-    "note": "Order ok!!!"
-  }
-}'
-```
-
-```javascript
-var data = {
-  order_note: {
-    note: 'Order ok!!!'
-  }
-};
-
-WooCommerce.post('orders/645/notes', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-data = {
-    "order_note": {
-        "note": "Order ok!!!"
-    }
-}
-
-print(wcapi.post("orders/645/notes", data).json())
-```
-
-```ruby
-data = {
-  order_note: {
-    note: "Order ok!!!"
-  }
-}
-
-woocommerce.post("orders/645/notes", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Order ok!!!",
-    "customer_note": false
-  }
-}
-```
-
-### Order Notes Properties ###
-
-|    Attribute    |   Type  |                                                    Description                                                     |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `id`            | integer | Order note ID <i class="label label-info">read-only</i>                                                            |
-| `created_at`    | string  | UTC DateTime when the order note was created <i class="label label-info">read-only</i>                             |
-| `note`          | string  | Order note <i class="label label-info">required</i>                                                                |
-| `customer_note` | boolean | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false` |
-
-## View An Order Note ##
-
-This API lets you retrieve and view a specific note from an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/645/notes/416 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/645/notes/416', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.get("orders/645/notes/416").json())
-```
-
-```ruby
-woocommerce.get("orders/645/notes/416").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Order ok!!!",
-    "customer_note": false
-  }
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
-</aside>
-
-## View List Of Notes From An Order ##
-
-This API helps you to view all the notes from an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/645/notes \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/645/notes', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.get("orders/645/notes").json())
-```
-
-```ruby
-woocommerce.get("orders/645/notes").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_notes": [
-    {
-      "id": "416",
-      "created_at": "2015-01-26T20:56:44Z",
-      "note": "Order ok!!!",
-      "customer_note": false
-    },
-    {
-      "id": "415",
-      "created_at": "2015-01-26T20:16:14Z",
-      "note": "Order status changed from Processing to Completed.",
-      "customer_note": false
-    },
-    {
-      "id": "412",
-      "created_at": "2015-01-26T20:00:21Z",
-      "note": "Order item stock reduced successfully.",
-      "customer_note": false
-    },
-    {
-      "id": "411",
-      "created_at": "2015-01-26T20:00:09Z",
-      "note": "Order status changed from Pending Payment to Processing.",
-      "customer_note": false
-    }
-  ]
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
-</aside>
-
-## Update An Order Note ##
-
-This API lets you make changes to an order note.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X PUT https://example.com/wc-api/v3/orders/645/notes/416 \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order_note": {
-    "note": "Ok!"
-  }
-}'
-```
-
-```javascript
-var data = {
-  order_note: {
-    note: 'Ok!'
-  }
-};
-
-WooCommerce.put('orders/645/notes/416', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-data = {
-    "order_note": {
-        "note": "Ok!"
-    }
-}
-
-print(wcapi.put("orders/645/notes/416", data).json())
-```
-
-```ruby
-data = {
-  order_note: {
-    note: "Ok!"
-  }
-}
-
-woocommerce.put("orders/645/notes/416", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Ok!",
-    "customer_note": false
-  }
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-notes-properties">Order Notes Properties</a> for more details on this response.
-</aside>
-
-## Delete An Order Note ##
-
-This API helps you delete an order note.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X DELETE https://example.com/wc-api/v3/orders/645/notes/416 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.delete("orders/645/notes/416").json())
-```
-
-```ruby
-woocommerce.delete("orders/645/notes/416").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "message": "Permanently deleted order note"
-}
-```
-
-## Create A Refund For An Order ##
-
-This API helps you to create a new refund for an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds</h6>
-	</div>
-</div>
-
-```shell
-curl -X POST https://example.com/wc-api/v3/orders/645/refunds \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order_refund": {
-    "amount": 10
-  }
-}'
-```
-
-```javascript
-var data = {
-  order_refund: {
-    amount: 10
-  }
-};
-
-WooCommerce.post('orders/645/refunds', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-data = {
-    "order_refund": {
-        "amount": 10
-    }
-}
-
-print(wcapi.post("orders/645/refunds", data).json())
-```
-
-```ruby
-data = {
-  order_refund: {
-    amount: 10
-  }
-}
-
-woocommerce.post("orders/645/refunds", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_refund": {
-    "id": 649,
-    "created_at": "2015-01-26T19:29:32Z",
-    "amount": "10.00",
-    "reason": "",
-    "line_items": []
-  }
-}
-```
-
-### Order Refunds Properties ###
-
-|  Attribute   |   Type  |                                       Description                                        |
-| ------------ | ------- | ---------------------------------------------------------------------------------------- |
-| `id`         | integer | Order note ID <i class="label label-info">read-only</i>                                  |
-| `created_at` | string  | UTC DateTime when the order refund was created <i class="label label-info">read-only</i> |
-| `amount`     | float   | Refund amount <i class="label label-info">required</i>                                   |
-| `reason`     | string  | Reason for refund                                                                        |
-| `line_items` | array   | List of order items to refund. See [Line Items Properties](line-items-properties)        |
-
-## View An Order Refund ##
-
-This API lets you retrieve and view a specific refund from an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/645/refunds/649 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/645/refunds/649', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.get("orders/645/refunds/649").json())
-```
-
-```ruby
-woocommerce.get("orders/645/refunds/649").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_refund": {
-    "id": 649,
-    "created_at": "2015-01-26T19:29:32Z",
-    "amount": "10.00",
-    "reason": "",
-    "line_items": []
-  }
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
-</aside>
-
-## View List Of Refunds From An Order ##
-
-This API helps you to view all the refunds from an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/645/refunds \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/645/refunds', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.get("orders/645/refunds").json())
-```
-
-```ruby
-woocommerce.get("orders/645/refunds").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_refunds": [
-    {
-      "id": 649,
-      "created_at": "2015-01-26T19:29:32Z",
-      "amount": "10.00",
-      "reason": "",
-      "line_items": []
-    },
-    {
-      "id": 647,
-      "created_at": "2015-01-26T19:19:06Z",
-      "amount": "21.99",
-      "reason": "",
-      "line_items": [
-        {
-          "id": 514,
-          "subtotal": "-21.99",
-          "subtotal_tax": "0.00",
-          "total": "-21.99",
-          "total_tax": "0.00",
-          "price": "-21.99",
-          "quantity": 1,
-          "tax_class": "reduced-rate",
-          "name": "Premium Quality",
-          "product_id": 546,
-          "sku": "",
-          "meta": []
-        },
-        {
-          "id": 515,
-          "subtotal": "0.00",
-          "subtotal_tax": "0.00",
-          "total": "0.00",
-          "total_tax": "0.00",
-          "price": "0.00",
-          "quantity": 0,
-          "tax_class": null,
-          "name": "Ship Your Idea",
-          "product_id": 613,
-          "sku": "",
-          "meta": []
-        }
-      ]
-    }
-  ]
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
-</aside>
-
-## Update An Order Refund ##
-
-This API lets you make changes to an order refund.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X PUT https://example.com/wc-api/v3/orders/645/refunds/649 \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order_refund": {
-    "reason": "Because was it necessary!"
-  }
-}'
-```
-
-```javascript
-var data = {
-  order_refund: {
-    reason: 'Because was it necessary!'
-  }
-};
-
-WooCommerce.put('orders/645/refunds/649', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-data = {
-    "order_refund": {
-        "reason": "Because was it necessary!"
-    }
-}
-
-print(wcapi.put("orders/645/refunds/649", data).json())
-```
-
-```ruby
-data = {
-  order_refund: {
-    reason: "Because was it necessary!"
-  }
-}
-
-woocommerce.put("orders/645/refunds/649", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_refund": {
-    "id": 649,
-    "created_at": "2015-01-26T19:29:32Z",
-    "amount": "10.00",
-    "reason": "Because was it necessary!",
-    "line_items": []
-  }
-}
-```
-
-<aside class="notice">
-	View the <a href="#order-refunds-properties">Order Refunds Properties</a> for more details on this response.
-</aside>
-
-## Delete An Order Refund ##
-
-This API helps you delete an order refund.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/refunds/&lt;refund_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X DELETE https://example.com/wc-api/v3/orders/645/refunds/649 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.delete('orders/645/refunds/649', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```python
-print(wcapi.delete("orders/645/refunds/649").json())
-```
-
-```ruby
-woocommerce.delete("orders/645/refunds/649").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "message": "Permanently deleted refund"
 }
 ```

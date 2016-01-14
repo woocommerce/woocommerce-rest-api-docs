@@ -1,10 +1,10 @@
 # Reports #
 
-This section lists all API that can be used view reports.
+This section lists all API endpoints that can be used view reports.
 
 ## Reports Filters ##
 
-Use the following filters for any type of report to specify the period of sales: 
+Use the following filters for any type of report to specify the period of sales:
 
 |   Filter   |  Type  |                                                                                Description                                                                                 |
 | ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ Use the following filters for any type of report to specify the period of sales:
 | `date_min` | string | Return sales for a specific start date. The date need to be in the `YYYY-MM-AA` format                                                                                     |
 | `date_max` | string | Return sales for a specific end date. The dates need to be in the `YYYY-MM-AA` format. Required to set the `filter[date_min]` too                                          |
 
-## View List Of Reports ##
+## View List of Reports ##
 
 This API lets you retrieve and view a simple list of available reports.
 
@@ -36,6 +36,10 @@ WooCommerce.get('reports', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('reports')); ?>
+```
+
 ```python
 print(wcapi.get("reports").json())
 ```
@@ -55,7 +59,7 @@ woocommerce.get("reports").parsed_response
 }
 ```
 
-## View List Of Sales Report ##
+## View List of Sales Report ##
 
 This API lets you retrieve and view a list of sales report.
 
@@ -79,12 +83,32 @@ WooCommerce.get('reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 });
 ```
 
+```php
+<?php
+$query = [
+    'filter' => [
+        'date_min' => '2015-01-18', 
+        'date_max' => '2015-01-21'
+    ]
+];
+
+print_r($woocommerce->get('reports/sales', $query));
+?>
+```
+
 ```python
 print(wcapi.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").json())
 ```
 
 ```ruby
-woocommerce.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015-01-21").parsed_response
+query = {
+  filter: {
+    date_min: "2015-01-18",
+    date_max: "2015-01-21"
+  }
+}
+
+woocommerce.get("reports/sales", query).parsed_response
 ```
 
 > JSON response example:
@@ -143,7 +167,7 @@ woocommerce.get("reports/sales?filter[date_min]=2015-01-18&filter[date_max]=2015
 }
 ```
 
-## View List Of Top Sellers Report ##
+## View List of Top Sellers Report ##
 
 This API lets you retrieve and view a list of top sellers report.
 
@@ -167,12 +191,30 @@ WooCommerce.get('reports/sales/top_sellers?filter[period]=last_month', function(
 });
 ```
 
+```php
+<?php
+$query = [
+    'filter' => [
+        'period' => 'last_month'
+    ]
+];
+
+print_r($woocommerce->get('reports/sales/top_sellers', $query));
+?>
+```
+
 ```python
 print(wcapi.get("reports/sales/top_sellers?filter[period]=last_month").json())
 ```
 
 ```ruby
-woocommerce.get("reports/sales/top_sellers?filter[period]=last_month").parsed_response
+query = {
+  filter: {
+    period: "last_month"
+  }
+}
+
+woocommerce.get("reports/sales/top_sellers", query).parsed_response
 ```
 
 > JSON response example:

@@ -1,6 +1,6 @@
 # Customers #
 
-This section lists all API that can be used to create, edit or otherwise manipulate customers.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate customers.
 
 ## Customers Properties ##
 
@@ -51,7 +51,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `postcode`   | string | Postal code                                         |
 | `country`    | string | ISO code of the country                             |
 
-## Create A Customer ##
+## Create a Customer ##
 
 This API helps you to create a new customer.
 
@@ -139,6 +139,45 @@ var data = {
 WooCommerce.post('customers', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php
+$data = [
+    'customer' => [
+        'email' => 'john.doe@example.com',
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'username' => 'john.doe',
+        'billing_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US',
+            'email' => 'john.doe@example.com',
+            'phone' => '(555) 555-5555'
+        ],
+        'shipping_address' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'company' => '',
+            'address_1' => '969 Market',
+            'address_2' => '',
+            'city' => 'San Francisco',
+            'state' => 'CA',
+            'postcode' => '94103',
+            'country' => 'US'
+        ]
+    ]
+];
+
+print_r($woocommerce->post('customers', $data));
+?>
 ```
 
 ```python
@@ -259,7 +298,7 @@ woocommerce.post("customers", data).parsed_response
 }
 ```
 
-## View A Customer ##
+## View a Customer ##
 
 This API lets you retrieve and view a specific customer by ID or email.
 
@@ -288,6 +327,10 @@ curl https://example.com/wc-api/v3/customers/2 \
 WooCommerce.get('customers/2', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers/2')); ?>
 ```
 
 ```python
@@ -342,7 +385,7 @@ woocommerce.get("customers/2").parsed_response
 }
 ```
 
-## View List Of Customers ##
+## View List of Customers ##
 
 This API helps you to view all the customers.
 
@@ -364,6 +407,10 @@ curl https://example.com/wc-api/v3/customers \
 WooCommerce.get('customers', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers')); ?>
 ```
 
 ```python
@@ -463,7 +510,7 @@ woocommerce.get("customers").parsed_response
 | ------ | ------ | --------------------------------------------------- |
 | `role` | string | Customers by status. eg: `customer` or `subscriber` |
 
-## Update A Customer ##
+## Update a Customer ##
 
 This API lets you make changes to a customer.
 
@@ -509,6 +556,24 @@ var data = {
 WooCommerce.put('customers/2', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php 
+$data = [
+    'customer' => [
+        'first_name' => 'James',
+        'billing_address' => [
+            'first_name' => 'James'
+        ],
+        'shipping_address' => [
+            'first_name' => 'James'
+        ]
+    ]
+];
+
+print_r($woocommerce->put('customers/2', $data));
+?>
 ```
 
 ```python
@@ -603,7 +668,7 @@ To update is necessary to send objects containing IDs and to create new not just
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/customers/bulk \
+curl -X POST https://example.com/wc-api/v3/customers/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -676,33 +741,33 @@ curl -X PUT https://example.com/wc-api/v3/customers/bulk \
 var data = {
   customers: [
     {
-      email: "john.doe2@example.com",
-      first_name: "John",
-      last_name: "Doe",
-      username: "john.doe2",
+      email: 'john.doe2@example.com',
+      first_name: 'John',
+      last_name: 'Doe',
+      username: 'john.doe2',
       billing_address: {
-        first_name: "John",
-        last_name: "Doe",
-        company: "",
-        address_1: "969 Market",
-        address_2: "",
-        city: "San Francisco",
-        state: "CA",
-        postcode: "94103",
-        country: "US",
-        email: "john.doe@example.com",
-        phone: "(555) 555-5555"
+        first_name: 'John',
+        last_name: 'Doe',
+        company: '',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US',
+        email: 'john.doe@example.com',
+        phone: '(555) 555-5555'
       },
       shipping_address: {
-        first_name: "John",
-        last_name: "Doe",
-        company: "",
-        address_1: "969 Market",
-        address_2: "",
-        city: "San Francisco",
-        state: "CA",
-        postcode: "94103",
-        country: "US"
+        first_name: 'John',
+        last_name: 'Doe',
+        company: '',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US'
       }
     },
     {
@@ -738,9 +803,80 @@ var data = {
   ]
 };
 
-WooCommerce.put('customers/bulk', data, function(err, data, res) {
+WooCommerce.post('customers/bulk', data, function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php 
+$data = [
+    'customers': [
+        [
+            'email': 'john.doe2@example.com',
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'username': 'john.doe2',
+            'billing_address': [
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'company': '',
+                'address_1': '969 Market',
+                'address_2': '',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'postcode': '94103',
+                'country': 'US',
+                'email': 'john.doe@example.com',
+                'phone': '(555) 555-5555'
+            ],
+            'shipping_address': [
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'company': '',
+                'address_1': '969 Market',
+                'address_2': '',
+                'city': 'San Francisco',
+                'state': 'CA',
+                'postcode': '94103',
+                'country': 'US'
+            ]
+        ],
+        [
+            'email': 'joao.silva2@example.com',
+            'first_name': 'João',
+            'last_name': 'Silva',
+            'username': 'joao.silva2',
+            'billing_address': [
+                'first_name': 'João',
+                'last_name': 'Silva',
+                'company': '',
+                'address_1': 'Av. Brasil, 432',
+                'address_2': '',
+                'city': 'Rio de Janeiro',
+                'state': 'RJ',
+                'postcode': '12345-000',
+                'country': 'BR',
+                'email': 'joao.silva@example.com',
+                'phone': '(55) 5555-5555'
+            ],
+            'shipping_address': [
+                'first_name': 'João',
+                'last_name': 'Silva',
+                'company': '',
+                'address_1': 'Av. Brasil, 432',
+                'address_2': '',
+                'city': 'Rio de Janeiro',
+                'state': 'RJ',
+                'postcode': '12345-000',
+                'country': 'BR'
+            ]
+        ]
+    ]
+];
+
+print_r($woocommerce->post('customers/bulk', $data));
+?>
 ```
 
 ```python
@@ -809,7 +945,7 @@ data = {
     ]
 }
 
-print(wcapi.put("customers/bulk", data).json())
+print(wcapi.post("customers/bulk", data).json())
 ```
 
 ```ruby
@@ -878,7 +1014,7 @@ data = {
   ]
 }
 
-woocommerce.put("customers/bulk", data).parsed_response
+woocommerce.post("customers/bulk", data).parsed_response
 ```
 
 > JSON response example:
@@ -964,7 +1100,7 @@ woocommerce.put("customers/bulk", data).parsed_response
 }
 ```
 
-## Delete A Customer ##
+## Delete a Customer ##
 
 This API helps you delete a customer.
 
@@ -986,6 +1122,10 @@ curl -X DELETE https://example.com/wc-api/v3/customers/2 \
 WooCommerce.delete('customers/2', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->delete('customers/2')); ?>
 ```
 
 ```python
@@ -1026,6 +1166,10 @@ curl https://example.com/wc-api/v3/customers/2/orders \
 WooCommerce.get('customers/2/orders', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers/2/orders')); ?>
 ```
 
 ```python
@@ -1189,6 +1333,10 @@ WooCommerce.get('customers/2/downloads', function(err, data, res) {
 });
 ```
 
+```php
+<?php print_r($woocommerce->get('customers/2/downloads')); ?>
+```
+
 ```python
 print(wcapi.get("customers/2/downloads").json())
 ```
@@ -1256,6 +1404,10 @@ curl https://example.com/wc-api/v3/customers/count \
 WooCommerce.get('customers/count', function(err, data, res) {
   console.log(res);
 });
+```
+
+```php
+<?php print_r($woocommerce->get('customers/count')); ?>
 ```
 
 ```python

@@ -1,30 +1,28 @@
 # Introduction #
 
-Introduced in WooCommerce 2.1, the REST API allows store data to be created, read, updated, and deleted using the JSON format.
+Introduced in WooCommerce 2.1, the REST API allows WooCommerce data to be created, read, updated, and deleted using JSON format.
 
 ## Requirements ##
 
-You must be using WooCommerce 2.1 or newer and the REST API must be enabled under `WooCommerce > Settings`. You must enable pretty permalinks, as default permalinks will not work.
+You must be using WooCommerce 2.1 or newer and the REST API must be enabled under `WooCommerce > Settings`. You must enable pretty permalinks in `Settings > Permalinks` (default permalinks will not work).
 
 <aside class="notice">
-Many endpoints were improving with new versions of WooCommerce, so we always recommend keeping your WooCommerce updated to work properly with this documentation.
+	Endpoints may be improved with each release of WooCommerce, so we always recommend keeping WooCommerce up to date to reflect this documentation.
 </aside>
 
 ## Version ##
 
-The current API version is `v3` which takes a first-order position in endpoints.
-
-Check the API versions present in every version of WooCommerce:
+The current API version is `v3` which takes a first-order position in endpoints. The following table shows API versions present in each major version of WooCommerce:
 
 | API Version |          WooCommerce          |
 | ----------- | ----------------------------- |
 | `v1`        | 2.1.x, 2.2.x, 2.3.x and 2.4.x |
 | `v2`        | 2.2.x, 2.3.x and 2.4.x        |
-| `v3`        | 2.4.x                         |
+| `v3`        | 2.4.x, 2.5.x                  |
 
-The `v1` and `v2` will be removed in future versions.
+The `v1` and `v2` APIs will be removed in future versions.
 
-### Differences between v1 and v2 versions ###
+### Differences between v1 and v2 ###
 
 * v1 supports XML response format, v2 only supports JSON.
 * v1 does not support creating or updating (with the exception of order status) any resources, v2 supports full create/read/update/delete for all endpoints.
@@ -35,22 +33,21 @@ The `v1` and `v2` will be removed in future versions.
 * v1 does not include any endpoints for getting valid order statuses, v2 includes an endpoint for listing valid order statuses (`GET /orders/statuses`).
 * v2 supports the core features added in WooCommerce 2.2, primarily order refunds (via the `/orders/refunds` endpoint) and Webhooks (via the `/webhooks`).
 
-### Differences between v3 and old versions ###
+### Differences between v3 and older versions ###
 
-* v3 implement full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
+* v3 implements full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
 * v3 fixes the OAuth implementation to be compliant with the [Oauth 1.0a specs](http://tools.ietf.org/html/rfc5849).
-* v3 include a new endpoint to get all product orders.
-* v3 have new endpoints to allow bulk actions as edition and creation of products, orders, customers and coupons.
-* v3 introduce new product attribute endpoints (`GET`, `POST`, `PUT` and `DELETE`).
+* v3 includes a new endpoint to get all product orders.
+* v3 has new endpoints to allow bulk actions as edition and creation of products, orders, customers and coupons.
+* v3 introduces new product attribute endpoints (`GET`, `POST`, `PUT` and `DELETE`).
 * v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character, besides that there is a filter callend `filter[sku]`).
-* v3 include category thumbnails on the requests for `product/categories`.
+* v3 includes category thumbnails on the requests for `product/categories`.
 * v3 uses our option to auto generate passwords for new customers.
 
-### API Docs for each version ###
+### API Docs for past versions ###
 
 * [WooCommerce REST API v1 docs](v1.html)
 * [WooCommerce REST API v2 docs](v2.html)
-* [WooCommerce REST API v3 docs](index.html)
 
 ## Schema ##
 
@@ -58,7 +55,7 @@ The API is accessible via this endpoint:
 
 `https://www.your-store.com/wc-api/v3`
 
-You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, as authentication is simpler. The API index will declare if the site supports SSL or not.
+*Pretty permalinks must be enabled*. You may access the API over either HTTP or HTTPS. *HTTPS is recommended where possible*, since authentication is simpler. The API index will declare if the site supports SSL or not.
 
 ## Requests/Responses ##
 
@@ -70,15 +67,15 @@ Some general information about responses:
 
 * Resource IDs are returned as integers.
 
-* Any decimal monetary amount, such as prices or totals, are returned as strings with two decimal places. The decimal separator (typically either `.` or `,`) is controlled by the site and is included in the API index. This is by design, in order to make localization of API data easier for the client. You may need to account for this in your implemetation if you will be doing calculations with the returned data (e.g. convert string amounts with commas as the decimal place before performing any calculations)
+* Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places. The decimal separator (typically either `.` or `,`) is controlled by the site and is included in the API index. This is by design in order to make localization of API data easier for the client. You may need to account for this in your implementation if you will be doing calculations with the returned data (e.g. converting string amounts with commas to decimal places before performing calculations).
 
 * Other amounts, such as item counts, are returned as integers.
 
-* Blank fields are generally included as `null` instead of being blank strings or omitted.
+* Blank fields are generally included as `null` instead of being returned as blank strings or omitted.
 
 ## Authentication ##
 
-There are two aways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.
+There are two ways to authenticate with the API, depending on whether the site supports SSL.  Remember that the Index endpoint will indicate if the site supports SSL.
 
 ### Over HTTPS ###
 
@@ -91,7 +88,7 @@ curl https://www.example.com/wc-api/v3/orders \
     -u consumer_key:consumer_secret
 ```
 
-Occasionally some servers may not properly parse the Authorization header (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters.
+Occasionally some servers may not parse the Authorization header correctly (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters.
 
 > Example for servers that not properly parse the Authorization header:
 
@@ -101,7 +98,7 @@ curl https://www.example.com/wc-api/v3/orders?consumer_key=123&consumer_secret=a
 
 ### Over HTTP ###
 
-You must use [OAuth 1.0a "one-legged" authentication](http://tools.ietf.org/html/rfc5849) to ensure API credentials cannot be intercepted. Typically you may use any standard OAuth 1.0a library in your language of choice to handle the authentication, or generate the necessary parameters by following these instructions.
+You must use [OAuth 1.0a "one-legged" authentication](http://tools.ietf.org/html/rfc5849) to ensure API credentials cannot be intercepted. Typically you will use any standard OAuth 1.0a library in the language of choice to handle the authentication, or generate the necessary parameters by following the following instructions.
 
 #### Generating an OAuth signature ####
 
@@ -135,18 +132,18 @@ when encoded:
 
 8) Generate the signature using the string to key and your consumer secret key
 
-If you are having trouble generating a correct signature, you'll want to review your string to sign for errors with encoding. The [authentication source](https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
+If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
 
 #### OAuth Tips ####
 
 * The OAuth parameters must be added as query string parameters and *not* included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.
-* The require parameters are: `oauth_consumer_key`, `oauth_timestamp`, `oauth_nonce`, `oauth_signature`, and `oauth_signature_method`. `oauth_version` is not required and must be omitted.
+* The require parameters are: `oauth_consumer_key`, `oauth_timestamp`, `oauth_nonce`, `oauth_signature`, and `oauth_signature_method`. `oauth_version` is not required and should be omitted.
 * HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.
-* The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on [generating a nonce](https://dev.twitter.com/discussions/12445) on the Twitter API forums.
-* The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.
+* The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on [generating nonces on the Twitter API forums](https://dev.twitter.com/discussions/12445).
+* The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp outside of a 15 minute window to prevent replay attacks.
 * You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a `www` sub-domain, you should use it for requests)
 * You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedinlabs.com/oauth-test/) -- leave the member token/secret blank.
-* Twitter has great instructions on [generating a signature](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
+* Twitter has great instructions on [generating signatures](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
 * Note that the request body is *not* signed as per the OAuth spec, see [Google's OAuth 1.0 extension](https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html) for details on why.
 * If including filter fields in your request, it saves a lot of trouble if you can order your filter fields alphabetically before submitting. Many Oauth libraries won't order subquery fields properly, resulting in invalid signatures.
 
@@ -182,7 +179,7 @@ Note that the following filters are supported for all endpoints except the `repo
 | `meta`             | resource meta is excluded by default, but it can be included by setting `meta=true`, e.g. `GET /orders?filter[meta]=true`. Protected meta (meta whose key is prefixed with an underscore) is not included in the response                                                                    |
 | `pagination`       | explained below                                                                                                                                                                                                                                                                              |
 
-Note that Dates should be provided in [RFC3339](http://www.ietf.org/rfc/rfc3339.txt) format in UTC timezone: `YYYY-MM-DDTHH:MM:SSZ`. You may omit the time and timezone if desired.
+Note that Dates should be provided in [RFC3339](http://www.ietf.org/rfc/rfc3339.txt) format in the UTC timezone: `YYYY-MM-DDTHH:MM:SSZ`. You may omit the time and timezone if desired.
 
 ### Fields Parameter ###
 
@@ -204,7 +201,7 @@ Sub-fields can't be limited for resources that have multiple structs, like an or
 
 ## Pagination ##
 
-Requests that return multiple items will be paginated to 10 items by default. This default can be changed by the site administrator by changing the `posts_per_page` option. Alternatively the items per page can be specifed with the `?filter[limit]` parameter:
+Requests that return multiple items will be paginated to 10 items by default. This default can be changed by the site administrator by changing the `posts_per_page` option. Alternatively the items per page can be specified with the `?filter[limit]` parameter:
 
 `GET /orders?filter[limit]=15`
 
@@ -216,7 +213,7 @@ You may also specify the offset from the first resource using the `?filter[offse
 
 `GET /orders?filter[offset]=5`
 
-Page number is 1-based and ommiting the `?page` parameter will return the first page.
+Page number is 1-based and omitting the `?page` parameter will return the first page.
 
 The total number of resources and pages are always included in the `X-WC-Total` and `X-WC-TotalPages` HTTP headers.
 
@@ -301,13 +298,13 @@ Occasionally you might encounter errors when accessing the API. There are four p
 }
 ```
 
-Errors return both an appropriate HTTP status code and response object which contains a `code` and `message` attribute. If an endpoint has any custom errors, they are documented with that endpoint.
+Errors return both an appropriate HTTP status code and response object which contains a `code` and `message` attribute. If an endpoint has any custom errors, they are documented within that endpoint.
 
 ## HTTP Verbs ##
 
 The API uses the appropriate HTTP verb for each action:
 
-|  Verbe   |                               Description                               |
+|  Verb    |                               Description                               |
 |----------|-------------------------------------------------------------------------|
 | `HEAD`   | Can be used for any endpoint to return just the HTTP header information |
 | `GET`    | Used for retrieving resources                                           |
@@ -317,7 +314,7 @@ The API uses the appropriate HTTP verb for each action:
 
 ## JSONP Support ##
 
-The API supports JSONP by default. JSONP responses uses the `application/javascript` content-type. You can specify the callback using the `?_jsonp` parameter for `GET` requests to have the response wrapped in a JSON function:
+The API supports JSONP by default. JSONP responses use the `application/javascript` content-type. You can specify the callback using the `?_jsonp` parameter for `GET` requests to have the response wrapped in a JSON function:
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -366,7 +363,7 @@ curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 
 ## Webhooks ##
 
-Webhooks can be maneged by our interface or using the REST API endpoints. The `WC_Webhook` class manages all data storage/retrieval from the custom post type, as well as enqueuing a webhook's actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
+Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the custom post type, as well as enqueuing webhook actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
 
 Each webhook has:
 
@@ -387,7 +384,7 @@ Core topics are:
 * `order.created, order.updated, order.deleted`
 * `product.created, product.updated, product.deleted`
 
-Custom topics can also be used which map to a single hook name, so for example you could add a webhook with topic `action.woocommerce_add_to_cart` that is triggered on that event. Custom topics pass the first hook argument to the payload, so in this example the `cart_item_key` would be included in the payload.
+Custom topics can also be used which map to a single hook name, for example you could add a webhook with topic `action.woocommerce_add_to_cart` that is triggered on that event. Custom topics pass the first hook argument to the payload, so in this example the `cart_item_key` would be included in the payload.
 
 ### Delivery/Payload ###
 
@@ -400,7 +397,7 @@ Delivery is done using `wp_remote_post()` (HTTP POST) and processed in the backg
 * `X-WC-Webhook-ID` - webhook's post ID
 * `X-WC-Delivery-ID` - delivery log ID (a comment)
 
-The payload is JSON encoded and for API resources (coupons,customers,orders,products), the response is exactly the same as if requested via the REST API.
+The payload is JSON encoded and for API resources (coupons, customers, orders, products), the response is exactly the same as if requested via the REST API.
 
 ### Logging ###
 
@@ -432,6 +429,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 ## Official Libraries ##
 
 - [Node.js](https://www.npmjs.com/package/woocommerce-api)
+- [PHP](https://packagist.org/packages/automattic/woocommerce)
 - [Python](https://pypi.python.org/pypi/WooCommerce)
 - [Ruby](https://rubygems.org/gems/woocommerce_api)
 
@@ -450,6 +448,27 @@ var WooCommerce = new WooCommerceAPI({
 });
 ```
 
+```php
+<?php 
+// Install:
+// composer require automattic/woocommerce
+
+// Setup:
+require __DIR__ . '/vendor/autoload.php';
+
+use Automattic\WooCommerce\Client;
+
+$woocommerce = new Client(
+    'http://example.com', // Your store URL
+    'consumer_key', // Your consumer key
+    'consumer_secret', // Your consumer secret
+    [
+        'version' => 'v3' // WooCommerce API version
+    ]
+);
+?>
+```
+
 ```python
 # Install:
 # pip install woocommerce
@@ -458,10 +477,10 @@ var WooCommerce = new WooCommerceAPI({
 from woocommerce import API
 
 wcapi = API(
-    url="http://example.com",
-    consumer_key="consumer_key",
-    consumer_secret="consumer_secret",
-    version="v3"
+    url="http://example.com", # Your store URL
+    consumer_key="consumer_key", # Your consumer key
+    consumer_secret="consumer_secret", # Your consumer secret
+    version="v3" # WooCommerce API version
 )
 ```
 
@@ -473,17 +492,17 @@ wcapi = API(
 require "woocommerce_api"
 
 woocommerce = WooCommerce::API.new(
-  "http://example.com",
-  "consumer_key",
-  "consumer_secret",
+  "http://example.com", # Your store URL
+  "consumer_key", # Your consumer key
+  "consumer_secret", # Your consumer secret
   {
-    version: "v3"
+    version: "v3" # WooCommerce API version
   }
 )
 ```
 
 <aside class="notice">
-	Use the tabs at the top-right corner to see how to install and use each library.
+	Use the tabs in the top-right corner of this page to see how to install and use each library.
 </aside>
 
 ## Tools ##
