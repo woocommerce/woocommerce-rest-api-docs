@@ -4,6 +4,7 @@ title: WooCommerce REST API Documentation v3
 language_tabs:
   - shell: cURL
   - javascript: Node.js
+  - php: PHP
   - python: Python
   - ruby: Ruby
 
