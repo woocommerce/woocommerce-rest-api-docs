@@ -10,7 +10,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `name`        | string  | Tag name <i class="label label-info">required</i>                                    |
 | `slug`        | string  | Tag slug                                                                             |
 | `description` | string  | Tag description                                                                      |
-| `count`       | boolean | Shows the quantity of products in this tag <i class="label label-info">read-only</i> |
+| `count`       | integer | Shows the quantity of products in this tag <i class="label label-info">read-only</i> |
 
 ## Create a Product Tag ##
 

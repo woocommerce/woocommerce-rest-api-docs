@@ -13,7 +13,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `description` | string  | Category description                                                                                          |
 | `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` |
 | `image`       | string  | Category image URL                                                                                            |
-| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                     |
+| `count`       | integer | Shows the quantity of products in this category <i class="label label-info">read-only</i>                     |
 
 ## Create a Product Category ##
 

@@ -2006,7 +2006,7 @@ woocommerce.get("products/categories/9").parsed_response
 | `description` | string  | Category description <i class="label label-info">read-only</i>                                                                                          |
 | `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` <i class="label label-info">read-only</i> |
 | `image`       | string  | Category image URL <i class="label label-info">read-only</i>                                                                                            |
-| `count`       | boolean | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
+| `count`       | integer | Shows the quantity of products in this category <i class="label label-info">read-only</i>                                                               |
 
 ## View List Of Product Categories ##
 

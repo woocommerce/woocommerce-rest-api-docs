@@ -9,7 +9,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `id`      | integer | Term ID (term ID) <i class="label label-info">read-only</i>                           |
 | `name`    | string  | Term name <i class="label label-info">required</i>                                    |
 | `slug`    | string  | Term slug                                                                             |
-| `count`   | boolean | Shows the quantity of products in this term <i class="label label-info">read-only</i> |
+| `count`   | integer | Shows the quantity of products in this term <i class="label label-info">read-only</i> |
 
 ## Create a Product Attribute Term ##
 
