@@ -314,17 +314,17 @@ This API helps you delete a product shipping class.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/products/shipping_class/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/shipping_classes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/products/shipping_class/35 \
+curl -X DELETE https://example.com/wc-api/v3/products/shipping_classes/35 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/shipping_class/35', function(err, data, res) {
+WooCommerce.delete('products/shipping_classes/35', function(err, data, res) {
   console.log(res);
 });
 ```
@@ -334,11 +334,11 @@ WooCommerce.delete('products/shipping_class/35', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/shipping_class/35").json())
+print(wcapi.delete("products/shipping_classes/35").json())
 ```
 
 ```ruby
-woocommerce.delete("products/shipping_class/35").parsed_response
+woocommerce.delete("products/shipping_classes/35").parsed_response
 ```
 
 > JSON response example:
