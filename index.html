@@ -11351,21 +11351,21 @@
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-delete">DELETE</i>
-        <h6>/wc-api/v3/products/shipping_class/&lt;id&gt;</h6>
+        <h6>/wc-api/v3/products/shipping_classes/&lt;id&gt;</h6>
     </div>
 </div>
-<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v3/products/shipping_class/35 <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE https://example.com/wc-api/v3/products/shipping_classes/35 <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'products/shipping_class/35'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'products/shipping_classes/35'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span> <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">'products/shipping_classes/35'</span><span class="p">));</span> <span class="cp">?&gt;</span>
 </code></pre>
-<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"products/shipping_class/35"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"products/shipping_classes/35"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
-<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"products/shipping_class/35"</span><span class="p">).</span><span class="nf">parsed_response</span>
+<pre class="highlight ruby"><code><span class="n">woocommerce</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s2">"products/shipping_classes/35"</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
