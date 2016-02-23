@@ -22,6 +22,18 @@ The current API version is `v3` which takes a first-order position in endpoints.
 
 The `v1` and `v2` APIs will be removed in future versions.
 
+### What's changed in v3? ###
+
+* v3 implements full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
+* v3 fixes the OAuth implementation to be compliant with the [Oauth 1.0a specs](http://tools.ietf.org/html/rfc5849).
+* v3 includes a new endpoint to [get all product orders](#view-list-of-product-orders).
+* v3 has new endpoints for bulk creation and updating of [products](#create-update-multiple-products), [orders](#create-update-multiple-orders), [customers](#create-update-multiple-customers) and [coupons](#create-update-multiple-coupons).
+* v3 introduces new [product attribute endpoints](#product-attributes) (`GET`, `POST`, `PUT` and `DELETE`).
+* v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character and there is a filter, `filter[sku]`, that covers this use case).
+* v3 includes category thumbnails with requests for `product/categories`.
+* v3 can auto generate passwords for new customers if the "automatically generate customer password" option is enabled.
+
+
 ### Differences between v1 and v2 ###
 
 * v1 supports XML response format, v2 only supports JSON.
@@ -32,17 +44,6 @@ The `v1` and `v2` APIs will be removed in future versions.
 * v1 does not include any endpoints for listing product categories, v2 includes two endpoints for product categories (`GET /products/categories` and `GET /products/categories/{id}`).
 * v1 does not include any endpoints for getting valid order statuses, v2 includes an endpoint for listing valid order statuses (`GET /orders/statuses`).
 * v2 supports the core features added in WooCommerce 2.2, primarily order refunds (via the `/orders/refunds` endpoint) and Webhooks (via the `/webhooks`).
-
-### Differences between v3 and older versions ###
-
-* v3 implements full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
-* v3 fixes the OAuth implementation to be compliant with the [Oauth 1.0a specs](http://tools.ietf.org/html/rfc5849).
-* v3 includes a new endpoint to [get all product orders](#view-list-of-product-orders).
-* v3 has new endpoints for bulk creation and updating of [products](#create-update-multiple-products), [orders](#create-update-multiple-orders), [customers](#create-update-multiple-customers) and [coupons](#create-update-multiple-coupons).
-* v3 introduces new [product attribute endpoints](#product-attributes) (`GET`, `POST`, `PUT` and `DELETE`).
-* v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character and there is a filter, `filter[sku]`, that covers this use case).
-* v3 includes category thumbnails with requests for `product/categories`.
-* v3 can auto generate passwords for new customers if the "automatically generate customer password" option is enabled.
 
 ### API Docs for past versions ###
 
