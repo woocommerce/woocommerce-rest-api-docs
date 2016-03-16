@@ -91,6 +91,19 @@
 
 <p>The <code class="prettyprint">v1</code> and <code class="prettyprint">v2</code> APIs will be removed in future versions.</p>
 
+<h3 id="what-39-s-changed-in-v3">What&rsquo;s changed in v3?</h3>
+
+<ul>
+<li>v3 implements full basic authentication (<a href="http://tools.ietf.org/html/rfc2617">conforms to the Basic auth spec)</a>).</li>
+<li>v3 fixes the OAuth implementation to be compliant with the <a href="http://tools.ietf.org/html/rfc5849">Oauth 1.0a specs</a>.</li>
+<li>v3 includes a new endpoint to <a href="#view-list-of-product-orders">get all product orders</a>.</li>
+<li>v3 has new endpoints for bulk creation and updating of <a href="#create-update-multiple-products">products</a>, <a href="#create-update-multiple-orders">orders</a>, <a href="#create-update-multiple-customers">customers</a> and <a href="#create-update-multiple-coupons">coupons</a>.</li>
+<li>v3 introduces new <a href="#product-attributes">product attribute endpoints</a> (<code class="prettyprint">GET</code>, <code class="prettyprint">POST</code>, <code class="prettyprint">PUT</code> and <code class="prettyprint">DELETE</code>).</li>
+<li>v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character and there is a filter, <code class="prettyprint">filter[sku]</code>, that covers this use case).</li>
+<li>v3 includes category thumbnails with requests for <code class="prettyprint">product/categories</code>.</li>
+<li>v3 can auto generate passwords for new customers if the &ldquo;automatically generate customer password&rdquo; option is enabled.</li>
+</ul>
+
 <h3 id="differences-between-v1-and-v2">Differences between v1 and v2</h3>
 
 <ul>
@@ -102,19 +115,6 @@
 <li>v1 does not include any endpoints for listing product categories, v2 includes two endpoints for product categories (<code class="prettyprint">GET /products/categories</code> and <code class="prettyprint">GET /products/categories/{id}</code>).</li>
 <li>v1 does not include any endpoints for getting valid order statuses, v2 includes an endpoint for listing valid order statuses (<code class="prettyprint">GET /orders/statuses</code>).</li>
 <li>v2 supports the core features added in WooCommerce 2.2, primarily order refunds (via the <code class="prettyprint">/orders/refunds</code> endpoint) and Webhooks (via the <code class="prettyprint">/webhooks</code>).</li>
-</ul>
-
-<h3 id="differences-between-v3-and-older-versions">Differences between v3 and older versions</h3>
-
-<ul>
-<li>v3 implements full basic authentication (<a href="http://tools.ietf.org/html/rfc2617">conforms to the Basic auth spec)</a>).</li>
-<li>v3 fixes the OAuth implementation to be compliant with the <a href="http://tools.ietf.org/html/rfc5849">Oauth 1.0a specs</a>.</li>
-<li>v3 includes a new endpoint to get all product orders.</li>
-<li>v3 has new endpoints to allow bulk actions as edition and creation of products, orders, customers and coupons.</li>
-<li>v3 introduces new product attribute endpoints (<code class="prettyprint">GET</code>, <code class="prettyprint">POST</code>, <code class="prettyprint">PUT</code> and <code class="prettyprint">DELETE</code>).</li>
-<li>v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character, besides that there is a filter callend <code class="prettyprint">filter[sku]</code>).</li>
-<li>v3 includes category thumbnails on the requests for <code class="prettyprint">product/categories</code>.</li>
-<li>v3 uses our option to auto generate passwords for new customers.</li>
 </ul>
 
 <h3 id="api-docs-for-past-versions">API Docs for past versions</h3>
@@ -6662,6 +6662,11 @@
 <td>Product ID (post ID) <i class="label label-info">read-only</i></td>
 </tr>
 <tr>
+<td><code class="prettyprint">name</code></td>
+<td>string</td>
+<td>Product slug <i class="label label-info">edit-only</i></td>
+</tr>
+<tr>
 <td><code class="prettyprint">created_at</code></td>
 <td>string</td>
 <td>UTC DateTime when the product was created <i class="label label-info">read-only</i></td>
@@ -7296,9 +7301,9 @@
 <td>Shipping class ID <i class="label label-info">read-only</i></td>
 </tr>
 <tr>
-<td><code class="prettyprint">images</code></td>
+<td><code class="prettyprint">image</code></td>
 <td>array</td>
-<td>Variation featured image. See <a href="#images-properties">Images Properties</a></td>
+<td>Variation featured image. Only position 0 will be used. See <a href="#images-properties">Images Properties</a></td>
 </tr>
 <tr>
 <td><code class="prettyprint">attributes</code></td>
