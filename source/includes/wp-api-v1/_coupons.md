@@ -4,30 +4,31 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Coupon Properties ##
 
-|           Attribute            |   Type  |                                                        Description                                                         |
-| ------------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `id`                           | integer | Coupon ID (post ID) <i class="label label-info">read-only</i>                                                              |
-| `code`                         | string  | Coupon code, always lowercase <i class="label label-info">mandatory</i>                                                    |
-| `type`                         | string  | Coupon type, valid core types are: `fixed_cart`, `percent`, `fixed_product` and `percent_product`. Default is `fixed_cart` |
-| `created_at`                   | string  | UTC DateTime when the coupon was created <i class="label label-info">read-only</i>                                         |
-| `updated_at`                   | string  | UTC DateTime when the coupon was last updated <i class="label label-info">read-only</i>                                    |
-| `amount`                       | float   | The amount of discount                                                                                                     |
-| `individual_use`               | boolean | Whether coupon can only be used individually                                                                               |
-| `product_ids`                  | array   | Array of product ID's the coupon can be used on                                                                            |
-| `exclude_product_ids`          | array   | Array of product ID's the coupon cannot be used on                                                                         |
-| `usage_limit`                  | integer | How many times the coupon can be used                                                                                      |
-| `usage_limit_per_user`         | integer | How many times the coupon can be user per customer                                                                         |
-| `limit_usage_to_x_items`       | integer | Max number of items in the cart the coupon can be applied to                                                               |
-| `usage_count`                  | integer | Number of times the coupon has been used already <i class="label label-info">read-only</i>                                 |
-| `expiry_date`                  | string  | UTC DateTime`when the coupon expires                                                                                       |
-| `enable_free_shipping`         | boolean | Is the coupon for free shipping                                                                                            |
-| `product_category_ids`         | array   | Array of category ID's the coupon applies to                                                                               |
-| `exclude_product_category_ids` | array   | Array of category ID's the coupon does not apply to                                                                        |
-| `exclude_sale_items`           | boolean | Exclude sale items from the coupon                                                                                         |
-| `minimum_amount`               | float   | Minimum order amount that needs to be in the cart before coupon applies                                                    |
-| `maximum_amount`               | float   | Maximum order amount allowed when using the coupon                                                                         |
-| `customer_emails`              | array   | Array of email addresses that can use this coupon                                                                          |
-| `description`                  | string  | Coupon description                                                                                                         |
+|           Attribute           |    Type   |                                                                      Description                                                                      |
+|-------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                          | integer   | Unique identifier for the object. <i class="label label-info">read-only</i>                                                                           |
+| `code`                        | string    | Coupon code. <i class="label label-info">mandatory</i>                                                                                                |
+| `date_created`                | date-time | The date the coupon was created, in the site's timezone. <i class="label label-info">read-only</i>                                                    |
+| `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                              |
+| `description`                 | string    | Coupon description.                                                                                                                                   |
+| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `fixed_cart`, `percent`, `fixed_product` and `percent_product`. Default: `fixed_cart`. |
+| `amount`                      | float     | The amount of discount.                                                                                                                               |
+| `expiry_date`                 | string    | UTC DateTime when the coupon expires.                                                                                                                 |
+| `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                                           |
+| `individual_use`              | boolean   | Whether coupon can only be used individually.                                                                                                         |
+| `product_ids`                 | array     | List of product ID's the coupon can be used on.                                                                                                       |
+| `exclude_product_ids`         | array     | List of product ID's the coupon cannot be used on.                                                                                                    |
+| `usage_limit`                 | integer   | How many times the coupon can be used.                                                                                                                |
+| `usage_limit_per_user`        | integer   | How many times the coupon can be used per customer.                                                                                                   |
+| `limit_usage_to_x_items`      | integer   | Max number of items in the cart the coupon can be applied to.                                                                                         |
+| `free_shipping`               | boolean   | Define if can be applied for free shipping.                                                                                                           |
+| `product_categories`          | array     | List of category ID's the coupon applies to.                                                                                                          |
+| `excluded_product_categories` | array     | List of category ID's the coupon does not apply to.                                                                                                   |
+| `exclude_sale_items`          | boolean   | Define if should not apply when have sale items.                                                                                                      |
+| `minimum_amount`              | float     | Minimum order amount that needs to be in the cart before coupon applies.                                                                              |
+| `maximum_amount`              | float     | Maximum order amount allowed when using the coupon.                                                                                                   |
+| `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                                     |
+| `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                                                  |
 
 ## Create a Coupon ##
 
@@ -38,60 +39,32 @@ This API helps you to create a new coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/coupons</h6>
+		<h6>/wp-json/wc/v1/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/coupons \
+curl -X POST https://example.com/wp-json/wc/v1/coupons \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "coupon": {
-    "code": "new-coupon",
-    "type": "percent",
-    "amount": 10,
-    "individual_use": true,
-    "product_ids": [],
-    "exclude_product_ids": [],
-    "usage_limit": "",
-    "usage_limit_per_user": "",
-    "limit_usage_to_x_items": "",
-    "expiry_date": "",
-    "enable_free_shipping": false,
-    "product_category_ids": [],
-    "exclude_product_category_ids": [],
-    "exclude_sale_items": true,
-    "minimum_amount": "100.00",
-    "maximum_amount": "0.00",
-    "customer_emails": [],
-    "description": ""
-  }
+  "code": "10off",
+  "discount_type": "percent",
+  "amount": 10,
+  "individual_use": true,
+  "exclude_sale_items": true,
+  "minimum_amount": "100.00"
 }'
 ```
 
 ```javascript
 var data = {
-  coupon: {
-    code: 'new-coupon',
-    type: 'percent',
-    amount: 10,
-    individual_use: true,
-    product_ids: [],
-    exclude_product_ids: [],
-    usage_limit: '',
-    usage_limit_per_user: '',
-    limit_usage_to_x_items: '',
-    expiry_date: '',
-    enable_free_shipping: false,
-    product_category_ids: [],
-    exclude_product_category_ids: [],
-    exclude_sale_items: true,
-    minimum_amount: '100.00',
-    maximum_amount: '0.00',
-    customer_emails: [],
-    description: ''
-  }
+  code: '10off',
+  discount_type: 'percent',
+  amount: 10,
+  individual_use: true,
+  exclude_sale_items: true,
+  minimum_amount: '100.00'
 };
 
 WooCommerce.post('coupons', data, function(err, data, res) {
@@ -102,26 +75,12 @@ WooCommerce.post('coupons', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'coupon' => [
-        'code' => 'new-coupon',
-        'type' => 'percent',
-        'amount' => 10,
-        'individual_use' => true,
-        'product_ids' => [],
-        'exclude_product_ids' => [],
-        'usage_limit' => '',
-        'usage_limit_per_user' => '',
-        'limit_usage_to_x_items' => '',
-        'expiry_date' => '',
-        'enable_free_shipping' => false,
-        'product_category_ids' => [],
-        'exclude_product_category_ids' => [],
-        'exclude_sale_items' => true,
-        'minimum_amount' => '100.00',
-        'maximum_amount' => '0.00',
-        'customer_emails' => [],
-        'description' => ''
-    ]
+    'code' => '10off',
+    'discount_type' => 'percent',
+    'amount' => 10,
+    'individual_use' => true,
+    'exclude_sale_items' => true,
+    'minimum_amount' => '100.00'
 ];
 
 print_r($woocommerce->post('coupons', $data));
@@ -130,26 +89,12 @@ print_r($woocommerce->post('coupons', $data));
 
 ```python
 data = {
-    "coupon": {
-        "code": "new-coupon",
-        "type": "percent",
-        "amount": 10,
-        "individual_use": True,
-        "product_ids": [],
-        "exclude_product_ids": [],
-        "usage_limit": "",
-        "usage_limit_per_user": "",
-        "limit_usage_to_x_items": "",
-        "expiry_date": "",
-        "enable_free_shipping": False,
-        "product_category_ids": [],
-        "exclude_product_category_ids": [],
-        "exclude_sale_items": True,
-        "minimum_amount": "100.00",
-        "maximum_amount": "0.00",
-        "customer_emails": [],
-        "description": ""
-    }
+    "code": "10off",
+    "discount_type": "percent",
+    "amount": 10,
+    "individual_use": True,
+    "exclude_sale_items": True,
+    "minimum_amount": "100.00"
 }
 
 print(wcapi.post("coupons", data).json())
@@ -157,26 +102,12 @@ print(wcapi.post("coupons", data).json())
 
 ```ruby
 data = {
-  coupon: {
-    code: "new-coupon",
-    type: "percent",
-    amount: 10,
-    individual_use: true,
-    product_ids: [],
-    exclude_product_ids: [],
-    usage_limit: "",
-    usage_limit_per_user: "",
-    limit_usage_to_x_items: "",
-    expiry_date: "",
-    enable_free_shipping: false,
-    product_category_ids: [],
-    exclude_product_category_ids: [],
-    exclude_sale_items: true,
-    minimum_amount: "100.00",
-    maximum_amount: "0.00",
-    customer_emails: [],
-    description: ""
-  }
+  code: "10off",
+  discount_type: "percent",
+  amount: 10,
+  individual_use: true,
+  exclude_sale_items: true,
+  minimum_amount: "100.00"
 }
 
 woocommerce.post("coupons", data).parsed_response
@@ -186,29 +117,40 @@ woocommerce.post("coupons", data).parsed_response
 
 ```json
 {
-  "coupon": {
-    "id": 529,
-    "code": "new-coupon",
-    "type": "percent",
-    "created_at": "2015-01-20T19:05:27Z",
-    "updated_at": "2015-01-20T19:05:27Z",
-    "amount": "10.00",
-    "individual_use": true,
-    "product_ids": [],
-    "exclude_product_ids": [],
-    "usage_limit": null,
-    "usage_limit_per_user": null,
-    "limit_usage_to_x_items": 0,
-    "usage_count": 0,
-    "expiry_date": null,
-    "enable_free_shipping": false,
-    "product_category_ids": [],
-    "exclude_product_category_ids": [],
-    "exclude_sale_items": true,
-    "minimum_amount": "100.00",
-    "maximum_amount": "0.00",
-    "customer_emails": [],
-    "description": ""
+  "id": 113,
+  "code": "10off",
+  "date_created": "2016-04-28T21:55:54",
+  "date_modified": "2016-04-28T21:55:54",
+  "discount_type": "percent",
+  "description": "",
+  "amount": "10.00",
+  "expiry_date": null,
+  "usage_count": 0,
+  "individual_use": true,
+  "product_ids": [],
+  "exclude_product_ids": [],
+  "usage_limit": null,
+  "usage_limit_per_user": null,
+  "limit_usage_to_x_items": 0,
+  "free_shipping": false,
+  "product_categories": [],
+  "excluded_product_categories": [],
+  "exclude_sale_items": true,
+  "minimum_amount": "100.00",
+  "maximum_amount": "0.00",
+  "email_restrictions": [],
+  "used_by": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+      }
+    ]
   }
 }
 ```
@@ -222,60 +164,71 @@ This API lets you retrieve and view a specific coupon by ID or code.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/coupons/529 \
+curl https://example.com/wp-json/wc/v1/coupons/113 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('coupons/529', function(err, data, res) {
+WooCommerce.get('coupons/113', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('coupons/529')); ?>
+<?php print_r($woocommerce->get('coupons/113')); ?>
 ```
 
 ```python
-print(wcapi.get("coupons/529").json())
+print(wcapi.get("coupons/113").json())
 ```
 
 ```ruby
-woocommerce.get("coupons/529").parsed_response
+woocommerce.get("coupons/113").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "coupon": {
-    "id": 529,
-    "code": "new-coupon",
-    "type": "percent",
-    "created_at": "2015-01-20T19:05:27Z",
-    "updated_at": "2015-01-20T19:05:27Z",
-    "amount": "10.00",
-    "individual_use": true,
-    "product_ids": [],
-    "exclude_product_ids": [],
-    "usage_limit": null,
-    "usage_limit_per_user": null,
-    "limit_usage_to_x_items": 0,
-    "usage_count": 0,
-    "expiry_date": null,
-    "enable_free_shipping": false,
-    "product_category_ids": [],
-    "exclude_product_category_ids": [],
-    "exclude_sale_items": true,
-    "minimum_amount": "100.00",
-    "maximum_amount": "0.00",
-    "customer_emails": [],
-    "description": ""
+  "id": 113,
+  "code": "10off",
+  "date_created": "2016-04-28T21:55:54",
+  "date_modified": "2016-04-28T21:55:54",
+  "discount_type": "percent",
+  "description": "",
+  "amount": "10.00",
+  "expiry_date": null,
+  "usage_count": 0,
+  "individual_use": true,
+  "product_ids": [],
+  "exclude_product_ids": [],
+  "usage_limit": null,
+  "usage_limit_per_user": null,
+  "limit_usage_to_x_items": 0,
+  "free_shipping": false,
+  "product_categories": [],
+  "excluded_product_categories": [],
+  "exclude_sale_items": true,
+  "minimum_amount": "100.00",
+  "maximum_amount": "0.00",
+  "email_restrictions": [],
+  "used_by": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+      }
+    ]
   }
 }
 ```
@@ -289,12 +242,12 @@ This API helps you to view all the coupons.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/coupons</h6>
+		<h6>/wp-json/wc/v1/coupons</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/coupons \
+curl https://example.com/wp-json/wc/v1/coupons \
 	-u consumer_key:consumer_secret
 ```
 
@@ -319,83 +272,102 @@ woocommerce.get("coupons").parsed_response
 > JSON response example:
 
 ```json
-{
-  "coupons": [
-    {
-      "id": 529,
-      "code": "new-coupon",
-      "type": "percent",
-      "created_at": "2015-01-20T19:05:27Z",
-      "updated_at": "2015-01-20T19:05:27Z",
-      "amount": "10.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": null,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": null,
-      "enable_free_shipping": false,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "100.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": ""
-    },
-    {
-      "id": 527,
-      "code": "free-shipping",
-      "type": "fixed_cart",
-      "created_at": "2015-01-20T18:35:59Z",
-      "updated_at": "2015-01-20T18:35:59Z",
-      "amount": "0.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": null,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": null,
-      "enable_free_shipping": true,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "50.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": ""
-    },
-    {
-      "id": 526,
-      "code": "christmas-promo",
-      "type": "percent",
-      "created_at": "2015-01-20T18:10:58Z",
-      "updated_at": "2015-01-20T18:10:58Z",
-      "amount": "10.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": 1,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": "2014-12-25T00:00:00Z",
-      "enable_free_shipping": false,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "200.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": "Discount for Christmas for orders over $ 200"
+[
+  {
+    "id": 114,
+    "code": "free-shipping",
+    "date_created": "2016-04-28T21:58:25",
+    "date_modified": "2016-04-28T21:58:25",
+    "discount_type": "fixed_cart",
+    "description": "",
+    "amount": "0.00",
+    "expiry_date": null,
+    "usage_count": 0,
+    "individual_use": true,
+    "product_ids": [],
+    "exclude_product_ids": [],
+    "usage_limit": null,
+    "usage_limit_per_user": null,
+    "limit_usage_to_x_items": 0,
+    "free_shipping": false,
+    "product_categories": [],
+    "excluded_product_categories": [],
+    "exclude_sale_items": true,
+    "minimum_amount": "50.00",
+    "maximum_amount": "0.00",
+    "email_restrictions": [],
+    "used_by": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/coupons/114"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "id": 113,
+    "code": "10off",
+    "date_created": "2016-04-28T21:55:54",
+    "date_modified": "2016-04-28T21:55:54",
+    "discount_type": "percent",
+    "description": "",
+    "amount": "10.00",
+    "expiry_date": null,
+    "usage_count": 0,
+    "individual_use": true,
+    "product_ids": [],
+    "exclude_product_ids": [],
+    "usage_limit": null,
+    "usage_limit_per_user": null,
+    "limit_usage_to_x_items": 0,
+    "free_shipping": false,
+    "product_categories": [],
+    "excluded_product_categories": [],
+    "exclude_sale_items": true,
+    "minimum_amount": "100.00",
+    "maximum_amount": "0.00",
+    "email_restrictions": [],
+    "used_by": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        }
+      ]
+    }
+  }
+]
 ```
+
+#### Available Filters ####
+
+|   Filter   |  Type  |                                                Description                                                |
+|------------|--------|-----------------------------------------------------------------------------------------------------------|
+| `context`  | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. |
+| `page`     | string | Current page of the collection.                                                                           |
+| `per_page` | string | Maximum number of items to be returned in result set.                                                     |
+| `search`   | string | Limit results to those matching a string.                                                                 |
+| `after`    | string | Limit response to resources published after a given ISO8601 compliant date.                               |
+| `before`   | string | Limit response to resources published before a given ISO8601 compliant date.                              |
+| `exclude`  | string | Ensure result set excludes specific ids.                                                                  |
+| `include`  | string | Limit result set to specific ids.                                                                         |
+| `offset`   | string | Offset the result set by a specific number of items.                                                      |
+| `order`    | string | Order sort attribute ascending or descending. Options: `asc` and `desc`.                                  |
+| `orderby`  | string | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`.                |
+| `slug`     | string | Limit result set to posts with a specific slug.                                                           |
+| `filter`   | string | Use WP Query arguments to modify the response; private query vars require appropriate authorization.      |
+| `code`     | string | Limit result set to resources with a specific code.                                                       |
 
 ## Update a Coupon ##
 
@@ -406,299 +378,94 @@ This API lets you make changes to a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/coupons/529 \
+curl -X PUT https://example.com/wp-json/wc/v1/coupons/113 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "coupon": {
+  "amount": 5
+}'
+```
+
+```javascript
+var data = {
+  amount: 5
+};
+
+WooCommerce.put('coupons/113', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php 
+$data = [
+    'amount' => 5
+];
+
+print_r($woocommerce->put('coupons/113', $data)); 
+?>
+```
+
+```python
+data = {
     "amount": 5
-  }
-}'
-```
-
-```javascript
-var data = {
-  coupon: {
-    amount: 5
-  }
-};
-
-WooCommerce.put('coupons/529', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php 
-$data = [
-    'coupon' => [
-        'amount' => 5
-    ]
-];
-
-print_r($woocommerce->put('coupons/529', $data)); 
-?>
-```
-
-```python
-data = {
-    "coupon": {
-        "amount": 5
-    }
 }
 
-print(wcapi.put("coupons/529", data).json())
+print(wcapi.put("coupons/113", data).json())
 ```
 
 ```ruby
 data = {
-  coupon: {
-    amount: 5
-  }
+  amount: 5
 }
 
-woocommerce.put("coupons/529", data).parsed_response
+woocommerce.put("coupons/113", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "coupon": {
-    "id": 529,
-    "code": "new-coupon",
-    "type": "percent",
-    "created_at": "2015-01-20T19:05:27Z",
-    "updated_at": "2015-01-20T19:10:33Z",
-    "amount": "5.00",
-    "individual_use": true,
-    "product_ids": [],
-    "exclude_product_ids": [],
-    "usage_limit": null,
-    "usage_limit_per_user": null,
-    "limit_usage_to_x_items": 0,
-    "usage_count": 0,
-    "expiry_date": null,
-    "enable_free_shipping": false,
-    "product_category_ids": [],
-    "exclude_product_category_ids": [],
-    "exclude_sale_items": true,
-    "minimum_amount": "100.00",
-    "maximum_amount": "0.00",
-    "customer_emails": [],
-    "description": ""
+  "id": 113,
+  "code": "10off",
+  "date_created": "2016-04-28T21:55:54",
+  "date_modified": "2016-04-28T22:00:49",
+  "discount_type": "percent",
+  "description": "",
+  "amount": "5.00",
+  "expiry_date": null,
+  "usage_count": 0,
+  "individual_use": true,
+  "product_ids": [],
+  "exclude_product_ids": [],
+  "usage_limit": null,
+  "usage_limit_per_user": null,
+  "limit_usage_to_x_items": 0,
+  "free_shipping": false,
+  "product_categories": [],
+  "excluded_product_categories": [],
+  "exclude_sale_items": true,
+  "minimum_amount": "100.00",
+  "maximum_amount": "0.00",
+  "email_restrictions": [],
+  "used_by": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+      }
+    ]
   }
-}
-```
-
-## Create/Update Multiple Coupons ##
-
-This API helps you to bulk create/update multiple coupons.
-
-To update is necessary to send objects containing IDs and to create new not just send the ID.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/coupons/bulk</h6>
-	</div>
-</div>
-
-```shell
-curl -X POST https://example.com/wc-api/v3/coupons/bulk \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "coupons": [
-    {
-      "id": 529,
-      "amount": "15.00"
-    },
-    {
-      "id": 527,
-      "minimum_amount": "55.00"
-    },
-    {
-      "id": 526,
-      "amount": "20.00"
-    }
-  ]
-}'
-```
-
-```javascript
-var data = {
-  coupons: [
-    {
-      id: 529,
-      amount: '15.00'
-    },
-    {
-      id: 527,
-      minimum_amount: '55.00'
-    },
-    {
-      id: 526,
-      amount: '20.00'
-    }
-  ]
-};
-
-WooCommerce.post('coupons/bulk', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php 
-$data = [
-    'coupons' => [
-        [
-            'id' => 529,
-            'amount' => '15.00'
-        ],
-        [
-            'id' => 527,
-            'minimum_amount' => '55.00'
-        ],
-        [
-            'id' => 526,
-            'amount': '20.00'
-        ]
-    ]
-];
-
-print_r($woocommerce->post('coupons/bulk', $data)); 
-?>
-```
-
-```python
-data = {
-    "coupons": [
-        {
-            "id": 529,
-            "amount": "15.00"
-        },
-        {
-            "id": 527,
-            "minimum_amount": "55.00"
-        },
-        {
-            "id": 526,
-            "amount": "20.00"
-        }
-    ]
-}
-
-print(wcapi.post("coupons/bulk", data).json())
-```
-
-```ruby
-data = {
-  coupons: [
-    {
-      id: 529,
-      amount: "15.00"
-    },
-    {
-      id: 527,
-      minimum_amount: "55.00"
-    },
-    {
-      id: 526,
-      amount: "20.00"
-    }
-  ]
-}
-
-woocommerce.post("coupons/bulk", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "coupons": [
-    {
-      "id": 529,
-      "code": "new-coupon",
-      "type": "percent",
-      "created_at": "2015-01-20T19:05:27Z",
-      "updated_at": "2015-07-31T12:10:33Z",
-      "amount": "15.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": null,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": null,
-      "enable_free_shipping": false,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "100.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": ""
-    },
-    {
-      "id": 527,
-      "code": "free-shipping",
-      "type": "fixed_cart",
-      "created_at": "2015-01-20T18:35:59Z",
-      "updated_at": "2015-07-31T12:10:33Z",
-      "amount": "0.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": null,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": null,
-      "enable_free_shipping": true,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "55.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": ""
-    },
-    {
-      "id": 526,
-      "code": "christmas-promo",
-      "type": "percent",
-      "created_at": "2015-01-20T18:10:58Z",
-      "updated_at": "2015-07-31T12:10:33Z",
-      "amount": "20.00",
-      "individual_use": true,
-      "product_ids": [],
-      "exclude_product_ids": [],
-      "usage_limit": null,
-      "usage_limit_per_user": 1,
-      "limit_usage_to_x_items": 0,
-      "usage_count": 0,
-      "expiry_date": "2015-12-25T00:00:00Z",
-      "enable_free_shipping": false,
-      "product_category_ids": [],
-      "exclude_product_category_ids": [],
-      "exclude_sale_items": true,
-      "minimum_amount": "200.00",
-      "maximum_amount": "0.00",
-      "customer_emails": [],
-      "description": "Discount for Christmas for orders over $ 200"
-    }
-  ]
 }
 ```
 
@@ -711,87 +478,77 @@ This API helps you delete a coupon.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/coupons/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/coupons/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/coupons/529/?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v1/coupons/113/?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
+WooCommerce.delete('coupons/113/?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('coupons/529', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('coupons/113', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("coupons/529?force=true").json())
+print(wcapi.delete("coupons/113?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("coupons/529", force: true).parsed_response
+woocommerce.delete("coupons/113", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "message": "Permanently deleted coupon"
+  "id": 113,
+  "code": "10off",
+  "date_created": "2016-04-28T21:55:54",
+  "date_modified": "2016-04-28T22:00:49",
+  "discount_type": "percent",
+  "description": "",
+  "amount": "5.00",
+  "expiry_date": null,
+  "usage_count": 0,
+  "individual_use": true,
+  "product_ids": [],
+  "exclude_product_ids": [],
+  "usage_limit": null,
+  "usage_limit_per_user": null,
+  "limit_usage_to_x_items": 0,
+  "free_shipping": false,
+  "product_categories": [],
+  "excluded_product_categories": [],
+  "exclude_sale_items": true,
+  "minimum_amount": "100.00",
+  "maximum_amount": "0.00",
+  "email_restrictions": [],
+  "used_by": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+      }
+    ]
+  }
 }
 ```
 
 ### Parameters ###
 
-| Parameter |  Type  |                                                                          Description                                                                           |
-| --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `force`   | string | Use `true` whether to permanently delete the coupon, defaults to `false`. Note that permanently deleting the coupon will return HTTP 200 rather than HTTP 202. |
-
-## View Coupons Count ##
-
-This API lets you retrieve a count of all coupons.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/coupons/count</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/coupons/count \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('coupons/count', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('coupons/count')); ?>
-```
-
-```python
-print(wcapi.get("coupons/count").json())
-```
-
-```ruby
-woocommerce.get("coupons/count").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "count": 3
-}
-```
+| Parameter |  Type  |                                Description                                |
+|-----------|--------|---------------------------------------------------------------------------|
+| `force`   | string | Use `true` whether to permanently delete the coupon, defaults to `false`. |
