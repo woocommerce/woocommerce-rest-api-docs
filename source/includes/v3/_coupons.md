@@ -226,6 +226,13 @@ This API lets you retrieve and view a specific coupon by ID or code.
 	</div>
 </div>
 
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wc-api/v3/coupons/code/&lt;code&gt;</h6>
+	</div>
+</div>
+
 ```shell
 curl https://example.com/wc-api/v3/coupons/529 \
 	-u consumer_key:consumer_secret
