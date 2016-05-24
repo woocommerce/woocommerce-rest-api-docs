@@ -143,12 +143,12 @@ woocommerce.post("coupons", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+        "href": "https://example.com/wp-json/wc/v1/coupons/113"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        "href": "https://example.com/wp-json/wc/v1/coupons"
       }
     ]
   }
@@ -221,12 +221,12 @@ woocommerce.get("coupons/113").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+        "href": "https://example.com/wp-json/wc/v1/coupons/113"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        "href": "https://example.com/wp-json/wc/v1/coupons"
       }
     ]
   }
@@ -300,12 +300,12 @@ woocommerce.get("coupons").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/coupons/114"
+          "href": "https://example.com/wp-json/wc/v1/coupons/114"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/coupons"
+          "href": "https://example.com/wp-json/wc/v1/coupons"
         }
       ]
     }
@@ -337,12 +337,12 @@ woocommerce.get("coupons").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+          "href": "https://example.com/wp-json/wc/v1/coupons/113"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/coupons"
+          "href": "https://example.com/wp-json/wc/v1/coupons"
         }
       ]
     }
@@ -350,24 +350,24 @@ woocommerce.get("coupons").parsed_response
 ]
 ```
 
-#### Available Filters ####
+#### Available Parameters ####
 
-|   Filter   |  Type  |                                                Description                                                |
-|------------|--------|-----------------------------------------------------------------------------------------------------------|
-| `context`  | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. |
-| `page`     | string | Current page of the collection.                                                                           |
-| `per_page` | string | Maximum number of items to be returned in result set.                                                     |
-| `search`   | string | Limit results to those matching a string.                                                                 |
-| `after`    | string | Limit response to resources published after a given ISO8601 compliant date.                               |
-| `before`   | string | Limit response to resources published before a given ISO8601 compliant date.                              |
-| `exclude`  | string | Ensure result set excludes specific ids.                                                                  |
-| `include`  | string | Limit result set to specific ids.                                                                         |
-| `offset`   | string | Offset the result set by a specific number of items.                                                      |
-| `order`    | string | Order sort attribute ascending or descending. Options: `asc` and `desc`.                                  |
-| `orderby`  | string | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`.                |
-| `slug`     | string | Limit result set to posts with a specific slug.                                                           |
-| `filter`   | string | Use WP Query arguments to modify the response; private query vars require appropriate authorization.      |
-| `code`     | string | Limit result set to resources with a specific code.                                                       |
+| Parameter  |   Type  |                                                  Description                                                  |
+|------------|---------|---------------------------------------------------------------------------------------------------------------|
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
+| `page`     | integer | Current page of the collection.                                                                               |
+| `per_page` | integer | Maximum number of items to be returned in result set.                                                         |
+| `search`   | string  | Limit results to those matching a string.                                                                     |
+| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
+| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
+| `exclude`  | string  | Ensure result set excludes specific ids.                                                                      |
+| `include`  | string  | Limit result set to specific ids.                                                                             |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                          |
+| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
+| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
+| `slug`     | string  | Limit result set to posts with a specific slug.                                                               |
+| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
+| `code`     | string  | Limit result set to resources with a specific code.                                                           |
 
 ## Update a Coupon ##
 
@@ -457,12 +457,12 @@ woocommerce.put("coupons/113", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+        "href": "https://example.com/wp-json/wc/v1/coupons/113"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        "href": "https://example.com/wp-json/wc/v1/coupons"
       }
     ]
   }
@@ -483,12 +483,12 @@ This API helps you delete a coupon.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v1/coupons/113/?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v1/coupons/113?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('coupons/113/?force=true', function(err, data, res) {
+WooCommerce.delete('coupons/113?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
@@ -535,20 +535,369 @@ woocommerce.delete("coupons/113", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons/113"
+        "href": "https://example.com/wp-json/wc/v1/coupons/113"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v1/coupons"
+        "href": "https://example.com/wp-json/wc/v1/coupons"
       }
     ]
   }
 }
 ```
 
-### Parameters ###
+#### Available Parameters ####
 
-| Parameter |  Type  |                                Description                                |
-|-----------|--------|---------------------------------------------------------------------------|
-| `force`   | string | Use `true` whether to permanently delete the coupon, defaults to `false`. |
+| Parameter |  Type  |                               Description                                |
+|-----------|--------|--------------------------------------------------------------------------|
+| `force`   | string | Use `true` whether to permanently delete the coupon, Default is `false`. |
+
+## Create/Update/Delete Multiple Coupons ##
+
+This API helps you to batch create, update and delete multiple coupons.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/coupons/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/coupons/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "code": "20off",
+      "discount_type": "percent",
+      "amount": 20,
+      "individual_use": true,
+      "exclude_sale_items": true,
+      "minimum_amount": "100.00"
+    },
+    {
+      "code": "30off",
+      "discount_type": "percent",
+      "amount": 30,
+      "individual_use": true,
+      "exclude_sale_items": true,
+      "minimum_amount": "100.00"
+    }
+  ],
+  "update": [
+    {
+      "id": 113,
+      "minimum_amount": "50.00"
+    }
+  ],
+  "delete": [
+    137
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      code: '20off',
+      discount_type: 'percent',
+      amount: 20,
+      individual_use: true,
+      exclude_sale_items: true,
+      minimum_amount: '100.00'
+    },
+    {
+      code: '30off',
+      discount_type: 'percent',
+      amount: 30,
+      individual_use: true,
+      exclude_sale_items: true,
+      minimum_amount: '100.00'
+    }
+  ],
+  update: [
+    {
+      id: 113,
+      minimum_amount: '50.00'
+    }
+  ],
+  delete: [
+    137
+  ]
+};
+
+WooCommerce.post('customers/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'code' => '20off',
+            'discount_type' => 'percent',
+            'amount' => 20,
+            'individual_use' => true,
+            'exclude_sale_items' => true,
+            'minimum_amount' => '100.00'
+        ],
+        [
+            'code' => '30off',
+            'discount_type' => 'percent',
+            'amount' => 30,
+            'individual_use' => true,
+            'exclude_sale_items' => true,
+            'minimum_amount' => '100.00'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 113,
+            'minimum_amount' => '50.00'
+        ]
+    ],
+    'delete' => [
+        137
+    ]
+];
+
+print_r($woocommerce->post('customers/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "code": "20off",
+            "discount_type": "percent",
+            "amount": 20,
+            "individual_use": True,
+            "exclude_sale_items": True,
+            "minimum_amount": "100.00"
+        },
+        {
+            "code": "30off",
+            "discount_type": "percent",
+            "amount": 30,
+            "individual_use": True,
+            "exclude_sale_items": True,
+            "minimum_amount": "100.00"
+        }
+    ],
+    "update": [
+        {
+            "id": 113,
+            "minimum_amount": "50.00"
+        }
+    ],
+    "delete": [
+        137
+    ]
+}
+
+print(wcapi.post("customers/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      code: "20off",
+      discount_type: "percent",
+      amount: 20,
+      individual_use: true,
+      exclude_sale_items: true,
+      minimum_amount: "100.00"
+    },
+    {
+      code: "30off",
+      discount_type: "percent",
+      amount: 30,
+      individual_use: true,
+      exclude_sale_items: true,
+      minimum_amount: "100.00"
+    }
+  ],
+  update: [
+    {
+      id: 113,
+      minimum_amount: "50.00"
+    }
+  ],
+  delete: [
+    137
+  ]
+}
+
+woocommerce.post("customers/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 138,
+      "code": "20off",
+      "date_created": "2016-05-17T20:52:21",
+      "date_modified": "2016-05-17T20:52:21",
+      "discount_type": "percent",
+      "description": "",
+      "amount": "20.00",
+      "expiry_date": null,
+      "usage_count": 0,
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "free_shipping": false,
+      "product_categories": [],
+      "excluded_product_categories": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "100.00",
+      "maximum_amount": "0.00",
+      "email_restrictions": [],
+      "used_by": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons/138"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons"
+          }
+        ]
+      }
+    },
+    {
+      "id": 139,
+      "code": "30off",
+      "date_created": "2016-05-17T20:52:22",
+      "date_modified": "2016-05-17T20:52:22",
+      "discount_type": "percent",
+      "description": "",
+      "amount": "30.00",
+      "expiry_date": null,
+      "usage_count": 0,
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "free_shipping": false,
+      "product_categories": [],
+      "excluded_product_categories": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "100.00",
+      "maximum_amount": "0.00",
+      "email_restrictions": [],
+      "used_by": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons/139"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 113,
+      "code": "10off",
+      "date_created": "2016-04-28T21:55:54",
+      "date_modified": "2016-05-17T20:52:23",
+      "discount_type": "percent",
+      "description": "",
+      "amount": "5.00",
+      "expiry_date": null,
+      "usage_count": 0,
+      "individual_use": true,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "free_shipping": false,
+      "product_categories": [],
+      "excluded_product_categories": [],
+      "exclude_sale_items": true,
+      "minimum_amount": "50.00",
+      "maximum_amount": "0.00",
+      "email_restrictions": [],
+      "used_by": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons/113"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 137,
+      "code": "50off",
+      "date_created": "2016-05-17T20:49:12",
+      "date_modified": "2016-05-17T20:50:30",
+      "discount_type": "fixed_cart",
+      "description": "",
+      "amount": "50.00",
+      "expiry_date": null,
+      "usage_count": 0,
+      "individual_use": false,
+      "product_ids": [],
+      "exclude_product_ids": [],
+      "usage_limit": null,
+      "usage_limit_per_user": null,
+      "limit_usage_to_x_items": 0,
+      "free_shipping": false,
+      "product_categories": [],
+      "excluded_product_categories": [],
+      "exclude_sale_items": false,
+      "minimum_amount": "0.00",
+      "maximum_amount": "0.00",
+      "email_restrictions": [],
+      "used_by": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons/137"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/coupons"
+          }
+        ]
+      }
+    }
+  ]
+}
+```

@@ -4,52 +4,59 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Customers Properties ##
 
-|     Attribute      |   Type  |                                                                                                                                                    Description                                                                                                                                                     |
-| ------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`               | integer | Customer ID (user ID) <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                    |
-| `created_at`       | string  | UTC DateTime when the customer was created <i class="label label-info">read-only</i>                                                                                                                                                                                                                               |
-| `email`            | string  | Customer email address <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                   |
-| `first_name`       | string  | Customer first name                                                                                                                                                                                                                                                                                                |
-| `last_name`        | string  | Customer last name                                                                                                                                                                                                                                                                                                 |
-| `username`         | string  | Customer username, can be generated automatically from the customer's email addrees if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i>                                                                                                 |
-| `password`         | string  | Customer password, can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> |
-| `last_order_id`    | integer | Last order ID <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                            |
-| `last_order_date`  | string  | UTC DateTime of the customer last order <i class="label label-info">read-only</i>                                                                                                                                                                                                                                  |
-| `orders_count`     | integer | Quantity of orders that the customer have <i class="label label-info">read-only</i>                                                                                                                                                                                                                                |
-| `total_spent`      | integer | Total amount spent <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                       |
-| `avatar_url`       | string  | Gravatar URL                                                                                                                                                                                                                                                                                                       |
-| `billing_address`  | array   | List of Billing Address fields. See [Billing Address Properties](#billing-address-properties)                                                                                                                                                                                                                      |
-| `shipping_address` | array   | List of Shipping Address fields. See [Shipping Address Properties](#shipping-address-properties)                                                                                                                                                                                                                   |
+|     Attribute      |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                      |
+| `date_created`     | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
+| `date_modified`    | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                         |
+| `email`            | string    | The email address for the customer. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                                                      |
+| `first_name`       | string    | Customer first name.                                                                                                                                                                                                                                                                                                                                               |
+| `last_name`        | string    | Customer last name.                                                                                                                                                                                                                                                                                                                                                |
+| `username`         | string    | Customer login name. Can be generated automatically from the customer's email addrees if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i> <i class="label label-info">maybe mandatory</i>                                                                                               |
+| `password`         | string    | Customer password. Can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> <i class="label label-info">maybe mandatory</i> |
+| `last_order`       | array     | Last order data. See [Customer Last Order Properties](#customer-last-order-properties). <i class="label label-info">read-only</i>                                                                                                                                                                                                                                  |
+| `orders_count`     | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
+| `total_spent`      | float     | Total amount spent. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                      |
+| `avatar_url`       | string    | Avatar URL.                                                                                                                                                                                                                                                                                                                                                        |
+| `billing_address`  | array     | List of billing address data. See [Billing Address Properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
+| `shipping_address` | array     | List of shipping address data. See [Shipping Address Properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
+
+### Customer Last Order Properties ###
+
+| Attribute |    Type   |                                    Description                                     |
+|-----------|-----------|------------------------------------------------------------------------------------|
+| `id`      | integer   | Last order ID. <i class="label label-info">read-only</i>                           |
+| `date`    | date-time | UTC DateTime of the customer last order. <i class="label label-info">read-only</i> |
 
 ### Billing Address Properties ###
 
-|  Attribute   |  Type  |                     Description                     |
-| ------------ | ------ | --------------------------------------------------- |
-| `first_name` | string | First name                                          |
-| `last_name`  | string | Last name                                           |
-| `company`    | string | Company name                                        |
-| `address_1`  | string | Address line 1                                      |
-| `address_2`  | string | Address line 2                                      |
-| `city`       | string | City name                                           |
-| `state`      | string | ISO code or name of the state, province or district |
-| `postcode`   | string | Postal code                                         |
-| `country`    | string | ISO code of the country                             |
-| `email`      | string | Email address                                       |
-| `phone`      | string | Phone                                               |
+|  Attribute   |  Type  |                     Description                      |
+|--------------|--------|------------------------------------------------------|
+| `first_name` | string | First name.                                          |
+| `last_name`  | string | Last name.                                           |
+| `company`    | string | Company name.                                        |
+| `address_1`  | string | Address line 1.                                      |
+| `address_2`  | string | Address line 2.                                      |
+| `city`       | string | City name.                                           |
+| `state`      | string | ISO code or name of the state, province or district. |
+| `postcode`   | string | Postal code.                                         |
+| `country`    | string | ISO code of the country.                             |
+| `email`      | string | Email address.                                       |
+| `phone`      | string | Phone number.                                        |
 
 ### Shipping Address Properties ###
 
-|  Attribute   |  Type  |                     Description                     |
-| ------------ | ------ | --------------------------------------------------- |
-| `first_name` | string | First name                                          |
-| `last_name`  | string | Last name                                           |
-| `company`    | string | Company name                                        |
-| `address_1`  | string | Address line 1                                      |
-| `address_2`  | string | Address line 2                                      |
-| `city`       | string | City name                                           |
-| `state`      | string | ISO code or name of the state, province or district |
-| `postcode`   | string | Postal code                                         |
-| `country`    | string | ISO code of the country                             |
+|  Attribute   |  Type  |                     Description                      |
+|--------------|--------|------------------------------------------------------|
+| `first_name` | string | First name.                                          |
+| `last_name`  | string | Last name.                                           |
+| `company`    | string | Company name.                                        |
+| `address_1`  | string | Address line 1.                                      |
+| `address_2`  | string | Address line 2.                                      |
+| `city`       | string | City name.                                           |
+| `state`      | string | ISO code or name of the state, province or district. |
+| `postcode`   | string | Postal code.                                         |
+| `country`    | string | ISO code of the country.                             |
 
 ## Create a Customer ##
 
@@ -60,79 +67,75 @@ This API helps you to create a new customer.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/customers</h6>
+		<h6>/wp-json/wc/v1/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/customers \
+curl -X POST https://example.com/wp-json/wc/v1/customers \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "customer": {
-    "email": "john.doe@example.com",
+  "email": "john.doe@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "john.doe",
+  "billing_address": {
     "first_name": "John",
     "last_name": "Doe",
-    "username": "john.doe",
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    }
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping_address": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
   }
 }'
 ```
 
 ```javascript
 var data = {
-  customer: {
-    email: 'john.doe@example.com',
+  email: 'john.doe@example.com',
+  first_name: 'John',
+  last_name: 'Doe',
+  username: 'john.doe',
+  billing_address: {
     first_name: 'John',
     last_name: 'Doe',
-    username: 'john.doe',
-    billing_address: {
-      first_name: 'John',
-      last_name: 'Doe',
-      company: '',
-      address_1: '969 Market',
-      address_2: '',
-      city: 'San Francisco',
-      state: 'CA',
-      postcode: '94103',
-      country: 'US',
-      email: 'john.doe@example.com',
-      phone: '(555) 555-5555'
-    },
-    shipping_address: {
-      first_name: 'John',
-      last_name: 'Doe',
-      company: '',
-      address_1: '969 Market',
-      address_2: '',
-      city: 'San Francisco',
-      state: 'CA',
-      postcode: '94103',
-      country: 'US'
-    }
+    company: '',
+    address_1: '969 Market',
+    address_2: '',
+    city: 'San Francisco',
+    state: 'CA',
+    postcode: '94103',
+    country: 'US',
+    email: 'john.doe@example.com',
+    phone: '(555) 555-5555'
+  },
+  shipping_address: {
+    first_name: 'John',
+    last_name: 'Doe',
+    company: '',
+    address_1: '969 Market',
+    address_2: '',
+    city: 'San Francisco',
+    state: 'CA',
+    postcode: '94103',
+    country: 'US'
   }
 };
 
@@ -144,35 +147,33 @@ WooCommerce.post('customers', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'customer' => [
-        'email' => 'john.doe@example.com',
+    'email' => 'john.doe@example.com',
+    'first_name' => 'John',
+    'last_name' => 'Doe',
+    'username' => 'john.doe',
+    'billing_address' => [
         'first_name' => 'John',
         'last_name' => 'Doe',
-        'username' => 'john.doe',
-        'billing_address' => [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US',
-            'email' => 'john.doe@example.com',
-            'phone' => '(555) 555-5555'
-        ],
-        'shipping_address' => [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'company' => '',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US'
-        ]
+        'company' => '',
+        'address_1' => '969 Market',
+        'address_2' => '',
+        'city' => 'San Francisco',
+        'state' => 'CA',
+        'postcode' => '94103',
+        'country' => 'US',
+        'email' => 'john.doe@example.com',
+        'phone' => '(555) 555-5555'
+    ],
+    'shipping_address' => [
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'company' => '',
+        'address_1' => '969 Market',
+        'address_2' => '',
+        'city' => 'San Francisco',
+        'state' => 'CA',
+        'postcode' => '94103',
+        'country' => 'US'
     ]
 ];
 
@@ -182,35 +183,33 @@ print_r($woocommerce->post('customers', $data));
 
 ```python
 data = {
-    "customer": {
-        "email": "john.doe@example.com",
+    "email": "john.doe@example.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "john.doe",
+    "billing_address": {
         "first_name": "John",
         "last_name": "Doe",
-        "username": "john.doe",
-        "billing_address": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "company": "",
-            "address_1": "969 Market",
-            "address_2": "",
-            "city": "San Francisco",
-            "state": "CA",
-            "postcode": "94103",
-            "country": "US",
-            "email": "john.doe@example.com",
-            "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "company": "",
-            "address_1": "969 Market",
-            "address_2": "",
-            "city": "San Francisco",
-            "state": "CA",
-            "postcode": "94103",
-            "country": "US"
-        }
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+    },
+    "shipping_address": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
     }
 }
 
@@ -219,35 +218,33 @@ print(wcapi.post("customers", data).json())
 
 ```ruby
 data = {
-  customer: {
-    email: "john.doe@example.com",
+  email: "john.doe@example.com",
+  first_name: "John",
+  last_name: "Doe",
+  username: "john.doe",
+  billing_address: {
     first_name: "John",
     last_name: "Doe",
-    username: "john.doe",
-    billing_address: {
-      first_name: "John",
-      last_name: "Doe",
-      company: "",
-      address_1: "969 Market",
-      address_2: "",
-      city: "San Francisco",
-      state: "CA",
-      postcode: "94103",
-      country: "US",
-      email: "john.doe@example.com",
-      phone: "(555) 555-5555"
-    },
-    shipping_address: {
-      first_name: "John",
-      last_name: "Doe",
-      company: "",
-      address_1: "969 Market",
-      address_2: "",
-      city: "San Francisco",
-      state: "CA",
-      postcode: "94103",
-      country: "US"
-    }
+    company: "",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
+  },
+  shipping_address: {
+    first_name: "John",
+    last_name: "Doe",
+    company: "",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
   }
 }
 
@@ -258,42 +255,55 @@ woocommerce.post("customers", data).parsed_response
 
 ```json
 {
-  "customer": {
-    "id": 2,
-    "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@example.com",
+  "id": 2,
+  "date_created": "2016-05-03T17:58:35",
+  "date_modified": "2016-05-11T21:34:43",
+  "email": "john.doe@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "john.doe",
+  "last_order": {
+    "id": 118,
+    "date": "2016-05-03T18:10:43"
+  },
+  "orders_count": 3,
+  "total_spent": "28.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+  "billing_address": {
     "first_name": "John",
     "last_name": "Doe",
-    "username": "john.doe",
-    "last_order_id": null,
-    "last_order_date": null,
-    "orders_count": 0,
-    "total_spent": "0.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    }
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping_address": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers/2"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers"
+      }
+    ]
   }
 }
 ```
@@ -307,19 +317,12 @@ This API lets you retrieve and view a specific customer by ID or email.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
-	</div>
-</div>
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers/email/&lt;email&gt;</h6>
+		<h6>/wp-json/wc/v1/customers/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/customers/2 \
+curl https://example.com/wp-json/wc/v1/customers/2 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -345,42 +348,55 @@ woocommerce.get("customers/2").parsed_response
 
 ```json
 {
-  "customer": {
-    "id": 2,
-    "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@example.com",
+  "id": 2,
+  "date_created": "2016-05-03T17:58:35",
+  "date_modified": "2016-05-11T21:34:43",
+  "email": "john.doe@example.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "username": "john.doe",
+  "last_order": {
+    "id": 118,
+    "date": "2016-05-03T18:10:43"
+  },
+  "orders_count": 3,
+  "total_spent": "28.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+  "billing_address": {
     "first_name": "John",
     "last_name": "Doe",
-    "username": "john.doe",
-    "last_order_id": null,
-    "last_order_date": null,
-    "orders_count": 0,
-    "total_spent": "0.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    }
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping_address": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers/2"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers"
+      }
+    ]
   }
 }
 ```
@@ -394,12 +410,12 @@ This API helps you to view all the customers.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers</h6>
+		<h6>/wp-json/wc/v1/customers</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/customers \
+curl https://example.com/wp-json/wc/v1/customers \
 	-u consumer_key:consumer_secret
 ```
 
@@ -424,206 +440,74 @@ woocommerce.get("customers").parsed_response
 > JSON response example:
 
 ```json
-{
-  "customers": [
-    {
-      "id": 2,
-      "created_at": "2015-01-05T18:34:19Z",
-      "email": "john.doe@example.com",
-      "first_name": "John",
-      "last_name": "Doe",
-      "username": "john.doe",
-      "last_order_id": 123,
-      "last_order_date": "2015-01-14T16:47:30Z",
-      "orders_count": 10,
-      "total_spent": "1034.58",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      }
+[
+  {
+    "id": 5,
+    "date_created": "2016-05-11T21:39:01",
+    "date_modified": "2016-05-11T21:40:02",
+    "email": "joao.silva@example.com",
+    "first_name": "João",
+    "last_name": "Silva",
+    "username": "joao.silva",
+    "last_order": {
+      "id": null,
+      "date": null
     },
-    {
-      "id": 3,
-      "created_at": "2015-01-10T14:25:39Z",
-      "email": "joao.silva@example.com",
-      "first_name": "João",
-      "last_name": "Silva",
-      "username": "joao.silva",
-      "last_order_id": 120,
-      "last_order_date": "2015-01-10T14:26:30Z",
-      "orders_count": 1,
-      "total_spent": "429.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-      "billing_address": {
-        "first_name": "João",
-        "last_name": "Silva",
-        "company": "",
-        "address_1": "Av. Brasil, 432",
-        "address_2": "",
-        "city": "Rio de Janeiro",
-        "state": "RJ",
-        "postcode": "12345-000",
-        "country": "BR",
-        "email": "joao.silva@example.com",
-        "phone": "(55) 5555-5555"
-      },
-      "shipping_address": {
-        "first_name": "João",
-        "last_name": "Silva",
-        "company": "",
-        "address_1": "Av. Brasil, 432",
-        "address_2": "",
-        "city": "Rio de Janeiro",
-        "state": "RJ",
-        "postcode": "12345-000",
-        "country": "BR"
-      }
-    }
-  ]
-}
-```
-
-#### Available Filters ####
-
-| Filter |  Type  |                     Description                     |
-| ------ | ------ | --------------------------------------------------- |
-| `role` | string | Customers by status. eg: `customer` or `subscriber` |
-
-## Update a Customer ##
-
-This API lets you make changes to a customer.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X PUT https://example.com/wc-api/v3/customers/2 \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "customer": {
-    "first_name": "James",
-    "billing_address": {
-      "first_name": "James"
-    },
-    "shipping_address": {
-      "first_name": "James"
-    }
-  }
-}'
-```
-
-```javascript
-var data = {
-  customer: {
-    first_name: 'James',
-    billing_address: {
-      first_name: 'James'
-    },
-    shipping_address: {
-      first_name: 'James'
-    }
-  }
-};
-
-WooCommerce.put('customers/2', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php 
-$data = [
-    'customer' => [
-        'first_name' => 'James',
-        'billing_address' => [
-            'first_name' => 'James'
-        ],
-        'shipping_address' => [
-            'first_name' => 'James'
-        ]
-    ]
-];
-
-print_r($woocommerce->put('customers/2', $data));
-?>
-```
-
-```python
-data = {
-    "customer": {
-        "first_name": "James",
-        "billing_address": {
-            "first_name": "James"
-        },
-        "shipping_address": {
-            "first_name": "James"
-        }
-    }
-}
-
-print(wcapi.put("customers/2", data).json())
-```
-
-```ruby
-data = {
-  customer: {
-    first_name: "James",
-    billing_address: {
-      first_name: "James"
-    },
-    shipping_address: {
-      first_name: "James"
-    }
-  }
-}
-
-woocommerce.put("customers/2", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "customer": {
-    "id": 2,
-    "created_at": "2015-01-05T18:34:19Z",
-    "email": "john.doe@example.com",
-    "first_name": "James",
-    "last_name": "Doe",
-    "username": "john.doe",
-    "last_order_id": null,
-    "last_order_date": null,
     "orders_count": 0,
     "total_spent": "0.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+    "billing_address": {
+      "first_name": "João",
+      "last_name": "Silva",
+      "company": "",
+      "address_1": "Av. Brasil, 432",
+      "address_2": "",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "postcode": "12345-000",
+      "country": "BR",
+      "email": "joao.silva@example.com",
+      "phone": "(55) 5555-5555"
+    },
+    "shipping_address": {
+      "first_name": "João",
+      "last_name": "Silva",
+      "company": "",
+      "address_1": "Av. Brasil, 432",
+      "address_2": "",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "postcode": "12345-000",
+      "country": "BR"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers/5"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "date_created": "2016-05-03T17:58:35",
+    "date_modified": "2016-05-11T21:34:43",
+    "email": "john.doe@example.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "username": "john.doe",
+    "last_order": {
+      "id": 118,
+      "date": "2016-05-03T18:10:43"
+    },
+    "orders_count": 3,
+    "total_spent": "28.00",
+    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
     "billing_address": {
       "first_name": "John",
       "last_name": "Doe",
@@ -647,32 +531,302 @@ woocommerce.put("customers/2", data).parsed_response
       "state": "CA",
       "postcode": "94103",
       "country": "US"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers/2"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers"
+        }
+      ]
     }
+  }
+]
+```
+
+#### Available Parameters ####
+
+| Parameter  |   Type  |                                                                                                           Description                                                                                                           |
+|------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                                                                                                       |
+| `page`     | integer | Current page of the collection.                                                                                                                                                                                                 |
+| `per_page` | integer | Maximum number of items to be returned in result set.                                                                                                                                                                           |
+| `search`   | string  | Limit results to those matching a string.                                                                                                                                                                                       |
+| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                                                                                                        |
+| `include`  | string  | Limit result set to specific ids.                                                                                                                                                                                               |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                                                            |
+| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`, Options: `asc` and `desc`.                                                                                                                                      |
+| `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name` and `registered_date`.                                                                                                                 |
+| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                                                            |
+| `role`     | string  | Limit result set to resources with a specific role. Default: `customer`. Options (some plugins can add more user roles): `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager` |
+
+## Update a Customer ##
+
+This API lets you make changes to a customer.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-put">PUT</i>
+		<h6>/wp-json/wc/v1/customers/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X PUT https://example.com/wp-json/wc/v1/customers/2 \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "first_name": "James",
+  "billing_address": {
+    "first_name": "James"
+  },
+  "shipping_address": {
+    "first_name": "James"
+  }
+}'
+```
+
+```javascript
+var data = {
+  first_name: 'James',
+  billing_address: {
+    first_name: 'James'
+  },
+  shipping_address: {
+    first_name: 'James'
+  }
+};
+
+WooCommerce.put('customers/2', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php 
+$data = [
+    'first_name' => 'James',
+    'billing_address' => [
+        'first_name' => 'James'
+    ],
+    'shipping_address' => [
+        'first_name' => 'James'
+    ]
+];
+
+print_r($woocommerce->put('customers/2', $data));
+?>
+```
+
+```python
+data = {
+    "first_name": "James",
+    "billing_address": {
+        "first_name": "James"
+    },
+    "shipping_address": {
+        "first_name": "James"
+    }
+}
+
+print(wcapi.put("customers/2", data).json())
+```
+
+```ruby
+data = {
+  first_name: "James",
+  billing_address: {
+    first_name: "James"
+  },
+  shipping_address: {
+    first_name: "James"
+  }
+}
+
+woocommerce.put("customers/2", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "id": 2,
+  "date_created": "2016-05-03T17:58:35",
+  "date_modified": "2016-05-11T21:43:45",
+  "email": "john.doe@example.com",
+  "first_name": "James",
+  "last_name": "Doe",
+  "username": "john.doe",
+  "last_order": {
+    "id": 118,
+    "date": "2016-05-03T18:10:43"
+  },
+  "orders_count": 3,
+  "total_spent": "28.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+  "billing_address": {
+    "first_name": "James",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping_address": {
+    "first_name": "James",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers/2"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers"
+      }
+    ]
   }
 }
 ```
 
-## Create/Update Multiple Customers ##
+## Delete a Customer ##
 
-This API helps you to bulk create/update multiple customers.
+This API helps you delete a customer.
 
-To update is necessary to send objects containing IDs and to create new not just send the ID.
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wp-json/wc/v1/customers/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wp-json/wc/v1/customers/2?force=true \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('customers/2?force=true', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php print_r($woocommerce->delete('customers/2', ['force' => true])); ?>
+```
+
+```python
+print(wcapi.delete("customers/2?force=true").json())
+```
+
+```ruby
+woocommerce.delete("customers/2", force: true).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "id": 2,
+  "date_created": "2016-05-03T17:58:35",
+  "date_modified": "2016-05-11T21:43:45",
+  "email": "john.doe@example.com",
+  "first_name": "James",
+  "last_name": "Doe",
+  "username": "john.doe",
+  "last_order": {
+    "id": 118,
+    "date": "2016-05-03T18:10:43"
+  },
+  "orders_count": 3,
+  "total_spent": "28.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+  "billing_address": {
+    "first_name": "James",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping_address": {
+    "first_name": "James",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers/2"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/customers"
+      }
+    ]
+  }
+}
+```
+
+#### Available Parameters ####
+
+| Parameter |  Type  |                          Description                          |
+|-----------|--------|---------------------------------------------------------------|
+| `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Customers ##
+
+This API helps you to batch create, update and delete multiple customers.
 
 ### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/customers/bulk</h6>
+		<h6>/wp-json/wc/v1/customers/batch</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/customers/bulk \
+curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "customers": [
+  "create": [
     {
       "email": "john.doe2@example.com",
       "first_name": "John",
@@ -733,13 +887,24 @@ curl -X POST https://example.com/wc-api/v3/customers/bulk \
         "country": "BR"
       }
     }
+  ],
+  "update": [
+    {
+      "id": 5,
+      "billing_address": {
+        "phone": "(11) 1111-1111"
+      }
+    }
+  ],
+  "delete": [
+    2
   ]
 }'
 ```
 
 ```javascript
 var data = {
-  customers: [
+  create: [
     {
       email: 'john.doe2@example.com',
       first_name: 'John',
@@ -771,39 +936,50 @@ var data = {
       }
     },
     {
-      email: "joao.silva2@example.com",
-      first_name: "João",
-      last_name: "Silva",
-      username: "joao.silva2",
+      email: 'joao.silva2@example.com',
+      first_name: 'João',
+      last_name: 'Silva',
+      username: 'joao.silva2',
       billing_address: {
-        first_name: "João",
-        last_name: "Silva",
-        company: "",
-        address_1: "Av. Brasil, 432",
-        address_2: "",
-        city: "Rio de Janeiro",
-        state: "RJ",
-        postcode: "12345-000",
-        country: "BR",
-        email: "joao.silva@example.com",
-        phone: "(55) 5555-5555"
+        first_name: 'João',
+        last_name: 'Silva',
+        company: '',
+        address_1: 'Av. Brasil, 432',
+        address_2: '',
+        city: 'Rio de Janeiro',
+        state: 'RJ',
+        postcode: '12345-000',
+        country: 'BR',
+        email: 'joao.silva@example.com',
+        phone: '(55) 5555-5555'
       },
       shipping_address: {
-        first_name: "João",
-        last_name: "Silva",
-        company: "",
-        address_1: "Av. Brasil, 432",
-        address_2: "",
-        city: "Rio de Janeiro",
-        state: "RJ",
-        postcode: "12345-000",
-        country: "BR"
+        first_name: 'João',
+        last_name: 'Silva',
+        company: '',
+        address_1: 'Av. Brasil, 432',
+        address_2: '',
+        city: 'Rio de Janeiro',
+        state: 'RJ',
+        postcode: '12345-000',
+        country: 'BR'
       }
     }
+  ],
+  update: [
+    {
+      id: 5,
+      billing_address: {
+        phone: '(11) 1111-1111'
+      }
+    }
+  ],
+  delete: [
+    2
   ]
 };
 
-WooCommerce.post('customers/bulk', data, function(err, data, res) {
+WooCommerce.post('customers/batch', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -875,13 +1051,13 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->post('customers/bulk', $data));
+print_r($woocommerce->post('customers/batch', $data));
 ?>
 ```
 
 ```python
 data = {
-    "customers": [
+    "create": [
         {
             "email": "john.doe2@example.com",
             "first_name": "John",
@@ -942,15 +1118,26 @@ data = {
                 "country": "BR"
             }
         }
+    ],
+    "update": [
+        {
+            "id": 5,
+            "billing_address": {
+                "phone": "(11) 1111-1111"
+            }
+        }
+    ],
+    "delete": [
+        2
     ]
 }
 
-print(wcapi.post("customers/bulk", data).json())
+print(wcapi.post("customers/batch", data).json())
 ```
 
 ```ruby
 data = {
-  customers: [
+  create: [
     {
       email: "john.doe2@example.com",
       first_name: "John",
@@ -1011,29 +1198,43 @@ data = {
         country: "BR"
       }
     }
+  ],
+  update: [
+    {
+      id: 5,
+      billing_address: {
+        phone: "(11) 1111-1111"
+      }
+    }
+  ],
+  delete: [
+    2
   ]
 }
 
-woocommerce.post("customers/bulk", data).parsed_response
+woocommerce.post("customers/batch", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "customers": [
+  "create": [
     {
-      "id": 4,
-      "created_at": "2015-07-31T14:20:46Z",
+      "id": 6,
+      "date_created": "2016-05-11T22:06:32",
+      "date_modified": "2016-05-11T22:07:31",
       "email": "john.doe2@example.com",
       "first_name": "John",
       "last_name": "Doe",
       "username": "john.doe2",
-      "last_order_id": null,
-      "last_order_date": null,
+      "last_order": {
+        "id": null,
+        "date": null
+      },
       "orders_count": 0,
       "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing_address": {
         "first_name": "John",
         "last_name": "Doe",
@@ -1057,20 +1258,35 @@ woocommerce.post("customers/bulk", data).parsed_response
         "state": "CA",
         "postcode": "94103",
         "country": "US"
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers/6"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers"
+          }
+        ]
       }
     },
     {
-      "id": 5,
-      "created_at": "2015-07-31T14:20:46Z",
+      "id": 7,
+      "date_created": "2016-05-11T22:07:33",
+      "date_modified": "2016-05-11T22:07:37",
       "email": "joao.silva2@example.com",
       "first_name": "João",
       "last_name": "Silva",
       "username": "joao.silva2",
-      "last_order_id": null,
-      "last_order_date": null,
+      "last_order": {
+        "id": null,
+        "date": null
+      },
       "orders_count": 0,
       "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing_address": {
         "first_name": "João",
         "last_name": "Silva",
@@ -1094,121 +1310,93 @@ woocommerce.post("customers/bulk", data).parsed_response
         "state": "RJ",
         "postcode": "12345-000",
         "country": "BR"
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers/7"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers"
+          }
+        ]
       }
     }
-  ]
-}
-```
-
-## Delete a Customer ##
-
-This API helps you delete a customer.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/customers/&lt;id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X DELETE https://example.com/wc-api/v3/customers/2 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.delete('customers/2', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->delete('customers/2')); ?>
-```
-
-```python
-print(wcapi.delete("customers/2").json())
-```
-
-```ruby
-woocommerce.delete("customers/2").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "message": "Permanently deleted customer"
-}
-```
-
-## View Customer Orders ##
-
-This API lets you retrieve the customers orders.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers/&lt;id&gt;/orders</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/customers/2/orders \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('customers/2/orders', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('customers/2/orders')); ?>
-```
-
-```python
-print(wcapi.get("customers/2/orders").json())
-```
-
-```ruby
-woocommerce.get("customers/2/orders").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "orders": [
+  ],
+  "update": [
     {
-      "id": 531,
-      "order_number": 531,
-      "created_at": "2015-01-21T12:02:13Z",
-      "updated_at": "2015-01-21T12:02:13Z",
-      "completed_at": "2015-01-21T12:02:13Z",
-      "status": "on-hold",
-      "currency": "USD",
-      "total": "30.00",
-      "subtotal": "20.00",
-      "total_line_items_quantity": 1,
-      "total_tax": "0.00",
-      "total_shipping": "10.00",
-      "cart_tax": "0.00",
-      "shipping_tax": "0.00",
-      "total_discount": "0.00",
-      "shipping_methods": "Flat Rate",
-      "payment_details": {
-        "method_id": "bacs",
-        "method_title": "Direct Bank Transfer",
-        "paid": false
+      "id": 5,
+      "date_created": "2016-05-11T21:39:01",
+      "date_modified": "2016-05-11T22:04:36",
+      "email": "joao.silva@example.com",
+      "first_name": "João",
+      "last_name": "Silva",
+      "username": "joao.silva",
+      "last_order": {
+        "id": null,
+        "date": null
       },
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing_address": {
-        "first_name": "John",
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR",
+        "email": "joao.silva@example.com",
+        "phone": "(11) 1111-1111"
+      },
+      "shipping_address": {
+        "first_name": "João",
+        "last_name": "Silva",
+        "company": "",
+        "address_1": "Av. Brasil, 432",
+        "address_2": "",
+        "city": "Rio de Janeiro",
+        "state": "RJ",
+        "postcode": "12345-000",
+        "country": "BR"
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers/5"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 2,
+      "date_created": "2016-05-03T17:58:35",
+      "date_modified": "2016-05-11T21:43:45",
+      "email": "john.doe@example.com",
+      "first_name": "James",
+      "last_name": "Doe",
+      "username": "john.doe",
+      "last_order": {
+        "id": 118,
+        "date": "2016-05-03T18:10:43"
+      },
+      "orders_count": 3,
+      "total_spent": "28.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
+      "billing_address": {
+        "first_name": "James",
         "last_name": "Doe",
         "company": "",
         "address_1": "969 Market",
@@ -1221,7 +1409,7 @@ woocommerce.get("customers/2/orders").parsed_response
         "phone": "(555) 555-5555"
       },
       "shipping_address": {
-        "first_name": "John",
+        "first_name": "James",
         "last_name": "Doe",
         "company": "",
         "address_1": "969 Market",
@@ -1231,83 +1419,22 @@ woocommerce.get("customers/2/orders").parsed_response
         "postcode": "94103",
         "country": "US"
       },
-      "note": "",
-      "customer_ip": "127.0.0.1",
-      "customer_user_agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0",
-      "customer_id": 2,
-      "view_order_url": "https://example.com/my-account/view-order/531",
-      "line_items": [
-        {
-          "id": 417,
-          "subtotal": "20.00",
-          "subtotal_tax": "0.00",
-          "total": "20.00",
-          "total_tax": "0.00",
-          "price": "20.00",
-          "quantity": 1,
-          "tax_class": null,
-          "name": "Premium Quality",
-          "product_id": 19,
-          "sku": "",
-          "meta": []
-        }
-      ],
-      "shipping_lines": [
-        {
-          "id": 418,
-          "method_id": "flat_rate",
-          "method_title": "Flat Rate",
-          "total": "10.00"
-        }
-      ],
-      "tax_lines": [],
-      "fee_lines": [],
-      "coupon_lines": [],
-      "customer": {
-        "id": 2,
-        "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@example.com",
-        "first_name": "",
-        "last_name": "",
-        "username": "john.doe",
-        "last_order_id": "531",
-        "last_order_date": "2015-01-21T12:02:13Z",
-        "orders_count": 1,
-        "total_spent": "0.00",
-        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-        "billing_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US",
-          "email": "john.doe@example.com",
-          "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US"
-        }
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers/2"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/customers"
+          }
+        ]
       }
     }
   ]
 }
 ```
-
-<aside class="notice">
-	View the <a href="#orders-properties">Orders Properties</a> for more details on this response.
-</aside>
 
 ## View Customer Downloads ##
 
@@ -1318,12 +1445,12 @@ This API lets you retrieve the customers downloads.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers/&lt;id&gt;/downloads</h6>
+		<h6>/wp-json/wc/v1/customers/&lt;id&gt;/downloads</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/customers/2/downloads \
+curl https://example.com/wp-json/wc/v1/customers/2/downloads \
 	-u consumer_key:consumer_secret
 ```
 
@@ -1348,86 +1475,51 @@ woocommerce.get("customers/2/downloads").parsed_response
 > JSON response example:
 
 ```json
-{
-  "downloads": [
-    {
-      "download_url": "https://example.com/?download_file=96&order=wc_order_9999999999999&email=john.doe@example.com&key=99999999999999999999999999999999",
-      "download_id": "99999999999999999999999999999999",
-      "product_id": 96,
-      "download_name": "Woo Album #4 &ndash; Woo Album",
-      "order_id": 532,
-      "order_key": "wc_order_9999999999999",
-      "downloads_remaining": "5",
-      "access_expires": null,
-      "file": {
-        "name": "Woo Album",
-        "file": "http://example.com/wp-content/uploads/woocommerce_uploads/2015/01/album.zip"
-      }
+[
+  {
+    "download_url": "https://example.com/?download_file=96&order=wc_order_571a7260c0da5&email=john.dow@xanmple.com&key=1789931e0c14ad9909a50c826f10c169",
+    "download_id": "1789931e0c14ad9909a50c826f10c169",
+    "product_id": 96,
+    "download_name": "Woo Album #4 &ndash; Testing",
+    "order_id": 105,
+    "order_key": "wc_order_571a7260c0da5",
+    "downloads_remaining": "unlimited",
+    "access_expires": "never",
+    "file": {
+      "name": "Testing",
+      "file": "http://example.com/wp-content/uploads/2013/06/cd_5_angle.jpg"
+    },
+    "_links": {
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers/1/downloads"
+        }
+      ],
+      "product": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/96"
+        }
+      ],
+      "order": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/105"
+        }
+      ]
     }
-  ]
-}
+  }
+]
 ```
 
 ### Customer Downloads Properties ###
 
-|       Attribute       |   Type  |                                           Description                                           |
-| --------------------- | ------- | ----------------------------------------------------------------------------------------------- |
-| `download_url`        | string  | Download file URL                                                                               |
-| `download_id`         | string  | Download ID                                                                                     |
-| `product_id`          | integer | Downloadable product ID                                                                         |
-| `download_name`       | string  | Downloadable file name                                                                          |
-| `order_id`            | integer | Order ID                                                                                        |
-| `order_key`           | string  | Order Key                                                                                       |
-| `downloads_remaining` | string  | Amount of downloads remaining. An empty string means that is "Unlimited"                        |
-| `access_expires`      | string  | UTC DateTime when the download access expires. `null` means "Never"                             |
-| `file`                | array   | List for downloadable files, each one have a `name` (file name) and `file` (file URL) attribute |
-
-## View Customers Count ##
-
-This API lets you retrieve a count of all customers.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/customers/count</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/customers/count \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('customers/count', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('customers/count')); ?>
-```
-
-```python
-print(wcapi.get("customers/count").json())
-```
-
-```ruby
-woocommerce.get("customers/count").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "count": 10
-}
-```
-
-#### Available Filters ####
-
-| Filter |  Type  |                     Description                     |
-| ------ | ------ | --------------------------------------------------- |
-| `role` | string | Customers by status. eg: `customer` or `subscriber` |
+|       Attribute       |   Type  |                                                   Description                                                    |
+|-----------------------|---------|------------------------------------------------------------------------------------------------------------------|
+| `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                     |
+| `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                     |
+| `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                               |
+| `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                |
+| `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                              |
+| `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                             |
+| `downloads_remaining` | string  | Amount of downloads remaining. <i class="label label-info">read-only</i>                                         |
+| `access_expires`      | string  | The date when the download access expires, in the site's timezone. <i class="label label-info">read-only</i>     |
+| `file`                | array   | File details with `name` (file name) and `file` (file URL) attributes. <i class="label label-info">read-only</i> |

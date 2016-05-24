@@ -4,49 +4,48 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Webhooks Properties ##
 
-|   Attribute    |   Type  |                                                                                                       Description                                                                                                       |
-| -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | The webhook ID (post ID) <i class="label label-info">read-only</i>                                                                                                                                                      |
-| `name`         | string  | A friendly name for the webhook, defaults to "Webhook created on &lt;date&gt;"                                                                                                                                          |
-| `status`       | string  | Webhook status, options are `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures). Default is `active`                                                       |
-| `topic`        | string  | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics)                                                                                                                                                  |
-| `resource`     | string  | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                                                               |
-| `event`        | string  | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                                                                 |
-| `hooks`        | array   | WooCommerce action names associated with the webhook <i class="label label-info">read-only</i>                                                                                                                          |
-| `delivery_url` | string  | The URL where the webhook payload is delivered                                                                                                                                                                          |
-| `secret`       | string  | Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default to the current API user's consumer secret if not provided <i class="label label-info">write-only</i> |
-| `created_at`   | string  | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                                                     |
-| `updated_at`   | string  | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                                                                |
+|    Attribute    |    Type   |                                                                                                              Description                                                                                                              |
+|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                         |
+| `name`          | string    | A friendly name for the webhook. Defaults is `Webhook created on &lt;date&gt;`.                                                                                                                                                       |
+| `status`        | string    | Webhook status. Default is `active`. Options `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures).                                                                        |
+| `topic`         | string    | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics). <i class="label label-info">required</i>                                                                                                                      |
+| `resource`      | string    | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                                                                             |
+| `event`         | string    | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                                                                               |
+| `hooks`         | array     | WooCommerce action names associated with the webhook. <i class="label label-info">read-only</i>                                                                                                                                       |
+| `delivery_url`  | string    | The URL where the webhook payload is delivered. <i class="label label-info">required</i>                                                                                                                                              |
+| `secret`        | string    | Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID&#115;username if not provided. <i class="label label-info">write-only</i> |
+| `date_created`  | date-time | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                                                                   |
+| `date_modified` | date-time | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                                                                              |
 
+### Webhooks Delivery Properties ###
 
-### Delivery Properties ###
-
-|     Attribute      |   Type  |                                                                                 Description                                                                                 |
-| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`               | integer | The delivery ID (comment ID)                                                                                                                                                |
-| `duration`         | string  | The delivery duration, in seconds                                                                                                                                           |
-| `summary`          | string  | A friendly summary of the response including the HTTP response code, message, and body                                                                                      |
-| `request_url`      | string  | The URL where the webhook was delivered                                                                                                                                     |
-| `request_headers`  | array   | Array of request headers (see [Request Headers Attributes](#request-headers-properties))                                                                                    |
-| `request_body`     | string  | The request body, this matches the API response for the given resource (e.g. for the coupon.updated topic, the request body would match the response for GET /coupons/{id}) |
-| `response_code`    | string  | The HTTP response code from the receiving server                                                                                                                            |
-| `response_message` | string  | The HTTP response message from the receiving server                                                                                                                         |
-| `response_headers` | array   | Array of the response headers from the receiving server                                                                                                                     |
-| `response_body`    | string  | The response body from the receiving server                                                                                                                                 |
-| `created_at`       | string  | A DateTime of when the delivery was logged                                                                                                                                  |
+|     Attribute      |    Type   |                                                                Description                                                                 |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                              |
+| `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                               |
+| `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i>          |
+| `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                         |
+| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-headers-properties) for more details. <i class="label label-info">read-only</i> |
+| `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                                    |
+| `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                                |
+| `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                             |
+| `response_headers` | array     | Array of the response headers from the receiving server. <i class="label label-info">read-only</i>                                         |
+| `response_body`    | string    | The response body from the receiving server. <i class="label label-info">read-only</i>                                                     |
+| `date_created`     | date-time | The date the webhook delivery was logged, in the site's timezone. <i class="label label-info">read-only</i>                                |
 
 #### Request Headers Properties ####
 
-|         Attribute          |   Type  |                                        Description                                         |
-| -------------------------- | ------- | ------------------------------------------------------------------------------------------ |
-| `User-Agent`               | string  | The request user agent, defaults to "WooCommerce/{version} Hookshot (WordPress/{version})" |
-| `Content-Type`             | string  | The request content-type, defaults to "application/json"                                   |
-| `X-WC-Webhook-Topic`       | string  | The webhook topic                                                                          |
-| `X-WC-Webhook-Resource`    | string  | The webhook resource                                                                       |
-| `X-WC-Webhook-Event`       | string  | The webhook event                                                                          |
-| `X-WC-Webhook-Signature`   | string  | A base64 encoded HMAC-SHA256 hash of the payload                                           |
-| `X-WC-Webhook-ID`          | integer | The webhook's ID                                                                           |
-| `X-WC-Webhook-Delivery-ID` | integer | The delivery ID                                                                            |
+|         Attribute          |   Type  |                                                              Description                                                              |
+|----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `User-Agent`               | string  | The request user agent, default is "WooCommerce/{version} Hookshot (WordPress/{version})". <i class="label label-info">read-only</i> |
+| `Content-Type`             | string  | The request content-type, default is "application/json". <i class="label label-info">read-only</i>                                   |
+| `X-WC-Webhook-Topic`       | string  | The webhook topic. <i class="label label-info">read-only</i>                                                                          |
+| `X-WC-Webhook-Resource`    | string  | The webhook resource. <i class="label label-info">read-only</i>                                                                       |
+| `X-WC-Webhook-Event`       | string  | The webhook event. <i class="label label-info">read-only</i>                                                                          |
+| `X-WC-Webhook-Signature`   | string  | A base64 encoded HMAC-SHA256 hash of the payload. <i class="label label-info">read-only</i>                                           |
+| `X-WC-Webhook-ID`          | integer | The webhook's ID. <i class="label label-info">read-only</i>                                                                           |
+| `X-WC-Webhook-Delivery-ID` | integer | The delivery ID. <i class="label label-info">read-only</i>                                                                            |
 
 ## Create a Webhook ##
 
@@ -57,32 +56,26 @@ This API helps you to create a new webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/webhooks</h6>
+		<h6>/wp-json/wc/v1/webhooks</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/webhooks \
+curl -X POST https://example.com/wp-json/wc/v1/webhooks \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "webhook": {
-    "name": "An add to cart webhook",
-    "secret": "my-super-secret-private-key",
-    "topic": "action.woocommerce_add_to_cart",
-    "delivery_url": "http://requestb.in/1exdwip1"
-  }
+  "name": "Order updated",
+  "topic": "order.updated",
+  "delivery_url": "http://requestb.in/1g0sxmo1"
 }'
 ```
 
 ```javascript
 var data = {
-  webhook: {
-    name: 'An add to cart webhook',
-    secret: 'my-super-secret-private-key',
-    topic: 'action.woocommerce_add_to_cart',
-    delivery_url: 'http://requestb.in/1exdwip1'
-  }
+  name: 'Order updated',
+  topic: 'order.updated',
+  delivery_url: 'http://requestb.in/1g0sxmo1'
 };
 
 WooCommerce.post('webhooks', data, function(err, data, res) {
@@ -93,12 +86,9 @@ WooCommerce.post('webhooks', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'webhook' => [
-        'name' => 'An add to cart webhook',
-        'secret' => 'my-super-secret-private-key',
-        'topic' => 'action.woocommerce_add_to_cart',
-        'delivery_url' => 'http://requestb.in/1exdwip1'
-    ]
+    'name' => 'Order updated',
+    'topic' => 'order.updated',
+    'delivery_url' => 'http://requestb.in/1g0sxmo1'
 ];
 
 print_r($woocommerce->post('webhooks', $data));
@@ -107,12 +97,9 @@ print_r($woocommerce->post('webhooks', $data));
 
 ```python
 data = {
-    "webhook": {
-        "name": "An add to cart webhook",
-        "secret": "my-super-secret-private-key",
-        "topic": "action.woocommerce_add_to_cart",
-        "delivery_url": "http://requestb.in/1exdwip1"
-    }
+    "name": "Order updated",
+    "topic": "order.updated",
+    "delivery_url": "http://requestb.in/1g0sxmo1"
 }
 
 print(wcapi.post("webhooks", data).json())
@@ -120,12 +107,9 @@ print(wcapi.post("webhooks", data).json())
 
 ```ruby
 data = {
-  webhook: {
-    name: "An add to cart webhook",
-    secret: "my-super-secret-private-key",
-    topic: "action.woocommerce_add_to_cart",
-    delivery_url: "http://requestb.in/1exdwip1"
-  }
+  name: "Order updated",
+  topic: "order.updated",
+  delivery_url: "http://requestb.in/1g0sxmo1"
 }
 
 woocommerce.post("webhooks", data).parsed_response
@@ -135,19 +119,32 @@ woocommerce.post("webhooks", data).parsed_response
 
 ```json
 {
-  "webhook": {
-    "id": 535,
-    "name": "An add to cart webhook",
-    "status": "active",
-    "topic": "action.woocommerce_add_to_cart",
-    "resource": "action",
-    "event": "woocommerce_add_to_cart",
-    "hooks": [
-      "woocommerce_add_to_cart"
+  "id": 142,
+  "name": "Order updated",
+  "status": "active",
+  "topic": "order.updated",
+  "resource": "order",
+  "event": "updated",
+  "hooks": [
+    "woocommerce_process_shop_order_meta",
+    "woocommerce_api_edit_order",
+    "woocommerce_order_edit_status",
+    "woocommerce_order_status_changed"
+  ],
+  "delivery_url": "http://requestb.in/1g0sxmo1",
+  "date_created": "2016-05-15T20:17:52",
+  "date_modified": "2016-05-15T20:17:52",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+      }
     ],
-    "delivery_url": "http://requestb.in/1exdwip1",
-    "created_at": "2015-01-21T13:19:58Z",
-    "updated_at": "2015-01-21T13:19:58Z"
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks"
+      }
+    ]
   }
 }
 ```
@@ -161,50 +158,63 @@ This API lets you retrieve and view a specific webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/webhooks/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/webhooks/535 \
+curl https://example.com/wp-json/wc/v1/webhooks/142 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('webhooks/535', function(err, data, res) {
+WooCommerce.get('webhooks/142', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('webhooks/535')); ?>
+<?php print_r($woocommerce->get('webhooks/142')); ?>
 ```
 
 ```python
-print(wcapi.get("webhooks/535").json())
+print(wcapi.get("webhooks/142").json())
 ```
 
 ```ruby
-woocommerce.get("webhooks/535").parsed_response
+woocommerce.get("webhooks/142").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "webhook": {
-    "id": 535,
-    "name": "An add to cart webhook",
-    "status": "active",
-    "topic": "action.woocommerce_add_to_cart",
-    "resource": "action",
-    "event": "woocommerce_add_to_cart",
-    "hooks": [
-      "woocommerce_add_to_cart"
+  "id": 142,
+  "name": "Order updated",
+  "status": "active",
+  "topic": "order.updated",
+  "resource": "order",
+  "event": "updated",
+  "hooks": [
+    "woocommerce_process_shop_order_meta",
+    "woocommerce_api_edit_order",
+    "woocommerce_order_edit_status",
+    "woocommerce_order_status_changed"
+  ],
+  "delivery_url": "http://requestb.in/1g0sxmo1",
+  "date_created": "2016-05-15T20:17:52",
+  "date_modified": "2016-05-15T20:17:52",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+      }
     ],
-    "delivery_url": "http://requestb.in/1exdwip1",
-    "created_at": "2015-01-21T13:19:58Z",
-    "updated_at": "2015-01-21T13:19:58Z"
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks"
+      }
+    ]
   }
 }
 ```
@@ -218,12 +228,12 @@ This API helps you to view all the webhooks.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/webhooks</h6>
+		<h6>/wp-json/wc/v1/webhooks</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/webhooks \
+curl https://example.com/wp-json/wc/v1/webhooks \
 	-u consumer_key:consumer_secret
 ```
 
@@ -248,47 +258,85 @@ woocommerce.get("webhooks").parsed_response
 > JSON response example:
 
 ```json
-{
-  "webhooks": [
-    {
-      "id": 535,
-      "name": "An add to cart webhook",
-      "status": "active",
-      "topic": "action.woocommerce_add_to_cart",
-      "resource": "action",
-      "event": "woocommerce_add_to_cart",
-      "hooks": [
-        "woocommerce_add_to_cart"
+[
+  {
+    "id": 143,
+    "name": "Customer created",
+    "status": "active",
+    "topic": "customer.created",
+    "resource": "customer",
+    "event": "created",
+    "hooks": [
+      "user_register",
+      "woocommerce_created_customer",
+      "woocommerce_api_create_customer"
+    ],
+    "delivery_url": "http://requestb.in/1g0sxmo1",
+    "date_created": "2016-05-15T20:17:52",
+    "date_modified": "2016-05-15T20:17:52",
+    "_links": {
+      "self": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/webhooks/143"
+        }
       ],
-      "delivery_url": "http://requestb.in/1exdwip1",
-      "created_at": "2015-01-21T13:19:58Z",
-      "updated_at": "2015-01-21T13:19:58Z"
-    },
-    {
-      "id": 313,
-      "name": "Webhook created on Jan 17, 2015 @ 11:45 AM",
-      "status": "active",
-      "topic": "order.created",
-      "resource": "order",
-      "event": "created",
-      "hooks": [
-        "woocommerce_checkout_order_processed",
-        "woocommerce_process_shop_order_meta",
-        "woocommerce_api_create_order"
-      ],
-      "delivery_url": "http://requestb.in/1exdwip1",
-      "created_at": "2014-12-17T11:45:05Z",
-      "updated_at": "2015-01-10T00:41:08Z"
+      "collection": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "id": 142,
+    "name": "Order updated",
+    "status": "active",
+    "topic": "order.updated",
+    "resource": "order",
+    "event": "updated",
+    "hooks": [
+      "woocommerce_process_shop_order_meta",
+      "woocommerce_api_edit_order",
+      "woocommerce_order_edit_status",
+      "woocommerce_order_status_changed"
+    ],
+    "delivery_url": "http://requestb.in/1g0sxmo1",
+    "date_created": "2016-05-15T20:17:52",
+    "date_modified": "2016-05-15T20:17:52",
+    "_links": {
+      "self": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/webhooks/142"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+        }
+      ]
+    }
+  }
+]
 ```
 
-#### Available Filters ####
+#### Available Parameters ####
 
-|  Filter  |  Type  |                                                    Description                                                    |
-| -------- | ------ | ----------------------------------------------------------------------------------------------------------------- |
-| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled`. Default is `active` |
+| Parameter  |   Type  |                                                          Description                                                          |
+|------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                     |
+| `page`     | integer | Current page of the collection.                                                                                               |
+| `per_page` | integer | Maximum number of items to be returned in result set.                                                                         |
+| `search`   | string  | Limit results to those matching a string.                                                                                     |
+| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                                   |
+| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                                  |
+| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                      |
+| `include`  | string  | Limit result set to specific ids.                                                                                             |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                          |
+| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                    |
+| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`.                 |
+| `slug`     | string  | Limit result set to posts with a specific slug.                                                                               |
+| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                          |
+| `status`   | string  | Limit result set to webhooks assigned a specific status. Default is `all`. Options: `all`, `active`, `paused` and `disabled`. |
 
 ## Update a Webhook ##
 
@@ -299,29 +347,25 @@ This API lets you make changes to a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/webhook/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/webhook/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/webhook/535 \
+curl -X PUT https://example.com/wp-json/wc/v1/webhook/142 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "webhook": {
-    "status": "paused"
-  }
+  "status": "paused"
 }'
 ```
 
 ```javascript
 var data = {
-  webhook: {
-    status: 'paused'
-  }
+  status: 'paused'
 }
 
-WooCommerce.put('webhooks/535', data, function(err, data, res) {
+WooCommerce.put('webhooks/142', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -329,52 +373,59 @@ WooCommerce.put('webhooks/535', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'webhook' => [
-        'status' => 'paused'
-    ]
+    'status' => 'paused'
 ];
 
-print_r($woocommerce->put('webhooks/535', $data));
+print_r($woocommerce->put('webhooks/142', $data));
 ?>
 ```
 
 ```python
 data = {
-    "webhook": {
-        "status": "paused"
-    }
+    "status": "paused"
 }
 
-print(wcapi.put("webhooks/535", data).json())
+print(wcapi.put("webhooks/142", data).json())
 ```
 
 ```ruby
 data = {
-  webhook: {
-    status: "paused"
-  }
+  status: "paused"
 }
 
-woocommerce.put("webhooks/535", data).parsed_response
+woocommerce.put("webhooks/142", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "webhook": {
-    "id": 535,
-    "name": "An add to cart webhook",
-    "status": "paused",
-    "topic": "action.woocommerce_add_to_cart",
-    "resource": "action",
-    "event": "woocommerce_add_to_cart",
-    "hooks": [
-      "woocommerce_add_to_cart"
+  "id": 142,
+  "name": "Order updated",
+  "status": "paused",
+  "topic": "order.updated",
+  "resource": "order",
+  "event": "updated",
+  "hooks": [
+    "woocommerce_process_shop_order_meta",
+    "woocommerce_api_edit_order",
+    "woocommerce_order_edit_status",
+    "woocommerce_order_status_changed"
+  ],
+  "delivery_url": "http://requestb.in/1g0sxmo1",
+  "date_created": "2016-05-15T20:17:52",
+  "date_modified": "2016-05-15T20:30:12",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+      }
     ],
-    "delivery_url": "http://requestb.in/1exdwip1",
-    "created_at": "2015-01-21T13:19:58Z",
-    "updated_at": "2015-01-21T13:19:58Z"
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks"
+      }
+    ]
   }
 }
 ```
@@ -388,90 +439,72 @@ This API helps you delete a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/webhooks/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/webhooks/535 \
+curl -X DELETE https://example.com/wp-json/wc/v1/webhooks/142 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('webhooks/535', function(err, data, res) {
+WooCommerce.delete('webhooks/142', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('webhooks/535')); ?>
+<?php print_r($woocommerce->delete('webhooks/142')); ?>
 ```
 
 ```python
-print(wcapi.delete("webhooks/535").json())
+print(wcapi.delete("webhooks/142").json())
 ```
 
 ```ruby
-woocommerce.delete("webhooks/535").parsed_response
+woocommerce.delete("webhooks/142").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "message": "Permanently deleted webhook"
+  "id": 142,
+  "name": "Order updated",
+  "status": "paused",
+  "topic": "order.updated",
+  "resource": "order",
+  "event": "updated",
+  "hooks": [
+    "woocommerce_process_shop_order_meta",
+    "woocommerce_api_edit_order",
+    "woocommerce_order_edit_status",
+    "woocommerce_order_status_changed"
+  ],
+  "delivery_url": "http://requestb.in/1g0sxmo1",
+  "date_created": "2016-05-15T20:17:52",
+  "date_modified": "2016-05-15T20:30:12",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks"
+      }
+    ]
+  }
 }
 ```
 
-## View Webhooks Count ##
+#### Available Parameters ####
 
-This API lets you retrieve a count of all webhooks.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/webhooks/count</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/webhooks/count \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('webhooks/count', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('webhooks/count')); ?>
-```
-
-```python
-print(wcapi.get("webhooks/count").json())
-```
-
-```ruby
-woocommerce.get("webhooks/count").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "count": 4
-}
-```
-
-#### Available Filters ####
-
-|  Filter  |  Type  |                                         Description                                          |
-| -------- | ------ | -------------------------------------------------------------------------------------------- |
-| `status` | string | Webhooks by status. The following options are available: `active` or `paused` and `disabled` |
+| Parameter |  Type  |                                Description                                 |
+|-----------|--------|----------------------------------------------------------------------------|
+| `force`   | string | Use `true` whether to permanently delete the webhook, Defaults is `false`. |
 
 ## View a Webhooks Delivery ##
 
@@ -482,73 +515,89 @@ This API lets you retrieve and view a specific webhook delivery.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/webhooks/&lt;id&gt;/deliveries/&lt;delivery_id&gt;</h6>
+		<h6>/wp-json/wc/v1/webhooks/&lt;id&gt;/deliveries/&lt;delivery_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/webhooks/535/deliveries/378 \
+curl https://example.com/wp-json/wc/v1/webhooks/142/deliveries/54 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('webhooks/535/deliveries/378', function(err, data, res) {
+WooCommerce.get('webhooks/142/deliveries/54', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('webhooks/535/deliveries/378')); ?>
+<?php print_r($woocommerce->get('webhooks/142/deliveries/54')); ?>
 ```
 
 ```python
-print(wcapi.get("webhooks/535/deliveries/378").json())
+print(wcapi.get("webhooks/142/deliveries/54").json())
 ```
 
 ```ruby
-woocommerce.get("webhooks/535/deliveries/378").parsed_response
+woocommerce.get("webhooks/142/deliveries/54").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "webhook_delivery": {
-    "id": 378,
-    "duration": "0.90226",
-    "summary": "HTTP 200 OK: ok",
-    "request_method": "POST",
-    "request_url": "http://requestb.in/125q7ns1",
-    "request_headers": {
-      "User-Agent": "WooCommerce/2.3.0 Hookshot (WordPress/4.1)",
-      "Content-Type": "application/json",
-      "X-WC-Webhook-Topic": "action.woocommerce_add_to_cart",
-      "X-WC-Webhook-Resource": "action",
-      "X-WC-Webhook-Event": "woocommerce_add_to_cart",
-      "X-WC-Webhook-Signature": "geC1akFhCtsO7fbXz5XiGUsMsRa4Mt0IJsZ96nTaHjI=",
-      "X-WC-Webhook-ID": 535,
-      "X-WC-Webhook-Delivery-ID": 378
-    },
-    "request_body": "{\"action\":\"woocommerce_add_to_cart\",\"arg\":\"7cbbc409ec990f19c78c75bd1e06f215\"}",
-    "response_code": "200",
-    "response_message": "OK",
-    "response_headers": {
-      "connection": "close",
-      "server": "gunicorn/18.0",
-      "date": "Wed, 21 Jan 2015 16:22:49 GMT",
-      "content-type": "text/html; charset=utf-8",
-      "content-length": "2",
-      "sponsored-by": "https://www.runscope.com",
-      "via": "1.1 vegur"
-    },
-    "response_body": "ok",
-    "created_at": "2015-01-21T16:26:12Z"
+  "id": 54,
+  "duration": "0.40888",
+  "summary": "HTTP 200 OK: ok",
+  "request_method": "POST",
+  "request_url": "http://requestb.in/1g0sxmo1",
+  "request_headers": {
+    "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
+    "Content-Type": "application/json",
+    "X-WC-Webhook-Source": "http://example.com/",
+    "X-WC-Webhook-Topic": "order.updated",
+    "X-WC-Webhook-Resource": "order",
+    "X-WC-Webhook-Event": "updated",
+    "X-WC-Webhook-Signature": "J72iu7hL93aUt2dFnyOBoBypwbmP6nt6Aor33nnOHxU=",
+    "X-WC-Webhook-ID": 142,
+    "X-WC-Webhook-Delivery-ID": 54
+  },
+  "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:30:30Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
+  "response_code": "200",
+  "response_message": "OK",
+  "response_headers": {
+    "connection": "close",
+    "server": "gunicorn/19.3.0",
+    "date": "Tue, 16 May 2016 03:30:31 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "2",
+    "sponsored-by": "https://www.runscope.com",
+    "via": "1.1 vegur"
+  },
+  "response_body": "ok",
+  "date_created": "2016-05-16T03:30:31",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries/54"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries"
+      }
+    ],
+    "up": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+      }
+    ]
   }
 }
 ```
 
 <aside class="notice">
-	View the <a href="#delivery-properties">Delivery Properties</a> for more details on this response.
+	View the <a href="#webhooks-delivery-properties">Webhooks Delivery Properties</a> for more details on this response.
 </aside>
 
 ## View List of Webhooks Deliveries ##
@@ -560,100 +609,134 @@ This API helps you to view all deliveries from a specific webhooks.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/webhooks/&lt;id&gt;/deliveries</h6>
+		<h6>/wp-json/wc/v1/webhooks/&lt;id&gt;/deliveries</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/webhooks/535/deliveries \
+curl https://example.com/wp-json/wc/v1/webhooks/142/deliveries \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('webhooks/535/deliveries', function(err, data, res) {
+WooCommerce.get('webhooks/142/deliveries', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('webhooks/535/deliveries')); ?>
+<?php print_r($woocommerce->get('webhooks/142/deliveries')); ?>
 ```
 
 ```python
-print(wcapi.get("webhooks/535/deliveries").json())
+print(wcapi.get("webhooks/142/deliveries").json())
 ```
 
 ```ruby
-woocommerce.get("webhooks/535/deliveries").parsed_response
+woocommerce.get("webhooks/142/deliveries").parsed_response
 ```
 
 > JSON response example:
 
 ```json
-{
-  "webhook_deliveries": [
-    {
-      "id": 380,
-      "duration": "0.58635",
-      "summary": "HTTP 200 OK: ok",
-      "request_method": "POST",
-      "request_url": "http://requestb.in/125q7ns1",
-      "request_headers": {
-        "User-Agent": "WooCommerce/2.3.0 Hookshot (WordPress/4.1)",
-        "Content-Type": "application/json",
-        "X-WC-Webhook-Topic": "action.woocommerce_add_to_cart",
-        "X-WC-Webhook-Resource": "action",
-        "X-WC-Webhook-Event": "woocommerce_add_to_cart",
-        "X-WC-Webhook-Signature": "st4egVCTwG1JMfxmxe7MZYEuj9Y6Euge4SOTNfCUCWY=",
-        "X-WC-Webhook-ID": 535,
-        "X-WC-Webhook-Delivery-ID": 380
-      },
-      "request_body": "{\"action\":\"woocommerce_add_to_cart\",\"arg\":\"c16a5320fa475530d9583c34fd356ef5\"}",
-      "response_code": "200",
-      "response_message": "OK",
-      "response_headers": {
-        "connection": "close",
-        "server": "gunicorn/18.0",
-        "date": "Wed, 21 Jan 2015 16:23:05 GMT",
-        "content-type": "text/html; charset=utf-8",
-        "content-length": "2",
-        "sponsored-by": "https://www.runscope.com",
-        "via": "1.1 vegur"
-      },
-      "response_body": "ok",
-      "created_at": "2015-01-21T16:26:28Z"
+[
+  {
+    "id": 54,
+    "duration": "0.40888",
+    "summary": "HTTP 200 OK: ok",
+    "request_method": "POST",
+    "request_url": "http://requestb.in/1g0sxmo1",
+    "request_headers": {
+      "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
+      "Content-Type": "application/json",
+      "X-WC-Webhook-Source": "http://example.com/",
+      "X-WC-Webhook-Topic": "order.updated",
+      "X-WC-Webhook-Resource": "order",
+      "X-WC-Webhook-Event": "updated",
+      "X-WC-Webhook-Signature": "J72iu7hL93aUt2dFnyOBoBypwbmP6nt6Aor33nnOHxU=",
+      "X-WC-Webhook-ID": 142,
+      "X-WC-Webhook-Delivery-ID": 54
     },
-    {
-      "id": 378,
-      "duration": "0.90226",
-      "summary": "HTTP 200 OK: ok",
-      "request_method": "POST",
-      "request_url": "http://requestb.in/125q7ns1",
-      "request_headers": {
-        "User-Agent": "WooCommerce/2.3.0 Hookshot (WordPress/4.1)",
-        "Content-Type": "application/json",
-        "X-WC-Webhook-Topic": "action.woocommerce_add_to_cart",
-        "X-WC-Webhook-Resource": "action",
-        "X-WC-Webhook-Event": "woocommerce_add_to_cart",
-        "X-WC-Webhook-Signature": "geC1akFhCtsO7fbXz5XiGUsMsRa4Mt0IJsZ96nTaHjI=",
-        "X-WC-Webhook-ID": 535,
-        "X-WC-Webhook-Delivery-ID": 378
-      },
-      "request_body": "{\"action\":\"woocommerce_add_to_cart\",\"arg\":\"7cbbc409ec990f19c78c75bd1e06f215\"}",
-      "response_code": "200",
-      "response_message": "OK",
-      "response_headers": {
-        "connection": "close",
-        "server": "gunicorn/18.0",
-        "date": "Wed, 21 Jan 2015 16:22:49 GMT",
-        "content-type": "text/html; charset=utf-8",
-        "content-length": "2",
-        "sponsored-by": "https://www.runscope.com",
-        "via": "1.1 vegur"
-      },
-      "response_body": "ok",
-      "created_at": "2015-01-21T16:26:12Z"
+    "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:30:30Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
+    "response_code": "200",
+    "response_message": "OK",
+    "response_headers": {
+      "connection": "close",
+      "server": "gunicorn/19.3.0",
+      "date": "Tue, 16 May 2016 03:30:31 GMT",
+      "content-type": "text/html; charset=utf-8",
+      "content-length": "2",
+      "sponsored-by": "https://www.runscope.com",
+      "via": "1.1 vegur"
+    },
+    "response_body": "ok",
+    "date_created": "2016-05-16T03:30:31",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries/54"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "id": 53,
+    "duration": "0.7615",
+    "summary": "HTTP 200 OK: ok",
+    "request_method": "POST",
+    "request_url": "http://requestb.in/1g0sxmo1",
+    "request_headers": {
+      "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
+      "Content-Type": "application/json",
+      "X-WC-Webhook-Source": "http://example.com/",
+      "X-WC-Webhook-Topic": "order.updated",
+      "X-WC-Webhook-Resource": "order",
+      "X-WC-Webhook-Event": "updated",
+      "X-WC-Webhook-Signature": "Z996ccyueeoqdXZFq2ND2ETpsPGrXmWKj+yvQ0c2N1w=",
+      "X-WC-Webhook-ID": 142,
+      "X-WC-Webhook-Delivery-ID": 53
+    },
+    "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:29:13Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
+    "response_code": "200",
+    "response_message": "OK",
+    "response_headers": {
+      "connection": "close",
+      "server": "gunicorn/19.3.0",
+      "date": "Tue, 16 May 2016 03:29:20 GMT",
+      "content-type": "text/html; charset=utf-8",
+      "content-length": "2",
+      "sponsored-by": "https://www.runscope.com",
+      "via": "1.1 vegur"
+    },
+    "response_body": "ok",
+    "date_created": "2016-05-16T03:29:19",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries/53"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142/deliveries"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142"
+        }
+      ]
+    }
+  }
+]
 ```

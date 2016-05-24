@@ -4,12 +4,12 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Order Notes Properties ##
 
-|    Attribute    |   Type  |                                                    Description                                                     |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `id`            | integer | Order note ID <i class="label label-info">read-only</i>                                                            |
-| `created_at`    | string  | UTC DateTime when the order note was created <i class="label label-info">read-only</i>                             |
-| `note`          | string  | Order note <i class="label label-info">required</i>                                                                |
-| `customer_note` | boolean | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false` |
+|    Attribute    |    Type   |                                                     Description                                                     |
+|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------|
+| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
+| `date_created`  | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
+| `note`          | string    | Order note. <i class="label label-info">required</i>                                                                |
+| `customer_note` | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
 
 ## Create a Note For an Order ##
 
@@ -20,26 +20,22 @@ This API helps you to create a new note for an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;/notes</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/orders/645/notes \
+curl -X POST https://example.com/wp-json/wc/v1/orders/645/notes \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "order_note": {
-    "note": "Order ok!!!"
-  }
+  "note": "Order ok!!!"
 }'
 ```
 
 ```javascript
 var data = {
-  order_note: {
-    note: 'Order ok!!!'
-  }
+  note: 'Order ok!!!'
 };
 
 WooCommerce.post('orders/645/notes', data, function(err, data, res) {
@@ -50,9 +46,7 @@ WooCommerce.post('orders/645/notes', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'order_note' => [
-        'note' => 'Order ok!!!'
-    ]
+    'note' => 'Order ok!!!'
 ];
 
 print_r($woocommerce->post('orders/645/notes', $data));
@@ -61,9 +55,7 @@ print_r($woocommerce->post('orders/645/notes', $data));
 
 ```python
 data = {
-    "order_note": {
-        "note": "Order ok!!!"
-    }
+    "note": "Order ok!!!"
 }
 
 print(wcapi.post("orders/645/notes", data).json())
@@ -71,9 +63,7 @@ print(wcapi.post("orders/645/notes", data).json())
 
 ```ruby
 data = {
-  order_note: {
-    note: "Order ok!!!"
-  }
+  note: "Order ok!!!"
 }
 
 woocommerce.post("orders/645/notes", data).parsed_response
@@ -83,11 +73,26 @@ woocommerce.post("orders/645/notes", data).parsed_response
 
 ```json
 {
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Order ok!!!",
-    "customer_note": false
+  "id": 51,
+  "date_created": "2016-05-13T20:51:55",
+  "note": "Order ok!!!",
+  "customer_note": false,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes/51"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes"
+      }
+    ],
+    "up": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118"
+      }
+    ]
   }
 }
 ```
@@ -101,42 +106,57 @@ This API lets you retrieve and view a specific note from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/orders/645/notes/416 \
+curl https://example.com/wp-json/wc/v1/orders/645/notes/51 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/645/notes/416', function(err, data, res) {
+WooCommerce.get('orders/645/notes/51', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/645/notes/416')); ?>
+<?php print_r($woocommerce->get('orders/645/notes/51')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/645/notes/416").json())
+print(wcapi.get("orders/645/notes/51").json())
 ```
 
 ```ruby
-woocommerce.get("orders/645/notes/416").parsed_response
+woocommerce.get("orders/645/notes/51").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Order ok!!!",
-    "customer_note": false
+  "id": 51,
+  "date_created": "2016-05-13T20:51:55",
+  "note": "Order ok!!!",
+  "customer_note": false,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes/51"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes"
+      }
+    ],
+    "up": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118"
+      }
+    ]
   }
 }
 ```
@@ -150,12 +170,12 @@ This API helps you to view all the notes from an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;/notes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/orders/645/notes \
+curl https://example.com/wp-json/wc/v1/orders/645/notes \
 	-u consumer_key:consumer_secret
 ```
 
@@ -180,115 +200,54 @@ woocommerce.get("orders/645/notes").parsed_response
 > JSON response example:
 
 ```json
-{
-  "order_notes": [
-    {
-      "id": "416",
-      "created_at": "2015-01-26T20:56:44Z",
-      "note": "Order ok!!!",
-      "customer_note": false
-    },
-    {
-      "id": "415",
-      "created_at": "2015-01-26T20:16:14Z",
-      "note": "Order status changed from Processing to Completed.",
-      "customer_note": false
-    },
-    {
-      "id": "412",
-      "created_at": "2015-01-26T20:00:21Z",
-      "note": "Order item stock reduced successfully.",
-      "customer_note": false
-    },
-    {
-      "id": "411",
-      "created_at": "2015-01-26T20:00:09Z",
-      "note": "Order status changed from Pending Payment to Processing.",
-      "customer_note": false
+[
+  {
+    "id": 51,
+    "date_created": "2016-05-13T20:51:55",
+    "note": "Order ok!!!",
+    "customer_note": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118/notes/51"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118/notes"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118"
+        }
+      ]
     }
-  ]
-}
-```
-
-## Update an Order Note ##
-
-This API lets you make changes to an order note.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X PUT https://example.com/wc-api/v3/orders/645/notes/416 \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order_note": {
-    "note": "Ok!"
-  }
-}'
-```
-
-```javascript
-var data = {
-  order_note: {
-    note: 'Ok!'
-  }
-};
-
-WooCommerce.put('orders/645/notes/416', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php
-$data = [
-    'order_note' => [
-        'note' => 'Ok!'
-    ]
-];
-
-print_r($woocommerce->put('orders/645/notes/416', $data));
-?>
-```
-
-```python
-data = {
-    "order_note": {
-        "note": "Ok!"
+  },
+  {
+    "id": 46,
+    "date_created": "2016-05-03T18:10:43",
+    "note": "Order status changed from Pending Payment to Processing.",
+    "customer_note": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118/notes/46"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118/notes"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/118"
+        }
+      ]
     }
-}
-
-print(wcapi.put("orders/645/notes/416", data).json())
-```
-
-```ruby
-data = {
-  order_note: {
-    note: "Ok!"
   }
-}
-
-woocommerce.put("orders/645/notes/416", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_note": {
-    "id": "416",
-    "created_at": "2015-01-26T20:56:44Z",
-    "note": "Ok!",
-    "customer_note": false
-  }
-}
+]
 ```
 
 ## Delete an Order Note ##
@@ -300,37 +259,62 @@ This API helps you delete an order note.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;/notes/&lt;note_id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/orders/645/notes/416 \
+curl -X DELETE https://example.com/wp-json/wc/v1/orders/645/notes/51?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('orders/645/notes/416', function(err, data, res) {
+WooCommerce.delete('orders/645/notes/51?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('orders/645/notes/416')); ?>
+<?php print_r($woocommerce->delete('orders/645/notes/51', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("orders/645/notes/416").json())
+print(wcapi.delete("orders/645/notes/51?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("orders/645/notes/416").parsed_response
+woocommerce.delete("orders/645/notes/51", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "message": "Permanently deleted order note"
+  "id": 51,
+  "date_created": "2016-05-13T20:51:55",
+  "note": "Order ok!!!",
+  "customer_note": false,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes/51"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118/notes"
+      }
+    ],
+    "up": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/118"
+      }
+    ]
+  }
 }
 ```
+#### Available Parameters ####
+
+| Parameter |  Type  |                          Description                          |
+|-----------|--------|---------------------------------------------------------------|
+| `force`   | string | Required to be `true`, as resource does not support trashing. |

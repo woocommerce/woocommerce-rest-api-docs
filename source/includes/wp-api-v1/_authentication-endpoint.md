@@ -12,13 +12,13 @@ The following image illustrates how it's done:
 
 ## URL parameters ##
 
-|   Parameter   |  Type  |                                                                                  Description                                                                                  |
-| -------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   Parameter    |  Type  |                                                                                  Description                                                                                  |
+|----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `app_name`     | string | Your app name <i class="label label-info">mandatory</i>                                                                                                                       |
 | `scope`        | string | Level of access. Available: `read`, `write` and `read_write` <i class="label label-info">mandatory</i>                                                                        |
 | `user_id`      | string | User ID in your app. For your internal reference, used when the user is redirected back to your app. NOT THE USER ID IN WOOCOMMERCE <i class="label label-info">mandatory</i> |
-| `return_url`   | string | URL the user will be redirected to after authentication <i class="label label-info">mandatory</i>                                                                         |
-| `callback_url` | string | URL that will receive the generated API key. Note: this URL should be over **HTTPS** <i class="label label-info">mandatory</i>                                 |
+| `return_url`   | string | URL the user will be redirected to after authentication <i class="label label-info">mandatory</i>                                                                             |
+| `callback_url` | string | URL that will receive the generated API key. Note: this URL should be over **HTTPS** <i class="label label-info">mandatory</i>                                                |
 
 ## Creating Authentication Endpoint URL ##
 

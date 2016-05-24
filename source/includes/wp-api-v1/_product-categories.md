@@ -4,16 +4,17 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Product Category Properties ##
 
-|   Attribute   |   Type  |                                                  Description                                                  |
-| ------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| `id`          | integer | Category ID (term ID) <i class="label label-info">read-only</i>                                               |
-| `name`        | string  | Category name <i class="label label-info">required</i>                                                        |
-| `slug`        | string  | Category slug                                                                                                 |
-| `parent`      | integer | Category parent                                                                                               |
-| `description` | string  | Category description                                                                                          |
-| `display`     | string  | Category archive display type, the types available include: `default`, `products`, `subcategories` and `both` |
-| `image`       | string  | Category image URL                                                                                            |
-| `count`       | integer | Shows the quantity of products in this category <i class="label label-info">read-only</i>                     |
+|   Attribute   |   Type  |                                                   Description                                                   |
+|---------------|---------|-----------------------------------------------------------------------------------------------------------------|
+| `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                   |
+| `name`        | string  | Category name. <i class="label label-info">required</i>                                                         |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                                                 |
+| `parent`      | integer | The id for the parent of the resource.                                                                          |
+| `description` | string  | HTML description of the resource.                                                                               |
+| `display`     | string  | Category archive display type. Default is `default`. Options: `default`, `products`, `subcategories` and `both` |
+| `image`       | string  | Image URL.                                                                                                      |
+| `menu_order`  | integer | Menu order, used to custom sort the resource.                                                                   |
+| `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i>                        |
 
 ## Create a Product Category ##
 
@@ -24,28 +25,24 @@ This API helps you to create a new product category.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/products/categories</h6>
+		<h6>/wp-json/wc/v1/products/categories</h6>
 	</div>
 </div>
 
 > Example of how to create a product category:
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/products/categories \
+curl -X POST https://example.com/wp-json/wc/v1/products/categories \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "product_category": {
-    "name": "Clothing"
-  }
+  "name": "Clothing"
 }'
 ```
 
 ```javascript
 var data = {
-  product_category: {
-    name: 'Clothing'
-  }
+  name: 'Clothing'
 };
 
 WooCommerce.post('products/categories', data, function(err, data, res) {
@@ -56,9 +53,7 @@ WooCommerce.post('products/categories', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'product_category' => [
-        'name' => 'Clothing'
-    ]
+    'name' => 'Clothing'
 ];
 
 print_r($woocommerce->post('products/categories', $data));
@@ -67,9 +62,7 @@ print_r($woocommerce->post('products/categories', $data));
 
 ```python
 data = {
-    "product_category": {
-        "name": "Clothing"
-    }
+    "name": "Clothing"
 }
 
 print(wcapi.post("products/categories", data).json())
@@ -77,9 +70,7 @@ print(wcapi.post("products/categories", data).json())
 
 ```ruby
 data = {
-  product_category: {
-    name: "Clothing"
-  }
+  name: "Clothing"
 }
 
 woocommerce.post("products/categories", data).parsed_response
@@ -89,22 +80,29 @@ woocommerce.post("products/categories", data).parsed_response
 
 ```json
 {
-  "product_category": {
-    "id": 9,
-    "name": "Clothing",
-    "slug": "clothing",
-    "parent": 0,
-    "description": "",
-    "display": "default",
-    "image": "",
-    "count": 0
+  "id": 9,
+  "name": "Clothing",
+  "slug": "clothing",
+  "parent": 0,
+  "description": "",
+  "display": "default",
+  "image": "",
+  "menu_order": 0,
+  "count": 12,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories"
+      }
+    ]
   }
 }
 ```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
 
 ## View a Product Category ##
 
@@ -113,12 +111,12 @@ This API lets you retrieve a product category by ID.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/products/categories/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/products/categories/9 \
+curl https://example.com/wp-json/wc/v1/products/categories/9 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -144,15 +142,26 @@ woocommerce.get("products/categories/9").parsed_response
 
 ```json
 {
-  "product_category": {
-    "id": 9,
-    "name": "Clothing",
-    "slug": "clothing",
-    "parent": 0,
-    "description": "",
-    "display": "default",
-    "image": "",
-    "count": 23
+  "id": 9,
+  "name": "Clothing",
+  "slug": "clothing",
+  "parent": 0,
+  "description": "",
+  "display": "default",
+  "image": "",
+  "menu_order": 0,
+  "count": 12,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories"
+      }
+    ]
   }
 }
 ```
@@ -164,12 +173,12 @@ This API lets you retrieve all product categories.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/products/categories</h6>
+		<h6>/wp-json/wc/v1/products/categories</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/products/categories \
+curl https://example.com/wp-json/wc/v1/products/categories \
 	-u consumer_key:consumer_secret
 ```
 
@@ -194,81 +203,207 @@ woocommerce.get("products/categories").parsed_response
 > JSON response example:
 
 ```json
-{
-  "product_categories": [
-    {
-      "id": 15,
-      "name": "Albums",
-      "slug": "albums",
-      "parent": 11,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 4
-    },
-    {
-      "id": 9,
-      "name": "Clothing",
-      "slug": "clothing",
-      "parent": 0,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 23
-    },
-    {
-      "id": 10,
-      "name": "Hoodies",
-      "slug": "hoodies",
-      "parent": 9,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 6
-    },
-    {
-      "id": 11,
-      "name": "Music",
-      "slug": "music",
-      "parent": 0,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 6
-    },
-    {
-      "id": 12,
-      "name": "Posters",
-      "slug": "posters",
-      "parent": 0,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 5
-    },
-    {
-      "id": 13,
-      "name": "Singles",
-      "slug": "singles",
-      "parent": 11,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 2
-    },
-    {
-      "id": 14,
-      "name": "T-shirts",
-      "slug": "t-shirts",
-      "parent": 9,
-      "description": "",
-      "display": "default",
-      "image": "",
-      "count": 17
+[
+  {
+    "id": 15,
+    "name": "Albums",
+    "slug": "albums",
+    "parent": 11,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 4,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/15"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/11"
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "id": 9,
+    "name": "Clothing",
+    "slug": "clothing",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 12,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "name": "Hoodies",
+    "slug": "hoodies",
+    "parent": 9,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 6,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/10"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "name": "Music",
+    "slug": "music",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 7,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/11"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "name": "Posters",
+    "slug": "posters",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 5,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/12"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "name": "Singles",
+    "slug": "singles",
+    "parent": 11,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 3,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/13"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/11"
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "name": "T-shirts",
+    "slug": "t-shirts",
+    "parent": 9,
+    "description": "",
+    "display": "default",
+    "image": "",
+    "menu_order": 0,
+    "count": 6,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/14"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        }
+      ]
+    }
+  }
+]
 ```
+
+#### Available Parameters ####
+
+|  Parameter   |   Type  |                                                                Description                                                                 |
+|--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
+| `page`       | integer | Current page of the collection.                                                                                                            |
+| `per_page`   | integer | Maximum number of items to be returned in result set.                                                                                      |
+| `search`     | string  | Limit results to those matching a string.                                                                                                  |
+| `exclude`    | string  | Ensure result set excludes specific ids.                                                                                                   |
+| `include`    | string  | Limit result set to specific ids.                                                                                                          |
+| `order`      | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
+| `orderby`    | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
+| `hide_empty` | bool    | Whether to hide resources not assigned to any products. Default is `false`.                                                                |
+| `parent`     | integer | Limit result set to resources assigned to a specific parent.                                                                               |
+| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
 
 ## Update a Product Category ##
 
@@ -279,12 +414,12 @@ This API lets you make changes to a product category.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/products/categories/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/products/categories/9 \
+curl -X PUT https://example.com/wp-json/wc/v1/products/categories/9 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -342,22 +477,29 @@ woocommerce.put("products/categories/9", data).parsed_response
 
 ```json
 {
-  "product_category": {
-    "id": 9,
-    "name": "Clothing",
-    "slug": "clothing",
-    "parent": 0,
-    "description": "All kinds of clothes.",
-    "display": "default",
-    "image": "",
-    "count": 23
+  "id": 9,
+  "name": "Clothing",
+  "slug": "clothing",
+  "parent": 0,
+  "description": "All kinds of clothes.",
+  "display": "default",
+  "image": "",
+  "menu_order": 0,
+  "count": 12,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories"
+      }
+    ]
   }
 }
 ```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
 
 ## Delete a Product Category ##
 
@@ -368,41 +510,63 @@ This API helps you delete a product category.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/products/categories/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/products/categories/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/products/categories/9 \
+curl -X DELETE https://example.com/wp-json/wc/v1/products/categories/9?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/categories/9', function(err, data, res) {
+WooCommerce.delete('products/categories/9?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('products/categories/9')); ?>
+<?php print_r($woocommerce->delete('products/categories/9', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("products/categories/9").json())
+print(wcapi.delete("products/categories/9?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("products/categories/9").parsed_response
+woocommerce.delete("products/categories/9", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "message": "Deleted product_category"
+  "id": 9,
+  "name": "Clothing",
+  "slug": "clothing",
+  "parent": 0,
+  "description": "All kinds of clothes.",
+  "display": "default",
+  "image": "",
+  "menu_order": 0,
+  "count": 12,
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/products/categories"
+      }
+    ]
+  }
 }
 ```
 
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
+#### Available Parameters ####
+
+| Parameter |  Type  |                          Description                          |
+|-----------|--------|---------------------------------------------------------------|
+| `force`   | string | Required to be `true`, as resource does not support trashing. |

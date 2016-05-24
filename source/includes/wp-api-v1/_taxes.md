@@ -4,20 +4,20 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Taxes Properties ##
 
-| Attribute  |   Type  |                                                                                  Description                                                                                   |
-| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`       | integer | Tax rate ID <i class="label label-info">read-only</i>                                                                                                                          |
-| `country`  | string  | Country code. See [ISO 3166 Codes (Countries)](http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html) for more details                                                      |
-| `state`    | string  | State code                                                                                                                                                                     |
-| `postcode` | string  | Postcode/ZIP                                                                                                                                                                   |
-| `city`     | string  | City name                                                                                                                                                                      |
-| `rate`     | float   | Tax rate                                                                                                                                                                       |
-| `name`     | string  | Tax rate name                                                                                                                                                                  |
-| `priority` | integer | Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is `1` |
-| `compound` | boolean | Choose whether or not this is a compound rate. Compound tax rates are applied on top of other tax rates. Default is `false`                                                    |
-| `shipping` | boolean | Choose whether or not this tax rate also gets applied to shipping. Default is `true`                                                                                           |
-| `order`    | integer | Indicates the order that will appear in queries                                                                                                                                |
-| `class`    | string  | Tax class. Default is `standard`                                                                                                                                               |
+| Attribute  |   Type  |                                                                                   Description                                                                                   |
+|------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`       | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                   |
+| `country`  | string  | Country ISO 3166 code. See [ISO 3166 Codes (Countries)](http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html) for more details                                              |
+| `state`    | string  | State code.                                                                                                                                                                     |
+| `postcode` | string  | Postcode/ZIP.                                                                                                                                                                   |
+| `city`     | string  | City name.                                                                                                                                                                      |
+| `rate`     | float   | Tax rate.                                                                                                                                                                       |
+| `name`     | string  | Tax rate name.                                                                                                                                                                  |
+| `priority` | integer | Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is `1`. |
+| `compound` | boolean | Whether or not this is a compound rate. Compound tax rates are applied on top of other tax rates. Default is `false`.                                                           |
+| `shipping` | boolean | Whether or not this tax rate also gets applied to shipping. Default is `true`.                                                                                                  |
+| `order`    | integer | Indicates the order that will appear in queries.                                                                                                                                |
+| `class`    | string  | Tax class. Default is `standard`.                                                                                                                                               |
 
 ## Create a Tax Rate ##
 
@@ -28,34 +28,30 @@ This API helps you to create a new tax rate.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/taxes</h6>
+		<h6>/wp-json/wc/v1/taxes</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/taxes \
+curl -X POST https://example.com/wp-json/wc/v1/taxes \
     -u consumer_key:consumer_secret \
     -H "Content-Type: application/json" \
     -d '{
-  "tax": {
-    "country": "US",
-    "state": "AL",
-    "rate": "4",
-    "name": "State Tax",
-    "shipping": false
-  }
+  "country": "US",
+  "state": "AL",
+  "rate": "4",
+  "name": "State Tax",
+  "shipping": false
 }'
 ```
 
 ```javascript
 var data = {
-  tax: {
-    country: 'US',
-    state: 'AL',
-    rate: '4',
-    name: 'State Tax',
-    shipping: false
-  }
+  country: 'US',
+  state: 'AL',
+  rate: '4',
+  name: 'State Tax',
+  shipping: false
 };
 
 WooCommerce.post('taxes', data, function(err, data, res) {
@@ -66,13 +62,11 @@ WooCommerce.post('taxes', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'tax' => [
-        'country' => 'US',
-        'state' => 'AL',
-        'rate' => '4',
-        'name' => 'State Tax',
-        'shipping' => false
-    ]
+    'country' => 'US',
+    'state' => 'AL',
+    'rate' => '4',
+    'name' => 'State Tax',
+    'shipping' => false
 ];
 
 print_r($woocommerce->post('taxes', $data));
@@ -81,13 +75,11 @@ print_r($woocommerce->post('taxes', $data));
 
 ```python
 data = {
-    "tax": {
-        "country": "US",
-        "state": "AL",
-        "rate": "4",
-        "name": "State Tax",
-        "shipping": False
-    }
+    "country": "US",
+    "state": "AL",
+    "rate": "4",
+    "name": "State Tax",
+    "shipping": False
 }
 
 print(wcapi.post("taxes", data).json())
@@ -95,13 +87,11 @@ print(wcapi.post("taxes", data).json())
 
 ```ruby
 data = {
-  tax: {
-    country: "US",
-    state: "AL",
-    rate: "4",
-    name: "State Tax",
-    shipping: false
-  }
+  country: "US",
+  state: "AL",
+  rate: "4",
+  name: "State Tax",
+  shipping: false
 }
 
 woocommerce.post("taxes", data).parsed_response
@@ -111,26 +101,32 @@ woocommerce.post("taxes", data).parsed_response
 
 ```json
 {
-  "tax": {
-    "id": 53,
-    "country": "US",
-    "state": "AL",
-    "postcode": "",
-    "city": "",
-    "rate": "4.0000",
-    "name": "State Tax",
-    "priority": 1,
-    "compound": false,
-    "shipping": false,
-    "order": 0,
-    "class": "standard"
+  "id": 72,
+  "country": "US",
+  "state": "AL",
+  "postcode": "",
+  "city": "",
+  "rate": "4.0000",
+  "name": "State Tax",
+  "priority": 0,
+  "compound": false,
+  "shipping": false,
+  "order": 1,
+  "class": "standard",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes"
+      }
+    ]
   }
 }
 ```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
 
 ## View a Tax Rate ##
 
@@ -139,57 +135,63 @@ This API lets you retrieve and view a specific tax rate by ID.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/taxes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/taxes/53 \
+curl https://example.com/wp-json/wc/v1/taxes/72 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('taxes/53', function(err, data, res) {
+WooCommerce.get('taxes/72', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('taxes/53')); ?>
+<?php print_r($woocommerce->get('taxes/72')); ?>
 ```
 
 ```python
-print(wcapi.get("taxes/53").json())
+print(wcapi.get("taxes/72").json())
 ```
 
 ```ruby
-woocommerce.get("taxes/53").parsed_response
+woocommerce.get("taxes/72").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "tax": {
-    "id": 53,
-    "country": "US",
-    "state": "AL",
-    "postcode": "",
-    "city": "",
-    "rate": "4.0000",
-    "name": "State Tax",
-    "priority": 1,
-    "compound": false,
-    "shipping": false,
-    "order": 0,
-    "class": "standard"
+  "id": 72,
+  "country": "US",
+  "state": "AL",
+  "postcode": "",
+  "city": "",
+  "rate": "4.0000",
+  "name": "State Tax",
+  "priority": 0,
+  "compound": false,
+  "shipping": false,
+  "order": 1,
+  "class": "standard",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes"
+      }
+    ]
   }
 }
 ```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
 
 ## View List of Tax Rates ##
 
@@ -200,12 +202,12 @@ This API helps you to view all the tax rates.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/taxes</h6>
+		<h6>/wp-json/wc/v1/taxes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/taxes \
+curl https://example.com/wp-json/wc/v1/taxes \
 	-u consumer_key:consumer_secret
 ```
 
@@ -230,189 +232,284 @@ woocommerce.get("taxes").parsed_response
 > JSON response example:
 
 ```json
-{
-  "taxes": [
-    {
-      "id": 53,
-      "country": "US",
-      "state": "AL",
-      "postcode": "",
-      "city": "",
-      "rate": "4.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 1,
-      "class": "standard"
-    },
-    {
-      "id": 54,
-      "country": "US",
-      "state": "AZ",
-      "postcode": "",
-      "city": "",
-      "rate": "5.6000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 2,
-      "class": "standard"
-    },
-    {
-      "id": 55,
-      "country": "US",
-      "state": "AR",
-      "postcode": "",
-      "city": "",
-      "rate": "6.5000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 3,
-      "class": "standard"
-    },
-    {
-      "id": 56,
-      "country": "US",
-      "state": "CA",
-      "postcode": "",
-      "city": "",
-      "rate": "7.5000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 4,
-      "class": "standard"
-    },
-    {
-      "id": 57,
-      "country": "US",
-      "state": "CO",
-      "postcode": "",
-      "city": "",
-      "rate": "2.9000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 5,
-      "class": "standard"
-    },
-    {
-      "id": 58,
-      "country": "US",
-      "state": "CT",
-      "postcode": "",
-      "city": "",
-      "rate": "6.3500",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 6,
-      "class": "standard"
-    },
-    {
-      "id": 59,
-      "country": "US",
-      "state": "DC",
-      "postcode": "",
-      "city": "",
-      "rate": "5.7500",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 7,
-      "class": "standard"
-    },
-    {
-      "id": 60,
-      "country": "US",
-      "state": "FL",
-      "postcode": "",
-      "city": "",
-      "rate": "6.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 8,
-      "class": "standard"
-    },
-    {
-      "id": 61,
-      "country": "US",
-      "state": "GA",
-      "postcode": "",
-      "city": "",
-      "rate": "4.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 9,
-      "class": "standard"
-    },
-    {
-      "id": 62,
-      "country": "US",
-      "state": "GU",
-      "postcode": "",
-      "city": "",
-      "rate": "4.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 10,
-      "class": "standard"
-    },
-    {
-      "id": 63,
-      "country": "US",
-      "state": "HI",
-      "postcode": "",
-      "city": "",
-      "rate": "4.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": true,
-      "order": 11,
-      "class": "standard"
-    },
-    {
-      "id": 64,
-      "country": "US",
-      "state": "ID",
-      "postcode": "",
-      "city": "",
-      "rate": "6.0000",
-      "name": "State Tax",
-      "priority": 1,
-      "compound": false,
-      "shipping": false,
-      "order": 12,
-      "class": "standard"
+[
+  {
+    "id": 72,
+    "country": "US",
+    "state": "AL",
+    "postcode": "",
+    "city": "",
+    "rate": "4.0000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": false,
+    "order": 1,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/72"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "id": 73,
+    "country": "US",
+    "state": "AZ",
+    "postcode": "",
+    "city": "",
+    "rate": "5.6000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": false,
+    "order": 2,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/73"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 74,
+    "country": "US",
+    "state": "AR",
+    "postcode": "",
+    "city": "",
+    "rate": "6.5000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": true,
+    "order": 3,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/74"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 75,
+    "country": "US",
+    "state": "CA",
+    "postcode": "",
+    "city": "",
+    "rate": "7.5000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": false,
+    "order": 4,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/75"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 76,
+    "country": "US",
+    "state": "CO",
+    "postcode": "",
+    "city": "",
+    "rate": "2.9000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": false,
+    "order": 5,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/76"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 77,
+    "country": "US",
+    "state": "CT",
+    "postcode": "",
+    "city": "",
+    "rate": "6.3500",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": true,
+    "order": 6,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/77"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 78,
+    "country": "US",
+    "state": "DC",
+    "postcode": "",
+    "city": "",
+    "rate": "5.7500",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": true,
+    "order": 7,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/78"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 79,
+    "country": "US",
+    "state": "FL",
+    "postcode": "",
+    "city": "",
+    "rate": "6.0000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": true,
+    "order": 8,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/79"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 80,
+    "country": "US",
+    "state": "GA",
+    "postcode": "",
+    "city": "",
+    "rate": "4.0000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": true,
+    "order": 9,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/80"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  },
+  {
+    "id": 81,
+    "country": "US",
+    "state": "GU",
+    "postcode": "",
+    "city": "",
+    "rate": "4.0000",
+    "name": "State Tax",
+    "priority": 0,
+    "compound": false,
+    "shipping": false,
+    "order": 10,
+    "class": "standard",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes/81"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/taxes"
+        }
+      ]
+    }
+  }
+]
 ```
 
-#### Available Filters ####
+#### Available Parameters ####
 
-|      Filter      |  Type  |                            Description                            |
-| ---------------- | ------ | ----------------------------------------------------------------- |
-| `tax_rate_class` | string | Tax rates by class. eg: `standard`, `reduced-rate` or `zero-rate` |
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
+| Parameter  |   Type  |                                                                Description                                                                 |
+|------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
+| `page`     | integer | Current page of the collection.                                                                                                            |
+| `per_page` | integer | Maximum number of items to be returned in result set.                                                                                      |
+| `search`   | string  | Limit results to those matching a string.                                                                                                  |
+| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                   |
+| `include`  | string  | Limit result set to specific ids.                                                                                                          |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                       |
+| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
+| `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
+| `class`    | string  | Sort by tax class.                                                                                                                         |
 
 ## Update a Tax Rate ##
 
@@ -423,29 +520,25 @@ This API lets you make changes to a tax rate.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/taxes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wc-api/v3/taxes/53 \
+curl -X PUT https://example.com/wp-json/wc/v1/taxes/72 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "tax": {
-    "name": "US Tax"
-  }
+  "name": "US Tax"
 }'
 ```
 
 ```javascript
 var data = {
-  tax: {
-    name: 'US Tax'
-  }
+  name: 'US Tax'
 };
 
-WooCommerce.put('taxes/53', data, function(err, data, res) {
+WooCommerce.put('taxes/72', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -453,59 +546,132 @@ WooCommerce.put('taxes/53', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'tax' => [
-        'name' => 'US Tax'
-    ]
+    'name' => 'US Tax'
 ];
 
-print_r($woocommerce->put('taxes/53', $data));
+print_r($woocommerce->put('taxes/72', $data));
 ?>
 ```
 
 ```python
 data = {
-    "tax": {
-        "name": "US Tax"
-    }
+    "name": "US Tax"
 }
 
-print(wcapi.put("taxes/53", data).json())
+print(wcapi.put("taxes/72", data).json())
 ```
 
 ```ruby
 data = {
-  tax: {
-    name: "US Tax"
-  }
+  name: "US Tax"
 }
 
-woocommerce.put("taxes/53", data).parsed_response
+woocommerce.put("taxes/72", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "tax": {
-    "id": 53,
-    "country": "US",
-    "state": "AL",
-    "postcode": "",
-    "city": "",
-    "rate": "4.0000",
-    "name": "US Tax",
-    "priority": 1,
-    "compound": false,
-    "shipping": false,
-    "order": 0,
-    "class": "standard"
+  "id": 72,
+  "country": "US",
+  "state": "AL",
+  "postcode": "",
+  "city": "",
+  "rate": "4.0000",
+  "name": "US Tax",
+  "priority": 0,
+  "compound": false,
+  "shipping": false,
+  "order": 1,
+  "class": "standard",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes"
+      }
+    ]
   }
 }
 ```
 
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
+## Delete a Tax Rate ##
+
+This API helps you delete a tax rate.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-delete">DELETE</i>
+		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl -X DELETE https://example.com/wp-json/wc/v1/taxes/72?force=true \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.delete('taxes/72?force=true', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php print_r($woocommerce->delete('taxes/72', ['force' => true])); ?>
+```
+
+```python
+print(wcapi.delete("taxes/72?force=true").json())
+```
+
+```ruby
+woocommerce.delete("taxes/72", force: true).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "id": 72,
+  "country": "US",
+  "state": "AL",
+  "postcode": "",
+  "city": "",
+  "rate": "4.0000",
+  "name": "US Tax",
+  "priority": 0,
+  "compound": false,
+  "shipping": false,
+  "order": 1,
+  "class": "standard",
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/taxes"
+      }
+    ]
+  }
+}
+```
+
+#### Available Parameters ####
+
+| Parameter |  Type  |                          Description                          |
+|-----------|--------|---------------------------------------------------------------|
+| `force`   | string | Required to be `true`, as resource does not support trashing. |
 
 ## Create/Update Multiple Tax Rates ##
 
@@ -518,14 +684,14 @@ To update is necessary to send objects containing IDs and to create new not just
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/taxes/bulk</h6>
+		<h6>/wp-json/wc/v1/taxes/bulk</h6>
 	</div>
 </div>
 
 > Example bulk creating all US taxes:
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/taxes/bulk \
+curl -X POST https://example.com/wp-json/wc/v1/taxes/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -2500,7 +2666,7 @@ woocommerce.post("taxes/bulk", data).parsed_response
 {
   "taxes": [
     {
-      "id": 53,
+      "id": 72,
       "country": "US",
       "state": "AL",
       "postcode": "",
@@ -3174,109 +3340,3 @@ woocommerce.post("taxes/bulk", data).parsed_response
   ]
 }
 ```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
-
-## Delete a Tax Rate ##
-
-This API helps you delete a tax rate.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/taxes/&lt;id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X DELETE https://example.com/wc-api/v3/taxes/53 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.delete('taxes/53', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->delete('taxes/53')); ?>
-```
-
-```python
-print(wcapi.delete("taxes/53").json())
-```
-
-```ruby
-woocommerce.delete("taxes/53").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "message": "Deleted tax"
-}
-```
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
-
-## View Tax Rate Count ##
-
-This API lets you retrieve a count of all tax rates.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/taxes/count</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/taxes/count \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('taxes/count', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('taxes/53')); ?>
-```
-
-```python
-print(wcapi.get("taxes/count").json())
-```
-
-```ruby
-woocommerce.get("taxes/count").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "count": 48
-}
-```
-
-#### Available Filters ####
-
-|      Filter      |  Type  |                            Description                            |
-| ---------------- | ------ | ----------------------------------------------------------------- |
-| `tax_rate_class` | string | Tax rates by class. eg: `standard`, `reduced-rate` or `zero-rate` |
-
-<aside class="notice">
-	Endpoint introduced since WooCommerce 2.5.
-</aside>
