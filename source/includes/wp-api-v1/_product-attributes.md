@@ -354,6 +354,10 @@ This API helps you delete a product attribute.
 	</div>
 </div>
 
+<aside class="warning">
+	This also will delete all terms from the selected attribute.
+</aside>
+
 ```shell
 curl -X DELETE https://example.com/wp-json/wc/v1/products/attributes/1?force=true \
 	-u consumer_key:consumer_secret
