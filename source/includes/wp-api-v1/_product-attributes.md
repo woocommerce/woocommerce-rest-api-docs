@@ -407,3 +407,234 @@ woocommerce.delete("products/attributes/1", force: true).parsed_response
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Product Attributes ##
+
+This API helps you to batch create, update and delete multiple product attributes.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/products/attributes/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/products/attributes/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name" => "Brand"
+    },
+    {
+      "name" => "Publisher"
+    }
+  ],
+  "update": [
+    {
+      "id": 2,
+      "order_by": "name"
+    }
+  ],
+  "delete": [
+    1
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'Brand'
+    },
+    {
+      name: 'Publisher'
+    }
+  ],
+  update: [
+    {
+      id: 2,
+      order_by: 'name'
+    }
+  ],
+  delete: [
+    1
+  ]
+};
+
+WooCommerce.post('products/attributes/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'Brand'
+        ],
+        [
+            'name' => 'Publisher'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 2,
+            'order_by' => 'name'
+        ]
+    ],
+    'delete' => [
+        1
+    ]
+];
+
+print_r($woocommerce->post('products/attributes/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "Brand"
+        },
+        {
+            "name": "Publisher"
+        }
+    ],
+    "update": [
+        {
+            "id": 2,
+            "order_by": "name"
+        }
+    ],
+    "delete": [
+        1
+    ]
+}
+
+print(wcapi.post("products/attributes/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "Round toe"
+    },
+    {
+      name: "Flat"
+    }
+  ],
+  update: [
+    {
+      id: 2,
+      order_by: "name"
+    }
+  ],
+  delete: [
+    1
+  ]
+}
+
+woocommerce.post("products/attributes/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 7,
+      "name": "Brand",
+      "slug": "pa_brand",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": false,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/7"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          }
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "Publisher",
+      "slug": "pa_publisher",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": false,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/8"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 2,
+      "name": "Size",
+      "slug": "pa_size",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": false,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 1,
+      "name": "Color",
+      "slug": "pa_color",
+      "type": "select",
+      "order_by": "menu_order",
+      "has_archives": true,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
