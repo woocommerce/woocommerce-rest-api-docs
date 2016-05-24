@@ -396,3 +396,230 @@ woocommerce.delete("products/tag/34", force: true).parsed_response
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Product Tags ##
+
+This API helps you to batch create, update and delete multiple product tags.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/products/tags/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/products/tags/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name" => "Round toe"
+    },
+    {
+      "name" => "Flat"
+    }
+  ],
+  "update": [
+    {
+      "id": 34,
+      "description": "Genuine leather."
+    }
+  ],
+  "delete": [
+    35
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'Round toe'
+    },
+    {
+      name: 'Flat'
+    }
+  ],
+  update: [
+    {
+      id: 34,
+      description: 'Genuine leather.'
+    }
+  ],
+  delete: [
+    35
+  ]
+};
+
+WooCommerce.post('products/tags/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'Round toe'
+        ],
+        [
+            'name' => 'Flat'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 34,
+            'description' => 'Genuine leather.'
+        ]
+    ],
+    'delete' => [
+        35
+    ]
+];
+
+print_r($woocommerce->post('products/tags/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "Round toe"
+        },
+        {
+            "name": "Flat"
+        }
+    ],
+    "update": [
+        {
+            "id": 34,
+            "description": "Genuine leather."
+        }
+    ],
+    "delete": [
+        35
+    ]
+}
+
+print(wcapi.post("products/tags/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "Round toe"
+    },
+    {
+      name: "Flat"
+    }
+  ],
+  update: [
+    {
+      id: 34,
+      description: "Genuine leather."
+    }
+  ],
+  delete: [
+    35
+  ]
+}
+
+woocommerce.post("products/tags/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 36,
+      "name": "Round toe",
+      "slug": "round-toe",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags/36"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags"
+          }
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "name": "Flat",
+      "slug": "flat",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags/37"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 34,
+      "name": "Leather Shoes",
+      "slug": "leather-shoes",
+      "description": "Genuine leather.",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags/34"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 35,
+      "name": "Oxford Shoes",
+      "slug": "oxford-shoes",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags/35"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/tags"
+          }
+        ]
+      }
+    }
+  ]
+}
+```

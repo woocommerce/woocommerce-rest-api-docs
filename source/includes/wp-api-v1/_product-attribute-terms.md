@@ -490,3 +490,254 @@ woocommerce.delete("products/attributes/2/terms/23", force: true).parsed_respons
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Product Attribute Terms ##
+
+This API helps you to batch create, update and delete multiple product attribute terms.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/products/attributes/&lt;attribute_id&gt;/terms/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/products/attributes/&lt;attribute_id&gt;/terms/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name" => "XXS"
+    },
+    {
+      "name" => "S"
+    }
+  ],
+  "update": [
+    {
+      "id": 19,
+      "menu_order": 6
+    }
+  ],
+  "delete": [
+    21,
+    20
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'XXS'
+    },
+    {
+      name: 'S'
+    }
+  ],
+  update: [
+    {
+      id: 19,
+      menu_order: 6
+    }
+  ],
+  delete: [
+    21,
+    20
+  ]
+};
+
+WooCommerce.post('products/attributes/2/terms/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'XXS'
+        ],
+        [
+            'name' => 'S'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 19,
+            'menu_order' => 6
+        ]
+    ],
+    'delete' => [
+        21,
+        20
+    ]
+];
+
+print_r($woocommerce->post('products/attributes/2/terms/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "XXS"
+        },
+        {
+            "name": "S"
+        }
+    ],
+    "update": [
+        {
+            "id": 19,
+            "menu_order": 6
+        }
+    ],
+    "delete": [
+        21,
+        20
+    ]
+}
+
+print(wcapi.post("products/attributes/2/terms/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "XXS"
+    },
+    {
+      name: "S"
+    }
+  ],
+  update: [
+    {
+      id: 19,
+      menu_order: 6
+    }
+  ],
+  delete: [
+    21,
+    20
+  ]
+}
+
+woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 23,
+      "name": "XXS",
+      "slug": "xxs",
+      "menu_order": 1,
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms/23"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms"
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "name": "S",
+      "slug": "s",
+      "menu_order": 3,
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms/17"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 19,
+      "name": "L",
+      "slug": "l",
+      "menu_order": 5,
+      "count": 1,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms/19"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 21,
+      "name": "XXL",
+      "slug": "xxl",
+      "menu_order": 7,
+      "count": 1,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms/21"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms"
+          }
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "name": "XL",
+      "slug": "xl",
+      "menu_order": 6,
+      "count": 1,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms/20"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/attributes/2/terms"
+          }
+        ]
+      }
+    }
+  ]
+}
+```

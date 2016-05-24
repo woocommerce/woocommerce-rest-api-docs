@@ -396,3 +396,230 @@ woocommerce.delete("products/shipping_classes/32", force: true).parsed_response
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Product Shipping Classes ##
+
+This API helps you to batch create, update and delete multiple product shipping classes.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/products/shipping_classes/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/products/shipping_classes/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name" => "Small items"
+    },
+    {
+      "name" => "Large items"
+    }
+  ],
+  "update": [
+    {
+      "id": 33,
+      "description": "Express shipping"
+    }
+  ],
+  "delete": [
+    32
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'Small items'
+    },
+    {
+      name: 'Large items'
+    }
+  ],
+  update: [
+    {
+      id: 33,
+      description: 'Express shipping'
+    }
+  ],
+  delete: [
+    32
+  ]
+};
+
+WooCommerce.post('products/shipping_classes/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'Small items'
+        ],
+        [
+            'name' => 'Large items'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 33,
+            'description' => 'Express shipping'
+        ]
+    ],
+    'delete' => [
+        32
+    ]
+];
+
+print_r($woocommerce->post('products/shipping_classes/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "Small items"
+        },
+        {
+            "name": "Large items"
+        }
+    ],
+    "update": [
+        {
+            "id": 33,
+            "description": "Express shipping"
+        }
+    ],
+    "delete": [
+        32
+    ]
+}
+
+print(wcapi.post("products/shipping_classes/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "Small items"
+    },
+    {
+      name: "Large items"
+    }
+  ],
+  update: [
+    {
+      id: 33,
+      description: "Express shipping"
+    }
+  ],
+  delete: [
+    32
+  ]
+}
+
+woocommerce.post("products/shipping_classes/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 34,
+      "name": "Small items",
+      "slug": "small-items",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes/34"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes"
+          }
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "name": "Large items",
+      "slug": "large-items",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes/35"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 33,
+      "name": "Express",
+      "slug": "express",
+      "description": "Express shipping",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes/33"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 32,
+      "name": "Priority",
+      "slug": "priority",
+      "description": "",
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes/32"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/shipping_classes"
+          }
+        ]
+      }
+    }
+  ]
+}
+```

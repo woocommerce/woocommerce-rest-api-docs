@@ -570,3 +570,284 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Create/Update/Delete Multiple Product Categories ##
+
+This API helps you to batch create, update and delete multiple product categories.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/products/categories/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/products/categories/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name" => "Albums"
+    },
+    {
+      "name" => "Clothing"
+    }
+  ],
+  "update": [
+    {
+      "id": 10,
+      "description": "Nice hoodies"
+    }
+  ],
+  "delete": [
+    11,
+    12
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'Albums'
+    },
+    {
+      name: 'Clothing'
+    }
+  ],
+  update: [
+    {
+      id: 10,
+      description: 'Nice hoodies'
+    }
+  ],
+  delete: [
+    11,
+    12
+  ]
+};
+
+WooCommerce.post('products/categories/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'Albums'
+        ],
+        [
+            'name' => 'Clothing'
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 10,
+            'description' => 'Nice hoodies'
+        ]
+    ],
+    'delete' => [
+        11,
+        12
+    ]
+];
+
+print_r($woocommerce->post('products/categories/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "Albums"
+        },
+        {
+            "name": "Clothing"
+        }
+    ],
+    "update": [
+        {
+            "id": 10,
+            "description": "Nice hoodies"
+        }
+    ],
+    "delete": [
+        11,
+        12
+    ]
+}
+
+print(wcapi.post("products/categories/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "Albums"
+    },
+    {
+      name: "Clothing"
+    }
+  ],
+  update: [
+    {
+      id: 10,
+      description: "Nice hoodies"
+    }
+  ],
+  delete: [
+    11,
+    12
+  ]
+}
+
+woocommerce.post("products/categories/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 15,
+      "name": "Albums",
+      "slug": "albums",
+      "parent": 11,
+      "description": "",
+      "display": "default",
+      "image": "",
+      "menu_order": 0,
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/15"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories"
+          }
+        ],
+        "up": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/11"
+          }
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing",
+      "parent": 0,
+      "description": "",
+      "display": "default",
+      "image": "",
+      "menu_order": 0,
+      "count": 0,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 10,
+      "name": "Hoodies",
+      "slug": "hoodies",
+      "parent": 9,
+      "description": "Nice hoodies",
+      "display": "default",
+      "image": "",
+      "menu_order": 0,
+      "count": 6,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/10"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories"
+          }
+        ],
+        "up": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 11,
+      "name": "Music",
+      "slug": "music",
+      "parent": 0,
+      "description": "",
+      "display": "default",
+      "image": "",
+      "menu_order": 0,
+      "count": 7,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/11"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "name": "Posters",
+      "slug": "posters",
+      "parent": 0,
+      "description": "",
+      "display": "default",
+      "image": "",
+      "menu_order": 0,
+      "count": 5,
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories/12"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/products/categories"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
