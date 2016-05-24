@@ -673,18 +673,16 @@ woocommerce.delete("taxes/72", force: true).parsed_response
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update Multiple Tax Rates ##
+## Create/Update/Delete Multiple Tax Rates ##
 
-This API helps you to bulk create/update multiple tax rates.
-
-To update is necessary to send objects containing IDs and to create new not just send the ID.
+This API helps you to batch create, update and delete multiple tax rates.
 
 ### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v1/taxes/bulk</h6>
+		<h6>/wp-json/wc/v1/taxes/batch</h6>
 	</div>
 </div>
 
@@ -695,7 +693,7 @@ curl -X POST https://example.com/wp-json/wc/v1/taxes/bulk \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "taxes": [
+  "create": [
     {
       "country": "US",
       "state": "AL",
@@ -1086,7 +1084,7 @@ curl -X POST https://example.com/wp-json/wc/v1/taxes/bulk \
 
 ```javascript
 var data = {
-  taxes: [
+  create: [
     {
       country: 'US',
       state: 'AL',
@@ -1482,7 +1480,7 @@ WooCommerce.post('taxes/bulk', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'taxes' => [
+    'create' => [
         [
             'country' => 'US',
             'state' => 'AL',
@@ -1876,7 +1874,7 @@ print_r($woocommerce->post('taxes/bulk', $data));
 
 ```python
 data = {
-    "taxes": [
+    "create": [
         {
             "country": "US",
             "state": "AL",
@@ -2269,7 +2267,7 @@ print(wcapi.post("taxes/bulk", data).json())
 
 ```ruby
 data = {
-  taxes: [
+  create: [
     {
       country: "US",
       state: "AL",
@@ -2664,7 +2662,7 @@ woocommerce.post("taxes/bulk", data).parsed_response
 
 ```json
 {
-  "taxes": [
+  "create": [
     {
       "id": 72,
       "country": "US",
@@ -2673,669 +2671,1245 @@ woocommerce.post("taxes/bulk", data).parsed_response
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 1,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/72"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 54,
+      "id": 73,
       "country": "US",
       "state": "AZ",
       "postcode": "",
       "city": "",
       "rate": "5.6000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 2,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/73"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 55,
+      "id": 74,
       "country": "US",
       "state": "AR",
       "postcode": "",
       "city": "",
       "rate": "6.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 3,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/74"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 56,
+      "id": 75,
       "country": "US",
       "state": "CA",
       "postcode": "",
       "city": "",
       "rate": "7.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 4,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/75"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 57,
+      "id": 76,
       "country": "US",
       "state": "CO",
       "postcode": "",
       "city": "",
       "rate": "2.9000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 5,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/76"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 58,
+      "id": 77,
       "country": "US",
       "state": "CT",
       "postcode": "",
       "city": "",
       "rate": "6.3500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 6,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/77"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 59,
+      "id": 78,
       "country": "US",
       "state": "DC",
       "postcode": "",
       "city": "",
       "rate": "5.7500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 7,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/78"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 60,
+      "id": 79,
       "country": "US",
       "state": "FL",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 8,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/79"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 61,
+      "id": 80,
       "country": "US",
       "state": "GA",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 9,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/80"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 62,
+      "id": 81,
       "country": "US",
       "state": "GU",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 10,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/81"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 63,
+      "id": 82,
       "country": "US",
       "state": "HI",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 11,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/82"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 64,
+      "id": 83,
       "country": "US",
       "state": "ID",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 12,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/83"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 65,
+      "id": 84,
       "country": "US",
       "state": "IL",
       "postcode": "",
       "city": "",
       "rate": "6.2500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 13,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/84"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 66,
+      "id": 85,
       "country": "US",
       "state": "IN",
       "postcode": "",
       "city": "",
       "rate": "7.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 14,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/85"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 67,
+      "id": 86,
       "country": "US",
       "state": "IA",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 15,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/86"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 68,
+      "id": 87,
       "country": "US",
       "state": "KS",
       "postcode": "",
       "city": "",
       "rate": "6.1500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 16,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/87"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 69,
+      "id": 88,
       "country": "US",
       "state": "KY",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 17,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/88"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 70,
+      "id": 89,
       "country": "US",
       "state": "LA",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 18,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/89"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 71,
+      "id": 90,
       "country": "US",
       "state": "ME",
       "postcode": "",
       "city": "",
       "rate": "5.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 19,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/90"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 72,
+      "id": 91,
       "country": "US",
       "state": "MD",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 20,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/91"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 73,
+      "id": 92,
       "country": "US",
       "state": "MA",
       "postcode": "",
       "city": "",
       "rate": "6.2500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 21,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/92"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 74,
+      "id": 93,
       "country": "US",
       "state": "MI",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 22,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/93"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 75,
+      "id": 94,
       "country": "US",
       "state": "MN",
       "postcode": "",
       "city": "",
       "rate": "6.8750",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 23,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/94"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 76,
+      "id": 95,
       "country": "US",
       "state": "MS",
       "postcode": "",
       "city": "",
       "rate": "7.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 24,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/95"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 77,
+      "id": 96,
       "country": "US",
       "state": "MO",
       "postcode": "",
       "city": "",
       "rate": "4.2250",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 25,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/96"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 78,
+      "id": 97,
       "country": "US",
       "state": "NE",
       "postcode": "",
       "city": "",
       "rate": "5.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 26,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/97"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 79,
+      "id": 98,
       "country": "US",
       "state": "NV",
       "postcode": "",
       "city": "",
       "rate": "6.8500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 27,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/98"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 80,
+      "id": 99,
       "country": "US",
       "state": "NJ",
       "postcode": "",
       "city": "",
       "rate": "7.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 28,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/99"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 81,
+      "id": 100,
       "country": "US",
       "state": "NM",
       "postcode": "",
       "city": "",
       "rate": "5.1250",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 29,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/100"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 82,
+      "id": 101,
       "country": "US",
       "state": "NY",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 30,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/101"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 83,
+      "id": 102,
       "country": "US",
       "state": "NC",
       "postcode": "",
       "city": "",
       "rate": "4.7500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 31,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/102"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 84,
+      "id": 103,
       "country": "US",
       "state": "ND",
       "postcode": "",
       "city": "",
       "rate": "5.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 32,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/103"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 85,
+      "id": 104,
       "country": "US",
       "state": "OH",
       "postcode": "",
       "city": "",
       "rate": "5.7500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 33,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/104"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 86,
+      "id": 105,
       "country": "US",
       "state": "OK",
       "postcode": "",
       "city": "",
       "rate": "4.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 34,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/105"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 87,
+      "id": 106,
       "country": "US",
       "state": "PA",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 35,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/106"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 88,
+      "id": 107,
       "country": "US",
       "state": "PR",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 36,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/107"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 89,
+      "id": 108,
       "country": "US",
       "state": "RI",
       "postcode": "",
       "city": "",
       "rate": "7.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 37,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/108"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 90,
+      "id": 109,
       "country": "US",
       "state": "SC",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 38,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/109"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 91,
+      "id": 110,
       "country": "US",
       "state": "SD",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 39,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/110"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 92,
+      "id": 111,
       "country": "US",
       "state": "TN",
       "postcode": "",
       "city": "",
       "rate": "7.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 40,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/111"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 93,
+      "id": 112,
       "country": "US",
       "state": "TX",
       "postcode": "",
       "city": "",
       "rate": "6.2500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 41,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/112"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 94,
+      "id": 113,
       "country": "US",
       "state": "UT",
       "postcode": "",
       "city": "",
       "rate": "5.9500",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 42,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/113"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 95,
+      "id": 114,
       "country": "US",
       "state": "VT",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 43,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/114"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 96,
+      "id": 115,
       "country": "US",
       "state": "VA",
       "postcode": "",
       "city": "",
       "rate": "5.3000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": false,
       "order": 44,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/115"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 97,
+      "id": 116,
       "country": "US",
       "state": "WA",
       "postcode": "",
       "city": "",
       "rate": "6.5000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 45,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/116"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 98,
+      "id": 117,
       "country": "US",
       "state": "WV",
       "postcode": "",
       "city": "",
       "rate": "6.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 46,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/117"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 99,
+      "id": 118,
       "country": "US",
       "state": "WI",
       "postcode": "",
       "city": "",
       "rate": "5.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 47,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/118"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     },
     {
-      "id": 100,
+      "id": 119,
       "country": "US",
       "state": "WY",
       "postcode": "",
       "city": "",
       "rate": "4.0000",
       "name": "State Tax",
-      "priority": 1,
+      "priority": 0,
       "compound": false,
       "shipping": true,
       "order": 48,
-      "class": "standard"
+      "class": "standard",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes/119"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/taxes"
+          }
+        ]
+      }
     }
   ]
 }
