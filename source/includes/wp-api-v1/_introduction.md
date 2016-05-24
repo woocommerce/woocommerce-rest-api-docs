@@ -1,10 +1,10 @@
 # Introduction #
 
-Introduced in WooCommerce 2.1, the REST API allows WooCommerce data to be created, read, updated, and deleted using JSON format.
+Introduced in WooCommerce 2.6, our integration with the WP REST API allows WooCommerce data to be created, read, updated, and deleted using JSON format.
 
 ## Requirements ##
 
-You must be using WooCommerce 2.1 or newer and the REST API must be enabled under `WooCommerce > Settings`. You must enable pretty permalinks in `Settings > Permalinks` (default permalinks will not work).
+You must be using WooCommerce 2.6 or newer and WordPress 4.4 or later. You must enable pretty permalinks in `Settings > Permalinks` (default permalinks will not work).
 
 <aside class="notice">
 	Endpoints may be improved with each release of WooCommerce, so we always recommend keeping WooCommerce up to date to reflect this documentation.
@@ -12,53 +12,42 @@ You must be using WooCommerce 2.1 or newer and the REST API must be enabled unde
 
 ## Version ##
 
-The current API version is `v3` which takes a first-order position in endpoints. The following table shows API versions present in each major version of WooCommerce:
+The current WP REST API integration version is `v1` which takes a first-order position in endpoints. The following table shows API versions present in each major version of WooCommerce:
 
-| API Version |          WooCommerce          |
-| ----------- | ----------------------------- |
-| `v1`        | 2.1.x, 2.2.x, 2.3.x and 2.4.x |
-| `v2`        | 2.2.x, 2.3.x and 2.4.x        |
-| `v3`        | 2.4.x, 2.5.x                  |
+| Version | WooCommerce |  WordPress   |
+|---------|-------------|--------------|
+| `v1`    | 2.6.x       | 4.4 or later |
 
-The `v1` and `v2` APIs will be removed in future versions.
+## Differences between our old REST API and the WP REST API integration ##
 
-### What's changed in v3? ###
+* Our integration is a new REST API, some endpoints can look like our new REST API, but we adopted the same data format and standards from the WP REST API.
+* Enabled by default with the WP REST API.
+* WP REST API integration includes batch endpoints for coupons, customers, orders, refunds, products, attributes, categories, tags, taxes and webhooks.
+* New format and parameters for coupons, orders, products and some taxomonies to reflect changes in the WooCommerce core.
+* Adopted the use of schemas for all endpoints (accessed when doing OPTIONS request).
+* Our API Keys, authentication endpoint and webhooks still works with this new REST API.
 
-* v3 implements full basic authentication ([conforms to the Basic auth spec)](http://tools.ietf.org/html/rfc2617)).
-* v3 fixes the OAuth implementation to be compliant with the [Oauth 1.0a specs](http://tools.ietf.org/html/rfc5849).
-* v3 includes a new endpoint to [get all product orders](#view-list-of-product-orders).
-* v3 has new endpoints for bulk creation and updating of [products](#create-update-multiple-products), [orders](#create-update-multiple-orders), [customers](#create-update-multiple-customers) and [coupons](#create-update-multiple-coupons).
-* v3 introduces new [product attribute endpoints](#product-attributes) (`GET`, `POST`, `PUT` and `DELETE`).
-* v3 deprecated the product/sku/&lt;id&gt; endpoint (because a SKU can be generated with any character and there is a filter, `filter[sku]`, that covers this use case).
-* v3 includes category thumbnails with requests for `product/categories`.
-* v3 can auto generate passwords for new customers if the "automatically generate customer password" option is enabled.
-
-
-### Differences between v1 and v2 ###
-
-* v1 supports XML response format, v2 only supports JSON.
-* v1 does not support creating or updating (with the exception of order status) any resources, v2 supports full create/read/update/delete for all endpoints.
-* v1 does not include order item meta, v2 includes full order item meta (with an optional `filter` parameter to include protected order item meta)
-* v1 does not include any endpoints for listing a customer's available downloads, v2 includes the `GET /customer/{id}/downloads` endpoint.
-* v1 includes an endpoint for listing notes for an order, v2 includes full create/read/update/delete endpoints.
-* v1 does not include any endpoints for listing product categories, v2 includes two endpoints for product categories (`GET /products/categories` and `GET /products/categories/{id}`).
-* v1 does not include any endpoints for getting valid order statuses, v2 includes an endpoint for listing valid order statuses (`GET /orders/statuses`).
-* v2 supports the core features added in WooCommerce 2.2, primarily order refunds (via the `/orders/refunds` endpoint) and Webhooks (via the `/webhooks`).
+<aside class="notice">
+	It's strongly recommended the adoption of the WP REST API, since it's standard that will be adopted by other WordPress plugins and projects.
+</aside>
 
 ### API Docs for past versions ###
 
 * [WooCommerce REST API v1 docs](v1.html)
 * [WooCommerce REST API v2 docs](v2.html)
+* [WooCommerce REST API v3 docs](v3.html)
 
-## Schema ##
+## Requeriments ##
 
-The API is accessible via this endpoint:
+* WooCommerce 2.6 or later.
+* WordPress 4.4 or later.
+* Pretty permalinks enabled.
 
-`https://www.your-store.com/wc-api/v3`
-
-*Pretty permalinks must be enabled*. You may access the API over either HTTP or HTTPS. *HTTPS is recommended where possible*, since authentication is simpler. The API index will declare if the site supports SSL or not.
+You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
 
 ## Requests/Responses ##
+
+@TODO
 
 The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a `200 OK` HTTP status.
 
@@ -75,6 +64,8 @@ Some general information about responses:
 * Blank fields are generally included as `null` instead of being returned as blank strings or omitted.
 
 ## Authentication ##
+
+@TODO
 
 There are two ways to authenticate with the API, depending on whether the site supports SSL.  Remember that the Index endpoint will indicate if the site supports SSL.
 
@@ -150,6 +141,8 @@ If you are having trouble generating a correct signature, you'll want to review 
 
 ## Parameters ##
 
+@TODO
+
 All endpoints accept optional parameters which can be passed as an HTTP query string parameter, e.g. `GET /orders?status=completed`. There are common parameters and endpoint-specific parameters which are documented along with that endpoint.
 
 ### Filter Parameter ###
@@ -202,6 +195,8 @@ Sub-fields can't be limited for resources that have multiple structs, like an or
 
 ## Pagination ##
 
+@TODO
+
 Requests that return multiple items will be paginated to 10 items by default. This default can be changed by the site administrator by changing the `posts_per_page` option. Alternatively the items per page can be specified with the `?filter[limit]` parameter:
 
 `GET /orders?filter[limit]=15`
@@ -219,6 +214,8 @@ Page number is 1-based and omitting the `?page` parameter will return the first 
 The total number of resources and pages are always included in the `X-WC-Total` and `X-WC-TotalPages` HTTP headers.
 
 ## Link Header ##
+
+@TODO
 
 Pagination info is included in the [Link Header](http://tools.ietf.org/html/rfc5988). It's recommended that you follow these values instead of building your own URLs where possible.
 
@@ -239,6 +236,8 @@ The possible `rel` values are:
 | `prev`  | Shows the URL of the immediate previous page of results |
 
 ## Errors ##
+
+@TODO
 
 Occasionally you might encounter errors when accessing the API. There are four possible types:
 
@@ -303,6 +302,8 @@ Errors return both an appropriate HTTP status code and response object which con
 
 ## HTTP Verbs ##
 
+@TODO
+
 The API uses the appropriate HTTP verb for each action:
 
 |  Verb    |                               Description                               |
@@ -314,6 +315,8 @@ The API uses the appropriate HTTP verb for each action:
 | `DELETE` | Used for deleting resources                                             |
 
 ## JSONP Support ##
+
+@TODO
 
 The API supports JSONP by default. JSONP responses use the `application/javascript` content-type. You can specify the callback using the `?_jsonp` parameter for `GET` requests to have the response wrapped in a JSON function:
 
@@ -363,6 +366,8 @@ curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 ```
 
 ## Webhooks ##
+
+@TODO Need to be moved or removed.
 
 Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the custom post type, as well as enqueuing webhook actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
 
@@ -424,8 +429,8 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 ## Troubleshooting ##
 
-* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
-* ModSecurity - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details
+* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details.
+* ModSecurity - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details.
 
 ## Official Libraries ##
 
@@ -445,7 +450,8 @@ var WooCommerce = new WooCommerceAPI({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  version: 'v3' // WooCommerce API version
+  wp_api: true, // Enable the WP REST API integration
+  version: 'wc/v1' // WooCommerce WP REST API version
 });
 ```
 
@@ -464,7 +470,8 @@ $woocommerce = new Client(
     'consumer_key', // Your consumer key
     'consumer_secret', // Your consumer secret
     [
-        'version' => 'v3' // WooCommerce API version
+        'wp_api' => true, // Enable the WP REST API integration
+        'version' => 'wc/v1' // WooCommerce WP REST API version
     ]
 );
 ?>
@@ -481,7 +488,8 @@ wcapi = API(
     url="http://example.com", # Your store URL
     consumer_key="consumer_key", # Your consumer key
     consumer_secret="consumer_secret", # Your consumer secret
-    version="v3" # WooCommerce API version
+    wp_api=True, # Enable the WP REST API integration
+    version="wc/v1" # WooCommerce WP REST API version
 )
 ```
 
@@ -497,7 +505,8 @@ woocommerce = WooCommerce::API.new(
   "consumer_key", # Your consumer key
   "consumer_secret", # Your consumer secret
   {
-    version: "v3" # WooCommerce API version
+    wp_json: true, # Enable the WP REST API integration
+    version: "v3" # WooCommerce WP REST API version
   }
 )
 ```
