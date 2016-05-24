@@ -506,6 +506,226 @@ woocommerce.delete("webhooks/142").parsed_response
 |-----------|--------|----------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the webhook, Defaults is `false`. |
 
+## Create/Update/Delete Multiple Webhooks ##
+
+This API helps you to batch create, update and delete multiple webhooks.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/webhooks/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com//wp-json/wc/v1/webhooks/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "name": "Coupon created",
+      "topic": "coupon.created",
+      "delivery_url": "http://requestb.in/1g0sxmo1"
+    },
+    {
+      "name": "Customer deleted",
+      "topic": "customer.deleted",
+      "delivery_url": "http://requestb.in/1g0sxmo1"
+    }
+  ],
+  "delete": [
+    143
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      name: 'Round toe',
+      topic: 'coupon.created',
+      delivery_url: 'http://requestb.in/1g0sxmo1'
+    },
+    {
+      name: 'Customer deleted',
+      topic: 'customer.deleted',
+      delivery_url: 'http://requestb.in/1g0sxmo1'
+    }
+  ],
+  delete: [
+    143
+  ]
+};
+
+WooCommerce.post('webhooks/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'name' => 'Round toe',
+            'topic' => 'coupon.created',
+            'delivery_url' => 'http://requestb.in/1g0sxmo1'
+        ],
+        [
+            'name' => 'Customer deleted',
+            'topic' => 'customer.deleted',
+            'delivery_url' => 'http://requestb.in/1g0sxmo1'
+        ]
+    ],
+    'delete' => [
+        143
+    ]
+];
+
+print_r($woocommerce->post('webhooks/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "name": "Round toe",
+            "topic": "coupon.created",
+            "delivery_url": "http://requestb.in/1g0sxmo1"
+        },
+        {
+            "name": "Customer deleted",
+            "topic": "customer.deleted",
+            "delivery_url": "http://requestb.in/1g0sxmo1"
+        }
+    ],
+    "delete": [
+        143
+    ]
+}
+
+print(wcapi.post("webhooks/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      name: "Round toe",
+      topic: "coupon.created",
+      delivery_url: "http://requestb.in/1g0sxmo1"
+    },
+    {
+      name: "Customer deleted",
+      topic: "customer.deleted",
+      delivery_url: "http://requestb.in/1g0sxmo1"
+    }
+  ],
+  delete: [
+    143
+  ]
+}
+
+woocommerce.post("webhooks/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 146,
+      "name": "Coupon created",
+      "status": "active",
+      "topic": "coupon.created",
+      "resource": "coupon",
+      "event": "created",
+      "hooks": [
+        "woocommerce_process_shop_coupon_meta",
+        "woocommerce_api_create_coupon"
+      ],
+      "delivery_url": "http://requestb.in/1g0sxmo1",
+      "date_created": "2016-05-24T22:56:26",
+      "date_modified": "2016-05-24T22:56:26",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks/146"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+          }
+        ]
+      }
+    },
+    {
+      "id": 147,
+      "name": "Customer deleted",
+      "status": "active",
+      "topic": "customer.deleted",
+      "resource": "customer",
+      "event": "deleted",
+      "hooks": [
+        "delete_user"
+      ],
+      "delivery_url": "http://requestb.in/1g0sxmo1",
+      "date_created": "2016-05-24T22:56:30",
+      "date_modified": "2016-05-24T22:56:30",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks/147"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 143,
+      "name": "Webhook created on May 24, 2016 @ 03:20 AM",
+      "status": "active",
+      "topic": "customer.created",
+      "resource": "customer",
+      "event": "created",
+      "hooks": [
+        "user_register",
+        "woocommerce_created_customer",
+        "woocommerce_api_create_customer"
+      ],
+      "delivery_url": "http://requestb.in/1g0sxmo1",
+      "date_created": "2016-05-15T20:17:52",
+      "date_modified": "2016-05-15T20:17:52",
+      "_links": {
+        "self": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks/143"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
 ## View a Webhooks Delivery ##
 
 This API lets you retrieve and view a specific webhook delivery.
