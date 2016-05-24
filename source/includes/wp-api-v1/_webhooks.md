@@ -277,12 +277,12 @@ woocommerce.get("webhooks").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/webhooks/143"
+          "href": "https://example.com/wp-json/wc/v1/webhooks/143"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+          "href": "https://example.com/wp-json/wc/v1/webhooks"
         }
       ]
     }
@@ -306,12 +306,12 @@ woocommerce.get("webhooks").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/webhooks/142"
+          "href": "https://example.com/wp-json/wc/v1/webhooks/142"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v1/webhooks"
+          "href": "https://example.com/wp-json/wc/v1/webhooks"
         }
       ]
     }
