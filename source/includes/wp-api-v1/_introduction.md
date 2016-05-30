@@ -365,68 +365,6 @@ curl https://example.com/wc-api/v3/orders/count?_jsonp=ordersCount \
 }
 ```
 
-## Webhooks ##
-
-@TODO Need to be moved or removed.
-
-Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the custom post type, as well as enqueuing webhook actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
-
-Each webhook has:
-
-* status: active (delivers payload), paused (delivery paused by admin), disabled (delivery paused by failure)
-* topic: determines which resource events the webhook is triggered for
-* delivery URL: URL where the payload is delivered, must be HTTP or HTTPS
-* secret: an optional secret key that is used to generate a HMAC-SHA256 hash of the request body so the receiver can verify authenticity of the webhook
-* hooks: an array of hook names that are added and bound to the webhook for processing
-
-### Topics ###
-
-The topic is a combination resource (e.g. order) and event (e.g. created) and maps to one or more hook names (e.g. `woocommerce_checkout_order_processed`). Webhooks can be created using the topic name and the appropriate hooks are automatically added.
-
-Core topics are:
-
-* `coupon.created, coupon.updated, coupon.deleted`
-* `customer.created, customer.updated, customer.deleted`
-* `order.created, order.updated, order.deleted`
-* `product.created, product.updated, product.deleted`
-
-Custom topics can also be used which map to a single hook name, for example you could add a webhook with topic `action.woocommerce_add_to_cart` that is triggered on that event. Custom topics pass the first hook argument to the payload, so in this example the `cart_item_key` would be included in the payload.
-
-### Delivery/Payload ###
-
-Delivery is done using `wp_remote_post()` (HTTP POST) and processed in the background by default using wp-cron. A few custom headers are added to the request to help the receiver process the webhook:
-
-* `X-WC-Webhook-Topic` - e.g. `order.updated`
-* `X-WC-Webhook-Resource` - e.g. `order`
-* `X-WC-Webhook-Event` - e.g. `updated`
-* `X-WC-Webhook-Signature` - a base64 encoded HMAC-SHA256 hash of the payload
-* `X-WC-Webhook-ID` - webhook's post ID
-* `X-WC-Delivery-ID` - delivery log ID (a comment)
-
-The payload is JSON encoded and for API resources (coupons, customers, orders, products), the response is exactly the same as if requested via the REST API.
-
-### Logging ###
-
-Requests/responses are logged as comments on the webhook custom post type. Each delivery log includes:
-
-* Request duration
-* Request URL, method, headers, and body
-* Response Code, message, headers, and body
-
-Only the 25 most recent delivery logs are kept in order to reduce comment table bloat.
-
-After 5 consecutive failed deliveries (as defined by a non HTTP 2xx response code), the webhook is disabled and must be edited via the REST API to re-enable.
-
-Delivery logs can be fetched through the REST API endpoint or in code using `WC_Webhook::get_delivery_logs()`
-
-### Endpoints ###
-
-[See the webhook resource section](#webhooks7).
-
-### Visual Interface ###
-
-You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woothemes.com/document/webhooks/) for more details.
-
 ## Troubleshooting ##
 
 * Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details.
