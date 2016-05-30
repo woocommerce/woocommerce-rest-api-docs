@@ -365,7 +365,6 @@ woocommerce.get("coupons").parsed_response
 | `offset`   | integer | Offset the result set by a specific number of items.                                                          |
 | `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
 | `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
-| `slug`     | string  | Limit result set to posts with a specific slug.                                                               |
 | `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
 | `code`     | string  | Limit result set to resources with a specific code.                                                           |
 
