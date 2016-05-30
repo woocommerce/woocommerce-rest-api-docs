@@ -4,112 +4,106 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Orders Properties ##
 
-|          Attribute          |   Type  |                                                                                                Description                                                                                                |
-| --------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                        | integer | Order ID (post ID) <i class="label label-info">read-only</i>                                                                                                                                              |
-| `order_number`              | integer | Order number <i class="label label-info">read-only</i>                                                                                                                                                    |
-| `created_at`                | string  | UTC DateTime when the order was created <i class="label label-info">read-only</i>                                                                                                                         |
-| `updated_at`                | string  | UTC DateTime when the order was last updated <i class="label label-info">read-only</i>                                                                                                                    |
-| `completed_at`              | string  | UTC DateTime when the order was last completed <i class="label label-info">read-only</i>                                                                                                                  |
-| `status`                    | string  | Order status. By default are available the status: `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. See [View List of Order Statuses](#view-list-of-order-statuses) |
-| `currency`                  | string  | Currency in ISO format, e.g `USD`                                                                                                                                                                         |
-| `total`                     | float   | Order total <i class="label label-info">read-only</i>                                                                                                                                                     |
-| `subtotal`                  | float   | Order subtotal <i class="label label-info">read-only</i>                                                                                                                                                  |
-| `total_line_items_quantity` | integer | Total of order items <i class="label label-info">read-only</i>                                                                                                                                            |
-| `total_tax`                 | float   | Order tax total <i class="label label-info">read-only</i>                                                                                                                                                 |
-| `total_shipping`            | float   | Order shipping total <i class="label label-info">read-only</i>                                                                                                                                            |
-| `cart_tax`                  | float   | Order cart tax <i class="label label-info">read-only</i>                                                                                                                                                  |
-| `shipping_tax`              | float   | Order shipping tax <i class="label label-info">read-only</i>                                                                                                                                              |
-| `total_discount`            | float   | Order total discount <i class="label label-info">read-only</i>                                                                                                                                            |
-| `shipping_methods`          | string  | Text list of the shipping methods used in the order <i class="label label-info">read-only</i>                                                                                                             |
-| `payment_details`           | array   | List of payment details. See [Payment Details Properties](#payment-details-properties)                                                                                                                    |
-| `billing_address`           | array   | List of customer billing address. See [Customer Billing Address Properties](#billing-address-properties)                                                                                                  |
-| `shipping_address`          | array   | List of customer shipping address. See [Customer Shipping Address Properties](#shipping-address-properties)                                                                                               |
-| `note`                      | string  | Customer order notes                                                                                                                                                                                      |
-| `customer_ip`               | string  | Customer IP address <i class="label label-info">read-only</i>                                                                                                                                             |
-| `customer_user_agent`       | string  | Customer User-Agent <i class="label label-info">read-only</i>                                                                                                                                             |
-| `customer_id`               | integer | Customer ID (user ID) <i class="label label-info">required</i>                                                                                                                                            |
-| `view_order_url`            | string  | URL to view the order in frontend <i class="label label-info">read-only</i>                                                                                                                               |
-| `line_items`                | array   | List of order line items. See [Line Items Properties](#line-items-properties)                                                                                                                             |
-| `shipping_lines`            | array   | List of shipping line items. See [Shipping Lines Properties](#shipping-lines-properties)                                                                                                                  |
-| `tax_lines`                 | array   | List of tax line items. See [Tax Lines Properties](#tax-lines-properties) <i class="label label-info">read-only</i>                                                                                       |
-| `fee_lines`                 | array   | List of fee line items. See [Fee Lines Properites](#fee-lines-properites)                                                                                                                                 |
-| `coupon_lines`              | array   | List of cupon line items. See [Coupon Lines Properties](#coupon-lines-properties)                                                                                                                         |
-| `customer`                  | array   | Customer data. See [Customer Properties](#customers-properties)                                                                                                                                           |
-
-### Payment Details Properties ###
-
-|    Attribute     |   Type  |                                                               Description                                                                |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `method_id`      | string  | Payment method ID <i class="label label-info">required</i>                                                                               |
-| `method_title`   | string  | Payment method title <i class="label label-info">required</i>                                                                            |
-| `paid`           | boolean | Shows/define if the order is paid using this payment method. Use `true` to complate the payment.                                         |
-| `transaction_id` | string  | Transaction ID, an optional field to set the transacion ID when complate one payment (to set this you need set the `paid` as `true` too) |
+|       Attribute        |    Type   |                                                                             Description                                                                              |
+|------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                   | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                        |
+| `parent_id`            | integer   | Parent order ID.                                                                                                                                                     |
+| `status`               | string    | Order status. Default is `pending`. Options (plugins may include new status): `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. |
+| `order_key`            | string    | Order key. <i class="label label-info">read-only</i>                                                                                                                 |
+| `currency`             | string    | Currency the order was created with, in ISO format, e.g `USD`. Default is the current store currency.                                                                |
+| `version`              | string    | Version of WooCommerce when the order was made. <i class="label label-info">read-only</i>                                                                            |
+| `prices_include_tax`   | boolean   | Shows if the prices included tax during checkout. <i class="label label-info">read-only</i>                                                                          |
+| `date_created`         | date-time | The date the order was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                    |
+| `date_modified`        | date-time | The date the order was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                              |
+| `customer_id`          | integer   | User ID who owns the order. Use `0` for guests. Default is `0`.                                                                                                      |
+| `discount_total`       | string    | Total discount amount for the order. <i class="label label-info">read-only</i>                                                                                       |
+| `discount_tax`         | string    | Total discount tax amount for the order. <i class="label label-info">read-only</i>                                                                                   |
+| `shipping_total`       | string    | Total shipping amount for the order. <i class="label label-info">read-only</i>                                                                                       |
+| `shipping_tax`         | string    | Total shipping tax amount for the order. <i class="label label-info">read-only</i>                                                                                   |
+| `cart_tax`             | string    | Sum of line item taxes only. <i class="label label-info">read-only</i>                                                                                               |
+| `total`                | string    | Grand total. <i class="label label-info">read-only</i>                                                                                                               |
+| `total_tax`            | string    | Sum of all taxes. <i class="label label-info">read-only</i>                                                                                                          |
+| `billing`              | array     | Billing address. See [Customer Billing Address Properties](#billing-address-properties).                                                                             |
+| `shipping`             | array     | Shipping address. See [Customer Shipping Address Properties](#shipping-address-properties).                                                                          |
+| `payment_method`       | string    | Payment method ID.                                                                                                                                                   |
+| `payment_method_title` | string    | Payment method title.                                                                                                                                                |
+| `set_paid`             | boolean   | Define if the order is paid. It will set the status to processing and reduce stock items. Default is `false`. <i class="label label-info">write-only</i>             |
+| `transaction_id`       | string    | Unique transaction ID. In write-mode only is available if `set_paid` is `true`.                                                                                      |
+| `customer_ip_address`  | string    | Customer's IP address. <i class="label label-info">read-only</i>                                                                                                     |
+| `customer_user_agent`  | string    | User agent of the customer. <i class="label label-info">read-only</i>                                                                                                |
+| `created_via`          | string    | Shows where the order was created. <i class="label label-info">read-only</i>                                                                                         |
+| `customer_note`        | string    | Note left by customer during checkout.                                                                                                                               |
+| `date_completed`       | date-time | The date the order was completed, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
+| `date_paid`            | date-time | The date the order has been paid, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
+| `cart_hash`            | string    | MD5 hash of cart items to ensure orders are not modified. <i class="label label-info">read-only</i>                                                                  |
+| `line_items`           | array     | Line items data. See [Line Items Properties](#line-items-properties).                                                                                                |
+| `tax_lines`            | array     | Tax lines data. See [Tax Lines Properties](#tax-lines-properties). <i class="label label-info">read-only</i>                                                         |
+| `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines Properties](#shipping-lines-properties).                                                                                    |
+| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-lines-properites).                                                                                                   |
+| `coupon_lines`         | array     | Coupons line data. See [Coupon Lines Properties](#coupon-lines-properties).                                                                                          |
 
 ### Line Items Properties ###
 
-|   Attribute    |   Type  |                                                                                         Description                                                                                         |
-| -------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | Line item ID <i class="label label-info">read-only</i>                                                                                                                                      |
-| `subtotal`     | float   | Line item subtotal                                                                                                                                                                          |
-| `subtotal_tax` | float   | Line item tax subtotal                                                                                                                                                                      |
-| `total`        | float   | Line item total                                                                                                                                                                             |
-| `total_tax`    | float   | Line item tax total                                                                                                                                                                         |
-| `price`        | float   | Product price <i class="label label-info">read-only</i>                                                                                                                                     |
-| `quantity`     | integer | Quantity                                                                                                                                                                                    |
-| `tax_class`    | string  | Product tax class <i class="label label-info">read-only</i>                                                                                                                                 |
-| `name`         | string  | Product name <i class="label label-info">read-only</i>                                                                                                                                      |
-| `product_id`   | integer | Product ID <i class="label label-info">required</i>                                                                                                                                         |
-| `sku`          | string  | Product SKU <i class="label label-info">read-only</i>                                                                                                                                       |
-| `meta`         | array   | List of product meta items. See [Products Meta Items Properties](#products-meta-items-properties)                                                                                           |
-| `variations`   | array   | List of product variation attributes. e.g: `"variation": {"pa_color": "Black", "pa_size": "XGG"}` (Use `pa_` prefix when is a product attribute) <i class="label label-info">write-only</i> |
-
-#### Products Meta Items Properties ####
-
-| Attribute |  Type  |   Description   |
-| --------- | ------ | --------------- |
-| `key`     | string | Meta item key   |
-| `label`   | string | Meta item label |
-| `value`   | string | Meta item value |
-
-### Shipping Lines Properties ###
-
-|   Attribute    |   Type  |                          Description                           |
-| -------------- | ------- | -------------------------------------------------------------- |
-| `id`           | integer | Shipping line ID <i class="label label-info">read-only</i>     |
-| `method_id`    | string  | Shipping method ID <i class="label label-info">required</i>    |
-| `method_title` | string  | Shipping method title <i class="label label-info">required</i> |
-| `total`        | float   | Total amount                                                   |
+|   Attribute    |   Type  |                                          Description                                           |
+|----------------|---------|------------------------------------------------------------------------------------------------|
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                             |
+| `name`         | string  | Product name. <i class="label label-info">read-only</i>                                        |
+| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                         |
+| `product_id`   | integer | Product ID.                                                                                    |
+| `variation_id` | integer | Variation ID, if applicable.                                                                   |
+| `quantity`     | integer | Quantity ordered.                                                                              |
+| `tax_class`    | string  | Tax class of product. <i class="label label-info">read-only</i>                                |
+| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                       |
+| `subtotal`     | string  | Line subtotal (before discounts).                                                              |
+| `subtotal_tax` | string  | Line subtotal tax (before discounts).                                                          |
+| `total`        | string  | Line total (after discounts).                                                                  |
+| `total_tax`    | string  | Line total tax (after discounts).                                                              |
+| `taxes`        | array   | Line taxes with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i>    |
+| `meta`         | array   | Line item meta data with `key`, `label` and `value`. <i class="label label-info">read-only</i> |
 
 ### Tax Lines Properties ###
 
-| Attribute  |   Type  |                                                               Description                                                               |
-| ---------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`       | integer | Tax rate line ID <i class="label label-info">read-only</i>                                                                              |
-| `rate_id`  | integer | Tax rate ID <i class="label label-info">read-only</i>                                                                                   |
-| `code`     | string  | Tax rate code <i class="label label-info">read-only</i>                                                                                 |
-| `title`    | string  | Tax rate title/name <i class="label label-info">read-only</i>                                                                           |
-| `total`    | float   | Tax rate total <i class="label label-info">read-only</i>                                                                                |
-| `compound` | boolean | Shows if is or not a compound rate. Compound tax rates are applied on top of other tax rates. <i class="label label-info">read-only</i> |
+|      Attribute       |   Type  |                                                             Description                                                             |
+|----------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                 | integer | Item ID. <i class="label label-info">read-only</i>                                                                                  |
+| `rate_code`          | string  | Tax rate code. <i class="label label-info">read-only</i>                                                                            |
+| `rate_id`            | string  | Tax rate ID. <i class="label label-info">read-only</i>                                                                              |
+| `label`              | string  | Tax rate label. <i class="label label-info">read-only</i>                                                                           |
+| `compound`           | boolean | Show if is a compound tax rate. Compound tax rates are applied on top of other tax rates. <i class="label label-info">read-only</i> |
+| `tax_total`          | string  | Tax total (not including shipping taxes). <i class="label label-info">read-only</i>                                                 |
+| `shipping_tax_total` | string  | Shipping tax total. <i class="label label-info">read-only</i>                                                                       |
+
+### Shipping Lines Properties ###
+
+|   Attribute    |   Type  |                                 Description                                 |
+|----------------|---------|-----------------------------------------------------------------------------|
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                          |
+| `method_title` | string  | Shipping method name.                                                       |
+| `method_id`    | string  | Shipping method ID. <i class="label label-info">required</i>                |
+| `total`        | string  | Line total (after discounts).                                               |
+| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i> |
+| `taxes`        | array   | Line taxes with `id` and `total`. <i class="label label-info">read-only</i> |
 
 ### Fee Lines Properites ###
 
-|  Attribute  |   Type  |                                  Description                                  |
-| ----------- | ------- | ----------------------------------------------------------------------------- |
-| `id`        | integer | Fee line ID <i class="label label-info">read-only</i>                         |
-| `title`     | string  | Shipping method title <i class="label label-info">required</i>                |
-| `taxable`   | boolean | Shows/define if the fee is taxable <i class="label label-info">write-only</i> |
-| `tax_class` | string  | Tax class, requered in write-mode if the fee is taxable                       |
-| `total`     | float   | Total amount                                                                  |
-| `total_tax` | float   | Tax total                                                                     |
+|  Attribute   |   Type  |                                       Description                                       |
+|--------------|---------|-----------------------------------------------------------------------------------------|
+| `id`         | integer | Item ID. <i class="label label-info">read-only</i>                                      |
+| `name`       | string  | Fee name. <i class="label label-info">required</i>                                      |
+| `tax_class`  | string  | Tax class. <i class="label label-info">required if the fee is taxable</i>               |
+| `tax_status` | string  | Tax status of fee. Set to `taxable` if need apply taxes.                                |
+| `total`      | string  | Line total (after discounts).                                                           |
+| `total_tax`  | string  | Line total tax (after discounts).                                                       |
+| `taxes`      | array   | Line taxes with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i> |
 
 ### Coupon Lines Properties ###
 
-| Attribute |   Type  |                       Description                        |
-| --------- | ------- | -------------------------------------------------------- |
-| `id`      | integer | Coupon line ID <i class="label label-info">read-only</i> |
-| `code`    | string  | Coupon code <i class="label label-info">required</i>     |
-| `amount`  | float   | Total amount <i class="label label-info">required</i>    |
+|   Attribute    |   Type  |                          Description                          |
+|----------------|---------|---------------------------------------------------------------|
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>            |
+| `code`         | string  | Coupon code. <i class="label label-info">required</i>         |
+| `discount`     | string  | Discount total. <i class="label label-info">required</i>      |
+| `discount_tax` | string  | Discount total tax. <i class="label label-info">read-only</i> |
 
 ## Create an Order ##
 
@@ -120,122 +114,108 @@ This API helps you to create a new order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/orders</h6>
+		<h6>/wp-json/wc/v1/orders</h6>
 	</div>
 </div>
 
 > Example of create a paid order:
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/orders \
+curl -X POST https://example.com/wp-json/wc/v1/orders \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "order": {
-    "payment_details": {
-      "method_id": "bacs",
-      "method_title": "Direct Bank Transfer",
-      "paid": true
+  "payment_method": "bacs",
+  "payment_method_title": "Direct Bank Transfer",
+  "set_paid": true,
+  "billing": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "line_items": [
+    {
+      "product_id": 93,
+      "quantity": 2
     },
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    },
-    "customer_id": 2,
-    "line_items": [
-      {
-        "product_id": 546,
-        "quantity": 2
-      },
-      {
-        "product_id": 613,
-        "quantity": 1,
-        "variations": {
-          "pa_color": "Black"
-        }
-      }
-    ],
-    "shipping_lines": [
-      {
-        "method_id": "flat_rate",
-        "method_title": "Flat Rate",
-        "total": 10
-      }
-    ]
-  }
+    {
+      "product_id": 22,
+      "variation_id": 23,
+      "quantity": 1
+    }
+  ],
+  "shipping_lines": [
+    {
+      "method_id": "flat_rate",
+      "method_title": "Flat Rate",
+      "total": 10
+    }
+  ]
 }'
 ```
 
 ```javascript
 var data = {
-  order: {
-    payment_details: {
-      method_id: 'bacs',
-      method_title: 'Direct Bank Transfer',
-      paid: true
+  payment_method: 'bacs',
+  payment_method_title: 'Direct Bank Transfer',
+  set_paid: true,
+  billing: {
+    first_name: 'John',
+    last_name: 'Doe',
+    address_1: '969 Market',
+    address_2: '',
+    city: 'San Francisco',
+    state: 'CA',
+    postcode: '94103',
+    country: 'US',
+    email: 'john.doe@example.com',
+    phone: '(555) 555-5555'
+  },
+  shipping: {
+    first_name: 'John',
+    last_name: 'Doe',
+    address_1: '969 Market',
+    address_2: '',
+    city: 'San Francisco',
+    state: 'CA',
+    postcode: '94103',
+    country: 'US'
+  },
+  line_items: [
+    {
+      product_id: 93,
+      quantity: 2
     },
-    billing_address: {
-      first_name: 'John',
-      last_name: 'Doe',
-      address_1: '969 Market',
-      address_2: '',
-      city: 'San Francisco',
-      state: 'CA',
-      postcode: '94103',
-      country: 'US',
-      email: 'john.doe@example.com',
-      phone: '(555) 555-5555'
-    },
-    shipping_address: {
-      first_name: 'John',
-      last_name: 'Doe',
-      address_1: '969 Market',
-      address_2: '',
-      city: 'San Francisco',
-      state: 'CA',
-      postcode: '94103',
-      country: 'US'
-    },
-    customer_id: 2,
-    line_items: [
-      {
-        product_id: 546,
-        quantity: 2
-      },
-      {
-        product_id: 613,
-        quantity: 1,
-        variations: {
-          pa_color: 'Black'
-        }
-      }
-    ],
-    shipping_lines: [
-      {
-        method_id: 'flat_rate',
-        method_title: 'Flat Rate',
-        total: 10
-      }
-    ]
-  }
+    {
+      product_id: 22,
+      variation_id: 23,
+      quantity: 1
+    }
+  ],
+  shipping_lines: [
+    {
+      method_id: 'flat_rate',
+      method_title: 'Flat Rate',
+      total: 10
+    }
+  ]
 };
 
 WooCommerce.post('orders', data, function(err, data, res) {
@@ -246,54 +226,47 @@ WooCommerce.post('orders', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'order' => [
-        'payment_details' => [
-            'method_id' => 'bacs',
-            'method_title' => 'Direct Bank Transfer',
-            'paid' => true
+    'payment_method' => 'bacs',
+    'payment_method_title' => 'Direct Bank Transfer',
+    'set_paid' => true,
+    'billing' => [
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'address_1' => '969 Market',
+        'address_2' => '',
+        'city' => 'San Francisco',
+        'state' => 'CA',
+        'postcode' => '94103',
+        'country' => 'US',
+        'email' => 'john.doe@example.com',
+        'phone' => '(555) 555-5555'
+    ],
+    'shipping' => [
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'address_1' => '969 Market',
+        'address_2' => '',
+        'city' => 'San Francisco',
+        'state' => 'CA',
+        'postcode' => '94103',
+        'country' => 'US'
+    ],
+    'line_items' => [
+        [
+            'product_id' => 93,
+            'quantity' => 2
         ],
-        'billing_address' => [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US',
-            'email' => 'john.doe@example.com',
-            'phone' => '(555) 555-5555'
-        ],
-        'shipping_address' => [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'address_1' => '969 Market',
-            'address_2' => '',
-            'city' => 'San Francisco',
-            'state' => 'CA',
-            'postcode' => '94103',
-            'country' => 'US'
-        ],
-        'customer_id' => 2,
-        'line_items' => [
-            [
-                'product_id' => 546,
-                'quantity' => 2
-            ],
-            [
-                'product_id' => 613,
-                'quantity' => 1,
-                'variations' => [
-                    'pa_color' => 'Black'
-                ]
-            ]
-        ],
-        'shipping_lines' => [
-            [
-                'method_id' => 'flat_rate',
-                'method_title' => 'Flat Rate',
-                'total' => 10
-            ]
+        [
+            'product_id' => 22,
+            'variation_id' => 23,
+            'quantity' => 1
+        ]
+    ],
+    'shipping_lines' => [
+        [
+            'method_id' => 'flat_rate',
+            'method_title' => 'Flat Rate',
+            'total' => 10
         ]
     ]
 ];
@@ -304,56 +277,49 @@ print_r($woocommerce->post('orders', $data));
 
 ```python
 data = {
-    "order": {
-        "payment_details": {
-            "method_id": "bacs",
-            "method_title": "Direct Bank Transfer",
-            "paid": True
+    "payment_method": "bacs",
+    "payment_method_title": "Direct Bank Transfer",
+    "set_paid": True,
+    "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+    },
+    "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+    },
+    "line_items": [
+        {
+            "product_id": 93,
+            "quantity": 2
         },
-        "billing_address": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "address_1": "969 Market",
-            "address_2": "",
-            "city": "San Francisco",
-            "state": "CA",
-            "postcode": "94103",
-            "country": "US",
-            "email": "john.doe@example.com",
-            "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-            "first_name": "John",
-            "last_name": "Doe",
-            "address_1": "969 Market",
-            "address_2": "",
-            "city": "San Francisco",
-            "state": "CA",
-            "postcode": "94103",
-            "country": "US"
-        },
-        "customer_id": 2,
-        "line_items": [
-            {
-                "product_id": 546,
-                "quantity": 2
-            },
-            {
-                "product_id": 613,
-                "quantity": 1,
-                "variations": {
-                    "pa_color": "Black"
-                }
-            }
-        ],
-        "shipping_lines": [
-            {
-                "method_id": "flat_rate",
-                "method_title": "Flat Rate",
-                "total": 10
-            }
-        ]
-    }
+        {
+            "product_id": 22,
+            "variation_id": 23,
+            "quantity": 1
+        }
+    ],
+    "shipping_lines": [
+        {
+            "method_id": "flat_rate",
+            "method_title": "Flat Rate",
+            "total": 10
+        }
+    ]
 }
 
 print(wcapi.post("orders", data).json())
@@ -361,56 +327,49 @@ print(wcapi.post("orders", data).json())
 
 ```ruby
 data = {
-  order: {
-    payment_details: {
-      method_id: "bacs",
-      method_title: "Direct Bank Transfer",
-      paid: true
+  payment_method: "bacs",
+  payment_method_title: "Direct Bank Transfer",
+  set_paid: true,
+  billing: {
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
+  },
+  shipping: {
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
+  },
+  line_items: [
+    {
+      product_id: 93,
+      quantity: 2
     },
-    billing_address: {
-      first_name: "John",
-      last_name: "Doe",
-      address_1: "969 Market",
-      address_2: "",
-      city: "San Francisco",
-      state: "CA",
-      postcode: "94103",
-      country: "US",
-      email: "john.doe@example.com",
-      phone: "(555) 555-5555"
-    },
-    shipping_address: {
-      first_name: "John",
-      last_name: "Doe",
-      address_1: "969 Market",
-      address_2: "",
-      city: "San Francisco",
-      state: "CA",
-      postcode: "94103",
-      country: "US"
-    },
-    customer_id: 2,
-    line_items: [
-        {
-          product_id: 546,
-          quantity: 2
-        },
-        {
-          product_id: 613,
-          quantity: 1,
-          variations: {
-            pa_color: "Black"
-          }
-        }
-    ],
-    shipping_lines: [
-        {
-          method_id: "flat_rate",
-          method_title: "Flat Rate",
-          total: 10
-        }
-    ]
-  }
+    {
+      product_id: 22,
+      variation_id: 23,
+      quantity: 1
+    }
+  ],
+  shipping_lines: [
+    {
+      method_id: "flat_rate",
+      method_title: "Flat Rate",
+      total: 10
+    }
+  ]
 }
 
 woocommerce.post("orders", data).parsed_response
@@ -420,158 +379,143 @@ woocommerce.post("orders", data).parsed_response
 
 ```json
 {
-  "order": {
-    "id": 645,
-    "order_number": 645,
-    "created_at": "2015-01-26T20:00:21Z",
-    "updated_at": "2015-01-26T20:00:21Z",
-    "completed_at": "2015-01-26T20:00:21Z",
-    "status": "processing",
-    "currency": "USD",
-    "total": "79.87",
-    "subtotal": "63.97",
-    "total_line_items_quantity": 3,
-    "total_tax": "5.90",
-    "total_shipping": "10.00",
-    "cart_tax": "5.40",
-    "shipping_tax": "0.50",
-    "total_discount": "0.00",
-    "shipping_methods": "Flat Rate",
-    "payment_details": {
-      "method_id": "bacs",
-      "method_title": "Direct Bank Transfer",
-      "paid": true
+  "id": 154,
+  "parent_id": 0,
+  "status": "processing",
+  "order_key": "wc_order_574cc02467274",
+  "currency": "USD",
+  "version": "2.6.0",
+  "prices_include_tax": false,
+  "date_created": "2016-05-30T22:35:16",
+  "date_modified": "2016-05-30T22:35:16",
+  "customer_id": 0,
+  "discount_total": "0.00",
+  "discount_tax": "0.00",
+  "shipping_total": "10.00",
+  "shipping_tax": "0.00",
+  "cart_tax": "1.95",
+  "total": "37.95",
+  "total_tax": "1.95",
+  "billing": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "payment_method": "bacs",
+  "payment_method_title": "bacs",
+  "transaction_id": "",
+  "customer_ip_address": "127.0.0.1",
+  "customer_user_agent": "curl/7.47.0",
+  "created_via": "rest-api",
+  "customer_note": "",
+  "date_completed": "2016-05-30T19:35:16",
+  "date_paid": "2016-05-30 19:35:25",
+  "cart_hash": "",
+  "line_items": [
+    {
+      "id": 18,
+      "name": "Woo Single #1",
+      "sku": "",
+      "product_id": 93,
+      "variation_id": 0,
+      "quantity": 2,
+      "tax_class": "",
+      "price": "3.00",
+      "subtotal": "6.00",
+      "subtotal_tax": "0.45",
+      "total": "6.00",
+      "total_tax": "0.45",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 0.45,
+          "subtotal": 0.45
+        }
+      ],
+      "meta": []
     },
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    },
-    "note": "",
-    "customer_ip": "127.0.0.1",
-    "customer_user_agent": "WordPress/4.1; http://example.com",
-    "customer_id": 2,
-    "view_order_url": "https://example.com/my-account/view-order/645",
-    "line_items": [
-      {
-        "id": 504,
-        "subtotal": "43.98",
-        "subtotal_tax": "4.40",
-        "total": "43.98",
-        "total_tax": "4.40",
-        "price": "21.99",
-        "quantity": 2,
-        "tax_class": "reduced-rate",
-        "name": "Premium Quality",
-        "product_id": 546,
-        "sku": "",
-        "meta": []
-      },
-      {
-        "id": 505,
-        "subtotal": "19.99",
-        "subtotal_tax": "1.00",
-        "total": "19.99",
-        "total_tax": "1.00",
-        "price": "19.99",
-        "quantity": 1,
-        "tax_class": null,
-        "name": "Ship Your Idea",
-        "product_id": 613,
-        "sku": "",
-        "meta": [
-          {
-            "key": "pa_color",
-            "label": "Color",
-            "value": "Black"
-          }
-        ]
-      }
-    ],
-    "shipping_lines": [
-      {
-        "id": 506,
-        "method_id": "flat_rate",
-        "method_title": "Flat Rate",
-        "total": "10.00"
-      }
-    ],
-    "tax_lines": [
-      {
-        "id": 507,
-        "rate_id": "5",
-        "code": "US-CA-TAX-1",
-        "title": "Tax",
-        "total": "4.40",
-        "compound": false
-      },
-      {
-        "id": 508,
-        "rate_id": "4",
-        "code": "US-STANDARD-1",
-        "title": "Standard",
-        "total": "1.50",
-        "compound": false
-      }
-    ],
-    "fee_lines": [],
-    "coupon_lines": [],
-    "customer": {
-      "id": 2,
-      "created_at": "2014-11-19T18:34:19Z",
-      "email": "john.doe@example.com",
-      "first_name": "",
-      "last_name": "",
-      "username": "john.doe",
-      "last_order_id": "645",
-      "last_order_date": "2015-01-26T20:00:21Z",
-      "orders_count": 2,
-      "total_spent": "19.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      }
+    {
+      "id": 19,
+      "name": "Ship Your Idea",
+      "sku": "",
+      "product_id": 22,
+      "variation_id": 23,
+      "quantity": 1,
+      "tax_class": "",
+      "price": "20.00",
+      "subtotal": "20.00",
+      "subtotal_tax": "1.50",
+      "total": "20.00",
+      "total_tax": "1.50",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 1.5,
+          "subtotal": 1.5
+        }
+      ],
+      "meta": [
+        {
+          "key": "pa_color",
+          "label": "Color",
+          "value": "Black"
+        }
+      ]
     }
+  ],
+  "tax_lines": [
+    {
+      "id": 21,
+      "rate_code": "US-CA-STATE TAX",
+      "rate_id": "75",
+      "label": "State Tax",
+      "compound": false,
+      "tax_total": "1.95",
+      "shipping_tax_total": "0.00"
+    }
+  ],
+  "shipping_lines": [
+    {
+      "id": 20,
+      "method_title": "Flat Rate",
+      "method_id": "flat_rate",
+      "total": "10.00",
+      "total_tax": "0.00",
+      "taxes": []
+    }
+  ],
+  "fee_lines": [],
+  "coupon_lines": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/154"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders"
+      }
+    ]
   }
 }
 ```
@@ -585,202 +529,183 @@ This API lets you retrieve and view a specific order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/orders/645 \
+curl https://example.com/wp-json/wc/v1/orders/154 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/645', function(err, data, res) {
+WooCommerce.get('orders/154', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/645')); ?>
+<?php print_r($woocommerce->get('orders/154')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/645").json())
+print(wcapi.get("orders/154").json())
 ```
 
 ```ruby
-woocommerce.get("orders/645").parsed_response
+woocommerce.get("orders/154").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "order": {
-    "id": 645,
-    "order_number": 645,
-    "created_at": "2015-01-26T20:00:21Z",
-    "updated_at": "2015-01-26T20:00:21Z",
-    "completed_at": "2015-01-26T20:00:21Z",
-    "status": "processing",
-    "currency": "USD",
-    "total": "79.87",
-    "subtotal": "63.97",
-    "total_line_items_quantity": 3,
-    "total_tax": "5.90",
-    "total_shipping": "10.00",
-    "cart_tax": "5.40",
-    "shipping_tax": "0.50",
-    "total_discount": "0.00",
-    "shipping_methods": "Flat Rate",
-    "payment_details": {
-      "method_id": "bacs",
-      "method_title": "Direct Bank Transfer",
-      "paid": true
+  "id": 154,
+  "parent_id": 0,
+  "status": "processing",
+  "order_key": "wc_order_574cc02467274",
+  "currency": "USD",
+  "version": "2.6.0",
+  "prices_include_tax": false,
+  "date_created": "2016-05-30T22:35:16",
+  "date_modified": "2016-05-30T22:35:16",
+  "customer_id": 0,
+  "discount_total": "0.00",
+  "discount_tax": "0.00",
+  "shipping_total": "10.00",
+  "shipping_tax": "0.00",
+  "cart_tax": "1.95",
+  "total": "37.95",
+  "total_tax": "1.95",
+  "billing": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "payment_method": "bacs",
+  "payment_method_title": "bacs",
+  "transaction_id": "",
+  "customer_ip_address": "127.0.0.1",
+  "customer_user_agent": "curl/7.47.0",
+  "created_via": "rest-api",
+  "customer_note": "",
+  "date_completed": "2016-05-30T19:35:16",
+  "date_paid": "2016-05-30 19:35:25",
+  "cart_hash": "",
+  "line_items": [
+    {
+      "id": 18,
+      "name": "Woo Single #1",
+      "sku": "",
+      "product_id": 93,
+      "variation_id": 0,
+      "quantity": 2,
+      "tax_class": "",
+      "price": "3.00",
+      "subtotal": "6.00",
+      "subtotal_tax": "0.45",
+      "total": "6.00",
+      "total_tax": "0.45",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 0.45,
+          "subtotal": 0.45
+        }
+      ],
+      "meta": []
     },
-    "billing_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US",
-      "email": "john.doe@example.com",
-      "phone": "(555) 555-5555"
-    },
-    "shipping_address": {
-      "first_name": "John",
-      "last_name": "Doe",
-      "company": "",
-      "address_1": "969 Market",
-      "address_2": "",
-      "city": "San Francisco",
-      "state": "CA",
-      "postcode": "94103",
-      "country": "US"
-    },
-    "note": "",
-    "customer_ip": "127.0.0.1",
-    "customer_user_agent": "WordPress/4.1; http://example.com",
-    "customer_id": 2,
-    "view_order_url": "https://example.com/my-account/view-order/645",
-    "line_items": [
-      {
-        "id": 504,
-        "subtotal": "43.98",
-        "subtotal_tax": "4.40",
-        "total": "43.98",
-        "total_tax": "4.40",
-        "price": "21.99",
-        "quantity": 2,
-        "tax_class": "reduced-rate",
-        "name": "Premium Quality",
-        "product_id": 546,
-        "sku": "",
-        "meta": []
-      },
-      {
-        "id": 505,
-        "subtotal": "19.99",
-        "subtotal_tax": "1.00",
-        "total": "19.99",
-        "total_tax": "1.00",
-        "price": "19.99",
-        "quantity": 1,
-        "tax_class": null,
-        "name": "Ship Your Idea",
-        "product_id": 613,
-        "sku": "",
-        "meta": [
-          {
-            "key": "pa_color",
-            "label": "Color",
-            "value": "Black"
-          }
-        ]
-      }
-    ],
-    "shipping_lines": [
-      {
-        "id": 506,
-        "method_id": "flat_rate",
-        "method_title": "Flat Rate",
-        "total": "10.00"
-      }
-    ],
-    "tax_lines": [
-      {
-        "id": 507,
-        "rate_id": "5",
-        "code": "US-CA-TAX-1",
-        "title": "Tax",
-        "total": "4.40",
-        "compound": false
-      },
-      {
-        "id": 508,
-        "rate_id": "4",
-        "code": "US-STANDARD-1",
-        "title": "Standard",
-        "total": "1.50",
-        "compound": false
-      }
-    ],
-    "fee_lines": [],
-    "coupon_lines": [],
-    "customer": {
-      "id": 2,
-      "created_at": "2014-11-19T18:34:19Z",
-      "email": "john.doe@example.com",
-      "first_name": "",
-      "last_name": "",
-      "username": "john.doe",
-      "last_order_id": "645",
-      "last_order_date": "2015-01-26T20:00:21Z",
-      "orders_count": 2,
-      "total_spent": "19.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      }
+    {
+      "id": 19,
+      "name": "Ship Your Idea",
+      "sku": "",
+      "product_id": 22,
+      "variation_id": 23,
+      "quantity": 1,
+      "tax_class": "",
+      "price": "20.00",
+      "subtotal": "20.00",
+      "subtotal_tax": "1.50",
+      "total": "20.00",
+      "total_tax": "1.50",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 1.5,
+          "subtotal": 1.5
+        }
+      ],
+      "meta": [
+        {
+          "key": "pa_color",
+          "label": "Color",
+          "value": "Black"
+        }
+      ]
     }
+  ],
+  "tax_lines": [
+    {
+      "id": 21,
+      "rate_code": "US-CA-STATE TAX",
+      "rate_id": "75",
+      "label": "State Tax",
+      "compound": false,
+      "tax_total": "1.95",
+      "shipping_tax_total": "0.00"
+    }
+  ],
+  "shipping_lines": [
+    {
+      "id": 20,
+      "method_title": "Flat Rate",
+      "method_id": "flat_rate",
+      "total": "10.00",
+      "total_tax": "0.00",
+      "taxes": []
+    }
+  ],
+  "fee_lines": [],
+  "coupon_lines": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/154"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders"
+      }
+    ]
   }
 }
 ```
 
-#### Available Filters ####
+#### Available Parameters ####
 
-|  Filter  |  Type  |                                          Description                                          |
-| -------- | ------ | --------------------------------------------------------------------------------------------- |
-| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
-
-<aside class="notice">
-	<code>expand</code> filter is available starting from WooCommerce 2.5.
-</aside>
+| Parameter |  Type  |                    Description                    |
+|-----------|--------|---------------------------------------------------|
+| `dp`      | string | Number of decimal points to use in each resource. |
 
 ## View List of Orders ##
 
@@ -791,12 +716,12 @@ This API helps you to view all the orders.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders</h6>
+		<h6>/wp-json/wc/v1/orders</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wc-api/v3/orders \
+curl https://example.com/wp-json/wc/v1/orders \
 	-u consumer_key:consumer_secret
 ```
 
@@ -821,418 +746,26 @@ woocommerce.get("orders").parsed_response
 > JSON response example:
 
 ```json
-{
-  "orders": [
-    {
-      "id": 645,
-      "order_number": 645,
-      "created_at": "2015-01-26T20:00:21Z",
-      "updated_at": "2015-01-26T20:00:21Z",
-      "completed_at": "2015-01-26T20:00:21Z",
-      "status": "processing",
-      "currency": "USD",
-      "total": "79.87",
-      "subtotal": "63.97",
-      "total_line_items_quantity": 3,
-      "total_tax": "5.90",
-      "total_shipping": "10.00",
-      "cart_tax": "5.40",
-      "shipping_tax": "0.50",
-      "total_discount": "0.00",
-      "shipping_methods": "Flat Rate",
-      "payment_details": {
-        "method_id": "bacs",
-        "method_title": "Direct Bank Transfer",
-        "paid": true
-      },
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      },
-      "note": "",
-      "customer_ip": "127.0.0.1",
-      "customer_user_agent": "WordPress/4.1; http://example.com",
-      "customer_id": 2,
-      "view_order_url": "https://example.com/my-account/view-order/645",
-      "line_items": [
-        {
-          "id": 504,
-          "subtotal": "43.98",
-          "subtotal_tax": "4.40",
-          "total": "43.98",
-          "total_tax": "4.40",
-          "price": "21.99",
-          "quantity": 2,
-          "tax_class": "reduced-rate",
-          "name": "Premium Quality",
-          "product_id": 546,
-          "sku": "",
-          "meta": []
-        },
-        {
-          "id": 505,
-          "subtotal": "19.99",
-          "subtotal_tax": "1.00",
-          "total": "19.99",
-          "total_tax": "1.00",
-          "price": "19.99",
-          "quantity": 1,
-          "tax_class": null,
-          "name": "Ship Your Idea",
-          "product_id": 613,
-          "sku": "",
-          "meta": [
-            {
-              "key": "pa_color",
-              "label": "Color",
-              "value": "Black"
-            }
-          ]
-        }
-      ],
-      "shipping_lines": [
-        {
-          "id": 506,
-          "method_id": "flat_rate",
-          "method_title": "Flat Rate",
-          "total": "10.00"
-        }
-      ],
-      "tax_lines": [
-        {
-          "id": 507,
-          "rate_id": "5",
-          "code": "US-CA-TAX-1",
-          "title": "Tax",
-          "total": "4.40",
-          "compound": false
-        },
-        {
-          "id": 508,
-          "rate_id": "4",
-          "code": "US-STANDARD-1",
-          "title": "Standard",
-          "total": "1.50",
-          "compound": false
-        }
-      ],
-      "fee_lines": [],
-      "coupon_lines": [],
-      "customer": {
-        "id": 2,
-        "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@example.com",
-        "first_name": "",
-        "last_name": "",
-        "username": "john.doe",
-        "last_order_id": "645",
-        "last_order_date": "2015-01-26T20:00:21Z",
-        "orders_count": 2,
-        "total_spent": "19.00",
-        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-        "billing_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US",
-          "email": "john.doe@example.com",
-          "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US"
-        }
-      }
-    },
-    {
-      "id": 644,
-      "order_number": 644,
-      "created_at": "2015-01-26T19:33:42Z",
-      "updated_at": "2015-01-26T19:33:42Z",
-      "completed_at": "2015-01-26T19:33:42Z",
-      "status": "on-hold",
-      "currency": "USD",
-      "total": "44.14",
-      "subtotal": "30.99",
-      "total_line_items_quantity": 2,
-      "total_tax": "3.15",
-      "total_shipping": "10.00",
-      "cart_tax": "2.65",
-      "shipping_tax": "0.50",
-      "total_discount": "0.00",
-      "shipping_methods": "Flat Rate",
-      "payment_details": {
-        "method_id": "bacs",
-        "method_title": "Direct Bank Transfer",
-        "paid": false
-      },
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      },
-      "note": "",
-      "customer_ip": "127.0.0.1",
-      "customer_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36",
-      "customer_id": 2,
-      "view_order_url": "https://example.com/my-account/view-order/644",
-      "line_items": [
-        {
-          "id": 499,
-          "subtotal": "21.99",
-          "subtotal_tax": "2.20",
-          "total": "21.99",
-          "total_tax": "2.20",
-          "price": "21.99",
-          "quantity": 1,
-          "tax_class": "reduced-rate",
-          "name": "Premium Quality",
-          "product_id": 546,
-          "sku": "",
-          "meta": []
-        },
-        {
-          "id": 500,
-          "subtotal": "9.00",
-          "subtotal_tax": "0.45",
-          "total": "9.00",
-          "total_tax": "0.45",
-          "price": "9.00",
-          "quantity": 1,
-          "tax_class": null,
-          "name": "Woo Album #4",
-          "product_id": 96,
-          "sku": "",
-          "meta": []
-        }
-      ],
-      "shipping_lines": [
-        {
-          "id": 501,
-          "method_id": "flat_rate",
-          "method_title": "Flat Rate",
-          "total": "10.00"
-        }
-      ],
-      "tax_lines": [
-        {
-          "id": 502,
-          "rate_id": "5",
-          "code": "US-CA-TAX-1",
-          "title": "Tax",
-          "total": "4.40",
-          "compound": false
-        },
-        {
-          "id": 503,
-          "rate_id": "4",
-          "code": "US-STANDARD-1",
-          "title": "Standard",
-          "total": "1.50",
-          "compound": false
-        }
-      ],
-      "fee_lines": [],
-      "coupon_lines": [],
-      "customer": {
-        "id": 2,
-        "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@example.com",
-        "first_name": "",
-        "last_name": "",
-        "username": "john.doe",
-        "last_order_id": "645",
-        "last_order_date": "2015-01-26T20:00:21Z",
-        "orders_count": 2,
-        "total_spent": "19.00",
-        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-        "billing_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US",
-          "email": "john.doe@example.com",
-          "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US"
-        }
-      }
-    }
-  ]
-}
-```
-
-#### Available Filters ####
-
-|  Filter  |  Type  |                                          Description                                          |
-| -------- | ------ | --------------------------------------------------------------------------------------------- |
-| `status` | string | Orders by status. eg: `processing` or `cancelled`                                             |
-| `expand` | string | Expand `coupons`, `products` and `taxes` objects, eg: `filter[expand]=coupons,products,taxes` |
-
-<aside class="notice">
-	<code>expand</code> filter is available starting from WooCommerce 2.5.
-</aside>
-
-## Update an Order ##
-
-This API lets you make changes to an order.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-put">PUT</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl -X PUT https://example.com/wc-api/v3/orders/645 \
-	-u consumer_key:consumer_secret \
-	-H "Content-Type: application/json" \
-	-d '{
-  "order": {
-    "status": "completed"
-  }
-}'
-```
-
-```javascript
-var data = {
-  order: {
-    status: 'completed'
-  }
-};
-
-WooCommerce.put('orders/645', data, function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php
-$data = [
-    'order' => [
-        'status' => 'completed'
-    ]
-];
-
-print_r($woocommerce->put('orders/645', $data));
-?>
-```
-
-```python
-data = {
-    "order": {
-        "status": "completed"
-    }
-}
-
-print(wcapi.put("orders/645", data).json())
-```
-
-```ruby
-data = {
-  order: {
-    status: "completed"
-  }
-}
-
-woocommerce.put("orders/645", data).parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order": {
-    "id": 645,
-    "order_number": 645,
-    "created_at": "2015-01-26T20:00:21Z",
-    "updated_at": "2015-01-26T20:00:21Z",
-    "completed_at": "2015-01-26T20:00:21Z",
-    "status": "completed",
+[
+  {
+    "id": 154,
+    "parent_id": 0,
+    "status": "processing",
+    "order_key": "wc_order_574cc02467274",
     "currency": "USD",
-    "total": "79.87",
-    "subtotal": "63.97",
-    "total_line_items_quantity": 3,
-    "total_tax": "5.90",
-    "total_shipping": "10.00",
-    "cart_tax": "5.40",
-    "shipping_tax": "0.50",
-    "total_discount": "0.00",
-    "shipping_methods": "Flat Rate",
-    "payment_details": {
-      "method_id": "bacs",
-      "method_title": "Direct Bank Transfer",
-      "paid": true
-    },
-    "billing_address": {
+    "version": "2.6.0",
+    "prices_include_tax": false,
+    "date_created": "2016-05-30T22:35:16",
+    "date_modified": "2016-05-30T22:35:16",
+    "customer_id": 0,
+    "discount_total": "0.00",
+    "discount_tax": "0.00",
+    "shipping_total": "10.00",
+    "shipping_tax": "0.00",
+    "cart_tax": "1.95",
+    "total": "37.95",
+    "total_tax": "1.95",
+    "billing": {
       "first_name": "John",
       "last_name": "Doe",
       "company": "",
@@ -1245,7 +778,7 @@ woocommerce.put("orders/645", data).parsed_response
       "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
-    "shipping_address": {
+    "shipping": {
       "first_name": "John",
       "last_name": "Doe",
       "company": "",
@@ -1256,38 +789,59 @@ woocommerce.put("orders/645", data).parsed_response
       "postcode": "94103",
       "country": "US"
     },
-    "note": "",
-    "customer_ip": "127.0.0.1",
-    "customer_user_agent": "WordPress/4.1; http://example.com",
-    "customer_id": 2,
-    "view_order_url": "https://example.com/my-account/view-order/645",
+    "payment_method": "bacs",
+    "payment_method_title": "bacs",
+    "transaction_id": "",
+    "customer_ip_address": "127.0.0.1",
+    "customer_user_agent": "curl/7.47.0",
+    "created_via": "rest-api",
+    "customer_note": "",
+    "date_completed": "2016-05-30T19:35:16",
+    "date_paid": "2016-05-30 19:35:25",
+    "cart_hash": "",
     "line_items": [
       {
-        "id": 504,
-        "subtotal": "43.98",
-        "subtotal_tax": "4.40",
-        "total": "43.98",
-        "total_tax": "4.40",
-        "price": "21.99",
-        "quantity": 2,
-        "tax_class": "reduced-rate",
-        "name": "Premium Quality",
-        "product_id": 546,
+        "id": 18,
+        "name": "Woo Single #1",
         "sku": "",
+        "product_id": 93,
+        "variation_id": 0,
+        "quantity": 2,
+        "tax_class": "",
+        "price": "3.00",
+        "subtotal": "6.00",
+        "subtotal_tax": "0.45",
+        "total": "6.00",
+        "total_tax": "0.45",
+        "taxes": [
+          {
+            "id": 75,
+            "total": 0.45,
+            "subtotal": 0.45
+          }
+        ],
         "meta": []
       },
       {
-        "id": 505,
-        "subtotal": "19.99",
-        "subtotal_tax": "1.00",
-        "total": "19.99",
-        "total_tax": "1.00",
-        "price": "19.99",
-        "quantity": 1,
-        "tax_class": null,
+        "id": 19,
         "name": "Ship Your Idea",
-        "product_id": 613,
         "sku": "",
+        "product_id": 22,
+        "variation_id": 23,
+        "quantity": 1,
+        "tax_class": "",
+        "price": "20.00",
+        "subtotal": "20.00",
+        "subtotal_tax": "1.50",
+        "total": "20.00",
+        "total_tax": "1.50",
+        "taxes": [
+          {
+            "id": 75,
+            "total": 1.5,
+            "subtotal": 1.5
+          }
+        ],
         "meta": [
           {
             "key": "pa_color",
@@ -1297,123 +851,195 @@ woocommerce.put("orders/645", data).parsed_response
         ]
       }
     ],
-    "shipping_lines": [
-      {
-        "id": 506,
-        "method_id": "flat_rate",
-        "method_title": "Flat Rate",
-        "total": "10.00"
-      }
-    ],
     "tax_lines": [
       {
-        "id": 507,
-        "rate_id": "5",
-        "code": "US-CA-TAX-1",
-        "title": "Tax",
-        "total": "4.40",
-        "compound": false
-      },
+        "id": 21,
+        "rate_code": "US-CA-STATE TAX",
+        "rate_id": "75",
+        "label": "State Tax",
+        "compound": false,
+        "tax_total": "1.95",
+        "shipping_tax_total": "0.00"
+      }
+    ],
+    "shipping_lines": [
       {
-        "id": 508,
-        "rate_id": "4",
-        "code": "US-STANDARD-1",
-        "title": "Standard",
-        "total": "1.50",
-        "compound": false
+        "id": 20,
+        "method_title": "Flat Rate",
+        "method_id": "flat_rate",
+        "total": "10.00",
+        "total_tax": "0.00",
+        "taxes": []
       }
     ],
     "fee_lines": [],
     "coupon_lines": [],
-    "customer": {
-      "id": 2,
-      "created_at": "2014-11-19T18:34:19Z",
-      "email": "john.doe@example.com",
-      "first_name": "",
-      "last_name": "",
-      "username": "john.doe",
-      "last_order_id": "645",
-      "last_order_date": "2015-01-26T20:00:21Z",
-      "orders_count": 2,
-      "total_spent": "19.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/154"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders"
+        }
+      ]
+    }
+  },
+  {
+    "id": 116,
+    "parent_id": 0,
+    "status": "processing",
+    "order_key": "wc_order_5728e6e53d2a4",
+    "currency": "USD",
+    "version": "2.6.0",
+    "prices_include_tax": false,
+    "date_created": "2016-05-03T17:59:00",
+    "date_modified": "2016-05-30T22:37:31",
+    "customer_id": 1,
+    "discount_total": "0.00",
+    "discount_tax": "0.00",
+    "shipping_total": "10.00",
+    "shipping_tax": "0.00",
+    "cart_tax": "0.00",
+    "total": "14.00",
+    "total_tax": "0.00",
+    "billing": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US",
+      "email": "john.doe@claudiosmweb.com",
+      "phone": "(555) 555-5555"
+    },
+    "shipping": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "company": "",
+      "address_1": "969 Market",
+      "address_2": "",
+      "city": "San Francisco",
+      "state": "CA",
+      "postcode": "94103",
+      "country": "US"
+    },
+    "payment_method": "bacs",
+    "payment_method_title": "Direct Bank Transfer",
+    "transaction_id": "",
+    "customer_ip_address": "127.0.0.1",
+    "customer_user_agent": "curl/7.47.0",
+    "created_via": "",
+    "customer_note": "",
+    "date_completed": "2016-05-30T19:35:16",
+    "date_paid": "2016-05-03 14:59:12",
+    "cart_hash": "",
+    "line_items": [
+      {
+        "id": 6,
+        "name": "Woo Single #2",
+        "sku": "12345",
+        "product_id": 99,
+        "variation_id": 0,
+        "quantity": 2,
+        "tax_class": "",
+        "price": "2.00",
+        "subtotal": "4.00",
+        "subtotal_tax": "0.00",
+        "total": "4.00",
+        "total_tax": "0.00",
+        "taxes": [],
+        "meta": []
       }
+    ],
+    "tax_lines": [],
+    "shipping_lines": [
+      {
+        "id": 7,
+        "method_title": "Flat Rate",
+        "method_id": "flat_rate",
+        "total": "10.00",
+        "total_tax": "0.00",
+        "taxes": []
+      }
+    ],
+    "fee_lines": [],
+    "coupon_lines": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders/116"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/orders"
+        }
+      ],
+      "customer": [
+        {
+          "href": "https://example.com/wp-json/wc/v1/customers/1"
+        }
+      ]
     }
   }
-}
+]
 ```
 
-## Create/Update Multiple Orders ##
+#### Available Parameters ####
 
-This API helps you to bulk create/update multiple orders.
+| Parameter  |   Type  |                                                                                                 Description                                                                                                  |
+|------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                                                                                    |
+| `page`     | integer | Current page of the collection.                                                                                                                                                                              |
+| `per_page` | integer | Maximum number of items to be returned in result set.                                                                                                                                                        |
+| `search`   | string  | Limit results to those matching a string.                                                                                                                                                                    |
+| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                  |
+| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                                 |
+| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                                                                                     |
+| `include`  | string  | Limit result set to specific ids.                                                                                                                                                                            |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                                         |
+| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                                                                                   |
+| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`.                                                                                                |
+| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                                                                                                         |
+| `status`   | string  | Limit result set to orders assigned a specific status. Default is `any`. Options (plugins may add new status): `any`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. |
+| `customer` | string  | Limit result set to orders assigned a specific customer.                                                                                                                                                     |
+| `product`  | string  | Limit result set to orders assigned a specific product.                                                                                                                                                      |
+| `dp`       | string  | Number of decimal points to use in each resource.                                                                                                                                                            |
 
-To update is necessary to send objects containing IDs and to create new not just send the ID.
+## Update an Order ##
+
+This API lets you make changes to an order.
 
 ### HTTP Request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
-		<i class="label label-post">POST</i>
-		<h6>/wc-api/v3/orders/bulk</h6>
+		<i class="label label-put">PUT</i>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wc-api/v3/orders/bulk \
+curl -X PUT https://example.com/wp-json/wc/v1/orders/154 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "orders": [
-    {
-      "id": 645,
-      "shipping_methods": "Local Delivery"
-    },
-    {
-      "id": 644,
-      "shipping_methods": "Local Delivery"
-    }
-  ]
+  "status": "completed"
 }'
 ```
 
 ```javascript
 var data = {
-  orders: [
-    {
-      id: 645,
-      shipping_methods: 'Local Delivery'
-    },
-    {
-      id: 644,
-      shipping_methods: 'Local Delivery'
-    }
-  ]
+  status: 'completed'
 };
 
-WooCommerce.post('orders/bulk', data, function(err, data, res) {
+WooCommerce.put('orders/154', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -1421,362 +1047,171 @@ WooCommerce.post('orders/bulk', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'orders' => [
-        [
-            'id' => 645,
-            'shipping_methods' => 'Local Delivery'
-        ],
-        [
-            'id' => 644,
-            'shipping_methods' => 'Local Delivery'
-        ]
-    ]
+    'status' => 'completed'
 ];
 
-print_r($woocommerce->post('orders/bulk', $data));
+print_r($woocommerce->put('orders/154', $data));
 ?>
 ```
 
 ```python
 data = {
-    "orders": [
-        {
-            "id": 645,
-            "shipping_methods": "Local Delivery"
-        },
-        {
-            "id": 644,
-            "shipping_methods": "Local Delivery"
-        }
-    ]
+    "status": "completed"
 }
 
-print(wcapi.post("orders/bulk", data).json())
+print(wcapi.put("orders/154", data).json())
 ```
 
 ```ruby
 data = {
-  orders: [
-    {
-      id: 645,
-      shipping_methods: "Local Delivery"
-    },
-    {
-      id: 644,
-      shipping_methods: "Local Delivery"
-    }
-  ]
+  status: "completed"
 }
 
-woocommerce.post("orders/bulk", data).parsed_response
+woocommerce.put("orders/154", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "orders": [
+  "id": 154,
+  "parent_id": 0,
+  "status": "completed",
+  "order_key": "wc_order_574cc02467274",
+  "currency": "USD",
+  "version": "2.6.0",
+  "prices_include_tax": false,
+  "date_created": "2016-05-30T22:35:16",
+  "date_modified": "2016-05-30T22:46:16",
+  "customer_id": 0,
+  "discount_total": "0.00",
+  "discount_tax": "0.00",
+  "shipping_total": "10.00",
+  "shipping_tax": "0.00",
+  "cart_tax": "1.95",
+  "total": "37.95",
+  "total_tax": "1.95",
+  "billing": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "payment_method": "bacs",
+  "payment_method_title": "bacs",
+  "transaction_id": "",
+  "customer_ip_address": "127.0.0.1",
+  "customer_user_agent": "curl/7.47.0",
+  "created_via": "rest-api",
+  "customer_note": "",
+  "date_completed": "2016-05-30T19:47:46",
+  "date_paid": "2016-05-30 19:35:25",
+  "cart_hash": "",
+  "line_items": [
     {
-      "id": 645,
-      "order_number": 645,
-      "created_at": "2015-01-26T20:00:21Z",
-      "updated_at": "2015-07-31T11:45:12Z",
-      "completed_at": "2015-01-26T20:00:21Z",
-      "status": "processing",
-      "currency": "USD",
-      "total": "79.87",
-      "subtotal": "63.97",
-      "total_line_items_quantity": 3,
-      "total_tax": "5.90",
-      "total_shipping": "10.00",
-      "cart_tax": "5.40",
-      "shipping_tax": "0.50",
-      "total_discount": "0.00",
-      "shipping_methods": "Local Delivery",
-      "payment_details": {
-        "method_id": "bacs",
-        "method_title": "Direct Bank Transfer",
-        "paid": true
-      },
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      },
-      "note": "",
-      "customer_ip": "127.0.0.1",
-      "customer_user_agent": "WordPress/4.1; http://example.com",
-      "customer_id": 2,
-      "view_order_url": "https://example.com/my-account/view-order/645",
-      "line_items": [
+      "id": 18,
+      "name": "Woo Single #1",
+      "sku": "",
+      "product_id": 93,
+      "variation_id": 0,
+      "quantity": 2,
+      "tax_class": "",
+      "price": "3.00",
+      "subtotal": "6.00",
+      "subtotal_tax": "0.45",
+      "total": "6.00",
+      "total_tax": "0.45",
+      "taxes": [
         {
-          "id": 504,
-          "subtotal": "43.98",
-          "subtotal_tax": "4.40",
-          "total": "43.98",
-          "total_tax": "4.40",
-          "price": "21.99",
-          "quantity": 2,
-          "tax_class": "reduced-rate",
-          "name": "Premium Quality",
-          "product_id": 546,
-          "sku": "",
-          "meta": []
-        },
-        {
-          "id": 505,
-          "subtotal": "19.99",
-          "subtotal_tax": "1.00",
-          "total": "19.99",
-          "total_tax": "1.00",
-          "price": "19.99",
-          "quantity": 1,
-          "tax_class": null,
-          "name": "Ship Your Idea",
-          "product_id": 613,
-          "sku": "",
-          "meta": [
-            {
-              "key": "pa_color",
-              "label": "Color",
-              "value": "Black"
-            }
-          ]
+          "id": 75,
+          "total": 0.45,
+          "subtotal": 0.45
         }
       ],
-      "shipping_lines": [
-        {
-          "id": 506,
-          "method_id": "flat_rate",
-          "method_title": "Local Delivery",
-          "total": "10.00"
-        }
-      ],
-      "tax_lines": [
-        {
-          "id": 507,
-          "rate_id": "5",
-          "code": "US-CA-TAX-1",
-          "title": "Tax",
-          "total": "4.40",
-          "compound": false
-        },
-        {
-          "id": 508,
-          "rate_id": "4",
-          "code": "US-STANDARD-1",
-          "title": "Standard",
-          "total": "1.50",
-          "compound": false
-        }
-      ],
-      "fee_lines": [],
-      "coupon_lines": [],
-      "customer": {
-        "id": 2,
-        "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@example.com",
-        "first_name": "",
-        "last_name": "",
-        "username": "john.doe",
-        "last_order_id": "645",
-        "last_order_date": "2015-01-26T20:00:21Z",
-        "orders_count": 2,
-        "total_spent": "19.00",
-        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-        "billing_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US",
-          "email": "john.doe@example.com",
-          "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US"
-        }
-      }
+      "meta": []
     },
     {
-      "id": 644,
-      "order_number": 644,
-      "created_at": "2015-01-26T19:33:42Z",
-      "updated_at": "2015-07-31T11:45:12Z",
-      "completed_at": "2015-01-26T19:33:42Z",
-      "status": "on-hold",
-      "currency": "USD",
-      "total": "44.14",
-      "subtotal": "30.99",
-      "total_line_items_quantity": 2,
-      "total_tax": "3.15",
-      "total_shipping": "10.00",
-      "cart_tax": "2.65",
-      "shipping_tax": "0.50",
-      "total_discount": "0.00",
-      "shipping_methods": "Flat Rate",
-      "payment_details": {
-        "method_id": "bacs",
-        "method_title": "Direct Bank Transfer",
-        "paid": false
-      },
-      "billing_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US",
-        "email": "john.doe@example.com",
-        "phone": "(555) 555-5555"
-      },
-      "shipping_address": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "company": "",
-        "address_1": "969 Market",
-        "address_2": "",
-        "city": "San Francisco",
-        "state": "CA",
-        "postcode": "94103",
-        "country": "US"
-      },
-      "note": "",
-      "customer_ip": "127.0.0.1",
-      "customer_user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.91 Safari/537.36",
-      "customer_id": 2,
-      "view_order_url": "https://example.com/my-account/view-order/644",
-      "line_items": [
+      "id": 19,
+      "name": "Ship Your Idea",
+      "sku": "",
+      "product_id": 22,
+      "variation_id": 23,
+      "quantity": 1,
+      "tax_class": "",
+      "price": "20.00",
+      "subtotal": "20.00",
+      "subtotal_tax": "1.50",
+      "total": "20.00",
+      "total_tax": "1.50",
+      "taxes": [
         {
-          "id": 499,
-          "subtotal": "21.99",
-          "subtotal_tax": "2.20",
-          "total": "21.99",
-          "total_tax": "2.20",
-          "price": "21.99",
-          "quantity": 1,
-          "tax_class": "reduced-rate",
-          "name": "Premium Quality",
-          "product_id": 546,
-          "sku": "",
-          "meta": []
-        },
-        {
-          "id": 500,
-          "subtotal": "9.00",
-          "subtotal_tax": "0.45",
-          "total": "9.00",
-          "total_tax": "0.45",
-          "price": "9.00",
-          "quantity": 1,
-          "tax_class": null,
-          "name": "Woo Album #4",
-          "product_id": 96,
-          "sku": "",
-          "meta": []
+          "id": 75,
+          "total": 1.5,
+          "subtotal": 1.5
         }
       ],
-      "shipping_lines": [
+      "meta": [
         {
-          "id": 501,
-          "method_id": "flat_rate",
-          "method_title": "Flat Rate",
-          "total": "10.00"
+          "key": "pa_color",
+          "label": "Color",
+          "value": "Black"
         }
-      ],
-      "tax_lines": [
-        {
-          "id": 502,
-          "rate_id": "5",
-          "code": "US-CA-TAX-1",
-          "title": "Tax",
-          "total": "4.40",
-          "compound": false
-        },
-        {
-          "id": 503,
-          "rate_id": "4",
-          "code": "US-STANDARD-1",
-          "title": "Standard",
-          "total": "1.50",
-          "compound": false
-        }
-      ],
-      "fee_lines": [],
-      "coupon_lines": [],
-      "customer": {
-        "id": 2,
-        "created_at": "2014-11-19T18:34:19Z",
-        "email": "john.doe@example.com",
-        "first_name": "",
-        "last_name": "",
-        "username": "john.doe",
-        "last_order_id": "645",
-        "last_order_date": "2015-01-26T20:00:21Z",
-        "orders_count": 2,
-        "total_spent": "19.00",
-        "avatar_url": "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
-        "billing_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US",
-          "email": "john.doe@example.com",
-          "phone": "(555) 555-5555"
-        },
-        "shipping_address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "company": "",
-          "address_1": "969 Market",
-          "address_2": "",
-          "city": "San Francisco",
-          "state": "CA",
-          "postcode": "94103",
-          "country": "US"
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "tax_lines": [
+    {
+      "id": 21,
+      "rate_code": "US-CA-STATE TAX",
+      "rate_id": "75",
+      "label": "State Tax",
+      "compound": false,
+      "tax_total": "1.95",
+      "shipping_tax_total": "0.00"
+    }
+  ],
+  "shipping_lines": [
+    {
+      "id": 20,
+      "method_title": "Flat Rate",
+      "method_id": "flat_rate",
+      "total": "10.00",
+      "total_tax": "0.00",
+      "taxes": []
+    }
+  ],
+  "fee_lines": [],
+  "coupon_lines": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/154"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders"
+      }
+    ]
+  }
 }
 ```
 
@@ -1789,146 +1224,1359 @@ This API helps you delete an order.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/orders/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/orders/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/orders/645/?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v1/orders/154?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
+WooCommerce.delete('orders/154?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('orders/645', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('orders/154', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("orders/645/?force=true").json())
+print(wcapi.delete("orders/154?force=true").json())
 ```
 
-
 ```ruby
-woocommerce.delete("orders/645/", force: true).parsed_response
+woocommerce.delete("orders/154", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "message": "Permanently deleted order"
-}
-```
-
-### Parameters ###
-
-| Parameter |  Type  |                                                                         Description                                                                          |
-| --------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `force`   | string | Use `true` whether to permanently delete the order, defaults to `false`. Note that permanently deleting the order will return HTTP 200 rather than HTTP 202. |
-
-## View Orders Count ##
-
-This API lets you retrieve a count of all orders.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/count</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/count \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/count', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('orders/count')); ?>
-```
-
-```python
-print(wcapi.get("orders/count").json())
-```
-
-```ruby
-woocommerce.get("orders/count").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "count": 2
-}
-```
-
-#### Available Filters ####
-
-|  Filter  |  Type  |                    Description                    |
-| -------- | ------ | ------------------------------------------------- |
-| `status` | string | Orders by status. eg: `processing` or `cancelled` |
-
-## View List of Order Statuses ##
-
-This API lets you retrieve a list of orders statuses available.
-
-### HTTP Request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wc-api/v3/orders/statuses</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wc-api/v3/orders/statuses \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('orders/statuses', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('orders/statuses')); ?>
-```
-
-```python
-print(wcapi.get("orders/statuses").json())
-```
-
-```ruby
-woocommerce.get("orders/statuses").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "order_statuses": {
-    "pending": "Pending Payment",
-    "processing": "Processing",
-    "on-hold": "On Hold",
-    "completed": "Completed",
-    "cancelled": "Cancelled",
-    "refunded": "Refunded",
-    "failed": "Failed"
+  "id": 154,
+  "parent_id": 0,
+  "status": "completed",
+  "order_key": "wc_order_574cc02467274",
+  "currency": "USD",
+  "version": "2.6.0",
+  "prices_include_tax": false,
+  "date_created": "2016-05-30T22:35:16",
+  "date_modified": "2016-05-30T22:46:16",
+  "customer_id": 0,
+  "discount_total": "0.00",
+  "discount_tax": "0.00",
+  "shipping_total": "10.00",
+  "shipping_tax": "0.00",
+  "cart_tax": "1.95",
+  "total": "37.95",
+  "total_tax": "1.95",
+  "billing": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US",
+    "email": "john.doe@example.com",
+    "phone": "(555) 555-5555"
+  },
+  "shipping": {
+    "first_name": "John",
+    "last_name": "Doe",
+    "company": "",
+    "address_1": "969 Market",
+    "address_2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "postcode": "94103",
+    "country": "US"
+  },
+  "payment_method": "bacs",
+  "payment_method_title": "bacs",
+  "transaction_id": "",
+  "customer_ip_address": "127.0.0.1",
+  "customer_user_agent": "curl/7.47.0",
+  "created_via": "rest-api",
+  "customer_note": "",
+  "date_completed": "2016-05-30T19:47:46",
+  "date_paid": "2016-05-30 19:35:25",
+  "cart_hash": "",
+  "line_items": [
+    {
+      "id": 18,
+      "name": "Woo Single #1",
+      "sku": "",
+      "product_id": 93,
+      "variation_id": 0,
+      "quantity": 2,
+      "tax_class": "",
+      "price": "3.00",
+      "subtotal": "6.00",
+      "subtotal_tax": "0.45",
+      "total": "6.00",
+      "total_tax": "0.45",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 0.45,
+          "subtotal": 0.45
+        }
+      ],
+      "meta": []
+    },
+    {
+      "id": 19,
+      "name": "Ship Your Idea",
+      "sku": "",
+      "product_id": 22,
+      "variation_id": 23,
+      "quantity": 1,
+      "tax_class": "",
+      "price": "20.00",
+      "subtotal": "20.00",
+      "subtotal_tax": "1.50",
+      "total": "20.00",
+      "total_tax": "1.50",
+      "taxes": [
+        {
+          "id": 75,
+          "total": 1.5,
+          "subtotal": 1.5
+        }
+      ],
+      "meta": [
+        {
+          "key": "pa_color",
+          "label": "Color",
+          "value": "Black"
+        }
+      ]
+    }
+  ],
+  "tax_lines": [
+    {
+      "id": 21,
+      "rate_code": "US-CA-STATE TAX",
+      "rate_id": "75",
+      "label": "State Tax",
+      "compound": false,
+      "tax_total": "1.95",
+      "shipping_tax_total": "0.00"
+    }
+  ],
+  "shipping_lines": [
+    {
+      "id": 20,
+      "method_title": "Flat Rate",
+      "method_id": "flat_rate",
+      "total": "10.00",
+      "total_tax": "0.00",
+      "taxes": []
+    }
+  ],
+  "fee_lines": [],
+  "coupon_lines": [],
+  "_links": {
+    "self": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders/154"
+      }
+    ],
+    "collection": [
+      {
+        "href": "https://example.com/wp-json/wc/v1/orders"
+      }
+    ]
   }
+}
+```
+
+#### Available Parameters ####
+
+| Parameter |  Type  |                               Description                                |
+|-----------|--------|--------------------------------------------------------------------------|
+| `force`   | string | Use `true` whether to permanently delete the coupon, Default is `false`. |
+
+## Create/Update/Delete Multiple Orders ##
+
+This API helps you to batch create, update and delete multiple orders.
+
+### HTTP Request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v1/orders/batch</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com/wp-json/wc/v1/orders/batch \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "create": [
+    {
+      "payment_method": "bacs",
+      "payment_method_title": "Direct Bank Transfer",
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "line_items": [
+        {
+          "product_id": 79,
+          "quantity": 1
+        },
+        {
+          "product_id": 93,
+          "quantity": 1
+        },
+        {
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1
+        }
+      ],
+      "shipping_lines": [
+        {
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": 30
+        }
+      ]
+    },
+    {
+      "payment_method": "bacs",
+      "payment_method_title": "Direct Bank Transfer",
+      "set_paid": true,
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "line_items": [
+        {
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1
+        },
+        {
+          "product_id": 22,
+          "variation_id": 24,
+          "quantity": 1
+        }
+      ],
+      "shipping_lines": [
+        {
+          "method_id": "flat_rate",
+          "method_title": "Flat Rate",
+          "total": 20
+        }
+      ]
+    }
+  ],
+  "update": [
+    {
+      "id": 154,
+      "shipping_methods": "Local Delivery"
+    }
+  ],
+  "delete": [
+    154
+  ]
+}'
+```
+
+```javascript
+var data = {
+  create: [
+    {
+      payment_method: 'bacs',
+      payment_method_title: 'Direct Bank Transfer',
+      billing: {
+        first_name: 'John',
+        last_name: 'Doe',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US',
+        email: 'john.doe@example.com',
+        phone: '(555) 555-5555'
+      },
+      shipping: {
+        first_name: 'John',
+        last_name: 'Doe',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US'
+      },
+      line_items: [
+        {
+          product_id: 79,
+          quantity: 1
+        },
+        {
+          product_id: 93,
+          quantity: 1
+        },
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1
+        }
+      ],
+      shipping_lines: [
+        {
+          method_id: 'flat_rate',
+          method_title: 'Flat Rate',
+          total: 30
+        }
+      ]
+    },
+    {
+      payment_method: 'bacs',
+      payment_method_title: 'Direct Bank Transfer',
+      set_paid: true,
+      billing: {
+        first_name: 'John',
+        last_name: 'Doe',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US',
+        email: 'john.doe@example.com',
+        phone: '(555) 555-5555'
+      },
+      shipping: {
+        first_name: 'John',
+        last_name: 'Doe',
+        address_1: '969 Market',
+        address_2: '',
+        city: 'San Francisco',
+        state: 'CA',
+        postcode: '94103',
+        country: 'US'
+      },
+      line_items: [
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1
+        },
+        {
+          product_id: 22,
+          variation_id: 24,
+          quantity: 1
+        }
+      ],
+      shipping_lines: [
+        {
+          method_id: 'flat_rate',
+          method_title: 'Flat Rate',
+          total: 20
+        }
+      ]
+    }
+  ],
+  update: [
+    {
+      id: 154,
+      shipping_methods: 'Local Delivery'
+    }
+  ],
+  delete: [
+    154
+  ]
+};
+
+WooCommerce.post('orders/batch', data, function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+$data = [
+    'create' => [
+        [
+            'payment_method' => 'bacs',
+            'payment_method_title' => 'Direct Bank Transfer',
+            'billing' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US',
+                'email' => 'john.doe@example.com',
+                'phone' => '(555) 555-5555'
+            ],
+            'shipping' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US'
+            ],
+            'line_items' => [
+                [
+                    'product_id' => 79,
+                    'quantity' => 1
+                ],
+                [
+                    'product_id' => 93,
+                    'quantity' => 1
+                ],
+                [
+                    'product_id' => 22,
+                    'variation_id' => 23,
+                    'quantity' => 1
+                ]
+            ],
+            'shipping_lines' => [
+                [
+                    'method_id' => 'flat_rate',
+                    'method_title' => 'Flat Rate',
+                    'total' => 30
+                ]
+            ]
+        ],
+        [
+            'payment_method' => 'bacs',
+            'payment_method_title' => 'Direct Bank Transfer',
+            'set_paid' => true,
+            'billing' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US',
+                'email' => 'john.doe@example.com',
+                'phone' => '(555) 555-5555'
+            ],
+            'shipping' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US'
+            ],
+            'line_items' => [
+                [
+                    'product_id' => 22,
+                    'variation_id' => 23,
+                    'quantity' => 1
+                ],
+                [
+                    'product_id' => 22,
+                    'variation_id' => 24,
+                    'quantity' => 1
+                ]
+            ],
+            'shipping_lines' => [
+                [
+                    'method_id' => 'flat_rate',
+                    'method_title' => 'Flat Rate',
+                    'total' => 20
+                ]
+            ]
+        ]
+    ],
+    'update' => [
+        [
+            'id' => 154,
+            'shipping_methods' => 'Local Delivery'
+        ]
+    ],
+    'delete' => [
+        154
+    ]
+];
+
+print_r($woocommerce->post('orders/batch', $data));
+?>
+```
+
+```python
+data = {
+    "create": [
+        {
+            "payment_method": "bacs",
+            "payment_method_title": "Direct Bank Transfer",
+            "billing": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US",
+                "email": "john.doe@example.com",
+                "phone": "(555) 555-5555"
+            },
+            "shipping": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US"
+            },
+            "line_items": [
+                {
+                    "product_id": 79,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 93,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 22,
+                    "variation_id": 23,
+                    "quantity": 1
+                }
+            ],
+            "shipping_lines": [
+                {
+                    "method_id": "flat_rate",
+                    "method_title": "Flat Rate",
+                    "total": 30
+                }
+            ]
+        },
+        {
+            "payment_method": "bacs",
+            "payment_method_title": "Direct Bank Transfer",
+            "set_paid": True,
+            "billing": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US",
+                "email": "john.doe@example.com",
+                "phone": "(555) 555-5555"
+            },
+            "shipping": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "address_1": "969 Market",
+                "address_2": "",
+                "city": "San Francisco",
+                "state": "CA",
+                "postcode": "94103",
+                "country": "US"
+            },
+            "line_items": [
+                {
+                    "product_id": 22,
+                    "variation_id": 23,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 22,
+                    "variation_id": 24,
+                    "quantity": 1
+                }
+            ],
+            "shipping_lines": [
+                {
+                    "method_id": "flat_rate",
+                    "method_title": "Flat Rate",
+                    "total": 20
+                }
+            ]
+        }
+    ],
+    "update": [
+        {
+            "id": 154,
+            "shipping_methods": "Local Delivery"
+        }
+    ],
+    "delete": [
+        154
+    ]
+}
+
+print(wcapi.post("orders/batch", data).json())
+```
+
+```ruby
+data = {
+  create: [
+    {
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      },
+      line_items: [
+        {
+          product_id: 79,
+          quantity: 1
+        },
+        {
+          product_id: 93,
+          quantity: 1
+        },
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1
+        }
+      ],
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: 30
+        }
+      ]
+    },
+    {
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      set_paid: true,
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
+      },
+      line_items: [
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1
+        },
+        {
+          product_id: 22,
+          variation_id: 24,
+          quantity: 1
+        }
+      ],
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: 20
+        }
+      ]
+    }
+  ],
+  update: [
+    {
+      id: 154,
+      shipping_methods: "Local Delivery"
+    }
+  ],
+  delete: [
+    154
+  ]
+}
+
+woocommerce.post("orders/batch", data).parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+  "create": [
+    {
+      "id": 155,
+      "parent_id": 0,
+      "status": "pending",
+      "order_key": "wc_order_574cc9541cea3",
+      "currency": "USD",
+      "version": "2.6.0",
+      "prices_include_tax": false,
+      "date_created": "2016-05-30T23:14:28",
+      "date_modified": "2016-05-30T23:14:28",
+      "customer_id": 0,
+      "discount_total": "0.00",
+      "discount_tax": "0.00",
+      "shipping_total": "30.00",
+      "shipping_tax": "0.00",
+      "cart_tax": "2.85",
+      "total": "70.85",
+      "total_tax": "2.85",
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "payment_method": "bacs",
+      "payment_method_title": "bacs",
+      "transaction_id": "",
+      "customer_ip_address": "127.0.0.1",
+      "customer_user_agent": "curl/7.47.0",
+      "created_via": "rest-api",
+      "customer_note": "",
+      "date_completed": "2016-05-30T20:14:28",
+      "date_paid": "",
+      "cart_hash": "",
+      "line_items": [
+        {
+          "id": 22,
+          "name": "Woo Logo",
+          "sku": "",
+          "product_id": 79,
+          "variation_id": 0,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "15.00",
+          "subtotal": "15.00",
+          "subtotal_tax": "1.13",
+          "total": "15.00",
+          "total_tax": "1.13",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.125,
+              "subtotal": 1.125
+            }
+          ],
+          "meta": []
+        },
+        {
+          "id": 23,
+          "name": "Woo Single #1",
+          "sku": "",
+          "product_id": 93,
+          "variation_id": 0,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "3.00",
+          "subtotal": "3.00",
+          "subtotal_tax": "0.23",
+          "total": "3.00",
+          "total_tax": "0.23",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 0.225,
+              "subtotal": 0.225
+            }
+          ],
+          "meta": []
+        },
+        {
+          "id": 24,
+          "name": "Ship Your Idea",
+          "sku": "",
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "20.00",
+          "subtotal": "20.00",
+          "subtotal_tax": "1.50",
+          "total": "20.00",
+          "total_tax": "1.50",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.5,
+              "subtotal": 1.5
+            }
+          ],
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 26,
+          "rate_code": "US-CA-STATE TAX",
+          "rate_id": "75",
+          "label": "State Tax",
+          "compound": false,
+          "tax_total": "2.85",
+          "shipping_tax_total": "0.00"
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 25,
+          "method_title": "Flat Rate",
+          "method_id": "flat_rate",
+          "total": "30.00",
+          "total_tax": "0.00",
+          "taxes": []
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders/155"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders"
+          }
+        ]
+      }
+    },
+    {
+      "id": 156,
+      "parent_id": 0,
+      "status": "processing",
+      "order_key": "wc_order_574cc95465214",
+      "currency": "USD",
+      "version": "2.6.0",
+      "prices_include_tax": false,
+      "date_created": "2016-05-30T23:14:28",
+      "date_modified": "2016-05-30T23:14:28",
+      "customer_id": 0,
+      "discount_total": "0.00",
+      "discount_tax": "0.00",
+      "shipping_total": "20.00",
+      "shipping_tax": "0.00",
+      "cart_tax": "3.00",
+      "total": "63.00",
+      "total_tax": "3.00",
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "payment_method": "bacs",
+      "payment_method_title": "bacs",
+      "transaction_id": "",
+      "customer_ip_address": "127.0.0.1",
+      "customer_user_agent": "curl/7.47.0",
+      "created_via": "rest-api",
+      "customer_note": "",
+      "date_completed": "2016-05-30T20:14:28",
+      "date_paid": "2016-05-30 20:14:37",
+      "cart_hash": "",
+      "line_items": [
+        {
+          "id": 27,
+          "name": "Ship Your Idea",
+          "sku": "",
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "20.00",
+          "subtotal": "20.00",
+          "subtotal_tax": "1.50",
+          "total": "20.00",
+          "total_tax": "1.50",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.5,
+              "subtotal": 1.5
+            }
+          ],
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "Ship Your Idea",
+          "sku": "",
+          "product_id": 22,
+          "variation_id": 24,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "20.00",
+          "subtotal": "20.00",
+          "subtotal_tax": "1.50",
+          "total": "20.00",
+          "total_tax": "1.50",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.5,
+              "subtotal": 1.5
+            }
+          ],
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Green"
+            }
+          ]
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 30,
+          "rate_code": "US-CA-STATE TAX",
+          "rate_id": "75",
+          "label": "State Tax",
+          "compound": false,
+          "tax_total": "3.00",
+          "shipping_tax_total": "0.00"
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 29,
+          "method_title": "Flat Rate",
+          "method_id": "flat_rate",
+          "total": "20.00",
+          "total_tax": "0.00",
+          "taxes": []
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders/156"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders"
+          }
+        ]
+      }
+    }
+  ],
+  "update": [
+    {
+      "id": 154,
+      "parent_id": 0,
+      "status": "completed",
+      "order_key": "wc_order_574cc02467274",
+      "currency": "USD",
+      "version": "2.6.0",
+      "prices_include_tax": false,
+      "date_created": "2016-05-30T22:35:16",
+      "date_modified": "2016-05-30T22:55:19",
+      "customer_id": 0,
+      "discount_total": "0.00",
+      "discount_tax": "0.00",
+      "shipping_total": "10.00",
+      "shipping_tax": "0.00",
+      "cart_tax": "1.95",
+      "total": "37.95",
+      "total_tax": "1.95",
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "payment_method": "bacs",
+      "payment_method_title": "bacs",
+      "transaction_id": "",
+      "customer_ip_address": "127.0.0.1",
+      "customer_user_agent": "curl/7.47.0",
+      "created_via": "rest-api",
+      "customer_note": "",
+      "date_completed": "2016-05-30T19:47:46",
+      "date_paid": "2016-05-30 19:35:25",
+      "cart_hash": "",
+      "line_items": [
+        {
+          "id": 18,
+          "name": "Woo Single #1",
+          "sku": "",
+          "product_id": 93,
+          "variation_id": 0,
+          "quantity": 2,
+          "tax_class": "",
+          "price": "3.00",
+          "subtotal": "6.00",
+          "subtotal_tax": "0.45",
+          "total": "6.00",
+          "total_tax": "0.45",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 0.45,
+              "subtotal": 0.45
+            }
+          ],
+          "meta": []
+        },
+        {
+          "id": 19,
+          "name": "Ship Your Idea",
+          "sku": "",
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "20.00",
+          "subtotal": "20.00",
+          "subtotal_tax": "1.50",
+          "total": "20.00",
+          "total_tax": "1.50",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.5,
+              "subtotal": 1.5
+            }
+          ],
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 21,
+          "rate_code": "US-CA-STATE TAX",
+          "rate_id": "75",
+          "label": "State Tax",
+          "compound": false,
+          "tax_total": "1.95",
+          "shipping_tax_total": "0.00"
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 20,
+          "method_title": "Flat Rate",
+          "method_id": "flat_rate",
+          "total": "10.00",
+          "total_tax": "0.00",
+          "taxes": []
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders/154"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders"
+          }
+        ]
+      }
+    }
+  ],
+  "delete": [
+    {
+      "id": 154,
+      "parent_id": 0,
+      "status": "completed",
+      "order_key": "wc_order_574cc02467274",
+      "currency": "USD",
+      "version": "2.6.0",
+      "prices_include_tax": false,
+      "date_created": "2016-05-30T22:35:16",
+      "date_modified": "2016-05-30T22:55:19",
+      "customer_id": 0,
+      "discount_total": "0.00",
+      "discount_tax": "0.00",
+      "shipping_total": "10.00",
+      "shipping_tax": "0.00",
+      "cart_tax": "1.95",
+      "total": "37.95",
+      "total_tax": "1.95",
+      "billing": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US",
+        "email": "john.doe@example.com",
+        "phone": "(555) 555-5555"
+      },
+      "shipping": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "company": "",
+        "address_1": "969 Market",
+        "address_2": "",
+        "city": "San Francisco",
+        "state": "CA",
+        "postcode": "94103",
+        "country": "US"
+      },
+      "payment_method": "bacs",
+      "payment_method_title": "bacs",
+      "transaction_id": "",
+      "customer_ip_address": "127.0.0.1",
+      "customer_user_agent": "curl/7.47.0",
+      "created_via": "rest-api",
+      "customer_note": "",
+      "date_completed": "2016-05-30T19:47:46",
+      "date_paid": "2016-05-30 19:35:25",
+      "cart_hash": "",
+      "line_items": [
+        {
+          "id": 18,
+          "name": "Woo Single #1",
+          "sku": "",
+          "product_id": 93,
+          "variation_id": 0,
+          "quantity": 2,
+          "tax_class": "",
+          "price": "3.00",
+          "subtotal": "6.00",
+          "subtotal_tax": "0.45",
+          "total": "6.00",
+          "total_tax": "0.45",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 0.45,
+              "subtotal": 0.45
+            }
+          ],
+          "meta": []
+        },
+        {
+          "id": 19,
+          "name": "Ship Your Idea",
+          "sku": "",
+          "product_id": 22,
+          "variation_id": 23,
+          "quantity": 1,
+          "tax_class": "",
+          "price": "20.00",
+          "subtotal": "20.00",
+          "subtotal_tax": "1.50",
+          "total": "20.00",
+          "total_tax": "1.50",
+          "taxes": [
+            {
+              "id": 75,
+              "total": 1.5,
+              "subtotal": 1.5
+            }
+          ],
+          "meta": [
+            {
+              "key": "pa_color",
+              "label": "Color",
+              "value": "Black"
+            }
+          ]
+        }
+      ],
+      "tax_lines": [
+        {
+          "id": 21,
+          "rate_code": "US-CA-STATE TAX",
+          "rate_id": "75",
+          "label": "State Tax",
+          "compound": false,
+          "tax_total": "1.95",
+          "shipping_tax_total": "0.00"
+        }
+      ],
+      "shipping_lines": [
+        {
+          "id": 20,
+          "method_title": "Flat Rate",
+          "method_id": "flat_rate",
+          "total": "10.00",
+          "total_tax": "0.00",
+          "taxes": []
+        }
+      ],
+      "fee_lines": [],
+      "coupon_lines": [],
+      "_links": {
+        "self": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders/154"
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://example.com/wp-json/wc/v1/orders"
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
