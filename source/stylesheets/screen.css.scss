@@ -76,7 +76,7 @@ html, body {
 	// This is the logo at the top of the ToC
 	.logo-wrapper {
 		padding: 10px 20px;
-		margin: 0 0 10px;
+		margin: 0;
 		display: block;
 		border-bottom: 1px solid #ddd;
 
@@ -91,7 +91,8 @@ html, body {
 	}
 
 	.tocify-item>a, .toc-footer li {
-		padding: 0 $nav-padding 0 $nav-padding;
+		padding: 10px $nav-padding;
+		line-height: 1;
 		display: block;
 		overflow-x: hidden;
 		white-space: nowrap;
@@ -115,11 +116,18 @@ html, body {
 		transition-duration: 230ms;
 	}
 
+	a:hover {
+		text-decoration: underline;
+	}
+
 	// This is the currently selected ToC entry
 	.tocify-focus {
-		box-shadow: 0px 1px 0px $nav-active-shadow;
+		//box-shadow: 0px 1px 0px $nav-active-shadow;
 		background-color: $nav-active-bg;
 		color: $nav-active-text;
+		a:hover {
+			text-decoration: none;
+		}
 	}
 
 	// Subheaders are the submenus that slide open
@@ -140,9 +148,9 @@ html, body {
 	}
 
 	.toc-footer {
-		padding: 1em 0;
-		margin-top: 1em;
-		border-top: 1px dashed $nav-footer-border-color;
+		padding: 10px 0;
+		margin-top: 10px;
+		border-top: 1px solid #ddd;
 
 		li,a {
 			color: $nav-text;
@@ -155,7 +163,6 @@ html, body {
 
 		li {
 			font-size: 0.8em;
-			line-height: 28px;
 			text-decoration: none;
 		}
 	}
@@ -239,18 +246,21 @@ html, body {
 		float:left;
 		color: $lang-select-text;
 		text-decoration: none;
-		padding: 0 10px;
-		line-height: 30px;
+		padding: 10px 20px;
+		line-height: 40px;
 		outline: 0;
+		border-top: 4px solid $lang-select-bg;;
 
 		&:active, &:focus {
 			background-color: $lang-select-pressed-bg;
 			color: $lang-select-pressed-text;
+			border-top-color: #9B5C8F;
 		}
 
 		&.active {
 			background-color: $lang-select-active-bg;
 			color: $lang-select-active-text;
+			border-top-color: #9B5C8F;
 		}
 	}
 
@@ -270,7 +280,7 @@ html, body {
 	// to place content above the dark box
 	position: relative;
 	z-index: 30;
-	padding-top: 44px;
+	padding-top: 40px;
 
 	&:after {
 		content: '';
@@ -298,7 +308,7 @@ html, body {
 
 	h1 {
 		@extend %header-font;
-		font-size: 26px;
+		font-size: 30px;
 		margin-top: 4em;
 		margin-bottom: 20px;
 		padding-top: 20px;
@@ -314,8 +324,9 @@ html, body {
 	h2 {
 		@extend %header-font;
 		font-size: 20px;
-		margin-top: 4em;
-		margin-bottom: 0;
+		margin-top: 40px;
+		padding-top: 40px;
+		margin-bottom: 20px;
 	}
 
 	// h2s right after h1s should bump right up
@@ -407,20 +418,23 @@ html, body {
 	aside {
 		padding-top: 1em;
 		padding-bottom: 1em;
-		@include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
+		@include text-shadow(0 1px 0 darken($aside-notice-bg, 15%));
 		margin-top: 1.5em;
 		margin-bottom: 1.5em;
 		background: $aside-notice-bg;
 		line-height: 1.6;
+		color: lighten($aside-notice-bg, 80%);
 
 		&.warning {
 			background-color: $aside-warning-bg;
 			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
+			color: #333;
 		}
 
 		&.success {
 			background-color: $aside-success-bg;
 			@include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
+			color: #333;
 		}
 	}
 
@@ -459,20 +473,14 @@ html, body {
 
 .content {
 	pre, blockquote {
-		background-color: $code-bg;
 		color: #fff;
-
-		padding: 2em $main-padding;
-		margin: 0;
-		width: $examples-width;
-
+		margin: 0 0 20px;
+		@extend %right-col;
+		box-sizing: border-box;
 		float:right;
 		clear:right;
-
-		box-sizing: border-box;
-		@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
-
-		@extend %right-col;
+		width: $examples-width;
+		padding: 0 20px;
 
 		&>p { margin: 0; }
 
@@ -485,16 +493,13 @@ html, body {
 
 	pre {
 		@extend %code-font;
-	}
+		background: $examples-bg;
 
-	blockquote {
-		&>p {
-			background-color: $code-annotation-bg;
+		code {
+			padding: 20px;
 			border-radius: 5px;
-			padding: $code-annotation-padding;
-			color: #ccc;
-			border-top: 1px solid #000;
-			border-bottom: 1px solid #404040;
+			display: block;
+			background-color: $code-bg;
 		}
 	}
 }
