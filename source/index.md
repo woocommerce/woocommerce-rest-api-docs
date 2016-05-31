@@ -36,5 +36,5 @@ includes:
   - wp-api-v1/webhooks
   - wp-api-v1/authentication-endpoint
 
-search: true
+search: false
 ---
