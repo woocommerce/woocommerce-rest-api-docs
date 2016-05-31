@@ -48,15 +48,6 @@ html, body {
 	width: 20px;
 }
 
-@mixin embossed-bg {
-	background:
-		linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-		linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-		linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-		linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-		$nav-subitem-bg;
-}
-
 .tocify-wrapper {
 	transition: left 0.3s ease-in-out;
 
@@ -71,6 +62,7 @@ html, body {
 	background-color: $nav-bg;
 	font-size: 13px;
 	font-weight: bold;
+	border-right: 1px solid #ddd;
 
 	// language selector for mobile devices
 	.lang-selector {
@@ -82,70 +74,21 @@ html, body {
 	}
 
 	// This is the logo at the top of the ToC
-	&>img {
+	.logo-wrapper {
+		padding: 10px 20px;
+		margin: 0 0 10px;
 		display: block;
-	}
+		border-bottom: 1px solid #ddd;
 
-	&>.search {
-		position: relative;
-
-		input {
-			background: $nav-bg;
-			border-width: 0 0 1px 0;
-			border-color: $search-box-border-color;
-			padding: 6px 0 6px 20px;
-			box-sizing: border-box;
-			margin: $nav-v-padding $nav-padding;
-			width: $nav-width - 30;
-			outline: none;
-			color: $nav-text;
-			border-radius: 0; /* ios has a default border radius */
-		}
-
-		&:before {
-			position: absolute;
-			top: 17px;
-			left: $nav-padding;
-			color: $nav-text;
-			@extend %icon-search;
+		img {
+			display: block;
+			width: 100%;
 		}
 	}
 
 	img+.tocify {
 		margin-top: $logo-margin;
 	}
-
-	.search-results {
-		margin-top: 0;
-		box-sizing: border-box;
-		height: 0;
-		overflow-y: auto;
-		overflow-x: hidden;
-		transition-property: height, margin;
-		transition-duration: 180ms;
-		transition-timing-function: ease-in-out;
-		&.visible {
-			height: 30%;
-			margin-bottom: 1em;
-		}
-
-		@include embossed-bg;
-
-		li {
-			margin: 1em $nav-padding;
-			line-height: 1;
-		}
-
-		a {
-			color: $nav-text;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
 
 	.tocify-item>a, .toc-footer li {
 		padding: 0 $nav-padding 0 $nav-padding;
@@ -185,13 +128,12 @@ html, body {
 		display: none; // tocify will override this when needed
 		background-color: $nav-subitem-bg;
 		font-weight: 500;
+
 		.tocify-item>a {
-			padding-left: $nav-padding + $nav-indent;
+			padding-left: $nav-padding + 10;
 			font-size: 12px;
 		}
 
-		// for embossed look:
-		@include embossed-bg;
 		&>li:last-child {
 			box-shadow: none; // otherwise it'll overflow out of the subheader
 		}
@@ -213,7 +155,7 @@ html, body {
 
 		li {
 			font-size: 0.8em;
-			line-height: 1.7;
+			line-height: 28px;
 			text-decoration: none;
 		}
 	}
@@ -328,6 +270,7 @@ html, body {
 	// to place content above the dark box
 	position: relative;
 	z-index: 30;
+	padding-top: 44px;
 
 	&:after {
 		content: '';
@@ -340,9 +283,8 @@ html, body {
 		padding: 0 $main-padding;
 		box-sizing: border-box;
 		display: block;
-		@include text-shadow($main-embossed-text-shadow);
-
 		@extend %left-col;
+		font-weight: normal;
 	}
 
 	&>ul, &>ol {
@@ -356,19 +298,17 @@ html, body {
 
 	h1 {
 		@extend %header-font;
-		font-size: 30px;
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
-		border-bottom: 1px solid #ccc;
-		margin-bottom: $h1-margin-bottom;
-		margin-top: 2em;
+		font-size: 26px;
+		margin-top: 4em;
+		margin-bottom: 20px;
+		padding-top: 20px;
 		border-top: 1px solid #ddd;
-		background-image: linear-gradient(to bottom, #fff, #f9f9f9);
 	}
 
 	h1:first-child, div:first-child + h1 {
 		border-top-width: 0;
 		margin-top: 0;
+		border-top: 0;
 	}
 
 	h2 {
@@ -376,10 +316,6 @@ html, body {
 		font-size: 20px;
 		margin-top: 4em;
 		margin-bottom: 0;
-		border-top: 1px solid #ccc;
-		padding-top: 1.2em;
-		padding-bottom: 1.2em;
-		background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
 	}
 
 	// h2s right after h1s should bump right up
