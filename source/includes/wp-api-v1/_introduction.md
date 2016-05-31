@@ -1,67 +1,49 @@
 # Introduction #
 
-Introduced in WooCommerce 2.6, our integration with the WP REST API allows WooCommerce data to be created, read, updated, and deleted using JSON format.
-
-## Requirements ##
-
-You must be using WooCommerce 2.6 or newer and WordPress 4.4 or later. You must enable pretty permalinks in `Settings > Permalinks` (default permalinks will not work).
-
-<aside class="notice">
-	Endpoints may be improved with each release of WooCommerce, so we always recommend keeping WooCommerce up to date to reflect this documentation.
-</aside>
-
-## Version ##
+As of WooCommerce 2.6, WooCommerce is fully integrated with the WordPress REST API. This allows WooCommerce data to be created, read, updated, and deleted using requests in JSON format, and using all supported WordPress REST API Authentication methods.
 
 The current WP REST API integration version is `v1` which takes a first-order position in endpoints. The following table shows API versions present in each major version of WooCommerce:
 
-| Version | WooCommerce |  WordPress   |
-|---------|-------------|--------------|
-| `v1`    | 2.6.x       | 4.4 or later |
+| Version | WooCommerce Version | WordPress Version    |
+|---------|---------------------|----------------------|
+| `v1`    | 2.6.x               | 4.4 or later         |
 
-## Differences between our old REST API and the WP REST API integration ##
+## Requirements ##
 
-* Our integration is a new REST API, some endpoints can look like our new REST API, but we adopted the same data format and standards from the WP REST API.
-* Enabled by default with the WP REST API.
-* WP REST API integration includes batch endpoints for coupons, customers, orders, refunds, products, attributes, categories, tags, taxes and webhooks.
-* New format and parameters for coupons, orders, products and some taxomonies to reflect changes in the WooCommerce core.
-* Adopted the use of schemas for all endpoints (accessed when doing OPTIONS request).
-* Our API Keys, authentication endpoint and webhooks still works with this new REST API.
-
-<aside class="notice">
-	It's strongly recommended the adoption of the WP REST API, since it's standard that will be adopted by other WordPress plugins and projects.
-</aside>
-
-### API Docs for past versions ###
-
-* [WooCommerce REST API v1 docs](v1.html)
-* [WooCommerce REST API v2 docs](v2.html)
-* [WooCommerce REST API v3 docs](v3.html)
-
-## Requeriments ##
-
-* WooCommerce 2.6 or later.
-* WordPress 4.4 or later.
-* Pretty permalinks enabled.
+To use the latest version of the REST API you must be using WooCommerce 2.6+, as well as WordPress 4.4+. You must also enable pretty permalinks in `Settings > Permalinks` so that the custom endpoints are supported. __Default permalinks will not work.__
 
 You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
 
-## Requests/Responses ##
-
-@TODO
+## Request/Response Format ##
 
 The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a `200 OK` HTTP status.
 
 Some general information about responses:
 
 * Dates are returned in [RFC3339](http://www.ietf.org/rfc/rfc3339.txt) format in UTC timezone: `YYYY-MM-DDTHH:MM:SSZ`
-
 * Resource IDs are returned as integers.
-
 * Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places. The decimal separator (typically either `.` or `,`) is controlled by the site and is included in the API index. This is by design in order to make localization of API data easier for the client. You may need to account for this in your implementation if you will be doing calculations with the returned data (e.g. converting string amounts with commas to decimal places before performing calculations).
-
 * Other amounts, such as item counts, are returned as integers.
-
 * Blank fields are generally included as `null` instead of being returned as blank strings or omitted.
+
+## Legacy API ##
+
+Prior to 2.6, WooCommerce had it's own REST API independent from WordPress. The differences between the new API and legacy API are as follows:
+
+* In the new API, the WordPress REST API handles authentication instead of our API.
+* The WP REST API integration includes batch endpoints for coupons, customers, orders, refunds, products, attributes, categories, tags, taxes and webhooks.
+* New formats and parameters for coupons, orders, products and some taxomonies to reflect changes in the WooCommerce core.
+* We've adopted the use of schemas for all endpoints (accessed when doing OPTIONS requests).
+
+Our API Keys, authentication endpoint and webhooks still work with the new API.
+
+Documentation for the legacy APIs can be found below:
+
+* [WooCommerce REST API v1 docs](v1.html)
+* [WooCommerce REST API v2 docs](v2.html)
+* [WooCommerce REST API v3 docs](v3.html)
+
+# Topics #
 
 ## Authentication ##
 
@@ -394,7 +376,7 @@ var WooCommerce = new WooCommerceAPI({
 ```
 
 ```php
-<?php 
+<?php
 // Install:
 // composer require automattic/woocommerce
 
