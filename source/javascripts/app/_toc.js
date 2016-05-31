@@ -47,4 +47,3 @@
   $(animate);
 
 })(window);
-

@@ -1,10 +1,6 @@
 # Index #
 
-By default WP REST API provides informations about the endpoints available for the site. No authentication is required to access the API index.
-
-## View Index List ##
-
-Retrieve WooCommerce REST API endpoints information.
+By default, the API provides information about all available endpoints on the site. Authentication is not required to access the API index.
 
 ### HTTP Request ###
 
@@ -16,8 +12,7 @@ Retrieve WooCommerce REST API endpoints information.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1 \
-	-u consumer_key:consumer_secret
+curl https://example.com/wp-json/wc/v1
 ```
 
 ```javascript
