@@ -251,7 +251,7 @@ html, body {
 		outline: 0;
 		border-top: 4px solid $lang-select-bg;;
 
-		&:active, &:focus {
+		&:active, &:focus, &:hover {
 			background-color: $lang-select-pressed-bg;
 			color: $lang-select-pressed-text;
 			border-top-color: #9B5C8F;
