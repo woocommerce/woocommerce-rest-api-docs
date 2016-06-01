@@ -25,51 +25,64 @@ curl https://www.example.com/wc-api/v3/orders?consumer_key=123&consumer_secret=a
 
 You must use [OAuth 1.0a "one-legged" authentication](http://tools.ietf.org/html/rfc5849) to ensure REST API credentials cannot be intercepted by an attacker. Typically you will use any standard OAuth 1.0a library in the language of your choice to handle the authentication, or generate the necessary parameters by following the following instructions.
 
-### Generating an oAuth signature ###
+### Creating a signature ###
 
-1) Set the HTTP method for the request to `GET`
+#### Collect the request method and URL ####
 
-2) Set your base request URI -- this is the full request URI without query string parameters and URL encode according to RFC 3986.
+First you need to determine the HTTP method you will be using for the request, and the URL of the request.
 
-> Example before encoding:
+The **HTTP method** will be `GET` in our case.
 
-```
-http://www.example.com/wp-json/wc/v1/orders
-```
+The **Request URL** will be the endpoint you are posting to, e.g. `http://www.example.com/wp-json/wc/v1/orders`.
 
-> After encoding:
+#### Collect parameters ####
 
-```
-http%3A%2F%2Fwww.example.com%2Fwp-json%2Fwc%2Fv1%2Forders
-```
+Collect and normalize your query string parameters. This includes all oauth_* parameters except for the oauth_signature itself.
 
-3) Collect and normalize your query string parameters. This includes all `oauth_*` parameters except for the signature itself. Parameters should be normalized using URL encoding according to RFC 3986 (use `rawurlencode` in PHP) and percent(`%`) characters should be double-encoded (e.g. `%` becomes `%25`.
+These values need to be encoded into a single string which will be used later on. The process to build the string is very specific:
 
-4) Sort the parameters in byte-order.
+1. [Percent encode](https://dev.twitter.com/oauth/overview/percent-encoding-parameters) every key and value that will be signed.
+2. Sort the list of parameters alphabetically by encoded key.
+3. For each key/value pair:
+	- Append the encoded key to the output string.	- Append the `=` character to the output string.
+	- Append the encoded value to the output string.
+	- If there are more key/value pairs remaining, append a `&` character to the output string.
 
-> PHP sorting example:
+When percent encoding in PHP for example, you would use `rawurlencode()`.
 
-```
-uksort( $params, 'strcmp' )
-```
-
-5) Join each parameter with an encoded equals sign (`%3D`) and each key/value pair with an encoded ampersand (`%26`)
+When sorting parameters in PHP for exaple, you would use `uksort( $params, 'strcmp' )`.
 
 > Parameters example:
 
 ```
-oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1
+oauth_consumer_key=abc123&oauth_signature_method=HMAC-SHA1
 ```
 
-6) Form the string to sign by joining the HTTP method, encoded base request URI, and encoded parameter string with an unencoded ampersand symbol (&)
+#### Create the signature base string ####
 
-> Final string:
+The above values collected so far must be joined to make a single string, from which the signature will be generated. This is called the signature base string in the OAuth specification.
+
+To encode the HTTP method, request URL, and parameter string into a single string:
+
+1. Set the output string equal to the uppercase **HTTP Method**.
+2. Append the `&` character to the output string.
+3. [Percent encode](https://dev.twitter.com/oauth/overview/percent-encoding-parameters) the URL and append it to the output string.
+4. Append the `&` character to the output string.
+5. [Percent encode](https://dev.twitter.com/oauth/overview/percent-encoding-parameters) the parameter string and append it to the output string.
+
+> Example signature base string:
 
 ```
 GET&http%3A%2F%2Fwww.example.com%2Fwp-json%2Fwc%2Fv1%2Forders&oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1
 ```
 
-7) Generate the signature using the string to key and your consumer secret key
+#### Generate the signature ####
+
+Generate the signature using the *signature base string* and your consumer secret key with the HMAC-SHA1 hashing algorithm.
+
+In PHP you can use the [hash_hmac](http://php.net/manual/en/function.hash-hmac.php) function.
+
+HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.
 
 If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-rest-authentication.php#L141) can also be helpful in understanding how to properly generate the signature.
 
@@ -77,7 +90,6 @@ If you are having trouble generating a correct signature, you'll want to review 
 
 * The OAuth parameters must be added as query string parameters and *not* included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.
 * The required parameters are: `oauth_consumer_key`, `oauth_timestamp`, `oauth_nonce`, `oauth_signature`, and `oauth_signature_method`. `oauth_version` is not required and should be omitted.
-* HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.
 * The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on [generating nonces on the Twitter REST API forums](https://dev.twitter.com/discussions/12445).
 * The OAuth timestamp should be the unix timestamp at the time of the request. The REST API will deny any requests that include a timestamp outside of a 15 minute window to prevent replay attacks.
 * You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a `www` sub-domain, you should use it for requests)
