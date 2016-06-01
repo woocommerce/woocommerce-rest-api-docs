@@ -1,8 +1,8 @@
-# Order - Notes #
+# Order Notes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate order notes.
+This section lists all API endpoints that can be used to create, edit or otherwise manipulate order notes. Order notes are added by administrators and programmatically to store data about an order, or order events.
 
-## Order Notes Properties ##
+## Order note properties ##
 
 |    Attribute    |    Type   |                                                     Description                                                     |
 |-----------------|-----------|---------------------------------------------------------------------------------------------------------------------|
@@ -11,11 +11,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `note`          | string    | Order note. <i class="label label-info">required</i>                                                                |
 | `customer_note` | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
 
-## Create a Note For an Order ##
+## Create an order note ##
 
 This API helps you to create a new note for an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -97,11 +97,11 @@ woocommerce.post("orders/645/notes", data).parsed_response
 }
 ```
 
-## View an Order Note ##
+## Retrieve an order note ##
 
 This API lets you retrieve and view a specific note from an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -161,11 +161,11 @@ woocommerce.get("orders/645/notes/51").parsed_response
 }
 ```
 
-## View List of Notes From an Order ##
+## List all order notes ##
 
 This API helps you to view all the notes from an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -250,11 +250,11 @@ woocommerce.get("orders/645/notes").parsed_response
 ]
 ```
 
-## Delete an Order Note ##
+## Delete an order note ##
 
 This API helps you delete an order note.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -313,7 +313,7 @@ woocommerce.delete("orders/645/notes/51", force: true).parsed_response
   }
 }
 ```
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
