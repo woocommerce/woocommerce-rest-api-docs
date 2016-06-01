@@ -1,8 +1,8 @@
 # Customers #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate customers.
+The customer API allows you to create, view, update, and delete individual customers and customers in bulk.
 
-## Customers Properties ##
+## Customer properties ##
 
 |     Attribute      |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
 |--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -21,14 +21,14 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `billing_address`  | array     | List of billing address data. See [Billing Address Properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
 | `shipping_address` | array     | List of shipping address data. See [Shipping Address Properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
 
-### Customer Last Order Properties ###
+### Customer last order properties ###
 
 | Attribute |    Type   |                                    Description                                     |
 |-----------|-----------|------------------------------------------------------------------------------------|
 | `id`      | integer   | Last order ID. <i class="label label-info">read-only</i>                           |
 | `date`    | date-time | UTC DateTime of the customer last order. <i class="label label-info">read-only</i> |
 
-### Billing Address Properties ###
+### Billing address properties ###
 
 |  Attribute   |  Type  |                     Description                      |
 |--------------|--------|------------------------------------------------------|
@@ -44,7 +44,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `email`      | string | Email address.                                       |
 | `phone`      | string | Phone number.                                        |
 
-### Shipping Address Properties ###
+### Shipping address properties ###
 
 |  Attribute   |  Type  |                     Description                      |
 |--------------|--------|------------------------------------------------------|
@@ -58,11 +58,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `postcode`   | string | Postal code.                                         |
 | `country`    | string | ISO code of the country.                             |
 
-## Create a Customer ##
+## Create a customer ##
 
 This API helps you to create a new customer.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -308,11 +308,11 @@ woocommerce.post("customers", data).parsed_response
 }
 ```
 
-## View a Customer ##
+## Retrieve a customer ##
 
 This API lets you retrieve and view a specific customer by ID or email.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -401,11 +401,11 @@ woocommerce.get("customers/2").parsed_response
 }
 ```
 
-## View List of Customers ##
+## List all customers ##
 
 This API helps you to view all the customers.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -548,7 +548,7 @@ woocommerce.get("customers").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                                                                           Description                                                                                                           |
 |------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -564,11 +564,11 @@ woocommerce.get("customers").parsed_response
 | `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                                                            |
 | `role`     | string  | Limit result set to resources with a specific role. Default: `customer`. Options (some plugins can add more user roles): `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager` |
 
-## Update a Customer ##
+## Update a customer ##
 
 This API lets you make changes to a customer.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -709,11 +709,11 @@ woocommerce.put("customers/2", data).parsed_response
 }
 ```
 
-## Delete a Customer ##
+## Delete a customer ##
 
 This API helps you delete a customer.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -802,17 +802,17 @@ woocommerce.delete("customers/2", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Customers ##
+## Batch update customers ##
 
 This API helps you to batch create, update and delete multiple customers.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1436,11 +1436,11 @@ woocommerce.post("customers/batch", data).parsed_response
 }
 ```
 
-## View Customer Downloads ##
+## Retrieve customer downloads ##
 
-This API lets you retrieve the customers downloads.
+This API lets you retrieve customer downloads permissions.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1510,7 +1510,7 @@ woocommerce.get("customers/2/downloads").parsed_response
 ]
 ```
 
-### Customer Downloads Properties ###
+### Customer downloads properties ###
 
 |       Attribute       |   Type  |                                                   Description                                                    |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------|
