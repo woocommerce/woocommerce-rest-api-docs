@@ -127,6 +127,7 @@ html, body {
 		color: $nav-active-text;
 		a:hover {
 			text-decoration: none;
+			background-color: $nav-active-bg;
 		}
 	}
 
@@ -329,6 +330,10 @@ html, body {
 		margin-bottom: 20px;
 	}
 
+	h4 {
+		font-weight: bold;
+	}
+
 	// h2s right after h1s should bump right up
 	// against the h1s.
 	h1 + h2, h1 + div + h2 {
@@ -486,7 +491,7 @@ html, body {
 		clear:right;
 		width: $examples-width;
 		padding: 0 20px;
-    white-space: pre-wrap;
+		white-space: normal;
 
 		&>p { margin: 0; }
 
@@ -500,6 +505,7 @@ html, body {
 	pre {
 		@extend %code-font;
 		background: $examples-bg;
+		white-space: pre-wrap;
 
 		code {
 			padding: 20px;
