@@ -1,8 +1,8 @@
-# Order - Refunds #
+# Refunds #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate order refunds.
 
-## Order Refunds Properties ##
+## Refund properties ##
 
 |   Attribute    |    Type   |                                               Description                                                |
 |----------------|-----------|----------------------------------------------------------------------------------------------------------|
@@ -10,9 +10,9 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `date_created` | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i> |
 | `amount`       | string    | Refund amount. <i class="label label-info">required</i>                                                  |
 | `reason`       | string    | Reason for refund.                                                                                       |
-| `line_items`   | array     | Line items data. See [Refunds Line Items Properties](#refunds-line-items-properties).                    |
+| `line_items`   | array     | Line items data. See [Refunds Line Items Properties](#refund-line-item-properties).                    |
 
-### Refunds Line Items Properties ###
+### Refund line item properties ###
 
 |   Attribute    |   Type  |                                          Description                                           |
 |----------------|---------|------------------------------------------------------------------------------------------------|
@@ -31,11 +31,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `taxes`        | array   | Line total tax with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i>    |
 | `meta`         | array   | Line item meta data with `key`, `label` and `value`. <i class="label label-info">read-only</i> |
 
-## Create a Refund For an Order ##
+## Create a refund ##
 
 This API helps you to create a new refund for an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -118,11 +118,11 @@ woocommerce.post("orders/116/refunds", data).parsed_response
 }
 ```
 
-## View an Order Refund ##
+## Retrieve a refund ##
 
 This API lets you retrieve and view a specific refund from an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -183,17 +183,17 @@ woocommerce.get("orders/116/refunds/150").parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                    Description                    |
 |-----------|--------|---------------------------------------------------|
 | `dp`      | string | Number of decimal points to use in each resource. |
 
-## View List of Refunds From an Order ##
+## List all refunds ##
 
 This API helps you to view all the refunds from an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -297,7 +297,7 @@ woocommerce.get("orders/116/refunds").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                  Description                                                  |
 |------------|---------|---------------------------------------------------------------------------------------------------------------|
@@ -315,11 +315,11 @@ woocommerce.get("orders/116/refunds").parsed_response
 | `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
 | `dp`       | string  | Number of decimal points to use in each resource.                                                             |
 
-## Delete an Order Refund ##
+## Delete a refund ##
 
 This API helps you delete an order refund.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -380,7 +380,7 @@ woocommerce.delete("orders/116/refunds/150", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
