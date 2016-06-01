@@ -2,7 +2,7 @@
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate products.
 
-## Products Properties ##
+## Product properties ##
 
 |       Attribute        |    Type   |                                                                                                                                                                          Description                                                                                                                                                                          |
 |------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -30,7 +30,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `total_sales`          | integer   | Amount of sales. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                    |
 | `virtual`              | boolean   | If the product is virtual. Virtual products are intangible and aren't shipped. Default is `false`.                                                                                                                                                                                                                                                            |
 | `downloadable`         | boolean   | If the product is downloadable. Downloadable products give access to a file upon purchase. Default is `false`.                                                                                                                                                                                                                                                |
-| `downloads`            | array     | List of downloadable files. See [Downloads Properties](#downloads-properties).                                                                                                                                                                                                                                                                                |
+| `downloads`            | array     | List of downloadable files. See [Downloads Properties](#download-properties).                                                                                                                                                                                                                                                                                |
 | `download_limit`       | integer   | Amount of times the product can be downloaded, the `-1` values means **unlimited re-downloads**. Default is `-1`.                                                                                                                                                                                                                                             |
 | `download_expiry`      | integer   | Number of days that the customer has up to be able to download the product, the `-1` means that **downloads never expires**. Default is `-1`.                                                                                                                                                                                                                 |
 | `download_type`        | string    | Download type, this controls the [schema](http://schema.org/) on the front-end. Default is `standard`. Options: `'standard'` (Standard Product), `application` (Application/Software) and `music` (Music).                                                                                                                                                    |
@@ -46,7 +46,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `backordered`          | boolean   | Shows if a product is on backorder (if the product have the `stock_quantity` negative). <i class="label label-info">read-only</i>                                                                                                                                                                                                                             |
 | `sold_individually`    | boolean   | Allow one item to be bought in a single order. Default is `false`.                                                                                                                                                                                                                                                                                            |
 | `weight`               | string    | Product weight in decimal format.                                                                                                                                                                                                                                                                                                                             |
-| `dimensions`           | array     | Product dimensions. See [Dimensions Properties](#dimensions-properties).                                                                                                                                                                                                                                                                                      |
+| `dimensions`           | array     | Product dimensions. See [Dimensions Properties](#dimension-properties).                                                                                                                                                                                                                                                                                      |
 | `shipping_required`    | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                            |
 | `shipping_taxable`     | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
 | `shipping_class`       | string    | Shipping class slug. Shipping classes are used by certain shipping methods to group similar products.                                                                                                                                                                                                                                                         |
@@ -59,16 +59,16 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `cross_sell_ids`       | array     | List of cross-sell products IDs. Cross-sells are products which you promote in the cart, based on the current product.                                                                                                                                                                                                                                        |
 | `parent_id`            | integer   | Product parent ID (`post_parent`).                                                                                                                                                                                                                                                                                                                            |
 | `purchase_note`        | string    | Optional note to send the customer after purchase.                                                                                                                                                                                                                                                                                                            |
-| `categories`           | array     | List of categories. See [Categories Properties](#categories-properties).                                                                                                                                                                                                                                                                                      |
-| `tags`                 | array     | List of tags. See [Tags Properties](#tags-properties).                                                                                                                                                                                                                                                                                                        |
-| `images`               | array     | List of images. See [Images Properties](#images-properties)                                                                                                                                                                                                                                                                                                   |
-| `attributes`           | array     | List of attributes. See [Attributes Properties](#attributes-properties).                                                                                                                                                                                                                                                                                      |
-| `default_attributes`   | array     | Defaults variation attributes, used only for variations and pre-selecte attributes on the frontend. See [Default Attributes Properties](#default-attributes-properties).                                                                                                                                                                                      |
-| `variations`           | array     | List of variations. See [Variations Properties](#variations-properties)                                                                                                                                                                                                                                                                                       |
+| `categories`           | array     | List of categories. See [Categories Properties](#category-properties).                                                                                                                                                                                                                                                                                      |
+| `tags`                 | array     | List of tags. See [Tags Properties](#tag-properties).                                                                                                                                                                                                                                                                                                        |
+| `images`               | array     | List of images. See [Images Properties](#image-properties)                                                                                                                                                                                                                                                                                                   |
+| `attributes`           | array     | List of attributes. See [Attributes Properties](#attribute-properties).                                                                                                                                                                                                                                                                                      |
+| `default_attributes`   | array     | Defaults variation attributes, used only for variations and pre-selecte attributes on the frontend. See [Default Attributes Properties](#default-attribute-properties).                                                                                                                                                                                      |
+| `variations`           | array     | List of variations. See [Variations Properties](#variation-properties)                                                                                                                                                                                                                                                                                       |
 | `grouped_products_ids` | string    | List of grouped products ID, only for `group` type products. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                        |
 | `menu_order`           | integer   | Menu order, used to custom sort products.                                                                                                                                                                                                                                                                                                                     |
 
-### Downloads Properties ###
+### Download properties ###
 
 | Attribute |  Type  |                             Description                              |
 |-----------|--------|----------------------------------------------------------------------|
@@ -76,7 +76,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `name`    | string | File name.                                                           |
 | `file`    | string | File URL. In write-mode you can use this property to send new files. |
 
-### Dimensions Properties ###
+### Dimension properties ###
 
 | Attribute |  Type  |            Description            |
 |-----------|--------|-----------------------------------|
@@ -84,7 +84,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `width`   | string | Product width in decimal format.  |
 | `height`  | string | Product height in decimal format. |
 
-### Categories Properties ###
+### Category properties ###
 
 | Attribute |   Type  |                       Description                        |
 |-----------|---------|----------------------------------------------------------|
@@ -92,7 +92,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `name`    | string  | Category name. <i class="label label-info">read-only</i> |
 | `slug`    | string  | Category slug. <i class="label label-info">read-only</i> |
 
-### Tags Properties ###
+### Tag properties ###
 
 | Attribute |   Type  |                       Description                        |
 |-----------|---------|----------------------------------------------------------|
@@ -100,7 +100,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `name`    | string  | Tag name. <i class="label label-info">read-only</i> |
 | `slug`    | string  | Tag slug. <i class="label label-info">read-only</i> |
 
-### Images Properties ###
+### Image properties ###
 
 |    Attribute    |    Type   |                                               Description                                               |
 |-----------------|-----------|---------------------------------------------------------------------------------------------------------|
@@ -112,7 +112,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `alt`           | string    | Image alternative text.                                                                                 |
 | `position`      | integer   | Image position. `0` means that the image is featured.                                                   |
 
-### Attributes Properties ###
+### Attribute properties ###
 
 |  Attribute  |   Type  |                                                    Description                                                    |
 |-------------|---------|-------------------------------------------------------------------------------------------------------------------|
@@ -123,7 +123,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `variation` | boolean | Define if the attribute can be used as variation. Default is `false`.                                             |
 | `options`   | array   | List of available term names of the attribute.                                                                    |
 
-### Default Attributes Properties ###
+### Default attribute properties ###
 
 | Attribute |  Type  |          Description          |
 |-----------|--------|-------------------------------|
@@ -131,7 +131,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `slug`    | string | Attribute slug.               |
 | `option`  | string | Selected attribute term name. |
 
-### Variations Properties ###
+### Variation properties ###
 
 |      Attribute       |    Type   |                                                                                                      Description                                                                                                      |
 |----------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -149,7 +149,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `purchasable`        | boolean   | Shows if the variation can be bought. <i class="label label-info">read-only</i>                                                                                                                                       |
 | `virtual`            | boolean   | If the variation is virtual. Virtual variations are intangible and aren't shipped. Default is `false`.                                                                                                                |
 | `downloadable`       | boolean   | If the variation is downloadable. Downloadable variations give access to a file upon purchase. Default is `false`.                                                                                                    |
-| `downloads`          | array     | List of downloadable files. See [Downloads Properties](#downloads-properties).                                                                                                                                        |
+| `downloads`          | array     | List of downloadable files. See [Downloads Properties](#download-properties).                                                                                                                                        |
 | `download_limit`     | integer   | Amount of times the variation can be downloaded, the `-1` values means **unlimited re-downloads**. Default is `-1`.                                                                                                   |
 | `download_expiry`    | integer   | Number of days that the customer has up to be able to download the variation, the `-1` means that **downloads never expires**. Default is `-1`.                                                                       |
 | `tax_status`         | string    | Tax status. Default is `taxable`. Options: `taxable`, `shipping` (Shipping only) and `none`.                                                                                                                          |
@@ -162,13 +162,13 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `backordered`        | boolean   | Shows if a variation is on backorder (if the variation have the `stock_quantity` negative). <i class="label label-info">read-only</i>                                                                                 |
 | `purchaseable`       | boolean   | Shows if the variation can be bought <i class="label label-info">read-only</i>                                                                                                                                        |
 | `weight`             | string    | Variation weight in decimal format.                                                                                                                                                                                   |
-| `dimensions`         | array     | Variation dimensions. See [Dimensions Properties](#dimensions-properties).                                                                                                                                            |
+| `dimensions`         | array     | Variation dimensions. See [Dimensions Properties](#dimension-properties).                                                                                                                                            |
 | `shipping_class`     | string    | Shipping class slug. Shipping classes are used by certain shipping methods to group similar products.                                                                                                                 |
 | `shipping_class_id`  | integer   | Shipping class ID. <i class="label label-info">read-only</i>                                                                                                                                                          |
-| `image`              | array     | Variation featured image. Only position `0` will be used. See [Images Properties](#images-properties).                                                                                                                |
-| `attributes`         | array     | List of variation attributes. See [Variation Attributes Properties](#variation-attributes-properties)                                                                                                                 |
+| `image`              | array     | Variation featured image. Only position `0` will be used. See [Images Properties](#image-properties).                                                                                                                |
+| `attributes`         | array     | List of variation attributes. See [Variation Attributes Properties](#variation-attribute-properties)                                                                                                                 |
 
-### Variation Attributes Properties ###
+### Variation attribute properties ###
 
 | Attribute |  Type  |          Description          |
 |-----------|--------|-------------------------------|
@@ -176,11 +176,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `slug`    | string | Attribute slug.               |
 | `option`  | string | Selected attribute term name. |
 
-## Create a Product ##
+## Create a product ##
 
 This API helps you to create a new product.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1117,11 +1117,11 @@ woocommerce.post("products", data).parsed_response
 }
 ```
 
-## View a Product ##
+## Retrieve a product ##
 
 This API lets you retrieve and view a specific product by ID.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1256,11 +1256,11 @@ woocommerce.get("products/162").parsed_response
 }
 ```
 
-## View List of Products ##
+## List all products ##
 
 This API helps you to view all the products.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1638,7 +1638,7 @@ woocommerce.get("products").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 |    Parameter     |   Type  |                                                                   Description                                                                   |
 |------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1664,11 +1664,11 @@ woocommerce.get("products").parsed_response
 | `attribute_term` | string  | Limit result set to products with a specific attribute term (required an assigned `attribute`), e.g. `?attribute=pa_color&attribute_term=9,14`. |
 | `sku`            | string  | Limit result set to products with a specific SKU.                                                                                               |
 
-## Update a Product ##
+## Update a product ##
 
 This API lets you make changes to a product.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1825,11 +1825,11 @@ woocommerce.put("products/162", data).parsed_response
 }
 ```
 
-## Delete a Product ##
+## Delete a product ##
 
 This API helps you delete a product.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1964,17 +1964,17 @@ woocommerce.delete("products/162?force=true").parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                                Description                                |
 |-----------|--------|---------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the product, Default is `false`. |
 
-## Create/Update/Delete Multiple Products ##
+## Batch update products ##
 
 This API helps you to batch create, update and delete multiple products.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2888,11 +2888,11 @@ woocommerce.post("products/batch", data).parsed_response
 }
 ```
 
-## View a Product Review ##
+## Retrieve product reviews ##
 
 This API lets you retrieve and view a specific product review by ID.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -2955,7 +2955,7 @@ woocommerce.get("products/162/reviews/9").parsed_response
 }
 ```
 
-### Product Reviews Properties ###
+### Product review properties ###
 
 |   Attribute    |   Type  |                                            Description                                             |
 |----------------|---------|----------------------------------------------------------------------------------------------------|
@@ -2966,7 +2966,7 @@ woocommerce.get("products/162/reviews/9").parsed_response
 | `email`        | string  | Reviewer email. <i class="label label-info">read-only</i>                                          |
 | `verified`     | boolean | Shows if the reviewer bought the product or not. <i class="label label-info">read-only</i>         |
 
-## View List of Product Reviews ##
+## List all product reviews ##
 
 This API lets you retrieve all reviews of a product.
 
@@ -3058,7 +3058,3 @@ woocommerce.get("products/162/reviews").parsed_response
   }
 ]
 ```
-
-### Product Reviews Properties ###
-
-See list of [Product Reviews Propertie](#product-reviews-propertie).
