@@ -2,11 +2,11 @@
 
 This section lists all API endpoints that can be used view reports.
 
-## View List of Reports ##
+## List all reports ##
 
 This API lets you retrieve and view a simple list of available reports.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -77,11 +77,11 @@ woocommerce.get("reports").parsed_response
 ]
 ```
 
-## View List of Sales Report ##
+## Retrieve sales report ##
 
-This API lets you retrieve and view a list of sales report.
+This API lets you retrieve and view a sales report.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -172,7 +172,7 @@ woocommerce.get("reports/sales", query).parsed_response
 ]
 ```
 
-#### Sales Report Properties ####
+#### Sales report properties ####
 
 |      Attribute      |   Type  |                              Description                              |
 |---------------------|---------|-----------------------------------------------------------------------|
@@ -188,7 +188,7 @@ woocommerce.get("reports/sales", query).parsed_response
 | `totals_grouped_by` | string  | Group type. <i class="label label-info">read-only</i>                 |
 | `totals`            | array   | Totals. <i class="label label-info">read-only</i>                     |
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |  Type  |                                                    Description                                                    |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
@@ -197,11 +197,11 @@ woocommerce.get("reports/sales", query).parsed_response
 | `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.                             |
 | `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.                               |
 
-## View List of Top Sellers Report ##
+## Retrieve top sellers report ##
 
 This API lets you retrieve and view a list of top sellers report.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -284,7 +284,7 @@ woocommerce.get("reports/sales/top_sellers", query).parsed_response
 ]
 ```
 
-#### Sales Report Properties ####
+#### Top sellers report properties ####
 
 |      Attribute      |   Type  |                              Description                              |
 |---------------------|---------|-----------------------------------------------------------------------|
@@ -292,7 +292,7 @@ woocommerce.get("reports/sales/top_sellers", query).parsed_response
 | `product_id`        | integer | Product ID. <i class="label label-info">read-only</i>                 |
 | `quantity`          | integer | Total number of purchases. <i class="label label-info">read-only</i>  |
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |  Type  |                                                    Description                                                    |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
