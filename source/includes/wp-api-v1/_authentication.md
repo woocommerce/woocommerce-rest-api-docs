@@ -2,6 +2,154 @@
 
 WooCommerce includes two ways to authenticate with the WP REST API. In addition, it is possible to use any [WP REST API authentication](http://v2.wp-api.org/guide/authentication/) plugin or method too.
 
+## REST API keys ##
+
+To be unable to authenticate to any endpoint of our REST API you must generate a REST API keys, currently you can generate new REST API keys by the WordPress admin interface or by an endpoint to auto generate.
+
+### Generating API keys in the WordPress admin interface ###
+
+To create or manage keys for a specific WordPress user, go to WooCommerce > Settings > API > Keys/Apps.
+
+![WooCommerce REST API keys settings](images/woocommerce-api-keys-settings.png)
+
+Click in the "Add Key" button and in the next screen select the User you would like to generate a key for in the User field and add a Description. Choose the level of access for this REST API key, which can be Read access, Write access or Read/Write access. Then select the Generate API Key button and WooCommerce will generate REST API keys for that user.
+
+![Creating a new REST API key](images/woocommerce-creating-api-keys.png)
+
+Now that keys have been generated, you should see two new keys, a QRCode, and a Revoke API Key button. These two keys are your Consumer Key and Consumer Secret.
+
+![Generated REST API key](images/woocommerce-api-key-generated.png)
+
+### Auto generating API keys using our Application Authentication Endpoint ###
+
+This endpoint can be used by any APP to *allow users to generate API keys* for your APP. This makes integration with WooCommerce API easier because the user only needs to grant access to your APP via a URL. After being redirected back to your APP, the API keys will be sent back in a separate POST request.
+
+The following image illustrates how this works:
+
+![Authentication Endpoint flow](images/woocommerce-auth-endpoint-flow.png)
+
+<aside class="warning">
+	This endpoint works exclusively for users to generate API keys and facilitate integration between the WooCommerce REST API and an application. In no way is this endpoint intended to be used as login method for customers.
+</aside>
+
+#### URL parameters ####
+
+|   Parameter    |  Type  |                                                                                  Description                                                                                  |
+|----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `app_name`     | string | Your APP name <i class="label label-info">mandatory</i>                                                                                                                       |
+| `scope`        | string | Level of access. Available: `read`, `write` and `read_write` <i class="label label-info">mandatory</i>                                                                        |
+| `user_id`      | string | User ID in your APP. For your internal reference, used when the user is redirected back to your APP. NOT THE USER ID IN WOOCOMMERCE <i class="label label-info">mandatory</i> |
+| `return_url`   | string | URL the user will be redirected to after authentication <i class="label label-info">mandatory</i>                                                                             |
+| `callback_url` | string | URL that will receive the generated API key. Note: this URL should be over **HTTPS** <i class="label label-info">mandatory</i>                                                |
+
+#### Creating an authentication endpoint URL ####
+
+You must use the `/wc-auth/v1/authorize` endpoint and pass the above parameters as a query string.
+
+> Example of how to build an authentication URL:
+
+```shell
+# Bash example
+STORE_URL='http://example.com'
+ENDPOINT='/wc-auth/v1/authorize'
+PARAMS="app_name=My App Name&scope=read_write&user_id=123&return_url=http://app.com/return-page&callback_url=https://app.com/callback-endpoint"
+QUERY_STRING="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$PARAMS")"
+QUERY_STRING=$(echo $QUERY_STRING | sed -e "s/%20/\+/g" -e "s/%3D/\=/g" -e "s/%26/\&/g")
+
+echo "$STORE_URL$ENDPOINT?$QUERY_STRING"
+```
+
+```javascript
+var querystring = require('querystring');
+
+var store_url = 'http://example.com';
+var endpoint = '/wc-auth/v1/authorize';
+var params = {
+  app_name: 'My App Name',
+  scope: 'read_write',
+  user_id: 123,
+  return_url: 'http://app.com/return-page',
+  callback_url: 'https://app.com/callback-endpoint'
+};
+var query_string = querystring.stringify(params).replace(/%20/g, '+');
+
+console.log(store_url + endpoint + '?' + query_string);
+```
+
+```php
+<?php
+$store_url = 'http://example.com';
+$endpoint = '/wc-auth/v1/authorize';
+$params = [
+    'app_name' => 'My App Name',
+    'scope' => 'write',
+    'user_id' => 123,
+    'return_url' => 'http://app.com',
+    'callback_url' => 'https://app.com'
+];
+$query_string = http_build_query( $params );
+
+echo $store_url . $endpoint . '?' . $query_string;
+?>
+```
+
+```python
+from urllib.parse import urlencode
+
+store_url = 'http://example.com'
+endpoint = '/wc-auth/v1/authorize'
+params = {
+    "app_name": "My App Name",
+    "scope": "read_write",
+    "user_id": 123,
+    "return_url": "http://app.com/return-page",
+    "callback_url": "https://app.com/callback-endpoint"
+}
+query_string = urlencode(params)
+
+print("%s%s?%s" % (store_url, endpoint, query_string))
+```
+
+```ruby
+require "uri"
+
+store_url = 'http://example.com'
+endpoint = '/wc-auth/v1/authorize'
+params = {
+  app_name: "My App Name",
+  scope: "read_write",
+  user_id: 123,
+  return_url: "http://app.com/return-page",
+  callback_url: "https://app.com/callback-endpoint"
+}
+query_string = URI.encode_www_form(params)
+
+puts "#{store_url}#{endpoint}?#{query_string}"
+```
+
+> Example of JSON posted with the API Keys
+
+```
+{
+    "key_id": 1,
+    "user_id": 123,
+    "consumer_key": "ck_xxxxxxxxxxxxxxxx",
+    "consumer_secret": "cs_xxxxxxxxxxxxxxxx",
+    "key_permissions": "read_write"
+}
+```
+
+Example of the screen that the user will see:
+
+![Authentication Endpoint example](images/woocommerce-auth-endpoint-example.png)
+
+#### Notes ####
+
+- While redirecting the user using `return_url`, you are also sent `success` and `user_id` parameters as query strings.
+- `success` sends `0` if the user denied, or `1` if authenticated successfully.
+- Use `user_id` to identify the user when redirected back to the (`return_url`) and also remember to save the API Keys when your `callback_url` is posted to after auth.
+- The auth endpoint will send the API Keys in JSON format to the `callback_url`, so it's important to remember that some languages such as PHP will not display it inside the `$_POST` global variable, in PHP you can access it using `$HTTP_RAW_POST_DATA` (for old PHP versions) or `file_get_contents('php://input');`.
+
 ## Authentication over HTTPS ##
 
 You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the REST API Consumer Key as the username and the REST API Consumer Secret as the password. 
@@ -9,7 +157,7 @@ You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authenti
 > HTTP Basic Auth example
 
 ```shell
-curl https://www.example.com/wc-api/v3/orders \
+curl https://www.example.com/wp-json/wc/v1/orders \
     -u consumer_key:consumer_secret
 ```
 
@@ -18,7 +166,7 @@ Occasionally some servers may not parse the Authorization header correctly (if y
 > Example for servers that not properly parse the Authorization header:
 
 ```shell
-curl https://www.example.com/wc-api/v3/orders?consumer_key=123&consumer_secret=abc
+curl https://www.example.com/wp-json/wc/v1/orders?consumer_key=123&consumer_secret=abc
 ```
 
 ## Authentication over HTTP ##
@@ -37,14 +185,15 @@ The **Request URL** will be the endpoint you are posting to, e.g. `http://www.ex
 
 #### Collect parameters ####
 
-Collect and normalize your query string parameters. This includes all oauth_* parameters except for the oauth_signature itself.
+Collect and normalize your query string parameters. This includes all `oauth_*` parameters except for the `oauth_signature` itself.
 
 These values need to be encoded into a single string which will be used later on. The process to build the string is very specific:
 
 1. [Percent encode](https://dev.twitter.com/oauth/overview/percent-encoding-parameters) every key and value that will be signed.
 2. Sort the list of parameters alphabetically by encoded key.
 3. For each key/value pair:
-	- Append the encoded key to the output string.	- Append the `=` character to the output string.
+	- Append the encoded key to the output string.
+	- Append the `=` character to the output string.
 	- Append the encoded value to the output string.
 	- If there are more key/value pairs remaining, append a `&` character to the output string.
 
