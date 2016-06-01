@@ -1,8 +1,8 @@
-# Product - Tags #
+# Product Tags #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product tags.
 
-## Product Tag Properties ##
+## Product tag properties ##
 
 |   Attribute   |   Type  |                                       Description                                        |
 |---------------|---------|------------------------------------------------------------------------------------------|
@@ -12,11 +12,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `description` | string  | HTML description of the resource.                                                        |
 | `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
 
-## Create a Product Tag ##
+## Create a product tag ##
 
 This API helps you to create a new product tag.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -96,7 +96,7 @@ woocommerce.post("products/tags", data).parsed_response
 }
 ```
 
-## View a Product Tag ##
+## Retrieve a product tag ##
 
 This API lets you retrieve a product tag by ID.
 
@@ -154,7 +154,7 @@ woocommerce.get("products/tags/34").parsed_response
 }
 ```
 
-## View List of Product Tags ##
+## List all product tags ##
 
 This API lets you retrieve all product tag.
 
@@ -233,7 +233,7 @@ woocommerce.get("products/tags").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 |  Parameter   |   Type  |                                                                Description                                                                 |
 |--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -249,11 +249,11 @@ woocommerce.get("products/tags").parsed_response
 | `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
 | `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
 
-## Update a Product Tag ##
+## Update a product tag ##
 
 This API lets you make changes to a product tag.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -331,11 +331,11 @@ woocommerce.put("products/tags/34", data).parsed_response
 }
 ```
 
-## Delete a Product Tag ##
+## Delete a product tag ##
 
 This API helps you delete a product tag.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -391,17 +391,17 @@ woocommerce.delete("products/tag/34", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Product Tags ##
+## Batch update product tags ##
 
 This API helps you to batch create, update and delete multiple product tags.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
