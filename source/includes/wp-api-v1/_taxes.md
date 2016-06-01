@@ -1,8 +1,8 @@
-# Taxes #
+# Tax rates #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate tax rates.
 
-## Taxes Properties ##
+## Tax rate properties ##
 
 | Attribute  |   Type  |                                                                                   Description                                                                                   |
 |------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -19,11 +19,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `order`    | integer | Indicates the order that will appear in queries.                                                                                                                                |
 | `class`    | string  | Tax class. Default is `standard`.                                                                                                                                               |
 
-## Create a Tax Rate ##
+## Create a tax rate ##
 
 This API helps you to create a new tax rate.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -128,7 +128,7 @@ woocommerce.post("taxes", data).parsed_response
 }
 ```
 
-## View a Tax Rate ##
+## Retrieve a tax rate ##
 
 This API lets you retrieve and view a specific tax rate by ID.
 
@@ -193,11 +193,11 @@ woocommerce.get("taxes/72").parsed_response
 }
 ```
 
-## View List of Tax Rates ##
+## List all tax rates ##
 
 This API helps you to view all the tax rates.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -496,7 +496,7 @@ woocommerce.get("taxes").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                                Description                                                                 |
 |------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -511,11 +511,11 @@ woocommerce.get("taxes").parsed_response
 | `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
 | `class`    | string  | Sort by tax class.                                                                                                                         |
 
-## Update a Tax Rate ##
+## Update a tax rate ##
 
 This API lets you make changes to a tax rate.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -600,11 +600,11 @@ woocommerce.put("taxes/72", data).parsed_response
 }
 ```
 
-## Delete a Tax Rate ##
+## Delete a tax rate ##
 
 This API helps you delete a tax rate.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -667,17 +667,17 @@ woocommerce.delete("taxes/72", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Tax Rates ##
+## Batch update tax rates ##
 
 This API helps you to batch create, update and delete multiple tax rates.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
