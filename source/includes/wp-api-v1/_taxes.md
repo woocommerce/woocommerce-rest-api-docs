@@ -686,10 +686,10 @@ This API helps you to batch create, update and delete multiple tax rates.
 	</div>
 </div>
 
-> Example bulk creating all US taxes:
+> Example batch creating all US taxes:
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v1/taxes/bulk \
+curl -X POST https://example.com/wp-json/wc/v1/taxes/batch \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -1472,7 +1472,7 @@ var data = {
   ]
 };
 
-WooCommerce.post('taxes/bulk', data, function(err, data, res) {
+WooCommerce.post('taxes/batch', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -1868,7 +1868,7 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->post('taxes/bulk', $data));
+print_r($woocommerce->post('taxes/batch', $data));
 ?>
 ```
 
@@ -2262,7 +2262,7 @@ data = {
     ]
 }
 
-print(wcapi.post("taxes/bulk", data).json())
+print(wcapi.post("taxes/batch", data).json())
 ```
 
 ```ruby
@@ -2655,7 +2655,7 @@ data = {
   ]
 }
 
-woocommerce.post("taxes/bulk", data).parsed_response
+woocommerce.post("taxes/batch", data).parsed_response
 ```
 
 > JSON response example:
