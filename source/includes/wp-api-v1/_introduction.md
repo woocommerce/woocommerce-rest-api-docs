@@ -61,6 +61,24 @@ curl https://example.com/wp-json/wc/v1/products/tags/34?_jsonp=tagDetails \
 	-u consumer_key:consumer_secret
 ```
 
+```javascript
+WooCommerce.get('products/tags/34?_jsonp=tagDetails', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php print_r($woocommerce->get('products/tags/34', ['_jsonp' => 'tagDetails'])); ?>
+```
+
+```python
+print(wcapi.get("products/tags/34?_jsonp=tagDetails").json())
+```
+
+```ruby
+woocommerce.get("products/tags/34", _jsonp: "tagDetails").parsed_response
+```
+
 > Response:
 
 ```

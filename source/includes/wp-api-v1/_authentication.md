@@ -161,12 +161,100 @@ curl https://www.example.com/wp-json/wc/v1/orders \
     -u consumer_key:consumer_secret
 ```
 
+```javascript
+var WooCommerceAPI = require('woocommerce-api');
+
+var WooCommerce = new WooCommerceAPI({
+  url: 'https://example.com',
+  consumerKey: 'consumer_key',
+  consumerSecret: 'consumer_secret',
+  wp_api: true,
+  version: 'wc/v1'
+});
+```
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Automattic\WooCommerce\Client;
+
+$woocommerce = new Client(
+    'https://example.com',
+    'consumer_key',
+    'consumer_secret',
+    [
+        'wp_api' => true,
+        'version' => 'wc/v1'
+    ]
+);
+?>
+```
+
+```python
+from woocommerce import API
+
+wcapi = API(
+    url="https://example.com",
+    consumer_key="consumer_key",
+    consumer_secret="consumer_secret",
+    wp_api=True,
+    version="wc/v1"
+)
+```
+
+```ruby
+require "woocommerce_api"
+
+woocommerce = WooCommerce::API.new(
+  "https://example.com",
+  "consumer_key",
+  "consumer_secret",
+  {
+    wp_json: true,
+    version: "v3"
+  }
+)
+```
+
 Occasionally some servers may not parse the Authorization header correctly (if you see a "Consumer key is missing" error when authenticating over SSL, you have a server issue). In this case, you may provide the consumer key/secret as query string parameters instead.
 
 > Example for servers that not properly parse the Authorization header:
 
 ```shell
 curl https://www.example.com/wp-json/wc/v1/orders?consumer_key=123&consumer_secret=abc
+```
+
+```javascript
+var WooCommerceAPI = require('woocommerce-api');
+
+var WooCommerce = new WooCommerceAPI({
+  url: 'https://example.com',
+  consumerKey: 'consumer_key',
+  consumerSecret: 'consumer_secret',
+  wp_api: true,
+  version: 'wc/v1',
+  queryStringAuth: true // When true and using under HTTPS force Basic Authentication as query string
+});
+```
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Automattic\WooCommerce\Client;
+
+$woocommerce = new Client(
+    'https://example.com',
+    'consumer_key',
+    'consumer_secret',
+    [
+        'wp_api' => true,
+        'version' => 'wc/v1',
+        'query_string_auth' => true // When true and using under HTTPS force Basic Authentication as query string
+    ]
+);
+?>
 ```
 
 ## Authentication over HTTP ##

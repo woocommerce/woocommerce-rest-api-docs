@@ -1858,7 +1858,7 @@ print(wcapi.delete("products/162?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("products/162?force=true").parsed_response
+woocommerce.delete("products/162", force: true).parsed_response
 ```
 
 > JSON response example:
