@@ -1,6 +1,6 @@
 # Tax classes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate tax classes.
+The tax classes API allows you to create, view, and delete individual tax classes.
 
 ## Tax class properties ##
 

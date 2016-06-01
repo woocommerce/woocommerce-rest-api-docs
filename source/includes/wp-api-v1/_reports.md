@@ -1,6 +1,6 @@
 # Reports #
 
-This section lists all API endpoints that can be used view reports.
+The reports API allows you to view all types of reports available.
 
 ## List all reports ##
 

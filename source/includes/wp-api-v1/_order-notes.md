@@ -1,6 +1,7 @@
 # Order notes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate order notes. Order notes are added by administrators and programmatically to store data about an order, or order events.
+The order notes API allows you to create, view, and delete individual order notes.  
+Order notes are added by administrators and programmatically to store data about an order, or order events.
 
 ## Order note properties ##
 

@@ -1,6 +1,6 @@
 # Refunds #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate order refunds.
+The refunds API allows you to create, view, and delete individual refunds.
 
 ## Refund properties ##
 
