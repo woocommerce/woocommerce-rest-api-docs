@@ -1,6 +1,6 @@
 # Product attributes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate product attributes.
+The product attributes API allows you to create, view, update, and delete individual, or a batch, of product attributes.
 
 ## Product attribute properties ##
 

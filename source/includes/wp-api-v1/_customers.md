@@ -1,6 +1,6 @@
 # Customers #
 
-The customer API allows you to create, view, update, and delete individual customers and customers in bulk.
+The customer API allows you to create, view, update, and delete individual, or a batch, of customers.
 
 ## Customer properties ##
 

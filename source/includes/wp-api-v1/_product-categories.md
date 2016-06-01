@@ -1,6 +1,6 @@
 # Product categories #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate product categories.
+The product categories API allows you to create, view, update, and delete individual, or a batch, of categories.
 
 ## Product category properties ##
 

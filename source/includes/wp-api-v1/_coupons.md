@@ -1,6 +1,6 @@
 # Coupons #
 
-The coupon api allows you to read, create, edit and delete coupon codes individually or in bulk.
+The coupons API allows you to create, view, update, and delete individual, or a batch, of coupon codes.
 
 ## Coupon properties ##
 

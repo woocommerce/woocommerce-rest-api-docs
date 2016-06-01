@@ -1,6 +1,6 @@
 # Orders #
 
-The orders API lets you view, create, update and delete individual orders or in bulk.
+The orders API allows you to create, view, update, and delete individual, or a batch, of orders.
 
 ## Order properties ##
 

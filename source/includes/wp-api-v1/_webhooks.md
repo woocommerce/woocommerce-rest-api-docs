@@ -1,6 +1,6 @@
 # Webhooks #
 
-This section lists all API endpoints that can be used to create, edit, or otherwise manipulate webhooks.
+The webhooks API allows you to create, view, update, and delete individual, or a batch, of webhooks.
 
 Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the webhook custom post type, as well as enqueuing webhook actions and processing/delivering/logging webhooks. On `woocommerce_init`, active webhooks are loaded.
 

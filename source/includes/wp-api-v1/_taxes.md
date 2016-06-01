@@ -1,6 +1,6 @@
 # Tax rates #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate tax rates.
+The taxes API allows you to create, view, update, and delete individual tax rates, or a batch of tax rates.
 
 ## Tax rate properties ##
 

@@ -1,6 +1,6 @@
 # Product attribute terms #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate product attribute terms.
+The product attribute terms API allows you to create, view, update, and delete individual, or a batch, of attribute terms.
 
 ## Attribute term properties ##
 

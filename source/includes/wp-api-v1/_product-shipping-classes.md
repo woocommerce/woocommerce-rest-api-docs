@@ -1,6 +1,6 @@
 # Product shipping classes #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate product shipping classes.
+The product shipping class API allows you to create, view, update, and delete individual, or a batch, of shipping classes.
 
 ## Shipping class properties ##
 
