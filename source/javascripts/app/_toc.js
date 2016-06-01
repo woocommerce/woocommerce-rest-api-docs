@@ -18,7 +18,7 @@
       hideEffectSpeed: 180,
       ignoreSelector: '.toc-ignore',
       highlightOffset: 60,
-      scrollTo: -1,
+      scrollTo: 0 < $("body.has-warning").length ? 30 : -1,
       scrollHistory: true,
       hashGenerator: function (text, element) {
         return element.prop('id');
