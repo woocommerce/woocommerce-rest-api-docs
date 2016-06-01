@@ -1,8 +1,8 @@
 # Webhooks #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate webhooks.
+This section lists all API endpoints that can be used to create, edit, or otherwise manipulate webhooks.
 
-Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the custom post type, as well as enqueuing webhook actions and processing/delivering/logging the webhook. On `woocommerce_init`, active webhooks are loaded and their associated hooks are added.
+Webhooks can be managed via the WooCommerce settings screen or by using the REST API endpoints. The `WC_Webhook` class manages all data storage and retrieval of the webhook custom post type, as well as enqueuing webhook actions and processing/delivering/logging webhooks. On `woocommerce_init`, active webhooks are loaded.
 
 Each webhook has:
 
@@ -25,9 +25,9 @@ Core topics are:
 
 Custom topics can also be used which map to a single hook name, for example you could add a webhook with topic `action.woocommerce_add_to_cart` that is triggered on that event. Custom topics pass the first hook argument to the payload, so in this example the `cart_item_key` would be included in the payload.
 
-### Delivery/Payload ###
+### Delivery/payload ###
 
-Delivery is done using `wp_remote_post()` (HTTP POST) and processed in the background by default using wp-cron. A few custom headers are added to the request to help the receiver process the webhook:
+Delivery is performed using `wp_remote_post()` (HTTP POST) and processed in the background by default using wp-cron. A few custom headers are added to the request to help the receiver process the webhook:
 
 * `X-WC-Webhook-Topic` - e.g. `order.updated`.
 * `X-WC-Webhook-Resource` - e.g. `order`.
@@ -52,11 +52,11 @@ After 5 consecutive failed deliveries (as defined by a non HTTP 2xx response cod
 
 Delivery logs can be fetched through the REST API endpoint or in code using `WC_Webhook::get_delivery_logs()`.
 
-### Visual Interface ###
+### Visual interface ###
 
 You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woothemes.com/document/webhooks/) for more details.
 
-## Webhooks Properties ##
+## Webhook properties ##
 
 |    Attribute    |    Type   |                                                                                                              Description                                                                                                              |
 |-----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -72,7 +72,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `date_created`  | date-time | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                                                                   |
 | `date_modified` | date-time | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                                                                              |
 
-### Webhooks Delivery Properties ###
+### Webhooks delivery properties ###
 
 |     Attribute      |    Type   |                                                                Description                                                                 |
 |--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,7 +80,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                               |
 | `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i>          |
 | `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                         |
-| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-headers-properties) for more details. <i class="label label-info">read-only</i> |
+| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-header-properties) for more details. <i class="label label-info">read-only</i> |
 | `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                                    |
 | `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                                |
 | `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                             |
@@ -88,7 +88,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `response_body`    | string    | The response body from the receiving server. <i class="label label-info">read-only</i>                                                     |
 | `date_created`     | date-time | The date the webhook delivery was logged, in the site's timezone. <i class="label label-info">read-only</i>                                |
 
-#### Request Headers Properties ####
+#### Request header properties ####
 
 |         Attribute          |   Type  |                                                              Description                                                              |
 |----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -101,11 +101,11 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `X-WC-Webhook-ID`          | integer | The webhook's ID. <i class="label label-info">read-only</i>                                                                           |
 | `X-WC-Webhook-Delivery-ID` | integer | The delivery ID. <i class="label label-info">read-only</i>                                                                            |
 
-## Create a Webhook ##
+## Create a webhook ##
 
 This API helps you to create a new webhook.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -203,11 +203,11 @@ woocommerce.post("webhooks", data).parsed_response
 }
 ```
 
-## View a Webhook ##
+## Retrieve a webhook ##
 
 This API lets you retrieve and view a specific webhook.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -273,11 +273,11 @@ woocommerce.get("webhooks/142").parsed_response
 }
 ```
 
-## View List of Webhooks ##
+## List all webhooks ##
 
 This API helps you to view all the webhooks.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -373,7 +373,7 @@ woocommerce.get("webhooks").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                          Description                                                          |
 |------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
@@ -392,11 +392,11 @@ woocommerce.get("webhooks").parsed_response
 | `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                          |
 | `status`   | string  | Limit result set to webhooks assigned a specific status. Default is `all`. Options: `all`, `active`, `paused` and `disabled`. |
 
-## Update a Webhook ##
+## Update a webhook ##
 
 This API lets you make changes to a webhook.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -484,11 +484,11 @@ woocommerce.put("webhooks/142", data).parsed_response
 }
 ```
 
-## Delete a Webhook ##
+## Delete a webhook ##
 
 This API helps you delete a webhook.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -554,17 +554,17 @@ woocommerce.delete("webhooks/142").parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                                Description                                 |
 |-----------|--------|----------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the webhook, Defaults is `false`. |
 
-## Create/Update/Delete Multiple Webhooks ##
+## Batch update webhooks ##
 
 This API helps you to batch create, update and delete multiple webhooks.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -780,11 +780,11 @@ woocommerce.post("webhooks/batch", data).parsed_response
 }
 ```
 
-## View a Webhooks Delivery ##
+## Retrieve webhook delivery ##
 
 This API lets you retrieve and view a specific webhook delivery.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -874,11 +874,11 @@ woocommerce.get("webhooks/142/deliveries/54").parsed_response
 	View the <a href="#webhooks-delivery-properties">Webhooks Delivery Properties</a> for more details on this response.
 </aside>
 
-## View List of Webhooks Deliveries ##
+## List all webhook deliveries ##
 
 This API helps you to view all deliveries from a specific webhooks.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
