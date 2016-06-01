@@ -18,6 +18,7 @@ toc_footers:
 
 includes:
   - wp-api-v1/introduction
+  - wp-api-v1/authentication
   - wp-api-v1/index
   - wp-api-v1/coupons
   - wp-api-v1/customers
