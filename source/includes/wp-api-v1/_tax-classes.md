@@ -1,19 +1,19 @@
-# Tax - Classes #
+# Tax classes #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate tax classes.
 
-## Taxes Properties ##
+## Tax class properties ##
 
 | Attribute |  Type  |                                  Description                                  |
 |-----------|--------|-------------------------------------------------------------------------------|
 | `slug`    | string | Unique identifier for the resource. <i class="label label-info">read-only</i> |
 | `name`    | string | Tax class name. <i class="label label-info">required</i>                      |
 
-## Create a Tax Class ##
+## Create a tax class ##
 
 This API helps you to create a new tax class.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -83,11 +83,11 @@ woocommerce.post("taxes/classes", data).parsed_response
 }
 ```
 
-## View List of Tax Classes ##
+## List all tax classes ##
 
-This API helps you to view all the tax classes.
+This API helps you to view all tax classes.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -159,7 +159,7 @@ woocommerce.get("taxes/classes").parsed_response
 ]
 ```
 
-## Delete a Tax Class ##
+## Delete a tax class ##
 
 This API helps you delete a tax class.
 
@@ -167,7 +167,7 @@ This API helps you delete a tax class.
 	This also will delete all tax rates from the selected class.
 </aside>
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -215,8 +215,8 @@ woocommerce.delete("taxes/classes/zero-rate", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
-| `force`   | string | Required to be `true`, as resource does not support trashing. |
+| `force`   | string | Required to be `true`, since this resource does not support trashing. |
