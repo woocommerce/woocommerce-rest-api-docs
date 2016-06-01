@@ -1,8 +1,8 @@
 # Coupons #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate coupons.
+The coupon api allows you to read, create, edit and delete coupon codes individually or in bulk.
 
-## Coupon Properties ##
+## Coupon properties ##
 
 |           Attribute           |    Type   |                                                                      Description                                                                      |
 |-------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -30,11 +30,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                                     |
 | `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                                                  |
 
-## Create a Coupon ##
+## Create a coupon ##
 
 This API helps you to create a new coupon.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -155,11 +155,11 @@ woocommerce.post("coupons", data).parsed_response
 }
 ```
 
-## View a Coupon ##
+## Retrieve a coupon ##
 
 This API lets you retrieve and view a specific coupon by ID or code.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -233,11 +233,11 @@ woocommerce.get("coupons/113").parsed_response
 }
 ```
 
-## View List of Coupons ##
+## List all coupons ##
 
-This API helps you to view all the coupons.
+This API helps you to list all the coupons that have been created.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -350,7 +350,7 @@ woocommerce.get("coupons").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                  Description                                                  |
 |------------|---------|---------------------------------------------------------------------------------------------------------------|
@@ -368,11 +368,11 @@ woocommerce.get("coupons").parsed_response
 | `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
 | `code`     | string  | Limit result set to resources with a specific code.                                                           |
 
-## Update a Coupon ##
+## Update a coupon ##
 
 This API lets you make changes to a coupon.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -468,11 +468,11 @@ woocommerce.put("coupons/113", data).parsed_response
 }
 ```
 
-## Delete a Coupon ##
+## Delete a coupon ##
 
 This API helps you delete a coupon.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -546,17 +546,17 @@ woocommerce.delete("coupons/113", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                               Description                                |
 |-----------|--------|--------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the coupon, Default is `false`. |
 
-## Create/Update/Delete Multiple Coupons ##
+## Batch update coupons ##
 
 This API helps you to batch create, update and delete multiple coupons.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

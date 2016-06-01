@@ -2,7 +2,7 @@
 
 By default, the API provides information about all available endpoints on the site. Authentication is not required to access the API index.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
