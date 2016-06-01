@@ -1,8 +1,8 @@
-# Product - Categories #
+# Product Categories #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product categories.
 
-## Product Category Properties ##
+## Product category properties ##
 
 |   Attribute   |   Type  |                                                   Description                                                   |
 |---------------|---------|-----------------------------------------------------------------------------------------------------------------|
@@ -16,11 +16,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `menu_order`  | integer | Menu order, used to custom sort the resource.                                                                   |
 | `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i>                        |
 
-## Create a Product Category ##
+## Create a product category ##
 
 This API helps you to create a new product category.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -104,7 +104,7 @@ woocommerce.post("products/categories", data).parsed_response
 }
 ```
 
-## View a Product Category ##
+## Retrieve a product category ##
 
 This API lets you retrieve a product category by ID.
 
@@ -166,7 +166,7 @@ woocommerce.get("products/categories/9").parsed_response
 }
 ```
 
-## View List of Product Categories ##
+## List all product categories ##
 
 This API lets you retrieve all product categories.
 
@@ -388,7 +388,7 @@ woocommerce.get("products/categories").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 |  Parameter   |   Type  |                                                                Description                                                                 |
 |--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -405,11 +405,11 @@ woocommerce.get("products/categories").parsed_response
 | `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
 | `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
 
-## Update a Product Category ##
+## Update a product category ##
 
 This API lets you make changes to a product category.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -501,11 +501,11 @@ woocommerce.put("products/categories/9", data).parsed_response
 }
 ```
 
-## Delete a Product Category ##
+## Delete a product category ##
 
 This API helps you delete a product category.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -565,17 +565,17 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Product Categories ##
+## Batch update product categories ##
 
 This API helps you to batch create, update and delete multiple product categories.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
