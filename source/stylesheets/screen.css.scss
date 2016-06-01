@@ -437,13 +437,13 @@ html, body {
 
 		&.warning {
 			background-color: $aside-warning-bg;
-			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
+			@include text-shadow(0 1px 0 darken($aside-warning-bg, 15%));
 			color: lighten($aside-notice-bg, 80%);
 		}
 
 		&.success {
 			background-color: $aside-success-bg;
-			@include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
+			@include text-shadow(0 1px 0 darken($aside-success-bg, 15%));
 			color: lighten($aside-notice-bg, 80%);
 		}
 	}
