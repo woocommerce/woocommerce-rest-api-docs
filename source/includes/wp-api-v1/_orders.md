@@ -1398,9 +1398,9 @@ woocommerce.delete("orders/154", force: true).parsed_response
 
 #### Available Parameters ####
 
-| Parameter |  Type  |                               Description                                |
-|-----------|--------|--------------------------------------------------------------------------|
-| `force`   | string | Use `true` whether to permanently delete the coupon, Default is `false`. |
+| Parameter |  Type  |                               Description                               |
+|-----------|--------|-------------------------------------------------------------------------|
+| `force`   | string | Use `true` whether to permanently delete the order, Default is `false`. |
 
 ## Create/Update/Delete Multiple Orders ##
 
