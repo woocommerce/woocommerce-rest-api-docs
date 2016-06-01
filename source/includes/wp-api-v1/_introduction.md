@@ -2,18 +2,21 @@
 
 WooCommerce (WC) 2.6+ is fully integrated with the WordPress [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. This allows WC data to be created, read, updated, and deleted using requests in JSON format and using WordPress REST API Authentication methods and standard HTTP verbs which are understood by most HTTP clients.
 
+The current WP REST API integration version is `v1` which takes a first-order position in endpoints. 
+
 The following table shows API versions present in each major version of WooCommerce:
+
+| API Version | WC Version | WP Version |
+|-------------|------------|------------|
+| `v1`        | 2.6.x or later | 4.4 or later |
+
+Prior to 2.6, WooCommerce had it's own REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
 
 | API Version | WC Version | WP Version | Documentation |
 |-------------|------------|------------|---------------|
-| `v1`        | 2.6.x or later | 4.4 or later |
 | `Legacy v3` | 2.4.x or later | 4.1 or later | [Legacy v3 docs](v3.html) |
 | `Legacy v2` | 2.2.x or later | 4.1 or later | [Legacy v2 docs](v2.html) |
 | `Legacy v1` | 2.1.x or later | 4.1 or later | [Legacy v1 docs](v1.html) |
-
-The current WP REST API integration version is `v1` which takes a first-order position in endpoints. 
-
-Prior to 2.6, WooCommerce had it's own REST API separate from WordPress. The main differences between the new API and legacy API are that WordPress now handles authentication, there are new new formats and parameters for all objects, and we've adopted the use of schemas for all endpoints (accessed when doing OPTIONS requests).
 
 ## Requirements ##
 
