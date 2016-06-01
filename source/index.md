@@ -35,6 +35,7 @@ includes:
   - wp-api-v1/taxes
   - wp-api-v1/tax-classes
   - wp-api-v1/webhooks
+  - wp-api-v1/authentication-endpoint
 
 search: false
 ---
