@@ -1,4 +1,4 @@
-# Order Notes #
+# Order notes #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate order notes. Order notes are added by administrators and programmatically to store data about an order, or order events.
 

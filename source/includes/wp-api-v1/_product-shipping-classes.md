@@ -1,4 +1,4 @@
-# Product Shipping Classes #
+# Product shipping classes #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product shipping classes.
 

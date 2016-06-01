@@ -1,4 +1,4 @@
-# Product Attribute Terms #
+# Product attribute terms #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product attribute terms.
 
