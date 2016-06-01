@@ -1,8 +1,8 @@
-# Product - Shipping Classes #
+# Product Shipping Classes #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product shipping classes.
 
-## Product Shipping Class Properties ##
+## Shipping class properties ##
 
 |   Attribute   |   Type  |                                       Description                                        |
 |---------------|---------|------------------------------------------------------------------------------------------|
@@ -12,11 +12,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `description` | string  | HTML description of the resource.                                                        |
 | `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
 
-## Create a Product Shipping Class ##
+## Create a shipping class ##
 
 This API helps you to create a new product shipping class.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -96,7 +96,7 @@ woocommerce.post("products/shipping_classes", data).parsed_response
 }
 ```
 
-## View a Product Shipping Class ##
+## Retrieve a shipping class ##
 
 This API lets you retrieve a product shipping class by ID.
 
@@ -154,7 +154,7 @@ woocommerce.get("products/shipping_classes/32").parsed_response
 }
 ```
 
-## View List of Product Shipping Classes ##
+## List all shipping classes ##
 
 This API lets you retrieve all product shipping classes.
 
@@ -233,7 +233,7 @@ woocommerce.get("products/shipping_classes").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 |  Parameter   |   Type  |                                                                Description                                                                 |
 |--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -249,11 +249,11 @@ woocommerce.get("products/shipping_classes").parsed_response
 | `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
 | `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
 
-## Update a Product Shipping Class ##
+## Update a shipping class ##
 
 This API lets you make changes to a product shipping class.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -331,11 +331,11 @@ woocommerce.put("products/shipping_classes/32", data).parsed_response
 }
 ```
 
-## Delete a Product Shipping Class ##
+## Delete a shipping class ##
 
 This API helps you delete a product shipping class.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -391,17 +391,17 @@ woocommerce.delete("products/shipping_classes/32", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Product Shipping Classes ##
+## Batch update shipping classes ##
 
 This API helps you to batch create, update and delete multiple product shipping classes.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
