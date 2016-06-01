@@ -1,12 +1,19 @@
 # Introduction #
 
-WooCommerce 2.6+ is fully integrated with the WordPress [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. This allows WooCommerce data to be created, read, updated, and deleted using requests in JSON format, and using WordPress REST API Authentication methods, and standard HTTP verbs, which are understood by most HTTP clients.
+WooCommerce (WC) 2.6+ is fully integrated with the WordPress [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. This allows WC data to be created, read, updated, and deleted using requests in JSON format and using WordPress REST API Authentication methods and standard HTTP verbs which are understood by most HTTP clients.
 
-The current WP REST API integration version is `v1` which takes a first-order position in endpoints. The following table shows API versions present in each major version of WooCommerce:
+The following table shows API versions present in each major version of WooCommerce:
 
-| Version | WooCommerce Version | WordPress Version    |
-|---------|---------------------|----------------------|
-| `v1`    | 2.6.x               | 4.4 or later         |
+| API Version | WC Version | WP Version | Documentation |
+|-------------|------------|------------|---------------|
+| `v1`        | 2.6.x or later | 4.4 or later |
+| `Legacy v3` | 2.4.x or later | 4.1 or later | [Legacy v3 docs](v3.html) |
+| `Legacy v2` | 2.2.x or later | 4.1 or later | [Legacy v2 docs](v2.html) |
+| `Legacy v1` | 2.1.x or later | 4.1 or later | [Legacy v1 docs](v1.html) |
+
+The current WP REST API integration version is `v1` which takes a first-order position in endpoints. 
+
+Prior to 2.6, WooCommerce had it's own REST API separate from WordPress. The main differences between the new API and legacy API are that WordPress now handles authentication, there are new new formats and parameters for all objects, and we've adopted the use of schemas for all endpoints (accessed when doing OPTIONS requests).
 
 ## Requirements ##
 
@@ -20,25 +27,8 @@ To use the latest version of the REST API you must be using:
 If you use ModSecurity and see `501 Method Not Implemented` errors, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details.
 
 <aside class="notice">
-	Note that is <strong>NOT REQUIRED</strong> install the <a href="https://wordpress.org/plugins/rest-api/" target="_blank">WP REST API (WP API)</a> plugin.
+	Please note that you are <strong>not</strong> required to install the <a href="https://wordpress.org/plugins/rest-api/" target="_blank">WP REST API (WP API)</a> plugin to use the WC REST API - the WC REST API runs independently.
 </aside>
-
-## Legacy API ##
-
-Prior to 2.6, WooCommerce had it's own REST API independent from WordPress. The differences between the new API and legacy API are as follows:
-
-* In the new API, the WordPress REST API handles authentication instead of our API.
-* The WP REST API integration includes batch endpoints for coupons, customers, orders, refunds, products, attributes, categories, tags, taxes and webhooks.
-* New formats and parameters for coupons, orders, products and some taxomonies to reflect changes in the WooCommerce core.
-* We've adopted the use of schemas for all endpoints (accessed when doing OPTIONS requests).
-
-Our API Keys, authentication endpoint and webhooks still work with the new API.
-
-Documentation for the legacy APIs can be found below:
-
-* [WooCommerce REST API v1 docs](v1.html)
-* [WooCommerce REST API v2 docs](v2.html)
-* [WooCommerce REST API v3 docs](v3.html)
 
 ## Request/Response Format ##
 
@@ -78,10 +68,12 @@ curl https://example.com/wp-json/wc/v1/products/tags/34?_jsonp=tagDetails \
 
 Occasionally you might encounter errors when accessing the REST API. There are four possible types:
 
-* Invalid requests, such as using an unsupported HTTP method will result in `400 Bad Request`.
-* Authentication or permission errors, such as incorrect API keys will result in `401 Unauthorized`.
-* Requests to resources that don't exist or are missing required parameters will result in `404 Not Found`.
-* Requests that cannot be processed due to a server error will result in `500 Internal Server Error`.
+| Error Code | Error Type |
+|------------|------------|
+| `400 Bad Request` | Invalid request, e.g. using an unsupported HTTP method | 
+| `401 Unauthorized` | Authentication or permission error, e.g. incorrect API keys |
+| `404 Not Found` | Requests to resources that don't exist or are missing |
+| `500 Internal Server Error` | Server error |
 
 > WP REST API error example:
 
@@ -139,8 +131,6 @@ Pagination info is included in the [Link Header](http://tools.ietf.org/html/rfc5
 Link: <https://www.example.com/wp-json/wc/v1/products?page=2>; rel="next",
 <https://www.example.com/wp-json/wc/v1/products?page=3>; rel="last"`
 ```
-
-*Linebreak included for readability*
 
 The possible `rel` values are:
 
