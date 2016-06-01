@@ -48,15 +48,6 @@ html, body {
 	width: 20px;
 }
 
-@mixin embossed-bg {
-	background:
-		linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-		linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-		linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-		linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-		$nav-subitem-bg;
-}
-
 .tocify-wrapper {
 	transition: left 0.3s ease-in-out;
 
@@ -71,6 +62,7 @@ html, body {
 	background-color: $nav-bg;
 	font-size: 13px;
 	font-weight: bold;
+	border-right: 1px solid #ddd;
 
 	// language selector for mobile devices
 	.lang-selector {
@@ -82,32 +74,15 @@ html, body {
 	}
 
 	// This is the logo at the top of the ToC
-	&>img {
+	.logo-wrapper {
+		padding: 10px 20px;
+		margin: 0;
 		display: block;
-	}
+		border-bottom: 1px solid #ddd;
 
-	&>.search {
-		position: relative;
-
-		input {
-			background: $nav-bg;
-			border-width: 0 0 1px 0;
-			border-color: $search-box-border-color;
-			padding: 6px 0 6px 20px;
-			box-sizing: border-box;
-			margin: $nav-v-padding $nav-padding;
-			width: $nav-width - 30;
-			outline: none;
-			color: $nav-text;
-			border-radius: 0; /* ios has a default border radius */
-		}
-
-		&:before {
-			position: absolute;
-			top: 17px;
-			left: $nav-padding;
-			color: $nav-text;
-			@extend %icon-search;
+		img {
+			display: block;
+			width: 100%;
 		}
 	}
 
@@ -115,40 +90,9 @@ html, body {
 		margin-top: $logo-margin;
 	}
 
-	.search-results {
-		margin-top: 0;
-		box-sizing: border-box;
-		height: 0;
-		overflow-y: auto;
-		overflow-x: hidden;
-		transition-property: height, margin;
-		transition-duration: 180ms;
-		transition-timing-function: ease-in-out;
-		&.visible {
-			height: 30%;
-			margin-bottom: 1em;
-		}
-
-		@include embossed-bg;
-
-		li {
-			margin: 1em $nav-padding;
-			line-height: 1;
-		}
-
-		a {
-			color: $nav-text;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-
-
 	.tocify-item>a, .toc-footer li {
-		padding: 0 $nav-padding 0 $nav-padding;
+		padding: 10px $nav-padding;
+		line-height: 1;
 		display: block;
 		overflow-x: hidden;
 		white-space: nowrap;
@@ -172,11 +116,18 @@ html, body {
 		transition-duration: 230ms;
 	}
 
+	a:hover {
+		text-decoration: underline;
+	}
+
 	// This is the currently selected ToC entry
 	.tocify-focus {
-		box-shadow: 0px 1px 0px $nav-active-shadow;
+		//box-shadow: 0px 1px 0px $nav-active-shadow;
 		background-color: $nav-active-bg;
 		color: $nav-active-text;
+		a:hover {
+			text-decoration: none;
+		}
 	}
 
 	// Subheaders are the submenus that slide open
@@ -185,22 +136,21 @@ html, body {
 		display: none; // tocify will override this when needed
 		background-color: $nav-subitem-bg;
 		font-weight: 500;
+
 		.tocify-item>a {
-			padding-left: $nav-padding + $nav-indent;
+			padding-left: $nav-padding + 10;
 			font-size: 12px;
 		}
 
-		// for embossed look:
-		@include embossed-bg;
 		&>li:last-child {
 			box-shadow: none; // otherwise it'll overflow out of the subheader
 		}
 	}
 
 	.toc-footer {
-		padding: 1em 0;
-		margin-top: 1em;
-		border-top: 1px dashed $nav-footer-border-color;
+		padding: 10px 0;
+		margin-top: 10px;
+		border-top: 1px solid #ddd;
 
 		li,a {
 			color: $nav-text;
@@ -213,7 +163,6 @@ html, body {
 
 		li {
 			font-size: 0.8em;
-			line-height: 1.7;
 			text-decoration: none;
 		}
 	}
@@ -297,18 +246,21 @@ html, body {
 		float:left;
 		color: $lang-select-text;
 		text-decoration: none;
-		padding: 0 10px;
-		line-height: 30px;
+		padding: 10px 20px;
+		line-height: 40px;
 		outline: 0;
+		border-top: 4px solid $lang-select-bg;;
 
 		&:active, &:focus {
 			background-color: $lang-select-pressed-bg;
 			color: $lang-select-pressed-text;
+			border-top-color: #9B5C8F;
 		}
 
 		&.active {
 			background-color: $lang-select-active-bg;
 			color: $lang-select-active-text;
+			border-top-color: #9B5C8F;
 		}
 	}
 
@@ -328,6 +280,7 @@ html, body {
 	// to place content above the dark box
 	position: relative;
 	z-index: 30;
+	padding-top: 40px;
 
 	&:after {
 		content: '';
@@ -340,9 +293,8 @@ html, body {
 		padding: 0 $main-padding;
 		box-sizing: border-box;
 		display: block;
-		@include text-shadow($main-embossed-text-shadow);
-
 		@extend %left-col;
+		font-weight: normal;
 	}
 
 	&>ul, &>ol {
@@ -357,29 +309,24 @@ html, body {
 	h1 {
 		@extend %header-font;
 		font-size: 30px;
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
-		border-bottom: 1px solid #ccc;
-		margin-bottom: $h1-margin-bottom;
-		margin-top: 2em;
+		margin-top: 4em;
+		margin-bottom: 20px;
+		padding-top: 20px;
 		border-top: 1px solid #ddd;
-		background-image: linear-gradient(to bottom, #fff, #f9f9f9);
 	}
 
 	h1:first-child, div:first-child + h1 {
 		border-top-width: 0;
 		margin-top: 0;
+		border-top: 0;
 	}
 
 	h2 {
 		@extend %header-font;
 		font-size: 20px;
-		margin-top: 4em;
-		margin-bottom: 0;
-		border-top: 1px solid #ccc;
-		padding-top: 1.2em;
-		padding-bottom: 1.2em;
-		background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+		margin-top: 40px;
+		padding-top: 40px;
+		margin-bottom: 20px;
 	}
 
 	// h2s right after h1s should bump right up
@@ -471,20 +418,23 @@ html, body {
 	aside {
 		padding-top: 1em;
 		padding-bottom: 1em;
-		@include text-shadow(0 1px 0 lighten($aside-notice-bg, 15%));
+		@include text-shadow(0 1px 0 darken($aside-notice-bg, 15%));
 		margin-top: 1.5em;
 		margin-bottom: 1.5em;
 		background: $aside-notice-bg;
 		line-height: 1.6;
+		color: lighten($aside-notice-bg, 80%);
 
 		&.warning {
 			background-color: $aside-warning-bg;
 			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
+			color: #333;
 		}
 
 		&.success {
 			background-color: $aside-success-bg;
 			@include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
+			color: #333;
 		}
 	}
 
@@ -523,20 +473,14 @@ html, body {
 
 .content {
 	pre, blockquote {
-		background-color: $code-bg;
 		color: #fff;
-
-		padding: 2em $main-padding;
-		margin: 0;
-		width: $examples-width;
-
+		margin: 0 0 20px;
+		@extend %right-col;
+		box-sizing: border-box;
 		float:right;
 		clear:right;
-
-		box-sizing: border-box;
-		@include text-shadow(0px 1px 2px rgba(0,0,0,0.4));
-
-		@extend %right-col;
+		width: $examples-width;
+		padding: 0 20px;
 
 		&>p { margin: 0; }
 
@@ -549,16 +493,13 @@ html, body {
 
 	pre {
 		@extend %code-font;
-	}
+		background: $examples-bg;
 
-	blockquote {
-		&>p {
-			background-color: $code-annotation-bg;
+		code {
+			padding: 20px;
 			border-radius: 5px;
-			padding: $code-annotation-padding;
-			color: #ccc;
-			border-top: 1px solid #000;
-			border-bottom: 1px solid #404040;
+			display: block;
+			background-color: $code-bg;
 		}
 	}
 }
