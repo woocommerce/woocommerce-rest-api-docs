@@ -117,7 +117,7 @@ html, body {
 	}
 
 	a:hover {
-		text-decoration: underline;
+		background: #eee;
 	}
 
 	// This is the currently selected ToC entry
@@ -308,10 +308,10 @@ html, body {
 
 	h1 {
 		@extend %header-font;
-		font-size: 30px;
+		font-size: 35px;
 		margin-top: 4em;
 		margin-bottom: 20px;
-		padding-top: 20px;
+		padding-top: 25px;
 		border-top: 1px solid #ddd;
 	}
 
@@ -323,9 +323,9 @@ html, body {
 
 	h2 {
 		@extend %header-font;
-		font-size: 20px;
+		font-size: 25px;
 		margin-top: 40px;
-		padding-top: 40px;
+		padding-top: 25px;
 		margin-bottom: 20px;
 	}
 
@@ -338,13 +338,13 @@ html, body {
 
 	h3, h4, h5, h6 {
 		@extend %header-font;
-		font-size: 15px;
+		font-size: 20px;
 		margin-top: 2.5em;
 		margin-bottom: 0.8em;
 	}
 
 	h4, h5, h6 {
-		font-size: 10px;
+		font-size: 15px;
 	}
 
 	hr {
@@ -481,6 +481,7 @@ html, body {
 		clear:right;
 		width: $examples-width;
 		padding: 0 20px;
+    white-space: pre-wrap;
 
 		&>p { margin: 0; }
 
