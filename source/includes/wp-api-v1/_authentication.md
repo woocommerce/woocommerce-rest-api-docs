@@ -50,7 +50,7 @@ These values need to be encoded into a single string which will be used later on
 
 When percent encoding in PHP for example, you would use `rawurlencode()`.
 
-When sorting parameters in PHP for exaple, you would use `uksort( $params, 'strcmp' )`.
+When sorting parameters in PHP for example, you would use `uksort( $params, 'strcmp' )`.
 
 > Parameters example:
 
@@ -96,4 +96,4 @@ If you are having trouble generating a correct signature, you'll want to review 
 * You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedinlabs.com/oauth-test/) -- leave the member token/secret blank.
 * Twitter has great instructions on [generating signatures](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
 * Note that the request body is *not* signed as per the OAuth spec, see [Google's OAuth 1.0 extension](https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html) for details on why.
-* If including filter fields in your request, it saves a lot of trouble if you can order your filter fields alphabetically before submitting. Many Oauth libraries won't order subquery fields properly, resulting in invalid signatures.
+* If including parameters in your request, it saves a lot of trouble if you can order your query string items alphabetically.
