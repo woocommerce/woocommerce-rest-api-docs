@@ -1,8 +1,8 @@
-# Product - Attribute Terms #
+# Product Attribute Terms #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product attribute terms.
 
-## Product Attribute Properties ##
+## Attribute term properties ##
 
 |  Attribute   |   Type  |                                       Description                                        |
 |--------------|---------|------------------------------------------------------------------------------------------|
@@ -12,11 +12,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `menu_order` | integer | Menu order, used to custom sort the resource.                                            |
 | `count`      | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
 
-## Create a Product Attribute Term ##
+## Create an attribute term ##
 
 This API helps you to create a new product attribute term.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -94,7 +94,7 @@ woocommerce.post("products/attributes/2/terms", data).parsed_response
 }
 ```
 
-## View a Product Attribute Term ##
+## Retrieve an attribute term ##
 
 This API lets you retrieve a product attribute term by ID.
 
@@ -152,7 +152,7 @@ woocommerce.get("products/attributes/2/terms/23").parsed_response
 }
 ```
 
-## View List of Product Attribute Terms ##
+## List all attribute terms ##
 
 This API lets you retrieve all terms from a product attribute.
 
@@ -326,7 +326,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 |  Parameter   |   Type  |                                                                Description                                                                 |
 |--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -343,11 +343,11 @@ woocommerce.get("products/attributes/2/terms").parsed_response
 | `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
 | `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
 
-## Update a Product Attribute Term ##
+## Update an attribute term ##
 
 This API lets you make changes to a product attribute term.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -425,11 +425,11 @@ woocommerce.put("products/attributes/2/terms/23", data).parsed_response
 }
 ```
 
-## Delete a Product Attribute Term ##
+## Delete an attribute term ##
 
 This API helps you delete a product attribute term.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -485,17 +485,17 @@ woocommerce.delete("products/attributes/2/terms/23", force: true).parsed_respons
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Product Attribute Terms ##
+## Batch update attribute terms ##
 
 This API helps you to batch create, update and delete multiple product attribute terms.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
