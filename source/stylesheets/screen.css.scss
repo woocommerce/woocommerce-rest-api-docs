@@ -425,16 +425,21 @@ html, body {
 		line-height: 1.6;
 		color: lighten($aside-notice-bg, 80%);
 
+    a {
+      color: lighten($aside-notice-bg, 80%);
+      text-decoration: underline;
+    }
+
 		&.warning {
 			background-color: $aside-warning-bg;
 			@include text-shadow(0 1px 0 lighten($aside-warning-bg, 15%));
-			color: #fff;
+			color: lighten($aside-notice-bg, 80%);
 		}
 
 		&.success {
 			background-color: $aside-success-bg;
 			@include text-shadow(0 1px 0 lighten($aside-success-bg, 15%));
-			color: #fff;
+			color: lighten($aside-notice-bg, 80%);
 		}
 	}
 
