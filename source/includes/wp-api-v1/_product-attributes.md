@@ -1,8 +1,8 @@
-# Product - Attributes #
+# Product Attributes #
 
 This section lists all API endpoints that can be used to create, edit or otherwise manipulate product attributes.
 
-## Product Attribute Properties ##
+## Product attribute properties ##
 
 |   Attribute    |   Type  |                                                Description                                                |
 |----------------|---------|-----------------------------------------------------------------------------------------------------------|
@@ -13,11 +13,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `order_by`     | string  | Default sort order. Default is `menu_order`. Options: `menu_order`, `name`, `name_num` and `id`.          |
 | `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                                    |
 
-## Create a Product Attribute ##
+## Create a product attribute ##
 
 This API helps you to create a new product attribute.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -116,7 +116,7 @@ woocommerce.post("products/attributes", data).parsed_response
 }
 ```
 
-## View a Product Attribute ##
+## Retrieve a product attribute ##
 
 This API lets you retrieve and view a specific product attribute by ID.
 
@@ -175,11 +175,11 @@ woocommerce.get("products/attributes/1").parsed_response
 }
 ```
 
-## View List of Product Attributes ##
+## List all product attributes ##
 
 This API helps you to view all the product attributes.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -258,11 +258,11 @@ woocommerce.get("products/attributes").parsed_response
 ]
 ```
 
-## Update a Product Attribute ##
+## Update a product attribute ##
 
 This API lets you make changes to a product attribute.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -341,11 +341,11 @@ woocommerce.put("products/attributes/1", data).parsed_response
 }
 ```
 
-## Delete a Product Attribute ##
+## Delete a product attribute ##
 
 This API helps you delete a product attribute.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -406,17 +406,17 @@ woocommerce.delete("products/attributes/1", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                          Description                          |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Create/Update/Delete Multiple Product Attributes ##
+## Batch update product attributes ##
 
 This API helps you to batch create, update and delete multiple product attributes.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
