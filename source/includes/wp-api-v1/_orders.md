@@ -1,8 +1,8 @@
 # Orders #
 
-This section lists all API endpoints that can be used to create, edit or otherwise manipulate orders.
+The orders API lets you view, create, update and delete individual orders or in bulk.
 
-## Orders Properties ##
+## Order properties ##
 
 |       Attribute        |    Type   |                                                                             Description                                                                              |
 |------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,13 +36,13 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `date_completed`       | date-time | The date the order was completed, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
 | `date_paid`            | date-time | The date the order has been paid, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
 | `cart_hash`            | string    | MD5 hash of cart items to ensure orders are not modified. <i class="label label-info">read-only</i>                                                                  |
-| `line_items`           | array     | Line items data. See [Line Items Properties](#line-items-properties).                                                                                                |
-| `tax_lines`            | array     | Tax lines data. See [Tax Lines Properties](#tax-lines-properties). <i class="label label-info">read-only</i>                                                         |
-| `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines Properties](#shipping-lines-properties).                                                                                    |
-| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-lines-properites).                                                                                                   |
-| `coupon_lines`         | array     | Coupons line data. See [Coupon Lines Properties](#coupon-lines-properties).                                                                                          |
+| `line_items`           | array     | Line items data. See [Line Items Properties](#line-item-properties).                                                                                                |
+| `tax_lines`            | array     | Tax lines data. See [Tax Lines Properties](#tax-line-properties). <i class="label label-info">read-only</i>                                                         |
+| `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines Properties](#shipping-line-properties).                                                                                    |
+| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-line-properties).                                                                                                   |
+| `coupon_lines`         | array     | Coupons line data. See [Coupon Lines Properties](#coupon-line-properties).                                                                                          |
 
-### Line Items Properties ###
+### Line item properties ###
 
 |   Attribute    |   Type  |                                          Description                                           |
 |----------------|---------|------------------------------------------------------------------------------------------------|
@@ -61,7 +61,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `taxes`        | array   | Line taxes with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i>    |
 | `meta`         | array   | Line item meta data with `key`, `label` and `value`. <i class="label label-info">read-only</i> |
 
-### Tax Lines Properties ###
+### Tax line properties ###
 
 |      Attribute       |   Type  |                                                             Description                                                             |
 |----------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -73,7 +73,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `tax_total`          | string  | Tax total (not including shipping taxes). <i class="label label-info">read-only</i>                                                 |
 | `shipping_tax_total` | string  | Shipping tax total. <i class="label label-info">read-only</i>                                                                       |
 
-### Shipping Lines Properties ###
+### Shipping line properties ###
 
 |   Attribute    |   Type  |                                 Description                                 |
 |----------------|---------|-----------------------------------------------------------------------------|
@@ -84,7 +84,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i> |
 | `taxes`        | array   | Line taxes with `id` and `total`. <i class="label label-info">read-only</i> |
 
-### Fee Lines Properites ###
+### Fee line properties ###
 
 |  Attribute   |   Type  |                                       Description                                       |
 |--------------|---------|-----------------------------------------------------------------------------------------|
@@ -96,7 +96,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `total_tax`  | string  | Line total tax (after discounts).                                                       |
 | `taxes`      | array   | Line taxes with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i> |
 
-### Coupon Lines Properties ###
+### Coupon line properties ###
 
 |   Attribute    |   Type  |                          Description                          |
 |----------------|---------|---------------------------------------------------------------|
@@ -105,11 +105,11 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `discount`     | string  | Discount total. <i class="label label-info">required</i>      |
 | `discount_tax` | string  | Discount total tax. <i class="label label-info">read-only</i> |
 
-## Create an Order ##
+## Create an order ##
 
 This API helps you to create a new order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -520,11 +520,11 @@ woocommerce.post("orders", data).parsed_response
 }
 ```
 
-## View an Order ##
+## Retrieve an order ##
 
 This API lets you retrieve and view a specific order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -701,17 +701,17 @@ woocommerce.get("orders/154").parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                    Description                    |
 |-----------|--------|---------------------------------------------------|
 | `dp`      | string | Number of decimal points to use in each resource. |
 
-## View List of Orders ##
+## List all orders ##
 
 This API helps you to view all the orders.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -991,7 +991,7 @@ woocommerce.get("orders").parsed_response
 ]
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter  |   Type  |                                                                                                 Description                                                                                                  |
 |------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1215,11 +1215,11 @@ woocommerce.put("orders/154", data).parsed_response
 }
 ```
 
-## Delete an Order ##
+## Delete an order ##
 
 This API helps you delete an order.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1396,17 +1396,17 @@ woocommerce.delete("orders/154", force: true).parsed_response
 }
 ```
 
-#### Available Parameters ####
+#### Available parameters ####
 
 | Parameter |  Type  |                               Description                               |
 |-----------|--------|-------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the order, Default is `false`. |
 
-## Create/Update/Delete Multiple Orders ##
+## Batch update orders ##
 
 This API helps you to batch create, update and delete multiple orders.
 
-### HTTP Request ###
+### HTTP request ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
