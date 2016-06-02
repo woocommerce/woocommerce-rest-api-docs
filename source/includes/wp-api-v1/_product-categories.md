@@ -12,9 +12,20 @@ The product categories API allows you to create, view, update, and delete indivi
 | `parent`      | integer | The id for the parent of the resource.                                                                          |
 | `description` | string  | HTML description of the resource.                                                                               |
 | `display`     | string  | Category archive display type. Default is `default`. Options: `default`, `products`, `subcategories` and `both` |
-| `image`       | string  | Image URL.                                                                                                      |
+| `image`       | array   | Image data. See [Category Image properties](#category-image-properties)                                         |
 | `menu_order`  | integer | Menu order, used to custom sort the resource.                                                                   |
 | `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i>                        |
+
+### Category Image properties ###
+
+|    Attribute    |    Type   |                                               Description                                               |
+|-----------------|-----------|---------------------------------------------------------------------------------------------------------|
+| `id`            | integer   | Image ID (attachment ID). In write-mode used to attach pre-existing images.                             |
+| `date_created`  | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
+| `date_modified` | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
+| `src`           | string    | Image URL. In write-mode used to upload new images.                                                     |
+| `name`          | string    | Image name.                                                                                             |
+| `alt`           | string    | Image alternative text.                                                                                 |
 
 ## Create a product category ##
 
@@ -36,13 +47,19 @@ curl -X POST https://example.com/wp-json/wc/v1/products/categories \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "name": "Clothing"
+  "name": "Clothing",
+  "image": {
+    "src": "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
+  }
 }'
 ```
 
 ```javascript
 var data = {
-  name: 'Clothing'
+  name: 'Clothing',
+  image: {
+    src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
+  }
 };
 
 WooCommerce.post('products/categories', data, function(err, data, res) {
@@ -53,7 +70,10 @@ WooCommerce.post('products/categories', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'name' => 'Clothing'
+    'name' => 'Clothing',
+    'image' => [
+        'src' => 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
+    ]
 ];
 
 print_r($woocommerce->post('products/categories', $data));
@@ -62,7 +82,10 @@ print_r($woocommerce->post('products/categories', $data));
 
 ```python
 data = {
-    "name": "Clothing"
+    "name": "Clothing",
+    "image": {
+        "src": "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
+    }
 }
 
 print(wcapi.post("products/categories", data).json())
@@ -70,7 +93,10 @@ print(wcapi.post("products/categories", data).json())
 
 ```ruby
 data = {
-  name: "Clothing"
+  name: "Clothing",
+  image: {
+    src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
+  }
 }
 
 woocommerce.post("products/categories", data).parsed_response
@@ -86,18 +112,25 @@ woocommerce.post("products/categories", data).parsed_response
   "parent": 0,
   "description": "",
   "display": "default",
-  "image": "",
+  "image": {
+    "id": 173,
+    "date_created": "2016-05-31T23:51:03",
+    "date_modified": "2016-05-31T23:51:03",
+    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "title": "",
+    "alt": ""
+  },
   "menu_order": 0,
-  "count": 12,
+  "count": 18,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        "href": "https://example/wp-json/wc/v1/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories"
+        "href": "https://example/wp-json/wc/v1/products/categories"
       }
     ]
   }
@@ -148,18 +181,25 @@ woocommerce.get("products/categories/9").parsed_response
   "parent": 0,
   "description": "",
   "display": "default",
-  "image": "",
+  "image": {
+    "id": 173,
+    "date_created": "2016-05-31T23:51:03",
+    "date_modified": "2016-05-31T23:51:03",
+    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "title": "",
+    "alt": ""
+  },
   "menu_order": 0,
-  "count": 12,
+  "count": 18,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        "href": "https://example/wp-json/wc/v1/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories"
+        "href": "https://example/wp-json/wc/v1/products/categories"
       }
     ]
   }
@@ -211,7 +251,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 11,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 4,
     "_links": {
@@ -239,18 +279,25 @@ woocommerce.get("products/categories").parsed_response
     "parent": 0,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": {
+      "id": 173,
+      "date_created": "2016-05-31T23:51:03",
+      "date_modified": "2016-05-31T23:51:03",
+      "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+      "title": "",
+      "alt": ""
+    },
     "menu_order": 0,
-    "count": 12,
+    "count": 18,
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+          "href": "https://example/wp-json/wc/v1/products/categories/9"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/categories"
+          "href": "https://example/wp-json/wc/v1/products/categories"
         }
       ]
     }
@@ -262,7 +309,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 9,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 6,
     "_links": {
@@ -290,7 +337,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 0,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 7,
     "_links": {
@@ -313,7 +360,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 0,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 5,
     "_links": {
@@ -336,7 +383,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 11,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 3,
     "_links": {
@@ -364,7 +411,7 @@ woocommerce.get("products/categories").parsed_response
     "parent": 9,
     "description": "",
     "display": "default",
-    "image": "",
+    "image": [],
     "menu_order": 0,
     "count": 6,
     "_links": {
@@ -483,18 +530,25 @@ woocommerce.put("products/categories/9", data).parsed_response
   "parent": 0,
   "description": "All kinds of clothes.",
   "display": "default",
-  "image": "",
+  "image": {
+    "id": 173,
+    "date_created": "2016-05-31T23:51:03",
+    "date_modified": "2016-05-31T23:51:03",
+    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "title": "",
+    "alt": ""
+  },
   "menu_order": 0,
-  "count": 12,
+  "count": 18,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        "href": "https://example/wp-json/wc/v1/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories"
+        "href": "https://example/wp-json/wc/v1/products/categories"
       }
     ]
   }
@@ -547,18 +601,25 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
   "parent": 0,
   "description": "All kinds of clothes.",
   "display": "default",
-  "image": "",
+  "image": {
+    "id": 173,
+    "date_created": "2016-05-31T23:51:03",
+    "date_modified": "2016-05-31T23:51:03",
+    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "title": "",
+    "alt": ""
+  },
   "menu_order": 0,
-  "count": 12,
+  "count": 18,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories/9"
+        "href": "https://example/wp-json/wc/v1/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/categories"
+        "href": "https://example/wp-json/wc/v1/products/categories"
       }
     ]
   }
@@ -726,7 +787,7 @@ woocommerce.post("products/categories/batch", data).parsed_response
       "parent": 11,
       "description": "",
       "display": "default",
-      "image": "",
+      "image": [],
       "menu_order": 0,
       "count": 0,
       "_links": {
@@ -754,7 +815,7 @@ woocommerce.post("products/categories/batch", data).parsed_response
       "parent": 0,
       "description": "",
       "display": "default",
-      "image": "",
+      "image": [],
       "menu_order": 0,
       "count": 0,
       "_links": {
@@ -779,7 +840,7 @@ woocommerce.post("products/categories/batch", data).parsed_response
       "parent": 9,
       "description": "Nice hoodies",
       "display": "default",
-      "image": "",
+      "image": [],
       "menu_order": 0,
       "count": 6,
       "_links": {
@@ -809,7 +870,7 @@ woocommerce.post("products/categories/batch", data).parsed_response
       "parent": 0,
       "description": "",
       "display": "default",
-      "image": "",
+      "image": [],
       "menu_order": 0,
       "count": 7,
       "_links": {
@@ -832,7 +893,7 @@ woocommerce.post("products/categories/batch", data).parsed_response
       "parent": 0,
       "description": "",
       "display": "default",
-      "image": "",
+      "image": [],
       "menu_order": 0,
       "count": 5,
       "_links": {
