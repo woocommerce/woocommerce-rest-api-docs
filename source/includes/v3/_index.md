@@ -34,12 +34,12 @@ The API index provides information about the endpoints available for the site, a
 ### Meta Properties ###
 
 |      Attribute       |   Type  |                                               Description                                                |
-| -------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+|----------------------|---------|----------------------------------------------------------------------------------------------------------|
 | `timezone`           | string  | The site's timezone                                                                                      |
 | `currency`           | string  | Currency ISO Code, e.g. `GBP`                                                                            |
 | `currency_format`    | string  | Currency symbol, HTML encoded, e.g. `£`                                                                  |
 | `currency_position`  | string  | Currency position, available the following options: `right`, `left`, `right_space` and `left_space`      |
-| `thousand_separator` | string  | The unit set for product weights. Valid units are `kg`, `g`, `lbs`, `oz`                                 |
+| `thousand_separator` | string  | Thousands separator, e.g `.`                                                                             |
 | `decimal_separator`  | string  | Decimal separator, e.g `,`                                                                               |
 | `price_num_decimals` | integer | Number of decimals                                                                                       |
 | `tax_included`       | boolean | True if prices include tax, false otherwise                                                              |

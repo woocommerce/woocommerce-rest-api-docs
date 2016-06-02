@@ -29,7 +29,7 @@ The API index provides information about the endpoints available for the site, a
 ### Meta Properties ###
 
 |      Attribute       |   Type  |                                               Description                                                |
-| -------------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+|----------------------|---------|----------------------------------------------------------------------------------------------------------|
 | `currency`           | string  | Currency ISO Code, e.g. `GBP`                                                                            |
 | `currency_format`    | string  | Currency symbol, HTML encoded, e.g. `£`                                                                  |
 | `currency_position`  | string  | Currency position, available the following options: `right`, `left`, `right_space` and `left_space`      |
@@ -41,7 +41,7 @@ The API index provides information about the endpoints available for the site, a
 | `price_num_decimals` | integer | Number of decimals                                                                                       |
 | `ssl_enabled`        | boolean | True if SSL is enabled for the site, false otherwise                                                     |
 | `tax_included`       | boolean | True if prices include tax, false otherwise                                                              |
-| `thousand_separator` | string  | The unit set for product weights. Valid units are `kg`, `g`, `lbs`, `oz`                                 |
+| `thousand_separator` | string  | Thousands separator, e.g `.`                                                                             |
 | `timezone`           | string  | The site's timezone                                                                                      |
 | `weight_unit`        | string  | The unit set for product weights. Valid units are `kg`, `g`, `lbs`, `oz`                                 |
 
