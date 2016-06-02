@@ -10,7 +10,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `date_created` | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i> |
 | `amount`       | string    | Refund amount. <i class="label label-info">required</i>                                                  |
 | `reason`       | string    | Reason for refund.                                                                                       |
-| `line_items`   | array     | Line items data. See [Refunds Line Items Properties](#refund-line-item-properties).                    |
+| `line_items`   | array     | Line items data. See [Refunds Line Items properties](#refund-line-item-properties).                    |
 
 ### Refund line item properties ###
 

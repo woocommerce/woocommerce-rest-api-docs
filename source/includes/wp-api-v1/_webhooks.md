@@ -871,7 +871,7 @@ woocommerce.get("webhooks/142/deliveries/54").parsed_response
 ```
 
 <aside class="notice">
-	View the <a href="#webhooks-delivery-properties">Webhooks Delivery Properties</a> for more details on this response.
+	View the <a href="#webhooks-delivery-properties">Webhooks Delivery properties</a> for more details on this response.
 </aside>
 
 ## List all webhook deliveries ##
