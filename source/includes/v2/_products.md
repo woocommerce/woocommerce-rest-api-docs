@@ -122,7 +122,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 ### Variations Properties ###
 
 |        Attribute        |   Type  |                                                                                              Description                                                                                               |
-| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|-------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`                    | integer | Variation ID (post ID) <i class="label label-info">read-only</i>                                                                                                                                       |
 | `created_at`            | string  | UTC DateTime when the variation was created <i class="label label-info">read-only</i>                                                                                                                  |
 | `updated_at`            | string  | UTC DateTime when the variation was last updated <i class="label label-info">read-only</i>                                                                                                             |
@@ -149,7 +149,7 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `dimensions`            | array   | List of the variation dimensions. See [Dimensions Properties](#dimensions-properties)                                                                                                                  |
 | `shipping_class`        | string  | Shipping class slug. Shipping classes are used by certain shipping methods to group similar products                                                                                                   |
 | `shipping_class_id`     | integer | Shipping class ID <i class="label label-info">read-only</i>                                                                                                                                            |
-| `images`                | array   | Variation featured image. See [Images Properties](#images-properties)                                                                                                                                  |
+| `image`                 | array   | Variation featured image. See [Images Properties](#images-properties)                                                                                                                                  |
 | `attributes`            | array   | List of variation attributes. Similar to a `simple` or `variable` product, but for `variation` indicate the attributes used to form the variation. See [Attributes Properties](#attributes-properties) |
 | `downloads`             | array   | List of downloadable files. See [Downloads Properties](#downloads-properties)                                                                                                                          |
 | `download_limit`        | integer | Amount of times the variation can be downloaded. In write-mode you can sent a blank string for unlimited re-downloads. e.g `''`                                                                        |
