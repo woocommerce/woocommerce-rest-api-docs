@@ -116,8 +116,8 @@ The products API allows you to create, view, update, and delete individual, or a
 
 |  Attribute  |   Type  |                                                    Description                                                    |
 |-------------|---------|-------------------------------------------------------------------------------------------------------------------|
-| `name`      | string  | Attribute name. <i class="label label-info">required</i>                                                          |
-| `slug`      | string  | Attribute slug, needed only for global attributes.                                                                |
+| `id`        | integer | Attribute ID (required if is a global attribute).                                                                 |
+| `name`      | string  | Attribute name (required if is a non-global attribute).                                                           |
 | `position`  | integer | Attribute position.                                                                                               |
 | `visible`   | boolean | Define if the attribute is visible on the "Additional Information" tab in the product's page. Default is `false`. |
 | `variation` | boolean | Define if the attribute can be used as variation. Default is `false`.                                             |
@@ -125,11 +125,11 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Default attribute properties ###
 
-| Attribute |  Type  |          Description          |
-|-----------|--------|-------------------------------|
-| `name`    | string | Attribute name.               |
-| `slug`    | string | Attribute slug.               |
-| `option`  | string | Selected attribute term name. |
+| Attribute |   Type  |                       Description                       |
+|-----------|---------|---------------------------------------------------------|
+| `id`      | integer | Attribute ID (required if is a global attribute).       |
+| `name`    | string  | Attribute name (required if is a non-global attribute). |
+| `option`  | string  | Selected attribute term name.                           |
 
 ### Variation properties ###
 
@@ -170,11 +170,11 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Variation attribute properties ###
 
-| Attribute |  Type  |          Description          |
-|-----------|--------|-------------------------------|
-| `name`    | string | Attribute name.               |
-| `slug`    | string | Attribute slug.               |
-| `option`  | string | Selected attribute term name. |
+| Attribute |   Type  |                       Description                       |
+|-----------|---------|---------------------------------------------------------|
+| `id`      | integer | Attribute ID (required if is a global attribute).       |
+| `name`    | string  | Attribute name (required if is a non-global attribute). |
+| `option`  | string  | Selected attribute term name.                           |
 
 ## Create a product ##
 
@@ -460,7 +460,7 @@ woocommerce.post("products", data).parsed_response
 }
 ```
 
-> Example of how to create a `variable` product:
+> Example of how to create a `variable` product with global and non-global attributes:
 
 ```shell
 curl -X POST https://example.com/wp-json/wc/v1/products \
@@ -499,8 +499,7 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
   ],
   "attributes": [
     {
-      "name": "Color",
-      "slug": "color",
+      "id": 6,
       "position": 0,
       "visible": false,
       "variation": true,
@@ -508,13 +507,26 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
         "Black",
         "Green"
       ]
+    },
+    {
+      "name": "Size",
+      "position": 0,
+      "visible": true,
+      "variation": true,
+      "options": [
+        "S",
+        "M"
+      ]
     }
   ],
   "default_attributes": [
     {
-      "name": "Color",
-      "slug": "color",
+      "id": 6,
       "option": "Black"
+    },
+    {
+      "name": "Size",
+      "option": "S"
     }
   ],
   "variations": [
@@ -528,9 +540,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
       ],
       "attributes": [
         {
-          "name": "Color",
-          "slug": "color",
+          "id": 6,
           "option": "black"
+        },
+        {
+          "name": "Size",
+          "option": "S"
         }
       ]
     },
@@ -544,9 +559,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
       ],
       "attributes": [
         {
-          "name": "Color",
-          "slug": "color",
+          "id": 6,
           "option": "green"
+        },
+        {
+          "name": "Size",
+          "option": "M"
         }
       ]
     }
@@ -588,22 +606,34 @@ var data = {
   ],
   attributes: [
     {
-      name: 'Color',
-      slug: 'color',
+      id: 6,
       position: 0,
-      visible: false,
+      visible: true,
       variation: true,
       options: [
         'Black',
         'Green'
       ]
     }
+    {
+      name: 'Size',
+      position: 0,
+      visible: false,
+      variation: true,
+      options: [
+        'S',
+        'M'
+      ]
+    }
   ],
   default_attributes: [
     {
-      name: 'Color',
-      slug: 'color',
+      id: 6,
       option: 'Black'
+    },
+    {
+      name: 'Size',
+      option: 'S'
     }
   ],
   variations: [
@@ -617,9 +647,12 @@ var data = {
       ],
       attributes: [
         {
-          name: 'Color',
-          slug: 'color',
+          id: 6,
           option: 'black'
+        },
+        {
+          name: 'Size',
+          option: 'S'
         }
       ]
     },
@@ -633,9 +666,12 @@ var data = {
       ],
       attributes: [
         {
-          name: 'Color',
-          slug: 'color',
+          id: 6,
           option: 'green'
+        },
+        {
+          name: 'Size',
+          option: 'M'
         }
       ]
     }
@@ -682,8 +718,7 @@ $data = [
     ],
     'attributes' => [
         [
-            'name' => 'Color',
-            'slug' => 'color',
+            'id' => 6,
             'position' => 0,
             'visible' => false,
             'variation' => true,
@@ -691,13 +726,26 @@ $data = [
                 'Black',
                 'Green'
             ]
+        ],
+        [
+            'name' => 'Size',
+            'position' => 0,
+            'visible' => true,
+            'variation' => true,
+            'options' => [
+                'S',
+                'M'
+            ]
         ]
     ],
     'default_attributes' => [
         [
-            'name' => 'Color',
-            'slug' => 'color',
+            'id' => 6,
             'option' => 'Black'
+        ],
+        [
+            'name' => 'Size',
+            'option' => 'S'
         ]
     ],
     'variations' => [
@@ -711,9 +759,12 @@ $data = [
             ],
             'attributes' => [
                 [
-                    'name' => 'Color',
-                    'slug' => 'color',
+                    'id' => 6,
                     'option' => 'black'
+                ],
+                [
+                    'name' => 'Size',
+                    'option' => 'S'
                 ]
             ]
         ],
@@ -727,9 +778,12 @@ $data = [
             ],
             'attributes' => [
                 [
-                    'name' => 'Color',
-                    'slug' => 'color',
+                    'id' => 6,
                     'option' => 'green'
+                ],
+                [
+                    'name' => 'Size',
+                    'option' => 'M'
                 ]
             ]
         ]
@@ -774,8 +828,7 @@ data = {
     ],
     "attributes": [
         {
-            "name": "Color",
-            "slug": "color",
+            "id": 6,
             "position": 0,
             "visible": False,
             "variation": True,
@@ -783,13 +836,26 @@ data = {
                 "Black",
                 "Green"
             ]
+        },
+        {
+            "name": "Size",
+            "position": 0,
+            "visible": True,
+            "variation": True,
+            "options": [
+                "S",
+                "M"
+            ]
         }
     ],
     "default_attributes": [
         {
-            "name": "Color",
-            "slug": "color",
+            "id": 6,
             "option": "Black"
+        },
+        {
+            "name": "Size",
+            "option": "S"
         }
     ],
     "variations": [
@@ -803,9 +869,12 @@ data = {
             ],
             "attributes": [
                 {
-                    "name": "Color",
-                    "slug": "color",
+                    "id": 6,
                     "option": "black"
+                },
+                {
+                    "name": "Size",
+                    "option": "S"
                 }
             ]
         },
@@ -819,9 +888,12 @@ data = {
             ],
             "attributes": [
                 {
-                    "name": "Color",
-                    "slug": "color",
+                    "id": 6,
                     "option": "green"
+                },
+                {
+                    "name": "Size",
+                    "option": "M"
                 }
             ]
         }
@@ -865,8 +937,7 @@ data = {
   ],
   attributes: [
     {
-      name: "Color",
-      slug: "color",
+      id: 6,
       position: 0,
       visible: false,
       variation: true,
@@ -874,13 +945,26 @@ data = {
         "Black",
         "Green"
       ]
+    },
+    {
+      name: "Size",
+      position: 0,
+      visible: true,
+      variation: true,
+      options: [
+        "S",
+        "M"
+      ]
     }
   ],
   default_attributes: [
     {
-      name: "Color",
-      slug: "color",
+      id: 6,
       option: "Black"
+    },
+    {
+      name: "Size",
+      option: "S"
     }
   ],
   variations: [
@@ -894,9 +978,12 @@ data = {
       ],
       attributes: [
         {
-          name: "Color",
-          slug: "color",
+          id: 6,
           option: "black"
+        },
+        {
+          name: "Size",
+          option: "S"
         }
       ]
     },
@@ -910,9 +997,12 @@ data = {
       ],
       attributes: [
         {
-          name: "Color",
-          slug: "color",
+          id: 6,
           option: "green"
+        },
+        {
+          name: "Size",
+          option: "M"
         }
       ]
     }
@@ -931,7 +1021,7 @@ woocommerce.post("products", data).parsed_response
   "slug": "ship-your-idea-4",
   "permalink": "https://example.com/product/ship-your-idea-4/",
   "date_created": "2016-05-31T23:50:56",
-  "date_modified": "2016-05-31T23:50:56",
+  "date_modified": "2016-06-02T23:11:41",
   "type": "variable",
   "status": "publish",
   "featured": false,
@@ -978,7 +1068,13 @@ woocommerce.post("products", data).parsed_response
   "reviews_allowed": true,
   "average_rating": "0.00",
   "rating_count": 0,
-  "related_ids": [],
+  "related_ids": [
+    34,
+    37,
+    187,
+    205,
+    31
+  ],
   "upsell_ids": [],
   "cross_sell_ids": [],
   "parent_id": 0,
@@ -1036,8 +1132,8 @@ woocommerce.post("products", data).parsed_response
   ],
   "attributes": [
     {
+      "id": 6,
       "name": "Color",
-      "slug": "color",
       "position": 0,
       "visible": false,
       "variation": true,
@@ -1045,21 +1141,37 @@ woocommerce.post("products", data).parsed_response
         "Black",
         "Green"
       ]
+    },
+    {
+      "id": 0,
+      "name": "Size",
+      "position": 1,
+      "visible": true,
+      "variation": true,
+      "options": [
+        "S",
+        "M"
+      ]
     }
   ],
   "default_attributes": [
     {
+      "id": 6,
       "name": "Color",
-      "slug": "color",
       "option": "black"
+    },
+    {
+      "id": 0,
+      "name": "size",
+      "option": "S"
     }
   ],
   "variations": [
     {
       "id": 170,
       "date_created": "2016-05-31T23:50:56",
-      "date_modified": "2016-05-31T23:50:56",
-      "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black",
+      "date_modified": "2016-06-02T23:11:41",
+      "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black&attribute_size=S",
       "sku": "",
       "price": "19.99",
       "regular_price": "19.99",
@@ -1102,17 +1214,22 @@ woocommerce.post("products", data).parsed_response
       ],
       "attributes": [
         {
+          "id": 6,
           "name": "Color",
-          "slug": "color",
           "option": "black"
+        },
+        {
+          "id": 0,
+          "name": "size",
+          "option": "S"
         }
       ]
     },
     {
       "id": 172,
       "date_created": "2016-05-31T23:50:56",
-      "date_modified": "2016-05-31T23:50:56",
-      "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green",
+      "date_modified": "2016-06-02T23:11:41",
+      "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green&attribute_size=M",
       "sku": "",
       "price": "19.99",
       "regular_price": "19.99",
@@ -1155,9 +1272,14 @@ woocommerce.post("products", data).parsed_response
       ],
       "attributes": [
         {
+          "id": 6,
           "name": "Color",
-          "slug": "color",
           "option": "green"
+        },
+        {
+          "id": 0,
+          "name": "size",
+          "option": "M"
         }
       ]
     }
@@ -1375,7 +1497,7 @@ woocommerce.get("products").parsed_response
     "slug": "ship-your-idea-4",
     "permalink": "https://example.com/product/ship-your-idea-4/",
     "date_created": "2016-05-31T23:50:56",
-    "date_modified": "2016-05-31T23:50:56",
+    "date_modified": "2016-06-02T23:11:41",
     "type": "variable",
     "status": "publish",
     "featured": false,
@@ -1422,7 +1544,13 @@ woocommerce.get("products").parsed_response
     "reviews_allowed": true,
     "average_rating": "0.00",
     "rating_count": 0,
-    "related_ids": [],
+    "related_ids": [
+      34,
+      37,
+      187,
+      205,
+      31
+    ],
     "upsell_ids": [],
     "cross_sell_ids": [],
     "parent_id": 0,
@@ -1480,8 +1608,8 @@ woocommerce.get("products").parsed_response
     ],
     "attributes": [
       {
+        "id": 6,
         "name": "Color",
-        "slug": "color",
         "position": 0,
         "visible": false,
         "variation": true,
@@ -1489,21 +1617,37 @@ woocommerce.get("products").parsed_response
           "Black",
           "Green"
         ]
+      },
+      {
+        "id": 0,
+        "name": "Size",
+        "position": 1,
+        "visible": true,
+        "variation": true,
+        "options": [
+          "S",
+          "M"
+        ]
       }
     ],
     "default_attributes": [
       {
+        "id": 6,
         "name": "Color",
-        "slug": "color",
         "option": "black"
+      },
+      {
+        "id": 0,
+        "name": "size",
+        "option": "S"
       }
     ],
     "variations": [
       {
         "id": 170,
         "date_created": "2016-05-31T23:50:56",
-        "date_modified": "2016-05-31T23:50:56",
-        "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black",
+        "date_modified": "2016-06-02T23:11:41",
+        "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black&attribute_size=S",
         "sku": "",
         "price": "19.99",
         "regular_price": "19.99",
@@ -1546,17 +1690,22 @@ woocommerce.get("products").parsed_response
         ],
         "attributes": [
           {
+            "id": 6,
             "name": "Color",
-            "slug": "color",
             "option": "black"
+          },
+          {
+            "id": 0,
+            "name": "size",
+            "option": "S"
           }
         ]
       },
       {
         "id": 172,
         "date_created": "2016-05-31T23:50:56",
-        "date_modified": "2016-05-31T23:50:56",
-        "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green",
+        "date_modified": "2016-06-02T23:11:41",
+        "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green&attribute_size=M",
         "sku": "",
         "price": "19.99",
         "regular_price": "19.99",
@@ -1599,9 +1748,14 @@ woocommerce.get("products").parsed_response
         ],
         "attributes": [
           {
+            "id": 6,
             "name": "Color",
-            "slug": "color",
             "option": "green"
+          },
+          {
+            "id": 0,
+            "name": "size",
+            "option": "M"
           }
         ]
       }
@@ -2728,7 +2882,7 @@ woocommerce.post("products/batch", data).parsed_response
       "slug": "ship-your-idea-4",
       "permalink": "https://example.com/product/ship-your-idea-4/",
       "date_created": "2016-05-31T23:50:56",
-      "date_modified": "2016-06-01T00:21:36",
+      "date_modified": "2016-06-02T23:11:41",
       "type": "variable",
       "status": "publish",
       "featured": false,
@@ -2775,7 +2929,13 @@ woocommerce.post("products/batch", data).parsed_response
       "reviews_allowed": true,
       "average_rating": "0.00",
       "rating_count": 0,
-      "related_ids": [],
+      "related_ids": [
+        34,
+        37,
+        187,
+        205,
+        31
+      ],
       "upsell_ids": [],
       "cross_sell_ids": [],
       "parent_id": 0,
@@ -2833,8 +2993,8 @@ woocommerce.post("products/batch", data).parsed_response
       ],
       "attributes": [
         {
+          "id": 6,
           "name": "Color",
-          "slug": "color",
           "position": 0,
           "visible": false,
           "variation": true,
@@ -2842,21 +3002,37 @@ woocommerce.post("products/batch", data).parsed_response
             "Black",
             "Green"
           ]
+        },
+        {
+          "id": 0,
+          "name": "Size",
+          "position": 1,
+          "visible": true,
+          "variation": true,
+          "options": [
+            "S",
+            "M"
+          ]
         }
       ],
       "default_attributes": [
         {
+          "id": 6,
           "name": "Color",
-          "slug": "color",
           "option": "black"
+        },
+        {
+          "id": 0,
+          "name": "size",
+          "option": "S"
         }
       ],
       "variations": [
         {
           "id": 170,
           "date_created": "2016-05-31T23:50:56",
-          "date_modified": "2016-06-01T00:21:36",
-          "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black",
+          "date_modified": "2016-06-02T23:11:41",
+          "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=black&attribute_size=S",
           "sku": "",
           "price": "29.99",
           "regular_price": "29.99",
@@ -2899,17 +3075,22 @@ woocommerce.post("products/batch", data).parsed_response
           ],
           "attributes": [
             {
+              "id": 6,
               "name": "Color",
-              "slug": "color",
               "option": "black"
+            },
+            {
+              "id": 0,
+              "name": "size",
+              "option": "S"
             }
           ]
         },
         {
           "id": 172,
           "date_created": "2016-05-31T23:50:56",
-          "date_modified": "2016-06-01T00:21:36",
-          "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green",
+          "date_modified": "2016-06-02T23:11:41",
+          "permalink": "https://example.com/product/ship-your-idea-4/?attribute_pa_color=green&attribute_size=M",
           "sku": "",
           "price": "29.99",
           "regular_price": "29.99",
@@ -2952,9 +3133,14 @@ woocommerce.post("products/batch", data).parsed_response
           ],
           "attributes": [
             {
+              "id": 6,
               "name": "Color",
-              "slug": "color",
               "option": "green"
+            },
+            {
+              "id": 0,
+              "name": "size",
+              "option": "M"
             }
           ]
         }
