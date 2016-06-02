@@ -202,8 +202,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
   "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
   "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   "categories": [
-    9,
-    14
+    {
+      "id": 9
+    },
+    {
+      "id": 14
+    }
   ],
   "images": [
     {
@@ -226,8 +230,12 @@ var data = {
   description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
   short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
   categories: [
-    9,
-    14
+    {
+      id: 9
+    },
+    {
+      id: 14
+    }
   ],
   images: [
     {
@@ -255,8 +263,12 @@ $data = [
     'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
     'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     'categories' => [
-        9,
-        14
+        [
+            'id': 9
+        ],
+        [
+            'id': 14
+        ]
     ],
     'images' => [
         [
@@ -282,8 +294,12 @@ data = {
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
-        9,
-        14
+        {
+            "id": 9
+        },
+        {
+            "id": 14
+        }
     ],
     "images": [
         {
@@ -308,8 +324,12 @@ data = {
   description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
   short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
-    9,
-    14
+    {
+      id: 9
+    },
+    {
+      id: 14
+    }
   ],
   images: [
     {
@@ -387,7 +407,18 @@ woocommerce.post("products", data).parsed_response
   "cross_sell_ids": [],
   "parent_id": 0,
   "purchase_note": "",
-  "categories": [],
+  "categories": [
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts"
+    }
+  ],
   "tags": [],
   "images": [
     {
@@ -441,8 +472,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
   "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
   "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   "categories": [
-    9,
-    14
+    {
+      "id": 9
+    },
+    {
+      "id": 14
+    }
   ],
   "images": [
     {
@@ -526,8 +561,12 @@ var data = {
   description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
   short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
   categories: [
-    9,
-    14
+    {
+      id: 9
+    },
+    {
+      id: 14
+    }
   ],
   images: [
     {
@@ -616,8 +655,12 @@ $data = [
     'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
     'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     'categories' => [
-        9,
-        14
+        [
+            'id': 9
+        ],
+        [
+            'id': 14
+        ]
     ],
     'images' => [
         [
@@ -704,8 +747,12 @@ data = {
     "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
     "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     "categories": [
-        9,
-        14
+        {
+            "id": 9
+        },
+        {
+            "id": 14
+        }
     ],
     "images": [
         {
@@ -791,8 +838,12 @@ data = {
   description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
   short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
-    9,
-    14
+    {
+      id: 9
+    },
+    {
+      id: 14
+    }
   ],
   images: [
     {
@@ -932,7 +983,18 @@ woocommerce.post("products", data).parsed_response
   "cross_sell_ids": [],
   "parent_id": 0,
   "purchase_note": "",
-  "categories": [],
+  "categories": [
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts"
+    }
+  ],
   "tags": [],
   "images": [
     {
@@ -1214,7 +1276,18 @@ woocommerce.get("products/162").parsed_response
   "cross_sell_ids": [],
   "parent_id": 0,
   "purchase_note": "",
-  "categories": [],
+  "categories": [
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts"
+    }
+  ],
   "tags": [],
   "images": [
     {
@@ -1354,7 +1427,18 @@ woocommerce.get("products").parsed_response
     "cross_sell_ids": [],
     "parent_id": 0,
     "purchase_note": "",
-    "categories": [],
+    "categories": [
+      {
+        "id": 9,
+        "name": "Clothing",
+        "slug": "clothing"
+      },
+      {
+        "id": 14,
+        "name": "T-shirts",
+        "slug": "t-shirts"
+      }
+    ],
     "tags": [],
     "images": [
       {
@@ -1595,7 +1679,18 @@ woocommerce.get("products").parsed_response
     "cross_sell_ids": [],
     "parent_id": 0,
     "purchase_note": "",
-    "categories": [],
+    "categories": [
+      {
+        "id": 9,
+        "name": "Clothing",
+        "slug": "clothing"
+      },
+      {
+        "id": 14,
+        "name": "T-shirts",
+        "slug": "t-shirts"
+      }
+    ],
     "tags": [],
     "images": [
       {
@@ -1783,7 +1878,18 @@ woocommerce.put("products/162", data).parsed_response
   "cross_sell_ids": [],
   "parent_id": 0,
   "purchase_note": "",
-  "categories": [],
+  "categories": [
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts"
+    }
+  ],
   "tags": [],
   "images": [
     {
@@ -1922,7 +2028,18 @@ woocommerce.delete("products/162", force: true).parsed_response
   "cross_sell_ids": [],
   "parent_id": 0,
   "purchase_note": "",
-  "categories": [],
+  "categories": [
+    {
+      "id": 9,
+      "name": "Clothing",
+      "slug": "clothing"
+    },
+    {
+      "id": 14,
+      "name": "T-shirts",
+      "slug": "t-shirts"
+    }
+  ],
   "tags": [],
   "images": [
     {
@@ -2002,8 +2119,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products/batch \
         }
       ],
       "categories": [
-        11,
-        13
+        {
+          "id": 11
+        },
+        {
+          "id": 13
+        }
       ],
       "images": [
         {
@@ -2019,8 +2140,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products/batch \
       "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
       "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       "categories": [
-        9,
-        14
+        {
+          "id": 9
+        },
+        {
+          "id": 14
+        }
       ],
       "images": [
         {
@@ -2071,8 +2196,12 @@ var data = {
         }
       ],
       categories: [
-        11,
-        13
+        {
+          id: 11
+        },
+        {
+          id: 13
+        }
       ],
       images: [
         {
@@ -2088,8 +2217,12 @@ var data = {
       description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
       short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
       categories: [
-        9,
-        14
+        {
+          id: 9
+        },
+        {
+          id: 14
+        }
       ],
       images: [
         {
@@ -2145,8 +2278,12 @@ $data = [
                 ]
             ],
             'categories' => [
-                11,
-                13
+                [
+                    'id': 11
+                ],
+                [
+                    'id': 13
+                ]
             ],
             'images' => [
                 [
@@ -2162,8 +2299,12 @@ $data = [
             'description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
             'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
             'categories' => [
-                9,
-                14
+                [
+                    'id': 9
+                ],
+                [
+                    'id': 14
+                ]
             ],
             'images' => [
                 [
@@ -2217,8 +2358,12 @@ data = {
                 }
             ],
             "categories": [
-                11,
-                13
+                {
+                    "id": 11
+                },
+                {
+                    "id": 13
+                }
             ],
             "images": [
                 {
@@ -2234,8 +2379,12 @@ data = {
             "description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
             "short_description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
             "categories": [
-                9,
-                14
+                {
+                    "id": 9
+                },
+                {
+                    "id": 14
+                }
             ],
             "images": [
                 {
@@ -2288,8 +2437,12 @@ data = {
         }
       ],
       categories: [
-        11,
-        13
+        {
+          id: 11
+        },
+        {
+          id: 13
+        }
       ],
       images: [
         {
@@ -2305,8 +2458,12 @@ data = {
       description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
       short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       categories: [
-        9,
-        14
+        {
+          id: 9
+        },
+        {
+          id: 14
+        }
       ],
       images: [
         {
@@ -2412,7 +2569,18 @@ woocommerce.post("products/batch", data).parsed_response
       "cross_sell_ids": [],
       "parent_id": 0,
       "purchase_note": "",
-      "categories": [],
+      "categories": [
+        {
+          "id": 11,
+          "name": "Music",
+          "slug": "music"
+        },
+        {
+          "id": 13,
+          "name": "Singles",
+          "slug": "singles"
+        }
+      ],
       "tags": [],
       "images": [
         {
@@ -2501,7 +2669,18 @@ woocommerce.post("products/batch", data).parsed_response
       "cross_sell_ids": [],
       "parent_id": 0,
       "purchase_note": "",
-      "categories": [],
+      "categories": [
+        {
+          "id": 9,
+          "name": "Clothing",
+          "slug": "clothing"
+        },
+        {
+          "id": 14,
+          "name": "T-shirts",
+          "slug": "t-shirts"
+        }
+      ],
       "tags": [],
       "images": [
         {
@@ -2601,7 +2780,18 @@ woocommerce.post("products/batch", data).parsed_response
       "cross_sell_ids": [],
       "parent_id": 0,
       "purchase_note": "",
-      "categories": [],
+      "categories": [
+        {
+          "id": 9,
+          "name": "Clothing",
+          "slug": "clothing"
+        },
+        {
+          "id": 14,
+          "name": "T-shirts",
+          "slug": "t-shirts"
+        }
+      ],
       "tags": [],
       "images": [
         {
@@ -2844,7 +3034,18 @@ woocommerce.post("products/batch", data).parsed_response
       "cross_sell_ids": [],
       "parent_id": 0,
       "purchase_note": "",
-      "categories": [],
+      "categories": [
+        {
+          "id": 9,
+          "name": "Clothing",
+          "slug": "clothing"
+        },
+        {
+          "id": 14,
+          "name": "T-shirts",
+          "slug": "t-shirts"
+        }
+      ],
       "tags": [],
       "images": [
         {
