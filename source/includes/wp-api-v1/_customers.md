@@ -4,22 +4,22 @@ The customer API allows you to create, view, update, and delete individual, or a
 
 ## Customer properties ##
 
-|     Attribute      |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
-|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                      |
-| `date_created`     | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
-| `date_modified`    | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                         |
-| `email`            | string    | The email address for the customer. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                                                      |
-| `first_name`       | string    | Customer first name.                                                                                                                                                                                                                                                                                                                                               |
-| `last_name`        | string    | Customer last name.                                                                                                                                                                                                                                                                                                                                                |
-| `username`         | string    | Customer login name. Can be generated automatically from the customer's email addrees if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i> <i class="label label-info">maybe mandatory</i>                                                                                               |
-| `password`         | string    | Customer password. Can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> <i class="label label-info">maybe mandatory</i> |
-| `last_order`       | array     | Last order data. See [Customer Last Order properties](#customer-last-order-properties). <i class="label label-info">read-only</i>                                                                                                                                                                                                                                  |
-| `orders_count`     | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
-| `total_spent`      | float     | Total amount spent. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                      |
-| `avatar_url`       | string    | Avatar URL.                                                                                                                                                                                                                                                                                                                                                        |
-| `billing_address`  | array     | List of billing address data. See [Billing Address properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
-| `shipping_address` | array     | List of shipping address data. See [Shipping Address properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
+|    Attribute    |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
+|-----------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                      |
+| `date_created`  | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
+| `date_modified` | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                         |
+| `email`         | string    | The email address for the customer. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                                                      |
+| `first_name`    | string    | Customer first name.                                                                                                                                                                                                                                                                                                                                               |
+| `last_name`     | string    | Customer last name.                                                                                                                                                                                                                                                                                                                                                |
+| `username`      | string    | Customer login name. Can be generated automatically from the customer's email addrees if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i> <i class="label label-info">maybe mandatory</i>                                                                                               |
+| `password`      | string    | Customer password. Can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> <i class="label label-info">maybe mandatory</i> |
+| `last_order`    | array     | Last order data. See [Customer Last Order properties](#customer-last-order-properties). <i class="label label-info">read-only</i>                                                                                                                                                                                                                                  |
+| `orders_count`  | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
+| `total_spent`   | float     | Total amount spent. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                      |
+| `avatar_url`    | string    | Avatar URL.                                                                                                                                                                                                                                                                                                                                                        |
+| `billing`       | array     | List of billing address data. See [Billing Address properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
+| `shipping`      | array     | List of shipping address data. See [Shipping Address properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
 
 ### Customer last order properties ###
 
@@ -80,7 +80,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers \
   "first_name": "John",
   "last_name": "Doe",
   "username": "john.doe",
-  "billing_address": {
+  "billing": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -93,7 +93,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers \
     "email": "john.doe@example.com",
     "phone": "(555) 555-5555"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -113,7 +113,7 @@ var data = {
   first_name: 'John',
   last_name: 'Doe',
   username: 'john.doe',
-  billing_address: {
+  billing: {
     first_name: 'John',
     last_name: 'Doe',
     company: '',
@@ -126,7 +126,7 @@ var data = {
     email: 'john.doe@example.com',
     phone: '(555) 555-5555'
   },
-  shipping_address: {
+  shipping: {
     first_name: 'John',
     last_name: 'Doe',
     company: '',
@@ -151,7 +151,7 @@ $data = [
     'first_name' => 'John',
     'last_name' => 'Doe',
     'username' => 'john.doe',
-    'billing_address' => [
+    'billing' => [
         'first_name' => 'John',
         'last_name' => 'Doe',
         'company' => '',
@@ -164,7 +164,7 @@ $data = [
         'email' => 'john.doe@example.com',
         'phone' => '(555) 555-5555'
     ],
-    'shipping_address' => [
+    'shipping' => [
         'first_name' => 'John',
         'last_name' => 'Doe',
         'company' => '',
@@ -187,7 +187,7 @@ data = {
     "first_name": "John",
     "last_name": "Doe",
     "username": "john.doe",
-    "billing_address": {
+    "billing": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -200,7 +200,7 @@ data = {
         "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
     },
-    "shipping_address": {
+    "shipping": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -222,7 +222,7 @@ data = {
   first_name: "John",
   last_name: "Doe",
   username: "john.doe",
-  billing_address: {
+  billing: {
     first_name: "John",
     last_name: "Doe",
     company: "",
@@ -235,7 +235,7 @@ data = {
     email: "john.doe@example.com",
     phone: "(555) 555-5555"
   },
-  shipping_address: {
+  shipping: {
     first_name: "John",
     last_name: "Doe",
     company: "",
@@ -269,7 +269,7 @@ woocommerce.post("customers", data).parsed_response
   "orders_count": 3,
   "total_spent": "28.00",
   "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-  "billing_address": {
+  "billing": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -282,7 +282,7 @@ woocommerce.post("customers", data).parsed_response
     "email": "john.doe@example.com",
     "phone": "(555) 555-5555"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -362,7 +362,7 @@ woocommerce.get("customers/2").parsed_response
   "orders_count": 3,
   "total_spent": "28.00",
   "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-  "billing_address": {
+  "billing": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -375,7 +375,7 @@ woocommerce.get("customers/2").parsed_response
     "email": "john.doe@example.com",
     "phone": "(555) 555-5555"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "John",
     "last_name": "Doe",
     "company": "",
@@ -456,7 +456,7 @@ woocommerce.get("customers").parsed_response
     "orders_count": 0,
     "total_spent": "0.00",
     "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-    "billing_address": {
+    "billing": {
       "first_name": "João",
       "last_name": "Silva",
       "company": "",
@@ -469,7 +469,7 @@ woocommerce.get("customers").parsed_response
       "email": "joao.silva@example.com",
       "phone": "(55) 5555-5555"
     },
-    "shipping_address": {
+    "shipping": {
       "first_name": "João",
       "last_name": "Silva",
       "company": "",
@@ -508,7 +508,7 @@ woocommerce.get("customers").parsed_response
     "orders_count": 3,
     "total_spent": "28.00",
     "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-    "billing_address": {
+    "billing": {
       "first_name": "John",
       "last_name": "Doe",
       "company": "",
@@ -521,7 +521,7 @@ woocommerce.get("customers").parsed_response
       "email": "john.doe@example.com",
       "phone": "(555) 555-5555"
     },
-    "shipping_address": {
+    "shipping": {
       "first_name": "John",
       "last_name": "Doe",
       "company": "",
@@ -583,10 +583,10 @@ curl -X PUT https://example.com/wp-json/wc/v1/customers/2 \
 	-H "Content-Type: application/json" \
 	-d '{
   "first_name": "James",
-  "billing_address": {
+  "billing": {
     "first_name": "James"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "James"
   }
 }'
@@ -595,10 +595,10 @@ curl -X PUT https://example.com/wp-json/wc/v1/customers/2 \
 ```javascript
 var data = {
   first_name: 'James',
-  billing_address: {
+  billing: {
     first_name: 'James'
   },
-  shipping_address: {
+  shipping: {
     first_name: 'James'
   }
 };
@@ -612,10 +612,10 @@ WooCommerce.put('customers/2', data, function(err, data, res) {
 <?php 
 $data = [
     'first_name' => 'James',
-    'billing_address' => [
+    'billing' => [
         'first_name' => 'James'
     ],
-    'shipping_address' => [
+    'shipping' => [
         'first_name' => 'James'
     ]
 ];
@@ -627,10 +627,10 @@ print_r($woocommerce->put('customers/2', $data));
 ```python
 data = {
     "first_name": "James",
-    "billing_address": {
+    "billing": {
         "first_name": "James"
     },
-    "shipping_address": {
+    "shipping": {
         "first_name": "James"
     }
 }
@@ -641,10 +641,10 @@ print(wcapi.put("customers/2", data).json())
 ```ruby
 data = {
   first_name: "James",
-  billing_address: {
+  billing: {
     first_name: "James"
   },
-  shipping_address: {
+  shipping: {
     first_name: "James"
   }
 }
@@ -670,7 +670,7 @@ woocommerce.put("customers/2", data).parsed_response
   "orders_count": 3,
   "total_spent": "28.00",
   "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-  "billing_address": {
+  "billing": {
     "first_name": "James",
     "last_name": "Doe",
     "company": "",
@@ -683,7 +683,7 @@ woocommerce.put("customers/2", data).parsed_response
     "email": "john.doe@example.com",
     "phone": "(555) 555-5555"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "James",
     "last_name": "Doe",
     "company": "",
@@ -763,7 +763,7 @@ woocommerce.delete("customers/2", force: true).parsed_response
   "orders_count": 3,
   "total_spent": "28.00",
   "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-  "billing_address": {
+  "billing": {
     "first_name": "James",
     "last_name": "Doe",
     "company": "",
@@ -776,7 +776,7 @@ woocommerce.delete("customers/2", force: true).parsed_response
     "email": "john.doe@example.com",
     "phone": "(555) 555-5555"
   },
-  "shipping_address": {
+  "shipping": {
     "first_name": "James",
     "last_name": "Doe",
     "company": "",
@@ -832,7 +832,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
       "first_name": "John",
       "last_name": "Doe",
       "username": "john.doe2",
-      "billing_address": {
+      "billing": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -845,7 +845,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
         "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -862,7 +862,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
       "first_name": "João",
       "last_name": "Silva",
       "username": "joao.silva2",
-      "billing_address": {
+      "billing": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -875,7 +875,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
         "email": "joao.silva@example.com",
         "phone": "(55) 5555-5555"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -891,7 +891,7 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
   "update": [
     {
       "id": 5,
-      "billing_address": {
+      "billing": {
         "phone": "(11) 1111-1111"
       }
     }
@@ -910,7 +910,7 @@ var data = {
       first_name: 'John',
       last_name: 'Doe',
       username: 'john.doe2',
-      billing_address: {
+      billing: {
         first_name: 'John',
         last_name: 'Doe',
         company: '',
@@ -923,7 +923,7 @@ var data = {
         email: 'john.doe@example.com',
         phone: '(555) 555-5555'
       },
-      shipping_address: {
+      shipping: {
         first_name: 'John',
         last_name: 'Doe',
         company: '',
@@ -940,7 +940,7 @@ var data = {
       first_name: 'João',
       last_name: 'Silva',
       username: 'joao.silva2',
-      billing_address: {
+      billing: {
         first_name: 'João',
         last_name: 'Silva',
         company: '',
@@ -953,7 +953,7 @@ var data = {
         email: 'joao.silva@example.com',
         phone: '(55) 5555-5555'
       },
-      shipping_address: {
+      shipping: {
         first_name: 'João',
         last_name: 'Silva',
         company: '',
@@ -969,7 +969,7 @@ var data = {
   update: [
     {
       id: 5,
-      billing_address: {
+      billing: {
         phone: '(11) 1111-1111'
       }
     }
@@ -993,7 +993,7 @@ $data = [
             'first_name': 'John',
             'last_name': 'Doe',
             'username': 'john.doe2',
-            'billing_address': [
+            'billing': [
                 'first_name': 'John',
                 'last_name': 'Doe',
                 'company': '',
@@ -1006,7 +1006,7 @@ $data = [
                 'email': 'john.doe@example.com',
                 'phone': '(555) 555-5555'
             ],
-            'shipping_address': [
+            'shipping': [
                 'first_name': 'John',
                 'last_name': 'Doe',
                 'company': '',
@@ -1023,7 +1023,7 @@ $data = [
             'first_name': 'João',
             'last_name': 'Silva',
             'username': 'joao.silva2',
-            'billing_address': [
+            'billing': [
                 'first_name': 'João',
                 'last_name': 'Silva',
                 'company': '',
@@ -1036,7 +1036,7 @@ $data = [
                 'email': 'joao.silva@example.com',
                 'phone': '(55) 5555-5555'
             ],
-            'shipping_address': [
+            'shipping': [
                 'first_name': 'João',
                 'last_name': 'Silva',
                 'company': '',
@@ -1063,7 +1063,7 @@ data = {
             "first_name": "John",
             "last_name": "Doe",
             "username": "john.doe2",
-            "billing_address": {
+            "billing": {
                 "first_name": "John",
                 "last_name": "Doe",
                 "company": "",
@@ -1076,7 +1076,7 @@ data = {
                 "email": "john.doe@example.com",
                 "phone": "(555) 555-5555"
             },
-            "shipping_address": {
+            "shipping": {
                 "first_name": "John",
                 "last_name": "Doe",
                 "company": "",
@@ -1093,7 +1093,7 @@ data = {
             "first_name": "João",
             "last_name": "Silva",
             "username": "joao.silva2",
-            "billing_address": {
+            "billing": {
                 "first_name": "João",
                 "last_name": "Silva",
                 "company": "",
@@ -1106,7 +1106,7 @@ data = {
                 "email": "joao.silva@example.com",
                 "phone": "(55) 5555-5555"
             },
-            "shipping_address": {
+            "shipping": {
                 "first_name": "João",
                 "last_name": "Silva",
                 "company": "",
@@ -1122,7 +1122,7 @@ data = {
     "update": [
         {
             "id": 5,
-            "billing_address": {
+            "billing": {
                 "phone": "(11) 1111-1111"
             }
         }
@@ -1143,7 +1143,7 @@ data = {
       first_name: "John",
       last_name: "Doe",
       username: "john.doe2",
-      billing_address: {
+      billing: {
         first_name: "John",
         last_name: "Doe",
         company: "",
@@ -1156,7 +1156,7 @@ data = {
         email: "john.doe@example.com",
         phone: "(555) 555-5555"
       },
-      shipping_address: {
+      shipping: {
         first_name: "John",
         last_name: "Doe",
         company: "",
@@ -1173,7 +1173,7 @@ data = {
       first_name: "João",
       last_name: "Silva",
       username: "joao.silva2",
-      billing_address: {
+      billing: {
         first_name: "João",
         last_name: "Silva",
         company: "",
@@ -1186,7 +1186,7 @@ data = {
         email: "joao.silva@example.com",
         phone: "(55) 5555-5555"
       },
-      shipping_address: {
+      shipping: {
         first_name: "João",
         last_name: "Silva",
         company: "",
@@ -1202,7 +1202,7 @@ data = {
   update: [
     {
       id: 5,
-      billing_address: {
+      billing: {
         phone: "(11) 1111-1111"
       }
     }
@@ -1235,7 +1235,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "orders_count": 0,
       "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-      "billing_address": {
+      "billing": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -1248,7 +1248,7 @@ woocommerce.post("customers/batch", data).parsed_response
         "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "John",
         "last_name": "Doe",
         "company": "",
@@ -1287,7 +1287,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "orders_count": 0,
       "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-      "billing_address": {
+      "billing": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -1300,7 +1300,7 @@ woocommerce.post("customers/batch", data).parsed_response
         "email": "joao.silva@example.com",
         "phone": "(55) 5555-5555"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -1341,7 +1341,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "orders_count": 0,
       "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-      "billing_address": {
+      "billing": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -1354,7 +1354,7 @@ woocommerce.post("customers/batch", data).parsed_response
         "email": "joao.silva@example.com",
         "phone": "(11) 1111-1111"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "João",
         "last_name": "Silva",
         "company": "",
@@ -1395,7 +1395,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "orders_count": 3,
       "total_spent": "28.00",
       "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
-      "billing_address": {
+      "billing": {
         "first_name": "James",
         "last_name": "Doe",
         "company": "",
@@ -1408,7 +1408,7 @@ woocommerce.post("customers/batch", data).parsed_response
         "email": "john.doe@example.com",
         "phone": "(555) 555-5555"
       },
-      "shipping_address": {
+      "shipping": {
         "first_name": "James",
         "last_name": "Doe",
         "company": "",
