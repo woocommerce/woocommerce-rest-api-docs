@@ -426,7 +426,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:40:07",
       "date_modified": "2016-05-31T23:40:07",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 0
     },
@@ -435,7 +435,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:40:10",
       "date_modified": "2016-05-31T23:40:10",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 1
     }
@@ -1098,7 +1098,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:50:57",
       "date_modified": "2016-05-31T23:50:57",
       "src": "https://example.com/wp-content/uploads/2016/05/T_4_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 0
     },
@@ -1107,7 +1107,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:50:57",
       "date_modified": "2016-05-31T23:50:57",
       "src": "https://example.com/wp-content/uploads/2016/05/T_4_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 1
     },
@@ -1116,7 +1116,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:50:58",
       "date_modified": "2016-05-31T23:50:58",
       "src": "https://example.com/wp-content/uploads/2016/05/T_3_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 2
     },
@@ -1125,7 +1125,7 @@ woocommerce.post("products", data).parsed_response
       "date_created": "2016-05-31T23:50:59",
       "date_modified": "2016-05-31T23:50:59",
       "src": "https://example.com/wp-content/uploads/2016/05/T_3_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 3
     }
@@ -1207,7 +1207,7 @@ woocommerce.post("products", data).parsed_response
           "date_created": "2016-05-31T23:51:01",
           "date_modified": "2016-05-31T23:51:01",
           "src": "https://example.com/wp-content/uploads/2016/05/T_4_front-1.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         }
@@ -1265,7 +1265,7 @@ woocommerce.post("products", data).parsed_response
           "date_created": "2016-05-31T23:51:03",
           "date_modified": "2016-05-31T23:51:03",
           "src": "https://example.com/wp-content/uploads/2016/05/T_3_front-1.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         }
@@ -1417,7 +1417,7 @@ woocommerce.get("products/162").parsed_response
       "date_created": "2016-05-31T23:40:07",
       "date_modified": "2016-05-31T23:40:07",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 0
     },
@@ -1426,7 +1426,7 @@ woocommerce.get("products/162").parsed_response
       "date_created": "2016-05-31T23:40:10",
       "date_modified": "2016-05-31T23:40:10",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 1
     }
@@ -1574,7 +1574,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:50:57",
         "date_modified": "2016-05-31T23:50:57",
         "src": "https://example.com/wp-content/uploads/2016/05/T_4_front.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 0
       },
@@ -1583,7 +1583,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:50:57",
         "date_modified": "2016-05-31T23:50:57",
         "src": "https://example.com/wp-content/uploads/2016/05/T_4_back.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 1
       },
@@ -1592,7 +1592,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:50:58",
         "date_modified": "2016-05-31T23:50:58",
         "src": "https://example.com/wp-content/uploads/2016/05/T_3_front.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 2
       },
@@ -1601,7 +1601,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:50:59",
         "date_modified": "2016-05-31T23:50:59",
         "src": "https://example.com/wp-content/uploads/2016/05/T_3_back.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 3
       }
@@ -1683,7 +1683,7 @@ woocommerce.get("products").parsed_response
             "date_created": "2016-05-31T23:51:01",
             "date_modified": "2016-05-31T23:51:01",
             "src": "https://example.com/wp-content/uploads/2016/05/T_4_front-1.jpg",
-            "title": "",
+            "name": "",
             "alt": "",
             "position": 0
           }
@@ -1741,7 +1741,7 @@ woocommerce.get("products").parsed_response
             "date_created": "2016-05-31T23:51:03",
             "date_modified": "2016-05-31T23:51:03",
             "src": "https://example.com/wp-content/uploads/2016/05/T_3_front-1.jpg",
-            "title": "",
+            "name": "",
             "alt": "",
             "position": 0
           }
@@ -1852,7 +1852,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:40:07",
         "date_modified": "2016-05-31T23:40:07",
         "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 0
       },
@@ -1861,7 +1861,7 @@ woocommerce.get("products").parsed_response
         "date_created": "2016-05-31T23:40:10",
         "date_modified": "2016-05-31T23:40:10",
         "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-        "title": "",
+        "name": "",
         "alt": "",
         "position": 1
       }
@@ -2051,7 +2051,7 @@ woocommerce.put("products/162", data).parsed_response
       "date_created": "2016-05-31T23:40:07",
       "date_modified": "2016-05-31T23:40:07",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 0
     },
@@ -2060,7 +2060,7 @@ woocommerce.put("products/162", data).parsed_response
       "date_created": "2016-05-31T23:40:10",
       "date_modified": "2016-05-31T23:40:10",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 1
     }
@@ -2201,7 +2201,7 @@ woocommerce.delete("products/162", force: true).parsed_response
       "date_created": "2016-05-31T23:40:07",
       "date_modified": "2016-05-31T23:40:07",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 0
     },
@@ -2210,7 +2210,7 @@ woocommerce.delete("products/162", force: true).parsed_response
       "date_created": "2016-05-31T23:40:10",
       "date_modified": "2016-05-31T23:40:10",
       "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-      "title": "",
+      "name": "",
       "alt": "",
       "position": 1
     }
@@ -2742,7 +2742,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-06-01T00:21:31",
           "date_modified": "2016-06-01T00:21:31",
           "src": "https://example.com/wp-content/uploads/2016/05/cd_4_angle.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         }
@@ -2842,7 +2842,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-06-01T00:21:33",
           "date_modified": "2016-06-01T00:21:33",
           "src": "https://example.com/wp-content/uploads/2016/05/T_2_front-1.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         },
@@ -2851,7 +2851,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-06-01T00:21:34",
           "date_modified": "2016-06-01T00:21:34",
           "src": "https://example.com/wp-content/uploads/2016/05/T_2_back-1.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 1
         }
@@ -2959,7 +2959,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:50:57",
           "date_modified": "2016-05-31T23:50:57",
           "src": "https://example.com/wp-content/uploads/2016/05/T_4_front.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         },
@@ -2968,7 +2968,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:50:57",
           "date_modified": "2016-05-31T23:50:57",
           "src": "https://example.com/wp-content/uploads/2016/05/T_4_back.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 1
         },
@@ -2977,7 +2977,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:50:58",
           "date_modified": "2016-05-31T23:50:58",
           "src": "https://example.com/wp-content/uploads/2016/05/T_3_front.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 2
         },
@@ -2986,7 +2986,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:50:59",
           "date_modified": "2016-05-31T23:50:59",
           "src": "https://example.com/wp-content/uploads/2016/05/T_3_back.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 3
         }
@@ -3068,7 +3068,7 @@ woocommerce.post("products/batch", data).parsed_response
               "date_created": "2016-05-31T23:51:01",
               "date_modified": "2016-05-31T23:51:01",
               "src": "https://example.com/wp-content/uploads/2016/05/T_4_front-1.jpg",
-              "title": "",
+              "name": "",
               "alt": "",
               "position": 0
             }
@@ -3126,7 +3126,7 @@ woocommerce.post("products/batch", data).parsed_response
               "date_created": "2016-05-31T23:51:03",
               "date_modified": "2016-05-31T23:51:03",
               "src": "https://example.com/wp-content/uploads/2016/05/T_3_front-1.jpg",
-              "title": "",
+              "name": "",
               "alt": "",
               "position": 0
             }
@@ -3239,7 +3239,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:40:07",
           "date_modified": "2016-05-31T23:40:07",
           "src": "https://example.com/wp-content/uploads/2016/05/T_2_front.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 0
         },
@@ -3248,7 +3248,7 @@ woocommerce.post("products/batch", data).parsed_response
           "date_created": "2016-05-31T23:40:10",
           "date_modified": "2016-05-31T23:40:10",
           "src": "https://example.com/wp-content/uploads/2016/05/T_2_back.jpg",
-          "title": "",
+          "name": "",
           "alt": "",
           "position": 1
         }
