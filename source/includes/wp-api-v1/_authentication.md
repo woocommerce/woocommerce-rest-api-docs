@@ -212,7 +212,7 @@ woocommerce = WooCommerce::API.new(
   "consumer_secret",
   {
     wp_json: true,
-    version: "v3"
+    version: "wc/v1"
   }
 )
 ```
