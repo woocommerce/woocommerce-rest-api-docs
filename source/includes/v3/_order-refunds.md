@@ -5,10 +5,10 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 ## Order Refunds Properties ##
 
 |  Attribute   |   Type  |                                       Description                                        |
-| ------------ | ------- | ---------------------------------------------------------------------------------------- |
+|--------------|---------|------------------------------------------------------------------------------------------|
 | `id`         | integer | Order note ID <i class="label label-info">read-only</i>                                  |
 | `created_at` | string  | UTC DateTime when the order refund was created <i class="label label-info">read-only</i> |
-| `amount`     | float   | Refund amount <i class="label label-info">required</i>                                   |
+| `amount`     | string  | Refund amount <i class="label label-info">required</i>                                   |
 | `reason`     | string  | Reason for refund                                                                        |
 | `line_items` | array   | List of order items to refund. See [Line Items Properties](#line-items-properties)       |
 

@@ -5,13 +5,13 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 ## Taxes Properties ##
 
 | Attribute  |   Type  |                                                                                  Description                                                                                   |
-| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`       | integer | Tax rate ID <i class="label label-info">read-only</i>                                                                                                                          |
 | `country`  | string  | Country code. See [ISO 3166 Codes (Countries)](http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html) for more details                                                      |
 | `state`    | string  | State code                                                                                                                                                                     |
 | `postcode` | string  | Postcode/ZIP                                                                                                                                                                   |
 | `city`     | string  | City name                                                                                                                                                                      |
-| `rate`     | float   | Tax rate                                                                                                                                                                       |
+| `rate`     | string  | Tax rate                                                                                                                                                                       |
 | `name`     | string  | Tax rate name                                                                                                                                                                  |
 | `priority` | integer | Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is `1` |
 | `compound` | boolean | Choose whether or not this is a compound rate. Compound tax rates are applied on top of other tax rates. Default is `false`                                                    |

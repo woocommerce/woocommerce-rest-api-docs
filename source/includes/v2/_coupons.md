@@ -5,13 +5,13 @@ This section lists all API that can be used to create, edit or otherwise manipul
 ## Coupon Properties ##
 
 |           Attribute            |   Type  |                                                        Description                                                         |
-| ------------------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------|
 | `id`                           | integer | Coupon ID (post ID) <i class="label label-info">read-only</i>                                                              |
 | `code`                         | string  | Coupon code, always lowercase <i class="label label-info">mandatory</i>                                                    |
 | `type`                         | string  | Coupon type, valid core types are: `fixed_cart`, `percent`, `fixed_product` and `percent_product`. Default is `fixed_cart` |
 | `created_at`                   | string  | UTC DateTime when the coupon was created <i class="label label-info">read-only</i>                                         |
 | `updated_at`                   | string  | UTC DateTime when the coupon was last updated <i class="label label-info">read-only</i>                                    |
-| `amount`                       | float   | The amount of discount                                                                                                     |
+| `amount`                       | string  | The amount of discount                                                                                                     |
 | `individual_use`               | boolean | Whether coupon can only be used individually                                                                               |
 | `product_ids`                  | array   | Array of product ID's the coupon can be used on                                                                            |
 | `exclude_product_ids`          | array   | Array of product ID's the coupon cannot be used on                                                                         |
@@ -24,8 +24,8 @@ This section lists all API that can be used to create, edit or otherwise manipul
 | `product_category_ids`         | array   | Array of category ID's the coupon applies to                                                                               |
 | `exclude_product_category_ids` | array   | Array of category ID's the coupon does not apply to                                                                        |
 | `exclude_sale_items`           | boolean | Exclude sale items from the coupon                                                                                         |
-| `minimum_amount`               | float   | Minimum order amount that needs to be in the cart before coupon applies                                                    |
-| `maximum_amount`               | float   | Maximum order amount allowed when using the coupon                                                                         |
+| `minimum_amount`               | string  | Minimum order amount that needs to be in the cart before coupon applies                                                    |
+| `maximum_amount`               | string  | Maximum order amount allowed when using the coupon                                                                         |
 | `customer_emails`              | array   | Array of email addresses that can use this coupon                                                                          |
 | `description`                  | string  | Coupon description                                                                                                         |
 

@@ -12,7 +12,7 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 | `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                              |
 | `description`                 | string    | Coupon description.                                                                                                                                   |
 | `discount_type`               | string    | Determines the type of discount that will be applied. Options: `fixed_cart`, `percent`, `fixed_product` and `percent_product`. Default: `fixed_cart`. |
-| `amount`                      | float     | The amount of discount.                                                                                                                               |
+| `amount`                      | string    | The amount of discount.                                                                                                                               |
 | `expiry_date`                 | string    | UTC DateTime when the coupon expires.                                                                                                                 |
 | `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                                           |
 | `individual_use`              | boolean   | Whether coupon can only be used individually.                                                                                                         |
@@ -25,8 +25,8 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 | `product_categories`          | array     | List of category ID's the coupon applies to.                                                                                                          |
 | `excluded_product_categories` | array     | List of category ID's the coupon does not apply to.                                                                                                   |
 | `exclude_sale_items`          | boolean   | Define if should not apply when have sale items.                                                                                                      |
-| `minimum_amount`              | float     | Minimum order amount that needs to be in the cart before coupon applies.                                                                              |
-| `maximum_amount`              | float     | Maximum order amount allowed when using the coupon.                                                                                                   |
+| `minimum_amount`              | string    | Minimum order amount that needs to be in the cart before coupon applies.                                                                              |
+| `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                                   |
 | `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                                     |
 | `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                                                  |
 
