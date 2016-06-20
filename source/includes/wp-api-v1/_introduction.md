@@ -180,7 +180,7 @@ var WooCommerce = new WooCommerceAPI({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  wp_api: true, // Enable the WP REST API integration
+  wpAPI: true, // Enable the WP REST API integration
   version: 'wc/v1' // WooCommerce WP REST API version
 });
 ```
