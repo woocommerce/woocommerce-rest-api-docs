@@ -605,7 +605,7 @@
   <span class="na">consumerSecret</span><span class="p">:</span> <span class="s1">'consumer_secret'</span><span class="p">,</span>
   <span class="na">wp_api</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">version</span><span class="p">:</span> <span class="s1">'wc/v1'</span><span class="p">,</span>
-  <span class="na">queryStringAuth</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// When true and using under HTTPS force Basic Authentication as query string</span>
+  <span class="na">queryStringAuth</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// Force Basic Authentication as query string true and using under HTTPS</span>
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -620,10 +620,21 @@
     <span class="p">[</span>
         <span class="s1">'wp_api'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
         <span class="s1">'version'</span> <span class="o">=&gt;</span> <span class="s1">'wc/v1'</span><span class="p">,</span>
-        <span class="s1">'query_string_auth'</span> <span class="o">=&gt;</span> <span class="kc">true</span> <span class="c1">// When true and using under HTTPS force Basic Authentication as query string
+        <span class="s1">'query_string_auth'</span> <span class="o">=&gt;</span> <span class="kc">true</span> <span class="c1">// Force Basic Authentication as query string true and using under HTTPS
 </span>    <span class="p">]</span>
 <span class="p">);</span>
 <span class="cp">?&gt;</span>
+</code></pre>
+<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">woocommerce</span> <span class="kn">import</span> <span class="n">API</span>
+
+<span class="n">wcapi</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s">"https://example.com"</span><span class="p">,</span>
+    <span class="n">consumer_key</span><span class="o">=</span><span class="s">"consumer_key"</span><span class="p">,</span>
+    <span class="n">consumer_secret</span><span class="o">=</span><span class="s">"consumer_secret"</span><span class="p">,</span>
+    <span class="n">wp_api</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s">"wc/v1"</span><span class="p">,</span>
+    <span class="n">query_string_auth</span><span class="o">=</span><span class="bp">True</span> <span class="o">//</span> <span class="n">Force</span> <span class="n">Basic</span> <span class="n">Authentication</span> <span class="k">as</span> <span class="n">query</span> <span class="n">string</span> <span class="n">true</span> <span class="ow">and</span> <span class="n">using</span> <span class="n">under</span> <span class="n">HTTPS</span>
+<span class="p">)</span>
 </code></pre>
 
 <h2 id="authentication-over-http">Authentication over HTTP</h2>
