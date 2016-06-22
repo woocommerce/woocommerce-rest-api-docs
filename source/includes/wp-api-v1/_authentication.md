@@ -234,7 +234,7 @@ var WooCommerce = new WooCommerceAPI({
   consumerSecret: 'consumer_secret',
   wp_api: true,
   version: 'wc/v1',
-  queryStringAuth: true // When true and using under HTTPS force Basic Authentication as query string
+  queryStringAuth: true // Force Basic Authentication as query string true and using under HTTPS
 });
 ```
 
@@ -251,10 +251,23 @@ $woocommerce = new Client(
     [
         'wp_api' => true,
         'version' => 'wc/v1',
-        'query_string_auth' => true // When true and using under HTTPS force Basic Authentication as query string
+        'query_string_auth' => true // Force Basic Authentication as query string true and using under HTTPS
     ]
 );
 ?>
+```
+
+```python
+from woocommerce import API
+
+wcapi = API(
+    url="https://example.com",
+    consumer_key="consumer_key",
+    consumer_secret="consumer_secret",
+    wp_api=True,
+    version="wc/v1",
+    query_string_auth=True // Force Basic Authentication as query string true and using under HTTPS
+)
 ```
 
 ## Authentication over HTTP ##
