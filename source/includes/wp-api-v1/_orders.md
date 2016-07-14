@@ -10,6 +10,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `parent_id`            | integer   | Parent order ID.                                                                                                                                                     |
 | `status`               | string    | Order status. Default is `pending`. Options (plugins may include new status): `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. |
 | `order_key`            | string    | Order key. <i class="label label-info">read-only</i>                                                                                                                 |
+| `number`               | string    | Order number. <i class="label label-info">read-only</i>                                                                                                              |
 | `currency`             | string    | Currency the order was created with, in ISO format, e.g `USD`. Default is the current store currency.                                                                |
 | `version`              | string    | Version of WooCommerce when the order was made. <i class="label label-info">read-only</i>                                                                            |
 | `prices_include_tax`   | boolean   | Shows if the prices included tax during checkout. <i class="label label-info">read-only</i>                                                                          |
@@ -36,11 +37,11 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `date_completed`       | date-time | The date the order was completed, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
 | `date_paid`            | date-time | The date the order has been paid, in the site's timezone. <i class="label label-info">read-only</i>                                                                  |
 | `cart_hash`            | string    | MD5 hash of cart items to ensure orders are not modified. <i class="label label-info">read-only</i>                                                                  |
-| `line_items`           | array     | Line items data. See [Line Items properties](#line-item-properties).                                                                                                |
-| `tax_lines`            | array     | Tax lines data. See [Tax Lines properties](#tax-line-properties). <i class="label label-info">read-only</i>                                                         |
-| `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines properties](#shipping-line-properties).                                                                                    |
-| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-line-properties).                                                                                                   |
-| `coupon_lines`         | array     | Coupons line data. See [Coupon Lines properties](#coupon-line-properties).                                                                                          |
+| `line_items`           | array     | Line items data. See [Line Items properties](#line-item-properties).                                                                                                 |
+| `tax_lines`            | array     | Tax lines data. See [Tax Lines properties](#tax-line-properties). <i class="label label-info">read-only</i>                                                          |
+| `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines properties](#shipping-line-properties).                                                                                     |
+| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-line-properties).                                                                                                    |
+| `coupon_lines`         | array     | Coupons line data. See [Coupon Lines properties](#coupon-line-properties).                                                                                           |
 
 ### Line item properties ###
 
@@ -383,6 +384,7 @@ woocommerce.post("orders", data).parsed_response
   "parent_id": 0,
   "status": "processing",
   "order_key": "wc_order_574cc02467274",
+  "number": "154",
   "currency": "USD",
   "version": "2.6.0",
   "prices_include_tax": false,
@@ -564,6 +566,7 @@ woocommerce.get("orders/154").parsed_response
   "parent_id": 0,
   "status": "processing",
   "order_key": "wc_order_574cc02467274",
+  "number": "154",
   "currency": "USD",
   "version": "2.6.0",
   "prices_include_tax": false,
@@ -752,6 +755,7 @@ woocommerce.get("orders").parsed_response
     "parent_id": 0,
     "status": "processing",
     "order_key": "wc_order_574cc02467274",
+    "number": "154",
     "currency": "USD",
     "version": "2.6.0",
     "prices_include_tax": false,
@@ -892,6 +896,7 @@ woocommerce.get("orders").parsed_response
     "parent_id": 0,
     "status": "processing",
     "order_key": "wc_order_5728e6e53d2a4",
+    "number": "116",
     "currency": "USD",
     "version": "2.6.0",
     "prices_include_tax": false,
@@ -1078,6 +1083,7 @@ woocommerce.put("orders/154", data).parsed_response
   "parent_id": 0,
   "status": "completed",
   "order_key": "wc_order_574cc02467274",
+  "number": "154",
   "currency": "USD",
   "version": "2.6.0",
   "prices_include_tax": false,
@@ -1259,6 +1265,7 @@ woocommerce.delete("orders/154", force: true).parsed_response
   "parent_id": 0,
   "status": "completed",
   "order_key": "wc_order_574cc02467274",
+  "number": "154",
   "currency": "USD",
   "version": "2.6.0",
   "prices_include_tax": false,
@@ -1990,6 +1997,7 @@ woocommerce.post("orders/batch", data).parsed_response
       "parent_id": 0,
       "status": "pending",
       "order_key": "wc_order_574cc9541cea3",
+      "number": "155",
       "currency": "USD",
       "version": "2.6.0",
       "prices_include_tax": false,
@@ -2152,6 +2160,7 @@ woocommerce.post("orders/batch", data).parsed_response
       "parent_id": 0,
       "status": "processing",
       "order_key": "wc_order_574cc95465214",
+      "number": "156",
       "currency": "USD",
       "version": "2.6.0",
       "prices_include_tax": false,
@@ -2300,6 +2309,7 @@ woocommerce.post("orders/batch", data).parsed_response
       "parent_id": 0,
       "status": "completed",
       "order_key": "wc_order_574cc02467274",
+      "number": "154",
       "currency": "USD",
       "version": "2.6.0",
       "prices_include_tax": false,
@@ -2442,6 +2452,7 @@ woocommerce.post("orders/batch", data).parsed_response
       "parent_id": 0,
       "status": "completed",
       "order_key": "wc_order_574cc02467274",
+      "number": "154",
       "currency": "USD",
       "version": "2.6.0",
       "prices_include_tax": false,
