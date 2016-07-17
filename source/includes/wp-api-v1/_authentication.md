@@ -1,10 +1,10 @@
 # Authentication #
 
-WooCommerce includes two ways to authenticate with the WP REST API. In addition, it is possible to use any [WP REST API authentication](http://v2.wp-api.org/guide/authentication/) plugin or method too.
+WooCommerce includes two ways to authenticate with the WP REST API. It is also possible to authenticate using any [WP REST API authentication](http://v2.wp-api.org/guide/authentication/) plugin or method.
 
 ## REST API keys ##
 
-To be unable to authenticate to any endpoint of our REST API you must generate a REST API keys, currently you can generate new REST API keys by the WordPress admin interface or by an endpoint to auto generate.
+Pre-generated keys can be used to authenticate use of the REST API endpoints. New keys can be generated either through the WordPress admin interface or they can be auto-generated through an endpoint.
 
 ### Generating API keys in the WordPress admin interface ###
 
@@ -12,7 +12,9 @@ To create or manage keys for a specific WordPress user, go to WooCommerce > Sett
 
 ![WooCommerce REST API keys settings](images/woocommerce-api-keys-settings.png)
 
-Click in the "Add Key" button and in the next screen select the User you would like to generate a key for in the User field and add a Description. Choose the level of access for this REST API key, which can be Read access, Write access or Read/Write access. Then select the Generate API Key button and WooCommerce will generate REST API keys for that user.
+Click the "Add Key" button. In the next screen, add a description and select the WordPress user you would like to generate the key for. Use of the REST API with the generated keys will conform to that user's WordPress roles and capabilities. 
+
+Choose the level of access for this REST API key, which can be _Read_ access, _Write_ access or _Read/Write_ access. Then click the "Generate API Key" button and WooCommerce will generate REST API keys for the selected user.
 
 ![Creating a new REST API key](images/woocommerce-creating-api-keys.png)
 
