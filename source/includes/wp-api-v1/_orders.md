@@ -40,7 +40,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `line_items`           | array     | Line items data. See [Line Items properties](#line-item-properties).                                                                                                 |
 | `tax_lines`            | array     | Tax lines data. See [Tax Lines properties](#tax-line-properties). <i class="label label-info">read-only</i>                                                          |
 | `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines properties](#shipping-line-properties).                                                                                     |
-| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properites](#fee-line-properties).                                                                                                    |
+| `fee_lines`            | array     | Fee lines data. See [Fee Lines Properties](#fee-line-properties).                                                                                                    |
 | `coupon_lines`         | array     | Coupons line data. See [Coupon Lines properties](#coupon-line-properties).                                                                                           |
 
 ### Line item properties ###
