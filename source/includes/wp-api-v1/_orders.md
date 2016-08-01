@@ -42,6 +42,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `shipping_lines`       | array     | Shipping lines data. See [Shipping Lines properties](#shipping-line-properties).                                                                                     |
 | `fee_lines`            | array     | Fee lines data. See [Fee Lines Properties](#fee-line-properties).                                                                                                    |
 | `coupon_lines`         | array     | Coupons line data. See [Coupon Lines properties](#coupon-line-properties).                                                                                           |
+| `refunds`              | array     | List of refunds. See [Refunds Lines properties](#refunds-line-properties). <i class="label label-info">read-only</i>                                                 |
 
 ### Line item properties ###
 
@@ -105,6 +106,14 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `code`         | string  | Coupon code. <i class="label label-info">required</i>         |
 | `discount`     | string  | Discount total. <i class="label label-info">required</i>      |
 | `discount_tax` | string  | Discount total tax. <i class="label label-info">read-only</i> |
+
+### Coupon line properties ###
+
+| Attribute |   Type  |                       Description                        |
+|-----------|---------|----------------------------------------------------------|
+| `id`      | integer | Refund ID. <i class="label label-info">read-only</i>     |
+| `reason`  | string  | Refund reason. <i class="label label-info">read-only</i> |
+| `total`   | string  | Refund total. <i class="label label-info">read-only</i>  |
 
 ## Create an order ##
 
@@ -507,6 +516,7 @@ woocommerce.post("orders", data).parsed_response
   ],
   "fee_lines": [],
   "coupon_lines": [],
+  "refunds": [],
   "_links": {
     "self": [
       {
@@ -689,6 +699,7 @@ woocommerce.get("orders/154").parsed_response
   ],
   "fee_lines": [],
   "coupon_lines": [],
+  "refunds": [],
   "_links": {
     "self": [
       {
@@ -878,6 +889,7 @@ woocommerce.get("orders").parsed_response
     ],
     "fee_lines": [],
     "coupon_lines": [],
+    "refunds": [],
     "_links": {
       "self": [
         {
@@ -975,6 +987,7 @@ woocommerce.get("orders").parsed_response
     ],
     "fee_lines": [],
     "coupon_lines": [],
+    "refunds": [],
     "_links": {
       "self": [
         {
@@ -1206,6 +1219,7 @@ woocommerce.put("orders/154", data).parsed_response
   ],
   "fee_lines": [],
   "coupon_lines": [],
+  "refunds": [],
   "_links": {
     "self": [
       {
@@ -1388,6 +1402,7 @@ woocommerce.delete("orders/154", force: true).parsed_response
   ],
   "fee_lines": [],
   "coupon_lines": [],
+  "refunds": [],
   "_links": {
     "self": [
       {
@@ -2142,6 +2157,7 @@ woocommerce.post("orders/batch", data).parsed_response
       ],
       "fee_lines": [],
       "coupon_lines": [],
+      "refunds": [],
       "_links": {
         "self": [
           {
@@ -2289,6 +2305,7 @@ woocommerce.post("orders/batch", data).parsed_response
       ],
       "fee_lines": [],
       "coupon_lines": [],
+      "refunds": [],
       "_links": {
         "self": [
           {
@@ -2432,6 +2449,7 @@ woocommerce.post("orders/batch", data).parsed_response
       ],
       "fee_lines": [],
       "coupon_lines": [],
+      "refunds": [],
       "_links": {
         "self": [
           {
@@ -2575,6 +2593,7 @@ woocommerce.post("orders/batch", data).parsed_response
       ],
       "fee_lines": [],
       "coupon_lines": [],
+      "refunds": [],
       "_links": {
         "self": [
           {
