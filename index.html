@@ -373,7 +373,7 @@
 
 <p><img alt="WooCommerce REST API keys settings" src="images/woocommerce-api-keys-settings.png" /></p>
 
-<p>Click the &ldquo;Add Key&rdquo; button. In the next screen, add a description and select the WordPress user you would like to generate the key for. Use of the REST API with the generated keys will conform to that user&rsquo;s WordPress roles and capabilities. </p>
+<p>Click the &ldquo;Add Key&rdquo; button. In the next screen, add a description and select the WordPress user you would like to generate the key for. Use of the REST API with the generated keys will conform to that user&rsquo;s WordPress roles and capabilities.</p>
 
 <p>Choose the level of access for this REST API key, which can be <em>Read</em> access, <em>Write</em> access or <em>Read/Write</em> access. Then click the &ldquo;Generate API Key&rdquo; button and WooCommerce will generate REST API keys for the selected user.</p>
 
@@ -535,7 +535,7 @@
 
 <h2 id="authentication-over-https">Authentication over HTTPS</h2>
 
-<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the REST API Consumer Key as the username and the REST API Consumer Secret as the password. </p>
+<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the REST API Consumer Key as the username and the REST API Consumer Secret as the password.</p>
 
 <blockquote>
 <p>HTTP Basic Auth example</p>
@@ -704,7 +704,7 @@
 
 <h4 id="generate-the-signature">Generate the signature</h4>
 
-<p>Generate the signature using the <em>signature base string</em> and your consumer secret key with the HMAC-SHA1 hashing algorithm.</p>
+<p>Generate the signature using the <em>signature base string</em> and your consumer secret key with a <code class="prettyprint">&amp;</code> character with the HMAC-SHA1 hashing algorithm.</p>
 
 <p>In PHP you can use the <a href="http://php.net/manual/en/function.hash-hmac.php">hash_hmac</a> function.</p>
 
