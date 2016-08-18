@@ -12,7 +12,7 @@ To create or manage keys for a specific WordPress user, go to WooCommerce > Sett
 
 ![WooCommerce REST API keys settings](images/woocommerce-api-keys-settings.png)
 
-Click the "Add Key" button. In the next screen, add a description and select the WordPress user you would like to generate the key for. Use of the REST API with the generated keys will conform to that user's WordPress roles and capabilities. 
+Click the "Add Key" button. In the next screen, add a description and select the WordPress user you would like to generate the key for. Use of the REST API with the generated keys will conform to that user's WordPress roles and capabilities.
 
 Choose the level of access for this REST API key, which can be _Read_ access, _Write_ access or _Read/Write_ access. Then click the "Generate API Key" button and WooCommerce will generate REST API keys for the selected user.
 
@@ -154,7 +154,7 @@ Example of the screen that the user will see:
 
 ## Authentication over HTTPS ##
 
-You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the REST API Consumer Key as the username and the REST API Consumer Secret as the password. 
+You may use [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication) by providing the REST API Consumer Key as the username and the REST API Consumer Secret as the password.
 
 > HTTP Basic Auth example
 
@@ -330,7 +330,7 @@ GET&http%3A%2F%2Fwww.example.com%2Fwp-json%2Fwc%2Fv1%2Forders&oauth_consumer_key
 
 #### Generate the signature ####
 
-Generate the signature using the *signature base string* and your consumer secret key with the HMAC-SHA1 hashing algorithm.
+Generate the signature using the *signature base string* and your consumer secret key with a `&` character with the HMAC-SHA1 hashing algorithm.
 
 In PHP you can use the [hash_hmac](http://php.net/manual/en/function.hash-hmac.php) function.
 
