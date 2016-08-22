@@ -420,7 +420,7 @@ Delivery logs can be fetched through the REST API endpoint or in code using `WC_
 
 ### Visual Interface ###
 
-You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woothemes.com/document/webhooks/) for more details.
+You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woocommerce.com/document/webhooks/) for more details.
 
 ## Troubleshooting ##
 

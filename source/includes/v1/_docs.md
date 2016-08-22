@@ -503,7 +503,7 @@ Retrieve a set of store information:
       "currency_format" : "&#36;",
       "weight_unit" : "oz",
       "links" : {
-        "help" : "http://docs.woothemes.com/document/woocommerce-rest-api/"
+        "help" : "http://docs.woocommerce.com/document/woocommerce-rest-api/"
       },
       "currency" : "USD",
       "permalinks_enabled" : true,
