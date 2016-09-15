@@ -17913,15 +17913,11 @@ Order notes are added by administrators and programmatically to store data about
     -u consumer_key:consumer_secret <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s1">'{
-  "product_category": {
-    "description": "All kinds of clothes."
-  }
+  "description": "All kinds of clothes."
 }'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">product_category</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">description</span><span class="p">:</span> <span class="s1">'All kinds of clothes.'</span>
-  <span class="p">}</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'All kinds of clothes.'</span>
 <span class="p">};</span>
 
 <span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'products/categories/9'</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -17930,26 +17926,20 @@ Order notes are added by administrators and programmatically to store data about
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'product_category'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'All kinds of clothes.'</span>
-    <span class="p">]</span>
+    <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'All kinds of clothes.'</span>
 <span class="p">];</span>
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">'products/categories/9'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
 <pre class="highlight python"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">"product_category"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">"description"</span><span class="p">:</span> <span class="s">"All kinds of clothes."</span>
-    <span class="p">}</span>
+    <span class="s">"description"</span><span class="p">:</span> <span class="s">"All kinds of clothes."</span>
 <span class="p">}</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">"products/categories/9"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight ruby"><code><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="ss">product_category: </span><span class="p">{</span>
-    <span class="ss">description: </span><span class="s2">"All kinds of clothes."</span>
-  <span class="p">}</span>
+  <span class="ss">description: </span><span class="s2">"All kinds of clothes."</span>
 <span class="p">}</span>
 
 <span class="n">woocommerce</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="s2">"products/categories/9"</span><span class="p">,</span> <span class="n">data</span><span class="p">).</span><span class="nf">parsed_response</span>
