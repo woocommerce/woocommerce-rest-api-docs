@@ -470,17 +470,13 @@ curl -X PUT https://example.com/wp-json/wc/v1/products/categories/9 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "product_category": {
-    "description": "All kinds of clothes."
-  }
+  "description": "All kinds of clothes."
 }'
 ```
 
 ```javascript
 var data = {
-  product_category: {
-    description: 'All kinds of clothes.'
-  }
+  description: 'All kinds of clothes.'
 };
 
 WooCommerce.put('products/categories/9', data, function(err, data, res) {
@@ -491,9 +487,7 @@ WooCommerce.put('products/categories/9', data, function(err, data, res) {
 ```php
 <?php
 $data = [
-    'product_category' => [
-        'description' => 'All kinds of clothes.'
-    ]
+    'description' => 'All kinds of clothes.'
 ];
 
 print_r($woocommerce->put('products/categories/9', $data));
@@ -502,9 +496,7 @@ print_r($woocommerce->put('products/categories/9', $data));
 
 ```python
 data = {
-    "product_category": {
-        "description": "All kinds of clothes."
-    }
+    "description": "All kinds of clothes."
 }
 
 print(wcapi.put("products/categories/9", data).json())
@@ -512,9 +504,7 @@ print(wcapi.put("products/categories/9", data).json())
 
 ```ruby
 data = {
-  product_category: {
-    description: "All kinds of clothes."
-  }
+  description: "All kinds of clothes."
 }
 
 woocommerce.put("products/categories/9", data).parsed_response
