@@ -638,6 +638,19 @@
     <span class="n">query_string_auth</span><span class="o">=</span><span class="bp">True</span> <span class="o">//</span> <span class="n">Force</span> <span class="n">Basic</span> <span class="n">Authentication</span> <span class="k">as</span> <span class="n">query</span> <span class="n">string</span> <span class="n">true</span> <span class="ow">and</span> <span class="n">using</span> <span class="n">under</span> <span class="n">HTTPS</span>
 <span class="p">)</span>
 </code></pre>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"woocommerce_api"</span>
+
+<span class="n">woocommerce</span> <span class="o">=</span> <span class="no">WooCommerce</span><span class="o">::</span><span class="no">API</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span>
+  <span class="s2">"https://example.com"</span><span class="p">,</span>
+  <span class="s2">"consumer_key"</span><span class="p">,</span>
+  <span class="s2">"consumer_secret"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">wp_json: </span><span class="kp">true</span><span class="p">,</span>
+    <span class="ss">version: </span><span class="s2">"wc/v1"</span><span class="p">,</span>
+    <span class="ss">query_string_auth: </span><span class="kp">true</span> <span class="sr">//</span> <span class="no">Force</span> <span class="no">Basic</span> <span class="no">Authentication</span> <span class="n">as</span> <span class="n">query</span> <span class="n">string</span> <span class="kp">true</span> <span class="n">and</span> <span class="n">using</span> <span class="n">under</span> <span class="no">HTTPS</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
 
 <h2 id="authentication-over-http">Authentication over HTTP</h2>
 
