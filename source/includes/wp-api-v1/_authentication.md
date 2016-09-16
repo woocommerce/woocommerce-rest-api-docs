@@ -272,6 +272,21 @@ wcapi = API(
 )
 ```
 
+```ruby
+require "woocommerce_api"
+
+woocommerce = WooCommerce::API.new(
+  "https://example.com",
+  "consumer_key",
+  "consumer_secret",
+  {
+    wp_json: true,
+    version: "wc/v1",
+    query_string_auth: true // Force Basic Authentication as query string true and using under HTTPS
+  }
+)
+```
+
 ## Authentication over HTTP ##
 
 You must use [OAuth 1.0a "one-legged" authentication](http://tools.ietf.org/html/rfc5849) to ensure REST API credentials cannot be intercepted by an attacker. Typically you will use any standard OAuth 1.0a library in the language of your choice to handle the authentication, or generate the necessary parameters by following the following instructions.
