@@ -6,7 +6,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 |      Attribute       |    Type   |                                                                                                                                                                          Description                                                                                                                                                                          |
 |----------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
+| `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                      'categories' => [                                                                           |
 | `name`               | string    | Product name.                                                                                                                                                                                                                                                                                                                                                 |
 | `slug`               | string    | Product slug.                                                                                                                                                                                                                                                                                                                                                 |
 | `permalink`          | string    | Product URL. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                        |
@@ -264,10 +264,10 @@ $data = [
     'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     'categories' => [
         [
-            'id'=> 9
+            'id' => 9
         ],
         [
-            'id'=> 14
+            'id' => 14
         ]
     ],
     'images' => [
