@@ -12126,7 +12126,7 @@ Order notes are added by administrators and programmatically to store data about
 </tr>
 <tr>
 <td><code class="prettyprint">dimensions</code></td>
-<td>array</td>
+<td>object</td>
 <td>Product dimensions. See <a href="#dimension-properties">Dimensions properties</a>.</td>
 </tr>
 <tr>
@@ -12221,7 +12221,7 @@ Order notes are added by administrators and programmatically to store data about
 </tr>
 <tr>
 <td><code class="prettyprint">grouped_products</code></td>
-<td>string</td>
+<td>array</td>
 <td>List of grouped products ID, only for <code class="prettyprint">group</code> type products. <i class="label label-info">read-only</i></td>
 </tr>
 <tr>
@@ -19904,13 +19904,13 @@ Order notes are added by administrators and programmatically to store data about
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
-        <h6>/wp-json/wc/v1/reports/sales/top_sellers</h6>
+        <h6>/wp-json/wc/v1/reports/top_sellers</h6>
     </div>
 </div>
-<pre class="highlight shell"><code>curl https://example.com/wp-json/wc/v1/reports/sales/top_sellers?period<span class="o">=</span>last_month <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://example.com/wp-json/wc/v1/reports/top_sellers?period<span class="o">=</span>last_month <span class="se">\</span>
     -u consumer_key:consumer_secret
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'reports/sales/top_sellers?period=last_month'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="nx">WooCommerce</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'reports/top_sellers?period=last_month'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
@@ -19919,16 +19919,16 @@ Order notes are added by administrators and programmatically to store data about
     <span class="s1">'period'</span> <span class="o">=&gt;</span> <span class="s1">'last_month'</span>
 <span class="p">];</span>
 
-<span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'reports/sales/top_sellers'</span><span class="p">,</span> <span class="nv">$query</span><span class="p">));</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'reports/top_sellers'</span><span class="p">,</span> <span class="nv">$query</span><span class="p">));</span>
 <span class="cp">?&gt;</span>
 </code></pre>
-<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"reports/sales/top_sellers?period=last_month"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<pre class="highlight python"><code><span class="k">print</span><span class="p">(</span><span class="n">wcapi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"reports/top_sellers?period=last_month"</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre>
 <pre class="highlight ruby"><code><span class="n">query</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">period: </span><span class="s2">"last_month"</span>
 <span class="p">}</span>
 
-<span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"reports/sales/top_sellers"</span><span class="p">,</span> <span class="n">query</span><span class="p">).</span><span class="nf">parsed_response</span>
+<span class="n">woocommerce</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s2">"reports/top_sellers"</span><span class="p">,</span> <span class="n">query</span><span class="p">).</span><span class="nf">parsed_response</span>
 </code></pre>
 
 <blockquote>
