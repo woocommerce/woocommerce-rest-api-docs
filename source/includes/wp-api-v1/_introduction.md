@@ -164,6 +164,8 @@ The possible `rel` values are:
 
 ## Libraries and Tools ##
 
+### Official libraries ###
+
 - [Node.js](https://www.npmjs.com/package/woocommerce-api) Library
 - [PHP](https://packagist.org/packages/automattic/woocommerce) Library
 - [Python](https://pypi.python.org/pypi/WooCommerce) Library
@@ -245,9 +247,20 @@ woocommerce = WooCommerce::API.new(
 	Use the tabs in the top-right corner of this page to see how to install and use each library.
 </aside>
 
+### Third party libraries ###
+
+- [Java](https://github.com/icoderman/wc-api-java) Library
+
+<aside class="notice">
+	Note that we don't offer support for third party libraries, so if you have questions about how use any of this libraries you should contact the respective authors.
+</aside>
+
+### Tools ###
+
 Some useful tools you can use to access the API include:
 
-* [CocoaRestClient](http://mmattozzi.github.io/cocoa-rest-client/) - A free, easy to use Mac OS X GUI client for interacting with the API, most useful when your test store has SSL enabled.
-* [Paw HTTP Client](https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12) - Another excellent HTTP client for Mac OS X.
-* [RESTClient, a debugger for RESTful web services](https://addons.mozilla.org/en-US/firefox/addon/restclient/) - Free Firefox add-on.
-* [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo) - Free Google Chrome extension.
+- [Postman](https://www.getpostman.com/) - A multi platform REST API GUI client (using Google Chrome or installing the app on Mac OS X or Windows).
+- [CocoaRestClient](http://mmattozzi.github.io/cocoa-rest-client/) - A Mac OS X GUI client for interacting with the API.
+- [Paw HTTP Client](https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12) - Another HTTP client for Mac OS X.
+- [RESTClient, a debugger for RESTful web services](https://addons.mozilla.org/en-US/firefox/addon/restclient/) - Free Firefox add-on.
+- [Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo) - Free Google Chrome extension.

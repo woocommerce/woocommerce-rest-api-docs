@@ -206,17 +206,17 @@ This API lets you retrieve and view a list of top sellers report.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1/reports/sales/top_sellers</h6>
+		<h6>/wp-json/wc/v1/reports/top_sellers</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1/reports/sales/top_sellers?period=last_month \
+curl https://example.com/wp-json/wc/v1/reports/top_sellers?period=last_month \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('reports/sales/top_sellers?period=last_month', function(err, data, res) {
+WooCommerce.get('reports/top_sellers?period=last_month', function(err, data, res) {
   console.log(res);
 });
 ```
@@ -227,12 +227,12 @@ $query = [
     'period' => 'last_month'
 ];
 
-print_r($woocommerce->get('reports/sales/top_sellers', $query));
+print_r($woocommerce->get('reports/top_sellers', $query));
 ?>
 ```
 
 ```python
-print(wcapi.get("reports/sales/top_sellers?period=last_month").json())
+print(wcapi.get("reports/top_sellers?period=last_month").json())
 ```
 
 ```ruby
@@ -240,7 +240,7 @@ query = {
   period: "last_month"
 }
 
-woocommerce.get("reports/sales/top_sellers", query).parsed_response
+woocommerce.get("reports/top_sellers", query).parsed_response
 ```
 
 > JSON response example:

@@ -46,7 +46,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `backordered`        | boolean   | Shows if a product is on backorder (if the product have the `stock_quantity` negative). <i class="label label-info">read-only</i>                                                                                                                                                                                                                             |
 | `sold_individually`  | boolean   | Allow one item to be bought in a single order. Default is `false`.                                                                                                                                                                                                                                                                                            |
 | `weight`             | string    | Product weight in decimal format.                                                                                                                                                                                                                                                                                                                             |
-| `dimensions`         | array     | Product dimensions. See [Dimensions properties](#dimension-properties).                                                                                                                                                                                                                                                                                       |
+| `dimensions`         | object    | Product dimensions. See [Dimensions properties](#dimension-properties).                                                                                                                                                                                                                                                                                       |
 | `shipping_required`  | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                            |
 | `shipping_taxable`   | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
 | `shipping_class`     | string    | Shipping class slug. Shipping classes are used by certain shipping methods to group similar products.                                                                                                                                                                                                                                                         |
@@ -63,9 +63,9 @@ The products API allows you to create, view, update, and delete individual, or a
 | `tags`               | array     | List of tags. See [Tags properties](#tag-properties).                                                                                                                                                                                                                                                                                                         |
 | `images`             | array     | List of images. See [Images properties](#image-properties)                                                                                                                                                                                                                                                                                                    |
 | `attributes`         | array     | List of attributes. See [Attributes properties](#attribute-properties).                                                                                                                                                                                                                                                                                       |
-| `default_attributes` | array     | Defaults variation attributes, used only for variations and pre-selected attributes on the frontend. See [Default Attributes properties](#default-attribute-properties).                                                                                                                                                                                       |
+| `default_attributes` | array     | Defaults variation attributes, used only for variations and pre-selected attributes on the frontend. See [Default Attributes properties](#default-attribute-properties).                                                                                                                                                                                      |
 | `variations`         | array     | List of variations. See [Variations properties](#variation-properties)                                                                                                                                                                                                                                                                                        |
-| `grouped_products`   | string    | List of grouped products ID, only for `group` type products. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                        |
+| `grouped_products`   | array     | List of grouped products ID, only for `group` type products. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                        |
 | `menu_order`         | integer   | Menu order, used to custom sort products.                                                                                                                                                                                                                                                                                                                     |
 
 ### Download properties ###
@@ -160,9 +160,8 @@ The products API allows you to create, view, update, and delete individual, or a
 | `backorders`         | string    | If managing stock, this controls if backorders are allowed. If enabled, stock quantity can go below `0`. Default is `no`. Options are: `no` (Do not allow), `notify` (Allow, but notify customer), and `yes` (Allow). |
 | `backorders_allowed` | boolean   | Shows if backorders are allowed." <i class="label label-info">read-only</i>                                                                                                                                           |
 | `backordered`        | boolean   | Shows if a variation is on backorder (if the variation have the `stock_quantity` negative). <i class="label label-info">read-only</i>                                                                                 |
-| `purchasable`       | boolean   | Shows if the variation can be bought <i class="label label-info">read-only</i>                                                                                                                                        |
 | `weight`             | string    | Variation weight in decimal format.                                                                                                                                                                                   |
-| `dimensions`         | array     | Variation dimensions. See [Dimensions properties](#dimension-properties).                                                                                                                                            |
+| `dimensions`         | object    | Variation dimensions. See [Dimensions properties](#dimension-properties).                                                                                                                                            |
 | `shipping_class`     | string    | Shipping class slug. Shipping classes are used by certain shipping methods to group similar products.                                                                                                                 |
 | `shipping_class_id`  | integer   | Shipping class ID. <i class="label label-info">read-only</i>                                                                                                                                                          |
 | `image`              | array     | Variation featured image. Only position `0` will be used. See [Images properties](#image-properties).                                                                                                                |
@@ -264,10 +263,10 @@ $data = [
     'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     'categories' => [
         [
-            'id': 9
+            'id' => 9
         ],
         [
-            'id': 14
+            'id' => 14
         ]
     ],
     'images' => [
@@ -692,10 +691,10 @@ $data = [
     'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     'categories' => [
         [
-            'id': 9
+            'id' => 9
         ],
         [
-            'id': 14
+            'id' => 14
         ]
     ],
     'images' => [
@@ -2433,10 +2432,10 @@ $data = [
             ],
             'categories' => [
                 [
-                    'id': 11
+                    'id' => 11
                 ],
                 [
-                    'id': 13
+                    'id' => 13
                 ]
             ],
             'images' => [
@@ -2454,10 +2453,10 @@ $data = [
             'short_description' => 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
             'categories' => [
                 [
-                    'id': 9
+                    'id' => 9
                 ],
                 [
-                    'id': 14
+                    'id' => 14
                 ]
             ],
             'images' => [
