@@ -19083,7 +19083,7 @@ Order notes are added by administrators and programmatically to store data about
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'name'</span><span class="o">:</span> <span class="s1">'Leather Shoes'</span>
+    <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Leather Shoes'</span>
 <span class="p">];</span>
 
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$woocommerce</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">'products/tags'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">));</span>
