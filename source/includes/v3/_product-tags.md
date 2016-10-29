@@ -54,7 +54,7 @@ WooCommerce.post('products/tags', data, function(err, data, res) {
 <?php
 $data = [
     'product_tag': [
-        'name': 'Leather Shoes'
+        'name' => 'Leather Shoes'
     ]
 ];
 
