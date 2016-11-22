@@ -4,19 +4,19 @@ This section lists all API that can be used to create, edit or otherwise manipul
 
 ## Webhooks Properties ##
 
-|   Attribute    |   Type  |                                                                                                       Description                                                                                                       |
-| -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | The webhook ID (post ID) <i class="label label-info">read-only</i>                                                                                                                                                      |
-| `name`         | string  | A friendly name for the webhook, defaults to "Webhook created on &lt;date&gt;"                                                                                                                                          |
-| `status`       | string  | Webhook status, options are `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures). Default is `active`                                                       |
-| `topic`        | string  | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics)                                                                                                                                                  |
-| `resource`     | string  | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                                                               |
-| `event`        | string  | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                                                                 |
-| `hooks`        | array   | WooCommerce action names associated with the webhook <i class="label label-info">read-only</i>                                                                                                                          |
-| `delivery_url` | string  | The URL where the webhook payload is delivered                                                                                                                                                                          |
-| `secret`       | string  | Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default to the current API user's consumer secret if not provided <i class="label label-info">write-only</i> |
-| `created_at`   | string  | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                                                     |
-| `updated_at`   | string  | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                                                                |
+|   Attribute    |   Type  |                                                                                     Description                                                                                      |
+|----------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`           | integer | The webhook ID (post ID) <i class="label label-info">read-only</i>                                                                                                                   |
+| `name`         | string  | A friendly name for the webhook, defaults to "Webhook created on &lt;date&gt;"                                                                                                       |
+| `status`       | string  | Webhook status, options are `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures). Default is `active`                    |
+| `topic`        | string  | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics)                                                                                                               |
+| `resource`     | string  | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                            |
+| `event`        | string  | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                              |
+| `hooks`        | array   | WooCommerce action names associated with the webhook <i class="label label-info">read-only</i>                                                                                       |
+| `delivery_url` | string  | The URL where the webhook payload is delivered                                                                                                                                       |
+| `secret`       | string  | Secret key used to generate a hash of the delivered webhook and provided in the request headers. <i class="label label-info">required</i> <i class="label label-info">write-only</i> |
+| `created_at`   | string  | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                  |
+| `updated_at`   | string  | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                             |
 
 
 ### Delivery Properties ###

@@ -58,19 +58,19 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 ## Webhook properties ##
 
-|    Attribute    |    Type   |                                                                                                              Description                                                                                                              |
-|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                         |
-| `name`          | string    | A friendly name for the webhook. Defaults is `Webhook created on <date>`.                                                                                                                                                             |
-| `status`        | string    | Webhook status. Default is `active`. Options `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures).                                                                        |
-| `topic`         | string    | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics). <i class="label label-info">required</i>                                                                                                                      |
-| `resource`      | string    | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                                                                             |
-| `event`         | string    | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                                                                               |
-| `hooks`         | array     | WooCommerce action names associated with the webhook. <i class="label label-info">read-only</i>                                                                                                                                       |
-| `delivery_url`  | string    | The URL where the webhook payload is delivered. <i class="label label-info">required</i>                                                                                                                                              |
-| `secret`        | string    | Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID&#115;username if not provided. <i class="label label-info">write-only</i> |
-| `date_created`  | date-time | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                                                                   |
-| `date_modified` | date-time | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                                                                              |
+|    Attribute    |    Type   |                                                                                     Description                                                                                      |
+|-----------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                        |
+| `name`          | string    | A friendly name for the webhook. Defaults is `Webhook created on <date>`.                                                                                                            |
+| `status`        | string    | Webhook status. Default is `active`. Options `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures).                       |
+| `topic`         | string    | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics). <i class="label label-info">required</i>                                                                     |
+| `resource`      | string    | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                            |
+| `event`         | string    | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                              |
+| `hooks`         | array     | WooCommerce action names associated with the webhook. <i class="label label-info">read-only</i>                                                                                      |
+| `delivery_url`  | string    | The URL where the webhook payload is delivered. <i class="label label-info">required</i>                                                                                             |
+| `secret`        | string    | Secret key used to generate a hash of the delivered webhook and provided in the request headers. <i class="label label-info">required</i> <i class="label label-info">write-only</i> |
+| `date_created`  | date-time | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                  |
+| `date_modified` | date-time | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                             |
 
 ### Webhooks delivery properties ###
 
