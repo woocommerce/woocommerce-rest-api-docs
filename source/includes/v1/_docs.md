@@ -92,7 +92,7 @@ http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders
 
 8) Generate the signature using the string to key and your consumer secret key
 
-If you are having trouble generating a correct signature, you'll want to review your string to sign for errors with encoding. The [authentication source](https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
+If you are having trouble generating a correct signature, you'll want to review your string to sign for errors with encoding. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
 
 #### OAuth Tips
 
@@ -2114,7 +2114,7 @@ If you don't specify an end date, the current date will be used.
 
 # Troubleshooting
 
-* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
+* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woocommerce/woocommerce/issues/5616#issuecomment-47338737) for details
 
 # Tools
 
@@ -2124,4 +2124,4 @@ If you don't specify an end date, the current date will be used.
 
 # Learn More
 
-* [Initial REST API Implementation](https://github.com/woothemes/woocommerce/pull/4055) - the GitHub issue for the initial implementation
+* [Initial REST API Implementation](https://github.com/woocommerce/woocommerce/pull/4055) - the GitHub issue for the initial implementation

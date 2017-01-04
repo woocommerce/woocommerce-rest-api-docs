@@ -96,7 +96,7 @@ woocommerce.get("").parsed_response
             "dimension_unit": "in",
             "generate_password": false,
             "links": {
-                "help": "http://woothemes.github.io/woocommerce-rest-api-docs/"
+                "help": "http://woocommerce.github.io/woocommerce-rest-api-docs/"
             },
             "permalinks_enabled": true,
             "price_num_decimals": 2,

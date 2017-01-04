@@ -617,7 +617,7 @@ woocommerce.get("").parsed_response
       "permalinks_enabled": true,
       "generate_password": false,
       "links": {
-        "help": "http://woothemes.github.io/woocommerce-rest-api-docs/"
+        "help": "http://woocommerce.github.io/woocommerce-rest-api-docs/"
       }
     }
   }

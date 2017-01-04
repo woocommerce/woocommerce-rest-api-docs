@@ -133,7 +133,7 @@ when encoded:
 
 8) Generate the signature using the string to key and your consumer secret key
 
-If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woothemes/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
+If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
 
 #### OAuth Tips ####
 
@@ -424,8 +424,8 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 ## Troubleshooting ##
 
-* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woothemes/woocommerce/issues/5616#issuecomment-47338737) for details
-* ModSecurity - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details
+* Nginx - Older configurations of Nginx can cause issues with the API, see [this issue](https://github.com/woocommerce/woocommerce/issues/5616#issuecomment-47338737) for details
+* ModSecurity - When activated may be blocking `POST`, `PUT` and `DELETE` requests, usually showing `501 Method Not Implemented` error, see [this issue](https://github.com/woocommerce/woocommerce/issues/9838) for details
 
 ## Official Libraries ##
 

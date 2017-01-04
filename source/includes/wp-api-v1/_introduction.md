@@ -27,7 +27,7 @@ To use the latest version of the REST API you must be using:
 * Pretty permalinks in `Settings > Permalinks` so that the custom endpoints are supported. __Default permalinks will not work.__
 * You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
 
-If you use ModSecurity and see `501 Method Not Implemented` errors, see [this issue](https://github.com/woothemes/woocommerce/issues/9838) for details.
+If you use ModSecurity and see `501 Method Not Implemented` errors, see [this issue](https://github.com/woocommerce/woocommerce/issues/9838) for details.
 
 <aside class="notice">
 	Please note that you are <strong>not</strong> required to install the <a href="https://wordpress.org/plugins/rest-api/" target="_blank">WP REST API (WP API)</a> plugin.
