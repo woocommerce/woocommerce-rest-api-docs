@@ -107,7 +107,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `discount`     | string  | Discount total. <i class="label label-info">required</i>      |
 | `discount_tax` | string  | Discount total tax. <i class="label label-info">read-only</i> |
 
-### Coupon line properties ###
+### Refund line properties ###
 
 | Attribute |   Type  |                       Description                        |
 |-----------|---------|----------------------------------------------------------|
