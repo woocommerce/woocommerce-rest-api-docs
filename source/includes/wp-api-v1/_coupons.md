@@ -157,7 +157,7 @@ woocommerce.post("coupons", data).parsed_response
 
 ## Retrieve a coupon ##
 
-This API lets you retrieve and view a specific coupon by ID or code.
+This API lets you retrieve and view a specific coupon by ID.
 
 ### HTTP request ###
 
