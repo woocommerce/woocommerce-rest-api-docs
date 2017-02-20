@@ -14,7 +14,7 @@ toc_footers:
   - <a href="https://github.com/woocommerce/woocommerce/issues?labels=API&amp;page=1&amp;state=open">REST API Issues</a>
   - <a href="https://docs.woocommerce.com/documentation/plugins/woocommerce/">WooCommerce Documentation</a>
   - <a href="https://github.com/woocommerce/woocommerce">WooCommerce Repository</a>
-  - <a href="http://github.com/tripit/slate">Documentation Powered by Slate</a>
+  - <a href="https://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
   - wp-api-v2/introduction
