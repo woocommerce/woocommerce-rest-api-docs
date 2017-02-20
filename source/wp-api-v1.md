@@ -1,5 +1,5 @@
 ---
-title: WooCommerce REST API Documentation - WP REST API v2
+title: WooCommerce REST API Documentation - WP REST API v1
 
 language_tabs:
   - shell: cURL
@@ -17,24 +17,24 @@ toc_footers:
   - <a href="http://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
-  - wp-api-v2/introduction
-  - wp-api-v2/authentication
-  - wp-api-v2/index
-  - wp-api-v2/coupons
-  - wp-api-v2/customers
-  - wp-api-v2/orders
-  - wp-api-v2/order-notes
-  - wp-api-v2/order-refunds
-  - wp-api-v2/products
-  - wp-api-v2/product-attributes
-  - wp-api-v2/product-attribute-terms
-  - wp-api-v2/product-categories
-  - wp-api-v2/product-shipping-classes
-  - wp-api-v2/product-tags
-  - wp-api-v2/reports
-  - wp-api-v2/taxes
-  - wp-api-v2/tax-classes
-  - wp-api-v2/webhooks
+  - wp-api-v1/introduction
+  - wp-api-v1/authentication
+  - wp-api-v1/index
+  - wp-api-v1/coupons
+  - wp-api-v1/customers
+  - wp-api-v1/orders
+  - wp-api-v1/order-notes
+  - wp-api-v1/order-refunds
+  - wp-api-v1/products
+  - wp-api-v1/product-attributes
+  - wp-api-v1/product-attribute-terms
+  - wp-api-v1/product-categories
+  - wp-api-v1/product-shipping-classes
+  - wp-api-v1/product-tags
+  - wp-api-v1/reports
+  - wp-api-v1/taxes
+  - wp-api-v1/tax-classes
+  - wp-api-v1/webhooks
 
 search: false
 ---
