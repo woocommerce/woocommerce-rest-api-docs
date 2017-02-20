@@ -37,4 +37,6 @@ includes:
   - wp-api-v1/webhooks
 
 search: false
+
+warning: <i class="info"></i> This documentation is for the WooCommerce REST API v1 which is deprecated since WooCommerce 2.7. <a href="http://woocommerce.github.io/woocommerce-rest-api-docs/">Please use the latest REST API version</a>.
 ---
