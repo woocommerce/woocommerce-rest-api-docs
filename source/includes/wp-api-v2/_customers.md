@@ -1455,26 +1455,26 @@ This API lets you retrieve customer downloads permissions.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/2/downloads \
+curl https://example.com/wp-json/wc/v2/customers/23/downloads \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/2/downloads', function(err, data, res) {
+WooCommerce.get('customers/23/downloads', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/2/downloads')); ?>
+<?php print_r($woocommerce->get('customers/23/downloads')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/2/downloads").json())
+print(wcapi.get("customers/23/downloads").json())
 ```
 
 ```ruby
-woocommerce.get("customers/2/downloads").parsed_response
+woocommerce.get("customers/23/downloads").parsed_response
 ```
 
 > JSON response example:
@@ -1482,32 +1482,33 @@ woocommerce.get("customers/2/downloads").parsed_response
 ```json
 [
   {
-    "download_url": "https://example.com/?download_file=96&order=wc_order_571a7260c0da5&email=john.dow@xanmple.com&key=1789931e0c14ad9909a50c826f10c169",
-    "download_id": "1789931e0c14ad9909a50c826f10c169",
-    "product_id": 96,
-    "download_name": "Woo Album #4 &ndash; Testing",
-    "order_id": 105,
-    "order_key": "wc_order_571a7260c0da5",
+    "download_url": "https://example.com/?download_file=83&order=wc_order_58bde2b65da&email=john.doe%40example.com&key=91447fd1849316bbc89dfb7e986a6006",
+    "download_id": "91447fd1849316bbc89dfb7e986a6006",
+    "product_id": 83,
+    "product_name": "Woo Album #1",
+    "download_name": "Woo Album #1 &ndash; Track 1",
+    "order_id": 695,
+    "order_key": "wc_order_58bde2b65da",
     "downloads_remaining": "unlimited",
     "access_expires": "never",
     "file": {
-      "name": "Testing",
-      "file": "http://example.com/wp-content/uploads/2013/06/cd_5_angle.jpg"
+      "name": "Track 1",
+      "file": "http://example.com/wp-content/uploads/woocommerce_uploads/2013/06/Song.mp3"
     },
     "_links": {
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/1/downloads"
+          "href": "https://example.com/wp-json/wc/v1/customers/23/downloads"
         }
       ],
       "product": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/96"
+          "href": "https://example.com/wp-json/wc/v1/products/83"
         }
       ],
       "order": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/105"
+          "href": "https://example.com/wp-json/wc/v1/orders/695"
         }
       ]
     }
@@ -1522,6 +1523,7 @@ woocommerce.get("customers/2/downloads").parsed_response
 | `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                     |
 | `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                     |
 | `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                               |
+| `product_name`        | string  | Downloadable product name. <i class="label label-info">read-only</i>                                             |
 | `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                |
 | `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                              |
 | `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                             |
