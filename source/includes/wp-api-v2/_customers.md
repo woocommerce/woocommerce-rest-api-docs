@@ -801,9 +801,10 @@ woocommerce.delete("customers/21", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
-|-----------|--------|---------------------------------------------------------------|
-| `force`   | string | Required to be `true`, as resource does not support trashing. |
+| Parameter  |   Type  |                          Description                          |
+|------------|---------|---------------------------------------------------------------|
+| `force`    | string  | Required to be `true`, as resource does not support trashing. |
+| `reassign` | integer | User ID to reassign posts to.                                 |
 
 ## Batch update customers ##
 
