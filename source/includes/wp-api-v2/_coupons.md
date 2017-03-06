@@ -4,31 +4,40 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 
 ## Coupon properties ##
 
-|           Attribute           |    Type   |                                                                      Description                                                                      |
-|-------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                          | integer   | Unique identifier for the object. <i class="label label-info">read-only</i>                                                                           |
-| `code`                        | string    | Coupon code. <i class="label label-info">mandatory</i>                                                                                                |
-| `date_created`                | date-time | The date the coupon was created, in the site's timezone. <i class="label label-info">read-only</i>                                                    |
-| `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                              |
-| `description`                 | string    | Coupon description.                                                                                                                                   |
-| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `fixed_cart`, `percent`, `fixed_product` and `percent_product`. Default: `fixed_cart`. |
-| `amount`                      | string    | The amount of discount.                                                                                                                               |
-| `expiry_date`                 | string    | UTC DateTime when the coupon expires.                                                                                                                 |
-| `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                                           |
-| `individual_use`              | boolean   | Whether coupon can only be used individually.                                                                                                         |
-| `product_ids`                 | array     | List of product ID's the coupon can be used on.                                                                                                       |
-| `exclude_product_ids`         | array     | List of product ID's the coupon cannot be used on.                                                                                                    |
-| `usage_limit`                 | integer   | How many times the coupon can be used.                                                                                                                |
-| `usage_limit_per_user`        | integer   | How many times the coupon can be used per customer.                                                                                                   |
-| `limit_usage_to_x_items`      | integer   | Max number of items in the cart the coupon can be applied to.                                                                                         |
-| `free_shipping`               | boolean   | Define if can be applied for free shipping.                                                                                                           |
-| `product_categories`          | array     | List of category ID's the coupon applies to.                                                                                                          |
-| `excluded_product_categories` | array     | List of category ID's the coupon does not apply to.                                                                                                   |
-| `exclude_sale_items`          | boolean   | Define if should not apply when have sale items.                                                                                                      |
-| `minimum_amount`              | string    | Minimum order amount that needs to be in the cart before coupon applies.                                                                              |
-| `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                                   |
-| `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                                     |
-| `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                                                  |
+|           Attribute           |    Type   |                                                            Description                                                             |
+|-------------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                          | integer   | Unique identifier for the object. <i class="label label-info">read-only</i>                                                        |
+| `code`                        | string    | Coupon code. <i class="label label-info">mandatory</i>                                                                             |
+| `amount`                      | string    | The amount of discount.                                                                                                            |
+| `date_created`                | date-time | The date the coupon was created, in the site's timezone. <i class="label label-info">read-only</i>                                 |
+| `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                           |
+| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `fixed_cart`, `percent` and `fixed_product`. Default: `fixed_cart`. |
+| `description`                 | string    | Coupon description.                                                                                                                |
+| `date_expires`                | string    | UTC DateTime when the coupon expires.                                                                                              |
+| `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                        |
+| `individual_use`              | boolean   | Whether coupon can only be used individually.                                                                                      |
+| `product_ids`                 | array     | List of product ID's the coupon can be used on.                                                                                    |
+| `excluded_product_ids`        | array     | List of product ID's the coupon cannot be used on.                                                                                 |
+| `usage_limit`                 | integer   | How many times the coupon can be used.                                                                                             |
+| `usage_limit_per_user`        | integer   | How many times the coupon can be used per customer.                                                                                |
+| `limit_usage_to_x_items`      | integer   | Max number of items in the cart the coupon can be applied to.                                                                      |
+| `free_shipping`               | boolean   | Define if can be applied for free shipping.                                                                                        |
+| `product_categories`          | array     | List of category ID's the coupon applies to.                                                                                       |
+| `excluded_product_categories` | array     | List of category ID's the coupon does not apply to.                                                                                |
+| `exclude_sale_items`          | boolean   | Define if should not apply when have sale items.                                                                                   |
+| `minimum_amount`              | string    | Minimum order amount that needs to be in the cart before coupon applies.                                                           |
+| `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                |
+| `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                  |
+| `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                               |
+| `meta_data`                   | object    | List of coupon custom meta data. See [Meta data properties](#meta-data-properties)                                                 |
+
+### Meta data properties ###
+
+| Attribute |   Type  |                    Description                     |
+|-----------|---------|----------------------------------------------------|
+| `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
+| `key`     | string  | Meta key.                                          |
+| `value`   | string  | Meta value.                                        |
 
 ## Create a coupon ##
 
