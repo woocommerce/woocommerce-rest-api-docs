@@ -24,8 +24,8 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `cart_tax`             | string    | Sum of line item taxes only. <i class="label label-info">read-only</i>                                                                                               |
 | `total`                | string    | Grand total. <i class="label label-info">read-only</i>                                                                                                               |
 | `total_tax`            | string    | Sum of all taxes. <i class="label label-info">read-only</i>                                                                                                          |
-| `billing`              | array     | Billing address. See [Customer Billing Address properties](#billing-address-properties).                                                                             |
-| `shipping`             | array     | Shipping address. See [Customer Shipping Address properties](#shipping-address-properties).                                                                          |
+| `billing`              | object    | Billing address. See [Customer Billing Address properties](#billing-address-properties).                                                                             |
+| `shipping`             | object    | Shipping address. See [Customer Shipping Address properties](#shipping-address-properties).                                                                          |
 | `payment_method`       | string    | Payment method ID.                                                                                                                                                   |
 | `payment_method_title` | string    | Payment method title.                                                                                                                                                |
 | `set_paid`             | boolean   | Define if the order is paid. It will set the status to processing and reduce stock items. Default is `false`. <i class="label label-info">write-only</i>             |
