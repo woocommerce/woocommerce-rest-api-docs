@@ -258,20 +258,14 @@ woocommerce.post("customers", data).parsed_response
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:34:43",
+  "id": 21,
+  "date_created": "2017-03-07T00:37:03",
+  "date_modified": "2017-03-07T00:37:04",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "John",
     "last_name": "Doe",
@@ -296,10 +290,15 @@ woocommerce.post("customers", data).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
@@ -325,46 +324,40 @@ This API lets you retrieve and view a specific customer by ID or email.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/2 \
+curl https://example.com/wp-json/wc/v2/customers/21 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/2', function(err, data, res) {
+WooCommerce.get('customers/21', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/2')); ?>
+<?php print_r($woocommerce->get('customers/21')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/2").json())
+print(wcapi.get("customers/21").json())
 ```
 
 ```ruby
-woocommerce.get("customers/2").parsed_response
+woocommerce.get("customers/21").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:34:43",
+  "id": 21,
+  "date_created": "2017-03-07T00:37:03",
+  "date_modified": "2017-03-07T00:37:04",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "John",
     "last_name": "Doe",
@@ -389,10 +382,15 @@ woocommerce.get("customers/2").parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
@@ -445,20 +443,14 @@ woocommerce.get("customers").parsed_response
 ```json
 [
   {
-    "id": 5,
-    "date_created": "2016-05-11T21:39:01",
-    "date_modified": "2016-05-11T21:40:02",
+    "id": 22,
+    "date_created": "2017-03-07T00:39:09",
+    "date_modified": "2017-03-07T00:39:11",
     "email": "joao.silva@example.com",
     "first_name": "João",
     "last_name": "Silva",
+    "role": "customer",
     "username": "joao.silva",
-    "last_order": {
-      "id": null,
-      "date": null
-    },
-    "orders_count": 0,
-    "total_spent": "0.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
     "billing": {
       "first_name": "João",
       "last_name": "Silva",
@@ -483,34 +475,33 @@ woocommerce.get("customers").parsed_response
       "postcode": "12345-000",
       "country": "BR"
     },
+    "is_paying_customer": false,
+    "orders_count": 0,
+    "total_spent": "0.00",
+    "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
+    "meta_data": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/5"
+          "href": "https://woo.dev/wp-json/wc/v2/customers/22"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers"
+          "href": "https://woo.dev/wp-json/wc/v2/customers"
         }
       ]
     }
   },
   {
-    "id": 2,
-    "date_created": "2016-05-03T17:58:35",
-    "date_modified": "2016-05-11T21:34:43",
+    "id": 21,
+    "date_created": "2017-03-07T00:37:03",
+    "date_modified": "2017-03-07T00:37:04",
     "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
+    "role": "customer",
     "username": "john.doe",
-    "last_order": {
-      "id": 118,
-      "date": "2016-05-03T18:10:43"
-    },
-    "orders_count": 3,
-    "total_spent": "28.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
     "billing": {
       "first_name": "John",
       "last_name": "Doe",
@@ -535,15 +526,20 @@ woocommerce.get("customers").parsed_response
       "postcode": "94103",
       "country": "US"
     },
+    "is_paying_customer": false,
+    "orders_count": 0,
+    "total_spent": "0.00",
+    "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+    "meta_data": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/2"
+          "href": "https://woo.dev/wp-json/wc/v2/customers/21"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers"
+          "href": "https://woo.dev/wp-json/wc/v2/customers"
         }
       ]
     }
@@ -581,7 +577,7 @@ This API lets you make changes to a customer.
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v2/customers/2 \
+curl -X PUT https://example.com/wp-json/wc/v2/customers/21 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -606,7 +602,7 @@ var data = {
   }
 };
 
-WooCommerce.put('customers/2', data, function(err, data, res) {
+WooCommerce.put('customers/21', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -623,7 +619,7 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->put('customers/2', $data));
+print_r($woocommerce->put('customers/21', $data));
 ?>
 ```
 
@@ -638,7 +634,7 @@ data = {
     }
 }
 
-print(wcapi.put("customers/2", data).json())
+print(wcapi.put("customers/21", data).json())
 ```
 
 ```ruby
@@ -652,27 +648,21 @@ data = {
   }
 }
 
-woocommerce.put("customers/2", data).parsed_response
+woocommerce.put("customers/21", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:43:45",
+  "id": 21,
+  "date_created": "2017-03-07T00:37:03",
+  "date_modified": "2017-03-07T00:49:38",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "James",
     "last_name": "Doe",
@@ -697,15 +687,20 @@ woocommerce.put("customers/2", data).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://woo.dev/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers"
+        "href": "https://woo.dev/wp-json/wc/v2/customers"
       }
     ]
   }
@@ -726,46 +721,40 @@ This API helps you delete a customer.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/customers/2?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/customers/21?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('customers/2?force=true', function(err, data, res) {
+WooCommerce.delete('customers/21?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('customers/2', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('customers/21', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("customers/2?force=true").json())
+print(wcapi.delete("customers/21?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("customers/2", force: true).parsed_response
+woocommerce.delete("customers/21", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:43:45",
+  "id": 21,
+  "date_created": "2017-03-07T00:37:03",
+  "date_modified": "2017-03-07T00:49:38",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "James",
     "last_name": "Doe",
@@ -790,15 +779,20 @@ woocommerce.delete("customers/2", force: true).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://woo.dev/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers"
+        "href": "https://woo.dev/wp-json/wc/v2/customers"
       }
     ]
   }
@@ -893,14 +887,14 @@ curl -X POST https://example.com/wp-json/wc/v2/customers/batch \
   ],
   "update": [
     {
-      "id": 5,
+      "id": 22,
       "billing": {
         "phone": "(11) 1111-1111"
       }
     }
   ],
   "delete": [
-    2
+    21
   ]
 }'
 ```
@@ -971,14 +965,14 @@ var data = {
   ],
   update: [
     {
-      id: 5,
+      id: 22,
       billing: {
         phone: '(11) 1111-1111'
       }
     }
   ],
   delete: [
-    2
+    11
   ]
 };
 
@@ -990,67 +984,78 @@ WooCommerce.post('customers/batch', data, function(err, data, res) {
 ```php
 <?php 
 $data = [
-    'customers': [
+    'create' => [
         [
-            'email': 'john.doe2@example.com',
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'username': 'john.doe2',
-            'billing': [
-                'first_name': 'John',
-                'last_name': 'Doe',
-                'company': '',
-                'address_1': '969 Market',
-                'address_2': '',
-                'city': 'San Francisco',
-                'state': 'CA',
-                'postcode': '94103',
-                'country': 'US',
-                'email': 'john.doe@example.com',
-                'phone': '(555) 555-5555'
+            'email' => 'john.doe2@example.com',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'username' => 'john.doe2',
+            'billing' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'company' => '',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US',
+                'email' => 'john.doe@example.com',
+                'phone' => '(555) 555-5555'
             ],
-            'shipping': [
-                'first_name': 'John',
-                'last_name': 'Doe',
-                'company': '',
-                'address_1': '969 Market',
-                'address_2': '',
-                'city': 'San Francisco',
-                'state': 'CA',
-                'postcode': '94103',
-                'country': 'US'
+            'shipping' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'company' => '',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US'
             ]
         ],
         [
-            'email': 'joao.silva2@example.com',
-            'first_name': 'João',
-            'last_name': 'Silva',
-            'username': 'joao.silva2',
-            'billing': [
-                'first_name': 'João',
-                'last_name': 'Silva',
-                'company': '',
-                'address_1': 'Av. Brasil, 432',
-                'address_2': '',
-                'city': 'Rio de Janeiro',
-                'state': 'RJ',
-                'postcode': '12345-000',
-                'country': 'BR',
-                'email': 'joao.silva@example.com',
-                'phone': '(55) 5555-5555'
+            'email' => 'joao.silva2@example.com',
+            'first_name' => 'João',
+            'last_name' => 'Silva',
+            'username' => 'joao.silva2',
+            'billing' => [
+                'first_name' => 'João',
+                'last_name' => 'Silva',
+                'company' => '',
+                'address_1' => 'Av. Brasil, 432',
+                'address_2' => '',
+                'city' => 'Rio de Janeiro',
+                'state' => 'RJ',
+                'postcode' => '12345-000',
+                'country' => 'BR',
+                'email' => 'joao.silva@example.com',
+                'phone' => '(55) 5555-5555'
             ],
-            'shipping': [
-                'first_name': 'João',
-                'last_name': 'Silva',
-                'company': '',
-                'address_1': 'Av. Brasil, 432',
-                'address_2': '',
-                'city': 'Rio de Janeiro',
-                'state': 'RJ',
-                'postcode': '12345-000',
-                'country': 'BR'
+            'shipping' => [
+                'first_name' => 'João',
+                'last_name' => 'Silva',
+                'company' => '',
+                'address_1' => 'Av. Brasil, 432',
+                'address_2' => '',
+                'city' => 'Rio de Janeiro',
+                'state' => 'RJ',
+                'postcode' => '12345-000',
+                'country' => 'BR'
             ]
         ]
+    ],
+    'update' => [
+        [
+            'id' => 22,
+            'billing' => [
+                'phone' => '(11) 1111-1111'
+            ]
+        ]
+    ],
+    'delete' => [
+        21
     ]
 ];
 
@@ -1124,14 +1129,14 @@ data = {
     ],
     "update": [
         {
-            "id": 5,
+            "id": 22,
             "billing": {
                 "phone": "(11) 1111-1111"
             }
         }
     ],
     "delete": [
-        2
+        21
     ]
 }
 
@@ -1204,14 +1209,14 @@ data = {
   ],
   update: [
     {
-      id: 5,
+      id: 22,
       billing: {
         phone: "(11) 1111-1111"
       }
     }
   ],
   delete: [
-    2
+    21
   ]
 }
 
@@ -1224,20 +1229,14 @@ woocommerce.post("customers/batch", data).parsed_response
 {
   "create": [
     {
-      "id": 6,
-      "date_created": "2016-05-11T22:06:32",
-      "date_modified": "2016-05-11T22:07:31",
+      "id": 23,
+      "date_created": "2017-03-07T00:59:37",
+      "date_modified": "2017-03-07T00:59:38",
       "email": "john.doe2@example.com",
       "first_name": "John",
       "last_name": "Doe",
+      "role": "customer",
       "username": "john.doe2",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "John",
         "last_name": "Doe",
@@ -1262,10 +1261,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "94103",
         "country": "US"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/6ad0b094bac53a85bb282ccdb3958279?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/6"
+            "href": "https://example.com/wp-json/wc/v2/customers/23"
           }
         ],
         "collection": [
@@ -1276,20 +1280,14 @@ woocommerce.post("customers/batch", data).parsed_response
       }
     },
     {
-      "id": 7,
-      "date_created": "2016-05-11T22:07:33",
-      "date_modified": "2016-05-11T22:07:37",
+      "id": 24,
+      "date_created": "2017-03-07T00:59:39",
+      "date_modified": "2017-03-07T00:59:40",
       "email": "joao.silva2@example.com",
       "first_name": "João",
       "last_name": "Silva",
+      "role": "customer",
       "username": "joao.silva2",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "João",
         "last_name": "Silva",
@@ -1314,10 +1312,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "12345-000",
         "country": "BR"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ea9ad095f2970f27cbff07e7f5e99453?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/7"
+            "href": "https://example.com/wp-json/wc/v2/customers/24"
           }
         ],
         "collection": [
@@ -1330,20 +1333,14 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "update": [
     {
-      "id": 5,
-      "date_created": "2016-05-11T21:39:01",
-      "date_modified": "2016-05-11T22:04:36",
+      "id": 22,
+      "date_created": "2017-03-07T00:39:09",
+      "date_modified": "2017-03-07T00:59:41",
       "email": "joao.silva@example.com",
       "first_name": "João",
       "last_name": "Silva",
+      "role": "customer",
       "username": "joao.silva",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "João",
         "last_name": "Silva",
@@ -1368,10 +1365,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "12345-000",
         "country": "BR"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/5"
+            "href": "https://example.com/wp-json/wc/v2/customers/22"
           }
         ],
         "collection": [
@@ -1384,20 +1386,14 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "delete": [
     {
-      "id": 2,
-      "date_created": "2016-05-03T17:58:35",
-      "date_modified": "2016-05-11T21:43:45",
+      "id": 21,
+      "date_created": "2017-03-07T00:37:03",
+      "date_modified": "2017-03-07T00:49:38",
       "email": "john.doe@example.com",
       "first_name": "James",
       "last_name": "Doe",
+      "role": "customer",
       "username": "john.doe",
-      "last_order": {
-        "id": 118,
-        "date": "2016-05-03T18:10:43"
-      },
-      "orders_count": 3,
-      "total_spent": "28.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "James",
         "last_name": "Doe",
@@ -1422,10 +1418,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "94103",
         "country": "US"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/2"
+            "href": "https://example.com/wp-json/wc/v2/customers/21"
           }
         ],
         "collection": [
