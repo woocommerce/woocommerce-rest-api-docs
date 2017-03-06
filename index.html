@@ -5615,7 +5615,7 @@
 
 <h2 id="retrieve-a-coupon">Retrieve a coupon</h2>
 
-<p>This API lets you retrieve and view a specific coupon by ID or code.</p>
+<p>This API lets you retrieve and view a specific coupon by ID.</p>
 
 <h3 id="http-request">HTTP request</h3>
 
@@ -8208,12 +8208,12 @@
 </tr>
 <tr>
 <td><code class="prettyprint">billing</code></td>
-<td>array</td>
+<td>object</td>
 <td>Billing address. See <a href="#billing-address-properties">Customer Billing Address properties</a>.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">shipping</code></td>
-<td>array</td>
+<td>object</td>
 <td>Shipping address. See <a href="#shipping-address-properties">Customer Shipping Address properties</a>.</td>
 </tr>
 <tr>
@@ -12536,6 +12536,11 @@ Order notes are added by administrators and programmatically to store data about
 <td><code class="prettyprint">purchasable</code></td>
 <td>boolean</td>
 <td>Shows if the variation can be bought. <i class="label label-info">read-only</i></td>
+</tr>
+<tr>
+<td><code class="prettyprint">visible</code></td>
+<td>boolean</td>
+<td>If the variation is visible.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">virtual</code></td>
