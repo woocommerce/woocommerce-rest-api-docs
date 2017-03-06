@@ -483,12 +483,12 @@ woocommerce.get("customers").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/customers/22"
+          "href": "https://example.com/wp-json/wc/v2/customers/22"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/customers"
+          "href": "https://example.com/wp-json/wc/v2/customers"
         }
       ]
     }
@@ -534,12 +534,12 @@ woocommerce.get("customers").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/customers/21"
+          "href": "https://example.com/wp-json/wc/v2/customers/21"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/customers"
+          "href": "https://example.com/wp-json/wc/v2/customers"
         }
       ]
     }
@@ -695,12 +695,12 @@ woocommerce.put("customers/21", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/customers"
+        "href": "https://example.com/wp-json/wc/v2/customers"
       }
     ]
   }
@@ -787,12 +787,12 @@ woocommerce.delete("customers/21", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/21"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/customers"
+        "href": "https://example.com/wp-json/wc/v2/customers"
       }
     ]
   }
