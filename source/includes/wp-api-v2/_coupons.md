@@ -4,37 +4,42 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 
 ## Coupon properties ##
 
-|           Attribute           |    Type   |                                                            Description                                                             |
-|-------------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                          | integer   | Unique identifier for the object. <i class="label label-info">read-only</i>                                                        |
-| `code`                        | string    | Coupon code. <i class="label label-info">mandatory</i>                                                                             |
-| `amount`                      | string    | The amount of discount.                                                                                                            |
-| `date_created`                | date-time | The date the coupon was created, in the site's timezone. <i class="label label-info">read-only</i>                                 |
-| `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                           |
-| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `fixed_cart`, `percent` and `fixed_product`. Default: `fixed_cart`. |
-| `description`                 | string    | Coupon description.                                                                                                                |
-| `date_expires`                | string    | UTC DateTime when the coupon expires.                                                                                              |
-| `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                        |
-| `individual_use`              | boolean   | Whether coupon can only be used individually.                                                                                      |
-| `product_ids`                 | array     | List of product ID's the coupon can be used on.                                                                                    |
-| `excluded_product_ids`        | array     | List of product ID's the coupon cannot be used on.                                                                                 |
-| `usage_limit`                 | integer   | How many times the coupon can be used.                                                                                             |
-| `usage_limit_per_user`        | integer   | How many times the coupon can be used per customer.                                                                                |
-| `limit_usage_to_x_items`      | integer   | Max number of items in the cart the coupon can be applied to.                                                                      |
-| `free_shipping`               | boolean   | Define if can be applied for free shipping.                                                                                        |
-| `product_categories`          | array     | List of category ID's the coupon applies to.                                                                                       |
-| `excluded_product_categories` | array     | List of category ID's the coupon does not apply to.                                                                                |
-| `exclude_sale_items`          | boolean   | Define if should not apply when have sale items.                                                                                   |
-| `minimum_amount`              | string    | Minimum order amount that needs to be in the cart before coupon applies.                                                           |
-| `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                |
-| `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                  |
-| `used_by`                     | array     | List of user IDs who have used the coupon. <i class="label label-info">read-only</i>                                               |
-| `meta_data`                   | object    | List of coupon custom meta data. See [Meta data properties](#meta-data-properties)                                                 |
+## Coupons properties ##
 
-### Meta data properties ###
+| Attribute                     | Type      | Description                                                                                                                          |
+| ----------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`                          | integer   | Unique identifier for the object. <i class="label label-info">read-only</i>                                                          |
+| `code`                        | string    | Coupon code. <i class="label label-info">mandatory</i>                                                                               |
+| `amount`                      | string    | The amount of discount. Should always be numeric, even if setting a percentage.                                                      |
+| `date_created`                | date-time | The date the coupon was created, in the site's timezone. <i class="label label-info">read-only</i>                                   |
+| `date_created_gmt`            | date-time | The date the coupon was created, as GMT. <i class="label label-info">read-only</i>                                                   |
+| `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                             |
+| `date_modified_gmt`           | date-time | The date the coupon was last modified, as GMT. <i class="label label-info">read-only</i>                                             |
+| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `percent`, `fixed_cart` and `fixed_product`. Default is `fixed_cart`. |
+| `description`                 | string    | Coupon description.                                                                                                                  |
+| `date_expires`                | string    | The date the coupon expires, in the site's timezone.                                                                                 |
+| `date_expires_gmt`            | string    | The date the coupon expires, as GMT.                                                                                                 |
+| `usage_count`                 | integer   | Number of times the coupon has been used already. <i class="label label-info">read-only</i>                                          |
+| `individual_use`              | boolean   | If true, the coupon can only be used individually. Other applied coupons will be removed from the cart. Default is `false`.          |
+| `product_ids`                 | array     | List of product IDs the coupon can be used on.                                                                                       |
+| `excluded_product_ids`        | array     | List of product IDs the coupon cannot be used on.                                                                                    |
+| `usage_limit`                 | integer   | How many times the coupon can be used in total.                                                                                      |
+| `usage_limit_per_user`        | integer   | How many times the coupon can be used per customer.                                                                                  |
+| `limit_usage_to_x_items`      | integer   | Max number of items in the cart the coupon can be applied to.                                                                        |
+| `free_shipping`               | boolean   | If true and if the free shipping method requires a coupon, this coupon will enable free shipping. Default is `false`.                |
+| `product_categories`          | array     | List of category IDs the coupon applies to.                                                                                          |
+| `excluded_product_categories` | array     | List of category IDs the coupon does not apply to.                                                                                   |
+| `exclude_sale_items`          | boolean   | If true, this coupon will not be applied to items that have sale prices. Default is `false`.                                         |
+| `minimum_amount`              | string    | Minimum order amount that needs to be in the cart before coupon applies.                                                             |
+| `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                  |
+| `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                    |
+| `used_by`                     | array     | List of user IDs (or guest email addresses) that have used the coupon. <i class="label label-info">read-only</i>                     |
+| `meta_data`                   | array     | Meta data. See [Coupons - Meta data properties](coupons---meta-data-properties)                                                      |
 
-| Attribute |   Type  |                    Description                     |
-|-----------|---------|----------------------------------------------------|
+### Coupons - Meta data properties ###
+
+| Attribute | Type    | Description                                        |
+| --------- | ------- | -------------------------------------------------- |
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -365,20 +370,20 @@ woocommerce.get("coupons").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                  Description                                                  |
-|------------|---------|---------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
-| `page`     | integer | Current page of the collection.                                                                               |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                         |
-| `search`   | string  | Limit results to those matching a string.                                                                     |
-| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
-| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                      |
-| `include`  | string  | Limit result set to specific ids.                                                                             |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                          |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
-| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
-| `code`     | string  | Limit result set to resources with a specific code.                                                           |
+| Parameter  | Type    | Description                                                                                                                  |
+| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `page`     | integer | Current page of the collection. Default is `1`.                                                                              |
+| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
+| `search`   | string  | Limit results to those matching a string.                                                                                    |
+| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
+| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
+| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                     |
+| `include`  | array   | Limit result set to specific ids.                                                                                            |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                         |
+| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
+| `orderby`  | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
+| `code`     | string  | Limit result set to resources with a specific code.                                                                          |
 
 ## Update a coupon ##
 
