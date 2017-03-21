@@ -56,7 +56,7 @@ This API helps you to create a new refund for an order.
 </div>
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v2/orders/116/refunds \
+curl -X POST https://example.com/wp-json/wc/v2/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -69,7 +69,7 @@ var data = {
   amount: '10'
 };
 
-WooCommerce.post('orders/116/refunds', data, function(err, data, res) {
+WooCommerce.post('orders/723/refunds', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -80,7 +80,7 @@ $data = [
     'amount' => '10'
 ];
 
-print_r($woocommerce->post('orders/116/refunds', $data));
+print_r($woocommerce->post('orders/723/refunds', $data));
 ?>
 ```
 
@@ -89,7 +89,7 @@ data = {
     "amount": "10"
 }
 
-print(wcapi.post("orders/116/refunds", data).json())
+print(wcapi.post("orders/723/refunds", data).json())
 ```
 
 ```ruby
@@ -97,32 +97,34 @@ data = {
   amount: "10"
 }
 
-woocommerce.post("orders/116/refunds", data).parsed_response
+woocommerce.post("orders/723/refunds", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -143,51 +145,53 @@ This API lets you retrieve and view a specific refund from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/116/refunds/150 \
+curl https://example.com/wp-json/wc/v2/orders/723/refunds/726 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/116/refunds/150', function(err, data, res) {
+WooCommerce.get('orders/723/refunds/726', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/116/refunds/150')); ?>
+<?php print_r($woocommerce->get('orders/723/refunds/726')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/116/refunds/150").json())
+print(wcapi.get("orders/723/refunds/726").json())
 ```
 
 ```ruby
-woocommerce.get("orders/116/refunds/150").parsed_response
+woocommerce.get("orders/723/refunds/726").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -254,66 +258,78 @@ woocommerce.get("orders/116/refunds").parsed_response
 ```json
 [
   {
-    "id": 151,
-    "date_created": "2016-05-30T17:31:48",
-    "amount": "2.00",
+    "id": 726,
+    "date_created": "2017-03-21T17:07:11",
+    "date_created_gmt": "2017-03-21T20:07:11",
+    "amount": "10.00",
     "reason": "",
-    "line_items": [
-      {
-        "id": 11,
-        "name": "Woo Single #2",
-        "sku": "12345",
-        "product_id": 99,
-        "variation_id": 0,
-        "quantity": -1,
-        "tax_class": "",
-        "price": "-2.00",
-        "subtotal": "-2.00",
-        "subtotal_tax": "0.00",
-        "total": "-2.00",
-        "total_tax": "0.00",
-        "taxes": [],
-        "meta": []
-      }
-    ],
+    "refunded_by": 1,
+    "meta_data": [],
+    "line_items": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/151"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
   },
   {
-    "id": 150,
-    "date_created": "2016-05-30T17:28:05",
-    "amount": "10.00",
+    "id": 724,
+    "date_created": "2017-03-21T16:55:37",
+    "date_created_gmt": "2017-03-21T19:55:37",
+    "amount": "9.00",
     "reason": "",
-    "line_items": [],
+    "refunded_by": 1,
+    "meta_data": [],
+    "line_items": [
+      {
+        "id": 314,
+        "name": "Woo Album #2",
+        "product_id": 87,
+        "variation_id": 0,
+        "quantity": -1,
+        "tax_class": "",
+        "subtotal": "-9.00",
+        "subtotal_tax": "0.00",
+        "total": "-9.00",
+        "total_tax": "0.00",
+        "taxes": [],
+        "meta_data": [
+          {
+            "id": 2076,
+            "key": "_refunded_item_id",
+            "value": "311"
+          }
+        ],
+        "sku": "",
+        "price": -9
+      }
+    ],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/724"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
@@ -379,25 +395,27 @@ woocommerce.delete("orders/116/refunds/150", force: true).parsed_response
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
