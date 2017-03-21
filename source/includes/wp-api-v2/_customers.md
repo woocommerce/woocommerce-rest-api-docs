@@ -1539,7 +1539,7 @@ woocommerce.get("customers/26/downloads").parsed_response
 ]
 ```
 
-### Customers downloads properties ###
+### Customer downloads properties ###
 
 | Attribute             | Type    | Description                                                                                                                               |
 | --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1555,7 +1555,7 @@ woocommerce.get("customers/26/downloads").parsed_response
 | `access_expires_gmt`  | string  | The date when download access expires, as GMT. <i class="label label-info">read-only</i>                                                  |
 | `file`                | object  | File details. <i class="label label-info">read-only</i> See [Customers downloads - File properties](#customers-downloads-file-properties) |
 
-#### Customers downloads - File properties ####
+#### Customer downloads - File properties ####
 
 | Attribute | Type   | Description                                          |
 | --------- | ------ | ---------------------------------------------------- |
