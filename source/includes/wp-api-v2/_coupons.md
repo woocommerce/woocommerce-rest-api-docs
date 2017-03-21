@@ -34,7 +34,7 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 | `maximum_amount`              | string    | Maximum order amount allowed when using the coupon.                                                                                  |
 | `email_restrictions`          | array     | List of email addresses that can use this coupon.                                                                                    |
 | `used_by`                     | array     | List of user IDs (or guest email addresses) that have used the coupon. <i class="label label-info">read-only</i>                     |
-| `meta_data`                   | array     | Meta data. See [Coupons - Meta data properties](coupons---meta-data-properties)                                                      |
+| `meta_data`                   | array     | Meta data. See [Coupons - Meta data properties](#coupons-meta-data-properties)                                                       |
 
 ### Coupons - Meta data properties ###
 
