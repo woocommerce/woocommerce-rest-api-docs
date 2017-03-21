@@ -131,14 +131,17 @@ woocommerce.post("coupons", data).parsed_response
 
 ```json
 {
-  "id": 690,
+  "id": 719,
   "code": "10off",
   "amount": "10.00",
-  "date_created": "2017-03-06T20:49:12",
-  "date_modified": "2017-03-06T20:49:12",
+  "date_created": "2017-03-21T15:23:00",
+  "date_created_gmt": "2017-03-21T18:23:00",
+  "date_modified": "2017-03-21T15:23:00",
+  "date_modified_gmt": "2017-03-21T18:23:00",
   "discount_type": "percent",
   "description": "",
   "date_expires": null,
+  "date_expires_gmt": null,
   "usage_count": 0,
   "individual_use": true,
   "product_ids": [],
@@ -158,7 +161,7 @@ woocommerce.post("coupons", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/coupons/690"
+        "href": "https://example.com/wp-json/wc/v2/coupons/719"
       }
     ],
     "collection": [
@@ -184,40 +187,43 @@ This API lets you retrieve and view a specific coupon by ID.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/coupons/690 \
+curl https://example.com/wp-json/wc/v2/coupons/719 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('coupons/690', function(err, data, res) {
+WooCommerce.get('coupons/719', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('coupons/690')); ?>
+<?php print_r($woocommerce->get('coupons/719')); ?>
 ```
 
 ```python
-print(wcapi.get("coupons/690").json())
+print(wcapi.get("coupons/719").json())
 ```
 
 ```ruby
-woocommerce.get("coupons/690").parsed_response
+woocommerce.get("coupons/719").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 690,
+  "id": 719,
   "code": "10off",
   "amount": "10.00",
-  "date_created": "2017-03-06T20:49:12",
-  "date_modified": "2017-03-06T20:49:12",
+  "date_created": "2017-03-21T15:23:00",
+  "date_created_gmt": "2017-03-21T18:23:00",
+  "date_modified": "2017-03-21T15:23:00",
+  "date_modified_gmt": "2017-03-21T18:23:00",
   "discount_type": "percent",
   "description": "",
   "date_expires": null,
+  "date_expires_gmt": null,
   "usage_count": 0,
   "individual_use": true,
   "product_ids": [],
@@ -237,7 +243,7 @@ woocommerce.get("coupons/690").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/coupons/690"
+        "href": "https://example.com/wp-json/wc/v2/coupons/719"
       }
     ],
     "collection": [
@@ -290,14 +296,17 @@ woocommerce.get("coupons").parsed_response
 ```json
 [
   {
-    "id": 691,
+    "id": 720,
     "code": "free shipping",
     "amount": "0.00",
-    "date_created": "2017-03-06T20:57:59",
-    "date_modified": "2017-03-06T20:58:07",
-    "discount_type": "percent",
+    "date_created": "2017-03-21T15:25:02",
+    "date_created_gmt": "2017-03-21T18:25:02",
+    "date_modified": "2017-03-21T15:25:02",
+    "date_modified_gmt": "2017-03-21T18:25:02",
+    "discount_type": "fixed_cart",
     "description": "",
     "date_expires": null,
+    "date_expires_gmt": null,
     "usage_count": 0,
     "individual_use": true,
     "product_ids": [],
@@ -317,7 +326,7 @@ woocommerce.get("coupons").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/coupons/691"
+          "href": "https://example.com/wp-json/wc/v2/coupons/720"
         }
       ],
       "collection": [
@@ -328,14 +337,17 @@ woocommerce.get("coupons").parsed_response
     }
   },
   {
-    "id": 690,
+    "id": 719,
     "code": "10off",
     "amount": "10.00",
-    "date_created": "2017-03-06T20:49:12",
-    "date_modified": "2017-03-06T20:49:12",
+    "date_created": "2017-03-21T15:23:00",
+    "date_created_gmt": "2017-03-21T18:23:00",
+    "date_modified": "2017-03-21T15:23:00",
+    "date_modified_gmt": "2017-03-21T18:23:00",
     "discount_type": "percent",
     "description": "",
     "date_expires": null,
+    "date_expires_gmt": null,
     "usage_count": 0,
     "individual_use": true,
     "product_ids": [],
@@ -355,7 +367,7 @@ woocommerce.get("coupons").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/coupons/690"
+          "href": "https://example.com/wp-json/wc/v2/coupons/719"
         }
       ],
       "collection": [
@@ -399,7 +411,7 @@ This API lets you make changes to a coupon.
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v2/coupons/690 \
+curl -X PUT https://example.com/wp-json/wc/v2/coupons/719 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -412,7 +424,7 @@ var data = {
   amount: '5'
 };
 
-WooCommerce.put('coupons/690', data, function(err, data, res) {
+WooCommerce.put('coupons/719', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -423,7 +435,7 @@ $data = [
     'amount' => '5'
 ];
 
-print_r($woocommerce->put('coupons/690', $data)); 
+print_r($woocommerce->put('coupons/719', $data)); 
 ?>
 ```
 
@@ -432,7 +444,7 @@ data = {
     "amount": "5"
 }
 
-print(wcapi.put("coupons/690", data).json())
+print(wcapi.put("coupons/719", data).json())
 ```
 
 ```ruby
@@ -440,21 +452,24 @@ data = {
   amount: "5"
 }
 
-woocommerce.put("coupons/690", data).parsed_response
+woocommerce.put("coupons/719", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 690,
+  "id": 719,
   "code": "10off",
   "amount": "5.00",
-  "date_created": "2017-03-06T20:49:12",
-  "date_modified": "2017-03-06T21:00:34",
+  "date_created": "2017-03-21T15:23:00",
+  "date_created_gmt": "2017-03-21T18:23:00",
+  "date_modified": "2017-03-21T15:26:16",
+  "date_modified_gmt": "2017-03-21T18:26:16",
   "discount_type": "percent",
   "description": "",
   "date_expires": null,
+  "date_expires_gmt": null,
   "usage_count": 0,
   "individual_use": true,
   "product_ids": [],
@@ -474,7 +489,7 @@ woocommerce.put("coupons/690", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/coupons/690"
+        "href": "https://example.com/wp-json/wc/v2/coupons/719"
       }
     ],
     "collection": [
@@ -500,40 +515,43 @@ This API helps you delete a coupon.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/coupons/690?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/coupons/719?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('coupons/690?force=true', function(err, data, res) {
+WooCommerce.delete('coupons/719?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('coupons/690', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('coupons/719', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("coupons/690?force=true").json())
+print(wcapi.delete("coupons/719?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("coupons/690", force: true).parsed_response
+woocommerce.delete("coupons/719", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 690,
+  "id": 719,
   "code": "10off",
   "amount": "5.00",
-  "date_created": "2017-03-06T20:49:12",
-  "date_modified": "2017-03-06T21:00:34",
+  "date_created": "2017-03-21T15:23:00",
+  "date_created_gmt": "2017-03-21T18:23:00",
+  "date_modified": "2017-03-21T15:26:16",
+  "date_modified_gmt": "2017-03-21T18:26:16",
   "discount_type": "percent",
   "description": "",
   "date_expires": null,
+  "date_expires_gmt": null,
   "usage_count": 0,
   "individual_use": true,
   "product_ids": [],
@@ -553,7 +571,7 @@ woocommerce.delete("coupons/690", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/coupons/690"
+        "href": "https://example.com/wp-json/wc/v2/coupons/719"
       }
     ],
     "collection": [
@@ -609,12 +627,12 @@ curl -X POST https://example.com//wp-json/wc/v2/coupons/batch \
   ],
   "update": [
     {
-      "id": 690,
+      "id": 719,
       "minimum_amount": "50.00"
     }
   ],
   "delete": [
-    691
+    720
   ]
 }'
 ```
@@ -641,12 +659,12 @@ var data = {
   ],
   update: [
     {
-      id: 690,
+      id: 719,
       minimum_amount: '50.00'
     }
   ],
   delete: [
-    691
+    720
   ]
 };
 
@@ -678,12 +696,12 @@ $data = [
     ],
     'update' => [
         [
-            'id' => 690,
+            'id' => 719,
             'minimum_amount' => '50.00'
         ]
     ],
     'delete' => [
-        691
+        720
     ]
 ];
 
@@ -713,12 +731,12 @@ data = {
     ],
     "update": [
         {
-            "id": 690,
+            "id": 719,
             "minimum_amount": "50.00"
         }
     ],
     "delete": [
-        691
+        720
     ]
 }
 
@@ -747,12 +765,12 @@ data = {
   ],
   update: [
     {
-      id: 690,
+      id: 719,
       minimum_amount: "50.00"
     }
   ],
   delete: [
-    691
+    720
   ]
 }
 
@@ -765,14 +783,17 @@ woocommerce.post("customers/batch", data).parsed_response
 {
   "create": [
     {
-      "id": 692,
+      "id": 721,
       "code": "20off",
       "amount": "20.00",
-      "date_created": "2017-03-06T21:03:48",
-      "date_modified": "2017-03-06T21:03:48",
+      "date_created": "2017-03-21T15:27:29",
+      "date_created_gmt": "2017-03-21T18:27:29",
+      "date_modified": "2017-03-21T15:27:29",
+      "date_modified_gmt": "2017-03-21T18:27:29",
       "discount_type": "percent",
       "description": "",
       "date_expires": null,
+      "date_expires_gmt": null,
       "usage_count": 0,
       "individual_use": true,
       "product_ids": [],
@@ -792,7 +813,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/coupons/692"
+            "href": "https://example.com/wp-json/wc/v2/coupons/721"
           }
         ],
         "collection": [
@@ -803,14 +824,17 @@ woocommerce.post("customers/batch", data).parsed_response
       }
     },
     {
-      "id": 693,
+      "id": 722,
       "code": "30off",
       "amount": "30.00",
-      "date_created": "2017-03-06T21:03:49",
-      "date_modified": "2017-03-06T21:03:49",
+      "date_created": "2017-03-21T15:27:31",
+      "date_created_gmt": "2017-03-21T18:27:31",
+      "date_modified": "2017-03-21T15:27:31",
+      "date_modified_gmt": "2017-03-21T18:27:31",
       "discount_type": "percent",
       "description": "",
       "date_expires": null,
+      "date_expires_gmt": null,
       "usage_count": 0,
       "individual_use": true,
       "product_ids": [],
@@ -830,7 +854,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/coupons/693"
+            "href": "https://example.com/wp-json/wc/v2/coupons/722"
           }
         ],
         "collection": [
@@ -843,14 +867,17 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "update": [
     {
-      "id": 690,
+      "id": 719,
       "code": "10off",
       "amount": "5.00",
-      "date_created": "2017-03-06T20:49:12",
-      "date_modified": "2017-03-06T21:03:50",
+      "date_created": "2017-03-21T15:23:00",
+      "date_created_gmt": "2017-03-21T18:23:00",
+      "date_modified": "2017-03-21T15:27:32",
+      "date_modified_gmt": "2017-03-21T18:27:32",
       "discount_type": "percent",
       "description": "",
       "date_expires": null,
+      "date_expires_gmt": null,
       "usage_count": 0,
       "individual_use": true,
       "product_ids": [],
@@ -870,7 +897,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/coupons/690"
+            "href": "https://example.com/wp-json/wc/v2/coupons/719"
           }
         ],
         "collection": [
@@ -883,14 +910,17 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "delete": [
     {
-      "id": 691,
+      "id": 720,
       "code": "free shipping",
       "amount": "0.00",
-      "date_created": "2017-03-06T20:57:59",
-      "date_modified": "2017-03-06T20:58:07",
-      "discount_type": "percent",
+      "date_created": "2017-03-21T15:25:02",
+      "date_created_gmt": "2017-03-21T18:25:02",
+      "date_modified": "2017-03-21T15:25:02",
+      "date_modified_gmt": "2017-03-21T18:25:02",
+      "discount_type": "fixed_cart",
       "description": "",
       "date_expires": null,
+      "date_expires_gmt": null,
       "usage_count": 0,
       "individual_use": true,
       "product_ids": [],
@@ -910,7 +940,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/coupons/691"
+            "href": "https://example.com/wp-json/wc/v2/coupons/720"
           }
         ],
         "collection": [
