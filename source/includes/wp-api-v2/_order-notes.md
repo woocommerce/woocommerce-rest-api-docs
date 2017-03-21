@@ -3,14 +3,15 @@
 The order notes API allows you to create, view, and delete individual order notes.  
 Order notes are added by administrators and programmatically to store data about an order, or order events.
 
-## Order note properties ##
+## Order notes properties ##
 
-|    Attribute    |    Type   |                                                     Description                                                     |
-|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
-| `date_created`  | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
-| `note`          | string    | Order note. <i class="label label-info">required</i>                                                                |
-| `customer_note` | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
+| Attribute          | Type      | Description                                                                                                         |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
+| `date_created`     | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
+| `date_created_gmt` | date-time | The date the order note was created, as GMT. <i class="label label-info">read-only</i>                              |
+| `note`             | string    | Order note. <i class="label label-info">mandatory</i>                                                               |
+| `customer_note`    | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
 
 ## Create an order note ##
 
@@ -250,6 +251,13 @@ woocommerce.get("orders/645/notes").parsed_response
   }
 ]
 ```
+
+#### Available parameters ####
+
+| Parameter  | Type    | Description                                                                                                                  |
+| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `type`     | string  | Limit result to customers or internal notes. Options: `any`, `customer` and `internal`. Default is `any`.                    |
 
 ## Delete an order note ##
 
