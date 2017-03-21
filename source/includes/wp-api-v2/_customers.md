@@ -4,8 +4,8 @@ The customer API allows you to create, view, update, and delete individual, or a
 
 ## Customers properties ##
 
-|      Attribute       |    Type   |                                                Description                                                 |
-|----------------------|-----------|------------------------------------------------------------------------------------------------------------|
+| Attribute            | Type      | Description                                                                                                |
+| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
 | `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                              |
 | `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_created_gmt`   | date-time | The date the order was created, as GMT. <i class="label label-info">read-only</i>                          |
@@ -27,8 +27,8 @@ The customer API allows you to create, view, update, and delete individual, or a
 
 ### Customers - Billing properties ###
 
-|  Attribute   |  Type  |                     Description                      |
-|--------------|--------|------------------------------------------------------|
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -43,8 +43,8 @@ The customer API allows you to create, view, update, and delete individual, or a
 
 ### Customers - Shipping properties ###
 
-|  Attribute   |  Type  |                     Description                      |
-|--------------|--------|------------------------------------------------------|
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -260,9 +260,11 @@ woocommerce.post("customers", data).parsed_response
 
 ```json
 {
-  "id": 21,
-  "date_created": "2017-03-07T00:37:03",
-  "date_modified": "2017-03-07T00:37:04",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:09:30",
+  "date_modified_gmt": "2017-03-21T19:09:30",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
@@ -300,7 +302,7 @@ woocommerce.post("customers", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -326,35 +328,37 @@ This API lets you retrieve and view a specific customer by ID or email.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/21 \
+curl https://example.com/wp-json/wc/v2/customers/25 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/21', function(err, data, res) {
+WooCommerce.get('customers/25', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/21')); ?>
+<?php print_r($woocommerce->get('customers/25')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/21").json())
+print(wcapi.get("customers/25").json())
 ```
 
 ```ruby
-woocommerce.get("customers/21").parsed_response
+woocommerce.get("customers/25").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 21,
-  "date_created": "2017-03-07T00:37:03",
-  "date_modified": "2017-03-07T00:37:04",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:09:30",
+  "date_modified_gmt": "2017-03-21T19:09:30",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
@@ -392,7 +396,7 @@ woocommerce.get("customers/21").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -445,9 +449,11 @@ woocommerce.get("customers").parsed_response
 ```json
 [
   {
-    "id": 22,
-    "date_created": "2017-03-07T00:39:09",
-    "date_modified": "2017-03-07T00:39:11",
+    "id": 26,
+    "date_created": "2017-03-21T16:11:14",
+    "date_created_gmt": "2017-03-21T19:11:14",
+    "date_modified": "2017-03-21T16:11:16",
+    "date_modified_gmt": "2017-03-21T19:11:16",
     "email": "joao.silva@example.com",
     "first_name": "João",
     "last_name": "Silva",
@@ -485,7 +491,7 @@ woocommerce.get("customers").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/22"
+          "href": "https://example.com/wp-json/wc/v2/customers/26"
         }
       ],
       "collection": [
@@ -496,9 +502,11 @@ woocommerce.get("customers").parsed_response
     }
   },
   {
-    "id": 21,
-    "date_created": "2017-03-07T00:37:03",
-    "date_modified": "2017-03-07T00:37:04",
+    "id": 25,
+    "date_created": "2017-03-21T16:09:28",
+    "date_created_gmt": "2017-03-21T19:09:28",
+    "date_modified": "2017-03-21T16:09:30",
+    "date_modified_gmt": "2017-03-21T19:09:30",
     "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
@@ -536,7 +544,7 @@ woocommerce.get("customers").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/21"
+          "href": "https://example.com/wp-json/wc/v2/customers/25"
         }
       ],
       "collection": [
@@ -579,7 +587,7 @@ This API lets you make changes to a customer.
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v2/customers/21 \
+curl -X PUT https://example.com/wp-json/wc/v2/customers/25 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -604,7 +612,7 @@ var data = {
   }
 };
 
-WooCommerce.put('customers/21', data, function(err, data, res) {
+WooCommerce.put('customers/25', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -621,7 +629,7 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->put('customers/21', $data));
+print_r($woocommerce->put('customers/25', $data));
 ?>
 ```
 
@@ -636,7 +644,7 @@ data = {
     }
 }
 
-print(wcapi.put("customers/21", data).json())
+print(wcapi.put("customers/25", data).json())
 ```
 
 ```ruby
@@ -650,16 +658,18 @@ data = {
   }
 }
 
-woocommerce.put("customers/21", data).parsed_response
+woocommerce.put("customers/25", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 21,
-  "date_created": "2017-03-07T00:37:03",
-  "date_modified": "2017-03-07T00:49:38",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:12:28",
+  "date_modified_gmt": "2017-03-21T19:12:28",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
@@ -697,7 +707,7 @@ woocommerce.put("customers/21", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -723,35 +733,37 @@ This API helps you delete a customer.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/customers/21?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/customers/25?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('customers/21?force=true', function(err, data, res) {
+WooCommerce.delete('customers/25?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('customers/21', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('customers/25', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("customers/21?force=true").json())
+print(wcapi.delete("customers/25?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("customers/21", force: true).parsed_response
+woocommerce.delete("customers/25", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 21,
-  "date_created": "2017-03-07T00:37:03",
-  "date_modified": "2017-03-07T00:49:38",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:12:28",
+  "date_modified_gmt": "2017-03-21T19:12:28",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
@@ -789,7 +801,7 @@ woocommerce.delete("customers/21", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/21"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -890,14 +902,14 @@ curl -X POST https://example.com/wp-json/wc/v2/customers/batch \
   ],
   "update": [
     {
-      "id": 22,
+      "id": 26,
       "billing": {
         "phone": "(11) 1111-1111"
       }
     }
   ],
   "delete": [
-    21
+    25
   ]
 }'
 ```
@@ -968,7 +980,7 @@ var data = {
   ],
   update: [
     {
-      id: 22,
+      id: 26,
       billing: {
         phone: '(11) 1111-1111'
       }
@@ -1051,14 +1063,14 @@ $data = [
     ],
     'update' => [
         [
-            'id' => 22,
+            'id' => 26,
             'billing' => [
                 'phone' => '(11) 1111-1111'
             ]
         ]
     ],
     'delete' => [
-        21
+        25
     ]
 ];
 
@@ -1132,14 +1144,14 @@ data = {
     ],
     "update": [
         {
-            "id": 22,
+            "id": 26,
             "billing": {
                 "phone": "(11) 1111-1111"
             }
         }
     ],
     "delete": [
-        21
+        25
     ]
 }
 
@@ -1212,14 +1224,14 @@ data = {
   ],
   update: [
     {
-      id: 22,
+      id: 26,
       billing: {
         phone: "(11) 1111-1111"
       }
     }
   ],
   delete: [
-    21
+    25
   ]
 }
 
@@ -1232,9 +1244,11 @@ woocommerce.post("customers/batch", data).parsed_response
 {
   "create": [
     {
-      "id": 23,
-      "date_created": "2017-03-07T00:59:37",
-      "date_modified": "2017-03-07T00:59:38",
+      "id": 27,
+      "date_created": "2017-03-21T16:13:58",
+      "date_created_gmt": "2017-03-21T19:13:58",
+      "date_modified": "2017-03-21T16:13:59",
+      "date_modified_gmt": "2017-03-21T19:13:59",
       "email": "john.doe2@example.com",
       "first_name": "John",
       "last_name": "Doe",
@@ -1272,7 +1286,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/23"
+            "href": "https://example.com/wp-json/wc/v2/customers/27"
           }
         ],
         "collection": [
@@ -1283,9 +1297,11 @@ woocommerce.post("customers/batch", data).parsed_response
       }
     },
     {
-      "id": 24,
-      "date_created": "2017-03-07T00:59:39",
-      "date_modified": "2017-03-07T00:59:40",
+      "id": 28,
+      "date_created": "2017-03-21T16:14:00",
+      "date_created_gmt": "2017-03-21T19:14:00",
+      "date_modified": "2017-03-21T16:14:01",
+      "date_modified_gmt": "2017-03-21T19:14:01",
       "email": "joao.silva2@example.com",
       "first_name": "João",
       "last_name": "Silva",
@@ -1323,7 +1339,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/24"
+            "href": "https://example.com/wp-json/wc/v2/customers/28"
           }
         ],
         "collection": [
@@ -1336,9 +1352,11 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "update": [
     {
-      "id": 22,
-      "date_created": "2017-03-07T00:39:09",
-      "date_modified": "2017-03-07T00:59:41",
+      "id": 26,
+      "date_created": "2017-03-21T16:11:14",
+      "date_created_gmt": "2017-03-21T19:11:14",
+      "date_modified": "2017-03-21T16:14:03",
+      "date_modified_gmt": "2017-03-21T19:14:03",
       "email": "joao.silva@example.com",
       "first_name": "João",
       "last_name": "Silva",
@@ -1376,7 +1394,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/22"
+            "href": "https://example.com/wp-json/wc/v2/customers/26"
           }
         ],
         "collection": [
@@ -1389,9 +1407,11 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "delete": [
     {
-      "id": 21,
-      "date_created": "2017-03-07T00:37:03",
-      "date_modified": "2017-03-07T00:49:38",
+      "id": 25,
+      "date_created": "2017-03-21T16:09:28",
+      "date_created_gmt": "2017-03-21T19:09:28",
+      "date_modified": "2017-03-21T16:12:28",
+      "date_modified_gmt": "2017-03-21T19:12:28",
       "email": "john.doe@example.com",
       "first_name": "James",
       "last_name": "Doe",
@@ -1429,7 +1449,7 @@ woocommerce.post("customers/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/21"
+            "href": "https://example.com/wp-json/wc/v2/customers/25"
           }
         ],
         "collection": [
