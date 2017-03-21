@@ -1477,26 +1477,26 @@ This API lets you retrieve customer downloads permissions.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/23/downloads \
+curl https://example.com/wp-json/wc/v2/customers/26/downloads \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/23/downloads', function(err, data, res) {
+WooCommerce.get('customers/26/downloads', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/23/downloads')); ?>
+<?php print_r($woocommerce->get('customers/26/downloads')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/23/downloads").json())
+print(wcapi.get("customers/26/downloads").json())
 ```
 
 ```ruby
-woocommerce.get("customers/23/downloads").parsed_response
+woocommerce.get("customers/26/downloads").parsed_response
 ```
 
 > JSON response example:
@@ -1504,33 +1504,34 @@ woocommerce.get("customers/23/downloads").parsed_response
 ```json
 [
   {
-    "download_url": "https://example.com/?download_file=83&order=wc_order_58bde2b65da&email=john.doe%40example.com&key=91447fd1849316bbc89dfb7e986a6006",
     "download_id": "91447fd1849316bbc89dfb7e986a6006",
-    "product_id": 83,
-    "product_name": "Woo Album #1",
-    "download_name": "Woo Album #1 &ndash; Track 1",
-    "order_id": 695,
-    "order_key": "wc_order_58bde2b65da",
-    "downloads_remaining": "unlimited",
+    "download_url": "https://example.com/?download_file=87&order=wc_order_58d17c18352&email=joao.silva%40example.com&key=91447fd1849316bbc89dfb7e986a6006",
+    "product_id": 87,
+    "product_name": "Woo Album #2",
+    "download_name": "Woo Album #2 &ndash; Song 2",
+    "order_id": 723,
+    "order_key": "wc_order_58d17c18352",
+    "downloads_remaining": "3",
     "access_expires": "never",
+    "access_expires_gmt": "never",
     "file": {
-      "name": "Track 1",
+      "name": "Song 2",
       "file": "http://example.com/wp-content/uploads/woocommerce_uploads/2013/06/Song.mp3"
     },
     "_links": {
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/customers/23/downloads"
+          "href": "https://example.com/wp-json/wc/v2/customers/26/downloads"
         }
       ],
       "product": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/83"
+          "href": "https://example.com/wp-json/wc/v2/products/87"
         }
       ],
       "order": [
         {
-          "href": "https://example.com/wp-json/wc/v1/orders/695"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
@@ -1538,17 +1539,25 @@ woocommerce.get("customers/23/downloads").parsed_response
 ]
 ```
 
-### Customer downloads properties ###
+### Customers downloads properties ###
 
-|       Attribute       |   Type  |                                                   Description                                                    |
-|-----------------------|---------|------------------------------------------------------------------------------------------------------------------|
-| `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                     |
-| `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                     |
-| `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                               |
-| `product_name`        | string  | Downloadable product name. <i class="label label-info">read-only</i>                                             |
-| `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                |
-| `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                              |
-| `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                             |
-| `downloads_remaining` | string  | Amount of downloads remaining. <i class="label label-info">read-only</i>                                         |
-| `access_expires`      | string  | The date when the download access expires, in the site's timezone. <i class="label label-info">read-only</i>     |
-| `file`                | array   | File details with `name` (file name) and `file` (file URL) attributes. <i class="label label-info">read-only</i> |
+| Attribute             | Type    | Description                                                                                                                               |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                                              |
+| `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                                              |
+| `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                                                        |
+| `product_name`        | string  | Product name. <i class="label label-info">read-only</i>                                                                                   |
+| `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                                         |
+| `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                                                       |
+| `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                                                      |
+| `downloads_remaining` | string  | Number of downloads remaining. <i class="label label-info">read-only</i>                                                                  |
+| `access_expires`      | string  | The date when download access expires, in the site's timezone. <i class="label label-info">read-only</i>                                  |
+| `access_expires_gmt`  | string  | The date when download access expires, as GMT. <i class="label label-info">read-only</i>                                                  |
+| `file`                | object  | File details. <i class="label label-info">read-only</i> See [Customers downloads - File properties](#customers-downloads-file-properties) |
+
+#### Customers downloads - File properties ####
+
+| Attribute | Type   | Description                                          |
+| --------- | ------ | ---------------------------------------------------- |
+| `name`    | string | File name. <i class="label label-info">read-only</i> |
+| `file`    | string | File URL. <i class="label label-info">read-only</i>  |
