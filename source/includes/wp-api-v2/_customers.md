@@ -2,36 +2,38 @@
 
 The customer API allows you to create, view, update, and delete individual, or a batch, of customers.
 
-## Customer properties ##
+## Customers properties ##
 
-|      Attribute       |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
-|----------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                      |
-| `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
-| `date_modified`      | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                         |
-| `email`              | string    | The email address for the customer. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                                                      |
-| `first_name`         | string    | Customer first name.                                                                                                                                                                                                                                                                                                                                               |
-| `last_name`          | string    | Customer last name.                                                                                                                                                                                                                                                                                                                                                |
-| `role`               | string    | Customer role. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                           |
-| `username`           | string    | Customer login name. Can be generated automatically from the customer's email address if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i> <i class="label label-info">maybe mandatory</i>                                                                                               |
-| `password`           | string    | Customer password. Can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> <i class="label label-info">maybe mandatory</i> |
-| `billing`            | object    | List of billing address data. See [Billing Address properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
-| `shipping`           | object    | List of shipping address data. See [Shipping Address properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
-| `is_paying_customer` | boolean   | Shows if the customer already bought something. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                          |
-| `orders_count`       | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
-| `total_spent`        | string    | Total amount spent. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                      |
-| `avatar_url`         | string    | Avatar URL.                                                                                                                                                                                                                                                                                                                                                        |
-| `meta_data`          | object    | List of customer custom meta data. See [Meta data properties](#meta-data-properties-2)                                                                                                                                                                                                                                                                                 |
+|      Attribute       |    Type   |                                                Description                                                 |
+|----------------------|-----------|------------------------------------------------------------------------------------------------------------|
+| `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                              |
+| `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>       |
+| `date_created_gmt`   | date-time | The date the order was created, as GMT. <i class="label label-info">read-only</i>                          |
+| `date_modified`      | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
+| `date_modified_gmt`  | date-time | The date the customer was last modified, as GMT. <i class="label label-info">read-only</i>                 |
+| `email`              | string    | The email address for the customer. <i class="label label-info">mandatory</i>                              |
+| `first_name`         | string    | Customer first name.                                                                                       |
+| `last_name`          | string    | Customer last name.                                                                                        |
+| `role`               | string    | Customer role. <i class="label label-info">read-only</i>                                                   |
+| `username`           | string    | Customer login name.                                                                                       |
+| `password`           | string    | Customer password. <i class="label label-info">write-only</i>                                              |
+| `billing`            | object    | List of billing address data. See [Customers - Billing properties](#customers-billing-properties)          |
+| `shipping`           | object    | List of shipping address data. See [Customers - Shipping properties](#customers-shipping-properties)       |
+| `is_paying_customer` | bool      | Is the customer a paying customer? <i class="label label-info">read-only</i>                               |
+| `orders_count`       | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                         |
+| `total_spent`        | string    | Total amount spent. <i class="label label-info">read-only</i>                                              |
+| `avatar_url`         | string    | Avatar URL. <i class="label label-info">read-only</i>                                                      |
+| `meta_data`          | array     | Meta data. See [Customers - Meta data properties](#customers-meta-data-properties)                         |
 
-### Billing address properties ###
+### Customers - Billing properties ###
 
 |  Attribute   |  Type  |                     Description                      |
 |--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
-| `address_1`  | string | Address line 1.                                      |
-| `address_2`  | string | Address line 2.                                      |
+| `address_1`  | string | Address line 1                                       |
+| `address_2`  | string | Address line 2                                       |
 | `city`       | string | City name.                                           |
 | `state`      | string | ISO code or name of the state, province or district. |
 | `postcode`   | string | Postal code.                                         |
@@ -39,24 +41,24 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `email`      | string | Email address.                                       |
 | `phone`      | string | Phone number.                                        |
 
-### Shipping address properties ###
+### Customers - Shipping properties ###
 
 |  Attribute   |  Type  |                     Description                      |
 |--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
-| `address_1`  | string | Address line 1.                                      |
-| `address_2`  | string | Address line 2.                                      |
+| `address_1`  | string | Address line 1                                       |
+| `address_2`  | string | Address line 2                                       |
 | `city`       | string | City name.                                           |
 | `state`      | string | ISO code or name of the state, province or district. |
 | `postcode`   | string | Postal code.                                         |
 | `country`    | string | ISO code of the country.                             |
 
-### Meta data properties ###
+### Customers - Meta data properties ###
 
-| Attribute |   Type  |                    Description                     |
-|-----------|---------|----------------------------------------------------|
+| Attribute | Type    | Description                                        |
+| --------- | ------- | -------------------------------------------------- |
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -549,19 +551,19 @@ woocommerce.get("customers").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                                                                           Description                                                                                                           |
-|------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                                                                                                       |
-| `page`     | integer | Current page of the collection.                                                                                                                                                                                                 |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                                                                                                                                           |
-| `search`   | string  | Limit results to those matching a string.                                                                                                                                                                                       |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                                                                                                        |
-| `include`  | string  | Limit result set to specific ids.                                                                                                                                                                                               |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                                                            |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`, Options: `asc` and `desc`.                                                                                                                                      |
-| `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name` and `registered_date`.                                                                                                                 |
-| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                                                            |
-| `role`     | string  | Limit result set to resources with a specific role. Default: `customer`. Options (some plugins can add more user roles): `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager` |
+| Parameter  | Type    | Description                                                                                                                                                                                 |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                |
+| `page`     | integer | Current page of the collection. Default is `1`.                                                                                                                                             |
+| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                      |
+| `search`   | string  | Limit results to those matching a string.                                                                                                                                                   |
+| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                                                                                    |
+| `include`  | array   | Limit result set to specific IDs.                                                                                                                                                           |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                        |
+| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                                                                  |
+| `orderby`  | string  | Sort collection by object attribute. Options: `id`, `include`, `name` and `registered_date`. Default is `name`.                                                                             |
+| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                        |
+| `role`     | string  | Limit result set to resources with a specific role. Options: `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager`. Default is `customer`. |
 
 ## Update a customer ##
 
