@@ -2,7 +2,7 @@
 
 The product attribute terms API allows you to create, view, update, and delete individual, or a batch, of attribute terms.
 
-## Attribute term properties ##
+## Product attribute term properties ##
 
 | Attribute     | Type    | Description                                                                              |
 | ------------- | ------- | ---------------------------------------------------------------------------------------- |
