@@ -5,13 +5,13 @@ Order notes are added by administrators and programmatically to store data about
 
 ## Order notes properties ##
 
-| Attribute          | Type      | Description                                                                                                         |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- |
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
-| `date_created`     | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
-| `date_created_gmt` | date-time | The date the order note was created, as GMT. <i class="label label-info">read-only</i>                              |
-| `note`             | string    | Order note. <i class="label label-info">mandatory</i>                                                               |
-| `customer_note`    | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
+| Attribute          | Type      | Description                                                                                                                                      |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                    |
+| `date_created`     | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>                                           |
+| `date_created_gmt` | date-time | The date the order note was created, as GMT. <i class="label label-info">read-only</i>                                                           |
+| `note`             | string    | Order note content. <i class="label label-info">mandatory</i>                                                                                    |
+| `customer_note`    | boolean   | If true, the note will be shown to customers and they will be notified. If false, the note will be for admin reference only. Default is `false`. |
 
 ## Create an order note ##
 
