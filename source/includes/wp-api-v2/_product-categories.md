@@ -4,26 +4,26 @@ The product categories API allows you to create, view, update, and delete indivi
 
 ## Product category properties ##
 
-|   Attribute   |   Type  |                                                   Description                                                   |
-|---------------|---------|-----------------------------------------------------------------------------------------------------------------|
-| `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                   |
-| `name`        | string  | Category name. <i class="label label-info">required</i>                                                         |
-| `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                                                 |
-| `parent`      | integer | The id for the parent of the resource.                                                                          |
-| `description` | string  | HTML description of the resource.                                                                               |
-| `display`     | string  | Category archive display type. Default is `default`. Options: `default`, `products`, `subcategories` and `both` |
-| `image`       | array   | Image data. See [Category Image properties](#category-image-properties)                                         |
-| `menu_order`  | integer | Menu order, used to custom sort the resource.                                                                   |
-| `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i>                        |
+| Attribute     | Type    | Description                                                                                                      |
+| ------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                    |
+| `name`        | string  | Category name. <i class="label label-info">mandatory</i>                                                         |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                                                  |
+| `parent`      | integer | The ID for the parent of the resource.                                                                           |
+| `description` | string  | HTML description of the resource.                                                                                |
+| `display`     | string  | Category archive display type. Options: `default`, `products`, `subcategories` and `both`. Default is `default`. |
+| `image`       | object  | Image data. See [Product category - Image properties](#product-category-image-properties)                        |
+| `menu_order`  | integer | Menu order, used to custom sort the resource.                                                                    |
+| `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i>                         |
 
-### Category Image properties ###
+### Product category - Image properties ###
 
-|    Attribute    |    Type   |                                               Description                                               |
-|-----------------|-----------|---------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Image ID (attachment ID). In write-mode used to attach pre-existing images.                             |
+| Attribute       | Type      | Description                                                                                             |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+| `id`            | integer   | Image ID.                                                                                               |
 | `date_created`  | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_modified` | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
-| `src`           | string    | Image URL. In write-mode used to upload new images.                                                     |
+| `src`           | string    | Image URL.                                                                                              |
 | `name`          | string    | Image name.                                                                                             |
 | `alt`           | string    | Image alternative text.                                                                                 |
 
@@ -437,20 +437,20 @@ woocommerce.get("products/categories").parsed_response
 
 #### Available parameters ####
 
-|  Parameter   |   Type  |                                                                Description                                                                 |
-|--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
-| `page`       | integer | Current page of the collection.                                                                                                            |
-| `per_page`   | integer | Maximum number of items to be returned in result set.                                                                                      |
-| `search`     | string  | Limit results to those matching a string.                                                                                                  |
-| `exclude`    | string  | Ensure result set excludes specific ids.                                                                                                   |
-| `include`    | string  | Limit result set to specific ids.                                                                                                          |
-| `order`      | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
-| `orderby`    | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
-| `hide_empty` | bool    | Whether to hide resources not assigned to any products. Default is `false`.                                                                |
-| `parent`     | integer | Limit result set to resources assigned to a specific parent.                                                                               |
-| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
-| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
+| Parameter    | Type    | Description                                                                                                                                  |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`       | integer | Current page of the collection. Default is `1`.                                                                                              |
+| `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`     | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`    | array   | Ensure result set excludes specific ids.                                                                                                     |
+| `include`    | array   | Limit result set to specific ids.                                                                                                            |
+| `order`      | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`    | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty` | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `parent`     | integer | Limit result set to resources assigned to a specific parent.                                                                                 |
+| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                                |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                          |
 
 ## Update a product category ##
 
