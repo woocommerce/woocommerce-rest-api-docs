@@ -2,7 +2,7 @@
 
 The product attributes API allows you to create, view, update, and delete individual, or a batch, of product attributes.
 
-## Product attributes properties ##
+## Product attribute properties ##
 
 | Attribute      | Type    | Description                                                                                      |
 | -------------- | ------- | ------------------------------------------------------------------------------------------------ |
