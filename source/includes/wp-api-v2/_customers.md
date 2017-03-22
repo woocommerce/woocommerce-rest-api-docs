@@ -2,7 +2,7 @@
 
 The customer API allows you to create, view, update, and delete individual, or a batch, of customers.
 
-## Customers properties ##
+## Customer properties ##
 
 | Attribute            | Type      | Description                                                                                                |
 | -------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
@@ -17,15 +17,15 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `role`               | string    | Customer role. <i class="label label-info">read-only</i>                                                   |
 | `username`           | string    | Customer login name.                                                                                       |
 | `password`           | string    | Customer password. <i class="label label-info">write-only</i>                                              |
-| `billing`            | object    | List of billing address data. See [Customers - Billing properties](#customers-billing-properties)          |
-| `shipping`           | object    | List of shipping address data. See [Customers - Shipping properties](#customers-shipping-properties)       |
+| `billing`            | object    | List of billing address data. See [Customer - Billing properties](#customer-billing-properties)            |
+| `shipping`           | object    | List of shipping address data. See [Customer - Shipping properties](#customer-shipping-properties)         |
 | `is_paying_customer` | bool      | Is the customer a paying customer? <i class="label label-info">read-only</i>                               |
 | `orders_count`       | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                         |
 | `total_spent`        | string    | Total amount spent. <i class="label label-info">read-only</i>                                              |
 | `avatar_url`         | string    | Avatar URL. <i class="label label-info">read-only</i>                                                      |
-| `meta_data`          | array     | Meta data. See [Customers - Meta data properties](#customers-meta-data-properties)                         |
+| `meta_data`          | array     | Meta data. See [Customer - Meta data properties](#customer-meta-data-properties)                           |
 
-### Customers - Billing properties ###
+### Customer - Billing properties ###
 
 | Attribute    | Type   | Description                                          |
 | ------------ | ------ | ---------------------------------------------------- |
@@ -41,7 +41,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `email`      | string | Email address.                                       |
 | `phone`      | string | Phone number.                                        |
 
-### Customers - Shipping properties ###
+### Customer - Shipping properties ###
 
 | Attribute    | Type   | Description                                          |
 | ------------ | ------ | ---------------------------------------------------- |
@@ -55,7 +55,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `postcode`   | string | Postal code.                                         |
 | `country`    | string | ISO code of the country.                             |
 
-### Customers - Meta data properties ###
+### Customer - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
 | --------- | ------- | -------------------------------------------------- |
