@@ -2,34 +2,46 @@
 
 The refunds API allows you to create, view, and delete individual refunds.
 
-## Refund properties ##
+## Order refund properties ##
 
-|   Attribute    |    Type   |                                               Description                                                |
-|----------------|-----------|----------------------------------------------------------------------------------------------------------|
-| `id`           | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                            |
-| `date_created` | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i> |
-| `amount`       | string    | Refund amount. <i class="label label-info">required</i>                                                  |
-| `reason`       | string    | Reason for refund.                                                                                       |
-| `line_items`   | array     | Line items data. See [Refunds Line Items properties](#refund-line-item-properties).                    |
+| Attribute          | Type      | Description                                                                                                                      |
+| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                    |
+| `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                         |
+| `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                         |
+| `amount`           | string    | Refund amount.                                                                                                                   |
+| `reason`           | string    | Reason for refund.                                                                                                               |
+| `refunded_by`      | integer   | User ID of user who created the refund.                                                                                          |
+| `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                         |
+| `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                 |
+| `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i> |
 
-### Refund line item properties ###
+### Order refund - Meta data properties ###
 
-|   Attribute    |   Type  |                                          Description                                           |
-|----------------|---------|------------------------------------------------------------------------------------------------|
-| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                             |
-| `name`         | string  | Product name. <i class="label label-info">read-only</i>                                        |
-| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                         |
-| `product_id`   | integer | Product ID.                                                                                    |
-| `variation_id` | integer | Variation ID, if applicable.                                                                   |
-| `quantity`     | integer | Quantity ordered.                                                                              |
-| `tax_class`    | string  | Tax class of product. <i class="label label-info">read-only</i>                                |
-| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                       |
-| `subtotal`     | string  | Line subtotal (before discounts).                                                              |
-| `subtotal_tax` | string  | Line subtotal tax (before discounts).                                                          |
-| `total`        | string  | Line total (after discounts).                                                                  |
-| `total_tax`    | string  | Line total tax (after discounts).                                                              |
-| `taxes`        | array   | Line total tax with `id`, `total` and `subtotal`. <i class="label label-info">read-only</i>    |
-| `meta`         | array   | Line item meta data with `key`, `label` and `value`. <i class="label label-info">read-only</i> |
+| Attribute | Type    | Description                                        |
+| --------- | ------- | -------------------------------------------------- |
+| `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
+| `key`     | string  | Meta key.                                          |
+| `value`   | string  | Meta value.                                        |
+
+### Order refund - Line items properties ###
+
+| Attribute      | Type    | Description                                                                                                                 |
+| -------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                          |
+| `name`         | string  | Product name.                                                                                                               |
+| `product_id`   | integer | Product ID.                                                                                                                 |
+| `variation_id` | integer | Variation ID, if applicable.                                                                                                |
+| `quantity`     | integer | Quantity ordered.                                                                                                           |
+| `tax_class`    | integer | Tax class of product.                                                                                                       |
+| `subtotal`     | string  | Line subtotal (before discounts).                                                                                           |
+| `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                             |
+| `total`        | string  | Line total (after discounts).                                                                                               |
+| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                 |
+| `taxes`        | array   | Line taxes. See [Order refund - Taxes properties](#order-refund-taxes-properties) <i class="label label-info">read-only</i> |
+| `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                    |
+| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                      |
+| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                    |
 
 ## Create a refund ##
 
@@ -45,7 +57,7 @@ This API helps you to create a new refund for an order.
 </div>
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v2/orders/116/refunds \
+curl -X POST https://example.com/wp-json/wc/v2/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -58,7 +70,7 @@ var data = {
   amount: '10'
 };
 
-WooCommerce.post('orders/116/refunds', data, function(err, data, res) {
+WooCommerce.post('orders/723/refunds', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -69,7 +81,7 @@ $data = [
     'amount' => '10'
 ];
 
-print_r($woocommerce->post('orders/116/refunds', $data));
+print_r($woocommerce->post('orders/723/refunds', $data));
 ?>
 ```
 
@@ -78,7 +90,7 @@ data = {
     "amount": "10"
 }
 
-print(wcapi.post("orders/116/refunds", data).json())
+print(wcapi.post("orders/723/refunds", data).json())
 ```
 
 ```ruby
@@ -86,32 +98,34 @@ data = {
   amount: "10"
 }
 
-woocommerce.post("orders/116/refunds", data).parsed_response
+woocommerce.post("orders/723/refunds", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -132,51 +146,53 @@ This API lets you retrieve and view a specific refund from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/116/refunds/150 \
+curl https://example.com/wp-json/wc/v2/orders/723/refunds/726 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/116/refunds/150', function(err, data, res) {
+WooCommerce.get('orders/723/refunds/726', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/116/refunds/150')); ?>
+<?php print_r($woocommerce->get('orders/723/refunds/726')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/116/refunds/150").json())
+print(wcapi.get("orders/723/refunds/726").json())
 ```
 
 ```ruby
-woocommerce.get("orders/116/refunds/150").parsed_response
+woocommerce.get("orders/723/refunds/726").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -203,26 +219,26 @@ This API helps you to view all the refunds from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/116/refunds \
+curl https://example.com/wp-json/wc/v2/orders/723/refunds \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/116/refunds', function(err, data, res) {
+WooCommerce.get('orders/723/refunds', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/116/refunds')); ?>
+<?php print_r($woocommerce->get('orders/723/refunds')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/116/refunds").json())
+print(wcapi.get("orders/723/refunds").json())
 ```
 
 ```ruby
-woocommerce.get("orders/116/refunds").parsed_response
+woocommerce.get("orders/723/refunds").parsed_response
 ```
 
 > JSON response example:
@@ -230,66 +246,78 @@ woocommerce.get("orders/116/refunds").parsed_response
 ```json
 [
   {
-    "id": 151,
-    "date_created": "2016-05-30T17:31:48",
-    "amount": "2.00",
+    "id": 726,
+    "date_created": "2017-03-21T17:07:11",
+    "date_created_gmt": "2017-03-21T20:07:11",
+    "amount": "10.00",
     "reason": "",
-    "line_items": [
-      {
-        "id": 11,
-        "name": "Woo Single #2",
-        "sku": "12345",
-        "product_id": 99,
-        "variation_id": 0,
-        "quantity": -1,
-        "tax_class": "",
-        "price": "-2.00",
-        "subtotal": "-2.00",
-        "subtotal_tax": "0.00",
-        "total": "-2.00",
-        "total_tax": "0.00",
-        "taxes": [],
-        "meta": []
-      }
-    ],
+    "refunded_by": 1,
+    "meta_data": [],
+    "line_items": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/151"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
   },
   {
-    "id": 150,
-    "date_created": "2016-05-30T17:28:05",
-    "amount": "10.00",
+    "id": 724,
+    "date_created": "2017-03-21T16:55:37",
+    "date_created_gmt": "2017-03-21T19:55:37",
+    "amount": "9.00",
     "reason": "",
-    "line_items": [],
+    "refunded_by": 1,
+    "meta_data": [],
+    "line_items": [
+      {
+        "id": 314,
+        "name": "Woo Album #2",
+        "product_id": 87,
+        "variation_id": 0,
+        "quantity": -1,
+        "tax_class": "",
+        "subtotal": "-9.00",
+        "subtotal_tax": "0.00",
+        "total": "-9.00",
+        "total_tax": "0.00",
+        "taxes": [],
+        "meta_data": [
+          {
+            "id": 2076,
+            "key": "_refunded_item_id",
+            "value": "311"
+          }
+        ],
+        "sku": "",
+        "price": -9
+      }
+    ],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/724"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/116"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
@@ -299,21 +327,22 @@ woocommerce.get("orders/116/refunds").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                  Description                                                  |
-|------------|---------|---------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
-| `page`     | integer | Current page of the collection.                                                                               |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                         |
-| `search`   | string  | Limit results to those matching a string.                                                                     |
-| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
-| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                      |
-| `include`  | string  | Limit result set to specific ids.                                                                             |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                          |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
-| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
-| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
-| `dp`       | string  | Number of decimal points to use in each resource.                                                             |
+| Parameter        | Type    | Description                                                                                                                  |
+| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
+| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
+| `search`         | string  | Limit results to those matching a string.                                                                                    |
+| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
+| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
+| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                     |
+| `include`        | array   | Limit result set to specific ids.                                                                                            |
+| `offset`         | integer | Offset the result set by a specific number of items.                                                                         |
+| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
+| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                          |
+| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                        |
+| `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                            |
 
 ## Delete a refund ##
 
@@ -329,51 +358,53 @@ This API helps you delete an order refund.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/orders/116/refunds/150?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/orders/723/refunds/726?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('orders/116/refunds/150?force=true', function(err, data, res) {
+WooCommerce.delete('orders/723/refunds/726?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('orders/116/refunds/150', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('orders/723/refunds/726', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("orders/116/refunds/150?force=true").json())
+print(wcapi.delete("orders/723/refunds/726?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("orders/116/refunds/150", force: true).parsed_response
+woocommerce.delete("orders/723/refunds/726", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 150,
-  "date_created": "2016-05-30T17:28:05",
+  "id": 726,
+  "date_created": "2017-03-21T17:07:11",
+  "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "meta_data": [],
   "line_items": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds/150"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds/726"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116/refunds"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/refunds"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/116"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
