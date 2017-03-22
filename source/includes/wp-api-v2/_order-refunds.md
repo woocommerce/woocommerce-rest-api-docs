@@ -4,16 +4,17 @@ The refunds API allows you to create, view, and delete individual refunds.
 
 ## Order refunds properties ##
 
-| Attribute          | Type      | Description                                                                                              |
-| ------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                            |
-| `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i> |
-| `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                 |
-| `amount`           | string    | Refund amount.                                                                                           |
-| `reason`           | string    | Reason for refund.                                                                                       |
-| `refunded_by`      | integer   | User ID of user who created the refund.                                                                  |
-| `meta_data`        | array     | Meta data. See [Order refunds - Meta data properties](#order-refunds-meta-data-properties)               |
-| `line_items`       | array     | Line items data. See [Order refunds - Line items properties](#order-refunds-line-items-properties)       |
+| Attribute          | Type      | Description                                                                                                                      |
+| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                    |
+| `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                         |
+| `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                         |
+| `amount`           | string    | Refund amount.                                                                                                                   |
+| `reason`           | string    | Reason for refund.                                                                                                               |
+| `refunded_by`      | integer   | User ID of user who created the refund.                                                                                          |
+| `meta_data`        | array     | Meta data. See [Order refunds - Meta data properties](#order-refunds-meta-data-properties)                                       |
+| `line_items`       | array     | Line items data. See [Order refunds - Line items properties](#order-refunds-line-items-properties)                               |
+| `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i> |
 
 ### Order refunds - Meta data properties ###
 
