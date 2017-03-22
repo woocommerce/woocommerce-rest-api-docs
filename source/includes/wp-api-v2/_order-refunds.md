@@ -2,7 +2,7 @@
 
 The refunds API allows you to create, view, and delete individual refunds.
 
-## Order refunds properties ##
+## Order refund properties ##
 
 | Attribute          | Type      | Description                                                                                                                      |
 | ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,11 +12,11 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `amount`           | string    | Refund amount.                                                                                                                   |
 | `reason`           | string    | Reason for refund.                                                                                                               |
 | `refunded_by`      | integer   | User ID of user who created the refund.                                                                                          |
-| `meta_data`        | array     | Meta data. See [Order refunds - Meta data properties](#order-refunds-meta-data-properties)                                       |
-| `line_items`       | array     | Line items data. See [Order refunds - Line items properties](#order-refunds-line-items-properties)                               |
+| `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                         |
+| `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                 |
 | `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i> |
 
-### Order refunds - Meta data properties ###
+### Order refund - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
 | --------- | ------- | -------------------------------------------------- |
@@ -24,7 +24,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
 
-### Order refunds - Line items properties ###
+### Order refund - Line items properties ###
 
 | Attribute      | Type    | Description                                                                                                                   |
 | -------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -38,7 +38,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                               |
 | `total`        | string  | Line total (after discounts).                                                                                                 |
 | `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                   |
-| `taxes`        | array   | Line taxes. <i class="label label-info">read-only</i> See [Order refunds - Taxes properties](#order-refunds-taxes-properties) |
+| `taxes`        | array   | Line taxes. <i class="label label-info">read-only</i> See [Order refund - Taxes properties](#order-refund-taxes-properties)   |
 | `meta_data`    | array   | Meta data. See [Order refunds - Meta data properties](#order-refunds-meta-data-properties)                                    |
 | `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                        |
 | `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                      |
