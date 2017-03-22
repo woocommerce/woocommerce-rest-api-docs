@@ -199,6 +199,12 @@ woocommerce.get("orders/723/refunds/726").parsed_response
 }
 ```
 
+#### Available parameters ####
+
+| Parameter |  Type  |                    Description                    |
+|-----------|--------|---------------------------------------------------|
+| `dp`      | string | Number of decimal points to use in each resource. |
+
 ## List all refunds ##
 
 This API helps you to view all the refunds from an order.
