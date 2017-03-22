@@ -2,20 +2,20 @@
 
 The payment gateways API allows you to view, and update individual payment gateways.
 
-## Payment gateways properties ##
+## Payment gateway properties ##
 
-| Attribute            | Type    | Description                                                                                                   |
-| -------------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| `id`                 | string  | Payment gateway ID. <i class="label label-info">read-only</i>                                                 |
-| `title`              | string  | Payment gateway title on checkout.                                                                            |
-| `description`        | string  | Payment gateway description on checkout.                                                                      |
-| `order`              | integer | Payment gateway sort order.                                                                                   |
-| `enabled`            | boolean | Payment gateway enabled status.                                                                               |
-| `method_title`       | string  | Payment gateway method title. <i class="label label-info">read-only</i>                                       |
-| `method_description` | string  | Payment gateway method description. <i class="label label-info">read-only</i>                                 |
-| `settings`           | object  | Payment gateway settings. See [Payment gateways - Settings properties](#payment-gateways-settings-properties) |
+| Attribute            | Type    | Description                                                                                                 |
+| -------------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| `id`                 | string  | Payment gateway ID. <i class="label label-info">read-only</i>                                               |
+| `title`              | string  | Payment gateway title on checkout.                                                                          |
+| `description`        | string  | Payment gateway description on checkout.                                                                    |
+| `order`              | integer | Payment gateway sort order.                                                                                 |
+| `enabled`            | boolean | Payment gateway enabled status.                                                                             |
+| `method_title`       | string  | Payment gateway method title. <i class="label label-info">read-only</i>                                     |
+| `method_description` | string  | Payment gateway method description. <i class="label label-info">read-only</i>                               |
+| `settings`           | object  | Payment gateway settings. See [Payment gateway - Settings properties](#payment-gateway-settings-properties) |
 
-### Payment gateways - Settings properties ###
+### Payment gateway - Settings properties ###
 
 | Attribute     | Type   | Description                                                                                                                                                                                     |
 | ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
