@@ -199,25 +199,6 @@ woocommerce.get("orders/723/refunds/726").parsed_response
 }
 ```
 
-#### Available parameters ####
-
-| Parameter        | Type    | Description                                                                                                                  |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
-| `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
-| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
-| `search`         | string  | Limit results to those matching a string.                                                                                    |
-| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
-| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
-| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                     |
-| `include`        | array   | Limit result set to specific ids.                                                                                            |
-| `offset`         | integer | Offset the result set by a specific number of items.                                                                         |
-| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
-| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
-| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                          |
-| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                        |
-| `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                            |
-
 ## List all refunds ##
 
 This API helps you to view all the refunds from an order.
@@ -232,26 +213,26 @@ This API helps you to view all the refunds from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/116/refunds \
+curl https://example.com/wp-json/wc/v2/orders/723/refunds \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/116/refunds', function(err, data, res) {
+WooCommerce.get('orders/723/refunds', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/116/refunds')); ?>
+<?php print_r($woocommerce->get('orders/723/refunds')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/116/refunds").json())
+print(wcapi.get("orders/723/refunds").json())
 ```
 
 ```ruby
-woocommerce.get("orders/116/refunds").parsed_response
+woocommerce.get("orders/723/refunds").parsed_response
 ```
 
 > JSON response example:
@@ -340,21 +321,22 @@ woocommerce.get("orders/116/refunds").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                  Description                                                  |
-|------------|---------|---------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
-| `page`     | integer | Current page of the collection.                                                                               |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                         |
-| `search`   | string  | Limit results to those matching a string.                                                                     |
-| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
-| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                      |
-| `include`  | string  | Limit result set to specific ids.                                                                             |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                          |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
-| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
-| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.          |
-| `dp`       | string  | Number of decimal points to use in each resource.                                                             |
+| Parameter        | Type    | Description                                                                                                                  |
+| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
+| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
+| `search`         | string  | Limit results to those matching a string.                                                                                    |
+| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
+| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
+| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                     |
+| `include`        | array   | Limit result set to specific ids.                                                                                            |
+| `offset`         | integer | Offset the result set by a specific number of items.                                                                         |
+| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
+| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                          |
+| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                        |
+| `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                            |
 
 ## Delete a refund ##
 
@@ -370,26 +352,26 @@ This API helps you delete an order refund.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/orders/116/refunds/150?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/orders/723/refunds/726?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('orders/116/refunds/150?force=true', function(err, data, res) {
+WooCommerce.delete('orders/723/refunds/726?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('orders/116/refunds/150', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('orders/723/refunds/726', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("orders/116/refunds/150?force=true").json())
+print(wcapi.delete("orders/723/refunds/726?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("orders/116/refunds/150", force: true).parsed_response
+woocommerce.delete("orders/723/refunds/726", force: true).parsed_response
 ```
 
 > JSON response example:
