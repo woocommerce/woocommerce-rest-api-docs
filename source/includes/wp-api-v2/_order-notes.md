@@ -3,14 +3,15 @@
 The order notes API allows you to create, view, and delete individual order notes.  
 Order notes are added by administrators and programmatically to store data about an order, or order events.
 
-## Order note properties ##
+## Order notes properties ##
 
-|    Attribute    |    Type   |                                                     Description                                                     |
-|-----------------|-----------|---------------------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
-| `date_created`  | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
-| `note`          | string    | Order note. <i class="label label-info">required</i>                                                                |
-| `customer_note` | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
+| Attribute          | Type      | Description                                                                                                         |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
+| `date_created`     | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>              |
+| `date_created_gmt` | date-time | The date the order note was created, as GMT. <i class="label label-info">read-only</i>                              |
+| `note`             | string    | Order note. <i class="label label-info">mandatory</i>                                                               |
+| `customer_note`    | boolean   | Shows/define if the note is only for reference or for the customer (the user will be notified). Default is `false`. |
 
 ## Create an order note ##
 
@@ -26,7 +27,7 @@ This API helps you to create a new note for an order.
 </div>
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v2/orders/645/notes \
+curl -X POST https://example.com/wp-json/wc/v2/orders/723/notes \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -39,7 +40,7 @@ var data = {
   note: 'Order ok!!!'
 };
 
-WooCommerce.post('orders/645/notes', data, function(err, data, res) {
+WooCommerce.post('orders/723/notes', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -50,7 +51,7 @@ $data = [
     'note' => 'Order ok!!!'
 ];
 
-print_r($woocommerce->post('orders/645/notes', $data));
+print_r($woocommerce->post('orders/723/notes', $data));
 ?>
 ```
 
@@ -59,7 +60,7 @@ data = {
     "note": "Order ok!!!"
 }
 
-print(wcapi.post("orders/645/notes", data).json())
+print(wcapi.post("orders/723/notes", data).json())
 ```
 
 ```ruby
@@ -67,31 +68,32 @@ data = {
   note: "Order ok!!!"
 }
 
-woocommerce.post("orders/645/notes", data).parsed_response
+woocommerce.post("orders/723/notes", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 51,
-  "date_created": "2016-05-13T20:51:55",
+  "id": 281,
+  "date_created": "2017-03-21T16:46:41",
+  "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
   "customer_note": false,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes/51"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes/281"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -112,50 +114,51 @@ This API lets you retrieve and view a specific note from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/645/notes/51 \
+curl https://example.com/wp-json/wc/v2/orders/723/notes/281 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/645/notes/51', function(err, data, res) {
+WooCommerce.get('orders/723/notes/281', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/645/notes/51')); ?>
+<?php print_r($woocommerce->get('orders/723/notes/281')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/645/notes/51").json())
+print(wcapi.get("orders/723/notes/281").json())
 ```
 
 ```ruby
-woocommerce.get("orders/645/notes/51").parsed_response
+woocommerce.get("orders/723/notes/281").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 51,
-  "date_created": "2016-05-13T20:51:55",
+  "id": 281,
+  "date_created": "2017-03-21T16:46:41",
+  "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
   "customer_note": false,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes/51"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes/281"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
@@ -176,26 +179,26 @@ This API helps you to view all the notes from an order.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/orders/645/notes \
+curl https://example.com/wp-json/wc/v2/orders/723/notes \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('orders/645/notes', function(err, data, res) {
+WooCommerce.get('orders/723/notes', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('orders/645/notes')); ?>
+<?php print_r($woocommerce->get('orders/723/notes')); ?>
 ```
 
 ```python
-print(wcapi.get("orders/645/notes").json())
+print(wcapi.get("orders/723/notes").json())
 ```
 
 ```ruby
-woocommerce.get("orders/645/notes").parsed_response
+woocommerce.get("orders/723/notes").parsed_response
 ```
 
 > JSON response example:
@@ -203,53 +206,86 @@ woocommerce.get("orders/645/notes").parsed_response
 ```json
 [
   {
-    "id": 51,
-    "date_created": "2016-05-13T20:51:55",
+    "id": 281,
+    "date_created": "2017-03-21T16:46:41",
+    "date_created_gmt": "2017-03-21T19:46:41",
     "note": "Order ok!!!",
     "customer_note": false,
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118/notes/51"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes/281"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118/notes"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
   },
   {
-    "id": 46,
-    "date_created": "2016-05-03T18:10:43",
-    "note": "Order status changed from Pending Payment to Processing.",
+    "id": 280,
+    "date_created": "2017-03-21T16:16:58",
+    "date_created_gmt": "2017-03-21T19:16:58",
+    "note": "Order status changed from On hold to Completed.",
     "customer_note": false,
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118/notes/46"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes/280"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118/notes"
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
         }
       ],
       "up": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/118"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
+        }
+      ]
+    }
+  },
+  {
+    "id": 279,
+    "date_created": "2017-03-21T16:16:46",
+    "date_created_gmt": "2017-03-21T19:16:46",
+    "note": "Awaiting BACS payment Order status changed from Pending payment to On hold.",
+    "customer_note": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes/279"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
   }
 ]
 ```
+
+#### Available parameters ####
+
+| Parameter  | Type    | Description                                                                                                                  |
+| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `type`     | string  | Limit result to customers or internal notes. Options: `any`, `customer` and `internal`. Default is `any`.                    |
 
 ## Delete an order note ##
 
@@ -265,50 +301,51 @@ This API helps you delete an order note.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/orders/645/notes/51?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/orders/723/notes/281?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('orders/645/notes/51?force=true', function(err, data, res) {
+WooCommerce.delete('orders/723/notes/281?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('orders/645/notes/51', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('orders/723/notes/281', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("orders/645/notes/51?force=true").json())
+print(wcapi.delete("orders/723/notes/281?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("orders/645/notes/51", force: true).parsed_response
+woocommerce.delete("orders/723/notes/281", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 51,
-  "date_created": "2016-05-13T20:51:55",
+  "id": 281,
+  "date_created": "2017-03-21T16:46:41",
+  "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
   "customer_note": false,
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes/51"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes/281"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118/notes"
+        "href": "https://example.com/wp-json/wc/v2/orders/723/notes"
       }
     ],
     "up": [
       {
-        "href": "https://example.com/wp-json/wc/v2/orders/118"
+        "href": "https://example.com/wp-json/wc/v2/orders/723"
       }
     ]
   }
