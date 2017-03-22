@@ -2,41 +2,38 @@
 
 The customer API allows you to create, view, update, and delete individual, or a batch, of customers.
 
-## Customer properties ##
+## Customers properties ##
 
-|    Attribute    |    Type   |                                                                                                                                                                            Description                                                                                                                                                                             |
-|-----------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                      |
-| `date_created`  | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                               |
-| `date_modified` | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                         |
-| `email`         | string    | The email address for the customer. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                                                                                      |
-| `first_name`    | string    | Customer first name.                                                                                                                                                                                                                                                                                                                                               |
-| `last_name`     | string    | Customer last name.                                                                                                                                                                                                                                                                                                                                                |
-| `username`      | string    | Customer login name. Can be generated automatically from the customer's email address if the option `woocommerce_registration_generate_username` is equal to `yes` <i class="label label-info">cannot be changed</i> <i class="label label-info">maybe mandatory</i>                                                                                               |
-| `password`      | string    | Customer password. Can be generated automatically with [`wp_generate_password()`](http://codex.wordpress.org/Function_Reference/wp_generate_password) if the "Automatically generate customer password" option is enabled, check the index meta for `generate_password` <i class="label label-info">write-only</i> <i class="label label-info">maybe mandatory</i> |
-| `last_order`    | array     | Last order data. See [Customer Last Order properties](#customer-last-order-properties). <i class="label label-info">read-only</i>                                                                                                                                                                                                                                  |
-| `orders_count`  | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
-| `total_spent`   | string    | Total amount spent. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                                      |
-| `avatar_url`    | string    | Avatar URL.                                                                                                                                                                                                                                                                                                                                                        |
-| `billing`       | array     | List of billing address data. See [Billing Address properties](#billing-address-properties).                                                                                                                                                                                                                                                                       |
-| `shipping`      | array     | List of shipping address data. See [Shipping Address properties](#shipping-address-properties).                                                                                                                                                                                                                                                                    |
+| Attribute            | Type      | Description                                                                                                |
+| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+| `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                              |
+| `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>       |
+| `date_created_gmt`   | date-time | The date the order was created, as GMT. <i class="label label-info">read-only</i>                          |
+| `date_modified`      | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
+| `date_modified_gmt`  | date-time | The date the customer was last modified, as GMT. <i class="label label-info">read-only</i>                 |
+| `email`              | string    | The email address for the customer. <i class="label label-info">mandatory</i>                              |
+| `first_name`         | string    | Customer first name.                                                                                       |
+| `last_name`          | string    | Customer last name.                                                                                        |
+| `role`               | string    | Customer role. <i class="label label-info">read-only</i>                                                   |
+| `username`           | string    | Customer login name.                                                                                       |
+| `password`           | string    | Customer password. <i class="label label-info">write-only</i>                                              |
+| `billing`            | object    | List of billing address data. See [Customers - Billing properties](#customers-billing-properties)          |
+| `shipping`           | object    | List of shipping address data. See [Customers - Shipping properties](#customers-shipping-properties)       |
+| `is_paying_customer` | bool      | Is the customer a paying customer? <i class="label label-info">read-only</i>                               |
+| `orders_count`       | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                         |
+| `total_spent`        | string    | Total amount spent. <i class="label label-info">read-only</i>                                              |
+| `avatar_url`         | string    | Avatar URL. <i class="label label-info">read-only</i>                                                      |
+| `meta_data`          | array     | Meta data. See [Customers - Meta data properties](#customers-meta-data-properties)                         |
 
-### Customer last order properties ###
+### Customers - Billing properties ###
 
-| Attribute |    Type   |                                    Description                                     |
-|-----------|-----------|------------------------------------------------------------------------------------|
-| `id`      | integer   | Last order ID. <i class="label label-info">read-only</i>                           |
-| `date`    | date-time | UTC DateTime of the customer last order. <i class="label label-info">read-only</i> |
-
-### Billing address properties ###
-
-|  Attribute   |  Type  |                     Description                      |
-|--------------|--------|------------------------------------------------------|
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
-| `address_1`  | string | Address line 1.                                      |
-| `address_2`  | string | Address line 2.                                      |
+| `address_1`  | string | Address line 1                                       |
+| `address_2`  | string | Address line 2                                       |
 | `city`       | string | City name.                                           |
 | `state`      | string | ISO code or name of the state, province or district. |
 | `postcode`   | string | Postal code.                                         |
@@ -44,19 +41,27 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `email`      | string | Email address.                                       |
 | `phone`      | string | Phone number.                                        |
 
-### Shipping address properties ###
+### Customers - Shipping properties ###
 
-|  Attribute   |  Type  |                     Description                      |
-|--------------|--------|------------------------------------------------------|
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
-| `address_1`  | string | Address line 1.                                      |
-| `address_2`  | string | Address line 2.                                      |
+| `address_1`  | string | Address line 1                                       |
+| `address_2`  | string | Address line 2                                       |
 | `city`       | string | City name.                                           |
 | `state`      | string | ISO code or name of the state, province or district. |
 | `postcode`   | string | Postal code.                                         |
 | `country`    | string | ISO code of the country.                             |
+
+### Customers - Meta data properties ###
+
+| Attribute | Type    | Description                                        |
+| --------- | ------- | -------------------------------------------------- |
+| `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
+| `key`     | string  | Meta key.                                          |
+| `value`   | string  | Meta value.                                        |
 
 ## Create a customer ##
 
@@ -255,20 +260,16 @@ woocommerce.post("customers", data).parsed_response
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:34:43",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:09:30",
+  "date_modified_gmt": "2017-03-21T19:09:30",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "John",
     "last_name": "Doe",
@@ -293,10 +294,15 @@ woocommerce.post("customers", data).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -322,46 +328,42 @@ This API lets you retrieve and view a specific customer by ID or email.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/2 \
+curl https://example.com/wp-json/wc/v2/customers/25 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/2', function(err, data, res) {
+WooCommerce.get('customers/25', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/2')); ?>
+<?php print_r($woocommerce->get('customers/25')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/2").json())
+print(wcapi.get("customers/25").json())
 ```
 
 ```ruby
-woocommerce.get("customers/2").parsed_response
+woocommerce.get("customers/25").parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:34:43",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:09:30",
+  "date_modified_gmt": "2017-03-21T19:09:30",
   "email": "john.doe@example.com",
   "first_name": "John",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "John",
     "last_name": "Doe",
@@ -386,10 +388,15 @@ woocommerce.get("customers/2").parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -442,20 +449,16 @@ woocommerce.get("customers").parsed_response
 ```json
 [
   {
-    "id": 5,
-    "date_created": "2016-05-11T21:39:01",
-    "date_modified": "2016-05-11T21:40:02",
+    "id": 26,
+    "date_created": "2017-03-21T16:11:14",
+    "date_created_gmt": "2017-03-21T19:11:14",
+    "date_modified": "2017-03-21T16:11:16",
+    "date_modified_gmt": "2017-03-21T19:11:16",
     "email": "joao.silva@example.com",
     "first_name": "João",
     "last_name": "Silva",
+    "role": "customer",
     "username": "joao.silva",
-    "last_order": {
-      "id": null,
-      "date": null
-    },
-    "orders_count": 0,
-    "total_spent": "0.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
     "billing": {
       "first_name": "João",
       "last_name": "Silva",
@@ -480,10 +483,15 @@ woocommerce.get("customers").parsed_response
       "postcode": "12345-000",
       "country": "BR"
     },
+    "is_paying_customer": false,
+    "orders_count": 0,
+    "total_spent": "0.00",
+    "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
+    "meta_data": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/5"
+          "href": "https://example.com/wp-json/wc/v2/customers/26"
         }
       ],
       "collection": [
@@ -494,20 +502,16 @@ woocommerce.get("customers").parsed_response
     }
   },
   {
-    "id": 2,
-    "date_created": "2016-05-03T17:58:35",
-    "date_modified": "2016-05-11T21:34:43",
+    "id": 25,
+    "date_created": "2017-03-21T16:09:28",
+    "date_created_gmt": "2017-03-21T19:09:28",
+    "date_modified": "2017-03-21T16:09:30",
+    "date_modified_gmt": "2017-03-21T19:09:30",
     "email": "john.doe@example.com",
     "first_name": "John",
     "last_name": "Doe",
+    "role": "customer",
     "username": "john.doe",
-    "last_order": {
-      "id": 118,
-      "date": "2016-05-03T18:10:43"
-    },
-    "orders_count": 3,
-    "total_spent": "28.00",
-    "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
     "billing": {
       "first_name": "John",
       "last_name": "Doe",
@@ -532,10 +536,15 @@ woocommerce.get("customers").parsed_response
       "postcode": "94103",
       "country": "US"
     },
+    "is_paying_customer": false,
+    "orders_count": 0,
+    "total_spent": "0.00",
+    "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+    "meta_data": [],
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/2"
+          "href": "https://example.com/wp-json/wc/v2/customers/25"
         }
       ],
       "collection": [
@@ -550,19 +559,19 @@ woocommerce.get("customers").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                                                                           Description                                                                                                           |
-|------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                                                                                                       |
-| `page`     | integer | Current page of the collection.                                                                                                                                                                                                 |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                                                                                                                                           |
-| `search`   | string  | Limit results to those matching a string.                                                                                                                                                                                       |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                                                                                                        |
-| `include`  | string  | Limit result set to specific ids.                                                                                                                                                                                               |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                                                            |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`, Options: `asc` and `desc`.                                                                                                                                      |
-| `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name` and `registered_date`.                                                                                                                 |
-| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                                                            |
-| `role`     | string  | Limit result set to resources with a specific role. Default: `customer`. Options (some plugins can add more user roles): `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager` |
+| Parameter  | Type    | Description                                                                                                                                                                                 |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                |
+| `page`     | integer | Current page of the collection. Default is `1`.                                                                                                                                             |
+| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                      |
+| `search`   | string  | Limit results to those matching a string.                                                                                                                                                   |
+| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                                                                                    |
+| `include`  | array   | Limit result set to specific IDs.                                                                                                                                                           |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                        |
+| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                                                                  |
+| `orderby`  | string  | Sort collection by object attribute. Options: `id`, `include`, `name` and `registered_date`. Default is `name`.                                                                             |
+| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                        |
+| `role`     | string  | Limit result set to resources with a specific role. Options: `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager`. Default is `customer`. |
 
 ## Update a customer ##
 
@@ -578,7 +587,7 @@ This API lets you make changes to a customer.
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v2/customers/2 \
+curl -X PUT https://example.com/wp-json/wc/v2/customers/25 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -603,7 +612,7 @@ var data = {
   }
 };
 
-WooCommerce.put('customers/2', data, function(err, data, res) {
+WooCommerce.put('customers/25', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -620,7 +629,7 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->put('customers/2', $data));
+print_r($woocommerce->put('customers/25', $data));
 ?>
 ```
 
@@ -635,7 +644,7 @@ data = {
     }
 }
 
-print(wcapi.put("customers/2", data).json())
+print(wcapi.put("customers/25", data).json())
 ```
 
 ```ruby
@@ -649,27 +658,23 @@ data = {
   }
 }
 
-woocommerce.put("customers/2", data).parsed_response
+woocommerce.put("customers/25", data).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:43:45",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:12:28",
+  "date_modified_gmt": "2017-03-21T19:12:28",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "James",
     "last_name": "Doe",
@@ -694,10 +699,15 @@ woocommerce.put("customers/2", data).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -723,46 +733,42 @@ This API helps you delete a customer.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/customers/2?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/customers/25?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('customers/2?force=true', function(err, data, res) {
+WooCommerce.delete('customers/25?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->delete('customers/2', ['force' => true])); ?>
+<?php print_r($woocommerce->delete('customers/25', ['force' => true])); ?>
 ```
 
 ```python
-print(wcapi.delete("customers/2?force=true").json())
+print(wcapi.delete("customers/25?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("customers/2", force: true).parsed_response
+woocommerce.delete("customers/25", force: true).parsed_response
 ```
 
 > JSON response example:
 
 ```json
 {
-  "id": 2,
-  "date_created": "2016-05-03T17:58:35",
-  "date_modified": "2016-05-11T21:43:45",
+  "id": 25,
+  "date_created": "2017-03-21T16:09:28",
+  "date_created_gmt": "2017-03-21T19:09:28",
+  "date_modified": "2017-03-21T16:12:28",
+  "date_modified_gmt": "2017-03-21T19:12:28",
   "email": "john.doe@example.com",
   "first_name": "James",
   "last_name": "Doe",
+  "role": "customer",
   "username": "john.doe",
-  "last_order": {
-    "id": 118,
-    "date": "2016-05-03T18:10:43"
-  },
-  "orders_count": 3,
-  "total_spent": "28.00",
-  "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
   "billing": {
     "first_name": "James",
     "last_name": "Doe",
@@ -787,10 +793,15 @@ woocommerce.delete("customers/2", force: true).parsed_response
     "postcode": "94103",
     "country": "US"
   },
+  "is_paying_customer": false,
+  "orders_count": 0,
+  "total_spent": "0.00",
+  "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+  "meta_data": [],
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/customers/2"
+        "href": "https://example.com/wp-json/wc/v2/customers/25"
       }
     ],
     "collection": [
@@ -804,9 +815,10 @@ woocommerce.delete("customers/2", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
-|-----------|--------|---------------------------------------------------------------|
-| `force`   | string | Required to be `true`, as resource does not support trashing. |
+| Parameter  |   Type  |                          Description                          |
+|------------|---------|---------------------------------------------------------------|
+| `force`    | string  | Required to be `true`, as resource does not support trashing. |
+| `reassign` | integer | User ID to reassign posts to.                                 |
 
 ## Batch update customers ##
 
@@ -890,14 +902,14 @@ curl -X POST https://example.com/wp-json/wc/v2/customers/batch \
   ],
   "update": [
     {
-      "id": 5,
+      "id": 26,
       "billing": {
         "phone": "(11) 1111-1111"
       }
     }
   ],
   "delete": [
-    2
+    25
   ]
 }'
 ```
@@ -968,14 +980,14 @@ var data = {
   ],
   update: [
     {
-      id: 5,
+      id: 26,
       billing: {
         phone: '(11) 1111-1111'
       }
     }
   ],
   delete: [
-    2
+    11
   ]
 };
 
@@ -987,67 +999,78 @@ WooCommerce.post('customers/batch', data, function(err, data, res) {
 ```php
 <?php 
 $data = [
-    'customers': [
+    'create' => [
         [
-            'email': 'john.doe2@example.com',
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'username': 'john.doe2',
-            'billing': [
-                'first_name': 'John',
-                'last_name': 'Doe',
-                'company': '',
-                'address_1': '969 Market',
-                'address_2': '',
-                'city': 'San Francisco',
-                'state': 'CA',
-                'postcode': '94103',
-                'country': 'US',
-                'email': 'john.doe@example.com',
-                'phone': '(555) 555-5555'
+            'email' => 'john.doe2@example.com',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'username' => 'john.doe2',
+            'billing' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'company' => '',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US',
+                'email' => 'john.doe@example.com',
+                'phone' => '(555) 555-5555'
             ],
-            'shipping': [
-                'first_name': 'John',
-                'last_name': 'Doe',
-                'company': '',
-                'address_1': '969 Market',
-                'address_2': '',
-                'city': 'San Francisco',
-                'state': 'CA',
-                'postcode': '94103',
-                'country': 'US'
+            'shipping' => [
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'company' => '',
+                'address_1' => '969 Market',
+                'address_2' => '',
+                'city' => 'San Francisco',
+                'state' => 'CA',
+                'postcode' => '94103',
+                'country' => 'US'
             ]
         ],
         [
-            'email': 'joao.silva2@example.com',
-            'first_name': 'João',
-            'last_name': 'Silva',
-            'username': 'joao.silva2',
-            'billing': [
-                'first_name': 'João',
-                'last_name': 'Silva',
-                'company': '',
-                'address_1': 'Av. Brasil, 432',
-                'address_2': '',
-                'city': 'Rio de Janeiro',
-                'state': 'RJ',
-                'postcode': '12345-000',
-                'country': 'BR',
-                'email': 'joao.silva@example.com',
-                'phone': '(55) 5555-5555'
+            'email' => 'joao.silva2@example.com',
+            'first_name' => 'João',
+            'last_name' => 'Silva',
+            'username' => 'joao.silva2',
+            'billing' => [
+                'first_name' => 'João',
+                'last_name' => 'Silva',
+                'company' => '',
+                'address_1' => 'Av. Brasil, 432',
+                'address_2' => '',
+                'city' => 'Rio de Janeiro',
+                'state' => 'RJ',
+                'postcode' => '12345-000',
+                'country' => 'BR',
+                'email' => 'joao.silva@example.com',
+                'phone' => '(55) 5555-5555'
             ],
-            'shipping': [
-                'first_name': 'João',
-                'last_name': 'Silva',
-                'company': '',
-                'address_1': 'Av. Brasil, 432',
-                'address_2': '',
-                'city': 'Rio de Janeiro',
-                'state': 'RJ',
-                'postcode': '12345-000',
-                'country': 'BR'
+            'shipping' => [
+                'first_name' => 'João',
+                'last_name' => 'Silva',
+                'company' => '',
+                'address_1' => 'Av. Brasil, 432',
+                'address_2' => '',
+                'city' => 'Rio de Janeiro',
+                'state' => 'RJ',
+                'postcode' => '12345-000',
+                'country' => 'BR'
             ]
         ]
+    ],
+    'update' => [
+        [
+            'id' => 26,
+            'billing' => [
+                'phone' => '(11) 1111-1111'
+            ]
+        ]
+    ],
+    'delete' => [
+        25
     ]
 ];
 
@@ -1121,14 +1144,14 @@ data = {
     ],
     "update": [
         {
-            "id": 5,
+            "id": 26,
             "billing": {
                 "phone": "(11) 1111-1111"
             }
         }
     ],
     "delete": [
-        2
+        25
     ]
 }
 
@@ -1201,14 +1224,14 @@ data = {
   ],
   update: [
     {
-      id: 5,
+      id: 26,
       billing: {
         phone: "(11) 1111-1111"
       }
     }
   ],
   delete: [
-    2
+    25
   ]
 }
 
@@ -1221,20 +1244,16 @@ woocommerce.post("customers/batch", data).parsed_response
 {
   "create": [
     {
-      "id": 6,
-      "date_created": "2016-05-11T22:06:32",
-      "date_modified": "2016-05-11T22:07:31",
+      "id": 27,
+      "date_created": "2017-03-21T16:13:58",
+      "date_created_gmt": "2017-03-21T19:13:58",
+      "date_modified": "2017-03-21T16:13:59",
+      "date_modified_gmt": "2017-03-21T19:13:59",
       "email": "john.doe2@example.com",
       "first_name": "John",
       "last_name": "Doe",
+      "role": "customer",
       "username": "john.doe2",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "John",
         "last_name": "Doe",
@@ -1259,10 +1278,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "94103",
         "country": "US"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/6ad0b094bac53a85bb282ccdb3958279?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/6"
+            "href": "https://example.com/wp-json/wc/v2/customers/27"
           }
         ],
         "collection": [
@@ -1273,20 +1297,16 @@ woocommerce.post("customers/batch", data).parsed_response
       }
     },
     {
-      "id": 7,
-      "date_created": "2016-05-11T22:07:33",
-      "date_modified": "2016-05-11T22:07:37",
+      "id": 28,
+      "date_created": "2017-03-21T16:14:00",
+      "date_created_gmt": "2017-03-21T19:14:00",
+      "date_modified": "2017-03-21T16:14:01",
+      "date_modified_gmt": "2017-03-21T19:14:01",
       "email": "joao.silva2@example.com",
       "first_name": "João",
       "last_name": "Silva",
+      "role": "customer",
       "username": "joao.silva2",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "João",
         "last_name": "Silva",
@@ -1311,10 +1331,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "12345-000",
         "country": "BR"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/ea9ad095f2970f27cbff07e7f5e99453?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/7"
+            "href": "https://example.com/wp-json/wc/v2/customers/28"
           }
         ],
         "collection": [
@@ -1327,20 +1352,16 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "update": [
     {
-      "id": 5,
-      "date_created": "2016-05-11T21:39:01",
-      "date_modified": "2016-05-11T22:04:36",
+      "id": 26,
+      "date_created": "2017-03-21T16:11:14",
+      "date_created_gmt": "2017-03-21T19:11:14",
+      "date_modified": "2017-03-21T16:14:03",
+      "date_modified_gmt": "2017-03-21T19:14:03",
       "email": "joao.silva@example.com",
       "first_name": "João",
       "last_name": "Silva",
+      "role": "customer",
       "username": "joao.silva",
-      "last_order": {
-        "id": null,
-        "date": null
-      },
-      "orders_count": 0,
-      "total_spent": "0.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "João",
         "last_name": "Silva",
@@ -1365,10 +1386,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "12345-000",
         "country": "BR"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/5"
+            "href": "https://example.com/wp-json/wc/v2/customers/26"
           }
         ],
         "collection": [
@@ -1381,20 +1407,16 @@ woocommerce.post("customers/batch", data).parsed_response
   ],
   "delete": [
     {
-      "id": 2,
-      "date_created": "2016-05-03T17:58:35",
-      "date_modified": "2016-05-11T21:43:45",
+      "id": 25,
+      "date_created": "2017-03-21T16:09:28",
+      "date_created_gmt": "2017-03-21T19:09:28",
+      "date_modified": "2017-03-21T16:12:28",
+      "date_modified_gmt": "2017-03-21T19:12:28",
       "email": "john.doe@example.com",
       "first_name": "James",
       "last_name": "Doe",
+      "role": "customer",
       "username": "john.doe",
-      "last_order": {
-        "id": 118,
-        "date": "2016-05-03T18:10:43"
-      },
-      "orders_count": 3,
-      "total_spent": "28.00",
-      "avatar_url": "https://secure.gravatar.com/avatar/?s=96",
       "billing": {
         "first_name": "James",
         "last_name": "Doe",
@@ -1419,10 +1441,15 @@ woocommerce.post("customers/batch", data).parsed_response
         "postcode": "94103",
         "country": "US"
       },
+      "is_paying_customer": false,
+      "orders_count": 0,
+      "total_spent": "0.00",
+      "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
+      "meta_data": [],
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/customers/2"
+            "href": "https://example.com/wp-json/wc/v2/customers/25"
           }
         ],
         "collection": [
@@ -1450,26 +1477,26 @@ This API lets you retrieve customer downloads permissions.
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/customers/2/downloads \
+curl https://example.com/wp-json/wc/v2/customers/26/downloads \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.get('customers/2/downloads', function(err, data, res) {
+WooCommerce.get('customers/26/downloads', function(err, data, res) {
   console.log(res);
 });
 ```
 
 ```php
-<?php print_r($woocommerce->get('customers/2/downloads')); ?>
+<?php print_r($woocommerce->get('customers/26/downloads')); ?>
 ```
 
 ```python
-print(wcapi.get("customers/2/downloads").json())
+print(wcapi.get("customers/26/downloads").json())
 ```
 
 ```ruby
-woocommerce.get("customers/2/downloads").parsed_response
+woocommerce.get("customers/26/downloads").parsed_response
 ```
 
 > JSON response example:
@@ -1477,32 +1504,34 @@ woocommerce.get("customers/2/downloads").parsed_response
 ```json
 [
   {
-    "download_url": "https://example.com/?download_file=96&order=wc_order_571a7260c0da5&email=john.dow@xanmple.com&key=1789931e0c14ad9909a50c826f10c169",
-    "download_id": "1789931e0c14ad9909a50c826f10c169",
-    "product_id": 96,
-    "download_name": "Woo Album #4 &ndash; Testing",
-    "order_id": 105,
-    "order_key": "wc_order_571a7260c0da5",
-    "downloads_remaining": "unlimited",
+    "download_id": "91447fd1849316bbc89dfb7e986a6006",
+    "download_url": "https://example.com/?download_file=87&order=wc_order_58d17c18352&email=joao.silva%40example.com&key=91447fd1849316bbc89dfb7e986a6006",
+    "product_id": 87,
+    "product_name": "Woo Album #2",
+    "download_name": "Woo Album #2 &ndash; Song 2",
+    "order_id": 723,
+    "order_key": "wc_order_58d17c18352",
+    "downloads_remaining": "3",
     "access_expires": "never",
+    "access_expires_gmt": "never",
     "file": {
-      "name": "Testing",
-      "file": "http://example.com/wp-content/uploads/2013/06/cd_5_angle.jpg"
+      "name": "Song 2",
+      "file": "http://example.com/wp-content/uploads/woocommerce_uploads/2013/06/Song.mp3"
     },
     "_links": {
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/customers/1/downloads"
+          "href": "https://example.com/wp-json/wc/v2/customers/26/downloads"
         }
       ],
       "product": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/96"
+          "href": "https://example.com/wp-json/wc/v2/products/87"
         }
       ],
       "order": [
         {
-          "href": "https://example.com/wp-json/wc/v2/orders/105"
+          "href": "https://example.com/wp-json/wc/v2/orders/723"
         }
       ]
     }
@@ -1512,14 +1541,23 @@ woocommerce.get("customers/2/downloads").parsed_response
 
 ### Customer downloads properties ###
 
-|       Attribute       |   Type  |                                                   Description                                                    |
-|-----------------------|---------|------------------------------------------------------------------------------------------------------------------|
-| `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                     |
-| `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                     |
-| `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                               |
-| `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                |
-| `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                              |
-| `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                             |
-| `downloads_remaining` | string  | Amount of downloads remaining. <i class="label label-info">read-only</i>                                         |
-| `access_expires`      | string  | The date when the download access expires, in the site's timezone. <i class="label label-info">read-only</i>     |
-| `file`                | array   | File details with `name` (file name) and `file` (file URL) attributes. <i class="label label-info">read-only</i> |
+| Attribute             | Type    | Description                                                                                                                               |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `download_id`         | string  | Download ID (MD5). <i class="label label-info">read-only</i>                                                                              |
+| `download_url`        | string  | Download file URL. <i class="label label-info">read-only</i>                                                                              |
+| `product_id`          | integer | Downloadable product ID. <i class="label label-info">read-only</i>                                                                        |
+| `product_name`        | string  | Product name. <i class="label label-info">read-only</i>                                                                                   |
+| `download_name`       | string  | Downloadable file name. <i class="label label-info">read-only</i>                                                                         |
+| `order_id`            | integer | Order ID. <i class="label label-info">read-only</i>                                                                                       |
+| `order_key`           | string  | Order key. <i class="label label-info">read-only</i>                                                                                      |
+| `downloads_remaining` | string  | Number of downloads remaining. <i class="label label-info">read-only</i>                                                                  |
+| `access_expires`      | string  | The date when download access expires, in the site's timezone. <i class="label label-info">read-only</i>                                  |
+| `access_expires_gmt`  | string  | The date when download access expires, as GMT. <i class="label label-info">read-only</i>                                                  |
+| `file`                | object  | File details. <i class="label label-info">read-only</i> See [Customers downloads - File properties](#customers-downloads-file-properties) |
+
+#### Customer downloads - File properties ####
+
+| Attribute | Type   | Description                                          |
+| --------- | ------ | ---------------------------------------------------- |
+| `name`    | string | File name. <i class="label label-info">read-only</i> |
+| `file`    | string | File URL. <i class="label label-info">read-only</i>  |
