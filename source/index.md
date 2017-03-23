@@ -25,7 +25,6 @@ includes:
   - wp-api-v2/orders
   - wp-api-v2/order-notes
   - wp-api-v2/order-refunds
-  - wp-api-v2/payment-gateways
   - wp-api-v2/products
   - wp-api-v2/product-variations
   - wp-api-v2/product-attributes
@@ -37,6 +36,15 @@ includes:
   - wp-api-v2/taxes
   - wp-api-v2/tax-classes
   - wp-api-v2/webhooks
+  - wp-api-v2/settings
+  - wp-api-v2/setting-options
+  - wp-api-v2/payment-gateways
+  - wp-api-v2/shipping-zones
+  - wp-api-v2/shipping-zone-locations
+  - wp-api-v2/shipping-zone-methods
+  - wp-api-v2/shipping-methods
+  - wp-api-v2/system-status
+  - wp-api-v2/system-status-tools
 
 search: false
 ---
