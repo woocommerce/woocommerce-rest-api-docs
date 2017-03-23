@@ -4,10 +4,10 @@ The product tags API allows you to create, view, update, and delete individual, 
 
 ## Product tag properties ##
 
-|   Attribute   |   Type  |                                       Description                                        |
-|---------------|---------|------------------------------------------------------------------------------------------|
+| Attribute     | Type    | Description                                                                              |
+| ------------- | ------- | ---------------------------------------------------------------------------------------- |
 | `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>            |
-| `name`        | string  | Tag name. <i class="label label-info">required</i>                                       |
+| `name`        | string  | Tag name. <i class="label label-info">mandatory</i>                                      |
 | `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                          |
 | `description` | string  | HTML description of the resource.                                                        |
 | `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
@@ -235,19 +235,20 @@ woocommerce.get("products/tags").parsed_response
 
 #### Available parameters ####
 
-|  Parameter   |   Type  |                                                                Description                                                                 |
-|--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
-| `page`       | integer | Current page of the collection.                                                                                                            |
-| `per_page`   | integer | Maximum number of items to be returned in result set.                                                                                      |
-| `search`     | string  | Limit results to those matching a string.                                                                                                  |
-| `exclude`    | string  | Ensure result set excludes specific ids.                                                                                                   |
-| `include`    | string  | Limit result set to specific ids.                                                                                                          |
-| `order`      | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
-| `orderby`    | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
-| `hide_empty` | bool    | Whether to hide resources not assigned to any products. Default is `false`.                                                                |
-| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
-| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
+| Parameter    | Type    | Description                                                                                                                                  |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`       | integer | Current page of the collection. Default is `1`.                                                                                              |
+| `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`     | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`    | array   | Ensure result set excludes specific ids.                                                                                                     |
+| `include`    | array   | Limit result set to specific ids.                                                                                                            |
+| `offset`     | integer | Offset the result set by a specific number of items.                                                                                         |
+| `order`      | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`    | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty` | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                                |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                          |
 
 ## Update a product tag ##
 
