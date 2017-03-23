@@ -18,14 +18,16 @@ The product categories API allows you to create, view, update, and delete indivi
 
 ### Product category - Image properties ###
 
-| Attribute       | Type      | Description                                                                                             |
-| --------------- | --------- | ------------------------------------------------------------------------------------------------------- |
-| `id`            | integer   | Image ID.                                                                                               |
-| `date_created`  | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
-| `date_modified` | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
-| `src`           | string    | Image URL.                                                                                              |
-| `name`          | string    | Image name.                                                                                             |
-| `alt`           | string    | Image alternative text.                                                                                 |
+| Attribute           | Type      | Description                                                                                             |
+| ------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+| `id`                | integer   | Image ID.                                                                                               |
+| `date_created`      | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
+| `date_created_gmt`  | date-time | The date the image was created, as GMT <i class="label label-info">read-only</i>                        |
+| `date_modified`     | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
+| `date_modified_gmt` | date-time | The date the image was last modified, as GMT. <i class="label label-info">read-only</i>                 |
+| `src`               | string    | Image URL.                                                                                              |
+| `name`              | string    | Image name.                                                                                             |
+| `alt`               | string    | Image alternative text.                                                                                 |
 
 ## Create a product category ##
 
