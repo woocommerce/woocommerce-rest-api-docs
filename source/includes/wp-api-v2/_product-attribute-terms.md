@@ -2,15 +2,16 @@
 
 The product attribute terms API allows you to create, view, update, and delete individual, or a batch, of attribute terms.
 
-## Attribute term properties ##
+## Product attribute term properties ##
 
-|  Attribute   |   Type  |                                       Description                                        |
-|--------------|---------|------------------------------------------------------------------------------------------|
-| `id`         | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>            |
-| `name`       | string  | Term name. <i class="label label-info">required</i>                                      |
-| `slug`       | string  | An alphanumeric identifier for the resource unique to its type.                          |
-| `menu_order` | integer | Menu order, used to custom sort the resource.                                            |
-| `count`      | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
+| Attribute     | Type    | Description                                                                              |
+| ------------- | ------- | ---------------------------------------------------------------------------------------- |
+| `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>            |
+| `name`        | string  | Term name. <i class="label label-info">mandatory</i>                                     |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                          |
+| `description` | string  | HTML description of the resource.                                                        |
+| `menu_order`  | integer | Menu order, used to custom sort the resource.                                            |
+| `count`       | integer | Number of published products for the resource. <i class="label label-info">read-only</i> |
 
 ## Create an attribute term ##
 
@@ -77,6 +78,7 @@ woocommerce.post("products/attributes/2/terms", data).parsed_response
   "id": 23,
   "name": "XXS",
   "slug": "xxs",
+  "description": "",
   "menu_order": 1,
   "count": 1,
   "_links": {
@@ -135,6 +137,7 @@ woocommerce.get("products/attributes/2/terms/23").parsed_response
   "id": 23,
   "name": "XXS",
   "slug": "xxs",
+  "description": "",
   "menu_order": 1,
   "count": 1,
   "_links": {
@@ -194,6 +197,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 23,
     "name": "XXS",
     "slug": "xxs",
+    "description": "",
     "menu_order": 1,
     "count": 1,
     "_links": {
@@ -213,6 +217,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 22,
     "name": "XS",
     "slug": "xs",
+    "description": "",
     "menu_order": 2,
     "count": 1,
     "_links": {
@@ -232,6 +237,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 17,
     "name": "S",
     "slug": "s",
+    "description": "",
     "menu_order": 3,
     "count": 1,
     "_links": {
@@ -251,6 +257,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 18,
     "name": "M",
     "slug": "m",
+    "description": "",
     "menu_order": 4,
     "count": 1,
     "_links": {
@@ -270,6 +277,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 19,
     "name": "L",
     "slug": "l",
+    "description": "",
     "menu_order": 5,
     "count": 1,
     "_links": {
@@ -289,6 +297,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 20,
     "name": "XL",
     "slug": "xl",
+    "description": "",
     "menu_order": 6,
     "count": 1,
     "_links": {
@@ -308,6 +317,7 @@ woocommerce.get("products/attributes/2/terms").parsed_response
     "id": 21,
     "name": "XXL",
     "slug": "xxl",
+    "description": "",
     "menu_order": 7,
     "count": 1,
     "_links": {
@@ -328,20 +338,20 @@ woocommerce.get("products/attributes/2/terms").parsed_response
 
 #### Available parameters ####
 
-|  Parameter   |   Type  |                                                                Description                                                                 |
-|--------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
-| `page`       | integer | Current page of the collection.                                                                                                            |
-| `per_page`   | integer | Maximum number of items to be returned in result set.                                                                                      |
-| `search`     | string  | Limit results to those matching a string.                                                                                                  |
-| `exclude`    | string  | Ensure result set excludes specific ids.                                                                                                   |
-| `include`    | string  | Limit result set to specific ids.                                                                                                          |
-| `order`      | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
-| `orderby`    | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
-| `hide_empty` | bool    | Whether to hide resources not assigned to any products. Default is `false`.                                                                |
-| `parent`     | integer | Limit result set to resources assigned to a specific parent.                                                                               |
-| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                              |
-| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                        |
+| Parameter      | Type    | Description                                                                                                                                  |
+| -------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`      | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`         | integer | Current page of the collection. Default is `1`.                                                                                              |
+| `per_page`     | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`       | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`      | array   | Ensure result set excludes specific ids.                                                                                                     |
+| `include`      | array   | Limit result set to specific ids.                                                                                                            |
+| `order`        | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`      | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty`   | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `parent`       | integer | Limit result set to resources assigned to a specific parent.                                                                                 |
+| `product`      | integer | Limit result set to resources assigned to a specific product.                                                                                |
+| `slug`         | string  | Limit result set to resources with a specific slug.                                                                                          |
 
 ## Update an attribute term ##
 
@@ -408,6 +418,7 @@ woocommerce.put("products/attributes/2/terms/23", data).parsed_response
   "id": 23,
   "name": "XXS",
   "slug": "xxs",
+  "description": "",
   "menu_order": 1,
   "count": 1,
   "_links": {
@@ -468,6 +479,7 @@ woocommerce.delete("products/attributes/2/terms/23", force: true).parsed_respons
   "id": 23,
   "name": "XXS",
   "slug": "xxs",
+  "description": "",
   "menu_order": 1,
   "count": 1,
   "_links": {
@@ -643,6 +655,7 @@ woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
       "id": 23,
       "name": "XXS",
       "slug": "xxs",
+      "description": "",
       "menu_order": 1,
       "count": 0,
       "_links": {
@@ -662,6 +675,7 @@ woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
       "id": 17,
       "name": "S",
       "slug": "s",
+      "description": "",
       "menu_order": 3,
       "count": 0,
       "_links": {
@@ -683,6 +697,7 @@ woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
       "id": 19,
       "name": "L",
       "slug": "l",
+      "description": "",
       "menu_order": 5,
       "count": 1,
       "_links": {
@@ -704,6 +719,7 @@ woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
       "id": 21,
       "name": "XXL",
       "slug": "xxl",
+      "description": "",
       "menu_order": 7,
       "count": 1,
       "_links": {
@@ -723,6 +739,7 @@ woocommerce.post("products/attributes/2/terms/batch", data).parsed_response
       "id": 20,
       "name": "XL",
       "slug": "xl",
+      "description": "",
       "menu_order": 6,
       "count": 1,
       "_links": {
