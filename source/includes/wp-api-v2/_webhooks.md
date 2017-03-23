@@ -58,35 +58,38 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 ## Webhook properties ##
 
-|    Attribute    |    Type   |                                                                                     Description                                                                                      |
-|-----------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                        |
-| `name`          | string    | A friendly name for the webhook. Defaults is `Webhook created on <date>`.                                                                                                            |
-| `status`        | string    | Webhook status. Default is `active`. Options `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures).                       |
-| `topic`         | string    | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics). <i class="label label-info">required</i>                                                                     |
-| `resource`      | string    | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                            |
-| `event`         | string    | Webhook event, e.g. `updated` <i class="label label-info">read-only</i>                                                                                                              |
-| `hooks`         | array     | WooCommerce action names associated with the webhook. <i class="label label-info">read-only</i>                                                                                      |
-| `delivery_url`  | string    | The URL where the webhook payload is delivered. <i class="label label-info">required</i>                                                                                             |
-| `secret`        | string    | Secret key used to generate a hash of the delivered webhook and provided in the request headers. <i class="label label-info">required</i> <i class="label label-info">write-only</i> |
-| `date_created`  | date-time | UTC DateTime when the webhook was created <i class="label label-info">read-only</i>                                                                                                  |
-| `date_modified` | date-time | UTC DateTime when the webhook was last updated <i class="label label-info">read-only</i>                                                                                             |
+| Attribute           | Type      | Description                                                                                                                                                                                                                                                                |
+| ------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                              |
+| `name`              | string    | A friendly name for the webhook.                                                                                                                                                                                                                                           |
+| `status`            | string    | Webhook status. Options: `active`, `paused` and `disabled`. Default is `active`.                                                                                                                                                                                           |
+| `topic`             | string    | Webhook topic. <i class="label label-info">mandatory</i>                                                                                                                                                                                                                   |
+| `resource`          | string    | Webhook resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                |
+| `event`             | string    | Webhook event. <i class="label label-info">read-only</i>                                                                                                                                                                                                                   |
+| `hooks`             | array     | WooCommerce action names associated with the webhook. <i class="label label-info">read-only</i>                                                                                                                                                                            |
+| `delivery_url`      | string    | The URL where the webhook payload is delivered. <i class="label label-info">read-only</i> <i class="label label-info">mandatory</i>                                                                                                                                        |
+| `secret`            | string    | Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided. <i class="label label-info">write-only</i> <i class="label label-info">mandatory</i> |
+| `date_created`      | date-time | The date the webhook was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                        |
+| `date_created_gmt`  | date-time | The date the webhook was created, as GMT. <i class="label label-info">read-only</i>                                                                                                                                                                                        |
+| `date_modified`     | date-time | The date the webhook was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                  |
+| `date_modified_gmt` | date-time | The date the webhook was last modified, as GMT. <i class="label label-info">read-only</i>                                                                                                                                                                                  |
 
-### Webhooks delivery properties ###
+### Webhook delivery properties ###
 
-|     Attribute      |    Type   |                                                                Description                                                                 |
-|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                              |
-| `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                               |
-| `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i>          |
-| `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                         |
-| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-header-properties) for more details. <i class="label label-info">read-only</i> |
-| `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                                    |
-| `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                                |
-| `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                             |
-| `response_headers` | array     | Array of the response headers from the receiving server. <i class="label label-info">read-only</i>                                         |
-| `response_body`    | string    | The response body from the receiving server. <i class="label label-info">read-only</i>                                                     |
-| `date_created`     | date-time | The date the webhook delivery was logged, in the site's timezone. <i class="label label-info">read-only</i>                                |
+| Attribute          | Type      | Description                                                                                                                       |
+| ------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                     |
+| `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                      |
+| `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i> |
+| `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                |
+| `request_headers`  | array     | Request headers. <i class="label label-info">read-only</i>                                                                        |
+| `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                           |
+| `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                       |
+| `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                    |
+| `response_headers` | array     | Array of the response headers from the receiving server. <i class="label label-info">read-only</i>                                |
+| `response_body`    | string    | The response body from the receiving server. <i class="label label-info">read-only</i>                                            |
+| `date_created`     | date-time | The date the webhook delivery was logged, in the site's timezone. <i class="label label-info">read-only</i>                       |
+| `date_created_gmt` | date-time | The date the webhook delivery was logged, GMT. <i class="label label-info">read-only</i>                                          |
 
 #### Request header properties ####
 
@@ -375,22 +378,20 @@ woocommerce.get("webhooks").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                          Description                                                          |
-|------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                     |
-| `page`     | integer | Current page of the collection.                                                                                               |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                                         |
+| Parameter  | Type    | Description                                                                                                                   |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.  |
+| `page`     | integer | Current page of the collection. Default is `1`.                                                                               |
+| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                        |
 | `search`   | string  | Limit results to those matching a string.                                                                                     |
 | `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                                   |
 | `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                      |
-| `include`  | string  | Limit result set to specific ids.                                                                                             |
+| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                      |
+| `include`  | array   | Limit result set to specific ids.                                                                                             |
 | `offset`   | integer | Offset the result set by a specific number of items.                                                                          |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                    |
-| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`.                 |
-| `slug`     | string  | Limit result set to posts with a specific slug.                                                                               |
-| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                          |
-| `status`   | string  | Limit result set to webhooks assigned a specific status. Default is `all`. Options: `all`, `active`, `paused` and `disabled`. |
+| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                   |
+| `orderby`  | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                 |
+| `status`   | string  | Limit result set to webhooks assigned a specific status. Options: `all`, `active`, `paused` and `disabled`. Default is `all`. |
 
 ## Update a webhook ##
 
