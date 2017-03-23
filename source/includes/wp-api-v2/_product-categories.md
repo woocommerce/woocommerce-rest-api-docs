@@ -115,24 +115,26 @@ woocommerce.post("products/categories", data).parsed_response
   "description": "",
   "display": "default",
   "image": {
-    "id": 173,
-    "date_created": "2016-05-31T23:51:03",
-    "date_modified": "2016-05-31T23:51:03",
-    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "id": 730,
+    "date_created": "2017-03-23T00:01:07",
+    "date_created_gmt": "2017-03-23T03:01:07",
+    "date_modified": "2017-03-23T00:01:07",
+    "date_modified_gmt": "2017-03-23T03:01:07",
+    "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
     "title": "",
     "alt": ""
   },
   "menu_order": 0,
-  "count": 18,
+  "count": 36,
   "_links": {
     "self": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories/9"
+        "href": "https://example.com/wp-json/wc/v2/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories"
+        "href": "https://example.com/wp-json/wc/v2/products/categories"
       }
     ]
   }
@@ -184,24 +186,26 @@ woocommerce.get("products/categories/9").parsed_response
   "description": "",
   "display": "default",
   "image": {
-    "id": 173,
-    "date_created": "2016-05-31T23:51:03",
-    "date_modified": "2016-05-31T23:51:03",
-    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "id": 730,
+    "date_created": "2017-03-23T00:01:07",
+    "date_created_gmt": "2017-03-23T03:01:07",
+    "date_modified": "2017-03-23T00:01:07",
+    "date_modified_gmt": "2017-03-23T03:01:07",
+    "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
     "title": "",
     "alt": ""
   },
   "menu_order": 0,
-  "count": 18,
+  "count": 36,
   "_links": {
     "self": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories/9"
+        "href": "https://example.com/wp-json/wc/v2/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories"
+        "href": "https://example.com/wp-json/wc/v2/products/categories"
       }
     ]
   }
@@ -282,15 +286,17 @@ woocommerce.get("products/categories").parsed_response
     "description": "",
     "display": "default",
     "image": {
-      "id": 173,
-      "date_created": "2016-05-31T23:51:03",
-      "date_modified": "2016-05-31T23:51:03",
-      "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+      "id": 730,
+      "date_created": "2017-03-23T00:01:07",
+      "date_created_gmt": "2017-03-23T03:01:07",
+      "date_modified": "2017-03-23T00:01:07",
+      "date_modified_gmt": "2017-03-23T03:01:07",
+      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
       "title": "",
       "alt": ""
     },
     "menu_order": 0,
-    "count": 18,
+    "count": 36,
     "_links": {
       "self": [
         {
@@ -523,24 +529,26 @@ woocommerce.put("products/categories/9", data).parsed_response
   "description": "All kinds of clothes.",
   "display": "default",
   "image": {
-    "id": 173,
-    "date_created": "2016-05-31T23:51:03",
-    "date_modified": "2016-05-31T23:51:03",
-    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "id": 730,
+    "date_created": "2017-03-23T00:01:07",
+    "date_created_gmt": "2017-03-23T03:01:07",
+    "date_modified": "2017-03-23T00:01:07",
+    "date_modified_gmt": "2017-03-23T03:01:07",
+    "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
     "title": "",
     "alt": ""
   },
   "menu_order": 0,
-  "count": 18,
+  "count": 36,
   "_links": {
     "self": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories/9"
+        "href": "https://example.com/wp-json/wc/v2/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories"
+        "href": "https://example.com/wp-json/wc/v2/products/categories"
       }
     ]
   }
@@ -594,24 +602,26 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
   "description": "All kinds of clothes.",
   "display": "default",
   "image": {
-    "id": 173,
-    "date_created": "2016-05-31T23:51:03",
-    "date_modified": "2016-05-31T23:51:03",
-    "src": "https://example/wp-content/uploads/2016/05/T_3_front-1.jpg",
+    "id": 730,
+    "date_created": "2017-03-23T00:01:07",
+    "date_created_gmt": "2017-03-23T03:01:07",
+    "date_modified": "2017-03-23T00:01:07",
+    "date_modified_gmt": "2017-03-23T03:01:07",
+    "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
     "title": "",
     "alt": ""
   },
   "menu_order": 0,
-  "count": 18,
+  "count": 36,
   "_links": {
     "self": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories/9"
+        "href": "https://example.com/wp-json/wc/v2/products/categories/9"
       }
     ],
     "collection": [
       {
-        "href": "https://example/wp-json/wc/v2/products/categories"
+        "href": "https://example.com/wp-json/wc/v2/products/categories"
       }
     ]
   }
