@@ -4,14 +4,14 @@ The product attributes API allows you to create, view, update, and delete indivi
 
 ## Product attribute properties ##
 
-|   Attribute    |   Type  |                                                Description                                                |
-|----------------|---------|-----------------------------------------------------------------------------------------------------------|
-| `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                             |
-| `name`         | string  | Attribute name. <i class="label label-info">required</i>                                                  |
-| `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                           |
-| `type`         | string  | Type of attribute. Default is `select`. Options: `select` and `text` (some plugins can include new types) |
-| `order_by`     | string  | Default sort order. Default is `menu_order`. Options: `menu_order`, `name`, `name_num` and `id`.          |
-| `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                                    |
+| Attribute      | Type    | Description                                                                                      |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                    |
+| `name`         | string  | Attribute name. <i class="label label-info">mandatory</i>                                        |
+| `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                  |
+| `type`         | string  | Type of attribute. Options: `select` and `text`. Default is `select`.                            |
+| `order_by`     | string  | Default sort order. Options: `menu_order`, `name`, `name_num` and `id`. Default is `menu_order`. |
+| `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                           |
 
 ## Create a product attribute ##
 
@@ -257,6 +257,12 @@ woocommerce.get("products/attributes").parsed_response
   }
 ]
 ```
+
+#### Available parameters ####
+
+| Parameter | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context` | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
 
 ## Update a product attribute ##
 
