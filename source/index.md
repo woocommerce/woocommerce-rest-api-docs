@@ -26,6 +26,7 @@ includes:
   - wp-api-v2/order-notes
   - wp-api-v2/order-refunds
   - wp-api-v2/products
+  - wp-api-v2/product-variations
   - wp-api-v2/product-attributes
   - wp-api-v2/product-attribute-terms
   - wp-api-v2/product-categories
