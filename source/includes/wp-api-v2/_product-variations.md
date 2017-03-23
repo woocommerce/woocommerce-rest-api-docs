@@ -278,9 +278,9 @@ woocommerce.post("products/22/variations", data).parsed_response
 }
 ```
 
-## Retrieve a product ##
+## Retrieve a product variation ##
 
-This API lets you retrieve and view a specific product by ID.
+This API lets you retrieve and view a specific product variation by ID.
 
 ### HTTP request ###
 
@@ -397,9 +397,9 @@ woocommerce.get("products/22/variations/732").parsed_response
 }
 ```
 
-## List all products ##
+## List all product variations ##
 
-This API helps you to view all the products.
+This API helps you to view all the product variations.
 
 ### HTTP request ###
 
@@ -629,9 +629,9 @@ woocommerce.get("products/22/variations").parsed_response
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
 | `max_price`      | string  | Limit result set to products based on a maximum price.                                                                                  |
 
-## Update a product ##
+## Update a product variation ##
 
-This API lets you make changes to a product.
+This API lets you make changes to a product variation.
 
 ### HTTP request ###
 
@@ -770,9 +770,9 @@ woocommerce.put("products/22/variations/733", data).parsed_response
 }
 ```
 
-## Delete a product ##
+## Delete a product variation ##
 
-This API helps you delete a product.
+This API helps you delete a product variation.
 
 ### HTTP request ###
 
@@ -895,9 +895,9 @@ woocommerce.delete("products/22/variations/733", force: true).parsed_response
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
-## Batch update products ##
+## Batch update product variations ##
 
-This API helps you to batch create, update and delete multiple products.
+This API helps you to batch create, update and delete multiple product variations.
 
 ### HTTP request ###
 
