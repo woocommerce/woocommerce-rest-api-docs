@@ -25,6 +25,7 @@ includes:
   - wp-api-v2/orders
   - wp-api-v2/order-notes
   - wp-api-v2/order-refunds
+  - wp-api-v2/payment-gateways
   - wp-api-v2/products
   - wp-api-v2/product-variations
   - wp-api-v2/product-attributes
