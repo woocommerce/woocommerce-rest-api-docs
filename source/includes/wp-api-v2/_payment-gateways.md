@@ -76,16 +76,6 @@ woocommerce.get("payment_gateways/bacs").parsed_response
   "method_title": "BACS",
   "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
   "settings": {
-    "enabled": {
-      "id": "enabled",
-      "label": "Enable bank transfer",
-      "description": "",
-      "type": "checkbox",
-      "value": "yes",
-      "default": "no",
-      "tip": "",
-      "placeholder": ""
-    },
     "title": {
       "id": "title",
       "label": "Title",
@@ -94,16 +84,6 @@ woocommerce.get("payment_gateways/bacs").parsed_response
       "value": "Direct bank transfer",
       "default": "Direct bank transfer",
       "tip": "This controls the title which the user sees during checkout.",
-      "placeholder": ""
-    },
-    "description": {
-      "id": "description",
-      "label": "Description",
-      "description": "Payment method description that the customer will see on your checkout.",
-      "type": "textarea",
-      "value": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-      "default": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-      "tip": "Payment method description that the customer will see on your checkout.",
       "placeholder": ""
     },
     "instructions": {
@@ -181,16 +161,6 @@ woocommerce.get("payment_gateways").parsed_response
     "method_title": "BACS",
     "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
     "settings": {
-      "enabled": {
-        "id": "enabled",
-        "label": "Enable bank transfer",
-        "description": "",
-        "type": "checkbox",
-        "value": "yes",
-        "default": "no",
-        "tip": "",
-        "placeholder": ""
-      },
       "title": {
         "id": "title",
         "label": "Title",
@@ -199,16 +169,6 @@ woocommerce.get("payment_gateways").parsed_response
         "value": "Direct bank transfer",
         "default": "Direct bank transfer",
         "tip": "This controls the title which the user sees during checkout.",
-        "placeholder": ""
-      },
-      "description": {
-        "id": "description",
-        "label": "Description",
-        "description": "Payment method description that the customer will see on your checkout.",
-        "type": "textarea",
-        "value": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-        "default": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-        "tip": "Payment method description that the customer will see on your checkout.",
         "placeholder": ""
       },
       "instructions": {
@@ -244,16 +204,6 @@ woocommerce.get("payment_gateways").parsed_response
     "method_title": "Check payments",
     "method_description": "Allows check payments. Why would you take checks in this day and age? Well you probably wouldn't but it does allow you to make test purchases for testing order emails and the 'success' pages etc.",
     "settings": {
-      "enabled": {
-        "id": "enabled",
-        "label": "Enable check payments",
-        "description": "",
-        "type": "checkbox",
-        "value": "no",
-        "default": "yes",
-        "tip": "",
-        "placeholder": ""
-      },
       "title": {
         "id": "title",
         "label": "Title",
@@ -262,16 +212,6 @@ woocommerce.get("payment_gateways").parsed_response
         "value": "Check payments",
         "default": "Check payments",
         "tip": "This controls the title which the user sees during checkout.",
-        "placeholder": ""
-      },
-      "description": {
-        "id": "description",
-        "label": "Description",
-        "description": "Payment method description that the customer will see on your checkout.",
-        "type": "textarea",
-        "value": "Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.",
-        "default": "Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.",
-        "tip": "Payment method description that the customer will see on your checkout.",
         "placeholder": ""
       },
       "instructions": {
@@ -307,16 +247,6 @@ woocommerce.get("payment_gateways").parsed_response
     "method_title": "Cash on delivery",
     "method_description": "Have your customers pay with cash (or by other means) upon delivery.",
     "settings": {
-      "enabled": {
-        "id": "enabled",
-        "label": "Enable cash on delivery",
-        "description": "",
-        "type": "checkbox",
-        "value": "no",
-        "default": "no",
-        "tip": "",
-        "placeholder": ""
-      },
       "title": {
         "id": "title",
         "label": "Title",
@@ -325,16 +255,6 @@ woocommerce.get("payment_gateways").parsed_response
         "value": "Cash on delivery",
         "default": "Cash on delivery",
         "tip": "Payment method description that the customer will see on your checkout.",
-        "placeholder": ""
-      },
-      "description": {
-        "id": "description",
-        "label": "Description",
-        "description": "Payment method description that the customer will see on your website.",
-        "type": "textarea",
-        "value": "Pay with cash upon delivery.",
-        "default": "Pay with cash upon delivery.",
-        "tip": "Payment method description that the customer will see on your website.",
         "placeholder": ""
       },
       "instructions": {
@@ -395,16 +315,6 @@ woocommerce.get("payment_gateways").parsed_response
     "method_title": "PayPal",
     "method_description": "PayPal Standard sends customers to PayPal to enter their payment information. PayPal IPN requires fsockopen/cURL support to update order statuses after payment. Check the <a href=\"https://example.com/wp-admin/admin.php?page=wc-status\">system status</a> page for more details.",
     "settings": {
-      "enabled": {
-        "id": "enabled",
-        "label": "Enable PayPal Standard",
-        "description": "",
-        "type": "checkbox",
-        "value": "yes",
-        "default": "yes",
-        "tip": "",
-        "placeholder": ""
-      },
       "title": {
         "id": "title",
         "label": "Title",
@@ -413,16 +323,6 @@ woocommerce.get("payment_gateways").parsed_response
         "value": "PayPal",
         "default": "PayPal",
         "tip": "This controls the title which the user sees during checkout.",
-        "placeholder": ""
-      },
-      "description": {
-        "id": "description",
-        "label": "Description",
-        "description": "This controls the description which the user sees during checkout.",
-        "type": "text",
-        "value": "Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.",
-        "default": "Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.",
-        "tip": "This controls the description which the user sees during checkout.",
         "placeholder": ""
       },
       "email": {
@@ -656,16 +556,6 @@ woocommerce.put("payment_gateways/bacs", data).parsed_response
   "method_title": "BACS",
   "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
   "settings": {
-    "enabled": {
-      "id": "enabled",
-      "label": "Enable bank transfer",
-      "description": "",
-      "type": "checkbox",
-      "value": "no",
-      "default": "no",
-      "tip": "",
-      "placeholder": ""
-    },
     "title": {
       "id": "title",
       "label": "Title",
@@ -674,16 +564,6 @@ woocommerce.put("payment_gateways/bacs", data).parsed_response
       "value": "Direct bank transfer",
       "default": "Direct bank transfer",
       "tip": "This controls the title which the user sees during checkout.",
-      "placeholder": ""
-    },
-    "description": {
-      "id": "description",
-      "label": "Description",
-      "description": "Payment method description that the customer will see on your checkout.",
-      "type": "textarea",
-      "value": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-      "default": "Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.",
-      "tip": "Payment method description that the customer will see on your checkout.",
       "placeholder": ""
     },
     "instructions": {
