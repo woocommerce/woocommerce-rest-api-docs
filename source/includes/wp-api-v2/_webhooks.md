@@ -725,12 +725,12 @@ woocommerce.post("webhooks/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks/146"
+            "href": "https://example.com/wp-json/wc/v2/webhooks/146"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks"
+            "href": "https://example.com/wp-json/wc/v2/webhooks"
           }
         ]
       }
@@ -753,12 +753,12 @@ woocommerce.post("webhooks/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks/147"
+            "href": "https://example.com/wp-json/wc/v2/webhooks/147"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks"
+            "href": "https://example.com/wp-json/wc/v2/webhooks"
           }
         ]
       }
@@ -785,12 +785,12 @@ woocommerce.post("webhooks/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks/143"
+            "href": "https://example.com/wp-json/wc/v2/webhooks/143"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/webhooks"
+            "href": "https://example.com/wp-json/wc/v2/webhooks"
           }
         ]
       }

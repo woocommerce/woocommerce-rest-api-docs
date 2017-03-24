@@ -61,12 +61,12 @@ woocommerce.get("system_status/tools/clear_transients").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/system_status/tools/clear_transients"
+        "href": "https://example.com/wp-json/wc/v2/system_status/tools/clear_transients"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/system_status/tools"
+        "href": "https://example.com/wp-json/wc/v2/system_status/tools"
       }
     ]
   }
@@ -349,12 +349,12 @@ woocommerce.put("system_status/tools/clear_transients", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/system_status/tools/clear_transients"
+        "href": "https://example.com/wp-json/wc/v2/system_status/tools/clear_transients"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/system_status/tools"
+        "href": "https://example.com/wp-json/wc/v2/system_status/tools"
       }
     ]
   }

@@ -580,12 +580,12 @@ woocommerce.put("payment_gateways/bacs", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/payment_gateways/bacs"
+        "href": "https://example.com/wp-json/wc/v2/payment_gateways/bacs"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/payment_gateways"
+        "href": "https://example.com/wp-json/wc/v2/payment_gateways"
       }
     ]
   }

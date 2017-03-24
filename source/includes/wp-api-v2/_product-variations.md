@@ -1105,7 +1105,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_modified": "2017-03-23T01:19:37",
       "date_modified_gmt": "2017-03-23T04:19:37",
       "description": "",
-      "permalink": "https://woo.dev/product/ship-your-idea/?attribute_pa_color=blue",
+      "permalink": "https://example.com/product/ship-your-idea/?attribute_pa_color=blue",
       "sku": "",
       "price": "10.00",
       "regular_price": "10.00",
@@ -1144,7 +1144,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_created_gmt": "2017-03-23T04:19:40",
         "date_modified": "2017-03-22T22:19:40",
         "date_modified_gmt": "2017-03-23T04:19:40",
-        "src": "https://woo.dev/wp-content/plugins/woocommerce/assets/images/placeholder.png",
+        "src": "https://example.com/wp-content/plugins/woocommerce/assets/images/placeholder.png",
         "name": "Placeholder",
         "alt": "Placeholder",
         "position": 0
@@ -1161,17 +1161,17 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations/735"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations/735"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations"
           }
         ],
         "up": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22"
+            "href": "https://example.com/wp-json/wc/v2/products/22"
           }
         ]
       }
@@ -1183,7 +1183,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_modified": "2017-03-23T01:19:40",
       "date_modified_gmt": "2017-03-23T04:19:40",
       "description": "",
-      "permalink": "https://woo.dev/product/ship-your-idea/?attribute_pa_color=white",
+      "permalink": "https://example.com/product/ship-your-idea/?attribute_pa_color=white",
       "sku": "",
       "price": "10.00",
       "regular_price": "10.00",
@@ -1222,7 +1222,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_created_gmt": "2017-03-23T04:19:42",
         "date_modified": "2017-03-22T22:19:42",
         "date_modified_gmt": "2017-03-23T04:19:42",
-        "src": "https://woo.dev/wp-content/plugins/woocommerce/assets/images/placeholder.png",
+        "src": "https://example.com/wp-content/plugins/woocommerce/assets/images/placeholder.png",
         "name": "Placeholder",
         "alt": "Placeholder",
         "position": 0
@@ -1239,17 +1239,17 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations/736"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations/736"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations"
           }
         ],
         "up": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22"
+            "href": "https://example.com/wp-json/wc/v2/products/22"
           }
         ]
       }
@@ -1263,7 +1263,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_modified": "2017-03-23T00:53:11",
       "date_modified_gmt": "2017-03-23T03:53:11",
       "description": "",
-      "permalink": "https://woo.dev/product/ship-your-idea/?attribute_pa_color=green",
+      "permalink": "https://example.com/product/ship-your-idea/?attribute_pa_color=green",
       "sku": "",
       "price": "10.00",
       "regular_price": "10.00",
@@ -1302,7 +1302,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_created_gmt": "2016-10-19T16:21:16",
         "date_modified": "2016-10-19T12:21:16",
         "date_modified_gmt": "2016-10-19T16:21:16",
-        "src": "https://woo.dev/wp-content/uploads/2016/10/T_3_front-12.jpg",
+        "src": "https://example.com/wp-content/uploads/2016/10/T_3_front-12.jpg",
         "name": "",
         "alt": "",
         "position": 0
@@ -1319,17 +1319,17 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations/733"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations/733"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations"
           }
         ],
         "up": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22"
+            "href": "https://example.com/wp-json/wc/v2/products/22"
           }
         ]
       }
@@ -1343,7 +1343,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_modified": "2017-03-23T00:36:38",
       "date_modified_gmt": "2017-03-23T03:36:38",
       "description": "",
-      "permalink": "https://woo.dev/product/ship-your-idea/?attribute_pa_color=black",
+      "permalink": "https://example.com/product/ship-your-idea/?attribute_pa_color=black",
       "sku": "",
       "price": "9.00",
       "regular_price": "9.00",
@@ -1382,7 +1382,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_created_gmt": "2016-10-19T16:21:14",
         "date_modified": "2016-10-19T12:21:14",
         "date_modified_gmt": "2016-10-19T16:21:14",
-        "src": "https://woo.dev/wp-content/uploads/2016/10/T_4_front-12.jpg",
+        "src": "https://example.com/wp-content/uploads/2016/10/T_4_front-12.jpg",
         "name": "",
         "alt": "",
         "position": 0
@@ -1399,17 +1399,17 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations/732"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations/732"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22/variations"
+            "href": "https://example.com/wp-json/wc/v2/products/22/variations"
           }
         ],
         "up": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/products/22"
+            "href": "https://example.com/wp-json/wc/v2/products/22"
           }
         ]
       }

@@ -1428,12 +1428,12 @@ woocommerce.put("settings/general/woocommerce_allowed_countries", data).parsed_r
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/settings/general/woocommerce_allowed_countries"
+        "href": "https://example.com/wp-json/wc/v2/settings/general/woocommerce_allowed_countries"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/settings/general"
+        "href": "https://example.com/wp-json/wc/v2/settings/general"
       }
     ]
   }
@@ -1644,12 +1644,12 @@ woocommerce.post("products/22/settings/general/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general/woocommerce_allowed_countries"
+            "href": "https://example.com/wp-json/wc/v2/settings/general/woocommerce_allowed_countries"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general"
+            "href": "https://example.com/wp-json/wc/v2/settings/general"
           }
         ]
       }
@@ -1664,12 +1664,12 @@ woocommerce.post("products/22/settings/general/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general/woocommerce_demo_store"
+            "href": "https://example.com/wp-json/wc/v2/settings/general/woocommerce_demo_store"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general"
+            "href": "https://example.com/wp-json/wc/v2/settings/general"
           }
         ]
       }
@@ -1848,12 +1848,12 @@ woocommerce.post("products/22/settings/general/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general/woocommerce_currency"
+            "href": "https://example.com/wp-json/wc/v2/settings/general/woocommerce_currency"
           }
         ],
         "collection": [
           {
-            "href": "https://woo.dev/wp-json/wc/v2/settings/general"
+            "href": "https://example.com/wp-json/wc/v2/settings/general"
           }
         ]
       }

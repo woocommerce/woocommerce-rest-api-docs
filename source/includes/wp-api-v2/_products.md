@@ -1586,7 +1586,7 @@ woocommerce.put("products/794", data).parsed_response
   "id": 794,
   "name": "Premium Quality",
   "slug": "premium-quality-19",
-  "permalink": "https://woo.dev/product/premium-quality-19/",
+  "permalink": "https://example.com/product/premium-quality-19/",
   "date_created": "2017-03-23T17:01:14",
   "date_created_gmt": "2017-03-23T20:01:14",
   "date_modified": "2017-03-23T17:01:14",
@@ -1669,7 +1669,7 @@ woocommerce.put("products/794", data).parsed_response
       "date_created_gmt": "2017-03-23T20:01:13",
       "date_modified": "2017-03-23T14:01:13",
       "date_modified_gmt": "2017-03-23T20:01:13",
-      "src": "https://woo.dev/wp-content/uploads/2017/03/T_2_front-4.jpg",
+      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
       "name": "",
       "alt": "",
       "position": 0
@@ -1680,7 +1680,7 @@ woocommerce.put("products/794", data).parsed_response
       "date_created_gmt": "2017-03-23T20:01:14",
       "date_modified": "2017-03-23T14:01:14",
       "date_modified_gmt": "2017-03-23T20:01:14",
-      "src": "https://woo.dev/wp-content/uploads/2017/03/T_2_back-2.jpg",
+      "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
       "name": "",
       "alt": "",
       "position": 1
@@ -1695,12 +1695,12 @@ woocommerce.put("products/794", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/products/794"
+        "href": "https://example.com/wp-json/wc/v2/products/794"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/products"
+        "href": "https://example.com/wp-json/wc/v2/products"
       }
     ]
   }
@@ -1750,7 +1750,7 @@ woocommerce.delete("products/794", force: true).parsed_response
   "id": 794,
   "name": "Premium Quality",
   "slug": "premium-quality-19",
-  "permalink": "https://woo.dev/product/premium-quality-19/",
+  "permalink": "https://example.com/product/premium-quality-19/",
   "date_created": "2017-03-23T17:01:14",
   "date_created_gmt": "2017-03-23T20:01:14",
   "date_modified": "2017-03-23T17:01:14",
@@ -1833,7 +1833,7 @@ woocommerce.delete("products/794", force: true).parsed_response
       "date_created_gmt": "2017-03-23T20:01:13",
       "date_modified": "2017-03-23T14:01:13",
       "date_modified_gmt": "2017-03-23T20:01:13",
-      "src": "https://woo.dev/wp-content/uploads/2017/03/T_2_front-4.jpg",
+      "src": "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
       "name": "",
       "alt": "",
       "position": 0
@@ -1844,7 +1844,7 @@ woocommerce.delete("products/794", force: true).parsed_response
       "date_created_gmt": "2017-03-23T20:01:14",
       "date_modified": "2017-03-23T14:01:14",
       "date_modified_gmt": "2017-03-23T20:01:14",
-      "src": "https://woo.dev/wp-content/uploads/2017/03/T_2_back-2.jpg",
+      "src": "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
       "name": "",
       "alt": "",
       "position": 1
@@ -1859,12 +1859,12 @@ woocommerce.delete("products/794", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/products/794"
+        "href": "https://example.com/wp-json/wc/v2/products/794"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/products"
+        "href": "https://example.com/wp-json/wc/v2/products"
       }
     ]
   }

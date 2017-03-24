@@ -452,11 +452,11 @@ woocommerce.get("shipping/zones/5/methods").parsed_response
       "class_costs": {
         "id": "class_costs",
         "label": "Shipping class costs",
-        "description": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+        "description": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
         "type": "title",
         "value": "",
         "default": "",
-        "tip": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+        "tip": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
         "placeholder": ""
       },
       "class_cost_92": {
@@ -507,17 +507,17 @@ woocommerce.get("shipping/zones/5/methods").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods/26"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods/26"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods"
         }
       ],
       "describes": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5"
         }
       ]
     }
@@ -572,17 +572,17 @@ woocommerce.get("shipping/zones/5/methods").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods/27"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods/27"
         }
       ],
       "collection": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods"
         }
       ],
       "describes": [
         {
-          "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5"
+          "href": "https://example.com/wp-json/wc/v2/shipping/zones/5"
         }
       ]
     }
@@ -707,11 +707,11 @@ woocommerce.put("shipping/zones/5/methods/26", data).parsed_response
     "class_costs": {
       "id": "class_costs",
       "label": "Shipping class costs",
-      "description": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+      "description": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
       "type": "title",
       "value": "",
       "default": "",
-      "tip": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+      "tip": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
       "placeholder": ""
     },
     "class_cost_92": {
@@ -762,17 +762,17 @@ woocommerce.put("shipping/zones/5/methods/26", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods/26"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods/26"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods"
       }
     ],
     "describes": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5"
       }
     ]
   }
@@ -864,11 +864,11 @@ woocommerce.delete("shipping/zones/5/methods/26", force: true).parsed_response
     "class_costs": {
       "id": "class_costs",
       "label": "Shipping class costs",
-      "description": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+      "description": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
       "type": "title",
       "value": "",
       "default": "",
-      "tip": "These costs can optionally be added based on the <a href=\"https://woo.dev/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
+      "tip": "These costs can optionally be added based on the <a href=\"https://example.com/wp-admin/admin.php?page=wc-settings&tab=shipping&section=classes\">product shipping class</a>.",
       "placeholder": ""
     },
     "class_cost_92": {
@@ -919,17 +919,17 @@ woocommerce.delete("shipping/zones/5/methods/26", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods/26"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods/26"
       }
     ],
     "collection": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5/methods"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5/methods"
       }
     ],
     "describes": [
       {
-        "href": "https://woo.dev/wp-json/wc/v2/shipping/zones/5"
+        "href": "https://example.com/wp-json/wc/v2/shipping/zones/5"
       }
     ]
   }
