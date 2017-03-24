@@ -59,9 +59,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/general"
         }
       ]
@@ -74,9 +73,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/products"
         }
       ]
@@ -89,9 +87,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/tax"
         }
       ]
@@ -104,9 +101,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/shipping"
         }
       ]
@@ -119,9 +115,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/checkout"
         }
       ]
@@ -134,9 +129,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/account"
         }
       ]
@@ -161,9 +155,8 @@ woocommerce.get("settings").parsed_response
       "email_customer_new_account"
     ],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email"
         }
       ]
@@ -176,9 +169,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/integration"
         }
       ]
@@ -191,9 +183,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/api"
         }
       ]
@@ -206,9 +197,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_new_order"
         }
       ]
@@ -221,9 +211,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_cancelled_order"
         }
       ]
@@ -236,9 +225,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_failed_order"
         }
       ]
@@ -251,9 +239,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_on_hold_order"
         }
       ]
@@ -266,9 +253,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_processing_order"
         }
       ]
@@ -281,9 +267,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_completed_order"
         }
       ]
@@ -296,9 +281,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_refunded_order"
         }
       ]
@@ -311,9 +295,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_invoice"
         }
       ]
@@ -326,9 +309,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_note"
         }
       ]
@@ -341,9 +323,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_reset_password"
         }
       ]
@@ -356,9 +337,8 @@ woocommerce.get("settings").parsed_response
     "parent_id": "email",
     "sub_groups": [],
     "_links": {
-      "item": [
+      "options": [
         {
-          "embeddable": true,
           "href": "https://example.com/wp-json/wc/v2/settings/email_customer_new_account"
         }
       ]
