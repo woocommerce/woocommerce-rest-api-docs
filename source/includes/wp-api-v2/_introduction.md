@@ -6,9 +6,10 @@ The current WP REST API integration version is `v2` which takes a first-order po
 
 The following table shows API versions present in each major version of WooCommerce:
 
-| API Version | WC Version | WP Version |
-|-------------|------------|------------|
-| `v2`        | 2.6.x or later | 4.4 or later |
+| API Version |   WC Version   |  WP Version  |
+|-------------|----------------|--------------|
+| `v2`        | 3.0.x or later | 4.4 or later |
+| `v1`        | 2.6.x or later | 4.4 or later |
 
 Prior to 2.6, WooCommerce had it's own REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
 
@@ -16,7 +17,7 @@ Prior to 2.6, WooCommerce had it's own REST API separate from WordPress which is
 |-------------|------------|------------|---------------|
 | `Legacy v3` | 2.4.x or later | 4.1 or later | [Legacy v3 docs](v3.html) |
 | `Legacy v2` | 2.2.x or later | 4.1 or later | [Legacy v2 docs](v2.html) |
-| `Legacy v2` | 2.1.x or later | 4.1 or later | [Legacy v2 docs](v2.html) |
+| `Legacy v1` | 2.1.x or later | 4.1 or later | [Legacy v1 docs](v1.html) |
 
 ## Requirements ##
 
