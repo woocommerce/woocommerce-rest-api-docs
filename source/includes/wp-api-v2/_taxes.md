@@ -28,12 +28,12 @@ This API helps you to create a new tax rate.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v1/taxes</h6>
+		<h6>/wp-json/wc/v2/taxes</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v1/taxes \
+curl -X POST https://example.com/wp-json/wc/v2/taxes \
     -u consumer_key:consumer_secret \
     -H "Content-Type: application/json" \
     -d '{
@@ -116,12 +116,12 @@ woocommerce.post("taxes", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+        "href": "https://example.com/wp-json/wc/v2/taxes/72"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes"
+        "href": "https://example.com/wp-json/wc/v2/taxes"
       }
     ]
   }
@@ -135,12 +135,12 @@ This API lets you retrieve and view a specific tax rate by ID.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v2/taxes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1/taxes/72 \
+curl https://example.com/wp-json/wc/v2/taxes/72 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -181,12 +181,12 @@ woocommerce.get("taxes/72").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+        "href": "https://example.com/wp-json/wc/v2/taxes/72"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes"
+        "href": "https://example.com/wp-json/wc/v2/taxes"
       }
     ]
   }
@@ -202,12 +202,12 @@ This API helps you to view all the tax rates.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1/taxes</h6>
+		<h6>/wp-json/wc/v2/taxes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1/taxes \
+curl https://example.com/wp-json/wc/v2/taxes \
 	-u consumer_key:consumer_secret
 ```
 
@@ -249,12 +249,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/72"
+          "href": "https://example.com/wp-json/wc/v2/taxes/72"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -275,12 +275,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/73"
+          "href": "https://example.com/wp-json/wc/v2/taxes/73"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -301,12 +301,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/74"
+          "href": "https://example.com/wp-json/wc/v2/taxes/74"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -327,12 +327,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/75"
+          "href": "https://example.com/wp-json/wc/v2/taxes/75"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -353,12 +353,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/76"
+          "href": "https://example.com/wp-json/wc/v2/taxes/76"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -379,12 +379,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/77"
+          "href": "https://example.com/wp-json/wc/v2/taxes/77"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -405,12 +405,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/78"
+          "href": "https://example.com/wp-json/wc/v2/taxes/78"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -431,12 +431,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/79"
+          "href": "https://example.com/wp-json/wc/v2/taxes/79"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -457,12 +457,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/80"
+          "href": "https://example.com/wp-json/wc/v2/taxes/80"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -483,12 +483,12 @@ woocommerce.get("taxes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes/81"
+          "href": "https://example.com/wp-json/wc/v2/taxes/81"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/taxes"
+          "href": "https://example.com/wp-json/wc/v2/taxes"
         }
       ]
     }
@@ -520,12 +520,12 @@ This API lets you make changes to a tax rate.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v2/taxes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v1/taxes/72 \
+curl -X PUT https://example.com/wp-json/wc/v2/taxes/72 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -588,12 +588,12 @@ woocommerce.put("taxes/72", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+        "href": "https://example.com/wp-json/wc/v2/taxes/72"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes"
+        "href": "https://example.com/wp-json/wc/v2/taxes"
       }
     ]
   }
@@ -609,12 +609,12 @@ This API helps you delete a tax rate.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wp-json/wc/v1/taxes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v2/taxes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v1/taxes/72?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/taxes/72?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -655,12 +655,12 @@ woocommerce.delete("taxes/72", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes/72"
+        "href": "https://example.com/wp-json/wc/v2/taxes/72"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/taxes"
+        "href": "https://example.com/wp-json/wc/v2/taxes"
       }
     ]
   }
@@ -682,14 +682,14 @@ This API helps you to batch create, update and delete multiple tax rates.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v1/taxes/batch</h6>
+		<h6>/wp-json/wc/v2/taxes/batch</h6>
 	</div>
 </div>
 
 > Example batch creating all US taxes:
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v1/taxes/batch \
+curl -X POST https://example.com/wp-json/wc/v2/taxes/batch \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -2679,12 +2679,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/72"
+            "href": "https://example.com/wp-json/wc/v2/taxes/72"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2705,12 +2705,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/73"
+            "href": "https://example.com/wp-json/wc/v2/taxes/73"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2731,12 +2731,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/74"
+            "href": "https://example.com/wp-json/wc/v2/taxes/74"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2757,12 +2757,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/75"
+            "href": "https://example.com/wp-json/wc/v2/taxes/75"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2783,12 +2783,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/76"
+            "href": "https://example.com/wp-json/wc/v2/taxes/76"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2809,12 +2809,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/77"
+            "href": "https://example.com/wp-json/wc/v2/taxes/77"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2835,12 +2835,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/78"
+            "href": "https://example.com/wp-json/wc/v2/taxes/78"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2861,12 +2861,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/79"
+            "href": "https://example.com/wp-json/wc/v2/taxes/79"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2887,12 +2887,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/80"
+            "href": "https://example.com/wp-json/wc/v2/taxes/80"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2913,12 +2913,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/81"
+            "href": "https://example.com/wp-json/wc/v2/taxes/81"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2939,12 +2939,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/82"
+            "href": "https://example.com/wp-json/wc/v2/taxes/82"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2965,12 +2965,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/83"
+            "href": "https://example.com/wp-json/wc/v2/taxes/83"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -2991,12 +2991,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/84"
+            "href": "https://example.com/wp-json/wc/v2/taxes/84"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3017,12 +3017,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/85"
+            "href": "https://example.com/wp-json/wc/v2/taxes/85"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3043,12 +3043,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/86"
+            "href": "https://example.com/wp-json/wc/v2/taxes/86"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3069,12 +3069,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/87"
+            "href": "https://example.com/wp-json/wc/v2/taxes/87"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3095,12 +3095,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/88"
+            "href": "https://example.com/wp-json/wc/v2/taxes/88"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3121,12 +3121,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/89"
+            "href": "https://example.com/wp-json/wc/v2/taxes/89"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3147,12 +3147,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/90"
+            "href": "https://example.com/wp-json/wc/v2/taxes/90"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3173,12 +3173,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/91"
+            "href": "https://example.com/wp-json/wc/v2/taxes/91"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3199,12 +3199,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/92"
+            "href": "https://example.com/wp-json/wc/v2/taxes/92"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3225,12 +3225,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/93"
+            "href": "https://example.com/wp-json/wc/v2/taxes/93"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3251,12 +3251,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/94"
+            "href": "https://example.com/wp-json/wc/v2/taxes/94"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3277,12 +3277,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/95"
+            "href": "https://example.com/wp-json/wc/v2/taxes/95"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3303,12 +3303,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/96"
+            "href": "https://example.com/wp-json/wc/v2/taxes/96"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3329,12 +3329,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/97"
+            "href": "https://example.com/wp-json/wc/v2/taxes/97"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3355,12 +3355,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/98"
+            "href": "https://example.com/wp-json/wc/v2/taxes/98"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3381,12 +3381,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/99"
+            "href": "https://example.com/wp-json/wc/v2/taxes/99"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3407,12 +3407,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/100"
+            "href": "https://example.com/wp-json/wc/v2/taxes/100"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3433,12 +3433,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/101"
+            "href": "https://example.com/wp-json/wc/v2/taxes/101"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3459,12 +3459,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/102"
+            "href": "https://example.com/wp-json/wc/v2/taxes/102"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3485,12 +3485,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/103"
+            "href": "https://example.com/wp-json/wc/v2/taxes/103"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3511,12 +3511,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/104"
+            "href": "https://example.com/wp-json/wc/v2/taxes/104"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3537,12 +3537,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/105"
+            "href": "https://example.com/wp-json/wc/v2/taxes/105"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3563,12 +3563,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/106"
+            "href": "https://example.com/wp-json/wc/v2/taxes/106"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3589,12 +3589,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/107"
+            "href": "https://example.com/wp-json/wc/v2/taxes/107"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3615,12 +3615,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/108"
+            "href": "https://example.com/wp-json/wc/v2/taxes/108"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3641,12 +3641,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/109"
+            "href": "https://example.com/wp-json/wc/v2/taxes/109"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3667,12 +3667,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/110"
+            "href": "https://example.com/wp-json/wc/v2/taxes/110"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3693,12 +3693,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/111"
+            "href": "https://example.com/wp-json/wc/v2/taxes/111"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3719,12 +3719,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/112"
+            "href": "https://example.com/wp-json/wc/v2/taxes/112"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3745,12 +3745,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/113"
+            "href": "https://example.com/wp-json/wc/v2/taxes/113"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3771,12 +3771,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/114"
+            "href": "https://example.com/wp-json/wc/v2/taxes/114"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3797,12 +3797,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/115"
+            "href": "https://example.com/wp-json/wc/v2/taxes/115"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3823,12 +3823,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/116"
+            "href": "https://example.com/wp-json/wc/v2/taxes/116"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3849,12 +3849,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/117"
+            "href": "https://example.com/wp-json/wc/v2/taxes/117"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3875,12 +3875,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/118"
+            "href": "https://example.com/wp-json/wc/v2/taxes/118"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
@@ -3901,12 +3901,12 @@ woocommerce.post("taxes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes/119"
+            "href": "https://example.com/wp-json/wc/v2/taxes/119"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/taxes"
+            "href": "https://example.com/wp-json/wc/v2/taxes"
           }
         ]
       }
