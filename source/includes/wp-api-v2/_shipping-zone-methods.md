@@ -779,9 +779,9 @@ woocommerce.put("shipping/zones/5/methods/26", data).parsed_response
 }
 ```
 
-## Delete a product variation ##
+## Delete a shipping method from a shipping zone ##
 
-This API helps you delete a product variation.
+This API helps you delete a shipping method from a shipping zone.
 
 ### HTTP request ###
 
