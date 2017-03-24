@@ -1902,7 +1902,6 @@ woocommerce.get("products").parsed_response
 | `offset`         | integer | Offset the result set by a specific number of items.                                                                                            |
 | `order`          | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                      |
 | `orderby`        | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`.                                   |
-| `filter`         | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                                            |
 | `slug`           | string  | Limit result set to products with a specific slug.                                                                                              |
 | `status`         | string  | Limit result set to products assigned a specific status. Default is `any`. Options: `any`, `draft`, `pending`, `private` and `publish`.         |
 | `customer`       | string  | Limit result set to orders assigned a specific customer.                                                                                        |

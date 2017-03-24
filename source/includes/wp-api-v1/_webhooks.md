@@ -389,7 +389,6 @@ woocommerce.get("webhooks").parsed_response
 | `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                    |
 | `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`.                 |
 | `slug`     | string  | Limit result set to posts with a specific slug.                                                                               |
-| `filter`   | string  | Use WP Query arguments to modify the response; private query vars require appropriate authorization.                          |
 | `status`   | string  | Limit result set to webhooks assigned a specific status. Default is `all`. Options: `all`, `active`, `paused` and `disabled`. |
 
 ## Update a webhook ##
