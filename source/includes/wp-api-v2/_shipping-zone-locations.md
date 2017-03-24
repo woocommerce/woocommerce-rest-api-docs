@@ -1,6 +1,6 @@
 # Shipping zone locations #
 
-The shipping zone locations API allows you to view and batch update locations of shipping zone.
+The shipping zone locations API allows you to view and batch update locations of a shipping zone.
 
 ## Shipping location properties ##
 
