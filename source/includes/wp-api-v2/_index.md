@@ -84,43 +84,58 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "after": {
               "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
             },
             "before": {
               "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -129,7 +144,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -141,19 +157,13 @@ woocommerce.get("").parsed_response
                 "title",
                 "slug"
               ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
             "code": {
               "required": false,
-              "description": "Limit result set to resources with a specific code."
+              "description": "Limit result set to resources with a specific code.",
+              "type": "string"
             }
           }
         },
@@ -163,85 +173,158 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "code": {
-              "required": true
+              "required": true,
+              "description": "Coupon code.",
+              "type": "string"
             },
-            "description": {
+            "amount": {
               "required": false,
-              "description": "Coupon description."
+              "description": "The amount of discount. Should always be numeric, even if setting a percentage.",
+              "type": "string"
             },
             "discount_type": {
               "required": false,
               "default": "fixed_cart",
               "enum": [
-                "fixed_cart",
                 "percent",
-                "fixed_product",
-                "percent_product"
+                "fixed_cart",
+                "fixed_product"
               ],
-              "description": "Determines the type of discount that will be applied."
+              "description": "Determines the type of discount that will be applied.",
+              "type": "string"
             },
-            "amount": {
+            "description": {
               "required": false,
-              "description": "The amount of discount."
+              "description": "Coupon description.",
+              "type": "string"
             },
-            "expiry_date": {
+            "date_expires": {
               "required": false,
-              "description": "UTC DateTime when the coupon expires."
+              "description": "The date the coupon expires, in the site's timezone.",
+              "type": "string"
+            },
+            "date_expires_gmt": {
+              "required": false,
+              "description": "The date the coupon expires, as GMT.",
+              "type": "string"
             },
             "individual_use": {
               "required": false,
               "default": false,
-              "description": "Whether coupon can only be used individually."
+              "description": "If true, the coupon can only be used individually. Other applied coupons will be removed from the cart.",
+              "type": "boolean"
             },
             "product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon can be used on."
+              "description": "List of product IDs the coupon can be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
-            "exclude_product_ids": {
+            "excluded_product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
+              "description": "List of product IDs the coupon cannot be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "usage_limit": {
               "required": false,
-              "description": "How many times the coupon can be used."
+              "description": "How many times the coupon can be used in total.",
+              "type": "integer"
             },
             "usage_limit_per_user": {
               "required": false,
-              "description": "How many times the coupon can be used per customer."
+              "description": "How many times the coupon can be used per customer.",
+              "type": "integer"
             },
             "limit_usage_to_x_items": {
               "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
+              "description": "Max number of items in the cart the coupon can be applied to.",
+              "type": "integer"
             },
             "free_shipping": {
               "required": false,
               "default": false,
-              "description": "Define if can be applied for free shipping."
+              "description": "If true and if the free shipping method requires a coupon, this coupon will enable free shipping.",
+              "type": "boolean"
             },
             "product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon applies to."
+              "description": "List of category IDs the coupon applies to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "excluded_product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon does not apply to."
+              "description": "List of category IDs the coupon does not apply to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "exclude_sale_items": {
               "required": false,
               "default": false,
-              "description": "Define if should not apply when have sale items."
+              "description": "If true, this coupon will not be applied to items that have sale prices.",
+              "type": "boolean"
             },
             "minimum_amount": {
               "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
+              "description": "Minimum order amount that needs to be in the cart before coupon applies.",
+              "type": "string"
             },
             "maximum_amount": {
               "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
+              "description": "Maximum order amount allowed when using the coupon.",
+              "type": "string"
             },
             "email_restrictions": {
               "required": false,
-              "description": "List of email addresses that can use this coupon."
+              "description": "List of email addresses that can use this coupon.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -265,6 +348,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -272,7 +360,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -283,83 +372,160 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "code": {
               "required": false,
-              "description": "Coupon code."
+              "description": "Coupon code.",
+              "type": "string"
             },
-            "description": {
+            "amount": {
               "required": false,
-              "description": "Coupon description."
+              "description": "The amount of discount. Should always be numeric, even if setting a percentage.",
+              "type": "string"
             },
             "discount_type": {
               "required": false,
               "enum": [
-                "fixed_cart",
                 "percent",
-                "fixed_product",
-                "percent_product"
+                "fixed_cart",
+                "fixed_product"
               ],
-              "description": "Determines the type of discount that will be applied."
+              "description": "Determines the type of discount that will be applied.",
+              "type": "string"
             },
-            "amount": {
+            "description": {
               "required": false,
-              "description": "The amount of discount."
+              "description": "Coupon description.",
+              "type": "string"
             },
-            "expiry_date": {
+            "date_expires": {
               "required": false,
-              "description": "UTC DateTime when the coupon expires."
+              "description": "The date the coupon expires, in the site's timezone.",
+              "type": "string"
+            },
+            "date_expires_gmt": {
+              "required": false,
+              "description": "The date the coupon expires, as GMT.",
+              "type": "string"
             },
             "individual_use": {
               "required": false,
-              "description": "Whether coupon can only be used individually."
+              "description": "If true, the coupon can only be used individually. Other applied coupons will be removed from the cart.",
+              "type": "boolean"
             },
             "product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon can be used on."
+              "description": "List of product IDs the coupon can be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
-            "exclude_product_ids": {
+            "excluded_product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
+              "description": "List of product IDs the coupon cannot be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "usage_limit": {
               "required": false,
-              "description": "How many times the coupon can be used."
+              "description": "How many times the coupon can be used in total.",
+              "type": "integer"
             },
             "usage_limit_per_user": {
               "required": false,
-              "description": "How many times the coupon can be used per customer."
+              "description": "How many times the coupon can be used per customer.",
+              "type": "integer"
             },
             "limit_usage_to_x_items": {
               "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
+              "description": "Max number of items in the cart the coupon can be applied to.",
+              "type": "integer"
             },
             "free_shipping": {
               "required": false,
-              "description": "Define if can be applied for free shipping."
+              "description": "If true and if the free shipping method requires a coupon, this coupon will enable free shipping.",
+              "type": "boolean"
             },
             "product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon applies to."
+              "description": "List of category IDs the coupon applies to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "excluded_product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon does not apply to."
+              "description": "List of category IDs the coupon does not apply to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "exclude_sale_items": {
               "required": false,
-              "description": "Define if should not apply when have sale items."
+              "description": "If true, this coupon will not be applied to items that have sale prices.",
+              "type": "boolean"
             },
             "minimum_amount": {
               "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
+              "description": "Minimum order amount that needs to be in the cart before coupon applies.",
+              "type": "string"
             },
             "maximum_amount": {
               "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
+              "description": "Maximum order amount allowed when using the coupon.",
+              "type": "string"
             },
             "email_restrictions": {
               "required": false,
-              "description": "List of email addresses that can use this coupon."
+              "description": "List of email addresses that can use this coupon.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         },
@@ -368,10 +534,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Whether to bypass trash and force deletion."
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
             }
           }
         }
@@ -394,81 +566,153 @@ woocommerce.get("").parsed_response
           "args": {
             "code": {
               "required": false,
-              "description": "Coupon code."
+              "description": "Coupon code.",
+              "type": "string"
             },
-            "description": {
+            "amount": {
               "required": false,
-              "description": "Coupon description."
+              "description": "The amount of discount. Should always be numeric, even if setting a percentage.",
+              "type": "string"
             },
             "discount_type": {
               "required": false,
               "enum": [
-                "fixed_cart",
                 "percent",
-                "fixed_product",
-                "percent_product"
+                "fixed_cart",
+                "fixed_product"
               ],
-              "description": "Determines the type of discount that will be applied."
+              "description": "Determines the type of discount that will be applied.",
+              "type": "string"
             },
-            "amount": {
+            "description": {
               "required": false,
-              "description": "The amount of discount."
+              "description": "Coupon description.",
+              "type": "string"
             },
-            "expiry_date": {
+            "date_expires": {
               "required": false,
-              "description": "UTC DateTime when the coupon expires."
+              "description": "The date the coupon expires, in the site's timezone.",
+              "type": "string"
+            },
+            "date_expires_gmt": {
+              "required": false,
+              "description": "The date the coupon expires, as GMT.",
+              "type": "string"
             },
             "individual_use": {
               "required": false,
-              "description": "Whether coupon can only be used individually."
+              "description": "If true, the coupon can only be used individually. Other applied coupons will be removed from the cart.",
+              "type": "boolean"
             },
             "product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon can be used on."
+              "description": "List of product IDs the coupon can be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
-            "exclude_product_ids": {
+            "excluded_product_ids": {
               "required": false,
-              "description": "List of product ID's the coupon cannot be used on."
+              "description": "List of product IDs the coupon cannot be used on.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "usage_limit": {
               "required": false,
-              "description": "How many times the coupon can be used."
+              "description": "How many times the coupon can be used in total.",
+              "type": "integer"
             },
             "usage_limit_per_user": {
               "required": false,
-              "description": "How many times the coupon can be used per customer."
+              "description": "How many times the coupon can be used per customer.",
+              "type": "integer"
             },
             "limit_usage_to_x_items": {
               "required": false,
-              "description": "Max number of items in the cart the coupon can be applied to."
+              "description": "Max number of items in the cart the coupon can be applied to.",
+              "type": "integer"
             },
             "free_shipping": {
               "required": false,
-              "description": "Define if can be applied for free shipping."
+              "description": "If true and if the free shipping method requires a coupon, this coupon will enable free shipping.",
+              "type": "boolean"
             },
             "product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon applies to."
+              "description": "List of category IDs the coupon applies to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "excluded_product_categories": {
               "required": false,
-              "description": "List of category ID's the coupon does not apply to."
+              "description": "List of category IDs the coupon does not apply to.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "exclude_sale_items": {
               "required": false,
-              "description": "Define if should not apply when have sale items."
+              "description": "If true, this coupon will not be applied to items that have sale prices.",
+              "type": "boolean"
             },
             "minimum_amount": {
               "required": false,
-              "description": "Minimum order amount that needs to be in the cart before coupon applies."
+              "description": "Minimum order amount that needs to be in the cart before coupon applies.",
+              "type": "string"
             },
             "maximum_amount": {
               "required": false,
-              "description": "Maximum order amount allowed when using the coupon."
+              "description": "Maximum order amount allowed when using the coupon.",
+              "type": "string"
             },
             "email_restrictions": {
               "required": false,
-              "description": "List of email addresses that can use this coupon."
+              "description": "List of email addresses that can use this coupon.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -488,13 +732,19 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "customer_id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
               "enum": [
                 "view"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         }
@@ -519,35 +769,48 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -556,7 +819,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -567,11 +831,13 @@ woocommerce.get("").parsed_response
                 "name",
                 "registered_date"
               ],
-              "description": "Sort collection by object attribute."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
             "email": {
               "required": false,
-              "description": "Limit result set to resources with a specific email."
+              "description": "Limit result set to resources with a specific email.",
+              "type": "string"
             },
             "role": {
               "required": false,
@@ -586,7 +852,8 @@ woocommerce.get("").parsed_response
                 "customer",
                 "shop_manager"
               ],
-              "description": "Limit result set to resources with a specific role."
+              "description": "Limit result set to resources with a specific role.",
+              "type": "string"
             }
           }
         },
@@ -596,29 +863,74 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "email": {
-              "required": true
+              "required": true,
+              "description": "New user email address.",
+              "type": "string"
             },
             "first_name": {
               "required": false,
-              "description": "Customer first name."
+              "description": "Customer first name.",
+              "type": "string"
             },
             "last_name": {
               "required": false,
-              "description": "Customer last name."
+              "description": "Customer last name.",
+              "type": "string"
             },
             "username": {
-              "required": false
+              "required": false,
+              "description": "New user username.",
+              "type": "string"
             },
             "password": {
-              "required": true
-            },
-            "billing_address": {
               "required": false,
-              "description": "List of billing address data."
+              "description": "New user password.",
+              "type": "string"
             },
-            "shipping_address": {
+            "billing": {
               "required": false,
-              "description": "List of shipping address data."
+              "description": "List of billing address data.",
+              "type": "object"
+            },
+            "shipping": {
+              "required": false,
+              "description": "List of shipping address data.",
+              "type": "object"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -642,6 +954,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -649,7 +966,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -660,33 +978,80 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "email": {
               "required": false,
-              "description": "The email address for the customer."
+              "description": "The email address for the customer.",
+              "type": "string"
             },
             "first_name": {
               "required": false,
-              "description": "Customer first name."
+              "description": "Customer first name.",
+              "type": "string"
             },
             "last_name": {
               "required": false,
-              "description": "Customer last name."
+              "description": "Customer last name.",
+              "type": "string"
             },
             "username": {
               "required": false,
-              "description": "Customer login name."
+              "description": "Customer login name.",
+              "type": "string"
             },
             "password": {
               "required": false,
-              "description": "Customer password."
+              "description": "Customer password.",
+              "type": "string"
             },
-            "billing_address": {
+            "billing": {
               "required": false,
-              "description": "List of billing address data."
+              "description": "List of billing address data.",
+              "type": "object"
             },
-            "shipping_address": {
+            "shipping": {
               "required": false,
-              "description": "List of shipping address data."
+              "description": "List of shipping address data.",
+              "type": "object"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         },
@@ -695,13 +1060,22 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             },
             "reassign": {
-              "required": false
+              "required": false,
+              "default": 0,
+              "description": "ID to reassign posts to.",
+              "type": "integer"
             }
           }
         }
@@ -724,31 +1098,73 @@ woocommerce.get("").parsed_response
           "args": {
             "email": {
               "required": false,
-              "description": "The email address for the customer."
+              "description": "The email address for the customer.",
+              "type": "string"
             },
             "first_name": {
               "required": false,
-              "description": "Customer first name."
+              "description": "Customer first name.",
+              "type": "string"
             },
             "last_name": {
               "required": false,
-              "description": "Customer last name."
+              "description": "Customer last name.",
+              "type": "string"
             },
             "username": {
               "required": false,
-              "description": "Customer login name."
+              "description": "Customer login name.",
+              "type": "string"
             },
             "password": {
               "required": false,
-              "description": "Customer password."
+              "description": "Customer password.",
+              "type": "string"
             },
-            "billing_address": {
+            "billing": {
               "required": false,
-              "description": "List of billing address data."
+              "description": "List of billing address data.",
+              "type": "object"
             },
-            "shipping_address": {
+            "shipping": {
               "required": false,
-              "description": "List of shipping address data."
+              "description": "List of shipping address data.",
+              "type": "object"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -769,6 +1185,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -776,7 +1197,19 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            },
+            "type": {
+              "required": false,
+              "default": "any",
+              "enum": [
+                "any",
+                "customer",
+                "internal"
+              ],
+              "description": "Limit result to customers or internal notes.",
+              "type": "string"
             }
           }
         },
@@ -785,13 +1218,21 @@ woocommerce.get("").parsed_response
             "POST"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "note": {
-              "required": true
+              "required": true,
+              "description": "Order note content.",
+              "type": "string"
             },
             "customer_note": {
               "required": false,
               "default": false,
-              "description": "Shows/define if the note is only for reference or for the customer (the user will be notified)."
+              "description": "If true, the note will be shown to customers and they will be notified. If false, the note will be for admin reference only.",
+              "type": "boolean"
             }
           }
         }
@@ -809,6 +1250,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -816,7 +1267,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -825,10 +1277,21 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -846,6 +1309,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -853,43 +1321,58 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "after": {
               "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
             },
             "before": {
               "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -898,7 +1381,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -910,20 +1394,32 @@ woocommerce.get("").parsed_response
                 "title",
                 "slug"
               ],
-              "description": "Sort collection by object attribute."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
-            "slug": {
+            "parent": {
               "required": false,
-              "description": "Limit result set to posts with a specific slug."
+              "default": [],
+              "description": "Limit result set to those of particular parent IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
-            "filter": {
+            "parent_exclude": {
               "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
+              "default": [],
+              "description": "Limit result set to all items except those of a particular parent ID.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "dp": {
               "required": false,
               "default": 2,
-              "description": "Number of decimal points to use in each resource."
+              "description": "Number of decimal points to use in each resource.",
+              "type": "integer"
             }
           }
         },
@@ -932,20 +1428,253 @@ woocommerce.get("").parsed_response
             "POST"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
             "amount": {
               "required": false,
-              "description": "Refund amount."
+              "description": "Refund amount.",
+              "type": "string"
             },
             "reason": {
               "required": false,
-              "description": "Reason for refund"
+              "description": "Reason for refund.",
+              "type": "string"
+            },
+            "refunded_by": {
+              "required": false,
+              "description": "User ID of user who created the refund.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "line_items": {
               "required": false,
-              "description": "Line items data."
+              "description": "Line items data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Product name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "product_id": {
+                    "description": "Product ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation_id": {
+                    "description": "Variation ID, if applicable.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "quantity": {
+                    "description": "Quantity ordered.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of product.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal": {
+                    "description": "Line subtotal (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal_tax": {
+                    "description": "Line subtotal tax (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "sku": {
+                    "description": "Product SKU.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "price": {
+                    "description": "Product price.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
-            "email": {
-              "required": true
+            "api_refund": {
+              "required": false,
+              "default": true,
+              "description": "When true, the payment gateway API is used to generate the refund.",
+              "type": "boolean"
             }
           }
         }
@@ -963,6 +1692,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -970,7 +1709,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -979,13 +1719,21 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "order_id": {
+              "required": false,
+              "description": "The order ID.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
-            },
-            "reassign": {
-              "required": false
+              "default": true,
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -1010,43 +1758,58 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "after": {
               "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
             },
             "before": {
               "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -1055,7 +1818,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -1067,15 +1831,26 @@ woocommerce.get("").parsed_response
                 "title",
                 "slug"
               ],
-              "description": "Sort collection by object attribute."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
-            "slug": {
+            "parent": {
               "required": false,
-              "description": "Limit result set to posts with a specific slug."
+              "default": [],
+              "description": "Limit result set to those of particular parent IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
-            "filter": {
+            "parent_exclude": {
               "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
+              "default": [],
+              "description": "Limit result set to all items except those of a particular parent ID.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "status": {
               "required": false,
@@ -1090,20 +1865,24 @@ woocommerce.get("").parsed_response
                 "refunded",
                 "failed"
               ],
-              "description": "Limit result set to orders assigned a specific status."
+              "description": "Limit result set to orders assigned a specific status.",
+              "type": "string"
             },
             "customer": {
               "required": false,
-              "description": "Limit result set to orders assigned a specific customer."
+              "description": "Limit result set to orders assigned a specific customer.",
+              "type": "integer"
             },
             "product": {
               "required": false,
-              "description": "Limit result set to orders assigned a specific product."
+              "description": "Limit result set to orders assigned a specific product.",
+              "type": "integer"
             },
             "dp": {
               "required": false,
               "default": 2,
-              "description": "Number of decimal points to use in each resource."
+              "description": "Number of decimal points to use in each resource.",
+              "type": "integer"
             }
           }
         },
@@ -1114,7 +1893,8 @@ woocommerce.get("").parsed_response
           "args": {
             "parent_id": {
               "required": false,
-              "description": "Parent order ID."
+              "description": "Parent order ID.",
+              "type": "integer"
             },
             "status": {
               "required": false,
@@ -1128,11 +1908,12 @@ woocommerce.get("").parsed_response
                 "refunded",
                 "failed"
               ],
-              "description": "Order status."
+              "description": "Order status.",
+              "type": "string"
             },
             "currency": {
               "required": false,
-              "default": "BRL",
+              "default": "USD",
               "enum": [
                 "AED",
                 "AFN",
@@ -1201,6 +1982,7 @@ woocommerce.get("").parsed_response
                 "INR",
                 "IQD",
                 "IRR",
+                "IRT",
                 "ISK",
                 "JEP",
                 "JMD",
@@ -1295,57 +2077,619 @@ woocommerce.get("").parsed_response
                 "ZAR",
                 "ZMW"
               ],
-              "description": "Currency the order was created with, in ISO format."
+              "description": "Currency the order was created with, in ISO format.",
+              "type": "string"
             },
             "customer_id": {
               "required": false,
               "default": 0,
-              "description": "User ID who owns the order. 0 for guests."
+              "description": "User ID who owns the order. 0 for guests.",
+              "type": "integer"
+            },
+            "customer_note": {
+              "required": false,
+              "description": "Note left by customer during checkout.",
+              "type": "string"
             },
             "billing": {
               "required": false,
-              "description": "Billing address."
+              "description": "Billing address.",
+              "type": "object"
             },
             "shipping": {
               "required": false,
-              "description": "Shipping address."
+              "description": "Shipping address.",
+              "type": "object"
             },
             "payment_method": {
               "required": false,
-              "description": "Payment method ID."
+              "description": "Payment method ID.",
+              "type": "string"
             },
             "payment_method_title": {
               "required": false,
-              "description": "Payment method title."
+              "description": "Payment method title.",
+              "type": "string"
+            },
+            "transaction_id": {
+              "required": false,
+              "description": "Unique transaction ID.",
+              "type": "string"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "line_items": {
+              "required": false,
+              "description": "Line items data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Product name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "product_id": {
+                    "description": "Product ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation_id": {
+                    "description": "Variation ID, if applicable.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "quantity": {
+                    "description": "Quantity ordered.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of product.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal": {
+                    "description": "Line subtotal (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal_tax": {
+                    "description": "Line subtotal tax (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "sku": {
+                    "description": "Product SKU.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "price": {
+                    "description": "Product price.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
+            },
+            "shipping_lines": {
+              "required": false,
+              "description": "Shipping lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "method_title": {
+                    "description": "Shipping method name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "method_id": {
+                    "description": "Shipping method ID.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "fee_lines": {
+              "required": false,
+              "description": "Fee lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Fee name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_status": {
+                    "description": "Tax status of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "enum": [
+                      "taxable",
+                      "none"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "coupon_lines": {
+              "required": false,
+              "description": "Coupons line data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "code": {
+                    "description": "Coupon code.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount": {
+                    "description": "Discount total.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount_tax": {
+                    "description": "Discount total tax.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "set_paid": {
               "required": false,
               "default": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
-            },
-            "customer_note": {
-              "required": false,
-              "description": "Note left by customer during checkout."
-            },
-            "line_items": {
-              "required": false,
-              "description": "Line items data."
-            },
-            "shipping_lines": {
-              "required": false,
-              "description": "Shipping lines data."
-            },
-            "fee_lines": {
-              "required": false,
-              "description": "Fee lines data."
-            },
-            "coupon_lines": {
-              "required": false,
-              "description": "Coupons line data."
+              "description": "Define if the order is paid. It will set the status to processing and reduce stock items.",
+              "type": "boolean"
             }
           }
         }
@@ -1369,6 +2713,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -1376,7 +2725,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -1387,9 +2737,15 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "parent_id": {
               "required": false,
-              "description": "Parent order ID."
+              "description": "Parent order ID.",
+              "type": "integer"
             },
             "status": {
               "required": false,
@@ -1402,7 +2758,8 @@ woocommerce.get("").parsed_response
                 "refunded",
                 "failed"
               ],
-              "description": "Order status."
+              "description": "Order status.",
+              "type": "string"
             },
             "currency": {
               "required": false,
@@ -1474,6 +2831,7 @@ woocommerce.get("").parsed_response
                 "INR",
                 "IQD",
                 "IRR",
+                "IRT",
                 "ISK",
                 "JEP",
                 "JMD",
@@ -1568,55 +2926,617 @@ woocommerce.get("").parsed_response
                 "ZAR",
                 "ZMW"
               ],
-              "description": "Currency the order was created with, in ISO format."
+              "description": "Currency the order was created with, in ISO format.",
+              "type": "string"
             },
             "customer_id": {
               "required": false,
-              "description": "User ID who owns the order. 0 for guests."
-            },
-            "billing": {
-              "required": false,
-              "description": "Billing address."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Shipping address."
-            },
-            "payment_method": {
-              "required": false,
-              "description": "Payment method ID."
-            },
-            "payment_method_title": {
-              "required": false,
-              "description": "Payment method title."
-            },
-            "set_paid": {
-              "required": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
+              "description": "User ID who owns the order. 0 for guests.",
+              "type": "integer"
             },
             "customer_note": {
               "required": false,
-              "description": "Note left by customer during checkout."
+              "description": "Note left by customer during checkout.",
+              "type": "string"
+            },
+            "billing": {
+              "required": false,
+              "description": "Billing address.",
+              "type": "object"
+            },
+            "shipping": {
+              "required": false,
+              "description": "Shipping address.",
+              "type": "object"
+            },
+            "payment_method": {
+              "required": false,
+              "description": "Payment method ID.",
+              "type": "string"
+            },
+            "payment_method_title": {
+              "required": false,
+              "description": "Payment method title.",
+              "type": "string"
+            },
+            "transaction_id": {
+              "required": false,
+              "description": "Unique transaction ID.",
+              "type": "string"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "line_items": {
               "required": false,
-              "description": "Line items data."
+              "description": "Line items data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Product name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "product_id": {
+                    "description": "Product ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation_id": {
+                    "description": "Variation ID, if applicable.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "quantity": {
+                    "description": "Quantity ordered.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of product.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal": {
+                    "description": "Line subtotal (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal_tax": {
+                    "description": "Line subtotal tax (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "sku": {
+                    "description": "Product SKU.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "price": {
+                    "description": "Product price.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "shipping_lines": {
               "required": false,
-              "description": "Shipping lines data."
+              "description": "Shipping lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "method_title": {
+                    "description": "Shipping method name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "method_id": {
+                    "description": "Shipping method ID.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "fee_lines": {
               "required": false,
-              "description": "Fee lines data."
+              "description": "Fee lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Fee name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_status": {
+                    "description": "Tax status of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "enum": [
+                      "taxable",
+                      "none"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "coupon_lines": {
               "required": false,
-              "description": "Coupons line data."
+              "description": "Coupons line data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "code": {
+                    "description": "Coupon code.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount": {
+                    "description": "Discount total.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount_tax": {
+                    "description": "Discount total tax.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "set_paid": {
+              "required": false,
+              "description": "Define if the order is paid. It will set the status to processing and reduce stock items.",
+              "type": "boolean"
             }
           }
         },
@@ -1625,13 +3545,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Whether to bypass trash and force deletion."
-            },
-            "reassign": {
-              "required": false
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
             }
           }
         }
@@ -1654,7 +3577,8 @@ woocommerce.get("").parsed_response
           "args": {
             "parent_id": {
               "required": false,
-              "description": "Parent order ID."
+              "description": "Parent order ID.",
+              "type": "integer"
             },
             "status": {
               "required": false,
@@ -1667,7 +3591,8 @@ woocommerce.get("").parsed_response
                 "refunded",
                 "failed"
               ],
-              "description": "Order status."
+              "description": "Order status.",
+              "type": "string"
             },
             "currency": {
               "required": false,
@@ -1739,6 +3664,7 @@ woocommerce.get("").parsed_response
                 "INR",
                 "IQD",
                 "IRR",
+                "IRT",
                 "ISK",
                 "JEP",
                 "JMD",
@@ -1833,55 +3759,617 @@ woocommerce.get("").parsed_response
                 "ZAR",
                 "ZMW"
               ],
-              "description": "Currency the order was created with, in ISO format."
+              "description": "Currency the order was created with, in ISO format.",
+              "type": "string"
             },
             "customer_id": {
               "required": false,
-              "description": "User ID who owns the order. 0 for guests."
-            },
-            "billing": {
-              "required": false,
-              "description": "Billing address."
-            },
-            "shipping": {
-              "required": false,
-              "description": "Shipping address."
-            },
-            "payment_method": {
-              "required": false,
-              "description": "Payment method ID."
-            },
-            "payment_method_title": {
-              "required": false,
-              "description": "Payment method title."
-            },
-            "set_paid": {
-              "required": false,
-              "description": "Define if the order is paid. It will set the status to processing and reduce stock items."
-            },
-            "transaction_id": {
-              "required": false,
-              "description": "Unique transaction ID."
+              "description": "User ID who owns the order. 0 for guests.",
+              "type": "integer"
             },
             "customer_note": {
               "required": false,
-              "description": "Note left by customer during checkout."
+              "description": "Note left by customer during checkout.",
+              "type": "string"
+            },
+            "billing": {
+              "required": false,
+              "description": "Billing address.",
+              "type": "object"
+            },
+            "shipping": {
+              "required": false,
+              "description": "Shipping address.",
+              "type": "object"
+            },
+            "payment_method": {
+              "required": false,
+              "description": "Payment method ID.",
+              "type": "string"
+            },
+            "payment_method_title": {
+              "required": false,
+              "description": "Payment method title.",
+              "type": "string"
+            },
+            "transaction_id": {
+              "required": false,
+              "description": "Unique transaction ID.",
+              "type": "string"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "line_items": {
               "required": false,
-              "description": "Line items data."
+              "description": "Line items data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Product name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "product_id": {
+                    "description": "Product ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation_id": {
+                    "description": "Variation ID, if applicable.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "quantity": {
+                    "description": "Quantity ordered.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of product.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal": {
+                    "description": "Line subtotal (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "subtotal_tax": {
+                    "description": "Line subtotal tax (before discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "sku": {
+                    "description": "Product SKU.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "price": {
+                    "description": "Product price.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "shipping_lines": {
               "required": false,
-              "description": "Shipping lines data."
+              "description": "Shipping lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "method_title": {
+                    "description": "Shipping method name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "method_id": {
+                    "description": "Shipping method ID.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "fee_lines": {
               "required": false,
-              "description": "Fee lines data."
+              "description": "Fee lines data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "Fee name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_class": {
+                    "description": "Tax class of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "tax_status": {
+                    "description": "Tax status of fee.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "enum": [
+                      "taxable",
+                      "none"
+                    ]
+                  },
+                  "total": {
+                    "description": "Line total (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "total_tax": {
+                    "description": "Line total tax (after discounts).",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "taxes": {
+                    "description": "Line taxes.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Tax rate ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "total": {
+                          "description": "Tax total.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "subtotal": {
+                          "description": "Tax subtotal.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        }
+                      }
+                    }
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             },
             "coupon_lines": {
               "required": false,
-              "description": "Coupons line data."
+              "description": "Coupons line data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Item ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "code": {
+                    "description": "Coupon code.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount": {
+                    "description": "Discount total.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "discount_tax": {
+                    "description": "Discount total tax.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "meta_data": {
+                    "description": "Meta data.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Meta ID.",
+                          "type": "integer",
+                          "context": [
+                            "view",
+                            "edit"
+                          ],
+                          "readonly": true
+                        },
+                        "key": {
+                          "description": "Meta key.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        },
+                        "value": {
+                          "description": "Meta value.",
+                          "type": "string",
+                          "context": [
+                            "view",
+                            "edit"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "set_paid": {
+              "required": false,
+              "description": "Define if the order is paid. It will set the status to processing and reduce stock items.",
+              "type": "boolean"
             }
           }
         }
@@ -1902,6 +4390,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -1909,31 +4402,43 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "order": {
               "required": false,
@@ -1942,7 +4447,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -1956,24 +4462,29 @@ woocommerce.get("").parsed_response
                 "description",
                 "count"
               ],
-              "description": "Sort collection by resource attribute."
+              "description": "Sort collection by resource attribute.",
+              "type": "string"
             },
             "hide_empty": {
               "required": false,
               "default": false,
-              "description": "Whether to hide resources not assigned to any products."
+              "description": "Whether to hide resources not assigned to any products.",
+              "type": "boolean"
             },
             "parent": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific parent."
+              "description": "Limit result set to resources assigned to a specific parent.",
+              "type": "integer"
             },
             "product": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
+              "description": "Limit result set to resources assigned to a specific product.",
+              "type": "integer"
             },
             "slug": {
               "required": false,
-              "description": "Limit result set to resources with a specific slug."
+              "description": "Limit result set to resources with a specific slug.",
+              "type": "string"
             }
           }
         },
@@ -1982,16 +4493,30 @@ woocommerce.get("").parsed_response
             "POST"
           ],
           "args": {
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "name": {
-              "required": true
+              "required": true,
+              "description": "Name for the resource.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         }
@@ -2012,6 +4537,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2019,7 +4554,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2030,17 +4566,35 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Term name."
+              "description": "Term name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         },
@@ -2049,10 +4603,21 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -2073,17 +4638,30 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "attribute_id": {
+              "required": false,
+              "description": "Unique identifier for the attribute of the terms.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Term name."
+              "description": "Term name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         }
@@ -2108,7 +4686,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2118,11 +4697,14 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "name": {
-              "required": true
+              "required": true,
+              "description": "Name for the resource.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -2131,7 +4713,8 @@ woocommerce.get("").parsed_response
                 "select",
                 "text"
               ],
-              "description": "Type of attribute."
+              "description": "Type of attribute.",
+              "type": "string"
             },
             "order_by": {
               "required": false,
@@ -2142,12 +4725,14 @@ woocommerce.get("").parsed_response
                 "name_num",
                 "id"
               ],
-              "description": "Default sort order."
+              "description": "Default sort order.",
+              "type": "string"
             },
             "has_archives": {
               "required": false,
               "default": false,
-              "description": "Enable/Disable attribute archives."
+              "description": "Enable/Disable attribute archives.",
+              "type": "boolean"
             }
           }
         }
@@ -2171,6 +4756,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2178,7 +4768,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2189,13 +4780,20 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Attribute name."
+              "description": "Attribute name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -2203,7 +4801,8 @@ woocommerce.get("").parsed_response
                 "select",
                 "text"
               ],
-              "description": "Type of attribute."
+              "description": "Type of attribute.",
+              "type": "string"
             },
             "order_by": {
               "required": false,
@@ -2213,11 +4812,13 @@ woocommerce.get("").parsed_response
                 "name_num",
                 "id"
               ],
-              "description": "Default sort order."
+              "description": "Default sort order.",
+              "type": "string"
             },
             "has_archives": {
               "required": false,
-              "description": "Enable/Disable attribute archives."
+              "description": "Enable/Disable attribute archives.",
+              "type": "boolean"
             }
           }
         },
@@ -2226,14 +4827,77 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
-              "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "default": true,
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
       ]
+    },
+    "/wc/v2/products/attributes/batch": {
+      "namespace": "wc/v2",
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "name": {
+              "required": false,
+              "description": "Attribute name.",
+              "type": "string"
+            },
+            "slug": {
+              "required": false,
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
+            },
+            "type": {
+              "required": false,
+              "enum": [
+                "select",
+                "text"
+              ],
+              "description": "Type of attribute.",
+              "type": "string"
+            },
+            "order_by": {
+              "required": false,
+              "enum": [
+                "menu_order",
+                "name",
+                "name_num",
+                "id"
+              ],
+              "description": "Default sort order.",
+              "type": "string"
+            },
+            "has_archives": {
+              "required": false,
+              "description": "Enable/Disable attribute archives.",
+              "type": "boolean"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/products/attributes/batch"
+      }
     },
     "/wc/v2/products/categories": {
       "namespace": "wc/v2",
@@ -2254,31 +4918,43 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "order": {
               "required": false,
@@ -2287,7 +4963,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -2301,24 +4978,29 @@ woocommerce.get("").parsed_response
                 "description",
                 "count"
               ],
-              "description": "Sort collection by resource attribute."
+              "description": "Sort collection by resource attribute.",
+              "type": "string"
             },
             "hide_empty": {
               "required": false,
               "default": false,
-              "description": "Whether to hide resources not assigned to any products."
+              "description": "Whether to hide resources not assigned to any products.",
+              "type": "boolean"
             },
             "parent": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific parent."
+              "description": "Limit result set to resources assigned to a specific parent.",
+              "type": "integer"
             },
             "product": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
+              "description": "Limit result set to resources assigned to a specific product.",
+              "type": "integer"
             },
             "slug": {
               "required": false,
-              "description": "Limit result set to resources with a specific slug."
+              "description": "Limit result set to resources with a specific slug.",
+              "type": "string"
             }
           }
         },
@@ -2328,19 +5010,24 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "name": {
-              "required": true
+              "required": true,
+              "description": "Name for the resource.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "parent": {
               "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "The ID for the parent of the resource.",
+              "type": "integer"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "display": {
               "required": false,
@@ -2351,15 +5038,18 @@ woocommerce.get("").parsed_response
                 "subcategories",
                 "both"
               ],
-              "description": "Category archive display type."
+              "description": "Category archive display type.",
+              "type": "string"
             },
             "image": {
               "required": false,
-              "description": "Image URL."
+              "description": "Image data.",
+              "type": "object"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         }
@@ -2383,6 +5073,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2390,7 +5085,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2401,21 +5097,30 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Category name."
+              "description": "Category name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "parent": {
               "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "The ID for the parent of the resource.",
+              "type": "integer"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "display": {
               "required": false,
@@ -2425,15 +5130,18 @@ woocommerce.get("").parsed_response
                 "subcategories",
                 "both"
               ],
-              "description": "Category archive display type."
+              "description": "Category archive display type.",
+              "type": "string"
             },
             "image": {
               "required": false,
-              "description": "Image URL."
+              "description": "Image data.",
+              "type": "object"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         },
@@ -2442,10 +5150,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -2468,19 +5182,23 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "Category name."
+              "description": "Category name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "parent": {
               "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "The ID for the parent of the resource.",
+              "type": "integer"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             },
             "display": {
               "required": false,
@@ -2490,15 +5208,18 @@ woocommerce.get("").parsed_response
                 "subcategories",
                 "both"
               ],
-              "description": "Category archive display type."
+              "description": "Category archive display type.",
+              "type": "string"
             },
             "image": {
               "required": false,
-              "description": "Image URL."
+              "description": "Image data.",
+              "type": "object"
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort the resource."
+              "description": "Menu order, used to custom sort the resource.",
+              "type": "integer"
             }
           }
         }
@@ -2510,7 +5231,8 @@ woocommerce.get("").parsed_response
     "/wc/v2/products/(?P<product_id>[\\d]+)/reviews": {
       "namespace": "wc/v2",
       "methods": [
-        "GET"
+        "GET",
+        "POST"
       ],
       "endpoints": [
         {
@@ -2518,6 +5240,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the variation.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2525,7 +5257,55 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the variation.",
+              "type": "integer"
+            },
+            "review": {
+              "required": true,
+              "description": "Review content.",
+              "type": "string"
+            },
+            "date_created": {
+              "required": false,
+              "description": "The date the review was created, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_created_gmt": {
+              "required": false,
+              "description": "The date the review was created, as GMT.",
+              "type": "date-time"
+            },
+            "rating": {
+              "required": false,
+              "description": "Review rating (0 to 5).",
+              "type": "integer"
+            },
+            "name": {
+              "required": true,
+              "description": "Name of the reviewer.",
+              "type": "string"
+            },
+            "email": {
+              "required": true,
+              "description": "Email of the reviewer.",
+              "type": "string"
             }
           }
         }
@@ -2534,7 +5314,11 @@ woocommerce.get("").parsed_response
     "/wc/v2/products/(?P<product_id>[\\d]+)/reviews/(?P<id>[\\d]+)": {
       "namespace": "wc/v2",
       "methods": [
-        "GET"
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
       ],
       "endpoints": [
         {
@@ -2542,6 +5326,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2549,7 +5343,134 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "review": {
+              "required": false,
+              "description": "The content of the review.",
+              "type": "string"
+            },
+            "date_created": {
+              "required": false,
+              "description": "The date the review was created, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_created_gmt": {
+              "required": false,
+              "description": "The date the review was created, as GMT.",
+              "type": "date-time"
+            },
+            "rating": {
+              "required": false,
+              "description": "Review rating (0 to 5).",
+              "type": "integer"
+            },
+            "name": {
+              "required": false,
+              "description": "Reviewer name.",
+              "type": "string"
+            },
+            "email": {
+              "required": false,
+              "description": "Reviewer email.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
+            "force": {
+              "required": false,
+              "default": false,
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/products/(?P<product_id>[\\d]+)/reviews/batch": {
+      "namespace": "wc/v2",
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "review": {
+              "required": false,
+              "description": "The content of the review.",
+              "type": "string"
+            },
+            "date_created": {
+              "required": false,
+              "description": "The date the review was created, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_created_gmt": {
+              "required": false,
+              "description": "The date the review was created, as GMT.",
+              "type": "date-time"
+            },
+            "rating": {
+              "required": false,
+              "description": "Review rating (0 to 5).",
+              "type": "integer"
+            },
+            "name": {
+              "required": false,
+              "description": "Reviewer name.",
+              "type": "string"
+            },
+            "email": {
+              "required": false,
+              "description": "Reviewer email.",
+              "type": "string"
             }
           }
         }
@@ -2574,35 +5495,48 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -2611,7 +5545,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -2625,20 +5560,24 @@ woocommerce.get("").parsed_response
                 "description",
                 "count"
               ],
-              "description": "Sort collection by resource attribute."
+              "description": "Sort collection by resource attribute.",
+              "type": "string"
             },
             "hide_empty": {
               "required": false,
               "default": false,
-              "description": "Whether to hide resources not assigned to any products."
+              "description": "Whether to hide resources not assigned to any products.",
+              "type": "boolean"
             },
             "product": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
+              "description": "Limit result set to resources assigned to a specific product.",
+              "type": "integer"
             },
             "slug": {
               "required": false,
-              "description": "Limit result set to resources with a specific slug."
+              "description": "Limit result set to resources with a specific slug.",
+              "type": "string"
             }
           }
         },
@@ -2648,19 +5587,19 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "name": {
-              "required": true
+              "required": true,
+              "description": "Name for the resource.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         }
@@ -2684,6 +5623,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2691,7 +5635,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2702,21 +5647,25 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Shipping class name."
+              "description": "Shipping class name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         },
@@ -2725,10 +5674,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -2751,19 +5706,18 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "Shipping class name."
+              "description": "Shipping class name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
-            },
-            "parent": {
-              "required": false,
-              "description": "The id for the parent of the resource."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         }
@@ -2791,35 +5745,48 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -2828,7 +5795,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -2842,20 +5810,24 @@ woocommerce.get("").parsed_response
                 "description",
                 "count"
               ],
-              "description": "Sort collection by resource attribute."
+              "description": "Sort collection by resource attribute.",
+              "type": "string"
             },
             "hide_empty": {
               "required": false,
               "default": false,
-              "description": "Whether to hide resources not assigned to any products."
+              "description": "Whether to hide resources not assigned to any products.",
+              "type": "boolean"
             },
             "product": {
               "required": false,
-              "description": "Limit result set to resources assigned to a specific product."
+              "description": "Limit result set to resources assigned to a specific product.",
+              "type": "integer"
             },
             "slug": {
               "required": false,
-              "description": "Limit result set to resources with a specific slug."
+              "description": "Limit result set to resources with a specific slug.",
+              "type": "string"
             }
           }
         },
@@ -2865,15 +5837,19 @@ woocommerce.get("").parsed_response
           ],
           "args": {
             "name": {
-              "required": true
+              "required": true,
+              "description": "Name for the resource.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         }
@@ -2897,6 +5873,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -2904,7 +5885,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -2915,17 +5897,25 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Tag name."
+              "description": "Tag name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         },
@@ -2934,10 +5924,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -2960,15 +5956,18 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "Tag name."
+              "description": "Tag name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "An alphanumeric identifier for the resource unique to its type."
+              "description": "An alphanumeric identifier for the resource unique to its type.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "HTML description of the resource."
+              "description": "HTML description of the resource.",
+              "type": "string"
             }
           }
         }
@@ -2996,43 +5995,58 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "after": {
               "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
             },
             "before": {
               "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -3041,7 +6055,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -3053,15 +6068,31 @@ woocommerce.get("").parsed_response
                 "title",
                 "slug"
               ],
-              "description": "Sort collection by object attribute."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
+            },
+            "parent": {
+              "required": false,
+              "default": [],
+              "description": "Limit result set to those of particular parent IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "parent_exclude": {
+              "required": false,
+              "default": [],
+              "description": "Limit result set to all items except those of a particular parent ID.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "slug": {
               "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
+              "description": "Limit result set to products with a specific slug.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -3073,7 +6104,8 @@ woocommerce.get("").parsed_response
                 "private",
                 "publish"
               ],
-              "description": "Limit result set to products assigned a specific status."
+              "description": "Limit result set to products assigned a specific status.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -3083,31 +6115,74 @@ woocommerce.get("").parsed_response
                 "external",
                 "variable"
               ],
-              "description": "Limit result set to products assigned a specific type."
-            },
-            "category": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific category."
-            },
-            "tag": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific tag."
-            },
-            "shipping_class": {
-              "required": false,
-              "description": "Limit result set to products assigned a specific shipping class."
-            },
-            "attribute": {
-              "required": false,
-              "description": "Limit result set to products with a specific attribute."
-            },
-            "attribute_term": {
-              "required": false,
-              "description": "Limit result set to products with a specific attribute term (required an assigned attribute)."
+              "description": "Limit result set to products assigned a specific type.",
+              "type": "string"
             },
             "sku": {
               "required": false,
-              "description": "Limit result set to products with a specific SKU."
+              "description": "Limit result set to products with a specific SKU.",
+              "type": "string"
+            },
+            "featured": {
+              "required": false,
+              "description": "Limit result set to featured products.",
+              "type": "boolean"
+            },
+            "category": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific category ID.",
+              "type": "string"
+            },
+            "tag": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific tag ID.",
+              "type": "string"
+            },
+            "shipping_class": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific shipping class ID.",
+              "type": "string"
+            },
+            "attribute": {
+              "required": false,
+              "description": "Limit result set to products with a specific attribute.",
+              "type": "string"
+            },
+            "attribute_term": {
+              "required": false,
+              "description": "Limit result set to products with a specific attribute term ID (required an assigned attribute).",
+              "type": "string"
+            },
+            "tax_class": {
+              "required": false,
+              "enum": [
+                "standard",
+                "reduced-rate",
+                "zero-rate",
+                "testin"
+              ],
+              "description": "Limit result set to products with a specific tax class.",
+              "type": "string"
+            },
+            "in_stock": {
+              "required": false,
+              "description": "Limit result set to products in stock or out of stock.",
+              "type": "boolean"
+            },
+            "on_sale": {
+              "required": false,
+              "description": "Limit result set to products on sale.",
+              "type": "boolean"
+            },
+            "min_price": {
+              "required": false,
+              "description": "Limit result set to products based on a minimum price.",
+              "type": "string"
+            },
+            "max_price": {
+              "required": false,
+              "description": "Limit result set to products based on a maximum price.",
+              "type": "string"
             }
           }
         },
@@ -3118,11 +6193,13 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "Product name."
+              "description": "Product name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "Product slug."
+              "description": "Product slug.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -3133,7 +6210,8 @@ woocommerce.get("").parsed_response
                 "external",
                 "variable"
               ],
-              "description": "Product type."
+              "description": "Product type.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -3144,12 +6222,14 @@ woocommerce.get("").parsed_response
                 "private",
                 "publish"
               ],
-              "description": "Product status (post status)."
+              "description": "Product status (post status).",
+              "type": "string"
             },
             "featured": {
               "required": false,
               "default": false,
-              "description": "Featured product."
+              "description": "Featured product.",
+              "type": "boolean"
             },
             "catalog_visibility": {
               "required": false,
@@ -3160,75 +6240,122 @@ woocommerce.get("").parsed_response
                 "search",
                 "hidden"
               ],
-              "description": "Catalog visibility."
+              "description": "Catalog visibility.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "Product description."
+              "description": "Product description.",
+              "type": "string"
             },
             "short_description": {
               "required": false,
-              "description": "Product short description."
+              "description": "Product short description.",
+              "type": "string"
             },
             "sku": {
               "required": false,
-              "description": "Unique identifier."
+              "description": "Unique identifier.",
+              "type": "string"
             },
             "regular_price": {
               "required": false,
-              "description": "Product regular price."
+              "description": "Product regular price.",
+              "type": "string"
             },
             "sale_price": {
               "required": false,
-              "description": "Product sale price."
+              "description": "Product sale price.",
+              "type": "string"
             },
             "date_on_sale_from": {
               "required": false,
-              "description": "Start date of sale price."
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
             },
             "date_on_sale_to": {
               "required": false,
-              "description": "End data of sale price."
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
             },
             "virtual": {
               "required": false,
               "default": false,
-              "description": "If the product is virtual."
+              "description": "If the product is virtual.",
+              "type": "boolean"
             },
             "downloadable": {
               "required": false,
               "default": false,
-              "description": "If the product is downloadable."
+              "description": "If the product is downloadable.",
+              "type": "boolean"
             },
             "downloads": {
               "required": false,
-              "description": "List of downloadable files."
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "download_limit": {
               "required": false,
-              "description": "Amount of times the product can be downloaded."
+              "default": -1,
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
             },
             "download_expiry": {
               "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "default": "standard",
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
+              "default": -1,
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
             },
             "external_url": {
               "required": false,
-              "description": "Product external URL. Only for external products."
+              "description": "Product external URL. Only for external products.",
+              "type": "string"
             },
             "button_text": {
               "required": false,
-              "description": "Product external button text. Only for external products."
+              "description": "Product external button text. Only for external products.",
+              "type": "string"
             },
             "tax_status": {
               "required": false,
@@ -3238,25 +6365,30 @@ woocommerce.get("").parsed_response
                 "shipping",
                 "none"
               ],
-              "description": "Tax status."
+              "description": "Tax status.",
+              "type": "string"
             },
             "tax_class": {
               "required": false,
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             },
             "manage_stock": {
               "required": false,
               "default": false,
-              "description": "Stock management at product level."
+              "description": "Stock management at product level.",
+              "type": "boolean"
             },
             "stock_quantity": {
               "required": false,
-              "description": "Stock quantity."
+              "description": "Stock quantity.",
+              "type": "integer"
             },
             "in_stock": {
               "required": false,
               "default": true,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
+              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
             },
             "backorders": {
               "required": false,
@@ -3266,73 +6398,354 @@ woocommerce.get("").parsed_response
                 "notify",
                 "yes"
               ],
-              "description": "If managing stock, this controls if backorders are allowed."
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
             },
             "sold_individually": {
               "required": false,
               "default": false,
-              "description": "Allow one item to be bought in a single order."
+              "description": "Allow one item to be bought in a single order.",
+              "type": "boolean"
             },
             "weight": {
               "required": false,
-              "description": "Product weight (kg)."
+              "description": "Product weight (kg).",
+              "type": "string"
             },
             "dimensions": {
               "required": false,
-              "description": "Product dimensions."
+              "description": "Product dimensions.",
+              "type": "object"
             },
             "shipping_class": {
               "required": false,
-              "description": "Shipping class slug."
+              "description": "Shipping class slug.",
+              "type": "string"
             },
             "reviews_allowed": {
               "required": false,
               "default": true,
-              "description": "Allow reviews."
+              "description": "Allow reviews.",
+              "type": "boolean"
             },
             "upsell_ids": {
               "required": false,
-              "description": "List of up-sell products IDs."
+              "description": "List of up-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "cross_sell_ids": {
               "required": false,
-              "description": "List of cross-sell products IDs."
+              "description": "List of cross-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "parent_id": {
               "required": false,
-              "description": "Product parent ID."
+              "description": "Product parent ID.",
+              "type": "integer"
             },
             "purchase_note": {
               "required": false,
-              "description": "Optional note to send the customer after purchase."
+              "description": "Optional note to send the customer after purchase.",
+              "type": "string"
             },
             "categories": {
               "required": false,
-              "description": "List of categories."
+              "description": "List of categories.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Category ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Category name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Category slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "tags": {
               "required": false,
-              "description": "List of tags."
+              "description": "List of tags.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Tag ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Tag name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Tag slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "images": {
               "required": false,
-              "description": "List of images."
+              "description": "List of images.",
+              "type": "object",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Image ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "date_created": {
+                    "description": "The date the image was created, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_created_gmt": {
+                    "description": "The date the image was created, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified": {
+                    "description": "The date the image was last modified, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified_gmt": {
+                    "description": "The date the image was last modified, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "src": {
+                    "description": "Image URL.",
+                    "type": "string",
+                    "format": "uri",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Image name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "alt": {
+                    "description": "Image alternative text.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Image position. 0 means that the image is featured.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "attributes": {
               "required": false,
-              "description": "List of attributes."
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Attribute position.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "visible": {
+                    "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation": {
+                    "description": "Define if the attribute can be used as variation.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "options": {
+                    "description": "List of available term names of the attribute.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "default_attributes": {
               "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
+              "description": "Defaults variation attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort products."
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -3356,6 +6769,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -3363,7 +6781,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -3374,13 +6793,20 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "Product name."
+              "description": "Product name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "Product slug."
+              "description": "Product slug.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -3390,7 +6816,8 @@ woocommerce.get("").parsed_response
                 "external",
                 "variable"
               ],
-              "description": "Product type."
+              "description": "Product type.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -3400,11 +6827,13 @@ woocommerce.get("").parsed_response
                 "private",
                 "publish"
               ],
-              "description": "Product status (post status)."
+              "description": "Product status (post status).",
+              "type": "string"
             },
             "featured": {
               "required": false,
-              "description": "Featured product."
+              "description": "Featured product.",
+              "type": "boolean"
             },
             "catalog_visibility": {
               "required": false,
@@ -3414,72 +6843,118 @@ woocommerce.get("").parsed_response
                 "search",
                 "hidden"
               ],
-              "description": "Catalog visibility."
+              "description": "Catalog visibility.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "Product description."
+              "description": "Product description.",
+              "type": "string"
             },
             "short_description": {
               "required": false,
-              "description": "Product short description."
+              "description": "Product short description.",
+              "type": "string"
             },
             "sku": {
               "required": false,
-              "description": "Unique identifier."
+              "description": "Unique identifier.",
+              "type": "string"
             },
             "regular_price": {
               "required": false,
-              "description": "Product regular price."
+              "description": "Product regular price.",
+              "type": "string"
             },
             "sale_price": {
               "required": false,
-              "description": "Product sale price."
+              "description": "Product sale price.",
+              "type": "string"
             },
             "date_on_sale_from": {
               "required": false,
-              "description": "Start date of sale price."
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
             },
             "date_on_sale_to": {
               "required": false,
-              "description": "End data of sale price."
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
             },
             "virtual": {
               "required": false,
-              "description": "If the product is virtual."
+              "description": "If the product is virtual.",
+              "type": "boolean"
             },
             "downloadable": {
               "required": false,
-              "description": "If the product is downloadable."
+              "description": "If the product is downloadable.",
+              "type": "boolean"
             },
             "downloads": {
               "required": false,
-              "description": "List of downloadable files."
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "download_limit": {
               "required": false,
-              "description": "Amount of times the product can be downloaded."
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
             },
             "download_expiry": {
               "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
             },
             "external_url": {
               "required": false,
-              "description": "Product external URL. Only for external products."
+              "description": "Product external URL. Only for external products.",
+              "type": "string"
             },
             "button_text": {
               "required": false,
-              "description": "Product external button text. Only for external products."
+              "description": "Product external button text. Only for external products.",
+              "type": "string"
             },
             "tax_status": {
               "required": false,
@@ -3488,23 +6963,28 @@ woocommerce.get("").parsed_response
                 "shipping",
                 "none"
               ],
-              "description": "Tax status."
+              "description": "Tax status.",
+              "type": "string"
             },
             "tax_class": {
               "required": false,
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             },
             "manage_stock": {
               "required": false,
-              "description": "Stock management at product level."
+              "description": "Stock management at product level.",
+              "type": "boolean"
             },
             "stock_quantity": {
               "required": false,
-              "description": "Stock quantity."
+              "description": "Stock quantity.",
+              "type": "integer"
             },
             "in_stock": {
               "required": false,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
+              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
             },
             "backorders": {
               "required": false,
@@ -3513,71 +6993,352 @@ woocommerce.get("").parsed_response
                 "notify",
                 "yes"
               ],
-              "description": "If managing stock, this controls if backorders are allowed."
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
             },
             "sold_individually": {
               "required": false,
-              "description": "Allow one item to be bought in a single order."
+              "description": "Allow one item to be bought in a single order.",
+              "type": "boolean"
             },
             "weight": {
               "required": false,
-              "description": "Product weight (kg)."
+              "description": "Product weight (kg).",
+              "type": "string"
             },
             "dimensions": {
               "required": false,
-              "description": "Product dimensions."
+              "description": "Product dimensions.",
+              "type": "object"
             },
             "shipping_class": {
               "required": false,
-              "description": "Shipping class slug."
+              "description": "Shipping class slug.",
+              "type": "string"
             },
             "reviews_allowed": {
               "required": false,
-              "description": "Allow reviews."
+              "description": "Allow reviews.",
+              "type": "boolean"
             },
             "upsell_ids": {
               "required": false,
-              "description": "List of up-sell products IDs."
+              "description": "List of up-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "cross_sell_ids": {
               "required": false,
-              "description": "List of cross-sell products IDs."
+              "description": "List of cross-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "parent_id": {
               "required": false,
-              "description": "Product parent ID."
+              "description": "Product parent ID.",
+              "type": "integer"
             },
             "purchase_note": {
               "required": false,
-              "description": "Optional note to send the customer after purchase."
+              "description": "Optional note to send the customer after purchase.",
+              "type": "string"
             },
             "categories": {
               "required": false,
-              "description": "List of categories."
+              "description": "List of categories.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Category ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Category name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Category slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "tags": {
               "required": false,
-              "description": "List of tags."
+              "description": "List of tags.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Tag ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Tag name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Tag slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "images": {
               "required": false,
-              "description": "List of images."
+              "description": "List of images.",
+              "type": "object",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Image ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "date_created": {
+                    "description": "The date the image was created, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_created_gmt": {
+                    "description": "The date the image was created, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified": {
+                    "description": "The date the image was last modified, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified_gmt": {
+                    "description": "The date the image was last modified, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "src": {
+                    "description": "Image URL.",
+                    "type": "string",
+                    "format": "uri",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Image name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "alt": {
+                    "description": "Image alternative text.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Image position. 0 means that the image is featured.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "attributes": {
               "required": false,
-              "description": "List of attributes."
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Attribute position.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "visible": {
+                    "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation": {
+                    "description": "Define if the attribute can be used as variation.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "options": {
+                    "description": "List of available term names of the attribute.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "default_attributes": {
               "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
+              "description": "Defaults variation attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort products."
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         },
@@ -3586,13 +7347,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Whether to bypass trash and force deletion."
-            },
-            "reassign": {
-              "required": false
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
             }
           }
         }
@@ -3615,11 +7379,13 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "Product name."
+              "description": "Product name.",
+              "type": "string"
             },
             "slug": {
               "required": false,
-              "description": "Product slug."
+              "description": "Product slug.",
+              "type": "string"
             },
             "type": {
               "required": false,
@@ -3629,7 +7395,8 @@ woocommerce.get("").parsed_response
                 "external",
                 "variable"
               ],
-              "description": "Product type."
+              "description": "Product type.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -3639,11 +7406,13 @@ woocommerce.get("").parsed_response
                 "private",
                 "publish"
               ],
-              "description": "Product status (post status)."
+              "description": "Product status (post status).",
+              "type": "string"
             },
             "featured": {
               "required": false,
-              "description": "Featured product."
+              "description": "Featured product.",
+              "type": "boolean"
             },
             "catalog_visibility": {
               "required": false,
@@ -3653,72 +7422,118 @@ woocommerce.get("").parsed_response
                 "search",
                 "hidden"
               ],
-              "description": "Catalog visibility."
+              "description": "Catalog visibility.",
+              "type": "string"
             },
             "description": {
               "required": false,
-              "description": "Product description."
+              "description": "Product description.",
+              "type": "string"
             },
             "short_description": {
               "required": false,
-              "description": "Product short description."
+              "description": "Product short description.",
+              "type": "string"
             },
             "sku": {
               "required": false,
-              "description": "Unique identifier."
+              "description": "Unique identifier.",
+              "type": "string"
             },
             "regular_price": {
               "required": false,
-              "description": "Product regular price."
+              "description": "Product regular price.",
+              "type": "string"
             },
             "sale_price": {
               "required": false,
-              "description": "Product sale price."
+              "description": "Product sale price.",
+              "type": "string"
             },
             "date_on_sale_from": {
               "required": false,
-              "description": "Start date of sale price."
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
             },
             "date_on_sale_to": {
               "required": false,
-              "description": "End data of sale price."
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
             },
             "virtual": {
               "required": false,
-              "description": "If the product is virtual."
+              "description": "If the product is virtual.",
+              "type": "boolean"
             },
             "downloadable": {
               "required": false,
-              "description": "If the product is downloadable."
+              "description": "If the product is downloadable.",
+              "type": "boolean"
             },
             "downloads": {
               "required": false,
-              "description": "List of downloadable files."
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "download_limit": {
               "required": false,
-              "description": "Amount of times the product can be downloaded."
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
             },
             "download_expiry": {
               "required": false,
-              "description": "Number of days that the customer has up to be able to download the product."
-            },
-            "download_type": {
-              "required": false,
-              "enum": [
-                "standard",
-                "application",
-                "music"
-              ],
-              "description": "Download type, this controls the schema on the front-end."
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
             },
             "external_url": {
               "required": false,
-              "description": "Product external URL. Only for external products."
+              "description": "Product external URL. Only for external products.",
+              "type": "string"
             },
             "button_text": {
               "required": false,
-              "description": "Product external button text. Only for external products."
+              "description": "Product external button text. Only for external products.",
+              "type": "string"
             },
             "tax_status": {
               "required": false,
@@ -3727,23 +7542,28 @@ woocommerce.get("").parsed_response
                 "shipping",
                 "none"
               ],
-              "description": "Tax status."
+              "description": "Tax status.",
+              "type": "string"
             },
             "tax_class": {
               "required": false,
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             },
             "manage_stock": {
               "required": false,
-              "description": "Stock management at product level."
+              "description": "Stock management at product level.",
+              "type": "boolean"
             },
             "stock_quantity": {
               "required": false,
-              "description": "Stock quantity."
+              "description": "Stock quantity.",
+              "type": "integer"
             },
             "in_stock": {
               "required": false,
-              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend."
+              "description": "Controls whether or not the product is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
             },
             "backorders": {
               "required": false,
@@ -3752,71 +7572,352 @@ woocommerce.get("").parsed_response
                 "notify",
                 "yes"
               ],
-              "description": "If managing stock, this controls if backorders are allowed."
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
             },
             "sold_individually": {
               "required": false,
-              "description": "Allow one item to be bought in a single order."
+              "description": "Allow one item to be bought in a single order.",
+              "type": "boolean"
             },
             "weight": {
               "required": false,
-              "description": "Product weight (kg)."
+              "description": "Product weight (kg).",
+              "type": "string"
             },
             "dimensions": {
               "required": false,
-              "description": "Product dimensions."
+              "description": "Product dimensions.",
+              "type": "object"
             },
             "shipping_class": {
               "required": false,
-              "description": "Shipping class slug."
+              "description": "Shipping class slug.",
+              "type": "string"
             },
             "reviews_allowed": {
               "required": false,
-              "description": "Allow reviews."
+              "description": "Allow reviews.",
+              "type": "boolean"
             },
             "upsell_ids": {
               "required": false,
-              "description": "List of up-sell products IDs."
+              "description": "List of up-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "cross_sell_ids": {
               "required": false,
-              "description": "List of cross-sell products IDs."
+              "description": "List of cross-sell products IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "parent_id": {
               "required": false,
-              "description": "Product parent ID."
+              "description": "Product parent ID.",
+              "type": "integer"
             },
             "purchase_note": {
               "required": false,
-              "description": "Optional note to send the customer after purchase."
+              "description": "Optional note to send the customer after purchase.",
+              "type": "string"
             },
             "categories": {
               "required": false,
-              "description": "List of categories."
+              "description": "List of categories.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Category ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Category name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Category slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "tags": {
               "required": false,
-              "description": "List of tags."
+              "description": "List of tags.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Tag ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Tag name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "slug": {
+                    "description": "Tag slug.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  }
+                }
+              }
             },
             "images": {
               "required": false,
-              "description": "List of images."
+              "description": "List of images.",
+              "type": "object",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Image ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "date_created": {
+                    "description": "The date the image was created, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_created_gmt": {
+                    "description": "The date the image was created, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified": {
+                    "description": "The date the image was last modified, in the site's timezone.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "date_modified_gmt": {
+                    "description": "The date the image was last modified, as GMT.",
+                    "type": "date-time",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "src": {
+                    "description": "Image URL.",
+                    "type": "string",
+                    "format": "uri",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Image name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "alt": {
+                    "description": "Image alternative text.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Image position. 0 means that the image is featured.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "attributes": {
               "required": false,
-              "description": "List of attributes."
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "position": {
+                    "description": "Attribute position.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "visible": {
+                    "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "variation": {
+                    "description": "Define if the attribute can be used as variation.",
+                    "type": "boolean",
+                    "default": false,
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "options": {
+                    "description": "List of available term names of the attribute.",
+                    "type": "array",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "default_attributes": {
               "required": false,
-              "description": "Defaults variation attributes."
-            },
-            "variations": {
-              "required": false,
-              "description": "List of variations."
+              "description": "Defaults variation attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             },
             "menu_order": {
               "required": false,
-              "description": "Menu order, used to custom sort products."
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
             }
           }
         }
@@ -3824,6 +7925,1051 @@ woocommerce.get("").parsed_response
       "_links": {
         "self": "https://example.com/wp-json/wc/v2/products/batch"
       }
+    },
+    "/wc/v2/products/(?P<product_id>[\\d]+)/variations": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view",
+                "edit"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            },
+            "page": {
+              "required": false,
+              "default": 1,
+              "description": "Current page of the collection.",
+              "type": "integer"
+            },
+            "per_page": {
+              "required": false,
+              "default": 10,
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
+            },
+            "search": {
+              "required": false,
+              "description": "Limit results to those matching a string.",
+              "type": "string"
+            },
+            "after": {
+              "required": false,
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
+            },
+            "before": {
+              "required": false,
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
+            },
+            "exclude": {
+              "required": false,
+              "default": [],
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "include": {
+              "required": false,
+              "default": [],
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "offset": {
+              "required": false,
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
+            },
+            "order": {
+              "required": false,
+              "default": "desc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
+            },
+            "orderby": {
+              "required": false,
+              "default": "date",
+              "enum": [
+                "date",
+                "id",
+                "include",
+                "title",
+                "slug"
+              ],
+              "description": "Sort collection by object attribute.",
+              "type": "string"
+            },
+            "parent": {
+              "required": false,
+              "default": [],
+              "description": "Limit result set to those of particular parent IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "parent_exclude": {
+              "required": false,
+              "default": [],
+              "description": "Limit result set to all items except those of a particular parent ID.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "slug": {
+              "required": false,
+              "description": "Limit result set to products with a specific slug.",
+              "type": "string"
+            },
+            "status": {
+              "required": false,
+              "default": "any",
+              "enum": [
+                "any",
+                "draft",
+                "pending",
+                "private",
+                "publish"
+              ],
+              "description": "Limit result set to products assigned a specific status.",
+              "type": "string"
+            },
+            "type": {
+              "required": false,
+              "enum": [
+                "simple",
+                "grouped",
+                "external",
+                "variable"
+              ],
+              "description": "Limit result set to products assigned a specific type.",
+              "type": "string"
+            },
+            "sku": {
+              "required": false,
+              "description": "Limit result set to products with a specific SKU.",
+              "type": "string"
+            },
+            "featured": {
+              "required": false,
+              "description": "Limit result set to featured products.",
+              "type": "boolean"
+            },
+            "category": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific category ID.",
+              "type": "string"
+            },
+            "tag": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific tag ID.",
+              "type": "string"
+            },
+            "shipping_class": {
+              "required": false,
+              "description": "Limit result set to products assigned a specific shipping class ID.",
+              "type": "string"
+            },
+            "attribute": {
+              "required": false,
+              "description": "Limit result set to products with a specific attribute.",
+              "type": "string"
+            },
+            "attribute_term": {
+              "required": false,
+              "description": "Limit result set to products with a specific attribute term ID (required an assigned attribute).",
+              "type": "string"
+            },
+            "tax_class": {
+              "required": false,
+              "enum": [
+                "standard",
+                "reduced-rate",
+                "zero-rate",
+                "testin"
+              ],
+              "description": "Limit result set to products with a specific tax class.",
+              "type": "string"
+            },
+            "in_stock": {
+              "required": false,
+              "description": "Limit result set to products in stock or out of stock.",
+              "type": "boolean"
+            },
+            "on_sale": {
+              "required": false,
+              "description": "Limit result set to products on sale.",
+              "type": "boolean"
+            },
+            "min_price": {
+              "required": false,
+              "description": "Limit result set to products based on a minimum price.",
+              "type": "string"
+            },
+            "max_price": {
+              "required": false,
+              "description": "Limit result set to products based on a maximum price.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "description": {
+              "required": false,
+              "description": "Variation description.",
+              "type": "string"
+            },
+            "sku": {
+              "required": false,
+              "description": "Unique identifier.",
+              "type": "string"
+            },
+            "regular_price": {
+              "required": false,
+              "description": "Variation regular price.",
+              "type": "string"
+            },
+            "sale_price": {
+              "required": false,
+              "description": "Variation sale price.",
+              "type": "string"
+            },
+            "date_on_sale_from": {
+              "required": false,
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
+            },
+            "date_on_sale_to": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "visible": {
+              "required": false,
+              "default": true,
+              "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+              "type": "boolean"
+            },
+            "virtual": {
+              "required": false,
+              "default": false,
+              "description": "If the variation is virtual.",
+              "type": "boolean"
+            },
+            "downloadable": {
+              "required": false,
+              "default": false,
+              "description": "If the variation is downloadable.",
+              "type": "boolean"
+            },
+            "downloads": {
+              "required": false,
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "download_limit": {
+              "required": false,
+              "default": -1,
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
+            },
+            "download_expiry": {
+              "required": false,
+              "default": -1,
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
+            },
+            "tax_status": {
+              "required": false,
+              "default": "taxable",
+              "enum": [
+                "taxable",
+                "shipping",
+                "none"
+              ],
+              "description": "Tax status.",
+              "type": "string"
+            },
+            "tax_class": {
+              "required": false,
+              "description": "Tax class.",
+              "type": "string"
+            },
+            "manage_stock": {
+              "required": false,
+              "default": false,
+              "description": "Stock management at variation level.",
+              "type": "boolean"
+            },
+            "stock_quantity": {
+              "required": false,
+              "description": "Stock quantity.",
+              "type": "integer"
+            },
+            "in_stock": {
+              "required": false,
+              "default": true,
+              "description": "Controls whether or not the variation is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
+            },
+            "backorders": {
+              "required": false,
+              "default": "no",
+              "enum": [
+                "no",
+                "notify",
+                "yes"
+              ],
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
+            },
+            "weight": {
+              "required": false,
+              "description": "Variation weight (kg).",
+              "type": "string"
+            },
+            "dimensions": {
+              "required": false,
+              "description": "Variation dimensions.",
+              "type": "object"
+            },
+            "shipping_class": {
+              "required": false,
+              "description": "Shipping class slug.",
+              "type": "string"
+            },
+            "image": {
+              "required": false,
+              "description": "Variation image data.",
+              "type": "object"
+            },
+            "attributes": {
+              "required": false,
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "menu_order": {
+              "required": false,
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/products/(?P<product_id>[\\d]+)/variations/(?P<id>[\\d]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the variation.",
+              "type": "integer"
+            },
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view",
+                "edit"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the variation.",
+              "type": "integer"
+            },
+            "description": {
+              "required": false,
+              "description": "Variation description.",
+              "type": "string"
+            },
+            "sku": {
+              "required": false,
+              "description": "Unique identifier.",
+              "type": "string"
+            },
+            "regular_price": {
+              "required": false,
+              "description": "Variation regular price.",
+              "type": "string"
+            },
+            "sale_price": {
+              "required": false,
+              "description": "Variation sale price.",
+              "type": "string"
+            },
+            "date_on_sale_from": {
+              "required": false,
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
+            },
+            "date_on_sale_to": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "visible": {
+              "required": false,
+              "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+              "type": "boolean"
+            },
+            "virtual": {
+              "required": false,
+              "description": "If the variation is virtual.",
+              "type": "boolean"
+            },
+            "downloadable": {
+              "required": false,
+              "description": "If the variation is downloadable.",
+              "type": "boolean"
+            },
+            "downloads": {
+              "required": false,
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "download_limit": {
+              "required": false,
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
+            },
+            "download_expiry": {
+              "required": false,
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
+            },
+            "tax_status": {
+              "required": false,
+              "enum": [
+                "taxable",
+                "shipping",
+                "none"
+              ],
+              "description": "Tax status.",
+              "type": "string"
+            },
+            "tax_class": {
+              "required": false,
+              "description": "Tax class.",
+              "type": "string"
+            },
+            "manage_stock": {
+              "required": false,
+              "description": "Stock management at variation level.",
+              "type": "boolean"
+            },
+            "stock_quantity": {
+              "required": false,
+              "description": "Stock quantity.",
+              "type": "integer"
+            },
+            "in_stock": {
+              "required": false,
+              "description": "Controls whether or not the variation is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
+            },
+            "backorders": {
+              "required": false,
+              "enum": [
+                "no",
+                "notify",
+                "yes"
+              ],
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
+            },
+            "weight": {
+              "required": false,
+              "description": "Variation weight (kg).",
+              "type": "string"
+            },
+            "dimensions": {
+              "required": false,
+              "description": "Variation dimensions.",
+              "type": "object"
+            },
+            "shipping_class": {
+              "required": false,
+              "description": "Shipping class slug.",
+              "type": "string"
+            },
+            "image": {
+              "required": false,
+              "description": "Variation image data.",
+              "type": "object"
+            },
+            "attributes": {
+              "required": false,
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "menu_order": {
+              "required": false,
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the variation.",
+              "type": "integer"
+            },
+            "force": {
+              "required": false,
+              "default": false,
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/products/(?P<product_id>[\\d]+)/variations/batch": {
+      "namespace": "wc/v2",
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "product_id": {
+              "required": false,
+              "description": "Unique identifier for the variable product.",
+              "type": "integer"
+            },
+            "description": {
+              "required": false,
+              "description": "Variation description.",
+              "type": "string"
+            },
+            "sku": {
+              "required": false,
+              "description": "Unique identifier.",
+              "type": "string"
+            },
+            "regular_price": {
+              "required": false,
+              "description": "Variation regular price.",
+              "type": "string"
+            },
+            "sale_price": {
+              "required": false,
+              "description": "Variation sale price.",
+              "type": "string"
+            },
+            "date_on_sale_from": {
+              "required": false,
+              "description": "Start date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_from_gmt": {
+              "required": false,
+              "description": "Start date of sale price, as GMT.",
+              "type": "date-time"
+            },
+            "date_on_sale_to": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "date_on_sale_to_gmt": {
+              "required": false,
+              "description": "End date of sale price, in the site's timezone.",
+              "type": "date-time"
+            },
+            "visible": {
+              "required": false,
+              "description": "Define if the attribute is visible on the \"Additional information\" tab in the product's page.",
+              "type": "boolean"
+            },
+            "virtual": {
+              "required": false,
+              "description": "If the variation is virtual.",
+              "type": "boolean"
+            },
+            "downloadable": {
+              "required": false,
+              "description": "If the variation is downloadable.",
+              "type": "boolean"
+            },
+            "downloads": {
+              "required": false,
+              "description": "List of downloadable files.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "File MD5 hash.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "name": {
+                    "description": "File name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "file": {
+                    "description": "File URL.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "download_limit": {
+              "required": false,
+              "description": "Number of times downloadable files can be downloaded after purchase.",
+              "type": "integer"
+            },
+            "download_expiry": {
+              "required": false,
+              "description": "Number of days until access to downloadable files expires.",
+              "type": "integer"
+            },
+            "tax_status": {
+              "required": false,
+              "enum": [
+                "taxable",
+                "shipping",
+                "none"
+              ],
+              "description": "Tax status.",
+              "type": "string"
+            },
+            "tax_class": {
+              "required": false,
+              "description": "Tax class.",
+              "type": "string"
+            },
+            "manage_stock": {
+              "required": false,
+              "description": "Stock management at variation level.",
+              "type": "boolean"
+            },
+            "stock_quantity": {
+              "required": false,
+              "description": "Stock quantity.",
+              "type": "integer"
+            },
+            "in_stock": {
+              "required": false,
+              "description": "Controls whether or not the variation is listed as \"in stock\" or \"out of stock\" on the frontend.",
+              "type": "boolean"
+            },
+            "backorders": {
+              "required": false,
+              "enum": [
+                "no",
+                "notify",
+                "yes"
+              ],
+              "description": "If managing stock, this controls if backorders are allowed.",
+              "type": "string"
+            },
+            "weight": {
+              "required": false,
+              "description": "Variation weight (kg).",
+              "type": "string"
+            },
+            "dimensions": {
+              "required": false,
+              "description": "Variation dimensions.",
+              "type": "object"
+            },
+            "shipping_class": {
+              "required": false,
+              "description": "Shipping class slug.",
+              "type": "string"
+            },
+            "image": {
+              "required": false,
+              "description": "Variation image data.",
+              "type": "object"
+            },
+            "attributes": {
+              "required": false,
+              "description": "List of attributes.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Attribute ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "name": {
+                    "description": "Attribute name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "option": {
+                    "description": "Selected attribute term name.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            },
+            "menu_order": {
+              "required": false,
+              "description": "Menu order, used to custom sort products.",
+              "type": "integer"
+            },
+            "meta_data": {
+              "required": false,
+              "description": "Meta data.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Meta ID.",
+                    "type": "integer",
+                    "context": [
+                      "view",
+                      "edit"
+                    ],
+                    "readonly": true
+                  },
+                  "key": {
+                    "description": "Meta key.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  },
+                  "value": {
+                    "description": "Meta value.",
+                    "type": "string",
+                    "context": [
+                      "view",
+                      "edit"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "/wc/v2/reports/sales": {
       "namespace": "wc/v2",
@@ -3842,7 +8988,8 @@ woocommerce.get("").parsed_response
               "enum": [
                 "view"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "period": {
               "required": false,
@@ -3852,15 +8999,18 @@ woocommerce.get("").parsed_response
                 "last_month",
                 "year"
               ],
-              "description": "Report period."
+              "description": "Report period.",
+              "type": "string"
             },
             "date_min": {
               "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format."
+              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.",
+              "type": "string"
             },
             "date_max": {
               "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format."
+              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.",
+              "type": "string"
             }
           }
         }
@@ -3886,7 +9036,8 @@ woocommerce.get("").parsed_response
               "enum": [
                 "view"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "period": {
               "required": false,
@@ -3896,15 +9047,18 @@ woocommerce.get("").parsed_response
                 "last_month",
                 "year"
               ],
-              "description": "Report period."
+              "description": "Report period.",
+              "type": "string"
             },
             "date_min": {
               "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format."
+              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.",
+              "type": "string"
             },
             "date_max": {
               "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format."
+              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.",
+              "type": "string"
             }
           }
         }
@@ -3930,7 +9084,8 @@ woocommerce.get("").parsed_response
               "enum": [
                 "view"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         }
@@ -3938,6 +9093,416 @@ woocommerce.get("").parsed_response
       "_links": {
         "self": "https://example.com/wp-json/wc/v2/reports"
       }
+    },
+    "/wc/v2/settings": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/settings"
+      }
+    },
+    "/wc/v2/settings/(?P<group_id>[\\w-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "group": {
+              "required": false,
+              "description": "Settings group ID.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/settings/(?P<group_id>[\\w-]+)/batch": {
+      "namespace": "wc/v2",
+      "methods": [
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "group": {
+              "required": false,
+              "description": "Settings group ID.",
+              "type": "string"
+            },
+            "value": {
+              "required": false,
+              "description": "Setting value.",
+              "type": "mixed"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/settings/(?P<group_id>[\\w-]+)/(?P<id>[\\w-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "group": {
+              "required": false,
+              "description": "Settings group ID.",
+              "type": "string"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "group": {
+              "required": false,
+              "description": "Settings group ID.",
+              "type": "string"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            },
+            "value": {
+              "required": false,
+              "description": "Setting value.",
+              "type": "mixed"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/shipping/zones": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": []
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "name": {
+              "required": true,
+              "description": "Shipping zone name.",
+              "type": "string"
+            },
+            "order": {
+              "required": false,
+              "description": "Shipping zone order.",
+              "type": "integer"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/shipping/zones"
+      }
+    },
+    "/wc/v2/shipping/zones/(?P<id>[\\d-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique ID for the resource.",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique ID for the resource.",
+              "type": "integer"
+            },
+            "name": {
+              "required": false,
+              "description": "Shipping zone name.",
+              "type": "string"
+            },
+            "order": {
+              "required": false,
+              "description": "Shipping zone order.",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique ID for the resource.",
+              "type": "integer"
+            },
+            "force": {
+              "required": false,
+              "default": false,
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/shipping/zones/(?P<id>[\\d-]+)/locations": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique ID for the resource.",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique ID for the resource.",
+              "type": "integer"
+            },
+            "code": {
+              "required": false,
+              "description": "Shipping zone location code.",
+              "type": "string"
+            },
+            "type": {
+              "required": false,
+              "enum": [
+                "postcode",
+                "state",
+                "country",
+                "continent"
+              ],
+              "description": "Shipping zone location type.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/shipping/zones/(?P<zone_id>[\\d-]+)/methods": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "zone_id": {
+              "required": false,
+              "description": "Unique ID for the zone.",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "args": {
+            "zone_id": {
+              "required": false,
+              "description": "Unique ID for the zone.",
+              "type": "integer"
+            },
+            "order": {
+              "required": false,
+              "description": "Shipping method sort order.",
+              "type": "integer"
+            },
+            "enabled": {
+              "required": false,
+              "description": "Shipping method enabled status.",
+              "type": "boolean"
+            },
+            "settings": {
+              "required": false,
+              "description": "Shipping method settings.",
+              "type": "object"
+            },
+            "method_id": {
+              "required": true,
+              "description": "Shipping method ID."
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/shipping/zones/(?P<zone_id>[\\d-]+)/methods/(?P<instance_id>[\\d-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "zone_id": {
+              "required": false,
+              "description": "Unique ID for the zone.",
+              "type": "integer"
+            },
+            "instance_id": {
+              "required": false,
+              "description": "Unique ID for the instance.",
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "zone_id": {
+              "required": false,
+              "description": "Unique ID for the zone.",
+              "type": "integer"
+            },
+            "instance_id": {
+              "required": false,
+              "description": "Unique ID for the instance.",
+              "type": "integer"
+            },
+            "order": {
+              "required": false,
+              "description": "Shipping method sort order.",
+              "type": "integer"
+            },
+            "enabled": {
+              "required": false,
+              "description": "Shipping method enabled status.",
+              "type": "boolean"
+            },
+            "settings": {
+              "required": false,
+              "description": "Shipping method settings.",
+              "type": "object"
+            }
+          }
+        },
+        {
+          "methods": [
+            "DELETE"
+          ],
+          "args": {
+            "zone_id": {
+              "required": false,
+              "description": "Unique ID for the zone.",
+              "type": "integer"
+            },
+            "instance_id": {
+              "required": false,
+              "description": "Unique ID for the instance.",
+              "type": "integer"
+            },
+            "force": {
+              "required": false,
+              "default": false,
+              "description": "Whether to bypass trash and force deletion.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
     },
     "/wc/v2/taxes/classes": {
       "namespace": "wc/v2",
@@ -3958,7 +9523,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -3969,7 +9535,8 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": true,
-              "description": "Tax class name."
+              "description": "Tax class name.",
+              "type": "string"
             }
           }
         }
@@ -3989,10 +9556,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "slug": {
+              "required": false,
+              "description": "Unique slug for the resource.",
+              "type": "string"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -4017,35 +9590,48 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -4054,7 +9640,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -4063,16 +9650,19 @@ woocommerce.get("").parsed_response
                 "id",
                 "order"
               ],
-              "description": "Sort collection by object attribute."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
             "class": {
               "required": false,
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate"
+                "zero-rate",
+                "testin"
               ],
-              "description": "Sort by tax class."
+              "description": "Sort by tax class.",
+              "type": "string"
             }
           }
         },
@@ -4083,46 +9673,56 @@ woocommerce.get("").parsed_response
           "args": {
             "country": {
               "required": false,
-              "description": "Country ISO 3166 code."
+              "description": "Country ISO 3166 code.",
+              "type": "string"
             },
             "state": {
               "required": false,
-              "description": "State code."
+              "description": "State code.",
+              "type": "string"
             },
             "postcode": {
               "required": false,
-              "description": "Postcode/ZIP."
+              "description": "Postcode / ZIP.",
+              "type": "string"
             },
             "city": {
               "required": false,
-              "description": "City name."
+              "description": "City name.",
+              "type": "string"
             },
             "rate": {
               "required": false,
-              "description": "Tax rate."
+              "description": "Tax rate.",
+              "type": "string"
             },
             "name": {
               "required": false,
-              "description": "Tax rate name."
+              "description": "Tax rate name.",
+              "type": "string"
             },
             "priority": {
               "required": false,
               "default": 1,
-              "description": "Tax priority."
+              "description": "Tax priority.",
+              "type": "integer"
             },
             "compound": {
               "required": false,
               "default": false,
-              "description": "Whether or not this is a compound rate."
+              "description": "Whether or not this is a compound rate.",
+              "type": "boolean"
             },
             "shipping": {
               "required": false,
               "default": true,
-              "description": "Whether or not this tax rate also gets applied to shipping."
+              "description": "Whether or not this tax rate also gets applied to shipping.",
+              "type": "boolean"
             },
             "order": {
               "required": false,
-              "description": "Indicates the order that will appear in queries."
+              "description": "Indicates the order that will appear in queries.",
+              "type": "integer"
             },
             "class": {
               "required": false,
@@ -4130,9 +9730,11 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate"
+                "zero-rate",
+                "testin"
               ],
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             }
           }
         }
@@ -4156,6 +9758,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -4163,7 +9770,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -4174,54 +9782,71 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "country": {
               "required": false,
-              "description": "Country ISO 3166 code."
+              "description": "Country ISO 3166 code.",
+              "type": "string"
             },
             "state": {
               "required": false,
-              "description": "State code."
+              "description": "State code.",
+              "type": "string"
             },
             "postcode": {
               "required": false,
-              "description": "Postcode/ZIP."
+              "description": "Postcode / ZIP.",
+              "type": "string"
             },
             "city": {
               "required": false,
-              "description": "City name."
+              "description": "City name.",
+              "type": "string"
             },
             "rate": {
               "required": false,
-              "description": "Tax rate."
+              "description": "Tax rate.",
+              "type": "string"
             },
             "name": {
               "required": false,
-              "description": "Tax rate name."
+              "description": "Tax rate name.",
+              "type": "string"
             },
             "priority": {
               "required": false,
-              "description": "Tax priority."
+              "description": "Tax priority.",
+              "type": "integer"
             },
             "compound": {
               "required": false,
-              "description": "Whether or not this is a compound rate."
+              "description": "Whether or not this is a compound rate.",
+              "type": "boolean"
             },
             "shipping": {
               "required": false,
-              "description": "Whether or not this tax rate also gets applied to shipping."
+              "description": "Whether or not this tax rate also gets applied to shipping.",
+              "type": "boolean"
             },
             "order": {
               "required": false,
-              "description": "Indicates the order that will appear in queries."
+              "description": "Indicates the order that will appear in queries.",
+              "type": "integer"
             },
             "class": {
               "required": false,
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate"
+                "zero-rate",
+                "testin"
               ],
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             }
           }
         },
@@ -4230,10 +9855,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -4256,52 +9887,64 @@ woocommerce.get("").parsed_response
           "args": {
             "country": {
               "required": false,
-              "description": "Country ISO 3166 code."
+              "description": "Country ISO 3166 code.",
+              "type": "string"
             },
             "state": {
               "required": false,
-              "description": "State code."
+              "description": "State code.",
+              "type": "string"
             },
             "postcode": {
               "required": false,
-              "description": "Postcode/ZIP."
+              "description": "Postcode / ZIP.",
+              "type": "string"
             },
             "city": {
               "required": false,
-              "description": "City name."
+              "description": "City name.",
+              "type": "string"
             },
             "rate": {
               "required": false,
-              "description": "Tax rate."
+              "description": "Tax rate.",
+              "type": "string"
             },
             "name": {
               "required": false,
-              "description": "Tax rate name."
+              "description": "Tax rate name.",
+              "type": "string"
             },
             "priority": {
               "required": false,
-              "description": "Tax priority."
+              "description": "Tax priority.",
+              "type": "integer"
             },
             "compound": {
               "required": false,
-              "description": "Whether or not this is a compound rate."
+              "description": "Whether or not this is a compound rate.",
+              "type": "boolean"
             },
             "shipping": {
               "required": false,
-              "description": "Whether or not this tax rate also gets applied to shipping."
+              "description": "Whether or not this tax rate also gets applied to shipping.",
+              "type": "boolean"
             },
             "order": {
               "required": false,
-              "description": "Indicates the order that will appear in queries."
+              "description": "Indicates the order that will appear in queries.",
+              "type": "integer"
             },
             "class": {
               "required": false,
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate"
+                "zero-rate",
+                "testin"
               ],
-              "description": "Tax class."
+              "description": "Tax class.",
+              "type": "string"
             }
           }
         }
@@ -4321,6 +9964,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "webhook_id": {
+              "required": false,
+              "description": "Unique identifier for the webhook.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -4328,7 +9976,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         }
@@ -4345,6 +9994,16 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "webhook_id": {
+              "required": false,
+              "description": "Unique identifier for the webhook.",
+              "type": "integer"
+            },
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -4352,7 +10011,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         }
@@ -4377,43 +10037,58 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             },
             "page": {
               "required": false,
               "default": 1,
-              "description": "Current page of the collection."
+              "description": "Current page of the collection.",
+              "type": "integer"
             },
             "per_page": {
               "required": false,
               "default": 10,
-              "description": "Maximum number of items to be returned in result set."
+              "description": "Maximum number of items to be returned in result set.",
+              "type": "integer"
             },
             "search": {
               "required": false,
-              "description": "Limit results to those matching a string."
+              "description": "Limit results to those matching a string.",
+              "type": "string"
             },
             "after": {
               "required": false,
-              "description": "Limit response to resources published after a given ISO8601 compliant date."
+              "description": "Limit response to resources published after a given ISO8601 compliant date.",
+              "type": "string"
             },
             "before": {
               "required": false,
-              "description": "Limit response to resources published before a given ISO8601 compliant date."
+              "description": "Limit response to resources published before a given ISO8601 compliant date.",
+              "type": "string"
             },
             "exclude": {
               "required": false,
               "default": [],
-              "description": "Ensure result set excludes specific ids."
+              "description": "Ensure result set excludes specific IDs.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "include": {
               "required": false,
               "default": [],
-              "description": "Limit result set to specific ids."
+              "description": "Limit result set to specific ids.",
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
             },
             "offset": {
               "required": false,
-              "description": "Offset the result set by a specific number of items."
+              "description": "Offset the result set by a specific number of items.",
+              "type": "integer"
             },
             "order": {
               "required": false,
@@ -4422,7 +10097,8 @@ woocommerce.get("").parsed_response
                 "asc",
                 "desc"
               ],
-              "description": "Order sort attribute ascending or descending."
+              "description": "Order sort attribute ascending or descending.",
+              "type": "string"
             },
             "orderby": {
               "required": false,
@@ -4434,15 +10110,8 @@ woocommerce.get("").parsed_response
                 "title",
                 "slug"
               ],
-              "description": "Sort collection by object attribute."
-            },
-            "slug": {
-              "required": false,
-              "description": "Limit result set to posts with a specific slug."
-            },
-            "filter": {
-              "required": false,
-              "description": "Use WP Query arguments to modify the response; private query vars require appropriate authorization."
+              "description": "Sort collection by object attribute.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -4453,7 +10122,8 @@ woocommerce.get("").parsed_response
                 "paused",
                 "disabled"
               ],
-              "description": "Limit result set to webhooks assigned a specific status."
+              "description": "Limit result set to webhooks assigned a specific status.",
+              "type": "string"
             }
           }
         },
@@ -4464,7 +10134,8 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "A friendly name for the webhook."
+              "description": "A friendly name for the webhook.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -4474,17 +10145,23 @@ woocommerce.get("").parsed_response
                 "paused",
                 "disabled"
               ],
-              "description": "Webhook status."
+              "description": "Webhook status.",
+              "type": "string"
             },
             "topic": {
-              "required": true
+              "required": true,
+              "description": "Webhook topic.",
+              "type": "string"
             },
             "secret": {
-              "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
+              "required": true,
+              "description": "Webhook secret.",
+              "type": "string"
             },
             "delivery_url": {
-              "required": true
+              "required": true,
+              "description": "Webhook delivery URL.",
+              "type": "string"
             }
           }
         }
@@ -4508,6 +10185,11 @@ woocommerce.get("").parsed_response
             "GET"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "context": {
               "required": false,
               "default": "view",
@@ -4515,7 +10197,8 @@ woocommerce.get("").parsed_response
                 "view",
                 "edit"
               ],
-              "description": "Scope under which the request is made; determines fields present in response."
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
             }
           }
         },
@@ -4526,9 +10209,15 @@ woocommerce.get("").parsed_response
             "PATCH"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "name": {
               "required": false,
-              "description": "A friendly name for the webhook."
+              "description": "A friendly name for the webhook.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -4537,15 +10226,18 @@ woocommerce.get("").parsed_response
                 "paused",
                 "disabled"
               ],
-              "description": "Webhook status."
+              "description": "Webhook status.",
+              "type": "string"
             },
             "topic": {
               "required": false,
-              "description": "Webhook topic."
+              "description": "Webhook topic.",
+              "type": "string"
             },
             "secret": {
               "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
+              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided.",
+              "type": "string"
             }
           }
         },
@@ -4554,10 +10246,16 @@ woocommerce.get("").parsed_response
             "DELETE"
           ],
           "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "integer"
+            },
             "force": {
               "required": false,
               "default": false,
-              "description": "Required to be true, as resource does not support trashing."
+              "description": "Required to be true, as resource does not support trashing.",
+              "type": "boolean"
             }
           }
         }
@@ -4580,7 +10278,8 @@ woocommerce.get("").parsed_response
           "args": {
             "name": {
               "required": false,
-              "description": "A friendly name for the webhook."
+              "description": "A friendly name for the webhook.",
+              "type": "string"
             },
             "status": {
               "required": false,
@@ -4589,15 +10288,18 @@ woocommerce.get("").parsed_response
                 "paused",
                 "disabled"
               ],
-              "description": "Webhook status."
+              "description": "Webhook status.",
+              "type": "string"
             },
             "topic": {
               "required": false,
-              "description": "Webhook topic."
+              "description": "Webhook topic.",
+              "type": "string"
             },
             "secret": {
               "required": false,
-              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
+              "description": "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided.",
+              "type": "string"
             }
           }
         }
@@ -4605,6 +10307,279 @@ woocommerce.get("").parsed_response
       "_links": {
         "self": "https://example.com/wp-json/wc/v2/webhooks/batch"
       }
+    },
+    "/wc/v2/system_status": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/system_status"
+      }
+    },
+    "/wc/v2/system_status/tools": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view",
+                "edit"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/system_status/tools"
+      }
+    },
+    "/wc/v2/system_status/tools/(?P<id>[\\w-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "A unique identifier for the tool.",
+              "type": "string"
+            },
+            "name": {
+              "required": false,
+              "description": "Tool name.",
+              "type": "string"
+            },
+            "action": {
+              "required": false,
+              "description": "What running the tool will do.",
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "description": "Tool description.",
+              "type": "string"
+            },
+            "success": {
+              "required": false,
+              "description": "Did the tool run successfully?",
+              "type": "boolean"
+            },
+            "message": {
+              "required": false,
+              "description": "Tool return message.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/shipping_methods": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/shipping_methods"
+      }
+    },
+    "/wc/v2/shipping_methods/(?P<id>[\\w-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            },
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "/wc/v2/payment_gateways": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view",
+                "edit"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": "https://example.com/wp-json/wc/v2/payment_gateways"
+      }
+    },
+    "/wc/v2/payment_gateways/(?P<id>[\\w-]+)": {
+      "namespace": "wc/v2",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH"
+      ],
+      "endpoints": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            },
+            "context": {
+              "required": false,
+              "default": "view",
+              "enum": [
+                "view",
+                "edit"
+              ],
+              "description": "Scope under which the request is made; determines fields present in response.",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "methods": [
+            "POST",
+            "PUT",
+            "PATCH"
+          ],
+          "args": {
+            "id": {
+              "required": false,
+              "description": "Unique identifier for the resource.",
+              "type": "string"
+            },
+            "title": {
+              "required": false,
+              "description": "Payment gateway title on checkout.",
+              "type": "string"
+            },
+            "description": {
+              "required": false,
+              "description": "Payment gateway description on checkout.",
+              "type": "string"
+            },
+            "order": {
+              "required": false,
+              "description": "Payment gateway sort order.",
+              "type": "integer"
+            },
+            "enabled": {
+              "required": false,
+              "description": "Payment gateway enabled status.",
+              "type": "boolean"
+            },
+            "settings": {
+              "required": false,
+              "description": "Payment gateway settings.",
+              "type": "object"
+            }
+          }
+        }
+      ]
     }
   },
   "_links": {
