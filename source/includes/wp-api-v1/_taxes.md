@@ -503,9 +503,6 @@ woocommerce.get("taxes").parsed_response
 | `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                  |
 | `page`     | integer | Current page of the collection.                                                                                                            |
 | `per_page` | integer | Maximum number of items to be returned in result set.                                                                                      |
-| `search`   | string  | Limit results to those matching a string.                                                                                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                                                   |
-| `include`  | string  | Limit result set to specific ids.                                                                                                          |
 | `offset`   | integer | Offset the result set by a specific number of items.                                                                                       |
 | `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
 | `orderby`  | string  | Sort collection by object attribute. Default is `name`. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. |
