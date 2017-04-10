@@ -46,14 +46,14 @@ The following image illustrates how this works:
 
 #### Creating an authentication endpoint URL ####
 
-You must use the `/wc-auth/v2/authorize` endpoint and pass the above parameters as a query string.
+You must use the `/wc-auth/v1/authorize` endpoint and pass the above parameters as a query string.
 
 > Example of how to build an authentication URL:
 
 ```shell
 # Bash example
 STORE_URL='http://example.com'
-ENDPOINT='/wc-auth/v2/authorize'
+ENDPOINT='/wc-auth/v1/authorize'
 PARAMS="app_name=My App Name&scope=read_write&user_id=123&return_url=http://app.com/return-page&callback_url=https://app.com/callback-endpoint"
 QUERY_STRING="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$PARAMS")"
 QUERY_STRING=$(echo $QUERY_STRING | sed -e "s/%20/\+/g" -e "s/%3D/\=/g" -e "s/%26/\&/g")
@@ -65,7 +65,7 @@ echo "$STORE_URL$ENDPOINT?$QUERY_STRING"
 var querystring = require('querystring');
 
 var store_url = 'http://example.com';
-var endpoint = '/wc-auth/v2/authorize';
+var endpoint = '/wc-auth/v1/authorize';
 var params = {
   app_name: 'My App Name',
   scope: 'read_write',
@@ -81,7 +81,7 @@ console.log(store_url + endpoint + '?' + query_string);
 ```php
 <?php
 $store_url = 'http://example.com';
-$endpoint = '/wc-auth/v2/authorize';
+$endpoint = '/wc-auth/v1/authorize';
 $params = [
     'app_name' => 'My App Name',
     'scope' => 'write',
@@ -99,7 +99,7 @@ echo $store_url . $endpoint . '?' . $query_string;
 from urllib.parse import urlencode
 
 store_url = 'http://example.com'
-endpoint = '/wc-auth/v2/authorize'
+endpoint = '/wc-auth/v1/authorize'
 params = {
     "app_name": "My App Name",
     "scope": "read_write",
@@ -116,7 +116,7 @@ print("%s%s?%s" % (store_url, endpoint, query_string))
 require "uri"
 
 store_url = 'http://example.com'
-endpoint = '/wc-auth/v2/authorize'
+endpoint = '/wc-auth/v1/authorize'
 params = {
   app_name: "My App Name",
   scope: "read_write",
