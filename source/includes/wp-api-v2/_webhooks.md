@@ -29,6 +29,7 @@ Custom topics can also be used which map to a single hook name, for example you 
 
 Delivery is performed using `wp_remote_post()` (HTTP POST) and processed in the background by default using wp-cron. A few custom headers are added to the request to help the receiver process the webhook:
 
+* `X-WC-Webhook-Source`: `http://example.com/`.
 * `X-WC-Webhook-Topic` - e.g. `order.updated`.
 * `X-WC-Webhook-Resource` - e.g. `order`.
 * `X-WC-Webhook-Event` - e.g. `updated`.
@@ -93,16 +94,17 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 #### Request header properties ####
 
-|         Attribute          |   Type  |                                                              Description                                                              |
-|----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
+|         Attribute          |   Type  |                                                             Description                                                              |
+|----------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------|
 | `User-Agent`               | string  | The request user agent, default is "WooCommerce/{version} Hookshot (WordPress/{version})". <i class="label label-info">read-only</i> |
 | `Content-Type`             | string  | The request content-type, default is "application/json". <i class="label label-info">read-only</i>                                   |
-| `X-WC-Webhook-Topic`       | string  | The webhook topic. <i class="label label-info">read-only</i>                                                                          |
-| `X-WC-Webhook-Resource`    | string  | The webhook resource. <i class="label label-info">read-only</i>                                                                       |
-| `X-WC-Webhook-Event`       | string  | The webhook event. <i class="label label-info">read-only</i>                                                                          |
-| `X-WC-Webhook-Signature`   | string  | A base64 encoded HMAC-SHA256 hash of the payload. <i class="label label-info">read-only</i>                                           |
-| `X-WC-Webhook-ID`          | integer | The webhook's ID. <i class="label label-info">read-only</i>                                                                           |
-| `X-WC-Webhook-Delivery-ID` | integer | The delivery ID. <i class="label label-info">read-only</i>                                                                            |
+| `X-WC-Webhook-Source`      | string  | The webhook source. <i class="label label-info">read-only</i>                                                                        |
+| `X-WC-Webhook-Topic`       | string  | The webhook topic. <i class="label label-info">read-only</i>                                                                         |
+| `X-WC-Webhook-Resource`    | string  | The webhook resource. <i class="label label-info">read-only</i>                                                                      |
+| `X-WC-Webhook-Event`       | string  | The webhook event. <i class="label label-info">read-only</i>                                                                         |
+| `X-WC-Webhook-Signature`   | string  | A base64 encoded HMAC-SHA256 hash of the payload. <i class="label label-info">read-only</i>                                          |
+| `X-WC-Webhook-ID`          | integer | The webhook's ID. <i class="label label-info">read-only</i>                                                                          |
+| `X-WC-Webhook-Delivery-ID` | integer | The delivery ID. <i class="label label-info">read-only</i>                                                                           |
 
 ## Create a webhook ##
 
