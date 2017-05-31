@@ -10,7 +10,7 @@ The following table shows API versions present in each major version of WooComme
 |-------------|------------|------------|
 | `v1`        | 2.6.x or later | 4.4 or later |
 
-Prior to 2.6, WooCommerce had its own REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
+Prior to 2.6, WooCommerce has had a REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
 
 | API Version | WC Version | WP Version | Documentation |
 |-------------|------------|------------|---------------|
