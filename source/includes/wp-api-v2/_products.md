@@ -557,7 +557,7 @@ var data = {
         'Black',
         'Green'
       ]
-    }
+    },
     {
       name: 'Size',
       position: 0,
