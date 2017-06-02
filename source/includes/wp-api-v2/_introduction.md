@@ -234,12 +234,12 @@ wcapi = API(
 require "woocommerce_api"
 
 woocommerce = WooCommerce::API.new(
-  "http://example.com", # Your store URL
+  "https://example.com", # Your store URL
   "consumer_key", # Your consumer key
   "consumer_secret", # Your consumer secret
   {
-    wp_json: true, # Enable the WP REST API integration
-    version: "v3" # WooCommerce WP REST API version
+    wp_api: true, # Enable the WP REST API integration
+    version: "wc/v2" # WooCommerce WP REST API version
   }
 )
 ```
