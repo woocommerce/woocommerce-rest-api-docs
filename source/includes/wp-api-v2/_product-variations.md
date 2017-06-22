@@ -4,8 +4,8 @@ The product variations API allows you to create, view, update, and delete indivi
 
 ## Product variation properties ##
 
-| Attribute               | Type      | Description                                                                                                         |
-| ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
+|        Attribute        |    Type   |                                                     Description                                                     |
+|-------------------------|-----------|---------------------------------------------------------------------------------------------------------------------|
 | `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
 | `date_created`          | date-time | The date the variation was created, in the site's timezone. <i class="label label-info">read-only</i>               |
 | `date_modified`         | date-time | The date the variation was last modified, in the site's timezone. <i class="label label-info">read-only</i>         |
@@ -35,7 +35,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.     |
 | `backorders_allowed`    | boolean   | Shows if backorders are allowed. <i class="label label-info">read-only</i>                                          |
 | `backordered`           | boolean   | Shows if the variation is on backordered. <i class="label label-info">read-only</i>                                 |
-| `weight`                | string    | Variation weight (kg).                                                                                              |
+| `weight`                | string    | Variation weight.                                                                                                   |
 | `dimensions`            | object    | Variation dimensions. See [Product variation - Dimensions properties](#product-variation-dimensions-properties)     |
 | `shipping_class`        | string    | Shipping class slug.                                                                                                |
 | `shipping_class_id`     | string    | Shipping class ID. <i class="label label-info">read-only</i>                                                        |
@@ -54,11 +54,11 @@ The product variations API allows you to create, view, update, and delete indivi
 
 ### Product variation - Dimensions properties ###
 
-| Attribute | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| `length`  | string | Variation length (cm). |
-| `width`   | string | Variation width (cm).  |
-| `height`  | string | Variation height (cm). |
+| Attribute |  Type  |    Description    |
+|-----------|--------|-------------------|
+| `length`  | string | Variation length. |
+| `width`   | string | Variation width.  |
+| `height`  | string | Variation height. |
 
 ### Product variation - Image properties ###
 

@@ -4,8 +4,8 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ## Product properties ##
 
-| Attribute               | Type      | Description                                                                                                          |
-| ----------------------- | --------- | -------------------------------------------------------------------------------------------------------------------- |
+|        Attribute        |    Type   |                                                     Description                                                      |
+|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
 | `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                        |
 | `name`                  | string    | Product name.                                                                                                        |
 | `slug`                  | string    | Product slug.                                                                                                        |
@@ -48,7 +48,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `backorders_allowed`    | boolean   | Shows if backorders are allowed. <i class="label label-info">read-only</i>                                           |
 | `backordered`           | boolean   | Shows if the product is on backordered. <i class="label label-info">read-only</i>                                    |
 | `sold_individually`     | boolean   | Allow one item to be bought in a single order. Default is `false`.                                                   |
-| `weight`                | string    | Product weight (kg).                                                                                                 |
+| `weight`                | string    | Product weight.                                                                                                      |
 | `dimensions`            | object    | Product dimensions. See [Product - Dimensions properties](#product-dimensions-properties)                            |
 | `shipping_required`     | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                   |
 | `shipping_taxable`      | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                      |
@@ -82,11 +82,11 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Product - Dimensions properties ###
 
-| Attribute | Type   | Description          |
-| --------- | ------ | -------------------- |
-| `length`  | string | Product length (cm). |
-| `width`   | string | Product width (cm).  |
-| `height`  | string | Product height (cm). |
+| Attribute |  Type  |   Description   |
+|-----------|--------|-----------------|
+| `length`  | string | Product length. |
+| `width`   | string | Product width.  |
+| `height`  | string | Product height. |
 
 ### Product - Categories properties ###
 
