@@ -170,7 +170,7 @@ var WooCommerce = new WooCommerceAPI({
   url: 'https://example.com',
   consumerKey: 'consumer_key',
   consumerSecret: 'consumer_secret',
-  wp_api: true,
+  wpAPI: true,
   version: 'wc/v2'
 });
 ```
@@ -234,7 +234,7 @@ var WooCommerce = new WooCommerceAPI({
   url: 'https://example.com',
   consumerKey: 'consumer_key',
   consumerSecret: 'consumer_secret',
-  wp_api: true,
+  wpAPI: true,
   version: 'wc/v2',
   queryStringAuth: true // Force Basic Authentication as query string true and using under HTTPS
 });
@@ -365,4 +365,4 @@ If you are having trouble generating a correct signature, you'll want to review 
 * Twitter has great instructions on [generating signatures](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
 * Note that the request body is *not* signed as per the OAuth spec, see [Google's OAuth 1.0 extension](https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html) for details on why.
 * If including parameters in your request, it saves a lot of trouble if you can order your items alphabetically.
-* Authorization header is supported starting WooCommerce 3.0. 
+* Authorization header is supported starting WooCommerce 3.0.
