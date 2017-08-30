@@ -68,7 +68,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `attributes`            | array     | List of attributes. See [Product - Attributes properties](#product-attributes-properties)                            |
 | `default_attributes`    | array     | Defaults variation attributes. See [Product - Default attributes properties](#product-default-attributes-properties) |
 | `variations`            | array     | List of variations IDs. <i class="label label-info">read-only</i>                                                    |
-| `grouped_products`      | array     | List of grouped products ID. <i class="label label-info">read-only</i>                                               |
+| `grouped_products`      | array     | List of grouped products ID.                                                                                         |
 | `menu_order`            | integer   | Menu order, used to custom sort products.                                                                            |
 | `meta_data`             | array     | Meta data. See [Product - Meta data properties](#product-meta-data-properties)                                       |
 
