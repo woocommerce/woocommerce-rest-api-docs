@@ -6158,8 +6158,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Limit result set to products with a specific tax class.",
               "type": "string"
@@ -8113,8 +8112,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Limit result set to products with a specific tax class.",
               "type": "string"
@@ -9658,8 +9656,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Sort by tax class.",
               "type": "string"
@@ -9730,8 +9727,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Tax class.",
               "type": "string"
@@ -9842,8 +9838,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Tax class.",
               "type": "string"
@@ -9940,8 +9935,7 @@ woocommerce.get("").parsed_response
               "enum": [
                 "standard",
                 "reduced-rate",
-                "zero-rate",
-                "testin"
+                "zero-rate"
               ],
               "description": "Tax class.",
               "type": "string"

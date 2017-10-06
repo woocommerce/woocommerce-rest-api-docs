@@ -1490,8 +1490,8 @@ woocommerce.get("products").parsed_response
 
 #### Available parameters ####
 
-| Parameter        | Type    | Description                                                                                                                             |
-| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+|    Parameter     |   Type  |                                                               Description                                                               |
+|------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.            |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                                         |
 | `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                  |
@@ -1515,7 +1515,7 @@ woocommerce.get("products").parsed_response
 | `shipping_class` | string  | Limit result set to products assigned a specific shipping class ID.                                                                     |
 | `attribute`      | string  | Limit result set to products with a specific attribute.                                                                                 |
 | `attribute_term` | string  | Limit result set to products with a specific attribute term ID (required an assigned attribute).                                        |
-| `tax_class`      | string  | Limit result set to products with a specific tax class. Options: `standard`, `reduced-rate`, `zero-rate` and `testin`.                  |
+| `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
 | `in_stock`       | boolean | Limit result set to products in stock or out of stock.                                                                                  |
 | `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
