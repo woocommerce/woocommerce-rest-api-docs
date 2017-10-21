@@ -27,7 +27,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                    |
 | `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                    |
 | `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                      |
-| `date_on_sale_to_gmt`   | date-time | End date of sale price, in the site's timezone.                                                                      |
+| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                      |
 | `price_html`            | string    | Price formatted in HTML. <i class="label label-info">read-only</i>                                                   |
 | `on_sale`               | boolean   | Shows if the product is on sale. <i class="label label-info">read-only</i>                                           |
 | `purchasable`           | boolean   | Shows if the product can be bought. <i class="label label-info">read-only</i>                                        |
