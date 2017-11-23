@@ -41,7 +41,7 @@ print(wcapi.get("reports").json())
 ```
 
 ```php
-<?php print_r($woocommerce->reports->get()); ?>
+<?php print_r($woocommerce->get('reports')); ?>
 ```
 
 ```ruby
