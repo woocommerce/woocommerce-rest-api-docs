@@ -9,8 +9,8 @@ Use the following filters for any type of report to specify the period of sales:
 |   Filter   |  Type  |                                                                                Description                                                                                 |
 | ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `period`   | string | The supported periods are: `week`, `month`, `last_month`, and `year`. If you use an invalid period, `week` is used. If you don't specify a period, the current day is used |
-| `date_min` | string | Return sales for a specific start date. The date need to be in the `YYYY-MM-AA` format                                                                                     |
-| `date_max` | string | Return sales for a specific end date. The dates need to be in the `YYYY-MM-AA` format. Required to set the `filter[date_min]` too                                          |
+| `date_min` | string | Return sales for a specific start date. The date need to be in the `YYYY-MM-DD` format                                                                                     |
+| `date_max` | string | Return sales for a specific end date. The dates need to be in the `YYYY-MM-DD` format. Required to set the `filter[date_min]` too                                          |
 
 ## View List of Reports ##
 

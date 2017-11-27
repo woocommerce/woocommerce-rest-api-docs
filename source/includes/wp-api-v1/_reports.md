@@ -194,8 +194,8 @@ woocommerce.get("reports/sales", query).parsed_response
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
 | `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
-| `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.                             |
-| `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.                               |
+| `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.                             |
+| `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.                               |
 
 ## Retrieve top sellers report ##
 
@@ -298,5 +298,5 @@ woocommerce.get("reports/top_sellers", query).parsed_response
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
 | `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
-| `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.                             |
-| `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.                               |
+| `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.                             |
+| `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.                               |

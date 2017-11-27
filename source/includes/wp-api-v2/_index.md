@@ -9002,12 +9002,12 @@ woocommerce.get("").parsed_response
             },
             "date_min": {
               "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.",
+              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.",
               "type": "string"
             },
             "date_max": {
               "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.",
+              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.",
               "type": "string"
             }
           }
@@ -9050,12 +9050,12 @@ woocommerce.get("").parsed_response
             },
             "date_min": {
               "required": false,
-              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-AA format.",
+              "description": "Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.",
               "type": "string"
             },
             "date_max": {
               "required": false,
-              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-AA format.",
+              "description": "Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.",
               "type": "string"
             }
           }
