@@ -24,7 +24,7 @@ The product categories API allows you to create, view, update, and delete indivi
 | `date_created`  | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_modified` | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
 | `src`           | string    | Image URL. In write-mode used to upload new images.                                                     |
-| `name`          | string    | Image name.                                                                                             |
+| `title`         | string    | Image name.                                                                                             |
 | `alt`           | string    | Image alternative text.                                                                                 |
 
 ## Create a product category ##
