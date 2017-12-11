@@ -18,7 +18,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                   |
 | `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                   |
 | `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                     |
-| `date_on_sale_to_gmt`   | date-time | End date of sale price, in the site's timezone.                                                                     |
+| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                     |
 | `on_sale`               | boolean   | Shows if the variation is on sale. <i class="label label-info">read-only</i>                                        |
 | `visible`               | boolean   | Define if the attribute is visible on the "Additional information" tab in the product's page. Default is `true`.    |
 | `purchasable`           | boolean   | Shows if the variation can be bought. <i class="label label-info">read-only</i>                                     |
