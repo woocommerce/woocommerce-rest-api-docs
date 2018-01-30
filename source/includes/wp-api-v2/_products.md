@@ -63,8 +63,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `parent_id`             | integer   | Product parent ID.                                                                                                   |
 | `purchase_note`         | string    | Optional note to send the customer after purchase.                                                                   |
 | `categories`            | array     | List of categories. See [Product - Categories properties](#product-categories-properties)                            |
-| `tags`                  | array     | List of tags. See [Product - Tags properties](#product-tags-properties)                                              |
-| `images`                | object    | List of images. See [Product - Images properties](#product-images-properties)                                        |
+| `tags`                  | array     | List of tags. See [Product - Tags properties](#product-tags-properties)                                              | array    | List of images. See [Product - Images properties](#product-images-properties)                                        |
 | `attributes`            | array     | List of attributes. See [Product - Attributes properties](#product-attributes-properties)                            |
 | `default_attributes`    | array     | Defaults variation attributes. See [Product - Default attributes properties](#product-default-attributes-properties) |
 | `variations`            | array     | List of variations IDs. <i class="label label-info">read-only</i>                                                    |
