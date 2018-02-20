@@ -53,7 +53,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `shipping_required`     | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                   |
 | `shipping_taxable`      | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                      |
 | `shipping_class`        | string    | Shipping class slug.                                                                                                 |
-| `shipping_class_id`     | string    | Shipping class ID. <i class="label label-info">read-only</i>                                                         |
+| `shipping_class_id`     | integer   | Shipping class ID. <i class="label label-info">read-only</i>                                                         |
 | `reviews_allowed`       | boolean   | Allow reviews. Default is `true`.                                                                                    |
 | `average_rating`        | string    | Reviews average rating. <i class="label label-info">read-only</i>                                                    |
 | `rating_count`          | integer   | Amount of reviews that the product have. <i class="label label-info">read-only</i>                                   |
