@@ -1,6 +1,6 @@
 # Payment gateways #
 
-The payment gateways API allows you to view, and update individual payment gateways.
+The payment gateways API allows you to view, and update individual payment gateways. Results are not paginated - all gateways will be returned.
 
 ## Payment gateway properties ##
 
