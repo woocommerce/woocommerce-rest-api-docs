@@ -39,11 +39,11 @@ The default response format is JSON. Requests with a message-body use plain JSON
 
 Some general information about responses:
 
-* Dates are returned in [RFC3339](http://www.ietf.org/rfc/rfc3339.txt) format in UTC timezone: `YYYY-MM-DDTHH:MM:SSZ`
+* Dates are returned in ISO8601 format: `YYYY-MM-DDTHH:MM:SS`
 * Resource IDs are returned as integers.
 * Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places.
 * Other amounts, such as item counts, are returned as integers.
-* Blank fields are generally included as `null` instead of being returned as blank strings or omitted.
+* Blank fields are generally included as `null` or emtpy string instead of being omitted.
 
 ### JSONP Support ###
 
