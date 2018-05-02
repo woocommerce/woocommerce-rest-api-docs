@@ -9,7 +9,7 @@ The product attributes API allows you to create, view, update, and delete indivi
 | `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                    |
 | `name`         | string  | Attribute name. <i class="label label-info">mandatory</i>                                        |
 | `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                  |
-| `type`         | string  | Type of attribute. Options: `select` and `text`. Default is `select`.                            |
+| `type`         | string  | Type of attribute. By default only `select` is supported.                           |
 | `order_by`     | string  | Default sort order. Options: `menu_order`, `name`, `name_num` and `id`. Default is `menu_order`. |
 | `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                           |
 
