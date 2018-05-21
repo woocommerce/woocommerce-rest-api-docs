@@ -22,6 +22,8 @@ Now that keys have been generated, you should see two new keys, a QRCode, and a 
 
 ![Generated REST API key](images/woocommerce-api-key-generated.png)
 
+If the WordPress user associated with an API key is deleted, the API key will cease to function. API keys are not transferred to other users.
+
 ### Auto generating API keys using our Application Authentication Endpoint ###
 
 This endpoint can be used by any APP to *allow users to generate API keys* for your APP. This makes integration with WooCommerce API easier because the user only needs to grant access to your APP via a URL. After being redirected back to your APP, the API keys will be sent back in a separate POST request.
