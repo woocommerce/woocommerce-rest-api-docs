@@ -8,7 +8,9 @@ The product variations API allows you to create, view, update, and delete indivi
 |-------------------------|-----------|---------------------------------------------------------------------------------------------------------------------|
 | `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
 | `date_created`          | date-time | The date the variation was created, in the site's timezone. <i class="label label-info">read-only</i>               |
+| `date_created_gmt`      | date-time | The date the variation was created, as GMT. <i class="label label-info">read-only</i>                               |
 | `date_modified`         | date-time | The date the variation was last modified, in the site's timezone. <i class="label label-info">read-only</i>         |
+| `date_modified_gmt`     | date-time | The date the variation was last modified, as GMT. <i class="label label-info">read-only</i>                         |
 | `description`           | string    | Variation description.                                                                                              |
 | `permalink`             | string    | Variation URL. <i class="label label-info">read-only</i>                                                            |
 | `sku`                   | string    | Unique identifier.                                                                                                  |
