@@ -177,7 +177,7 @@ curl -X POST https://example.com/wc-api/v2/orders \
       {
         "method_id": "flat_rate",
         "method_title": "Flat Rate",
-        "total": 10
+        "total": "10.00"
       }
     ]
   }
@@ -232,7 +232,7 @@ var data = {
       {
         method_id: 'flat_rate',
         method_title: 'Flat Rate',
-        total: 10
+        total: '10.00'
       }
     ]
   }
@@ -291,7 +291,7 @@ data = {
             {
                 "method_id": "flat_rate",
                 "method_title": "Flat Rate",
-                "total": 10
+                "total": "10.00"
             }
         ]
     }
@@ -349,7 +349,7 @@ $data = array(
             array(
                 'method_id' => 'flat_rate',
                 'method_title' => 'Flat Rate',
-                'total' => 10
+                'total' => '10.00'
             )
         )
     )
@@ -407,7 +407,7 @@ data = {
         {
           method_id: "flat_rate",
           method_title: "Flat Rate",
-          total: 10
+          total: "10.00"
         }
     ]
   }
