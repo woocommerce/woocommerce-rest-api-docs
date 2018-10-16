@@ -5,7 +5,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 ## Customer properties ##
 
 | Attribute            | Type      | Description                                                                                                |
-| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------- |
+|----------------------|-----------|------------------------------------------------------------------------------------------------------------|
 | `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                              |
 | `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_created_gmt`   | date-time | The date the order was created, as GMT. <i class="label label-info">read-only</i>                          |
@@ -20,15 +20,13 @@ The customer API allows you to create, view, update, and delete individual, or a
 | `billing`            | object    | List of billing address data. See [Customer - Billing properties](#customer-billing-properties)            |
 | `shipping`           | object    | List of shipping address data. See [Customer - Shipping properties](#customer-shipping-properties)         |
 | `is_paying_customer` | bool      | Is the customer a paying customer? <i class="label label-info">read-only</i>                               |
-| `orders_count`       | integer   | Quantity of orders made by the customer. <i class="label label-info">read-only</i>                         |
-| `total_spent`        | string    | Total amount spent. <i class="label label-info">read-only</i>                                              |
 | `avatar_url`         | string    | Avatar URL. <i class="label label-info">read-only</i>                                                      |
 | `meta_data`          | array     | Meta data. See [Customer - Meta data properties](#customer-meta-data-properties)                           |
 
 ### Customer - Billing properties ###
 
 | Attribute    | Type   | Description                                          |
-| ------------ | ------ | ---------------------------------------------------- |
+|--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -44,7 +42,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 ### Customer - Shipping properties ###
 
 | Attribute    | Type   | Description                                          |
-| ------------ | ------ | ---------------------------------------------------- |
+|--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -58,7 +56,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 ### Customer - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -295,8 +293,6 @@ woocommerce.post("customers", data).parsed_response
     "country": "US"
   },
   "is_paying_customer": false,
-  "orders_count": 0,
-  "total_spent": "0.00",
   "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
   "meta_data": [],
   "_links": {
@@ -389,8 +385,6 @@ woocommerce.get("customers/25").parsed_response
     "country": "US"
   },
   "is_paying_customer": false,
-  "orders_count": 0,
-  "total_spent": "0.00",
   "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
   "meta_data": [],
   "_links": {
@@ -484,8 +478,6 @@ woocommerce.get("customers").parsed_response
       "country": "BR"
     },
     "is_paying_customer": false,
-    "orders_count": 0,
-    "total_spent": "0.00",
     "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
     "meta_data": [],
     "_links": {
@@ -537,8 +529,6 @@ woocommerce.get("customers").parsed_response
       "country": "US"
     },
     "is_paying_customer": false,
-    "orders_count": 0,
-    "total_spent": "0.00",
     "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
     "meta_data": [],
     "_links": {
@@ -700,8 +690,6 @@ woocommerce.put("customers/25", data).parsed_response
     "country": "US"
   },
   "is_paying_customer": false,
-  "orders_count": 0,
-  "total_spent": "0.00",
   "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
   "meta_data": [],
   "_links": {
@@ -794,8 +782,6 @@ woocommerce.delete("customers/25", force: true).parsed_response
     "country": "US"
   },
   "is_paying_customer": false,
-  "orders_count": 0,
-  "total_spent": "0.00",
   "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
   "meta_data": [],
   "_links": {
@@ -1279,8 +1265,6 @@ woocommerce.post("customers/batch", data).parsed_response
         "country": "US"
       },
       "is_paying_customer": false,
-      "orders_count": 0,
-      "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/6ad0b094bac53a85bb282ccdb3958279?s=96",
       "meta_data": [],
       "_links": {
@@ -1332,8 +1316,6 @@ woocommerce.post("customers/batch", data).parsed_response
         "country": "BR"
       },
       "is_paying_customer": false,
-      "orders_count": 0,
-      "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/ea9ad095f2970f27cbff07e7f5e99453?s=96",
       "meta_data": [],
       "_links": {
@@ -1387,8 +1369,6 @@ woocommerce.post("customers/batch", data).parsed_response
         "country": "BR"
       },
       "is_paying_customer": false,
-      "orders_count": 0,
-      "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/be7b5febff88a2d947c3289e90cdf017?s=96",
       "meta_data": [],
       "_links": {
@@ -1442,8 +1422,6 @@ woocommerce.post("customers/batch", data).parsed_response
         "country": "US"
       },
       "is_paying_customer": false,
-      "orders_count": 0,
-      "total_spent": "0.00",
       "avatar_url": "https://secure.gravatar.com/avatar/8eb1b522f60d11fa897de1dc6351b7e8?s=96",
       "meta_data": [],
       "_links": {
