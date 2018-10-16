@@ -6,12 +6,14 @@ Order notes are added by administrators and programmatically to store data about
 ## Order note properties ##
 
 | Attribute          | Type      | Description                                                                                                                                      |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                    |
+| `author`           | string    | Order note author. <i class="label label-info">read-only</i>                                                                                     |
 | `date_created`     | date-time | The date the order note was created, in the site's timezone. <i class="label label-info">read-only</i>                                           |
 | `date_created_gmt` | date-time | The date the order note was created, as GMT. <i class="label label-info">read-only</i>                                                           |
 | `note`             | string    | Order note content. <i class="label label-info">mandatory</i>                                                                                    |
 | `customer_note`    | boolean   | If true, the note will be shown to customers and they will be notified. If false, the note will be for admin reference only. Default is `false`. |
+| `added_by_user`    | boolean   | If true, this note will be attributed to the current user. If false, the note will be attributed to the system. Default is `false`.              |
 
 ## Create an order note ##
 
@@ -76,6 +78,7 @@ woocommerce.post("orders/723/notes", data).parsed_response
 ```json
 {
   "id": 281,
+  "author": "system",
   "date_created": "2017-03-21T16:46:41",
   "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
@@ -141,6 +144,7 @@ woocommerce.get("orders/723/notes/281").parsed_response
 ```json
 {
   "id": 281,
+  "author": "system",
   "date_created": "2017-03-21T16:46:41",
   "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
@@ -207,6 +211,7 @@ woocommerce.get("orders/723/notes").parsed_response
 [
   {
     "id": 281,
+    "author": "system",
     "date_created": "2017-03-21T16:46:41",
     "date_created_gmt": "2017-03-21T19:46:41",
     "note": "Order ok!!!",
@@ -231,6 +236,7 @@ woocommerce.get("orders/723/notes").parsed_response
   },
   {
     "id": 280,
+    "author": "system",
     "date_created": "2017-03-21T16:16:58",
     "date_created_gmt": "2017-03-21T19:16:58",
     "note": "Order status changed from On hold to Completed.",
@@ -255,6 +261,7 @@ woocommerce.get("orders/723/notes").parsed_response
   },
   {
     "id": 279,
+    "author": "system",
     "date_created": "2017-03-21T16:16:46",
     "date_created_gmt": "2017-03-21T19:16:46",
     "note": "Awaiting BACS payment Order status changed from Pending payment to On hold.",
@@ -282,10 +289,10 @@ woocommerce.get("orders/723/notes").parsed_response
 
 #### Available parameters ####
 
-| Parameter  | Type    | Description                                                                                                                  |
-| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
-| `type`     | string  | Limit result to customers or internal notes. Options: `any`, `customer` and `internal`. Default is `any`.                    |
+| Parameter | Type   | Description                                                                                                                  |
+|-----------|--------|------------------------------------------------------------------------------------------------------------------------------|
+| `context` | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `type`    | string | Limit result to customers or internal notes. Options: `any`, `customer` and `internal`. Default is `any`.                    |
 
 ## Delete an order note ##
 
@@ -328,6 +335,7 @@ woocommerce.delete("orders/723/notes/281", force: true).parsed_response
 ```json
 {
   "id": 281,
+  "author": "system",
   "date_created": "2017-03-21T16:46:41",
   "date_created_gmt": "2017-03-21T19:46:41",
   "note": "Order ok!!!",
@@ -353,6 +361,6 @@ woocommerce.delete("orders/723/notes/281", force: true).parsed_response
 ```
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
+| Parameter | Type   | Description                                                   |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
