@@ -5,13 +5,14 @@ The refunds API allows you to create, view, and delete individual refunds.
 ## Order refund properties ##
 
 | Attribute          | Type      | Description                                                                                                                      |
-| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
 | `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                    |
 | `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                         |
 | `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                         |
 | `amount`           | string    | Refund amount.                                                                                                                   |
 | `reason`           | string    | Reason for refund.                                                                                                               |
 | `refunded_by`      | integer   | User ID of user who created the refund.                                                                                          |
+| `refunded_payment` | boolean   | If the payment was refunded via the API. See `api_refund`. <i class="label label-info">read-only</i>                             |
 | `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                         |
 | `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                 |
 | `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i> |
@@ -19,7 +20,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 ### Order refund - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -27,7 +28,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 ### Order refund - Line items properties ###
 
 | Attribute      | Type    | Description                                                                                                                 |
-| -------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+|----------------|---------|-----------------------------------------------------------------------------------------------------------------------------|
 | `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                          |
 | `name`         | string  | Product name.                                                                                                               |
 | `product_id`   | integer | Product ID.                                                                                                                 |
@@ -110,6 +111,8 @@ woocommerce.post("orders/723/refunds", data).parsed_response
   "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "refunded_by": 1,
+  "refunded_payment": false,
   "meta_data": [],
   "line_items": [],
   "_links": {
@@ -177,6 +180,8 @@ woocommerce.get("orders/723/refunds/726").parsed_response
   "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "refunded_by": 1,
+  "refunded_payment": false,
   "meta_data": [],
   "line_items": [],
   "_links": {
@@ -201,7 +206,7 @@ woocommerce.get("orders/723/refunds/726").parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                    Description                    |
+| Parameter | Type   | Description                                       |
 |-----------|--------|---------------------------------------------------|
 | `dp`      | string | Number of decimal points to use in each resource. |
 
@@ -252,6 +257,7 @@ woocommerce.get("orders/723/refunds").parsed_response
     "amount": "10.00",
     "reason": "",
     "refunded_by": 1,
+    "refunded_payment": false,
     "meta_data": [],
     "line_items": [],
     "_links": {
@@ -279,6 +285,7 @@ woocommerce.get("orders/723/refunds").parsed_response
     "amount": "9.00",
     "reason": "",
     "refunded_by": 1,
+    "refunded_payment": false,
     "meta_data": [],
     "line_items": [
       {
@@ -328,7 +335,7 @@ woocommerce.get("orders/723/refunds").parsed_response
 #### Available parameters ####
 
 | Parameter        | Type    | Description                                                                                                                  |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
 | `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
@@ -389,6 +396,8 @@ woocommerce.delete("orders/723/refunds/726", force: true).parsed_response
   "date_created_gmt": "2017-03-21T20:07:11",
   "amount": "10.00",
   "reason": "",
+  "refunded_by": 1,
+  "refunded_payment": false,
   "meta_data": [],
   "line_items": [],
   "_links": {
@@ -413,6 +422,6 @@ woocommerce.delete("orders/723/refunds/726", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
+| Parameter | Type   | Description                                                   |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
