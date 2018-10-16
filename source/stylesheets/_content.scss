@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM CONTENT STYLES
+////////////////////////////////////////////////////////////////////////////////
+.content {
+  a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  aside {
+    color: #fff;
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
