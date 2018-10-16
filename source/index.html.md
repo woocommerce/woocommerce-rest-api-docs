@@ -1,5 +1,5 @@
 ---
-title: WooCommerce REST API Documentation - WP REST API v2
+title: WooCommerce REST API Documentation - WP REST API v3
 
 language_tabs:
   - shell: cURL
@@ -17,34 +17,34 @@ toc_footers:
   - <a href="https://github.com/tripit/slate">Documentation Powered by Slate</a>
 
 includes:
-  - wp-api-v2/introduction
-  - wp-api-v2/authentication
-  - wp-api-v2/index
-  - wp-api-v2/coupons
-  - wp-api-v2/customers
-  - wp-api-v2/orders
-  - wp-api-v2/order-notes
-  - wp-api-v2/order-refunds
-  - wp-api-v2/products
-  - wp-api-v2/product-variations
-  - wp-api-v2/product-attributes
-  - wp-api-v2/product-attribute-terms
-  - wp-api-v2/product-categories
-  - wp-api-v2/product-shipping-classes
-  - wp-api-v2/product-tags
-  - wp-api-v2/reports
-  - wp-api-v2/taxes
-  - wp-api-v2/tax-classes
-  - wp-api-v2/webhooks
-  - wp-api-v2/settings
-  - wp-api-v2/setting-options
-  - wp-api-v2/payment-gateways
-  - wp-api-v2/shipping-zones
-  - wp-api-v2/shipping-zone-locations
-  - wp-api-v2/shipping-zone-methods
-  - wp-api-v2/shipping-methods
-  - wp-api-v2/system-status
-  - wp-api-v2/system-status-tools
+  - wp-api-v3/introduction
+  - wp-api-v3/authentication
+  - wp-api-v3/index
+  - wp-api-v3/coupons
+  - wp-api-v3/customers
+  - wp-api-v3/orders
+  - wp-api-v3/order-notes
+  - wp-api-v3/order-refunds
+  - wp-api-v3/products
+  - wp-api-v3/product-variations
+  - wp-api-v3/product-attributes
+  - wp-api-v3/product-attribute-terms
+  - wp-api-v3/product-categories
+  - wp-api-v3/product-shipping-classes
+  - wp-api-v3/product-tags
+  - wp-api-v3/reports
+  - wp-api-v3/taxes
+  - wp-api-v3/tax-classes
+  - wp-api-v3/webhooks
+  - wp-api-v3/settings
+  - wp-api-v3/setting-options
+  - wp-api-v3/payment-gateways
+  - wp-api-v3/shipping-zones
+  - wp-api-v3/shipping-zone-locations
+  - wp-api-v3/shipping-zone-methods
+  - wp-api-v3/shipping-methods
+  - wp-api-v3/system-status
+  - wp-api-v3/system-status-tools
 
 search: false
 ---
