@@ -52,7 +52,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Billing properties ###
 
 | Attribute    | Type   | Description                                          |
-| ------------ | ------ | ---------------------------------------------------- |
+|--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -68,7 +68,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Shipping properties ###
 
 | Attribute    | Type   | Description                                          |
-| ------------ | ------ | ---------------------------------------------------- |
+|--------------|--------|------------------------------------------------------|
 | `first_name` | string | First name.                                          |
 | `last_name`  | string | Last name.                                           |
 | `company`    | string | Company name.                                        |
@@ -82,7 +82,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -90,7 +90,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Line items properties ###
 
 | Attribute      | Type    | Description                                                                                                   |
-| -------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+|----------------|---------|---------------------------------------------------------------------------------------------------------------|
 | `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                            |
 | `name`         | string  | Product name.                                                                                                 |
 | `product_id`   | integer | Product ID.                                                                                                   |
@@ -109,7 +109,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Tax lines properties ###
 
 | Attribute            | Type    | Description                                                                         |
-| -------------------- | ------- | ----------------------------------------------------------------------------------- |
+|----------------------|---------|-------------------------------------------------------------------------------------|
 | `id`                 | integer | Item ID. <i class="label label-info">read-only</i>                                  |
 | `rate_code`          | string  | Tax rate code. <i class="label label-info">read-only</i>                            |
 | `rate_id`            | string  | Tax rate ID. <i class="label label-info">read-only</i>                              |
@@ -122,7 +122,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Shipping lines properties ###
 
 | Attribute      | Type    | Description                                                                                                   |
-| -------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+|----------------|---------|---------------------------------------------------------------------------------------------------------------|
 | `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                            |
 | `method_title` | string  | Shipping method name.                                                                                         |
 | `method_id`    | string  | Shipping method ID.                                                                                           |
@@ -134,7 +134,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Fee lines properties ###
 
 | Attribute    | Type    | Description                                                                                                   |
-| ------------ | ------- | ------------------------------------------------------------------------------------------------------------- |
+|--------------|---------|---------------------------------------------------------------------------------------------------------------|
 | `id`         | integer | Item ID. <i class="label label-info">read-only</i>                                                            |
 | `name`       | string  | Fee name.                                                                                                     |
 | `tax_class`  | string  | Tax class of fee.                                                                                             |
@@ -147,17 +147,17 @@ The orders API allows you to create, view, update, and delete individual, or a b
 ### Order - Coupon lines properties ###
 
 | Attribute      | Type    | Description                                                                |
-| -------------- | ------- | -------------------------------------------------------------------------- |
+|----------------|---------|----------------------------------------------------------------------------|
 | `id`           | integer | Item ID. <i class="label label-info">read-only</i>                         |
 | `code`         | string  | Coupon code.                                                               |
-| `discount`     | string  | Discount total.                                                            |
+| `discount`     | string  | Discount total. <i class="label label-info">read-only</i>                  |
 | `discount_tax` | string  | Discount total tax. <i class="label label-info">read-only</i>              |
 | `meta_data`    | array   | Meta data. See [Order - Meta data properties](#order-meta-data-properties) |
 
 ### Order - Refunds properties ###
 
 | Attribute | Type    | Description                                              |
-| --------- | ------- | -------------------------------------------------------- |
+|-----------|---------|----------------------------------------------------------|
 | `id`      | integer | Refund ID. <i class="label label-info">read-only</i>     |
 | `reason`  | string  | Refund reason. <i class="label label-info">read-only</i> |
 | `total`   | string  | Refund total. <i class="label label-info">read-only</i>  |
@@ -800,7 +800,7 @@ woocommerce.get("orders/727").parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                    Description                    |
+| Parameter | Type   | Description                                       |
 |-----------|--------|---------------------------------------------------|
 | `dp`      | string | Number of decimal points to use in each resource. |
 
@@ -1163,7 +1163,7 @@ woocommerce.get("orders").parsed_response
 #### Available parameters ####
 
 | Parameter        | Type    | Description                                                                                                                                                                     |
-| ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                    |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                                                                                 |
 | `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                          |
@@ -1177,7 +1177,7 @@ woocommerce.get("orders").parsed_response
 | `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                                                                   |
 | `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                                                             |
 | `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                                                           |
-| `status`         | string  | Limit result set to orders assigned a specific status. Options: `any`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded` and `failed`. Default is `any`. |
+| `status`         | string  | Limit result set to orders assigned a specific status. Options: `any`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed` and `trash`. Default is `any`. |
 | `customer`       | integer | Limit result set to orders assigned a specific customer.                                                                                                                        |
 | `product`        | integer | Limit result set to orders assigned a specific product.                                                                                                                         |
 | `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                                                                               |
@@ -1618,7 +1618,7 @@ woocommerce.delete("orders/727", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                               Description                               |
+| Parameter | Type   | Description                                                             |
 |-----------|--------|-------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the order, Default is `false`. |
 
