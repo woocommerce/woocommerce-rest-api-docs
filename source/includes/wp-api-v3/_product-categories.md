@@ -5,7 +5,7 @@ The product categories API allows you to create, view, update, and delete indivi
 ## Product category properties ##
 
 | Attribute     | Type    | Description                                                                                                      |
-| ------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+|---------------|---------|------------------------------------------------------------------------------------------------------------------|
 | `id`          | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                    |
 | `name`        | string  | Category name. <i class="label label-info">mandatory</i>                                                         |
 | `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                                                  |
@@ -19,14 +19,14 @@ The product categories API allows you to create, view, update, and delete indivi
 ### Product category - Image properties ###
 
 | Attribute           | Type      | Description                                                                                             |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+|---------------------|-----------|---------------------------------------------------------------------------------------------------------|
 | `id`                | integer   | Image ID.                                                                                               |
 | `date_created`      | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_created_gmt`  | date-time | The date the image was created, as GMT <i class="label label-info">read-only</i>                        |
 | `date_modified`     | date-time | The date the image was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
 | `date_modified_gmt` | date-time | The date the image was last modified, as GMT. <i class="label label-info">read-only</i>                 |
 | `src`               | string    | Image URL.                                                                                              |
-| `title`             | string    | Image name.                                                                                             |
+| `name`              | string    | Image name.                                                                                             |
 | `alt`               | string    | Image alternative text.                                                                                 |
 
 ## Create a product category ##
@@ -121,7 +121,7 @@ woocommerce.post("products/categories", data).parsed_response
     "date_modified": "2017-03-23T00:01:07",
     "date_modified_gmt": "2017-03-23T03:01:07",
     "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
-    "title": "",
+    "name": "",
     "alt": ""
   },
   "menu_order": 0,
@@ -192,7 +192,7 @@ woocommerce.get("products/categories/9").parsed_response
     "date_modified": "2017-03-23T00:01:07",
     "date_modified_gmt": "2017-03-23T03:01:07",
     "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
-    "title": "",
+    "name": "",
     "alt": ""
   },
   "menu_order": 0,
@@ -292,7 +292,7 @@ woocommerce.get("products/categories").parsed_response
       "date_modified": "2017-03-23T00:01:07",
       "date_modified_gmt": "2017-03-23T03:01:07",
       "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
-      "title": "",
+      "name": "",
       "alt": ""
     },
     "menu_order": 0,
@@ -446,7 +446,7 @@ woocommerce.get("products/categories").parsed_response
 #### Available parameters ####
 
 | Parameter    | Type    | Description                                                                                                                                  |
-| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
 | `page`       | integer | Current page of the collection. Default is `1`.                                                                                              |
 | `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
@@ -535,7 +535,7 @@ woocommerce.put("products/categories/9", data).parsed_response
     "date_modified": "2017-03-23T00:01:07",
     "date_modified_gmt": "2017-03-23T03:01:07",
     "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
-    "title": "",
+    "name": "",
     "alt": ""
   },
   "menu_order": 0,
@@ -608,7 +608,7 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
     "date_modified": "2017-03-23T00:01:07",
     "date_modified_gmt": "2017-03-23T03:01:07",
     "src": "https://example.com/wp-content/uploads/2017/03/T_2_front.jpg",
-    "title": "",
+    "name": "",
     "alt": ""
   },
   "menu_order": 0,
@@ -630,7 +630,7 @@ woocommerce.delete("products/categories/9", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
+| Parameter | Type   | Description                                                   |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 
