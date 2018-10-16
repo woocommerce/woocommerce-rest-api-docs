@@ -4,7 +4,7 @@ The product variations API allows you to create, view, update, and delete indivi
 
 ## Product variation properties ##
 
-|        Attribute        |    Type   |                                                     Description                                                     |
+| Attribute               | Type      | Description                                                                                                         |
 |-------------------------|-----------|---------------------------------------------------------------------------------------------------------------------|
 | `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                       |
 | `date_created`          | date-time | The date the variation was created, in the site's timezone. <i class="label label-info">read-only</i>               |
@@ -20,7 +20,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                   |
 | `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                   |
 | `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                     |
-| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                     |
+| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                                     |
 | `on_sale`               | boolean   | Shows if the variation is on sale. <i class="label label-info">read-only</i>                                        |
 | `visible`               | boolean   | Define if the attribute is visible on the "Additional information" tab in the product's page. Default is `true`.    |
 | `purchasable`           | boolean   | Shows if the variation can be bought. <i class="label label-info">read-only</i>                                     |
@@ -48,15 +48,15 @@ The product variations API allows you to create, view, update, and delete indivi
 
 ### Product variation - Downloads properties ###
 
-| Attribute | Type   | Description                                              |
-| --------- | ------ | -------------------------------------------------------- |
-| `id`      | string | File MD5 hash. <i class="label label-info">read-only</i> |
-| `name`    | string | File name.                                               |
-| `file`    | string | File URL.                                                |
+| Attribute | Type   | Description |
+|-----------|--------|-------------|
+| `id`      | string | File ID.    |
+| `name`    | string | File name.  |
+| `file`    | string | File URL.   |
 
 ### Product variation - Dimensions properties ###
 
-| Attribute |  Type  |    Description    |
+| Attribute | Type   | Description       |
 |-----------|--------|-------------------|
 | `length`  | string | Variation length. |
 | `width`   | string | Variation width.  |
@@ -65,7 +65,7 @@ The product variations API allows you to create, view, update, and delete indivi
 ### Product variation - Image properties ###
 
 | Attribute           | Type      | Description                                                                                             |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+|---------------------|-----------|---------------------------------------------------------------------------------------------------------|
 | `id`                | integer   | Image ID.                                                                                               |
 | `date_created`      | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_created_gmt`  | date-time | The date the image was created, as GMT. <i class="label label-info">read-only</i>                       |
@@ -79,7 +79,7 @@ The product variations API allows you to create, view, update, and delete indivi
 ### Product variation - Attributes properties ###
 
 | Attribute | Type    | Description                   |
-| --------- | ------- | ----------------------------- |
+|-----------|---------|-------------------------------|
 | `id`      | integer | Attribute ID.                 |
 | `name`    | string  | Attribute name.               |
 | `option`  | string  | Selected attribute term name. |
@@ -87,7 +87,7 @@ The product variations API allows you to create, view, update, and delete indivi
 ### Product variation - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -600,7 +600,7 @@ woocommerce.get("products/22/variations").parsed_response
 
 #### Available parameters ####
 
-|    Parameter     |   Type  |                                                               Description                                                               |
+| Parameter        | Type    | Description                                                                                                                             |
 |------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.            |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                                         |
@@ -893,7 +893,7 @@ woocommerce.delete("products/22/variations/733", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
+| Parameter | Type   | Description                                                   |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
 

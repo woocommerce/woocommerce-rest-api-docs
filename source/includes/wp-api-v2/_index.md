@@ -6307,7 +6307,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",
@@ -6908,7 +6908,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",
@@ -7487,7 +7487,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",
@@ -8215,7 +8215,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",
@@ -8513,7 +8513,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",
@@ -8794,7 +8794,7 @@ woocommerce.get("").parsed_response
                 "type": "object",
                 "properties": {
                   "id": {
-                    "description": "File MD5 hash.",
+                    "description": "File ID.",
                     "type": "string",
                     "context": [
                       "view",

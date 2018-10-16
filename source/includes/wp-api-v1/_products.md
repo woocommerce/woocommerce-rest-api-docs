@@ -4,7 +4,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ## Product properties ##
 
-|      Attribute       |    Type   |                                                                                                                                                                          Description                                                                                                                                                                          |
+| Attribute            | Type      | Description                                                                                                                                                                                                                                                                                                                                                   |
 |----------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                                                                                                                                                                                                 |
 | `name`               | string    | Product name.                                                                                                                                                                                                                                                                                                                                                 |
@@ -70,15 +70,15 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Download properties ###
 
-| Attribute |  Type  |                             Description                              |
+| Attribute | Type   | Description                                                          |
 |-----------|--------|----------------------------------------------------------------------|
-| `id`      | string | File MD5 hash. <i class="label label-info">read-only</i>             |
+| `id`      | string | File ID.                                                             |
 | `name`    | string | File name.                                                           |
 | `file`    | string | File URL. In write-mode you can use this property to send new files. |
 
 ### Dimension properties ###
 
-| Attribute |  Type  |            Description            |
+| Attribute | Type   | Description                       |
 |-----------|--------|-----------------------------------|
 | `length`  | string | Product length in decimal format. |
 | `width`   | string | Product width in decimal format.  |
@@ -86,7 +86,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Category properties ###
 
-| Attribute |   Type  |                       Description                        |
+| Attribute | Type    | Description                                              |
 |-----------|---------|----------------------------------------------------------|
 | `id`      | integer | Category ID.                                             |
 | `name`    | string  | Category name. <i class="label label-info">read-only</i> |
@@ -94,15 +94,15 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Tag properties ###
 
-| Attribute |   Type  |                       Description                        |
-|-----------|---------|----------------------------------------------------------|
+| Attribute | Type    | Description                                         |
+|-----------|---------|-----------------------------------------------------|
 | `id`      | integer | Tag ID.                                             |
 | `name`    | string  | Tag name. <i class="label label-info">read-only</i> |
 | `slug`    | string  | Tag slug. <i class="label label-info">read-only</i> |
 
 ### Image properties ###
 
-|    Attribute    |    Type   |                                               Description                                               |
+| Attribute       | Type      | Description                                                                                             |
 |-----------------|-----------|---------------------------------------------------------------------------------------------------------|
 | `id`            | integer   | Image ID (attachment ID). In write-mode used to attach pre-existing images.                             |
 | `date_created`  | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
@@ -114,7 +114,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Attribute properties ###
 
-|  Attribute  |   Type  |                                                    Description                                                    |
+| Attribute   | Type    | Description                                                                                                       |
 |-------------|---------|-------------------------------------------------------------------------------------------------------------------|
 | `id`        | integer | Attribute ID (required if is a global attribute).                                                                 |
 | `name`      | string  | Attribute name (required if is a non-global attribute).                                                           |
@@ -125,7 +125,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Default attribute properties ###
 
-| Attribute |   Type  |                       Description                       |
+| Attribute | Type    | Description                                             |
 |-----------|---------|---------------------------------------------------------|
 | `id`      | integer | Attribute ID (required if is a global attribute).       |
 | `name`    | string  | Attribute name (required if is a non-global attribute). |
@@ -133,7 +133,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Variation properties ###
 
-|      Attribute       |    Type   |                                                                                                      Description                                                                                                      |
+| Attribute            | Type      | Description                                                                                                                                                                                                           |
 |----------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`                 | integer   | Variation ID. <i class="label label-info">read-only</i>                                                                                                                                                               |
 | `date_created`       | date-time | The date the variation was created, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                 |
@@ -170,7 +170,7 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ### Variation attribute properties ###
 
-| Attribute |   Type  |                       Description                       |
+| Attribute | Type    | Description                                             |
 |-----------|---------|---------------------------------------------------------|
 | `id`      | integer | Attribute ID (required if is a global attribute).       |
 | `name`    | string  | Attribute name (required if is a non-global attribute). |
@@ -1889,7 +1889,7 @@ woocommerce.get("products").parsed_response
 
 #### Available parameters ####
 
-|    Parameter     |   Type  |                                                                   Description                                                                   |
+| Parameter        | Type    | Description                                                                                                                                     |
 |------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.                                       |
 | `page`           | integer | Current page of the collection.                                                                                                                 |
@@ -2236,7 +2236,7 @@ woocommerce.delete("products/162", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                                Description                                |
+| Parameter | Type   | Description                                                               |
 |-----------|--------|---------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the product, Default is `false`. |
 
@@ -3343,7 +3343,7 @@ woocommerce.get("products/162/reviews/9").parsed_response
 
 ### Product review properties ###
 
-|   Attribute    |   Type  |                                            Description                                             |
+| Attribute      | Type    | Description                                                                                        |
 |----------------|---------|----------------------------------------------------------------------------------------------------|
 | `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                      |
 | `date_created` | string  | The date the review was created, in the site's timezone. <i class="label label-info">read-only</i> |

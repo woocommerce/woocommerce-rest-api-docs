@@ -4,84 +4,84 @@ The products API allows you to create, view, update, and delete individual, or a
 
 ## Product properties ##
 
-|        Attribute        |    Type   |                                                     Description                                                      |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-| `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                        |
-| `name`                  | string    | Product name.                                                                                                        |
-| `slug`                  | string    | Product slug.                                                                                                        |
-| `permalink`             | string    | Product URL. <i class="label label-info">read-only</i>                                                               |
-| `date_created`          | date-time | The date the product was created, in the site's timezone. <i class="label label-info">read-only</i>                  |
-| `date_created_gmt`      | date-time | The date the product was created, as GMT. <i class="label label-info">read-only</i>                                  |
-| `date_modified`         | date-time | The date the product was last modified, in the site's timezone. <i class="label label-info">read-only</i>            |
-| `date_modified_gmt`     | date-time | The date the product was last modified, as GMT. <i class="label label-info">read-only</i>                            |
-| `type`                  | string    | Product type. Options: `simple`, `grouped`, `external` and `variable`. Default is `simple`.                          |
-| `status`                | string    | Product status (post status). Options: `draft`, `pending`, `private` and `publish`. Default is `publish`.            |
-| `featured`              | boolean   | Featured product. Default is `false`.                                                                                |
-| `catalog_visibility`    | string    | Catalog visibility. Options: `visible`, `catalog`, `search` and `hidden`. Default is `visible`.                      |
-| `description`           | string    | Product description.                                                                                                 |
-| `short_description`     | string    | Product short description.                                                                                           |
-| `sku`                   | string    | Unique identifier.                                                                                                   |
-| `price`                 | string    | Current product price. <i class="label label-info">read-only</i>                                                     |
-| `regular_price`         | string    | Product regular price.                                                                                               |
-| `sale_price`            | string    | Product sale price.                                                                                                  |
-| `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                    |
-| `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                    |
-| `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                      |
-| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                      |
-| `price_html`            | string    | Price formatted in HTML. <i class="label label-info">read-only</i>                                                   |
-| `on_sale`               | boolean   | Shows if the product is on sale. <i class="label label-info">read-only</i>                                           |
-| `purchasable`           | boolean   | Shows if the product can be bought. <i class="label label-info">read-only</i>                                        |
-| `total_sales`           | integer   | Amount of sales. <i class="label label-info">read-only</i>                                                           |
-| `virtual`               | boolean   | If the product is virtual. Default is `false`.                                                                       |
-| `downloadable`          | boolean   | If the product is downloadable. Default is `false`.                                                                  |
-| `downloads`             | array     | List of downloadable files. See [Product - Downloads properties](#product-downloads-properties)                      |
-| `download_limit`        | integer   | Number of times downloadable files can be downloaded after purchase. Default is `-1`.                                |
-| `download_expiry`       | integer   | Number of days until access to downloadable files expires. Default is `-1`.                                          |
-| `external_url`          | string    | Product external URL. Only for external products.                                                                    |
-| `button_text`           | string    | Product external button text. Only for external products.                                                            |
-| `tax_status`            | string    | Tax status. Options: `taxable`, `shipping` and `none`. Default is `taxable`.                                         |
-| `tax_class`             | string    | Tax class.                                                                                                           |
-| `manage_stock`          | boolean   | Stock management at product level. Default is `false`.                                                               |
-| `stock_quantity`        | integer   | Stock quantity.                                                                                                      |
-| `in_stock`              | boolean   | Controls whether or not the product is listed as "in stock" or "out of stock" on the frontend. Default is `true`.    |
-| `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.      |
-| `backorders_allowed`    | boolean   | Shows if backorders are allowed. <i class="label label-info">read-only</i>                                           |
-| `backordered`           | boolean   | Shows if the product is on backordered. <i class="label label-info">read-only</i>                                    |
-| `sold_individually`     | boolean   | Allow one item to be bought in a single order. Default is `false`.                                                   |
-| `weight`                | string    | Product weight.                                                                                                      |
-| `dimensions`            | object    | Product dimensions. See [Product - Dimensions properties](#product-dimensions-properties)                            |
-| `shipping_required`     | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                   |
-| `shipping_taxable`      | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                      |
-| `shipping_class`        | string    | Shipping class slug.                                                                                                 |
-| `shipping_class_id`     | integer   | Shipping class ID. <i class="label label-info">read-only</i>                                                         |
-| `reviews_allowed`       | boolean   | Allow reviews. Default is `true`.                                                                                    |
-| `average_rating`        | string    | Reviews average rating. <i class="label label-info">read-only</i>                                                    |
-| `rating_count`          | integer   | Amount of reviews that the product have. <i class="label label-info">read-only</i>                                   |
-| `related_ids`           | array     | List of related products IDs. <i class="label label-info">read-only</i>                                              |
-| `upsell_ids`            | array     | List of up-sell products IDs.                                                                                        |
-| `cross_sell_ids`        | array     | List of cross-sell products IDs.                                                                                     |
-| `parent_id`             | integer   | Product parent ID.                                                                                                   |
-| `purchase_note`         | string    | Optional note to send the customer after purchase.                                                                   |
-| `categories`            | array     | List of categories. See [Product - Categories properties](#product-categories-properties)                            |
-| `tags`                  | array     | List of tags. See [Product - Tags properties](#product-tags-properties)                                              | array    | List of images. See [Product - Images properties](#product-images-properties)                                        |
-| `attributes`            | array     | List of attributes. See [Product - Attributes properties](#product-attributes-properties)                            |
-| `default_attributes`    | array     | Defaults variation attributes. See [Product - Default attributes properties](#product-default-attributes-properties) |
-| `variations`            | array     | List of variations IDs. <i class="label label-info">read-only</i>                                                    |
-| `grouped_products`      | array     | List of grouped products ID.                                                                                         |
-| `menu_order`            | integer   | Menu order, used to custom sort products.                                                                            |
-| `meta_data`             | array     | Meta data. See [Product - Meta data properties](#product-meta-data-properties)                                       |
+| Attribute               | Type      | Description                                                                                                          |       |                                                                               |
+|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|-------|-------------------------------------------------------------------------------|
+| `id`                    | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                        |       |                                                                               |
+| `name`                  | string    | Product name.                                                                                                        |       |                                                                               |
+| `slug`                  | string    | Product slug.                                                                                                        |       |                                                                               |
+| `permalink`             | string    | Product URL. <i class="label label-info">read-only</i>                                                               |       |                                                                               |
+| `date_created`          | date-time | The date the product was created, in the site's timezone. <i class="label label-info">read-only</i>                  |       |                                                                               |
+| `date_created_gmt`      | date-time | The date the product was created, as GMT. <i class="label label-info">read-only</i>                                  |       |                                                                               |
+| `date_modified`         | date-time | The date the product was last modified, in the site's timezone. <i class="label label-info">read-only</i>            |       |                                                                               |
+| `date_modified_gmt`     | date-time | The date the product was last modified, as GMT. <i class="label label-info">read-only</i>                            |       |                                                                               |
+| `type`                  | string    | Product type. Options: `simple`, `grouped`, `external` and `variable`. Default is `simple`.                          |       |                                                                               |
+| `status`                | string    | Product status (post status). Options: `draft`, `pending`, `private` and `publish`. Default is `publish`.            |       |                                                                               |
+| `featured`              | boolean   | Featured product. Default is `false`.                                                                                |       |                                                                               |
+| `catalog_visibility`    | string    | Catalog visibility. Options: `visible`, `catalog`, `search` and `hidden`. Default is `visible`.                      |       |                                                                               |
+| `description`           | string    | Product description.                                                                                                 |       |                                                                               |
+| `short_description`     | string    | Product short description.                                                                                           |       |                                                                               |
+| `sku`                   | string    | Unique identifier.                                                                                                   |       |                                                                               |
+| `price`                 | string    | Current product price. <i class="label label-info">read-only</i>                                                     |       |                                                                               |
+| `regular_price`         | string    | Product regular price.                                                                                               |       |                                                                               |
+| `sale_price`            | string    | Product sale price.                                                                                                  |       |                                                                               |
+| `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                    |       |                                                                               |
+| `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                    |       |                                                                               |
+| `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                      |       |                                                                               |
+| `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                                      |       |                                                                               |
+| `price_html`            | string    | Price formatted in HTML. <i class="label label-info">read-only</i>                                                   |       |                                                                               |
+| `on_sale`               | boolean   | Shows if the product is on sale. <i class="label label-info">read-only</i>                                           |       |                                                                               |
+| `purchasable`           | boolean   | Shows if the product can be bought. <i class="label label-info">read-only</i>                                        |       |                                                                               |
+| `total_sales`           | integer   | Amount of sales. <i class="label label-info">read-only</i>                                                           |       |                                                                               |
+| `virtual`               | boolean   | If the product is virtual. Default is `false`.                                                                       |       |                                                                               |
+| `downloadable`          | boolean   | If the product is downloadable. Default is `false`.                                                                  |       |                                                                               |
+| `downloads`             | array     | List of downloadable files. See [Product - Downloads properties](#product-downloads-properties)                      |       |                                                                               |
+| `download_limit`        | integer   | Number of times downloadable files can be downloaded after purchase. Default is `-1`.                                |       |                                                                               |
+| `download_expiry`       | integer   | Number of days until access to downloadable files expires. Default is `-1`.                                          |       |                                                                               |
+| `external_url`          | string    | Product external URL. Only for external products.                                                                    |       |                                                                               |
+| `button_text`           | string    | Product external button text. Only for external products.                                                            |       |                                                                               |
+| `tax_status`            | string    | Tax status. Options: `taxable`, `shipping` and `none`. Default is `taxable`.                                         |       |                                                                               |
+| `tax_class`             | string    | Tax class.                                                                                                           |       |                                                                               |
+| `manage_stock`          | boolean   | Stock management at product level. Default is `false`.                                                               |       |                                                                               |
+| `stock_quantity`        | integer   | Stock quantity.                                                                                                      |       |                                                                               |
+| `in_stock`              | boolean   | Controls whether or not the product is listed as "in stock" or "out of stock" on the frontend. Default is `true`.    |       |                                                                               |
+| `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.      |       |                                                                               |
+| `backorders_allowed`    | boolean   | Shows if backorders are allowed. <i class="label label-info">read-only</i>                                           |       |                                                                               |
+| `backordered`           | boolean   | Shows if the product is on backordered. <i class="label label-info">read-only</i>                                    |       |                                                                               |
+| `sold_individually`     | boolean   | Allow one item to be bought in a single order. Default is `false`.                                                   |       |                                                                               |
+| `weight`                | string    | Product weight.                                                                                                      |       |                                                                               |
+| `dimensions`            | object    | Product dimensions. See [Product - Dimensions properties](#product-dimensions-properties)                            |       |                                                                               |
+| `shipping_required`     | boolean   | Shows if the product need to be shipped. <i class="label label-info">read-only</i>                                   |       |                                                                               |
+| `shipping_taxable`      | boolean   | Shows whether or not the product shipping is taxable. <i class="label label-info">read-only</i>                      |       |                                                                               |
+| `shipping_class`        | string    | Shipping class slug.                                                                                                 |       |                                                                               |
+| `shipping_class_id`     | integer   | Shipping class ID. <i class="label label-info">read-only</i>                                                         |       |                                                                               |
+| `reviews_allowed`       | boolean   | Allow reviews. Default is `true`.                                                                                    |       |                                                                               |
+| `average_rating`        | string    | Reviews average rating. <i class="label label-info">read-only</i>                                                    |       |                                                                               |
+| `rating_count`          | integer   | Amount of reviews that the product have. <i class="label label-info">read-only</i>                                   |       |                                                                               |
+| `related_ids`           | array     | List of related products IDs. <i class="label label-info">read-only</i>                                              |       |                                                                               |
+| `upsell_ids`            | array     | List of up-sell products IDs.                                                                                        |       |                                                                               |
+| `cross_sell_ids`        | array     | List of cross-sell products IDs.                                                                                     |       |                                                                               |
+| `parent_id`             | integer   | Product parent ID.                                                                                                   |       |                                                                               |
+| `purchase_note`         | string    | Optional note to send the customer after purchase.                                                                   |       |                                                                               |
+| `categories`            | array     | List of categories. See [Product - Categories properties](#product-categories-properties)                            |       |                                                                               |
+| `tags`                  | array     | List of tags. See [Product - Tags properties](#product-tags-properties)                                              | array | List of images. See [Product - Images properties](#product-images-properties) |
+| `attributes`            | array     | List of attributes. See [Product - Attributes properties](#product-attributes-properties)                            |       |                                                                               |
+| `default_attributes`    | array     | Defaults variation attributes. See [Product - Default attributes properties](#product-default-attributes-properties) |       |                                                                               |
+| `variations`            | array     | List of variations IDs. <i class="label label-info">read-only</i>                                                    |       |                                                                               |
+| `grouped_products`      | array     | List of grouped products ID.                                                                                         |       |                                                                               |
+| `menu_order`            | integer   | Menu order, used to custom sort products.                                                                            |       |                                                                               |
+| `meta_data`             | array     | Meta data. See [Product - Meta data properties](#product-meta-data-properties)                                       |       |                                                                               |
 
 ### Product - Downloads properties ###
 
-| Attribute | Type   | Description                                              |
-| --------- | ------ | -------------------------------------------------------- |
-| `id`      | string | File MD5 hash. <i class="label label-info">read-only</i> |
-| `name`    | string | File name.                                               |
-| `file`    | string | File URL.                                                |
+| Attribute | Type   | Description |
+|-----------|--------|-------------|
+| `id`      | string | File ID.    |
+| `name`    | string | File name.  |
+| `file`    | string | File URL.   |
 
 ### Product - Dimensions properties ###
 
-| Attribute |  Type  |   Description   |
+| Attribute | Type   | Description     |
 |-----------|--------|-----------------|
 | `length`  | string | Product length. |
 | `width`   | string | Product width.  |
@@ -90,7 +90,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Categories properties ###
 
 | Attribute | Type    | Description                                              |
-| --------- | ------- | -------------------------------------------------------- |
+|-----------|---------|----------------------------------------------------------|
 | `id`      | integer | Category ID.                                             |
 | `name`    | string  | Category name. <i class="label label-info">read-only</i> |
 | `slug`    | string  | Category slug. <i class="label label-info">read-only</i> |
@@ -98,7 +98,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Tags properties ###
 
 | Attribute | Type    | Description                                         |
-| --------- | ------- | --------------------------------------------------- |
+|-----------|---------|-----------------------------------------------------|
 | `id`      | integer | Tag ID.                                             |
 | `name`    | string  | Tag name. <i class="label label-info">read-only</i> |
 | `slug`    | string  | Tag slug. <i class="label label-info">read-only</i> |
@@ -106,7 +106,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Images properties ###
 
 | Attribute           | Type      | Description                                                                                             |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+|---------------------|-----------|---------------------------------------------------------------------------------------------------------|
 | `id`                | integer   | Image ID.                                                                                               |
 | `date_created`      | date-time | The date the image was created, in the site's timezone. <i class="label label-info">read-only</i>       |
 | `date_created_gmt`  | date-time | The date the image was created, as GMT. <i class="label label-info">read-only</i>                       |
@@ -120,7 +120,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Attributes properties ###
 
 | Attribute   | Type    | Description                                                                                                       |
-| ----------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+|-------------|---------|-------------------------------------------------------------------------------------------------------------------|
 | `id`        | integer | Attribute ID.                                                                                                     |
 | `name`      | string  | Attribute name.                                                                                                   |
 | `position`  | integer | Attribute position.                                                                                               |
@@ -131,7 +131,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Default attributes properties ###
 
 | Attribute | Type    | Description                   |
-| --------- | ------- | ----------------------------- |
+|-----------|---------|-------------------------------|
 | `id`      | integer | Attribute ID.                 |
 | `name`    | string  | Attribute name.               |
 | `option`  | string  | Selected attribute term name. |
@@ -139,7 +139,7 @@ The products API allows you to create, view, update, and delete individual, or a
 ### Product - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
@@ -1489,7 +1489,7 @@ woocommerce.get("products").parsed_response
 
 #### Available parameters ####
 
-|    Parameter     |   Type  |                                                               Description                                                               |
+| Parameter        | Type    | Description                                                                                                                             |
 |------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.            |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                                         |
@@ -1872,7 +1872,7 @@ woocommerce.delete("products/794", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                                Description                                |
+| Parameter | Type   | Description                                                               |
 |-----------|--------|---------------------------------------------------------------------------|
 | `force`   | string | Use `true` whether to permanently delete the product, Default is `false`. |
 
@@ -2926,7 +2926,7 @@ woocommerce.get("products/products/22/reviews/5").parsed_response
 ## Product review properties ##
 
 | Attribute          | Type      | Description                                                                                |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------ |
+|--------------------|-----------|--------------------------------------------------------------------------------------------|
 | `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>              |
 | `review`           | string    | The content of the review. <i class="label label-info">mandatory</i>                       |
 | `date_created`     | date-time | The date the review was created, in the site's timezone.                                   |

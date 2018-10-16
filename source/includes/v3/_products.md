@@ -125,7 +125,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 | Attribute |  Type  |                             Description                             |
 | --------- | ------ | ------------------------------------------------------------------- |
-| `id`      | string | File ID (file md5 hash) <i class="label label-info">read-only</i>   |
+| `id`      | string | File ID (File ID) <i class="label label-info">read-only</i>   |
 | `name`    | string | File name                                                           |
 | `file`    | string | File URL. In write-mode you can use this property to send new files |
 
