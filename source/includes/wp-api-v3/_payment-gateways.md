@@ -5,7 +5,7 @@ The payment gateways API allows you to view, and update individual payment gatew
 ## Payment gateway properties ##
 
 | Attribute            | Type    | Description                                                                                                 |
-| -------------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+|----------------------|---------|-------------------------------------------------------------------------------------------------------------|
 | `id`                 | string  | Payment gateway ID. <i class="label label-info">read-only</i>                                               |
 | `title`              | string  | Payment gateway title on checkout.                                                                          |
 | `description`        | string  | Payment gateway description on checkout.                                                                    |
@@ -13,12 +13,13 @@ The payment gateways API allows you to view, and update individual payment gatew
 | `enabled`            | boolean | Payment gateway enabled status.                                                                             |
 | `method_title`       | string  | Payment gateway method title. <i class="label label-info">read-only</i>                                     |
 | `method_description` | string  | Payment gateway method description. <i class="label label-info">read-only</i>                               |
+| `method_supports`    | array   | Supported features for this payment gateway. <i class="label label-info">read-only</i>                      |
 | `settings`           | object  | Payment gateway settings. See [Payment gateway - Settings properties](#payment-gateway-settings-properties) |
 
 ### Payment gateway - Settings properties ###
 
 | Attribute     | Type   | Description                                                                                                                                                                                     |
-| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`          | string | A unique identifier for the setting. <i class="label label-info">read-only</i>                                                                                                                  |
 | `label`       | string | A human readable label for the setting used in interfaces. <i class="label label-info">read-only</i>                                                                                            |
 | `description` | string | A human readable description for the setting used in interfaces. <i class="label label-info">read-only</i>                                                                                      |
@@ -75,6 +76,12 @@ woocommerce.get("payment_gateways/bacs").parsed_response
   "enabled": true,
   "method_title": "BACS",
   "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
+    "method_supports": [
+      "products"
+    ],
+  "method_supports": [
+    "products"
+  ],
   "settings": {
     "title": {
       "id": "title",
@@ -160,6 +167,9 @@ woocommerce.get("payment_gateways").parsed_response
     "enabled": true,
     "method_title": "BACS",
     "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
+    "method_supports": [
+      "products"
+    ],
     "settings": {
       "title": {
         "id": "title",
@@ -203,6 +213,9 @@ woocommerce.get("payment_gateways").parsed_response
     "enabled": false,
     "method_title": "Check payments",
     "method_description": "Allows check payments. Why would you take checks in this day and age? Well you probably wouldn't but it does allow you to make test purchases for testing order emails and the 'success' pages etc.",
+    "method_supports": [
+      "products"
+    ],
     "settings": {
       "title": {
         "id": "title",
@@ -246,6 +259,9 @@ woocommerce.get("payment_gateways").parsed_response
     "enabled": false,
     "method_title": "Cash on delivery",
     "method_description": "Have your customers pay with cash (or by other means) upon delivery.",
+    "method_supports": [
+      "products"
+    ],
     "settings": {
       "title": {
         "id": "title",
@@ -314,6 +330,10 @@ woocommerce.get("payment_gateways").parsed_response
     "enabled": true,
     "method_title": "PayPal",
     "method_description": "PayPal Standard sends customers to PayPal to enter their payment information. PayPal IPN requires fsockopen/cURL support to update order statuses after payment. Check the <a href=\"https://example.com/wp-admin/admin.php?page=wc-status\">system status</a> page for more details.",
+    "method_supports": [
+      "products",
+      "refunds"
+    ],
     "settings": {
       "title": {
         "id": "title",
@@ -555,6 +575,9 @@ woocommerce.put("payment_gateways/bacs", data).parsed_response
   "enabled": false,
   "method_title": "BACS",
   "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
+  "method_supports": [
+    "products"
+  ],
   "settings": {
     "title": {
       "id": "title",
