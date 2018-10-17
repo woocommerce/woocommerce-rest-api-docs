@@ -22,7 +22,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `date_on_sale_to`       | date-time | End date of sale price, in the site's timezone.                                                                     |
 | `date_on_sale_to_gmt`   | date-time | End date of sale price, as GMT.                                                                                     |
 | `on_sale`               | boolean   | Shows if the variation is on sale. <i class="label label-info">read-only</i>                                        |
-| `visible`               | boolean   | Define if the attribute is visible on the "Additional information" tab in the product's page. Default is `true`.    |
+| `status`                | string    | Variation status. Options: `draft`, `pending`, `private` and `publish`. Default is `publish`.                       |
 | `purchasable`           | boolean   | Shows if the variation can be bought. <i class="label label-info">read-only</i>                                     |
 | `virtual`               | boolean   | If the variation is virtual. Default is `false`.                                                                    |
 | `downloadable`          | boolean   | If the variation is downloadable. Default is `false`.                                                               |
@@ -33,7 +33,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `tax_class`             | string    | Tax class.                                                                                                          |
 | `manage_stock`          | boolean   | Stock management at variation level. Default is `false`.                                                            |
 | `stock_quantity`        | integer   | Stock quantity.                                                                                                     |
-| `in_stock`              | boolean   | Controls whether or not the variation is listed as "in stock" or "out of stock" on the frontend. Default is `true`. |
+| `stock_status`          | string    | Controls the stock status of the product. Options: `instock`, `outofstock`, `onbackorder`. Default is `instock`.    |
 | `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.     |
 | `backorders_allowed`    | boolean   | Shows if backorders are allowed. <i class="label label-info">read-only</i>                                          |
 | `backordered`           | boolean   | Shows if the variation is on backordered. <i class="label label-info">read-only</i>                                 |
@@ -217,7 +217,7 @@ woocommerce.post("products/22/variations", data).parsed_response
   "date_on_sale_to": null,
   "date_on_sale_to_gmt": null,
   "on_sale": false,
-  "visible": true,
+  "status": true,
   "purchasable": true,
   "virtual": false,
   "downloadable": false,
@@ -228,7 +228,7 @@ woocommerce.post("products/22/variations", data).parsed_response
   "tax_class": "",
   "manage_stock": false,
   "stock_quantity": null,
-  "in_stock": true,
+  "stock_status": "instock",
   "backorders": "no",
   "backorders_allowed": false,
   "backordered": false,
@@ -336,7 +336,7 @@ woocommerce.get("products/22/variations/732").parsed_response
   "date_on_sale_to": null,
   "date_on_sale_to_gmt": null,
   "on_sale": false,
-  "visible": true,
+  "status": "publish",
   "purchasable": true,
   "virtual": false,
   "downloadable": false,
@@ -347,7 +347,7 @@ woocommerce.get("products/22/variations/732").parsed_response
   "tax_class": "",
   "manage_stock": false,
   "stock_quantity": null,
-  "in_stock": true,
+  "stock_status": "instock",
   "backorders": "no",
   "backorders_allowed": false,
   "backordered": false,
@@ -456,7 +456,7 @@ woocommerce.get("products/22/variations").parsed_response
     "date_on_sale_to": null,
     "date_on_sale_to_gmt": null,
     "on_sale": false,
-    "visible": true,
+    "status": "publish",
     "purchasable": true,
     "virtual": false,
     "downloadable": false,
@@ -467,7 +467,7 @@ woocommerce.get("products/22/variations").parsed_response
     "tax_class": "",
     "manage_stock": false,
     "stock_quantity": null,
-    "in_stock": true,
+    "stock_status": "instock",
     "backorders": "no",
     "backorders_allowed": false,
     "backordered": false,
@@ -534,7 +534,7 @@ woocommerce.get("products/22/variations").parsed_response
     "date_on_sale_to": null,
     "date_on_sale_to_gmt": null,
     "on_sale": false,
-    "visible": true,
+    "status": "publish",
     "purchasable": true,
     "virtual": false,
     "downloadable": false,
@@ -545,7 +545,7 @@ woocommerce.get("products/22/variations").parsed_response
     "tax_class": "",
     "manage_stock": false,
     "stock_quantity": null,
-    "in_stock": true,
+    "stock_status": "instock",
     "backorders": "no",
     "backorders_allowed": false,
     "backordered": false,
@@ -626,10 +626,10 @@ woocommerce.get("products/22/variations").parsed_response
 | `attribute`      | string  | Limit result set to products with a specific attribute.                                                                                 |
 | `attribute_term` | string  | Limit result set to products with a specific attribute term ID (required an assigned attribute).                                        |
 | `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
-| `in_stock`       | boolean | Limit result set to products in stock or out of stock.                                                                                  |
 | `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
 | `max_price`      | string  | Limit result set to products based on a maximum price.                                                                                  |
+| `stock_status`   | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                           |
 
 ## Update a product variation ##
 
@@ -709,7 +709,7 @@ woocommerce.put("products/22/variations/733", data).parsed_response
   "date_on_sale_to": null,
   "date_on_sale_to_gmt": null,
   "on_sale": false,
-  "visible": true,
+  "status": "publish",
   "purchasable": true,
   "virtual": false,
   "downloadable": false,
@@ -720,7 +720,7 @@ woocommerce.put("products/22/variations/733", data).parsed_response
   "tax_class": "",
   "manage_stock": false,
   "stock_quantity": null,
-  "in_stock": true,
+  "stock_status": "instock",
   "backorders": "no",
   "backorders_allowed": false,
   "backordered": false,
@@ -828,7 +828,7 @@ woocommerce.delete("products/22/variations/733", force: true).parsed_response
   "date_on_sale_to": null,
   "date_on_sale_to_gmt": null,
   "on_sale": false,
-  "visible": true,
+  "status": "publish",
   "purchasable": true,
   "virtual": false,
   "downloadable": false,
@@ -839,7 +839,7 @@ woocommerce.delete("products/22/variations/733", force: true).parsed_response
   "tax_class": "",
   "manage_stock": false,
   "stock_quantity": null,
-  "in_stock": true,
+  "stock_status": "instock",
   "backorders": "no",
   "backorders_allowed": false,
   "backordered": false,
@@ -1117,7 +1117,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_on_sale_to": null,
       "date_on_sale_to_gmt": null,
       "on_sale": false,
-      "visible": true,
+      "status": "publish",
       "purchasable": true,
       "virtual": false,
       "downloadable": false,
@@ -1128,7 +1128,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "tax_class": "",
       "manage_stock": false,
       "stock_quantity": null,
-      "in_stock": true,
+      "stock_status": "instock",
       "backorders": "no",
       "backorders_allowed": false,
       "backordered": false,
@@ -1195,7 +1195,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_on_sale_to": null,
       "date_on_sale_to_gmt": null,
       "on_sale": false,
-      "visible": true,
+      "status": "publish",
       "purchasable": true,
       "virtual": false,
       "downloadable": false,
@@ -1206,7 +1206,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "tax_class": "",
       "manage_stock": false,
       "stock_quantity": null,
-      "in_stock": true,
+      "stock_status": "instock",
       "backorders": "no",
       "backorders_allowed": false,
       "backordered": false,
@@ -1275,7 +1275,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_on_sale_to": null,
       "date_on_sale_to_gmt": null,
       "on_sale": false,
-      "visible": true,
+      "status": "publish",
       "purchasable": true,
       "virtual": false,
       "downloadable": false,
@@ -1286,7 +1286,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "tax_class": "",
       "manage_stock": false,
       "stock_quantity": null,
-      "in_stock": true,
+      "stock_status": "instock",
       "backorders": "no",
       "backorders_allowed": false,
       "backordered": false,
@@ -1355,7 +1355,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "date_on_sale_to": null,
       "date_on_sale_to_gmt": null,
       "on_sale": false,
-      "visible": true,
+      "status": "publish",
       "purchasable": true,
       "virtual": false,
       "downloadable": false,
@@ -1366,7 +1366,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
       "tax_class": "",
       "manage_stock": false,
       "stock_quantity": null,
-      "in_stock": true,
+      "stock_status": "instock",
       "backorders": "no",
       "backorders_allowed": false,
       "backordered": false,
