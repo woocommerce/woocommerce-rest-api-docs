@@ -74,7 +74,6 @@ The product variations API allows you to create, view, update, and delete indivi
 | `src`               | string    | Image URL.                                                                                              |
 | `name`              | string    | Image name.                                                                                             |
 | `alt`               | string    | Image alternative text.                                                                                 |
-| `position`          | integer   | Image position. 0 means that the image is featured.                                                     |
 
 ### Product variation - Attributes properties ###
 
@@ -189,7 +188,7 @@ data = {
   attributes: [
     {
       id: 9,
-      position: "Black"
+      option: "Black"
     }
   ]
 }
@@ -248,8 +247,7 @@ woocommerce.post("products/22/variations", data).parsed_response
     "date_modified_gmt": "2016-10-19T16:21:14",
     "src": "https://example.com/wp-content/uploads/2016/10/T_4_front-12.jpg",
     "name": "",
-    "alt": "",
-    "position": 0
+    "alt": ""
   },
   "attributes": [
     {
@@ -367,8 +365,7 @@ woocommerce.get("products/22/variations/732").parsed_response
     "date_modified_gmt": "2016-10-19T16:21:14",
     "src": "https://example.com/wp-content/uploads/2016/10/T_4_front-12.jpg",
     "name": "",
-    "alt": "",
-    "position": 0
+    "alt": ""
   },
   "attributes": [
     {
@@ -487,8 +484,7 @@ woocommerce.get("products/22/variations").parsed_response
       "date_modified_gmt": "2016-10-19T16:21:16",
       "src": "https://example.com/wp-content/uploads/2016/10/T_3_front-12.jpg",
       "name": "",
-      "alt": "",
-      "position": 0
+      "alt": ""
     },
     "attributes": [
       {
@@ -565,8 +561,7 @@ woocommerce.get("products/22/variations").parsed_response
       "date_modified_gmt": "2016-10-19T16:21:14",
       "src": "https://example.com/wp-content/uploads/2016/10/T_4_front-12.jpg",
       "name": "",
-      "alt": "",
-      "position": 0
+      "alt": ""
     },
     "attributes": [
       {
@@ -740,8 +735,7 @@ woocommerce.put("products/22/variations/733", data).parsed_response
     "date_modified_gmt": "2016-10-19T16:21:16",
     "src": "https://example.com/wp-content/uploads/2016/10/T_3_front-12.jpg",
     "name": "",
-    "alt": "",
-    "position": 0
+    "alt": ""
   },
   "attributes": [
     {
@@ -859,8 +853,7 @@ woocommerce.delete("products/22/variations/733", force: true).parsed_response
     "date_modified_gmt": "2016-10-19T16:21:16",
     "src": "https://example.com/wp-content/uploads/2016/10/T_3_front-12.jpg",
     "name": "",
-    "alt": "",
-    "position": 0
+    "alt": ""
   },
   "attributes": [
     {
@@ -1148,8 +1141,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_modified_gmt": "2017-03-23T04:19:40",
         "src": "https://example.com/wp-content/plugins/woocommerce/assets/images/placeholder.png",
         "name": "Placeholder",
-        "alt": "Placeholder",
-        "position": 0
+        "alt": "Placeholder"
       },
       "attributes": [
         {
@@ -1226,8 +1218,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_modified_gmt": "2017-03-23T04:19:42",
         "src": "https://example.com/wp-content/plugins/woocommerce/assets/images/placeholder.png",
         "name": "Placeholder",
-        "alt": "Placeholder",
-        "position": 0
+        "alt": "Placeholder"
       },
       "attributes": [
         {
@@ -1306,8 +1297,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_modified_gmt": "2016-10-19T16:21:16",
         "src": "https://example.com/wp-content/uploads/2016/10/T_3_front-12.jpg",
         "name": "",
-        "alt": "",
-        "position": 0
+        "alt": ""
       },
       "attributes": [
         {
@@ -1386,8 +1376,7 @@ woocommerce.post("products/22/variations/batch", data).parsed_response
         "date_modified_gmt": "2016-10-19T16:21:14",
         "src": "https://example.com/wp-content/uploads/2016/10/T_4_front-12.jpg",
         "name": "",
-        "alt": "",
-        "position": 0
+        "alt": ""
       },
       "attributes": [
         {
