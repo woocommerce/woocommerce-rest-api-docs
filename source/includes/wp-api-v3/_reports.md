@@ -491,11 +491,11 @@ woocommerce.get("reports/coupons/totals").parsed_response
 
 #### Coupons totals properties ####
 
-| Attribute | Type   | Description                                                                             |
-|-----------|--------|-----------------------------------------------------------------------------------------|
-| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Coupon type name. <i class="label label-info">read-only</i>                             |
-| `total`   | string | Amount of coupons. <i class="label label-info">read-only</i>                            |
+| Attribute | Type   | Description                                                                            |
+|-----------|--------|----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource. <i class="label label-info">read-only</i> |
+| `name`    | string | Coupon type name. <i class="label label-info">read-only</i>                            |
+| `total`   | string | Amount of coupons. <i class="label label-info">read-only</i>                           |
 
 ## Retrieve customers totals ##
 
@@ -554,11 +554,11 @@ woocommerce.get("reports/customers/totals").parsed_response
 
 #### Customers totals properties ####
 
-| Attribute | Type   | Description                                                                             |
-|-----------|--------|-----------------------------------------------------------------------------------------|
-| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Customer type name. <i class="label label-info">read-only</i>                           |
-| `total`   | string | Amount of customers. <i class="label label-info">read-only</i>                          |
+| Attribute | Type   | Description                                                                            |
+|-----------|--------|----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource. <i class="label label-info">read-only</i> |
+| `name`    | string | Customer type name. <i class="label label-info">read-only</i>                          |
+| `total`   | string | Amount of customers. <i class="label label-info">read-only</i>                         |
 
 ## Retrieve orders totals ##
 
@@ -642,11 +642,11 @@ woocommerce.get("reports/orders/totals").parsed_response
 
 #### Orders totals properties ####
 
-| Attribute | Type   | Description                                                                             |
-|-----------|--------|-----------------------------------------------------------------------------------------|
-| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Orders status name. <i class="label label-info">read-only</i>                           |
-| `total`   | string | Amount of orders. <i class="label label-info">read-only</i>                             |
+| Attribute | Type   | Description                                                                            |
+|-----------|--------|----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource. <i class="label label-info">read-only</i> |
+| `name`    | string | Orders status name. <i class="label label-info">read-only</i>                          |
+| `total`   | string | Amount of orders. <i class="label label-info">read-only</i>                            |
 
 ## Retrieve products totals ##
 
@@ -715,11 +715,11 @@ woocommerce.get("reports/products/totals").parsed_response
 
 #### Products totals properties ####
 
-| Attribute | Type   | Description                                                                             |
-|-----------|--------|-----------------------------------------------------------------------------------------|
-| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Product type name. <i class="label label-info">read-only</i>                            |
-| `total`   | string | Amount of products. <i class="label label-info">read-only</i>                           |
+| Attribute | Type   | Description                                                                            |
+|-----------|--------|----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource. <i class="label label-info">read-only</i> |
+| `name`    | string | Product type name. <i class="label label-info">read-only</i>                           |
+| `total`   | string | Amount of products. <i class="label label-info">read-only</i>                          |
 
 ## Retrieve reviews totals ##
 
@@ -793,8 +793,8 @@ woocommerce.get("reports/reviews/totals").parsed_response
 
 #### Reviews totals properties ####
 
-| Attribute | Type   | Description                                                                             |
-|-----------|--------|-----------------------------------------------------------------------------------------|
-| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Review type name. <i class="label label-info">read-only</i>                             |
-| `total`   | string | Amount of reviews. <i class="label label-info">read-only</i>                            |
+| Attribute | Type   | Description                                                                            |
+|-----------|--------|----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource. <i class="label label-info">read-only</i> |
+| `name`    | string | Review type name. <i class="label label-info">read-only</i>                            |
+| `total`   | string | Amount of reviews. <i class="label label-info">read-only</i>                           |
