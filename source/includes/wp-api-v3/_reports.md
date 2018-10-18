@@ -646,7 +646,7 @@ woocommerce.get("reports/orders/totals").parsed_response
 |-----------|--------|-----------------------------------------------------------------------------------------|
 | `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
 | `name`    | string | Orders status name. <i class="label label-info">read-only</i>                           |
-| `total`   | string | Amount of orders. <i class="label label-info">read-only</i>                          |
+| `total`   | string | Amount of orders. <i class="label label-info">read-only</i>                             |
 
 ## Retrieve products totals ##
 
@@ -718,5 +718,83 @@ woocommerce.get("reports/products/totals").parsed_response
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
 | `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
-| `name`    | string | Product type name. <i class="label label-info">read-only</i>                           |
-| `total`   | string | Amount of products. <i class="label label-info">read-only</i>                          |
+| `name`    | string | Product type name. <i class="label label-info">read-only</i>                            |
+| `total`   | string | Amount of products. <i class="label label-info">read-only</i>                           |
+
+## Retrieve reviews totals ##
+
+This API lets you retrieve and view reviews totals report.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/reports/reviews/totals</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/reports/reviews/totals \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/reviews/totals', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('reports/reviews/totals'));
+?>
+```
+
+```python
+print(wcapi.get("reports/reviews/totals").json())
+```
+
+```ruby
+woocommerce.get("reports/reviews/totals").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"slug": "rated_1_out_of_5",
+		"name": "Rated 1 out of 5",
+		"total": 1
+	},
+	{
+		"slug": "rated_2_out_of_5",
+		"name": "Rated 2 out of 5",
+		"total": 0
+	},
+	{
+		"slug": "rated_3_out_of_5",
+		"name": "Rated 3 out of 5",
+		"total": 3
+	},
+	{
+		"slug": "rated_4_out_of_5",
+		"name": "Rated 4 out of 5",
+		"total": 0
+	},
+	{
+		"slug": "rated_5_out_of_5",
+		"name": "Rated 5 out of 5",
+		"total": 4
+	}
+]
+```
+
+#### Sales report properties ####
+
+| Attribute | Type   | Description                                                                             |
+|-----------|--------|-----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
+| `name`    | string | Review type name. <i class="label label-info">read-only</i>                             |
+| `total`   | string | Amount of reviews. <i class="label label-info">read-only</i>                            |
