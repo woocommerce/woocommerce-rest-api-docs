@@ -5,7 +5,7 @@ The settings API allows you to view all groups of settings available.
 ## Setting group properties ##
 
 | Attribute     | Type   | Description                                                                                                |
-| ------------- | ------ | ---------------------------------------------------------------------------------------------------------- |
+|---------------|--------|------------------------------------------------------------------------------------------------------------|
 | `id`          | string | A unique identifier that can be used to link settings together. <i class="label label-info">read-only</i>  |
 | `label`       | string | A human readable label for the setting used in interfaces. <i class="label label-info">read-only</i>       |
 | `description` | string | A human readable description for the setting used in interfaces. <i class="label label-info">read-only</i> |

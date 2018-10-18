@@ -3,7 +3,7 @@
 ## Setting option properties ##
 
 | Attribute     | Type   | Description                                                                                                                                                                                     |
-| ------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`          | string | A unique identifier for the setting. <i class="label label-info">read-only</i>                                                                                                                  |
 | `label`       | string | A human readable label for the setting used in interfaces. <i class="label label-info">read-only</i>                                                                                            |
 | `description` | string | A human readable description for the setting used in interfaces. <i class="label label-info">read-only</i>                                                                                      |
@@ -13,6 +13,7 @@
 | `placeholder` | string | Placeholder text to be displayed in text inputs. <i class="label label-info">read-only</i>                                                                                                      |
 | `type`        | string | Type of setting. Options: `text`, `email`, `number`, `color`, `password`, `textarea`, `select`, `multiselect`, `radio`, `image_width` and `checkbox`. <i class="label label-info">read-only</i> |
 | `options`     | object | Array of options (key value pairs) for inputs such as select, multiselect, and radio buttons. <i class="label label-info">read-only</i>                                                         |
+| `group_id`    | string | An identifier for the group this setting belongs to. <i class="label label-info">read-only</i>                                                                                                  |
 
 ## Retrieve an setting option ##
 
@@ -54,30 +55,31 @@ woocommerce.get("settings/general/woocommerce_allowed_countries").parsed_respons
 
 ```json
 {
-  "id": "woocommerce_allowed_countries",
-  "label": "Selling location(s)",
-  "description": "This option lets you limit which countries you are willing to sell to.",
-  "type": "select",
-  "default": "all",
-  "options": {
-    "all": "Sell to all countries",
-    "all_except": "Sell to all countries, except for&hellip;",
-    "specific": "Sell to specific countries"
-  },
-  "tip": "This option lets you limit which countries you are willing to sell to.",
-  "value": "all",
-  "_links": {
-    "self": [
-      {
-        "href": "https://example.com/wp-json/wc/v3/settings/general/woocommerce_allowed_countries"
-      }
-    ],
-    "collection": [
-      {
-        "href": "https://example.com/wp-json/wc/v3/settings/general"
-      }
-    ]
-  }
+	"id": "woocommerce_allowed_countries",
+	"label": "Selling location(s)",
+	"description": "This option lets you limit which countries you are willing to sell to.",
+	"type": "select",
+	"default": "all",
+	"options": {
+		"all": "Sell to all countries",
+		"all_except": "Sell to all countries, except for&hellip;",
+		"specific": "Sell to specific countries"
+	},
+	"tip": "This option lets you limit which countries you are willing to sell to.",
+	"value": "all",
+	"group_id": "general",
+	"_links": {
+		"self": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/settings/general/woocommerce_allowed_countries"
+			}
+		],
+		"collection": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/settings/general"
+			}
+		]
+	}
 }
 ```
 
