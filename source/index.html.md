@@ -45,6 +45,7 @@ includes:
   - wp-api-v3/shipping-methods
   - wp-api-v3/system-status
   - wp-api-v3/system-status-tools
+  - wp-api-v3/data
 
 search: false
 ---
