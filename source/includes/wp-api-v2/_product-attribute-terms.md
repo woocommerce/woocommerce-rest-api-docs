@@ -523,10 +523,10 @@ curl -X POST https://example.com//wp-json/wc/v2/products/attributes/&lt;attribut
 	-d '{
   "create": [
     {
-      "name" => "XXS"
+      "name": "XXS"
     },
     {
-      "name" => "S"
+      "name": "S"
     }
   ],
   "update": [

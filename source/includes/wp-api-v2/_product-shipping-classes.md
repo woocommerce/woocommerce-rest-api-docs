@@ -418,10 +418,10 @@ curl -X POST https://example.com//wp-json/wc/v2/products/shipping_classes/batch 
 	-d '{
   "create": [
     {
-      "name" => "Small items"
+      "name": "Small items"
     },
     {
-      "name" => "Large items"
+      "name": "Large items"
     }
   ],
   "update": [

@@ -432,10 +432,10 @@ curl -X POST https://example.com//wp-json/wc/v1/products/attributes/batch \
 	-d '{
   "create": [
     {
-      "name" => "Brand"
+      "name": "Brand"
     },
     {
-      "name" => "Publisher"
+      "name": "Publisher"
     }
   ],
   "update": [

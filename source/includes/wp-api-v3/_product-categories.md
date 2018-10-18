@@ -654,10 +654,10 @@ curl -X POST https://example.com//wp-json/wc/v3/products/categories/batch \
 	-d '{
   "create": [
     {
-      "name" => "Albums"
+      "name": "Albums"
     },
     {
-      "name" => "Clothing"
+      "name": "Clothing"
     }
   ],
   "update": [

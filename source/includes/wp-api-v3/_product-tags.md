@@ -418,10 +418,10 @@ curl -X POST https://example.com//wp-json/wc/v3/products/tags/batch \
 	-d '{
   "create": [
     {
-      "name" => "Round toe"
+      "name": "Round toe"
     },
     {
-      "name" => "Flat"
+      "name": "Flat"
     }
   ],
   "update": [
