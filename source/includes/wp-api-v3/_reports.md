@@ -647,3 +647,76 @@ woocommerce.get("reports/orders/totals").parsed_response
 | `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
 | `name`    | string | Orders status name. <i class="label label-info">read-only</i>                           |
 | `total`   | string | Amount of orders. <i class="label label-info">read-only</i>                          |
+
+## Retrieve products totals ##
+
+This API lets you retrieve and view products totals report.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/reports/products/totals</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/reports/products/totals \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/products/totals', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('reports/products/totals'));
+?>
+```
+
+```python
+print(wcapi.get("reports/products/totals").json())
+```
+
+```ruby
+woocommerce.get("reports/products/totals").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"slug": "external",
+		"name": "External/Affiliate product",
+		"total": 1
+	},
+	{
+		"slug": "grouped",
+		"name": "Grouped product",
+		"total": 1
+	},
+	{
+		"slug": "simple",
+		"name": "Simple product",
+		"total": 21
+	},
+	{
+		"slug": "variable",
+		"name": "Variable product",
+		"total": 3
+	}
+]
+```
+
+#### Sales report properties ####
+
+| Attribute | Type   | Description                                                                             |
+|-----------|--------|-----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
+| `name`    | string | Product type name. <i class="label label-info">read-only</i>                           |
+| `total`   | string | Amount of products. <i class="label label-info">read-only</i>                          |
