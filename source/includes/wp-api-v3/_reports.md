@@ -428,3 +428,72 @@ woocommerce.get("reports/top_sellers", query).parsed_response
 | `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
 | `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.                             |
 | `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.                               |
+
+## Retrieve coupons totals ##
+
+This API lets you retrieve and view coupons totals report.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/reports/coupons/totals</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/reports/coupons/totals \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/coupons/totals', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('reports/coupons/totals'));
+?>
+```
+
+```python
+print(wcapi.get("reports/coupons/totals").json())
+```
+
+```ruby
+woocommerce.get("reports/coupons/totals").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"slug": "percent",
+		"name": "Percentage discount",
+		"total": 2
+	},
+	{
+		"slug": "fixed_cart",
+		"name": "Fixed cart discount",
+		"total": 1
+	},
+	{
+		"slug": "fixed_product",
+		"name": "Fixed product discount",
+		"total": 1
+	}
+]
+```
+
+#### Sales report properties ####
+
+| Attribute | Type   | Description                                                                             |
+|-----------|--------|-----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
+| `name`    | string | Coupon type name. <i class="label label-info">read-only</i>                             |
+| `total`   | string | Amount of coupons. <i class="label label-info">read-only</i>                            |
+
