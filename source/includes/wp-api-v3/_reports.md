@@ -489,7 +489,7 @@ woocommerce.get("reports/coupons/totals").parsed_response
 ]
 ```
 
-#### Sales report properties ####
+#### Coupons totals properties ####
 
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
@@ -552,7 +552,7 @@ woocommerce.get("reports/customers/totals").parsed_response
 ]
 ```
 
-#### Sales report properties ####
+#### Customers totals properties ####
 
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
@@ -640,7 +640,7 @@ woocommerce.get("reports/orders/totals").parsed_response
 ]
 ```
 
-#### Sales report properties ####
+#### Orders totals properties ####
 
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
@@ -713,7 +713,7 @@ woocommerce.get("reports/products/totals").parsed_response
 ]
 ```
 
-#### Sales report properties ####
+#### Products totals properties ####
 
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
@@ -791,7 +791,7 @@ woocommerce.get("reports/reviews/totals").parsed_response
 ]
 ```
 
-#### Sales report properties ####
+#### Reviews totals properties ####
 
 | Attribute | Type   | Description                                                                             |
 |-----------|--------|-----------------------------------------------------------------------------------------|
