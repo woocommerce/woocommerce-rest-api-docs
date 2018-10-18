@@ -42,38 +42,166 @@ woocommerce.get("reports").parsed_response
 
 ```json
 [
-  {
-    "slug": "sales",
-    "description": "List of sales reports.",
-    "_links": {
-      "self": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/reports/sales"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/reports"
-        }
-      ]
-    }
-  },
-  {
-    "slug": "top_sellers",
-    "description": "List of top sellers products.",
-    "_links": {
-      "self": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/reports/top_sellers"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/reports"
-        }
-      ]
-    }
-  }
+	{
+		"slug": "sales",
+		"description": "List of sales reports.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/sales"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "top_sellers",
+		"description": "List of top sellers products.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/top_sellers"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "orders/totals",
+		"description": "Orders totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/orders/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "products/totals",
+		"description": "Products totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/products/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "customers/totals",
+		"description": "Customers totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/customers/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "coupons/totals",
+		"description": "Coupons totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/coupons/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "reviews/totals",
+		"description": "Reviews totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/reviews/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "categories/totals",
+		"description": "Categories totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/categories/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "tags/totals",
+		"description": "Tags totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/tags/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	},
+	{
+		"slug": "attributes/totals",
+		"description": "Attributes totals.",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports/attributes/totals"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/reports"
+				}
+			]
+		}
+	}
 ]
 ```
 
@@ -174,7 +302,7 @@ woocommerce.get("reports/sales", query).parsed_response
 
 #### Sales report properties ####
 
-|      Attribute      |   Type  |                              Description                              |
+| Attribute           | Type    | Description                                                           |
 |---------------------|---------|-----------------------------------------------------------------------|
 | `total_sales`       | string  | Gross sales in the period. <i class="label label-info">read-only</i>  |
 | `net_sales`         | string  | Net sales in the period. <i class="label label-info">read-only</i>    |
@@ -190,7 +318,7 @@ woocommerce.get("reports/sales", query).parsed_response
 
 #### Available parameters ####
 
-| Parameter  |  Type  |                                                    Description                                                    |
+| Parameter  | Type   | Description                                                                                                       |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
 | `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
@@ -286,15 +414,15 @@ woocommerce.get("reports/top_sellers", query).parsed_response
 
 #### Top sellers report properties ####
 
-|      Attribute      |   Type  |                              Description                              |
-|---------------------|---------|-----------------------------------------------------------------------|
-| `title`             | string  | Product title. <i class="label label-info">read-only</i>              |
-| `product_id`        | integer | Product ID. <i class="label label-info">read-only</i>                 |
-| `quantity`          | integer | Total number of purchases. <i class="label label-info">read-only</i>  |
+| Attribute    | Type    | Description                                                          |
+|--------------|---------|----------------------------------------------------------------------|
+| `title`      | string  | Product title. <i class="label label-info">read-only</i>             |
+| `product_id` | integer | Product ID. <i class="label label-info">read-only</i>                |
+| `quantity`   | integer | Total number of purchases. <i class="label label-info">read-only</i> |
 
 #### Available parameters ####
 
-| Parameter  |  Type  |                                                    Description                                                    |
+| Parameter  | Type   | Description                                                                                                       |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
 | `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
