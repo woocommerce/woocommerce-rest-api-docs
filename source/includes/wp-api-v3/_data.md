@@ -281,7 +281,7 @@ woocommerce.get("data/continents").parsed_response
 | `code`    | string | State code. <i class="label label-info">read-only</i>         |
 | `name`    | string | Full name of state. <i class="label label-info">read-only</i> |
 
-## Retrieve continents data ##
+## Retrieve continent data ##
 
 This API lets you retrieve and view a continent data.
 
@@ -290,7 +290,7 @@ This API lets you retrieve and view a continent data.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v3/data/continents/&lt;code&gt;</h6>
+		<h6>/wp-json/wc/v3/data/continents/&lt;location&gt;</h6>
 	</div>
 </div>
 
@@ -500,3 +500,470 @@ woocommerce.get("data/continents/eu").parsed_response
 #### Continents properties ####
 
 See [list of continents properties](#continents-properties).
+
+## List all countries ##
+
+This API helps you to view all the countries.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/data/countries</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/data/countries \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('data/countries', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('data/countries'));
+?>
+```
+
+```python
+print(wcapi.get("data/countries").json())
+```
+
+```ruby
+woocommerce.get("data/countries").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"code": "US",
+		"name": "United States (US)",
+		"states": [
+			{
+				"code": "AL",
+				"name": "Alabama"
+			},
+			{
+				"code": "AK",
+				"name": "Alaska"
+			},
+			{
+				"code": "AZ",
+				"name": "Arizona"
+			},
+			{
+				"code": "AR",
+				"name": "Arkansas"
+			},
+			{
+				"code": "CA",
+				"name": "California"
+			},
+			{
+				"code": "CO",
+				"name": "Colorado"
+			},
+			{
+				"code": "CT",
+				"name": "Connecticut"
+			},
+			{
+				"code": "DE",
+				"name": "Delaware"
+			},
+			{
+				"code": "DC",
+				"name": "District Of Columbia"
+			},
+			{
+				"code": "FL",
+				"name": "Florida"
+			},
+			{
+				"code": "GA",
+				"name": "Georgia"
+			},
+			{
+				"code": "HI",
+				"name": "Hawaii"
+			},
+			{
+				"code": "ID",
+				"name": "Idaho"
+			},
+			{
+				"code": "IL",
+				"name": "Illinois"
+			},
+			{
+				"code": "IN",
+				"name": "Indiana"
+			},
+			{
+				"code": "IA",
+				"name": "Iowa"
+			},
+			{
+				"code": "KS",
+				"name": "Kansas"
+			},
+			{
+				"code": "KY",
+				"name": "Kentucky"
+			},
+			{
+				"code": "LA",
+				"name": "Louisiana"
+			},
+			{
+				"code": "ME",
+				"name": "Maine"
+			},
+			{
+				"code": "MD",
+				"name": "Maryland"
+			},
+			{
+				"code": "MA",
+				"name": "Massachusetts"
+			},
+			{
+				"code": "MI",
+				"name": "Michigan"
+			},
+			{
+				"code": "MN",
+				"name": "Minnesota"
+			},
+			{
+				"code": "MS",
+				"name": "Mississippi"
+			},
+			{
+				"code": "MO",
+				"name": "Missouri"
+			},
+			{
+				"code": "MT",
+				"name": "Montana"
+			},
+			{
+				"code": "NE",
+				"name": "Nebraska"
+			},
+			{
+				"code": "NV",
+				"name": "Nevada"
+			},
+			{
+				"code": "NH",
+				"name": "New Hampshire"
+			},
+			{
+				"code": "NJ",
+				"name": "New Jersey"
+			},
+			{
+				"code": "NM",
+				"name": "New Mexico"
+			},
+			{
+				"code": "NY",
+				"name": "New York"
+			},
+			{
+				"code": "NC",
+				"name": "North Carolina"
+			},
+			{
+				"code": "ND",
+				"name": "North Dakota"
+			},
+			{
+				"code": "OH",
+				"name": "Ohio"
+			},
+			{
+				"code": "OK",
+				"name": "Oklahoma"
+			},
+			{
+				"code": "OR",
+				"name": "Oregon"
+			},
+			{
+				"code": "PA",
+				"name": "Pennsylvania"
+			},
+			{
+				"code": "RI",
+				"name": "Rhode Island"
+			},
+			{
+				"code": "SC",
+				"name": "South Carolina"
+			},
+			{
+				"code": "SD",
+				"name": "South Dakota"
+			},
+			{
+				"code": "TN",
+				"name": "Tennessee"
+			},
+			{
+				"code": "TX",
+				"name": "Texas"
+			},
+			{
+				"code": "UT",
+				"name": "Utah"
+			},
+			{
+				"code": "VT",
+				"name": "Vermont"
+			},
+			{
+				"code": "VA",
+				"name": "Virginia"
+			},
+			{
+				"code": "WA",
+				"name": "Washington"
+			},
+			{
+				"code": "WV",
+				"name": "West Virginia"
+			},
+			{
+				"code": "WI",
+				"name": "Wisconsin"
+			},
+			{
+				"code": "WY",
+				"name": "Wyoming"
+			},
+			{
+				"code": "AA",
+				"name": "Armed Forces (AA)"
+			},
+			{
+				"code": "AE",
+				"name": "Armed Forces (AE)"
+			},
+			{
+				"code": "AP",
+				"name": "Armed Forces (AP)"
+			}
+		],
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/countries/us"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/countries"
+				}
+			]
+		}
+	}
+]
+```
+
+#### Countries properties ####
+
+| Attribute | Type   | Description                                                                                                                                 |
+|-----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `code`    | string | ISO3166 alpha-2 country code. <i class="label label-info">read-only</i>                                                                     |
+| `name`    | string | Full name of country. <i class="label label-info">read-only</i>                                                                             |
+| `states`  | array  | List of states in this country. See [Countries - States properties](#countries-states-properties) <i class="label label-info">read-only</i> |
+
+##### Countries - States properties #####
+
+| Attribute | Type   | Description                                                   |
+|-----------|--------|---------------------------------------------------------------|
+| `code`    | string | State code. <i class="label label-info">read-only</i>         |
+| `name`    | string | Full name of state. <i class="label label-info">read-only</i> |
+
+## Retrieve country data ##
+
+This API lets you retrieve and view a country data.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/data/countries/&lt;location&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/data/countries/br \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('data/countries/br', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('data/countries/br'));
+?>
+```
+
+```python
+print(wcapi.get("data/countries/br").json())
+```
+
+```ruby
+woocommerce.get("data/countries/br").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+	"code": "BR",
+	"name": "Brazil",
+	"states": [
+		{
+			"code": "AC",
+			"name": "Acre"
+		},
+		{
+			"code": "AL",
+			"name": "Alagoas"
+		},
+		{
+			"code": "AP",
+			"name": "Amap&aacute;"
+		},
+		{
+			"code": "AM",
+			"name": "Amazonas"
+		},
+		{
+			"code": "BA",
+			"name": "Bahia"
+		},
+		{
+			"code": "CE",
+			"name": "Cear&aacute;"
+		},
+		{
+			"code": "DF",
+			"name": "Distrito Federal"
+		},
+		{
+			"code": "ES",
+			"name": "Esp&iacute;rito Santo"
+		},
+		{
+			"code": "GO",
+			"name": "Goi&aacute;s"
+		},
+		{
+			"code": "MA",
+			"name": "Maranh&atilde;o"
+		},
+		{
+			"code": "MT",
+			"name": "Mato Grosso"
+		},
+		{
+			"code": "MS",
+			"name": "Mato Grosso do Sul"
+		},
+		{
+			"code": "MG",
+			"name": "Minas Gerais"
+		},
+		{
+			"code": "PA",
+			"name": "Par&aacute;"
+		},
+		{
+			"code": "PB",
+			"name": "Para&iacute;ba"
+		},
+		{
+			"code": "PR",
+			"name": "Paran&aacute;"
+		},
+		{
+			"code": "PE",
+			"name": "Pernambuco"
+		},
+		{
+			"code": "PI",
+			"name": "Piau&iacute;"
+		},
+		{
+			"code": "RJ",
+			"name": "Rio de Janeiro"
+		},
+		{
+			"code": "RN",
+			"name": "Rio Grande do Norte"
+		},
+		{
+			"code": "RS",
+			"name": "Rio Grande do Sul"
+		},
+		{
+			"code": "RO",
+			"name": "Rond&ocirc;nia"
+		},
+		{
+			"code": "RR",
+			"name": "Roraima"
+		},
+		{
+			"code": "SC",
+			"name": "Santa Catarina"
+		},
+		{
+			"code": "SP",
+			"name": "S&atilde;o Paulo"
+		},
+		{
+			"code": "SE",
+			"name": "Sergipe"
+		},
+		{
+			"code": "TO",
+			"name": "Tocantins"
+		}
+	],
+	"_links": {
+		"self": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/countries/br"
+			}
+		],
+		"collection": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/countries"
+			}
+		]
+	}
+}
+```
+
+#### Countries properties ####
+
+See [list of countries properties](#countries-properties).
