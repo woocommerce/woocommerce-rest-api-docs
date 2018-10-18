@@ -497,3 +497,65 @@ woocommerce.get("reports/coupons/totals").parsed_response
 | `name`    | string | Coupon type name. <i class="label label-info">read-only</i>                             |
 | `total`   | string | Amount of coupons. <i class="label label-info">read-only</i>                            |
 
+## Retrieve customers totals ##
+
+This API lets you retrieve and view customers totals report.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/reports/customers/totals</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/reports/customers/totals \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('reports/customers/totals', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('reports/customers/totals'));
+?>
+```
+
+```python
+print(wcapi.get("reports/customers/totals").json())
+```
+
+```ruby
+woocommerce.get("reports/customers/totals").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"slug": "paying",
+		"name": "Paying customer",
+		"total": 2
+	},
+	{
+		"slug": "non_paying",
+		"name": "Non-paying customer",
+		"total": 1
+	}
+]
+```
+
+#### Sales report properties ####
+
+| Attribute | Type   | Description                                                                             |
+|-----------|--------|-----------------------------------------------------------------------------------------|
+| `slug`    | string | An alphanumeric identifier for the resource.. <i class="label label-info">read-only</i> |
+| `name`    | string | Customer type name. <i class="label label-info">read-only</i>                           |
+| `total`   | string | Amount of customers. <i class="label label-info">read-only</i>                          |
