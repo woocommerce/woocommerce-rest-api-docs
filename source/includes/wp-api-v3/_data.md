@@ -497,7 +497,7 @@ woocommerce.get("data/continents/eu").parsed_response
 }
 ```
 
-#### Continents properties ####
+#### Continent properties ####
 
 See [list of continents properties](#continents-properties).
 
@@ -964,6 +964,238 @@ woocommerce.get("data/countries/br").parsed_response
 }
 ```
 
-#### Countries properties ####
+#### Country properties ####
 
 See [list of countries properties](#countries-properties).
+
+## List all currencies ##
+
+This API helps you to view all the currencies.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/data/currencies</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/data/currencies \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('data/currencies', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('data/currencies'));
+?>
+```
+
+```python
+print(wcapi.get("data/currencies").json())
+```
+
+```ruby
+woocommerce.get("data/currencies").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+	{
+		"code": "BTC",
+		"name": "Bitcoin",
+		"symbol": "&#3647;",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies/BTC"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies"
+				}
+			]
+		}
+	},
+	{
+		"code": "EUR",
+		"name": "Euro",
+		"symbol": "&euro;",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies/EUR"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies"
+				}
+			]
+		}
+	},
+	{
+		"code": "USD",
+		"name": "United States (US) dollar",
+		"symbol": "&#36;",
+		"_links": {
+			"self": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies/USD"
+				}
+			],
+			"collection": [
+				{
+					"href": "https://example.com/wp-json/wc/v3/data/currencies"
+				}
+			]
+		}
+	}
+]
+```
+
+#### Currencies properties ####
+
+| Attribute | Type   | Description                                                      |
+|-----------|--------|------------------------------------------------------------------|
+| `code`    | string | ISO4217 currency code. <i class="label label-info">read-only</i> |
+| `name`    | string | Full name of currency. <i class="label label-info">read-only</i> |
+| `symbol`  | string | Currency symbol. <i class="label label-info">read-only</i>       |
+
+## Retrieve currency data ##
+
+This API lets you retrieve and view a currency data.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/data/currencies/&lt;currency&gt;</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/data/currencies/brl \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('data/currencies/brl', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('data/currencies/brl'));
+?>
+```
+
+```python
+print(wcapi.get("data/currencies/brl").json())
+```
+
+```ruby
+woocommerce.get("data/currencies/brl").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+	"code": "BRL",
+	"name": "Brazilian real",
+	"symbol": "&#82;&#36;",
+	"_links": {
+		"self": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/currencies/BRL"
+			}
+		],
+		"collection": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/currencies"
+			}
+		]
+	}
+}
+```
+
+#### Currency properties ####
+
+See [list of currencies properties](#currencies-properties).
+
+## Retrieve current currency ##
+
+This API lets you retrieve and view store's current currency data.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc/v3/data/currencies/current</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc/v3/data/currencies/current \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get('data/currencies/current', function(err, data, res) {
+  console.log(res);
+});
+```
+
+```php
+<?php
+print_r($woocommerce->get('data/currencies/current'));
+?>
+```
+
+```python
+print(wcapi.get("data/currencies/current").json())
+```
+
+```ruby
+woocommerce.get("data/currencies/current").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+	"code": "USD",
+	"name": "United States (US) dollar",
+	"symbol": "&#36;",
+	"_links": {
+		"self": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/currencies/USD"
+			}
+		],
+		"collection": [
+			{
+				"href": "https://example.com/wp-json/wc/v3/data/currencies"
+			}
+		]
+	}
+}
+```
+
+#### Currency properties ####
+
+See [list of currencies properties](#currencies-properties).
