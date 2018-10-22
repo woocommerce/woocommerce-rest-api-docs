@@ -21,14 +21,14 @@ This API helps you to create a new product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v2/products/tags</h6>
+		<h6>/wp-json/wc/v3/products/tags</h6>
 	</div>
 </div>
 
 > Example of how to create a product tag:
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v2/products/tags \
+curl -X POST https://example.com/wp-json/wc/v3/products/tags \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -84,12 +84,12 @@ woocommerce.post("products/tags", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+        "href": "https://example.com/wp-json/wc/v3/products/tags/34"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags"
+        "href": "https://example.com/wp-json/wc/v3/products/tags"
       }
     ]
   }
@@ -103,12 +103,12 @@ This API lets you retrieve a product tag by ID.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v2/products/tags/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/tags/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/products/tags/34 \
+curl https://example.com/wp-json/wc/v3/products/tags/34 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -142,12 +142,12 @@ woocommerce.get("products/tags/34").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+        "href": "https://example.com/wp-json/wc/v3/products/tags/34"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags"
+        "href": "https://example.com/wp-json/wc/v3/products/tags"
       }
     ]
   }
@@ -161,12 +161,12 @@ This API lets you retrieve all product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v2/products/tags</h6>
+		<h6>/wp-json/wc/v3/products/tags</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v2/products/tags \
+curl https://example.com/wp-json/wc/v3/products/tags \
 	-u consumer_key:consumer_secret
 ```
 
@@ -201,12 +201,12 @@ woocommerce.get("products/tags").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+          "href": "https://example.com/wp-json/wc/v3/products/tags/34"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/tags"
+          "href": "https://example.com/wp-json/wc/v3/products/tags"
         }
       ]
     }
@@ -220,12 +220,12 @@ woocommerce.get("products/tags").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/tags/35"
+          "href": "https://example.com/wp-json/wc/v3/products/tags/35"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v2/products/tags"
+          "href": "https://example.com/wp-json/wc/v3/products/tags"
         }
       ]
     }
@@ -259,12 +259,12 @@ This API lets you make changes to a product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wp-json/wc/v2/products/tags/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/tags/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v2/products/tags/34 \
+curl -X PUT https://example.com/wp-json/wc/v3/products/tags/34 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -320,12 +320,12 @@ woocommerce.put("products/tags/34", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+        "href": "https://example.com/wp-json/wc/v3/products/tags/34"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags"
+        "href": "https://example.com/wp-json/wc/v3/products/tags"
       }
     ]
   }
@@ -341,12 +341,12 @@ This API helps you delete a product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wp-json/wc/v2/products/tag/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/tag/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/products/tag/34?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v3/products/tag/34?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -380,12 +380,12 @@ woocommerce.delete("products/tag/34", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+        "href": "https://example.com/wp-json/wc/v3/products/tags/34"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v2/products/tags"
+        "href": "https://example.com/wp-json/wc/v3/products/tags"
       }
     ]
   }
@@ -407,12 +407,12 @@ This API helps you to batch create, update and delete multiple product tags.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v2/products/tags/batch</h6>
+		<h6>/wp-json/wc/v3/products/tags/batch</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com//wp-json/wc/v2/products/tags/batch \
+curl -X POST https://example.com//wp-json/wc/v3/products/tags/batch \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -550,12 +550,12 @@ woocommerce.post("products/tags/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags/36"
+            "href": "https://example.com/wp-json/wc/v3/products/tags/36"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags"
+            "href": "https://example.com/wp-json/wc/v3/products/tags"
           }
         ]
       }
@@ -569,12 +569,12 @@ woocommerce.post("products/tags/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags/37"
+            "href": "https://example.com/wp-json/wc/v3/products/tags/37"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags"
+            "href": "https://example.com/wp-json/wc/v3/products/tags"
           }
         ]
       }
@@ -590,12 +590,12 @@ woocommerce.post("products/tags/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags/34"
+            "href": "https://example.com/wp-json/wc/v3/products/tags/34"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags"
+            "href": "https://example.com/wp-json/wc/v3/products/tags"
           }
         ]
       }
@@ -611,12 +611,12 @@ woocommerce.post("products/tags/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags/35"
+            "href": "https://example.com/wp-json/wc/v3/products/tags/35"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v2/products/tags"
+            "href": "https://example.com/wp-json/wc/v3/products/tags"
           }
         ]
       }

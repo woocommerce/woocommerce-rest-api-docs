@@ -4,14 +4,14 @@ The product attributes API allows you to create, view, update, and delete indivi
 
 ## Product attribute properties ##
 
-|   Attribute    |   Type  |                                                Description                                                |
-|----------------|---------|-----------------------------------------------------------------------------------------------------------|
-| `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                             |
-| `name`         | string  | Attribute name. <i class="label label-info">required</i>                                                  |
-| `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                           |
-| `type`         | string  | Type of attribute. Default is `select`. Options: `select` and `text` (some plugins can include new types) |
-| `order_by`     | string  | Default sort order. Default is `menu_order`. Options: `menu_order`, `name`, `name_num` and `id`.          |
-| `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                                    |
+| Attribute      | Type    | Description                                                                                      |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `id`           | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                    |
+| `name`         | string  | Attribute name. <i class="label label-info">mandatory</i>                                        |
+| `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                  |
+| `type`         | string  | Type of attribute. By default only `select` is supported.                           |
+| `order_by`     | string  | Default sort order. Options: `menu_order`, `name`, `name_num` and `id`. Default is `menu_order`. |
+| `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                           |
 
 ## Create a product attribute ##
 
@@ -22,12 +22,12 @@ This API helps you to create a new product attribute.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v1/products/attributes</h6>
+		<h6>/wp-json/wc/v3/products/attributes</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com/wp-json/wc/v1/products/attributes \
+curl -X POST https://example.com/wp-json/wc/v3/products/attributes \
     -u consumer_key:consumer_secret \
     -H "Content-Type: application/json" \
     -d '{
@@ -104,12 +104,12 @@ woocommerce.post("products/attributes", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes"
       }
     ]
   }
@@ -123,12 +123,12 @@ This API lets you retrieve and view a specific product attribute by ID.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1/products/attributes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/attributes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1/products/attributes/1 \
+curl https://example.com/wp-json/wc/v3/products/attributes/1 \
 	-u consumer_key:consumer_secret
 ```
 
@@ -163,12 +163,12 @@ woocommerce.get("products/attributes/1").parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes"
       }
     ]
   }
@@ -184,12 +184,12 @@ This API helps you to view all the product attributes.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v1/products/attributes</h6>
+		<h6>/wp-json/wc/v3/products/attributes</h6>
 	</div>
 </div>
 
 ```shell
-curl https://example.com/wp-json/wc/v1/products/attributes \
+curl https://example.com/wp-json/wc/v3/products/attributes \
 	-u consumer_key:consumer_secret
 ```
 
@@ -225,12 +225,12 @@ woocommerce.get("products/attributes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+          "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          "href": "https://example.com/wp-json/wc/v3/products/attributes"
         }
       ]
     }
@@ -245,18 +245,24 @@ woocommerce.get("products/attributes").parsed_response
     "_links": {
       "self": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/attributes/2"
+          "href": "https://example.com/wp-json/wc/v3/products/attributes/2"
         }
       ],
       "collection": [
         {
-          "href": "https://example.com/wp-json/wc/v1/products/attributes"
+          "href": "https://example.com/wp-json/wc/v3/products/attributes"
         }
       ]
     }
   }
 ]
 ```
+
+#### Available parameters ####
+
+| Parameter | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context` | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
 
 ## Update a product attribute ##
 
@@ -267,12 +273,12 @@ This API lets you make changes to a product attribute.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wp-json/wc/v1/products/attributes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/attributes/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v1/products/attributes/1 \
+curl -X PUT https://example.com/wp-json/wc/v3/products/attributes/1 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -329,12 +335,12 @@ woocommerce.put("products/attributes/1", data).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes"
       }
     ]
   }
@@ -350,7 +356,7 @@ This API helps you delete a product attribute.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wp-json/wc/v1/products/attributes/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/attributes/&lt;id&gt;</h6>
 	</div>
 </div>
 
@@ -359,7 +365,7 @@ This API helps you delete a product attribute.
 </aside>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v1/products/attributes/1?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v3/products/attributes/1?force=true \
 	-u consumer_key:consumer_secret
 ```
 
@@ -394,12 +400,12 @@ woocommerce.delete("products/attributes/1", force: true).parsed_response
   "_links": {
     "self": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
       }
     ],
     "collection": [
       {
-        "href": "https://example.com/wp-json/wc/v1/products/attributes"
+        "href": "https://example.com/wp-json/wc/v3/products/attributes"
       }
     ]
   }
@@ -421,12 +427,12 @@ This API helps you to batch create, update and delete multiple product attribute
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/wp-json/wc/v1/products/attributes/batch</h6>
+		<h6>/wp-json/wc/v3/products/attributes/batch</h6>
 	</div>
 </div>
 
 ```shell
-curl -X POST https://example.com//wp-json/wc/v1/products/attributes/batch \
+curl -X POST https://example.com//wp-json/wc/v3/products/attributes/batch \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
@@ -565,12 +571,12 @@ woocommerce.post("products/attributes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes/7"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes/7"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes"
           }
         ]
       }
@@ -585,12 +591,12 @@ woocommerce.post("products/attributes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes/8"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes/8"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes"
           }
         ]
       }
@@ -607,12 +613,12 @@ woocommerce.post("products/attributes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes/2"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes/2"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes"
           }
         ]
       }
@@ -629,12 +635,12 @@ woocommerce.post("products/attributes/batch", data).parsed_response
       "_links": {
         "self": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes/6"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes/6"
           }
         ],
         "collection": [
           {
-            "href": "https://example.com/wp-json/wc/v1/products/attributes"
+            "href": "https://example.com/wp-json/wc/v3/products/attributes"
           }
         ]
       }
