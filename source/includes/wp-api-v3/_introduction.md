@@ -24,7 +24,7 @@ Prior to 2.6, WooCommerce has had a REST API separate from WordPress which is no
 
 To use the latest version of the REST API you must be using:
 
-* WooCommerce 2.6+.
+* WooCommerce 3.5+.
 * WordPress 4.4+.
 * Pretty permalinks in `Settings > Permalinks` so that the custom endpoints are supported. __Default permalinks will not work.__
 * You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
