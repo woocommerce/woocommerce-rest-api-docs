@@ -162,6 +162,19 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `reason`  | string  | Refund reason. <i class="label label-info">read-only</i> |
 | `total`   | string  | Refund total. <i class="label label-info">read-only</i>  |
 
+### Order - Taxes properties ###
+
+| Attribute            | Type    | Description                                                                         |
+|----------------------|---------|-------------------------------------------------------------------------------------|
+| `id`                 | integer | Item ID. <i class="label label-info">read-only</i>                                  |
+| `rate_code`          | string  | Tax rate code. <i class="label label-info">read-only</i>                            |
+| `rate_id`            | string  | Tax rate ID. <i class="label label-info">read-only</i>                              |
+| `label`              | string  | Tax rate label. <i class="label label-info">read-only</i>                           |
+| `compound`           | boolean | Show if is a compound tax rate. <i class="label label-info">read-only</i>           |
+| `tax_total`          | string  | Tax total (not including shipping taxes). <i class="label label-info">read-only</i> |
+| `shipping_tax_total` | string  | Shipping tax total. <i class="label label-info">read-only</i>                       |
+| `meta_data`          | array   | Meta data. See [Order - Meta data properties](#order-meta-data-properties)          |
+
 ## Create an order ##
 
 This API helps you to create a new order.
@@ -1162,25 +1175,25 @@ woocommerce.get("orders").parsed_response
 
 #### Available parameters ####
 
-| Parameter        | Type    | Description                                                                                                                                                                     |
-|------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                    |
-| `page`           | integer | Current page of the collection. Default is `1`.                                                                                                                                 |
-| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                          |
-| `search`         | string  | Limit results to those matching a string.                                                                                                                                       |
-| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                     |
-| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                    |
-| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                                                                        |
-| `include`        | array   | Limit result set to specific ids.                                                                                                                                               |
-| `offset`         | integer | Offset the result set by a specific number of items.                                                                                                                            |
-| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                     |
-| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                                                                   |
-| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                                                             |
-| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                                                           |
+| Parameter        | Type    | Description                                                                                                                                                                              |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                             |
+| `page`           | integer | Current page of the collection. Default is `1`.                                                                                                                                          |
+| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                   |
+| `search`         | string  | Limit results to those matching a string.                                                                                                                                                |
+| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                              |
+| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                             |
+| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                                                                                 |
+| `include`        | array   | Limit result set to specific ids.                                                                                                                                                        |
+| `offset`         | integer | Offset the result set by a specific number of items.                                                                                                                                     |
+| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                              |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                                                                            |
+| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                                                                      |
+| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                                                                    |
 | `status`         | string  | Limit result set to orders assigned a specific status. Options: `any`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed` and `trash`. Default is `any`. |
-| `customer`       | integer | Limit result set to orders assigned a specific customer.                                                                                                                        |
-| `product`        | integer | Limit result set to orders assigned a specific product.                                                                                                                         |
-| `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                                                                               |
+| `customer`       | integer | Limit result set to orders assigned a specific customer.                                                                                                                                 |
+| `product`        | integer | Limit result set to orders assigned a specific product.                                                                                                                                  |
+| `dp`             | integer | Number of decimal points to use in each resource. Default is `2`.                                                                                                                        |
 
 ## Update an Order ##
 

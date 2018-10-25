@@ -5,7 +5,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 ## Order refund properties ##
 
 | Attribute          | Type      | Description                                                                                                                      |
-| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
 | `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                    |
 | `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                         |
 | `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                         |
@@ -19,29 +19,37 @@ The refunds API allows you to create, view, and delete individual refunds.
 ### Order refund - Meta data properties ###
 
 | Attribute | Type    | Description                                        |
-| --------- | ------- | -------------------------------------------------- |
+|-----------|---------|----------------------------------------------------|
 | `id`      | integer | Meta ID. <i class="label label-info">read-only</i> |
 | `key`     | string  | Meta key.                                          |
 | `value`   | string  | Meta value.                                        |
 
 ### Order refund - Line items properties ###
 
-| Attribute      | Type    | Description                                                                                                                 |
-| -------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                          |
-| `name`         | string  | Product name.                                                                                                               |
-| `product_id`   | integer | Product ID.                                                                                                                 |
-| `variation_id` | integer | Variation ID, if applicable.                                                                                                |
-| `quantity`     | integer | Quantity ordered.                                                                                                           |
-| `tax_class`    | integer | Tax class of product.                                                                                                       |
-| `subtotal`     | string  | Line subtotal (before discounts).                                                                                           |
-| `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                             |
-| `total`        | string  | Line total (after discounts).                                                                                               |
-| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                 |
-| `taxes`        | array   | Line taxes. See [Order refund - Taxes properties](#order-refund-taxes-properties) <i class="label label-info">read-only</i> |
-| `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                    |
-| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                      |
-| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                    |
+| Attribute      | Type    | Description                                                                                                                                     |
+|----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                                              |
+| `name`         | string  | Product name.                                                                                                                                   |
+| `product_id`   | integer | Product ID.                                                                                                                                     |
+| `variation_id` | integer | Variation ID, if applicable.                                                                                                                    |
+| `quantity`     | integer | Quantity ordered.                                                                                                                               |
+| `tax_class`    | integer | Tax class of product.                                                                                                                           |
+| `subtotal`     | string  | Line subtotal (before discounts).                                                                                                               |
+| `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                                                 |
+| `total`        | string  | Line total (after discounts).                                                                                                                   |
+| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                                     |
+| `taxes`        | array   | Line taxes. See [Order refund line item - Taxes properties](#order-refund-line-item-taxes-properties) <i class="label label-info">read-only</i> |
+| `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                                        |
+| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                                          |
+| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                                        |
+
+#### Order refund line item - Taxes properties ####
+
+| Attribute  | Type    | Description                                             |
+|------------|---------|---------------------------------------------------------|
+| `id`       | integer | Tax rate ID. <i class="label label-info">read-only</i>  |
+| `total`    | string  | Tax total. <i class="label label-info">read-only</i>    |
+| `subtotal` | string  | Tax subtotal. <i class="label label-info">read-only</i> |
 
 ## Create a refund ##
 
@@ -201,7 +209,7 @@ woocommerce.get("orders/723/refunds/726").parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                    Description                    |
+| Parameter | Type   | Description                                       |
 |-----------|--------|---------------------------------------------------|
 | `dp`      | string | Number of decimal points to use in each resource. |
 
@@ -328,7 +336,7 @@ woocommerce.get("orders/723/refunds").parsed_response
 #### Available parameters ####
 
 | Parameter        | Type    | Description                                                                                                                  |
-| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------|
 | `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
 | `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
 | `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
@@ -413,6 +421,6 @@ woocommerce.delete("orders/723/refunds/726", force: true).parsed_response
 
 #### Available parameters ####
 
-| Parameter |  Type  |                          Description                          |
+| Parameter | Type   | Description                                                   |
 |-----------|--------|---------------------------------------------------------------|
 | `force`   | string | Required to be `true`, as resource does not support trashing. |

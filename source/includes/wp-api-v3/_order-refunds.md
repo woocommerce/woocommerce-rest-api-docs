@@ -27,22 +27,30 @@ The refunds API allows you to create, view, and delete individual refunds.
 
 ### Order refund - Line items properties ###
 
-| Attribute      | Type    | Description                                                                                                                 |
-|----------------|---------|-----------------------------------------------------------------------------------------------------------------------------|
-| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                          |
-| `name`         | string  | Product name.                                                                                                               |
-| `product_id`   | integer | Product ID.                                                                                                                 |
-| `variation_id` | integer | Variation ID, if applicable.                                                                                                |
-| `quantity`     | integer | Quantity ordered.                                                                                                           |
-| `tax_class`    | integer | Tax class of product.                                                                                                       |
-| `subtotal`     | string  | Line subtotal (before discounts).                                                                                           |
-| `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                             |
-| `total`        | string  | Line total (after discounts).                                                                                               |
-| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                 |
-| `taxes`        | array   | Line taxes. See [Order refund - Taxes properties](#order-refund-taxes-properties) <i class="label label-info">read-only</i> |
-| `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                    |
-| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                      |
-| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                    |
+| Attribute      | Type    | Description                                                                                                                                     |
+|----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`           | integer | Item ID. <i class="label label-info">read-only</i>                                                                                              |
+| `name`         | string  | Product name.                                                                                                                                   |
+| `product_id`   | integer | Product ID.                                                                                                                                     |
+| `variation_id` | integer | Variation ID, if applicable.                                                                                                                    |
+| `quantity`     | integer | Quantity ordered.                                                                                                                               |
+| `tax_class`    | integer | Tax class of product.                                                                                                                           |
+| `subtotal`     | string  | Line subtotal (before discounts).                                                                                                               |
+| `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                                                                 |
+| `total`        | string  | Line total (after discounts).                                                                                                                   |
+| `total_tax`    | string  | Line total tax (after discounts). <i class="label label-info">read-only</i>                                                                     |
+| `taxes`        | array   | Line taxes. See [Order refund line item - Taxes properties](#order-refund-line-item-taxes-properties) <i class="label label-info">read-only</i> |
+| `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                                        |
+| `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                                          |
+| `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                                        |
+
+#### Order refund line item - Taxes properties ####
+
+| Attribute  | Type    | Description                                             |
+|------------|---------|---------------------------------------------------------|
+| `id`       | integer | Tax rate ID. <i class="label label-info">read-only</i>  |
+| `total`    | string  | Tax total. <i class="label label-info">read-only</i>    |
+| `subtotal` | string  | Tax subtotal. <i class="label label-info">read-only</i> |
 
 ## Create a refund ##
 
