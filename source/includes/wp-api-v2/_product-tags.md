@@ -346,12 +346,12 @@ This API helps you delete a product tag.
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v2/products/tag/34?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v2/products/tags/34?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/tag/34?force=true', function(err, data, res) {
+WooCommerce.delete('products/tags/34?force=true', function(err, data, res) {
   console.log(res);
 });
 ```
@@ -361,11 +361,11 @@ WooCommerce.delete('products/tag/34?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/tag/34?force=true").json())
+print(wcapi.delete("products/tags/34?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("products/tag/34", force: true).parsed_response
+woocommerce.delete("products/tags/34", force: true).parsed_response
 ```
 
 > JSON response example:
