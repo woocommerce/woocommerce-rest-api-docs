@@ -612,14 +612,7 @@ woocommerce.get("products/22/variations").parsed_response
 | `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                   |
 | `slug`           | string  | Limit result set to products with a specific slug.                                                                                      |
 | `status`         | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`. |
-| `type`           | string  | Limit result set to products assigned a specific type. Options: `simple`, `grouped`, `external` and `variable`.                         |
 | `sku`            | string  | Limit result set to products with a specific SKU.                                                                                       |
-| `featured`       | boolean | Limit result set to featured products.                                                                                                  |
-| `category`       | string  | Limit result set to products assigned a specific category ID.                                                                           |
-| `tag`            | string  | Limit result set to products assigned a specific tag ID.                                                                                |
-| `shipping_class` | string  | Limit result set to products assigned a specific shipping class ID.                                                                     |
-| `attribute`      | string  | Limit result set to products with a specific attribute.                                                                                 |
-| `attribute_term` | string  | Limit result set to products with a specific attribute term ID (required an assigned attribute).                                        |
 | `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
 | `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
