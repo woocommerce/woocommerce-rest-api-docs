@@ -308,17 +308,17 @@ This API helps you delete a product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wc-api/v3/products/tag/&lt;id&gt;</h6>
+		<h6>/wc-api/v3/products/tags/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wc-api/v3/products/tag/37 \
+curl -X DELETE https://example.com/wc-api/v3/products/tags/37 \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete('products/tag/37', function(err, data, res) {
+WooCommerce.delete('products/tags/37', function(err, data, res) {
   console.log(res);
 });
 ```
@@ -328,11 +328,11 @@ WooCommerce.delete('products/tag/37', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/tag/37").json())
+print(wcapi.delete("products/tags/37").json())
 ```
 
 ```ruby
-woocommerce.delete("products/tag/37").parsed_response
+woocommerce.delete("products/tags/37").parsed_response
 ```
 
 > JSON response example:

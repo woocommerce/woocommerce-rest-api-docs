@@ -340,7 +340,7 @@ This API helps you delete a product tag.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wp-json/wc/v1/products/tag/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v1/products/tags/&lt;id&gt;</h6>
 	</div>
 </div>
 
