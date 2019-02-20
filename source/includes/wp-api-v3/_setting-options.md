@@ -15,7 +15,7 @@
 | `options`     | object | Array of options (key value pairs) for inputs such as select, multiselect, and radio buttons. <i class="label label-info">read-only</i>                                                         |
 | `group_id`    | string | An identifier for the group this setting belongs to. <i class="label label-info">read-only</i>                                                                                                  |
 
-## Retrieve an setting option ##
+## Retrieve a setting option ##
 
 This API lets you retrieve and view a specific setting option.
 
