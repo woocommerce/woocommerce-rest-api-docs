@@ -8,7 +8,7 @@ The customer API allows you to create, view, update, and delete individual, or a
 |----------------------|-----------|------------------------------------------------------------------------------------------------------------|
 | `id`                 | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                              |
 | `date_created`       | date-time | The date the customer was created, in the site's timezone. <i class="label label-info">read-only</i>       |
-| `date_created_gmt`   | date-time | The date the order was created, as GMT. <i class="label label-info">read-only</i>                          |
+| `date_created_gmt`   | date-time | The date the customer was created, as GMT. <i class="label label-info">read-only</i>                          |
 | `date_modified`      | date-time | The date the customer was last modified, in the site's timezone. <i class="label label-info">read-only</i> |
 | `date_modified_gmt`  | date-time | The date the customer was last modified, as GMT. <i class="label label-info">read-only</i>                 |
 | `email`              | string    | The email address for the customer. <i class="label label-info">mandatory</i>                              |
