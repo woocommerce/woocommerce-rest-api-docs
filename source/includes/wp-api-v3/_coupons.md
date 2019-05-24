@@ -666,7 +666,7 @@ var data = {
   ]
 };
 
-WooCommerce.post('customers/batch', data, function(err, data, res) {
+WooCommerce.post('coupons/batch', data, function(err, data, res) {
   console.log(res);
 });
 ```
@@ -703,7 +703,7 @@ $data = [
     ]
 ];
 
-print_r($woocommerce->post('customers/batch', $data));
+print_r($woocommerce->post('coupons/batch', $data));
 ?>
 ```
 
@@ -738,7 +738,7 @@ data = {
     ]
 }
 
-print(wcapi.post("customers/batch", data).json())
+print(wcapi.post("coupons/batch", data).json())
 ```
 
 ```ruby
@@ -772,7 +772,7 @@ data = {
   ]
 }
 
-woocommerce.post("customers/batch", data).parsed_response
+woocommerce.post("coupons/batch", data).parsed_response
 ```
 
 > JSON response example:
