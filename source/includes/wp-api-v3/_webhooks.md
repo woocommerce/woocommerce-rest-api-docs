@@ -41,21 +41,19 @@ The payload is JSON encoded and for API resources (coupons, customers, orders, p
 
 ### Logging ###
 
-Requests/responses are logged as comments on the webhook custom post type. Each delivery log includes:
+Requests/responses are logged using the WooCommerce loggin system. Each delivery log includes:
 
 * Request duration.
 * Request URL, method, headers, and body.
 * Response Code, message, headers, and body.
 
-Only the 25 most recent delivery logs are kept in order to reduce comment table bloat.
-
 After 5 consecutive failed deliveries (as defined by a non HTTP 2xx response code), the webhook is disabled and must be edited via the REST API to re-enable.
 
-Delivery logs can be fetched through the REST API endpoint or in code using `WC_Webhook::get_delivery_logs()`.
+Delivery logs can be accessed in "WooCommerce" > "Status" > "Logs".
 
 ### Visual interface ###
 
-You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" > "Webhooks", see our [Visual Webhooks docs](https://docs.woocommerce.com/document/webhooks/) for more details.
+You can find the Webhooks interface going to "WooCommerce" > "Settings" > "Advanced" > "Webhooks", see our [Visual Webhooks docs](https://docs.woocommerce.com/document/webhooks/) for more details.
 
 ## Webhook properties ##
 
@@ -74,38 +72,6 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `date_created_gmt`  | date-time | The date the webhook was created, as GMT. <i class="label label-info">read-only</i>                                                                                                                                                                                        |
 | `date_modified`     | date-time | The date the webhook was last modified, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                                                                                  |
 | `date_modified_gmt` | date-time | The date the webhook was last modified, as GMT. <i class="label label-info">read-only</i>                                                                                                                                                                                  |
-
-### Webhook delivery properties ###
-
-| Attribute          | Type      | Description                                                                                                                       |
-| ------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                     |
-| `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                      |
-| `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i> |
-| `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                |
-| `request_headers`  | array     | Request headers. <i class="label label-info">read-only</i>                                                                        |
-| `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                           |
-| `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                       |
-| `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                    |
-| `response_headers` | array     | Array of the response headers from the receiving server. <i class="label label-info">read-only</i>                                |
-| `response_body`    | string    | The response body from the receiving server. <i class="label label-info">read-only</i>                                            |
-| `date_created`     | date-time | The date the webhook delivery was logged, in the site's timezone. <i class="label label-info">read-only</i>                       |
-| `date_created_gmt` | date-time | The date the webhook delivery was logged, GMT. <i class="label label-info">read-only</i>                                          |
-
-#### Request header properties ####
-
-|         Attribute          |   Type  |                                                             Description                                                              |
-|----------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `User-Agent`               | string  | The request user agent, default is "WooCommerce/{version} Hookshot (WordPress/{version})". <i class="label label-info">read-only</i> |
-| `Content-Type`             | string  | The request content-type, default is "application/json". <i class="label label-info">read-only</i>                                   |
-| `X-WC-Webhook-Source`      | string  | The webhook source. <i class="label label-info">read-only</i>                                                                        |
-| `X-WC-Webhook-Topic`       | string  | The webhook topic. <i class="label label-info">read-only</i>                                                                         |
-| `X-WC-Webhook-Resource`    | string  | The webhook resource. <i class="label label-info">read-only</i>                                                                      |
-| `X-WC-Webhook-Event`       | string  | The webhook event. <i class="label label-info">read-only</i>                                                                         |
-| `X-WC-Webhook-Signature`   | string  | A base64 encoded HMAC-SHA256 hash of the payload. <i class="label label-info">read-only</i>                                          |
-| `X-WC-Webhook-ID`          | integer | The webhook's ID. <i class="label label-info">read-only</i>                                                                          |
-| `X-WC-Webhook-Delivery-ID` | integer | The delivery ID. <i class="label label-info">read-only</i>                                                                           |
-
 ## Create a webhook ##
 
 This API helps you to create a new webhook.
@@ -799,242 +765,4 @@ woocommerce.post("webhooks/batch", data).parsed_response
     }
   ]
 }
-```
-
-## Retrieve webhook delivery ##
-
-This API lets you retrieve and view a specific webhook delivery.
-
-### HTTP request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v3/webhooks/&lt;id&gt;/deliveries/&lt;delivery_id&gt;</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wp-json/wc/v3/webhooks/142/deliveries/54 \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('webhooks/142/deliveries/54', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('webhooks/142/deliveries/54')); ?>
-```
-
-```python
-print(wcapi.get("webhooks/142/deliveries/54").json())
-```
-
-```ruby
-woocommerce.get("webhooks/142/deliveries/54").parsed_response
-```
-
-> JSON response example:
-
-```json
-{
-  "id": 54,
-  "duration": "0.40888",
-  "summary": "HTTP 200 OK: ok",
-  "request_method": "POST",
-  "request_url": "http://requestb.in/1g0sxmo1",
-  "request_headers": {
-    "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
-    "Content-Type": "application/json",
-    "X-WC-Webhook-Source": "http://example.com/",
-    "X-WC-Webhook-Topic": "order.updated",
-    "X-WC-Webhook-Resource": "order",
-    "X-WC-Webhook-Event": "updated",
-    "X-WC-Webhook-Signature": "J72iu7hL93aUt2dFnyOBoBypwbmP6nt6Aor33nnOHxU=",
-    "X-WC-Webhook-ID": 142,
-    "X-WC-Webhook-Delivery-ID": 54
-  },
-  "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:30:30Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
-  "response_code": "200",
-  "response_message": "OK",
-  "response_headers": {
-    "connection": "close",
-    "server": "gunicorn/19.3.0",
-    "date": "Tue, 16 May 2016 03:30:31 GMT",
-    "content-type": "text/html; charset=utf-8",
-    "content-length": "2",
-    "sponsored-by": "https://www.runscope.com",
-    "via": "1.1 vegur"
-  },
-  "response_body": "ok",
-  "date_created": "2016-05-16T06:30:31",
-  "date_created_gmt": "2016-05-16T03:30:31",
-  "_links": {
-    "self": [
-      {
-        "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries/54"
-      }
-    ],
-    "collection": [
-      {
-        "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries"
-      }
-    ],
-    "up": [
-      {
-        "href": "https://example.com/wp-json/wc/v3/webhooks/142"
-      }
-    ]
-  }
-}
-```
-
-<aside class="notice">
-	View the <a href="#webhooks-delivery-properties">Webhooks Delivery properties</a> for more details on this response.
-</aside>
-
-## List all webhook deliveries ##
-
-This API helps you to view all deliveries from a specific webhooks.
-
-### HTTP request ###
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-get">GET</i>
-		<h6>/wp-json/wc/v3/webhooks/&lt;id&gt;/deliveries</h6>
-	</div>
-</div>
-
-```shell
-curl https://example.com/wp-json/wc/v3/webhooks/142/deliveries \
-	-u consumer_key:consumer_secret
-```
-
-```javascript
-WooCommerce.get('webhooks/142/deliveries', function(err, data, res) {
-  console.log(res);
-});
-```
-
-```php
-<?php print_r($woocommerce->get('webhooks/142/deliveries')); ?>
-```
-
-```python
-print(wcapi.get("webhooks/142/deliveries").json())
-```
-
-```ruby
-woocommerce.get("webhooks/142/deliveries").parsed_response
-```
-
-> JSON response example:
-
-```json
-[
-  {
-    "id": 54,
-    "duration": "0.40888",
-    "summary": "HTTP 200 OK: ok",
-    "request_method": "POST",
-    "request_url": "http://requestb.in/1g0sxmo1",
-    "request_headers": {
-      "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
-      "Content-Type": "application/json",
-      "X-WC-Webhook-Source": "http://example.com/",
-      "X-WC-Webhook-Topic": "order.updated",
-      "X-WC-Webhook-Resource": "order",
-      "X-WC-Webhook-Event": "updated",
-      "X-WC-Webhook-Signature": "J72iu7hL93aUt2dFnyOBoBypwbmP6nt6Aor33nnOHxU=",
-      "X-WC-Webhook-ID": 142,
-      "X-WC-Webhook-Delivery-ID": 54
-    },
-    "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:30:30Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
-    "response_code": "200",
-    "response_message": "OK",
-    "response_headers": {
-      "connection": "close",
-      "server": "gunicorn/19.3.0",
-      "date": "Tue, 16 May 2016 03:30:31 GMT",
-      "content-type": "text/html; charset=utf-8",
-      "content-length": "2",
-      "sponsored-by": "https://www.runscope.com",
-      "via": "1.1 vegur"
-    },
-    "response_body": "ok",
-    "date_created": "2016-05-16T06:30:31",
-    "date_created_gmt": "2016-05-16T03:30:31",
-    "_links": {
-      "self": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries/54"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries"
-        }
-      ],
-      "up": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142"
-        }
-      ]
-    }
-  },
-  {
-    "id": 53,
-    "duration": "0.7615",
-    "summary": "HTTP 200 OK: ok",
-    "request_method": "POST",
-    "request_url": "http://requestb.in/1g0sxmo1",
-    "request_headers": {
-      "User-Agent": "WooCommerce/2.6.0 Hookshot (WordPress/4.5.2)",
-      "Content-Type": "application/json",
-      "X-WC-Webhook-Source": "http://example.com/",
-      "X-WC-Webhook-Topic": "order.updated",
-      "X-WC-Webhook-Resource": "order",
-      "X-WC-Webhook-Event": "updated",
-      "X-WC-Webhook-Signature": "Z996ccyueeoqdXZFq2ND2ETpsPGrXmWKj+yvQ0c2N1w=",
-      "X-WC-Webhook-ID": 142,
-      "X-WC-Webhook-Delivery-ID": 53
-    },
-    "request_body": "{\"order\":{\"id\":118,\"order_number\":118,\"order_key\":\"wc_order_5728e9a347a2d\",\"created_at\":\"2016-05-03T18:10:00Z\",\"updated_at\":\"2016-05-16T03:29:13Z\",\"completed_at\":\"2016-05-16T03:29:19Z\",\"status\":\"completed\",\"currency\":\"BRL\",\"total\":\"14.00\",\"subtotal\":\"4.00\",\"total_line_items_quantity\":2,\"total_tax\":\"0.00\",\"total_shipping\":\"10.00\",\"cart_tax\":\"0.00\",\"shipping_tax\":\"0.00\",\"total_discount\":\"0.00\",\"shipping_methods\":\"Flat Rate\",\"payment_details\":{\"method_id\":\"bacs\",\"method_title\":\"Direct Bank Transfer\",\"paid\":true},\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"},\"note\":\"\",\"customer_ip\":\"127.0.0.1\",\"customer_user_agent\":\"curl/7.47.0\",\"customer_id\":0,\"view_order_url\":\"http://example.com/my-account/view-order/118\",\"line_items\":[{\"id\":8,\"subtotal\":\"4.00\",\"subtotal_tax\":\"0.00\",\"total\":\"4.00\",\"total_tax\":\"0.00\",\"price\":\"2.00\",\"quantity\":2,\"tax_class\":null,\"name\":\"Woo Single #2\",\"product_id\":99,\"sku\":\"12345\",\"meta\":[]}],\"shipping_lines\":[{\"id\":9,\"method_id\":\"flat_rate\",\"method_title\":\"Flat Rate\",\"total\":\"10.00\"}],\"tax_lines\":[],\"fee_lines\":[],\"coupon_lines\":[],\"is_vat_exempt\":false,\"customer\":{\"id\":0,\"email\":\"john.doe@claudiosmweb.com\",\"first_name\":\"John\",\"last_name\":\"Doe\",\"billing_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\",\"email\":\"john.doe@claudiosmweb.com\",\"phone\":\"(555) 555-5555\"},\"shipping_address\":{\"first_name\":\"John\",\"last_name\":\"Doe\",\"company\":\"\",\"address_1\":\"969 Market\",\"address_2\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"postcode\":\"94103\",\"country\":\"US\"}}}}",
-    "response_code": "200",
-    "response_message": "OK",
-    "response_headers": {
-      "connection": "close",
-      "server": "gunicorn/19.3.0",
-      "date": "Tue, 16 May 2016 03:29:20 GMT",
-      "content-type": "text/html; charset=utf-8",
-      "content-length": "2",
-      "sponsored-by": "https://www.runscope.com",
-      "via": "1.1 vegur"
-    },
-    "response_body": "ok",
-    "date_created": "2016-05-16T06:29:19",
-    "date_created_gmt": "2016-05-16T03:29:19",
-    "_links": {
-      "self": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries/53"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142/deliveries"
-        }
-      ],
-      "up": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/webhooks/142"
-        }
-      ]
-    }
-  }
-]
 ```
