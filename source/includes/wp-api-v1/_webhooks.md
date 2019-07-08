@@ -61,7 +61,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 |    Attribute    |    Type   |                                                                                     Description                                                                                      |
 |-----------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`            | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                        |
-| `name`          | string    | A friendly name for the webhook. Defaults is `Webhook created on <date>`.                                                                                                            |
+| `name`          | string    | A friendly name for the webhook. Default is `Webhook created on <date>`.                                                                                                             |
 | `status`        | string    | Webhook status. Default is `active`. Options `active` (delivers payload), `paused` (does not deliver), or `disabled` (does not deliver due delivery failures).                       |
 | `topic`         | string    | Webhook topic, e.g. `coupon.updated`. [See the complete list](#topics). <i class="label label-info">required</i>                                                                     |
 | `resource`      | string    | Webhook resource, e.g. `coupon` <i class="label label-info">read-only</i>                                                                                                            |
@@ -80,7 +80,7 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 | `duration`         | string    | The delivery duration, in seconds. <i class="label label-info">read-only</i>                                                               |
 | `summary`          | string    | A friendly summary of the response including the HTTP response code, message, and body. <i class="label label-info">read-only</i>          |
 | `request_url`      | string    | The URL where the webhook was delivered. <i class="label label-info">read-only</i>                                                         |
-| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-header-properties) for more details. <i class="label label-info">read-only</i> |
+| `request_headers`  | array     | Request headers. See [Request Headers Attributes](#request-header-properties) for more details. <i class="label label-info">read-only</i>  |
 | `request_body`     | string    | Request body. <i class="label label-info">read-only</i>                                                                                    |
 | `response_code`    | string    | The HTTP response code from the receiving server. <i class="label label-info">read-only</i>                                                |
 | `response_message` | string    | The HTTP response message from the receiving server. <i class="label label-info">read-only</i>                                             |
@@ -92,8 +92,8 @@ You can find the Webhooks interface going to "WooCommerce" > "Settings" > "API" 
 
 |         Attribute          |   Type  |                                                              Description                                                              |
 |----------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `User-Agent`               | string  | The request user agent, default is "WooCommerce/{version} Hookshot (WordPress/{version})". <i class="label label-info">read-only</i> |
-| `Content-Type`             | string  | The request content-type, default is "application/json". <i class="label label-info">read-only</i>                                   |
+| `User-Agent`               | string  | The request user agent, default is "WooCommerce/{version} Hookshot (WordPress/{version})". <i class="label label-info">read-only</i>  |
+| `Content-Type`             | string  | The request content-type, default is "application/json". <i class="label label-info">read-only</i>                                    |
 | `X-WC-Webhook-Topic`       | string  | The webhook topic. <i class="label label-info">read-only</i>                                                                          |
 | `X-WC-Webhook-Resource`    | string  | The webhook resource. <i class="label label-info">read-only</i>                                                                       |
 | `X-WC-Webhook-Event`       | string  | The webhook event. <i class="label label-info">read-only</i>                                                                          |
