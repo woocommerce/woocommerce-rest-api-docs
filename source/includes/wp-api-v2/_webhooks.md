@@ -573,7 +573,7 @@ woocommerce.delete("webhooks/142").parsed_response
 
 | Parameter |  Type  |                                Description                                 |
 |-----------|--------|----------------------------------------------------------------------------|
-| `force`   | string | Use `true` whether to permanently delete the webhook, Defaults is `false`. |
+| `force`   | string | Use `true` whether to permanently delete the webhook, Default is `false`. |
 
 ## Batch update webhooks ##
 
