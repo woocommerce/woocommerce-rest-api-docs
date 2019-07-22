@@ -10,7 +10,7 @@ The product reviews API allows you to create, view, update, and delete individua
 | `date_created`     | string  | The date the review was created, in the site's timezone. <i class="label label-info">read-only</i>                  |
 | `date_created_gmt` | string  | The date the review was created, as GMT. <i class="label label-info">read-only</i>                                  |
 | `product_id`       | integer | Unique identifier for the product that the review belongs to.                                                       |
-| `status`           | string  | Status of the review. Options: `approved`, `hold`, `spam`, `unspam`, `trash` and `untrash`. Defauls to `approved`. |
+| `status`           | string  | Status of the review. Options: `approved`, `hold`, `spam`, `unspam`, `trash` and `untrash`. Defaults to `approved`. |
 | `reviewer`         | string  | Reviewer name.                                                                                                      |
 | `reviewer_email`   | string  | Reviewer email.                                                                                                     |
 | `review`           | string  | The content of the review.                                                                                          |
