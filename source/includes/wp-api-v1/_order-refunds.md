@@ -343,7 +343,7 @@ WooCommerce.delete('orders/116/refunds/150?force=true', function(err, data, res)
 ```
 
 ```python
-print(wcapi.delete("orders/116/refunds/150?force=true").json())
+print(wcapi.delete("orders/116/refunds/150", params={"force": True}).json())
 ```
 
 ```ruby

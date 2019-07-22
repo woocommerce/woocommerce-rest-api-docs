@@ -626,7 +626,7 @@ WooCommerce.delete('taxes/72?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("taxes/72?force=true").json())
+print(wcapi.delete("taxes/72", params={"force": True}).json())
 ```
 
 ```ruby

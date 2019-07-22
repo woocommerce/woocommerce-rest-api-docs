@@ -574,7 +574,7 @@ WooCommerce.delete('products/categories/9?force=true', function(err, data, res) 
 ```
 
 ```python
-print(wcapi.delete("products/categories/9?force=true").json())
+print(wcapi.delete("products/categories/9", params={"force": True}).json())
 ```
 
 ```ruby

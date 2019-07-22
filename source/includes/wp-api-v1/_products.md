@@ -2113,7 +2113,7 @@ WooCommerce.delete('products/162?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/162?force=true").json())
+print(wcapi.delete("products/162", params={"force": True}).json())
 ```
 
 ```ruby

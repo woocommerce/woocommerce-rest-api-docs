@@ -738,7 +738,7 @@ WooCommerce.delete('customers/2?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("customers/2?force=true").json())
+print(wcapi.delete("customers/2", params={"force": True}).json())
 ```
 
 ```ruby

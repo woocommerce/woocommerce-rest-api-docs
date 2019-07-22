@@ -1809,7 +1809,7 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("orders/645/?force=true").json())
+print(wcapi.delete("orders/645/", params={"force": True}).json())
 ```
 
 

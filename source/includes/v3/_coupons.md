@@ -731,7 +731,7 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("coupons/529?force=true").json())
+print(wcapi.delete("coupons/529", params={"force": True}).json())
 ```
 
 ```ruby

@@ -360,7 +360,7 @@ WooCommerce.delete('products/tags/34?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/tags/34?force=true").json())
+print(wcapi.delete("products/tags/34", params={"force": True}).json())
 ```
 
 ```ruby

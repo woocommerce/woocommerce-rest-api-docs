@@ -477,7 +477,7 @@ WooCommerce.delete('products/review/20?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/review/20?force=true").json())
+print(wcapi.delete("products/review/20", params={"force": True}).json())
 ```
 
 ```ruby

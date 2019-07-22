@@ -2306,11 +2306,11 @@ WooCommerce.delete('products/546?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("products/546?force=true").json())
+print(wcapi.delete("products/546", params={"force": True}).json())
 ```
 
 ```ruby
-woocommerce.delete("products/546?force=true").parsed_response
+woocommerce.delete("products/546, force: true).parsed_response
 ```
 
 > JSON response example:

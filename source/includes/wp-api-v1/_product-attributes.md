@@ -374,7 +374,7 @@ WooCommerce.delete('products/attributes/1?force=true', function(err, data, res) 
 ```
 
 ```python
-print(wcapi.delete("products/attributes/1?force=true").json())
+print(wcapi.delete("products/attributes/1", params={"force": True}).json())
 ```
 
 ```ruby

@@ -361,7 +361,7 @@ WooCommerce.delete('shipping/zones/5?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("shipping/zones/5?force=true").json())
+print(wcapi.delete("shipping/zones/5", params={"force": True}).json())
 ```
 
 ```ruby

@@ -808,7 +808,7 @@ WooCommerce.delete('shipping/zones/5/methods/26?force=true', function(err, data,
 ```
 
 ```python
-print(wcapi.delete("shipping/zones/5/methods/26?force=true").json())
+print(wcapi.delete("shipping/zones/5/methods/26", params={"force": True}).json())
 ```
 
 ```ruby

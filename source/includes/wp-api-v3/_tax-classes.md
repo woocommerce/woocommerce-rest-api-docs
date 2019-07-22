@@ -192,7 +192,7 @@ WooCommerce.delete('taxes/classes/zero-rate?force=true', function(err, data, res
 ```
 
 ```python
-print(wcapi.delete("taxes/classes/zero-rate?force=true").json())
+print(wcapi.delete("taxes/classes/zero-rate", params={"force": True}).json())
 ```
 
 ```ruby

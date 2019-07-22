@@ -788,7 +788,7 @@ WooCommerce.delete('products/22/variations/733?force=true', function(err, data, 
 ```
 
 ```python
-print(wcapi.delete("products/22/variations/733?force=true").json())
+print(wcapi.delete("products/22/variations/733", params={"force": True}).json())
 ```
 
 ```ruby

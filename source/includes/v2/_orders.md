@@ -1376,7 +1376,7 @@ WooCommerce.delete('orders/645/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("orders/645/?force=true").json())
+print(wcapi.delete("orders/645/", params={"force": True}).json())
 ```
 
 ```php
@@ -1384,7 +1384,7 @@ print(wcapi.delete("orders/645/?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("orders/645/?force=true").parsed_response
+woocommerce.delete("orders/645/, force: true).parsed_response
 ```
 
 > JSON response example:

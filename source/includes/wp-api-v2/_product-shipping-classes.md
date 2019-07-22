@@ -361,7 +361,7 @@ WooCommerce.delete('products/shipping_classes/32?force=true', function(err, data
 ```
 
 ```python
-print(wcapi.delete("products/shipping_classes/32?force=true").json())
+print(wcapi.delete("products/shipping_classes/32", params={"force": True}).json())
 ```
 
 ```ruby

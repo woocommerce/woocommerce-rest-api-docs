@@ -323,7 +323,7 @@ WooCommerce.delete('orders/723/notes/281?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("orders/723/notes/281?force=true").json())
+print(wcapi.delete("orders/723/notes/281", params={"force": True}).json())
 ```
 
 ```ruby

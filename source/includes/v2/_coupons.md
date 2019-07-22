@@ -528,7 +528,7 @@ WooCommerce.delete('coupons/529/?force=true', function(err, data, res) {
 ```
 
 ```python
-print(wcapi.delete("coupons/529?force=true").json())
+print(wcapi.delete("coupons/529", params={"force": True}).json())
 ```
 
 ```php
@@ -536,7 +536,7 @@ print(wcapi.delete("coupons/529?force=true").json())
 ```
 
 ```ruby
-woocommerce.delete("coupons/529?force=true").parsed_response
+woocommerce.delete("coupons/529, force: true).parsed_response
 ```
 
 > JSON response example:
