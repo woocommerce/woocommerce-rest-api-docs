@@ -41,10 +41,10 @@ curl -X POST https://example.com/wp-json/wc/v2/products/attributes \
 
 ```javascript
 const data = {
-  name: 'Color',
-  slug: 'pa_color',
-  type: 'select',
-  order_by: 'menu_order',
+  name: "Color",
+  slug: "pa_color",
+  type: "select",
+  order_by: "menu_order",
   has_archives: true
 };
 
@@ -300,7 +300,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/products/attributes/1 \
 
 ```javascript
 const data = {
-  order_by: 'name'
+  order_by: "name"
 };
 
 WooCommerce.put("products/attributes/1", data)
@@ -482,16 +482,16 @@ curl -X POST https://example.com//wp-json/wc/v2/products/attributes/batch \
 const data = {
   create: [
     {
-      name: 'Brand'
+      name: "Brand"
     },
     {
-      name: 'Publisher'
+      name: "Publisher"
     }
   ],
   update: [
     {
       id: 2,
-      order_by: 'name'
+      order_by: "name"
     }
   ],
   delete: [

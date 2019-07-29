@@ -127,14 +127,14 @@ curl -X POST https://example.com/wp-json/wc/v2/products/22/variations \
 
 ```javascript
 const data = {
-  regular_price: '9.00',
+  regular_price: "9.00",
   image: {
     id: 423
   },
   attributes: [
     {
       id: 9,
-      option: 'Black'
+      option: "Black"
     }
   ]
 };
@@ -667,7 +667,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/products/22/variations/733 \
 
 ```javascript
 const data = {
-  regular_price: '10.00'
+  regular_price: "10.00"
 };
 
 WooCommerce.put("products/22/variations/733", data)
@@ -973,20 +973,20 @@ curl -X POST https://example.com/wp-json/wc/v2/products/22/variations/batch \
 const data = {
   create: [
     {
-      regular_price: '10.00',
+      regular_price: "10.00",
       attributes: [
         {
           id: 6,
-          option: 'Blue'
+          option: "Blue"
         }
       ]
     },
     {
-      regular_price: '10.00',
+      regular_price: "10.00",
       attributes: [
         {
           id: 6,
-          option: 'White'
+          option: "White"
         }
       ]
     }
@@ -994,7 +994,7 @@ const data = {
   update: [
     {
       id: 733,
-      regular_price: '10.00'
+      regular_price: "10.00"
     }
   ],
   delete: [

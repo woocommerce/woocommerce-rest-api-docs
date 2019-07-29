@@ -33,7 +33,7 @@ curl -X POST https://example.com/wp-json/wc/v2/taxes/classes \
 
 ```javascript
 const data = {
-  name: 'Zero Rate'
+  name: "Zero Rate"
 };
 
 WooCommerce.post("taxes/classes", data)

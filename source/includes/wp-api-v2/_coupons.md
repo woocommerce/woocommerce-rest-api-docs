@@ -71,12 +71,12 @@ curl -X POST https://example.com/wp-json/wc/v2/coupons \
 
 ```javascript
 const data = {
-  code: '10off',
-  discount_type: 'percent',
-  amount: '10',
+  code: "10off",
+  discount_type: "percent",
+  amount: "10",
   individual_use: true,
   exclude_sale_items: true,
-  minimum_amount: '100.00'
+  minimum_amount: "100.00"
 };
 
 WooCommerce.post("coupons", data)
@@ -431,7 +431,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/coupons/719 \
 
 ```javascript
 const data = {
-  amount: '5'
+  amount: "5"
 };
 
 WooCommerce.put("coupons/719", data)
@@ -661,26 +661,26 @@ curl -X POST https://example.com//wp-json/wc/v2/coupons/batch \
 const data = {
   create: [
     {
-      code: '20off',
-      discount_type: 'percent',
-      amount: '20',
+      code: "20off",
+      discount_type: "percent",
+      amount: "20",
       individual_use: true,
       exclude_sale_items: true,
-      minimum_amount: '100.00'
+      minimum_amount: "100.00"
     },
     {
-      code: '30off',
-      discount_type: 'percent',
-      amount: '30',
+      code: "30off",
+      discount_type: "percent",
+      amount: "30",
       individual_use: true,
       exclude_sale_items: true,
-      minimum_amount: '100.00'
+      minimum_amount: "100.00"
     }
   ],
   update: [
     {
       id: 719,
-      minimum_amount: '50.00'
+      minimum_amount: "50.00"
     }
   ],
   delete: [

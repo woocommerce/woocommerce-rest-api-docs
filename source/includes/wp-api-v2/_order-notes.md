@@ -37,7 +37,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/723/notes \
 
 ```javascript
 const data = {
-  note: 'Order ok!!!'
+  note: "Order ok!!!"
 };
 
 WooCommerce.post("orders/723/notes", data)

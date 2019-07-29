@@ -243,30 +243,30 @@ curl -X POST https://example.com/wp-json/wc/v2/orders \
 
 ```javascript
 const data = {
-  payment_method: 'bacs',
-  payment_method_title: 'Direct Bank Transfer',
+  payment_method: "bacs",
+  payment_method_title: "Direct Bank Transfer",
   set_paid: true,
   billing: {
-    first_name: 'John',
-    last_name: 'Doe',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US',
-    email: 'john.doe@example.com',
-    phone: '(555) 555-5555'
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
   },
   shipping: {
-    first_name: 'John',
-    last_name: 'Doe',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US'
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: "",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
   },
   line_items: [
     {
@@ -281,8 +281,8 @@ const data = {
   ],
   shipping_lines: [
     {
-      method_id: 'flat_rate',
-      method_title: 'Flat Rate',
+      method_id: "flat_rate",
+      method_title: "Flat Rate",
       total: 10
     }
   ]
@@ -1231,7 +1231,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/orders/727 \
 
 ```javascript
 const data = {
-  status: 'completed'
+  status: "completed"
 };
 
 WooCommerce.put("orders/727", data)
@@ -1787,29 +1787,29 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/batch \
 const data = {
   create: [
     {
-      payment_method: 'bacs',
-      payment_method_title: 'Direct Bank Transfer',
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
       billing: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US',
-        email: 'john.doe@example.com',
-        phone: '(555) 555-5555'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
       },
       shipping: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
       },
       line_items: [
         {
@@ -1828,37 +1828,37 @@ const data = {
       ],
       shipping_lines: [
         {
-          method_id: 'flat_rate',
-          method_title: 'Flat Rate',
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
           total: 30
         }
       ]
     },
     {
-      payment_method: 'bacs',
-      payment_method_title: 'Direct Bank Transfer',
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
       set_paid: true,
       billing: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US',
-        email: 'john.doe@example.com',
-        phone: '(555) 555-5555'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
       },
       shipping: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
       },
       line_items: [
         {
@@ -1874,8 +1874,8 @@ const data = {
       ],
       shipping_lines: [
         {
-          method_id: 'flat_rate',
-          method_title: 'Flat Rate',
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
           total: 20
         }
       ]
@@ -1884,7 +1884,7 @@ const data = {
   update: [
     {
       id: 727,
-      shipping_methods: 'Local Delivery'
+      shipping_methods: "Local Delivery"
     }
   ],
   delete: [

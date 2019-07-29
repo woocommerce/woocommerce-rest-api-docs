@@ -38,7 +38,7 @@ curl -X POST https://example.com/wp-json/wc/v2/products/tags \
 
 ```javascript
 const data = {
-  name: 'Leather Shoes'
+  name: "Leather Shoes"
 };
 
 WooCommerce.post("products/tags", data)
@@ -286,7 +286,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/products/tags/34 \
 
 ```javascript
 const data = {
-  description: 'Genuine leather.'
+  description: "Genuine leather."
 };
 
 WooCommerce.put("products/tags/34", data)
@@ -462,16 +462,16 @@ curl -X POST https://example.com//wp-json/wc/v2/products/tags/batch \
 const data = {
   create: [
     {
-      name: 'Round toe'
+      name: "Round toe"
     },
     {
-      name: 'Flat'
+      name: "Flat"
     }
   ],
   update: [
     {
       id: 34,
-      description: 'Genuine leather.'
+      description: "Genuine leather."
     }
   ],
   delete: [

@@ -75,7 +75,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/723/refunds \
 
 ```javascript
 const data = {
-  amount: '10'
+  amount: "10"
 };
 
 WooCommerce.post("orders/723/refunds", data)

@@ -132,9 +132,9 @@ curl -X POST https://example.com/wp-json/wc/v2/webhooks \
 
 ```javascript
 const data = {
-  name: 'Order updated',
-  topic: 'order.updated',
-  delivery_url: 'http://requestb.in/1g0sxmo1'
+  name: "Order updated",
+  topic: "order.updated",
+  delivery_url: "http://requestb.in/1g0sxmo1"
 };
 
 WooCommerce.post("webhooks", data)
@@ -439,7 +439,7 @@ curl -X PUT https://example.com/wp-json/wc/v2/webhook/142 \
 
 ```javascript
 const data = {
-  status: 'paused'
+  status: "paused"
 }
 
 WooCommerce.put("webhooks/142", data)
@@ -635,14 +635,14 @@ curl -X POST https://example.com//wp-json/wc/v2/webhooks/batch \
 const data = {
   create: [
     {
-      name: 'Round toe',
-      topic: 'coupon.created',
-      delivery_url: 'http://requestb.in/1g0sxmo1'
+      name: "Round toe",
+      topic: "coupon.created",
+      delivery_url: "http://requestb.in/1g0sxmo1"
     },
     {
-      name: 'Customer deleted',
-      topic: 'customer.deleted',
-      delivery_url: 'http://requestb.in/1g0sxmo1'
+      name: "Customer deleted",
+      topic: "customer.deleted",
+      delivery_url: "http://requestb.in/1g0sxmo1"
     }
   ],
   delete: [
