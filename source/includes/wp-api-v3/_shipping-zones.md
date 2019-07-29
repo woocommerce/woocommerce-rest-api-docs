@@ -36,7 +36,7 @@ curl -X POST https://example.com/wp-json/wc/v3/shipping/zones \
 
 ```javascript
 const data = {
-  name: 'Brazil'
+  name: "Brazil"
 };
 
 WooCommerce.post("shipping/zones", data)

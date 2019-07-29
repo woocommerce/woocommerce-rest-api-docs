@@ -37,7 +37,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/attributes/2/terms \
 
 ```javascript
 const data = {
-  name: 'XXS'
+  name: "XXS"
 };
 
 WooCommerce.post("products/attributes/2/terms", data)
@@ -389,7 +389,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/attributes/2/terms/23 \
 
 ```javascript
 const data = {
-  name: 'XXS'
+  name: "XXS"
 };
 
 WooCommerce.put("products/attributes/2/terms/23", data)
@@ -568,10 +568,10 @@ curl -X POST https://example.com//wp-json/wc/v3/products/attributes/&lt;attribut
 const data = {
   create: [
     {
-      name: 'XXS'
+      name: "XXS"
     },
     {
-      name: 'S'
+      name: "S"
     }
   ],
   update: [

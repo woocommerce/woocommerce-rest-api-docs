@@ -190,11 +190,11 @@ curl -X POST https://example.com/wp-json/wc/v3/products \
 
 ```javascript
 const data = {
-  name: 'Premium Quality',
-  type: 'simple',
-  regular_price: '21.99',
-  description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-  short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+  name: "Premium Quality",
+  type: "simple",
+  regular_price: "21.99",
+  description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+  short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
     {
       id: 9
@@ -205,10 +205,10 @@ const data = {
   ],
   images: [
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg"
     }
   ]
 };
@@ -504,10 +504,10 @@ curl -X POST https://example.com/wp-json/wc/v3/products \
 
 ```javascript
 const data = {
-  name: 'Ship Your Idea',
-  type: 'variable',
-  description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-  short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+  name: "Ship Your Idea",
+  type: "variable",
+  description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+  short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
     {
       id: 9
@@ -518,16 +518,16 @@ const data = {
   ],
   images: [
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_back.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_back.jpg"
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg"
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_back.jpg'
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_back.jpg"
     }
   ],
   attributes: [
@@ -537,29 +537,29 @@ const data = {
       visible: true,
       variation: true,
       options: [
-        'Black',
-        'Green'
+        "Black",
+        "Green"
       ]
     },
     {
-      name: 'Size',
+      name: "Size",
       position: 0,
       visible: false,
       variation: true,
       options: [
-        'S',
-        'M'
+        "S",
+        "M"
       ]
     }
   ],
   default_attributes: [
     {
       id: 6,
-      option: 'Black'
+      option: "Black"
     },
     {
-      name: 'Size',
-      option: 'S'
+      name: "Size",
+      option: "S"
     }
   ]
 };
@@ -1516,7 +1516,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/794 \
 
 ```javascript
 const data = {
-  regular_price: '24.54'
+  regular_price: "24.54"
 };
 
 WooCommerce.put("products/794", data)
@@ -1950,15 +1950,15 @@ curl -X POST https://example.com/wp-json/wc/v3/products/batch \
 const data = {
   create: [
     {
-      name: 'Woo Single #1',
-      type: 'simple',
-      regular_price: '21.99',
+      name: "Woo Single #1",
+      type: "simple",
+      regular_price: "21.99",
       virtual: true,
       downloadable: true,
       downloads: [
         {
-          name: 'Woo Single',
-          file: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg'
+          name: "Woo Single",
+          file: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg"
         }
       ],
       categories: [
@@ -1971,16 +1971,16 @@ const data = {
       ],
       images: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg'
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg"
         }
       ]
     },
     {
-      name: 'New Premium Quality',
-      type: 'simple',
-      regular_price: '21.99',
-      description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-      short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      name: "New Premium Quality",
+      type: "simple",
+      regular_price: "21.99",
+      description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       categories: [
         {
           id: 9
@@ -1991,10 +1991,10 @@ const data = {
       ],
       images: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
         },
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg'
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg"
         }
       ]
     }
@@ -2005,13 +2005,13 @@ const data = {
       default_attributes: [
         {
           id: 6,
-          name: 'Color',
-          option: 'Green'
+          name: "Color",
+          option: "Green"
         },
         {
           id: 0,
-          name: 'Size',
-          option: 'M'
+          name: "Size",
+          option: "M"
         }
       ]
     }

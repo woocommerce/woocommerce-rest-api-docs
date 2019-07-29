@@ -54,7 +54,7 @@ curl -X POST https://example.com/wp-json/wc/v3/shipping/zones/5/methods \
 
 ```javascript
 const data = {
-  method_id: 'flat_rate'
+  method_id: "flat_rate"
 };
 
 WooCommerce.post("shipping/zones/5/methods", data)
@@ -629,7 +629,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/shipping/zones/5/methods/26 \
 ```javascript
 const data = {
   settings: {
-    'cost': '20.00'
+    cost: "20.00"
   }
 };
 

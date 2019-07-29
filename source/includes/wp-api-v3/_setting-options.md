@@ -1385,7 +1385,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/settings/general/woocommerce_allow
 
 ```javascript
 const data = {
-  value: 'all_except'
+  value: "all_except"
 };
 
 WooCommerce.put("settings/general/woocommerce_allowed_countries", data)
@@ -1493,20 +1493,20 @@ curl -X POST https://example.com/wp-json/wc/v3/settings/general/batch \
 const data = {
   create: [
     {
-      regular_price: '10.00',
+      regular_price: "10.00",
       attributes: [
         {
           id: 6,
-          option: 'Blue'
+          option: "Blue"
         }
       ]
     },
     {
-      regular_price: '10.00',
+      regular_price: "10.00",
       attributes: [
         {
           id: 6,
-          option: 'White'
+          option: "White"
         }
       ]
     }
@@ -1514,7 +1514,7 @@ const data = {
   update: [
     {
       id: 733,
-      regular_price: '10.00'
+      regular_price: "10.00"
     }
   ],
   delete: [

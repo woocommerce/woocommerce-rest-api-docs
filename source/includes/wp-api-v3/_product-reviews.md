@@ -48,9 +48,9 @@ curl -X POST https://example.com/wp-json/wc/v3/products/reviews \
 ```javascript
 const data = {
   product_id: 22,
-  review: 'Nice album!',
-  reviewer: 'John Doe',
-  reviewer_email: 'john.doe@example.com',
+  review: "Nice album!",
+  reviewer: "John Doe",
+  reviewer_email: "john.doe@example.com",
   rating: 5
 };
 
@@ -589,24 +589,24 @@ const data = {
   create: [
     {
       product_id: 22,
-      review: 'Looks fine',
-      reviewer: 'John Doe',
-      reviewer_email: 'john.doe@example.com',
+      review: "Looks fine",
+      reviewer: "John Doe",
+      reviewer_email: "john.doe@example.com",
       rating: 4
     },
     {
       product_id: 22,
-      review: 'I love this album',
-      reviewer: 'John Doe',
-      reviewer_email: 'john.doe@example.com',
+      review: "I love this album",
+      reviewer: "John Doe",
+      reviewer_email: "john.doe@example.com",
       rating: 5
     }
   ],
   update: [
     {
       id: 7,
-      reviewer: 'John Doe',
-      reviewer_email: 'john.doe@example.com'
+      reviewer: "John Doe",
+      reviewer_email: "john.doe@example.com"
     }
   ],
   delete: [

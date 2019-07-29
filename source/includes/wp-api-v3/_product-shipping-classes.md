@@ -38,7 +38,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/shipping_classes \
 
 ```javascript
 const data = {
-  name: 'Priority'
+  name: "Priority"
 };
 
 WooCommerce.post("products/shipping_classes", data)
@@ -286,7 +286,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/shipping_classes/32 \
 
 ```javascript
 const data = {
-  description: 'Priority mail.'
+  description: "Priority mail."
 };
 
 WooCommerce.put("products/shipping_classes/32", data)
@@ -462,16 +462,16 @@ curl -X POST https://example.com//wp-json/wc/v3/products/shipping_classes/batch 
 const data = {
   create: [
     {
-      name: 'Small items'
+      name: "Small items"
     },
     {
-      name: 'Large items'
+      name: "Large items"
     }
   ],
   update: [
     {
       id: 33,
-      description: 'Express shipping'
+      description: "Express shipping"
     }
   ],
   delete: [

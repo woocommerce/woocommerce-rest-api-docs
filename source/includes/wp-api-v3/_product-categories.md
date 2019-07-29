@@ -58,9 +58,9 @@ curl -X POST https://example.com/wp-json/wc/v3/products/categories \
 
 ```javascript
 const data = {
-  name: 'Clothing',
+  name: "Clothing",
   image: {
-    src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
+    src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg"
   }
 };
 
@@ -76,7 +76,7 @@ WooCommerce.post("products/categories", data)
 ```php
 <?php
 $data = [
-    'name' => 'Clothing',
+    "name' => 'Clothing',
     'image' => [
         'src' => 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
     ]
@@ -496,7 +496,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/categories/9 \
 
 ```javascript
 const data = {
-  description: 'All kinds of clothes.'
+  description: "All kinds of clothes."
 };
 
 WooCommerce.put("products/categories/9", data)
@@ -699,16 +699,16 @@ curl -X POST https://example.com//wp-json/wc/v3/products/categories/batch \
 const data = {
   create: [
     {
-      name: 'Albums'
+      name: "Albums"
     },
     {
-      name: 'Clothing'
+      name: "Clothing"
     }
   ],
   update: [
     {
       id: 10,
-      description: 'Nice hoodies'
+      description: "Nice hoodies"
     }
   ],
   delete: [
