@@ -34,9 +34,13 @@ curl https://example.com/wp-json/wc/v3/settings/general/woocommerce_allowed_coun
 ```
 
 ```javascript
-WooCommerce.get('settings/general/woocommerce_allowed_countries', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("settings/general/woocommerce_allowed_countries")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -102,9 +106,13 @@ curl https://example.com/wp-json/wc/v3/settings/general \
 ```
 
 ```javascript
-WooCommerce.get('settings/general', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("settings/general")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1376,13 +1384,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/settings/general/woocommerce_allow
 ```
 
 ```javascript
-var data = {
+const data = {
   value: 'all_except'
 };
 
-WooCommerce.put('settings/general/woocommerce_allowed_countries', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("settings/general/woocommerce_allowed_countries", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1478,7 +1490,7 @@ curl -X POST https://example.com/wp-json/wc/v3/settings/general/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       regular_price: '10.00',
@@ -1510,9 +1522,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/22/settings/general/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/22/settings/general/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

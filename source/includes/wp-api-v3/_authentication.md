@@ -64,18 +64,18 @@ echo "$STORE_URL$ENDPOINT?$QUERY_STRING"
 ```
 
 ```javascript
-var querystring = require('querystring');
+const querystring = require('querystring');
 
-var store_url = 'http://example.com';
-var endpoint = '/wc-auth/v1/authorize';
-var params = {
+const store_url = 'http://example.com';
+const endpoint = '/wc-auth/v1/authorize';
+const params = {
   app_name: 'My App Name',
   scope: 'read_write',
   user_id: 123,
   return_url: 'http://app.com/return-page',
   callback_url: 'https://app.com/callback-endpoint'
 };
-var query_string = querystring.stringify(params).replace(/%20/g, '+');
+const query_string = querystring.stringify(params).replace(/%20/g, '+');
 
 console.log(store_url + endpoint + '?' + query_string);
 ```
@@ -166,13 +166,13 @@ curl https://www.example.com/wp-json/wc/v3/orders \
 ```
 
 ```javascript
-var WooCommerceAPI = require('woocommerce-api');
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
+// import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
 
-var WooCommerce = new WooCommerceAPI({
+const WooCommerce = new WooCommerceRestApi({
   url: 'https://example.com',
   consumerKey: 'consumer_key',
   consumerSecret: 'consumer_secret',
-  wpAPI: true,
   version: 'wc/v3'
 });
 ```
@@ -230,13 +230,13 @@ curl https://www.example.com/wp-json/wc/v3/orders?consumer_key=123&consumer_secr
 ```
 
 ```javascript
-var WooCommerceAPI = require('woocommerce-api');
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
+// import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
 
-var WooCommerce = new WooCommerceAPI({
+const WooCommerce = new WooCommerceRestApi({
   url: 'https://example.com',
   consumerKey: 'consumer_key',
   consumerSecret: 'consumer_secret',
-  wpAPI: true,
   version: 'wc/v3',
   queryStringAuth: true // Force Basic Authentication as query string true and using under HTTPS
 });

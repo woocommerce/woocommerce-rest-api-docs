@@ -223,12 +223,12 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
 ```
 
 ```javascript
-var data = {
-  name: 'Premium Quality',
-  type: 'simple',
-  regular_price: '21.99',
-  description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-  short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+const data = {
+  name: "Premium Quality",
+  type: "simple",
+  regular_price: "21.99",
+  description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+  short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
     {
       id: 9
@@ -239,19 +239,23 @@ var data = {
   ],
   images: [
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg",
       position: 0
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg",
       position: 1
     }
   ]
 };
 
-WooCommerce.post('products', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -573,11 +577,11 @@ curl -X POST https://example.com/wp-json/wc/v1/products \
 ```
 
 ```javascript
-var data = {
-  name: 'Ship Your Idea',
-  type: 'variable',
-  description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-  short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+const data = {
+  name: "Ship Your Idea",
+  type: "variable",
+  description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+  short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
   categories: [
     {
       id: 9
@@ -588,19 +592,19 @@ var data = {
   ],
   images: [
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg",
       position: 0
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_back.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_back.jpg",
       position: 1
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg",
       position: 2
     },
     {
-      src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_back.jpg',
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_back.jpg",
       position: 3
     }
   ],
@@ -611,76 +615,80 @@ var data = {
       visible: true,
       variation: true,
       options: [
-        'Black',
-        'Green'
+        "Black",
+        "Green"
       ]
     }
     {
-      name: 'Size',
+      name: "Size",
       position: 0,
       visible: false,
       variation: true,
       options: [
-        'S',
-        'M'
+        "S",
+        "M"
       ]
     }
   ],
   default_attributes: [
     {
       id: 6,
-      option: 'Black'
+      option: "Black"
     },
     {
-      name: 'Size',
-      option: 'S'
+      name: "Size",
+      option: "S"
     }
   ],
   variations: [
     {
-      regular_price: '19.99',
+      regular_price: "19.99",
       image: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg",
           position: 0
         }
       ],
       attributes: [
         {
           id: 6,
-          option: 'black'
+          option: "black"
         },
         {
-          name: 'Size',
-          option: 'S'
+          name: "Size",
+          option: "S"
         }
       ]
     },
     {
-      regular_price: '19.99',
+      regular_price: "19.99",
       image: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg',
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_3_front.jpg",
           position: 0
         }
       ],
       attributes: [
         {
           id: 6,
-          option: 'green'
+          option: "green"
         },
         {
-          name: 'Size',
-          option: 'M'
+          name: "Size",
+          option: "M"
         }
       ]
     }
   ]
 };
 
-WooCommerce.post('products', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1320,9 +1328,13 @@ curl https://example.com/wp-json/wc/v1/products/162 \
 ```
 
 ```javascript
-WooCommerce.get('products/162', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/162")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1470,9 +1482,13 @@ curl https://example.com/wp-json/wc/v1/products \
 ```
 
 ```javascript
-WooCommerce.get('products', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1935,13 +1951,17 @@ curl -X PUT https://example.com/wp-json/wc/v1/products/162 \
 ```
 
 ```javascript
-var data = {
-  regular_price: '24.54'
+const data = {
+  regular_price: "24.54"
 };
 
-WooCommerce.put('products/162', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/162", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -2103,9 +2123,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/products/162?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('products/162?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/162", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -2334,18 +2360,18 @@ curl -X POST https://example.com/wp-json/wc/v1/products/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
-      name: 'Woo Single #1',
-      type: 'simple',
-      regular_price: '21.99',
+      name: "Woo Single #1",
+      type: "simple",
+      regular_price: "21.99",
       virtual: true,
       downloadable: true,
       downloads: [
         {
-          name: 'Woo Single',
-          file: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg'
+          name: "Woo Single",
+          file: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg"
         }
       ],
       categories: [
@@ -2358,17 +2384,17 @@ var data = {
       ],
       images: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg',
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg",
           position: 0
         }
       ]
     },
     {
-      name: 'New Premium Quality',
-      type: 'simple',
-      regular_price: '21.99',
-      description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-      short_description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      name: "New Premium Quality",
+      type: "simple",
+      regular_price: "21.99",
+      description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      short_description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       categories: [
         {
           id: 9
@@ -2379,11 +2405,11 @@ var data = {
       ],
       images: [
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg',
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg",
           position: 0
         },
         {
-          src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg',
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg",
           position: 1
         }
       ]
@@ -2395,11 +2421,11 @@ var data = {
       variations: [
         {
           id: 170,
-          regular_price: '29.99'
+          regular_price: "29.99"
         },
         {
           id: 172,
-          regular_price: '29.99'
+          regular_price: "29.99"
         }
       ]
     }
@@ -2409,9 +2435,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -3293,9 +3323,13 @@ curl https://example.com/wp-json/wc/v1/products/162/reviews/9 \
 ```
 
 ```javascript
-WooCommerce.get('products/162/reviews/9', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/162/reviews/9")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -3369,9 +3403,13 @@ curl https://example.com/wp-json/wc/v1/products/162/reviews \
 ```
 
 ```javascript
-WooCommerce.get('products/162/reviews', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/162/reviews")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

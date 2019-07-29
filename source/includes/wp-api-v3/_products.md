@@ -189,7 +189,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Premium Quality',
   type: 'simple',
   regular_price: '21.99',
@@ -213,9 +213,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -499,7 +503,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Ship Your Idea',
   type: 'variable',
   description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
@@ -560,9 +564,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -961,9 +969,13 @@ curl https://example.com/wp-json/wc/v3/products/794 \
 ```
 
 ```javascript
-WooCommerce.get('products/794', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/794")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1123,9 +1135,13 @@ curl https://example.com/wp-json/wc/v3/products \
 ```
 
 ```javascript
-WooCommerce.get('products', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1499,13 +1515,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/794 \
 ```
 
 ```javascript
-var data = {
+const data = {
   regular_price: '24.54'
 };
 
-WooCommerce.put('products/794', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/794", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1679,9 +1699,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/products/794?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('products/794?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/794", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1921,7 +1947,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       name: 'Woo Single #1',
@@ -1995,9 +2021,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

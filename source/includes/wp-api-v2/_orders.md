@@ -242,7 +242,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders \
 ```
 
 ```javascript
-var data = {
+const data = {
   payment_method: 'bacs',
   payment_method_title: 'Direct Bank Transfer',
   set_paid: true,
@@ -288,9 +288,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('orders', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("orders", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -629,9 +633,13 @@ curl https://example.com/wp-json/wc/v2/orders/727 \
 ```
 
 ```javascript
-WooCommerce.get('orders/727', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders/727")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -836,9 +844,13 @@ curl https://example.com/wp-json/wc/v2/orders \
 ```
 
 ```javascript
-WooCommerce.get('orders', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1218,13 +1230,17 @@ curl -X PUT https://example.com/wp-json/wc/v2/orders/727 \
 ```
 
 ```javascript
-var data = {
+const data = {
   status: 'completed'
 };
 
-WooCommerce.put('orders/727', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("orders/727", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1442,9 +1458,15 @@ curl -X DELETE https://example.com/wp-json/wc/v2/orders/727?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('orders/727?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("orders/727", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1762,7 +1784,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       payment_method: 'bacs',
@@ -1870,9 +1892,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('orders/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("orders/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

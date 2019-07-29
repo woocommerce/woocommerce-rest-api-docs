@@ -16,9 +16,13 @@ curl https://example.com/wp-json/wc/v2
 ```
 
 ```javascript
-WooCommerce.get('', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

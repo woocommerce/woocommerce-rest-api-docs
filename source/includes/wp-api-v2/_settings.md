@@ -31,9 +31,13 @@ curl https://example.com/wp-json/wc/v2/settings \
 ```
 
 ```javascript
-WooCommerce.get('settings', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("settings")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -116,9 +116,13 @@ curl https://example.com/wp-json/wc/v2/system_status \
 ```
 
 ```javascript
-WooCommerce.get('system_status', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("system_status")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

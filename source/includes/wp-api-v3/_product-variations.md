@@ -125,7 +125,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/22/variations \
 ```
 
 ```javascript
-var data = {
+const data = {
   regular_price: '9.00',
   image: {
     id: 423
@@ -138,9 +138,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/22/variations', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/22/variations", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -297,9 +301,13 @@ curl https://example.com/wp-json/wc/v3/products/22/variations/732 \
 ```
 
 ```javascript
-WooCommerce.get('products/22/variations/732', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/22/variations/732")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -415,9 +423,13 @@ curl https://example.com/wp-json/wc/v3/products/22/variations \
 ```
 
 ```javascript
-WooCommerce.get('products/22/variations', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/22/variations")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -642,13 +654,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/22/variations/733 \
 ```
 
 ```javascript
-var data = {
+const data = {
   regular_price: '10.00'
 };
 
-WooCommerce.put('products/22/variations/733', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/22/variations/733", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -778,9 +794,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/products/22/variations/733?forc
 ```
 
 ```javascript
-WooCommerce.delete('products/22/variations/733?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/22/variations/733", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -934,7 +956,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/22/variations/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       regular_price: '10.00',
@@ -966,9 +988,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/22/variations/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/22/variations/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

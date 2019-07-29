@@ -35,13 +35,17 @@ curl -X POST https://example.com/wp-json/wc/v1/orders/645/notes \
 ```
 
 ```javascript
-var data = {
-  note: 'Order ok!!!'
+const data = {
+  note: "Order ok!!!"
 };
 
-WooCommerce.post('orders/645/notes', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("orders/645/notes", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -117,9 +121,13 @@ curl https://example.com/wp-json/wc/v1/orders/645/notes/51 \
 ```
 
 ```javascript
-WooCommerce.get('orders/645/notes/51', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders/645/notes/51")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -181,9 +189,13 @@ curl https://example.com/wp-json/wc/v1/orders/645/notes \
 ```
 
 ```javascript
-WooCommerce.get('orders/645/notes', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders/645/notes")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -270,9 +282,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/orders/645/notes/51?force=true 
 ```
 
 ```javascript
-WooCommerce.delete('orders/645/notes/51?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("orders/645/notes/51", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -37,13 +37,17 @@ curl -X POST https://example.com/wp-json/wc/v3/products/tags \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Leather Shoes'
 };
 
-WooCommerce.post('products/tags', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/tags", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -113,9 +117,13 @@ curl https://example.com/wp-json/wc/v3/products/tags/34 \
 ```
 
 ```javascript
-WooCommerce.get('products/tags/34', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/tags/34")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -171,9 +179,13 @@ curl https://example.com/wp-json/wc/v3/products/tags \
 ```
 
 ```javascript
-WooCommerce.get('products/tags', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/tags")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -273,13 +285,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/tags/34 \
 ```
 
 ```javascript
-var data = {
+const data = {
   description: 'Genuine leather.'
 };
 
-WooCommerce.put('products/tags/34', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/tags/34", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -351,9 +367,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/products/tags/34?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('products/tags/34?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/tags/34", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -437,7 +459,7 @@ curl -X POST https://example.com//wp-json/wc/v3/products/tags/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       name: 'Round toe'
@@ -457,9 +479,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/tags/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/tags/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -36,13 +36,17 @@ curl -X POST https://example.com/wp-json/wc/v1/products/attributes/2/terms \
 ```
 
 ```javascript
-var data = {
-  name: 'XXS'
+const data = {
+  name: "XXS"
 };
 
-WooCommerce.post('products/attributes/2/terms', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/attributes/2/terms", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -113,9 +117,13 @@ curl https://example.com/wp-json/wc/v1/products/attributes/2/terms/23 \
 ```
 
 ```javascript
-WooCommerce.get('products/attributes/2/terms/23', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/attributes/2/terms/23")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -172,9 +180,13 @@ curl https://example.com/wp-json/wc/v1/products/attributes/2/terms \
 ```
 
 ```javascript
-WooCommerce.get('products/attributes/2/terms', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/attributes/2/terms")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -376,13 +388,17 @@ curl -X PUT https://example.com/wp-json/wc/v1/products/attributes/2/terms/23 \
 ```
 
 ```javascript
-var data = {
-  name: 'XXS'
+const data = {
+  name: "XXS"
 };
 
-WooCommerce.put('products/attributes/2/terms/23', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/attributes/2/terms/23", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -455,9 +471,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/products/attributes/2/terms/23?
 ```
 
 ```javascript
-WooCommerce.delete('products/attributes/2/terms/23?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/attributes/2/terms/23", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -543,13 +565,13 @@ curl -X POST https://example.com//wp-json/wc/v1/products/attributes/&lt;attribut
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
-      name: 'XXS'
+      name: "XXS"
     },
     {
-      name: 'S'
+      name: "S"
     }
   ],
   update: [
@@ -564,9 +586,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/attributes/2/terms/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/attributes/2/terms/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

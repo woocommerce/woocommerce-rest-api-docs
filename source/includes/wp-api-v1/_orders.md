@@ -182,31 +182,31 @@ curl -X POST https://example.com/wp-json/wc/v1/orders \
 ```
 
 ```javascript
-var data = {
-  payment_method: 'bacs',
-  payment_method_title: 'Direct Bank Transfer',
+const data = {
+  payment_method: "bacs",
+  payment_method_title: "Direct Bank Transfer",
   set_paid: true,
   billing: {
-    first_name: 'John',
-    last_name: 'Doe',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US',
-    email: 'john.doe@example.com',
-    phone: '(555) 555-5555'
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: ",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
   },
   shipping: {
-    first_name: 'John',
-    last_name: 'Doe',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US'
+    first_name: "John",
+    last_name: "Doe",
+    address_1: "969 Market",
+    address_2: ",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
   },
   line_items: [
     {
@@ -221,16 +221,20 @@ var data = {
   ],
   shipping_lines: [
     {
-      method_id: 'flat_rate',
-      method_title: 'Flat Rate',
+      method_id: "flat_rate",
+      method_title: "Flat Rate",
       total: 10
     }
   ]
 };
 
-WooCommerce.post('orders', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("orders", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -551,9 +555,13 @@ curl https://example.com/wp-json/wc/v1/orders/154 \
 ```
 
 ```javascript
-WooCommerce.get('orders/154', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders/154")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -740,9 +748,13 @@ curl https://example.com/wp-json/wc/v1/orders \
 ```
 
 ```javascript
-WooCommerce.get('orders', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("orders")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1052,13 +1064,17 @@ curl -X PUT https://example.com/wp-json/wc/v1/orders/154 \
 ```
 
 ```javascript
-var data = {
-  status: 'completed'
+const data = {
+  status: "completed"
 };
 
-WooCommerce.put('orders/154', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("orders/154", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1253,9 +1269,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/orders/154?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('orders/154?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("orders/154", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1550,32 +1572,32 @@ curl -X POST https://example.com/wp-json/wc/v1/orders/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
-      payment_method: 'bacs',
-      payment_method_title: 'Direct Bank Transfer',
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
       billing: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US',
-        email: 'john.doe@example.com',
-        phone: '(555) 555-5555'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
       },
       shipping: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
       },
       line_items: [
         {
@@ -1594,37 +1616,37 @@ var data = {
       ],
       shipping_lines: [
         {
-          method_id: 'flat_rate',
-          method_title: 'Flat Rate',
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
           total: 30
         }
       ]
     },
     {
-      payment_method: 'bacs',
-      payment_method_title: 'Direct Bank Transfer',
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
       set_paid: true,
       billing: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US',
-        email: 'john.doe@example.com',
-        phone: '(555) 555-5555'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
       },
       shipping: {
-        first_name: 'John',
-        last_name: 'Doe',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US'
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
       },
       line_items: [
         {
@@ -1640,8 +1662,8 @@ var data = {
       ],
       shipping_lines: [
         {
-          method_id: 'flat_rate',
-          method_title: 'Flat Rate',
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
           total: 20
         }
       ]
@@ -1650,7 +1672,7 @@ var data = {
   update: [
     {
       id: 154,
-      shipping_methods: 'Local Delivery'
+      shipping_methods: "Local Delivery"
     }
   ],
   delete: [
@@ -1658,9 +1680,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('orders/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("orders/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

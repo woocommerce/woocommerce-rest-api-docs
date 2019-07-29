@@ -21,9 +21,13 @@ curl https://example.com/wp-json/wc/v3/data \
 ```
 
 ```javascript
-WooCommerce.get('data', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -119,9 +123,13 @@ curl https://example.com/wp-json/wc/v3/data/continents \
 ```
 
 ```javascript
-WooCommerce.get('data/continents', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/continents")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -300,9 +308,13 @@ curl https://example.com/wp-json/wc/v3/data/continents/eu \
 ```
 
 ```javascript
-WooCommerce.get('data/continents/eu', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/continents/eu")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -520,9 +532,13 @@ curl https://example.com/wp-json/wc/v3/data/countries \
 ```
 
 ```javascript
-WooCommerce.get('data/countries', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/countries")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -814,9 +830,13 @@ curl https://example.com/wp-json/wc/v3/data/countries/br \
 ```
 
 ```javascript
-WooCommerce.get('data/countries/br', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/countries/br")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -987,9 +1007,13 @@ curl https://example.com/wp-json/wc/v3/data/currencies \
 ```
 
 ```javascript
-WooCommerce.get('data/currencies', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/currencies")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1091,9 +1115,13 @@ curl https://example.com/wp-json/wc/v3/data/currencies/brl \
 ```
 
 ```javascript
-WooCommerce.get('data/currencies/brl', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/currencies/brl")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1155,9 +1183,13 @@ curl https://example.com/wp-json/wc/v3/data/currencies/current \
 ```
 
 ```javascript
-WooCommerce.get('data/currencies/current', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("data/currencies/current")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

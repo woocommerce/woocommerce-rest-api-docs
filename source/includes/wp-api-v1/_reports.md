@@ -21,9 +21,13 @@ curl https://example.com/wp-json/wc/v1/reports \
 ```
 
 ```javascript
-WooCommerce.get('reports', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -96,9 +100,16 @@ curl https://example.com/wp-json/wc/v1/reports/sales?date_min=2016-05-03&date_ma
 ```
 
 ```javascript
-WooCommerce.get('reports/sales?date_min=2016-05-03&date_max=2016-05-04', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/sales", {
+  date_min: "2016-05-03",
+  date_max: "2016-05-04"
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -216,9 +227,15 @@ curl https://example.com/wp-json/wc/v1/reports/top_sellers?period=last_month \
 ```
 
 ```javascript
-WooCommerce.get('reports/top_sellers?period=last_month', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/top_sellers", {
+  period: "last_month",
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

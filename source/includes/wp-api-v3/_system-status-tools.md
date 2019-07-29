@@ -33,9 +33,13 @@ curl https://example.com/wp-json/wc/v3/system_status/tools/clear_transients \
 ```
 
 ```javascript
-WooCommerce.get('system_status/tools/clear_transients', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("system_status/tools/clear_transients")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -92,9 +96,13 @@ curl https://example.com/wp-json/wc/v3/system_status/tools \
 ```
 
 ```javascript
-WooCommerce.get('system_status/tools', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("system_status/tools")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -301,13 +309,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/system_status/tools/clear_transien
 ```
 
 ```javascript
-var data = {
+const data = {
   confirm: true
 };
 
-WooCommerce.put('system_status/tools/clear_transients', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("system_status/tools/clear_transients", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

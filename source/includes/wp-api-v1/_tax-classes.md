@@ -32,13 +32,17 @@ curl -X POST https://example.com/wp-json/wc/v1/taxes/classes \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Zero Rate'
 };
 
-WooCommerce.post('taxes/classes', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("taxes/classes", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -102,9 +106,13 @@ curl https://example.com/wp-json/wc/v1/taxes/classes \
 ```
 
 ```javascript
-WooCommerce.get('taxes/classes', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("taxes/classes")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -182,9 +190,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/taxes/classes/zero-rate?force=t
 ```
 
 ```javascript
-WooCommerce.delete('taxes/classes/zero-rate?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("taxes/classes/zero-rate", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

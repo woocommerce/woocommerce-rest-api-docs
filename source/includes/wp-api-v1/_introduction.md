@@ -62,9 +62,15 @@ curl https://example.com/wp-json/wc/v1/products/tags/34?_jsonp=tagDetails \
 ```
 
 ```javascript
-WooCommerce.get('products/tags/34?_jsonp=tagDetails', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/tags/34", {
+  _jsonp: "tagDetails"
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -166,23 +172,23 @@ The possible `rel` values are:
 
 ### Official libraries ###
 
-- [Node.js](https://www.npmjs.com/package/woocommerce-api) Library
+- [JavaScript](https://www.npmjs.com/package/@woocommerce/woocommerce-rest-api) Library
 - [PHP](https://packagist.org/packages/automattic/woocommerce) Library
 - [Python](https://pypi.python.org/pypi/WooCommerce) Library
 - [Ruby](https://rubygems.org/gems/woocommerce_api) Library
 
 ```javascript
 // Install:
-// npm install --save woocommerce-api
+// npm install --save @woocommerce/woocommerce-rest-api
 
 // Setup:
-var WooCommerceAPI = require('woocommerce-api');
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
+// import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
 
-var WooCommerce = new WooCommerceAPI({
+const WooCommerce = new WooCommerceRestApi({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  wpAPI: true, // Enable the WP REST API integration
   version: 'wc/v1' // WooCommerce WP REST API version
 });
 ```

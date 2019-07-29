@@ -46,7 +46,7 @@ curl -X POST https://example.com/wp-json/wc/v3/products/reviews \
 ```
 
 ```javascript
-var data = {
+const data = {
   product_id: 22,
   review: 'Nice album!',
   reviewer: 'John Doe',
@@ -54,9 +54,13 @@ var data = {
   rating: 5
 };
 
-WooCommerce.post('products/reviews', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/reviews", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -153,9 +157,13 @@ curl https://example.com/wp-json/wc/v3/products/reviews/22 \
 ```
 
 ```javascript
-WooCommerce.get('products/reviews/22', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/reviews/22")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -226,9 +234,13 @@ curl https://example.com/wp-json/wc/v3/products/reviews \
 ```
 
 ```javascript
-WooCommerce.get('products/reviews', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/reviews")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -368,13 +380,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/reviews/20 \
 ```
 
 ```javascript
-var data = {
+const data = {
   rating: 5
 };
 
-WooCommerce.put('products/reviews/20', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/reviews/20", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -467,9 +483,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/products/review/34?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('products/review/20?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/review/20", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -563,7 +585,7 @@ curl -X POST https://example.com//wp-json/wc/v3/products/reviews/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       product_id: 22,
@@ -592,9 +614,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/reviews/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/reviews/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

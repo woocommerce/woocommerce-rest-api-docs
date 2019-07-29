@@ -111,7 +111,7 @@ curl -X POST https://example.com/wp-json/wc/v3/customers \
 ```
 
 ```javascript
-var data = {
+const data = {
   email: 'john.doe@example.com',
   first_name: 'John',
   last_name: 'Doe',
@@ -142,9 +142,13 @@ var data = {
   }
 };
 
-WooCommerce.post('customers', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("customers", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -329,9 +333,13 @@ curl https://example.com/wp-json/wc/v3/customers/25 \
 ```
 
 ```javascript
-WooCommerce.get('customers/25', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers/25")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -421,9 +429,13 @@ curl https://example.com/wp-json/wc/v3/customers \
 ```
 
 ```javascript
-WooCommerce.get('customers', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -592,7 +604,7 @@ curl -X PUT https://example.com/wp-json/wc/v3/customers/25 \
 ```
 
 ```javascript
-var data = {
+const data = {
   first_name: 'James',
   billing: {
     first_name: 'James'
@@ -602,9 +614,13 @@ var data = {
   }
 };
 
-WooCommerce.put('customers/25', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("customers/25", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -726,9 +742,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/customers/25?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('customers/25?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("customers/25", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -901,7 +923,7 @@ curl -X POST https://example.com/wp-json/wc/v3/customers/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       email: 'john.doe2@example.com',
@@ -977,9 +999,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('customers/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("customers/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1460,9 +1486,13 @@ curl https://example.com/wp-json/wc/v3/customers/26/downloads \
 ```
 
 ```javascript
-WooCommerce.get('customers/26/downloads', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers/26/downloads")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -35,13 +35,17 @@ curl -X POST https://example.com/wp-json/wc/v2/shipping/zones \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Brazil'
 };
 
-WooCommerce.post('shipping/zones', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("shipping/zones", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -116,9 +120,13 @@ curl https://example.com/wp-json/wc/v2/shipping/zones/5 \
 ```
 
 ```javascript
-WooCommerce.get('shipping/zones/5', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("shipping/zones/5")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -179,9 +187,13 @@ curl https://example.com/wp-json/wc/v2/shipping/zones \
 ```
 
 ```javascript
-WooCommerce.get('shipping/zones', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("shipping/zones")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -270,13 +282,17 @@ curl -X PUT https://example.com/wp-json/wc/v2/shipping/zones/5 \
 ```
 
 ```javascript
-var data = {
+const data = {
   order: 1
 };
 
-WooCommerce.put('shipping/zones/5', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("shipping/zones/5", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -351,9 +367,15 @@ curl -X DELETE https://example.com/wp-json/wc/v2/shipping/zones/5?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('shipping/zones/5?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("shipping/zones/5", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

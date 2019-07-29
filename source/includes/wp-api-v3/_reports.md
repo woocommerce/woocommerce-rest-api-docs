@@ -21,9 +21,13 @@ curl https://example.com/wp-json/wc/v3/reports \
 ```
 
 ```javascript
-WooCommerce.get('reports', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -224,9 +228,16 @@ curl https://example.com/wp-json/wc/v3/reports/sales?date_min=2016-05-03&date_ma
 ```
 
 ```javascript
-WooCommerce.get('reports/sales?date_min=2016-05-03&date_max=2016-05-04', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/sales", {
+  date_min: "2016-05-03",
+  date_max: "2016-05-04"
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -344,9 +355,15 @@ curl https://example.com/wp-json/wc/v3/reports/top_sellers?period=last_month \
 ```
 
 ```javascript
-WooCommerce.get('reports/top_sellers?period=last_month', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/top_sellers", {
+  period: "last_month"
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -448,9 +465,13 @@ curl https://example.com/wp-json/wc/v3/reports/coupons/totals \
 ```
 
 ```javascript
-WooCommerce.get('reports/coupons/totals', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/coupons/totals")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -516,9 +537,13 @@ curl https://example.com/wp-json/wc/v3/reports/customers/totals \
 ```
 
 ```javascript
-WooCommerce.get('reports/customers/totals', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/customers/totals")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -579,9 +604,13 @@ curl https://example.com/wp-json/wc/v3/reports/orders/totals \
 ```
 
 ```javascript
-WooCommerce.get('reports/orders/totals', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/orders/totals")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -667,9 +696,13 @@ curl https://example.com/wp-json/wc/v3/reports/products/totals \
 ```
 
 ```javascript
-WooCommerce.get('reports/products/totals', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/products/totals")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -740,9 +773,13 @@ curl https://example.com/wp-json/wc/v3/reports/reviews/totals \
 ```
 
 ```javascript
-WooCommerce.get('reports/reviews/totals', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("reports/reviews/totals")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

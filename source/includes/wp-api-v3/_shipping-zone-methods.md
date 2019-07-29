@@ -53,13 +53,17 @@ curl -X POST https://example.com/wp-json/wc/v3/shipping/zones/5/methods \
 ```
 
 ```javascript
-var data = {
+const data = {
   method_id: 'flat_rate'
 };
 
-WooCommerce.post('shipping/zones/5/methods', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("shipping/zones/5/methods", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -228,9 +232,13 @@ curl https://example.com/wp-json/wc/v3/shipping/zones/5/methods/26 \
 ```
 
 ```javascript
-WooCommerce.get('shipping/zones/5/methods/26', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("shipping/zones/5/methods/26")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -385,9 +393,13 @@ curl https://example.com/wp-json/wc/v3/shipping/zones/5/methods \
 ```
 
 ```javascript
-WooCommerce.get('shipping/zones/5/methods', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("shipping/zones/5/methods")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -615,15 +627,19 @@ curl -X PUT https://example.com/wp-json/wc/v3/shipping/zones/5/methods/26 \
 ```
 
 ```javascript
-var data = {
+const data = {
   settings: {
     'cost': '20.00'
   }
 };
 
-WooCommerce.put('shipping/zones/5/methods/26', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("shipping/zones/5/methods/26", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -798,9 +814,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/shipping/zones/5/methods/26?for
 ```
 
 ```javascript
-WooCommerce.delete('shipping/zones/5/methods/26?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("shipping/zones/5/methods/26", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -97,15 +97,19 @@ curl -X POST https://example.com/wp-json/wc/v3/webhooks \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Order updated',
   topic: 'order.updated',
   delivery_url: 'http://requestb.in/1g0sxmo1'
 };
 
-WooCommerce.post('webhooks', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("webhooks", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -195,9 +199,13 @@ curl https://example.com/wp-json/wc/v3/webhooks/142 \
 ```
 
 ```javascript
-WooCommerce.get('webhooks/142', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("webhooks/142")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -267,9 +275,13 @@ curl https://example.com/wp-json/wc/v3/webhooks \
 ```
 
 ```javascript
-WooCommerce.get('webhooks', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("webhooks")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -392,13 +404,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/webhook/142 \
 ```
 
 ```javascript
-var data = {
+const data = {
   status: 'paused'
 }
 
-WooCommerce.put('webhooks/142', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("webhooks/142", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -482,9 +498,13 @@ curl -X DELETE https://example.com/wp-json/wc/v3/webhooks/142 \
 ```
 
 ```javascript
-WooCommerce.delete('webhooks/142', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("webhooks/142")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -578,7 +598,7 @@ curl -X POST https://example.com//wp-json/wc/v3/webhooks/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       name: 'Round toe',
@@ -596,9 +616,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('webhooks/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("webhooks/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

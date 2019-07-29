@@ -48,9 +48,13 @@ curl https://example.com/wp-json/wc/v3/payment_gateways/bacs \
 ```
 
 ```javascript
-WooCommerce.get('payment_gateways/bacs', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("payment_gateways/bacs")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -138,9 +142,13 @@ curl https://example.com/wp-json/wc/v3/payment_gateways \
 ```
 
 ```javascript
-WooCommerce.get('payment_gateways', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("payment_gateways")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -529,13 +537,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/payment_gateways/bacs \
 ```
 
 ```javascript
-var data = {
+const data = {
   enabled: true
 };
 
-WooCommerce.put('payment_gateways/bacs', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("payment_gateways/bacs", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

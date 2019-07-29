@@ -108,40 +108,44 @@ curl -X POST https://example.com/wp-json/wc/v1/customers \
 ```
 
 ```javascript
-var data = {
-  email: 'john.doe@example.com',
-  first_name: 'John',
-  last_name: 'Doe',
-  username: 'john.doe',
+const data = {
+  email: "john.doe@example.com",
+  first_name: "John",
+  last_name: "Doe",
+  username: "john.doe",
   billing: {
-    first_name: 'John',
-    last_name: 'Doe',
-    company: '',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US',
-    email: 'john.doe@example.com',
-    phone: '(555) 555-5555'
+    first_name: "John",
+    last_name: "Doe",
+    company: ",
+    address_1: "969 Market",
+    address_2: ",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US",
+    email: "john.doe@example.com",
+    phone: "(555) 555-5555"
   },
   shipping: {
-    first_name: 'John',
-    last_name: 'Doe',
-    company: '',
-    address_1: '969 Market',
-    address_2: '',
-    city: 'San Francisco',
-    state: 'CA',
-    postcode: '94103',
-    country: 'US'
+    first_name: "John",
+    last_name: "Doe",
+    company: ",
+    address_1: "969 Market",
+    address_2: ",
+    city: "San Francisco",
+    state: "CA",
+    postcode: "94103",
+    country: "US"
   }
 };
 
-WooCommerce.post('customers', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("customers", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -327,9 +331,13 @@ curl https://example.com/wp-json/wc/v1/customers/2 \
 ```
 
 ```javascript
-WooCommerce.get('customers/2', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers/2")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -420,9 +428,13 @@ curl https://example.com/wp-json/wc/v1/customers \
 ```
 
 ```javascript
-WooCommerce.get('customers', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -593,19 +605,23 @@ curl -X PUT https://example.com/wp-json/wc/v1/customers/2 \
 ```
 
 ```javascript
-var data = {
-  first_name: 'James',
+const data = {
+  first_name: "James",
   billing: {
-    first_name: 'James'
+    first_name: "James"
   },
   shipping: {
-    first_name: 'James'
+    first_name: "James"
   }
 };
 
-WooCommerce.put('customers/2', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("customers/2", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -728,9 +744,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/customers/2?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('customers/2?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("customers/2", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -903,66 +925,66 @@ curl -X POST https://example.com/wp-json/wc/v1/customers/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
-      email: 'john.doe2@example.com',
-      first_name: 'John',
-      last_name: 'Doe',
-      username: 'john.doe2',
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
       billing: {
-        first_name: 'John',
-        last_name: 'Doe',
-        company: '',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US',
-        email: 'john.doe@example.com',
-        phone: '(555) 555-5555'
+        first_name: "John",
+        last_name: "Doe",
+        company: ",
+        address_1: "969 Market",
+        address_2: ",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555"
       },
       shipping: {
-        first_name: 'John',
-        last_name: 'Doe',
-        company: '',
-        address_1: '969 Market',
-        address_2: '',
-        city: 'San Francisco',
-        state: 'CA',
-        postcode: '94103',
-        country: 'US'
+        first_name: "John",
+        last_name: "Doe",
+        company: ",
+        address_1: "969 Market",
+        address_2: ",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US"
       }
     },
     {
-      email: 'joao.silva2@example.com',
-      first_name: 'João',
-      last_name: 'Silva',
-      username: 'joao.silva2',
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
       billing: {
-        first_name: 'João',
-        last_name: 'Silva',
-        company: '',
-        address_1: 'Av. Brasil, 432',
-        address_2: '',
-        city: 'Rio de Janeiro',
-        state: 'RJ',
-        postcode: '12345-000',
-        country: 'BR',
-        email: 'joao.silva@example.com',
-        phone: '(55) 5555-5555'
+        first_name: "João",
+        last_name: "Silva",
+        company: ",
+        address_1: "Av. Brasil, 432",
+        address_2: ",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555"
       },
       shipping: {
-        first_name: 'João',
-        last_name: 'Silva',
-        company: '',
-        address_1: 'Av. Brasil, 432',
-        address_2: '',
-        city: 'Rio de Janeiro',
-        state: 'RJ',
-        postcode: '12345-000',
-        country: 'BR'
+        first_name: "João",
+        last_name: "Silva",
+        company: ",
+        address_1: "Av. Brasil, 432",
+        address_2: ",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR"
       }
     }
   ],
@@ -970,7 +992,7 @@ var data = {
     {
       id: 5,
       billing: {
-        phone: '(11) 1111-1111'
+        phone: "(11) 1111-1111"
       }
     }
   ],
@@ -979,9 +1001,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('customers/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("customers/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1466,9 +1492,13 @@ curl https://example.com/wp-json/wc/v1/customers/2/downloads \
 ```
 
 ```javascript
-WooCommerce.get('customers/2/downloads', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("customers/2/downloads")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

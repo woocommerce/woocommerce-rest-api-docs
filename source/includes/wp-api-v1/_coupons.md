@@ -58,18 +58,23 @@ curl -X POST https://example.com/wp-json/wc/v1/coupons \
 ```
 
 ```javascript
-var data = {
-  code: '10off',
-  discount_type: 'percent',
+const data = {
+  code: "10off",
+  discount_type: "percent",
   amount: 10,
   individual_use: true,
   exclude_sale_items: true,
-  minimum_amount: '100.00'
+  minimum_amount: "100.00"
 };
 
-WooCommerce.post('coupons', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("coupons")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+
 ```
 
 ```php
@@ -174,9 +179,13 @@ curl https://example.com/wp-json/wc/v1/coupons/113 \
 ```
 
 ```javascript
-WooCommerce.get('coupons/113', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("coupons/113")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -252,9 +261,13 @@ curl https://example.com/wp-json/wc/v1/coupons \
 ```
 
 ```javascript
-WooCommerce.get('coupons', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("coupons")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -390,13 +403,17 @@ curl -X PUT https://example.com/wp-json/wc/v1/coupons/113 \
 ```
 
 ```javascript
-var data = {
+const data = {
   amount: 5
 };
 
-WooCommerce.put('coupons/113', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("coupons/113", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -486,9 +503,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/coupons/113?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('coupons/113?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("coupons/113", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -600,29 +623,29 @@ curl -X POST https://example.com//wp-json/wc/v1/coupons/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
-      code: '20off',
-      discount_type: 'percent',
+      code: "20off",
+      discount_type: "percent",
       amount: 20,
       individual_use: true,
       exclude_sale_items: true,
-      minimum_amount: '100.00'
+      minimum_amount: "100.00"
     },
     {
-      code: '30off',
-      discount_type: 'percent',
+      code: "30off",
+      discount_type: "percent",
       amount: 30,
       individual_use: true,
       exclude_sale_items: true,
-      minimum_amount: '100.00'
+      minimum_amount: "100.00"
     }
   ],
   update: [
     {
       id: 113,
-      minimum_amount: '50.00'
+      minimum_amount: "50.00"
     }
   ],
   delete: [
@@ -630,9 +653,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('customers/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("customers/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

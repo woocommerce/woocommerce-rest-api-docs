@@ -70,7 +70,7 @@ curl -X POST https://example.com/wp-json/wc/v3/coupons \
 ```
 
 ```javascript
-var data = {
+const data = {
   code: '10off',
   discount_type: 'percent',
   amount: '10',
@@ -79,9 +79,13 @@ var data = {
   minimum_amount: '100.00'
 };
 
-WooCommerce.post('coupons', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("coupons", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -190,9 +194,13 @@ curl https://example.com/wp-json/wc/v3/coupons/719 \
 ```
 
 ```javascript
-WooCommerce.get('coupons/719', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("coupons/719")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -272,9 +280,13 @@ curl https://example.com/wp-json/wc/v3/coupons \
 ```
 
 ```javascript
-WooCommerce.get('coupons', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("coupons")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -418,13 +430,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/coupons/719 \
 ```
 
 ```javascript
-var data = {
+const data = {
   amount: '5'
 };
 
-WooCommerce.put('coupons/719', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("coupons/719", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -518,9 +534,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/coupons/719?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('coupons/719?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("coupons/719", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -636,7 +658,7 @@ curl -X POST https://example.com//wp-json/wc/v3/coupons/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       code: '20off',
@@ -666,9 +688,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('coupons/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("coupons/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

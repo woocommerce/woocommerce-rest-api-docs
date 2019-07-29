@@ -46,7 +46,7 @@ curl -X POST https://example.com/wp-json/wc/v1/taxes \
 ```
 
 ```javascript
-var data = {
+const data = {
   country: 'US',
   state: 'AL',
   rate: '4',
@@ -54,9 +54,13 @@ var data = {
   shipping: false
 };
 
-WooCommerce.post('taxes', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("taxes", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -145,9 +149,13 @@ curl https://example.com/wp-json/wc/v1/taxes/72 \
 ```
 
 ```javascript
-WooCommerce.get('taxes/72', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("taxes/72")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -212,9 +220,13 @@ curl https://example.com/wp-json/wc/v1/taxes \
 ```
 
 ```javascript
-WooCommerce.get('taxes', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("taxes")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -531,13 +543,17 @@ curl -X PUT https://example.com/wp-json/wc/v1/taxes/72 \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'US Tax'
 };
 
-WooCommerce.put('taxes/72', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("taxes/72", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -616,9 +632,15 @@ curl -X DELETE https://example.com/wp-json/wc/v1/taxes/72?force=true \
 ```
 
 ```javascript
-WooCommerce.delete('taxes/72?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("taxes/72", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -1080,7 +1102,7 @@ curl -X POST https://example.com/wp-json/wc/v1/taxes/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       country: 'US',
@@ -1469,9 +1491,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('taxes/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("taxes/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

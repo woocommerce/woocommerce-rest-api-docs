@@ -37,13 +37,17 @@ curl -X POST https://example.com/wp-json/wc/v2/products/shipping_classes \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Priority'
 };
 
-WooCommerce.post('products/shipping_classes', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/shipping_classes", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -113,9 +117,13 @@ curl https://example.com/wp-json/wc/v2/products/shipping_classes/32 \
 ```
 
 ```javascript
-WooCommerce.get('products/shipping_classes/32', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/shipping_classes/32")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -171,9 +179,13 @@ curl https://example.com/wp-json/wc/v2/products/shipping_classes \
 ```
 
 ```javascript
-WooCommerce.get('products/shipping_classes', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/shipping_classes")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -273,13 +285,17 @@ curl -X PUT https://example.com/wp-json/wc/v2/products/shipping_classes/32 \
 ```
 
 ```javascript
-var data = {
+const data = {
   description: 'Priority mail.'
 };
 
-WooCommerce.put('products/shipping_classes/32', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/shipping_classes/32", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -351,9 +367,15 @@ curl -X DELETE https://example.com/wp-json/wc/v2/products/shipping_classes/32?fo
 ```
 
 ```javascript
-WooCommerce.delete('products/shipping_classes/32?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/shipping_classes/32", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -437,7 +459,7 @@ curl -X POST https://example.com//wp-json/wc/v2/products/shipping_classes/batch 
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       name: 'Small items'
@@ -457,9 +479,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/shipping_classes/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/shipping_classes/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -57,16 +57,20 @@ curl -X POST https://example.com/wp-json/wc/v3/products/categories \
 ```
 
 ```javascript
-var data = {
+const data = {
   name: 'Clothing',
   image: {
     src: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
   }
 };
 
-WooCommerce.post('products/categories', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/categories", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -158,9 +162,13 @@ curl https://example.com/wp-json/wc/v3/products/categories/9 \
 ```
 
 ```javascript
-WooCommerce.get('products/categories/9', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/categories/9")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -229,9 +237,13 @@ curl https://example.com/wp-json/wc/v3/products/categories \
 ```
 
 ```javascript
-WooCommerce.get('products/categories', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("products/categories")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -483,13 +495,17 @@ curl -X PUT https://example.com/wp-json/wc/v3/products/categories/9 \
 ```
 
 ```javascript
-var data = {
+const data = {
   description: 'All kinds of clothes.'
 };
 
-WooCommerce.put('products/categories/9', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("products/categories/9", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -574,9 +590,15 @@ curl -X DELETE https://example.com/wp-json/wc/v3/products/categories/9?force=tru
 ```
 
 ```javascript
-WooCommerce.delete('products/categories/9?force=true', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.delete("products/categories/9", {
+  force: true
+})
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -674,7 +696,7 @@ curl -X POST https://example.com//wp-json/wc/v3/products/categories/batch \
 ```
 
 ```javascript
-var data = {
+const data = {
   create: [
     {
       name: 'Albums'
@@ -695,9 +717,13 @@ var data = {
   ]
 };
 
-WooCommerce.post('products/categories/batch', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.post("products/categories/batch", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php

@@ -28,9 +28,13 @@ curl https://example.com/wp-json/wc/v3/shipping/zones/5/locations \
 ```
 
 ```javascript
-WooCommerce.get('shipping/zones/5/locations', function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.get("shipping/zones/5/locations")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
@@ -109,9 +113,13 @@ var data = [
   }
 ];
 
-WooCommerce.put('shipping/zones/5/locations', data, function(err, data, res) {
-  console.log(res);
-});
+WooCommerce.put("shipping/zones/5/locations", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
 ```
 
 ```php
