@@ -96,7 +96,7 @@ The orders API allows you to create, view, update, and delete individual, or a b
 | `product_id`   | integer | Product ID.                                                                                                   |
 | `variation_id` | integer | Variation ID, if applicable.                                                                                  |
 | `quantity`     | integer | Quantity ordered.                                                                                             |
-| `tax_class`    | integer | Tax class of product.                                                                                         |
+| `tax_class`    | string | Slug of the tax class of product.                                                                                         |
 | `subtotal`     | string  | Line subtotal (before discounts).                                                                             |
 | `subtotal_tax` | string  | Line subtotal tax (before discounts). <i class="label label-info">read-only</i>                               |
 | `total`        | string  | Line total (after discounts).                                                                                 |
