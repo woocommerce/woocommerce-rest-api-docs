@@ -613,6 +613,10 @@ woocommerce.delete("coupons/719", force: true).parsed_response
 
 This API helps you to batch create, update and delete multiple coupons.
 
+<aside class="notice">
+Note: By default it's limited to up to 100 objects to be created, updated or deleted. 
+</aside>
+
 ### HTTP request ###
 
 <div class="api-endpoint">

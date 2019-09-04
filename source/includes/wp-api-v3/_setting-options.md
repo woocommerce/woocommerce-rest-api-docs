@@ -1458,6 +1458,10 @@ woocommerce.put("settings/general/woocommerce_allowed_countries", data).parsed_r
 
 This API helps you to batch update multiple setting options.
 
+<aside class="notice">
+Note: By default it's limited to up to 100 objects to be created, updated or deleted. 
+</aside>
+
 ### HTTP request ###
 
 <div class="api-endpoint">
