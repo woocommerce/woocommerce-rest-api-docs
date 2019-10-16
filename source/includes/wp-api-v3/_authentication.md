@@ -153,6 +153,7 @@ Example of the screen that the user will see:
 - `success` sends `0` if the user denied, or `1` if authenticated successfully.
 - Use `user_id` to identify the user when redirected back to the (`return_url`) and also remember to save the API Keys when your `callback_url` is posted to after auth.
 - The auth endpoint will send the API Keys in JSON format to the `callback_url`, so it's important to remember that some languages such as PHP will not display it inside the `$_POST` global variable, in PHP you can access it using `$HTTP_RAW_POST_DATA` (for old PHP versions) or `file_get_contents('php://input');`.
+- The URL generated must have all query string values encoded.
 
 ## Authentication over HTTPS ##
 
