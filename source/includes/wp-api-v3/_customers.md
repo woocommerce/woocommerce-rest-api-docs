@@ -316,7 +316,7 @@ woocommerce.post("customers", data).parsed_response
 
 ## Retrieve a customer ##
 
-This API lets you retrieve and view a specific customer by ID or email.
+This API lets you retrieve and view a specific customer by ID.
 
 ### HTTP request ###
 
