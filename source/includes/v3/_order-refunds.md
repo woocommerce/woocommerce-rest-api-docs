@@ -14,7 +14,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 
 ## Create a Refund For an Order ##
 
-This API helps you to create a new refund for an order.
+This API helps you to create a new refund for an order. To refund fees and/or shipping, include the id of the fee_line or shipping_line in the line_items. Qty must be 1 for fees and shipping. The key in refund_tax is the tax class.
 
 ### HTTP Request ###
 
@@ -31,7 +31,16 @@ curl -X POST https://example.com/wc-api/v3/orders/645/refunds \
 	-H "Content-Type: application/json" \
 	-d '{
   "order_refund": {
-    "amount": 10
+    "amount": 10,
+    "line_items": {
+      "123": {
+        "qty": 1,
+        "refund_total": "7.9",
+        "refund_tax": {
+          "1": "2.1"
+        }
+      }
+    }
   }
 }'
 ```
