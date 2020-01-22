@@ -2151,7 +2151,7 @@ $data = [
             'default_attributes' => [
                 [
                     'id' => 6,
-                    'name' => 'Color,
+                    'name' => 'Color',
                     'option' => 'Green'
                 ],
                 [
