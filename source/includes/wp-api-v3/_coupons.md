@@ -13,7 +13,7 @@ The coupons API allows you to create, view, update, and delete individual, or a 
 | `date_created_gmt`            | date-time | The date the coupon was created, as GMT. <i class="label label-info">read-only</i>                                                   |
 | `date_modified`               | date-time | The date the coupon was last modified, in the site's timezone. <i class="label label-info">read-only</i>                             |
 | `date_modified_gmt`           | date-time | The date the coupon was last modified, as GMT. <i class="label label-info">read-only</i>                                             |
-| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `percent`, `fixed_cart` and `fixed_product`. Default is `fixed_cart`. |
+| `discount_type`               | string    | Determines the type of discount that will be applied. Options: `percent`, `fixed_cart`, `fixed_product`, `sign_up_fee`,`sign_up_fee_percent`,`recurring_fee`, and `recurring_percent`. Default is `fixed_cart`. |
 | `description`                 | string    | Coupon description.                                                                                                                  |
 | `date_expires`                | string    | The date the coupon expires, in the site's timezone.                                                                                 |
 | `date_expires_gmt`            | string    | The date the coupon expires, as GMT.                                                                                                 |
