@@ -235,7 +235,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders \
     {
       "method_id": "flat_rate",
       "method_title": "Flat Rate",
-      "total": 10
+      "total": "10.00"
     }
   ]
 }'
@@ -283,7 +283,7 @@ const data = {
     {
       method_id: "flat_rate",
       method_title: "Flat Rate",
-      total: 10
+      total: "10.00"
     }
   ]
 };
@@ -340,7 +340,7 @@ $data = [
         [
             'method_id' => 'flat_rate',
             'method_title' => 'Flat Rate',
-            'total' => 10
+            'total' => '10.00'
         ]
     ]
 ];
@@ -391,7 +391,7 @@ data = {
         {
             "method_id": "flat_rate",
             "method_title": "Flat Rate",
-            "total": 10
+            "total": '10.00'
         }
     ]
 }
@@ -441,7 +441,7 @@ data = {
     {
       method_id: "flat_rate",
       method_title: "Flat Rate",
-      total: 10
+      total: '10.00'
     }
   ]
 }
@@ -1724,7 +1724,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/batch \
         {
           "method_id": "flat_rate",
           "method_title": "Flat Rate",
-          "total": 30
+          "total": "30.00"
         }
       ]
     },
@@ -1770,7 +1770,7 @@ curl -X POST https://example.com/wp-json/wc/v2/orders/batch \
         {
           "method_id": "flat_rate",
           "method_title": "Flat Rate",
-          "total": 20
+          "total": "20.00"
         }
       ]
     }
@@ -1834,7 +1834,7 @@ const data = {
         {
           method_id: "flat_rate",
           method_title: "Flat Rate",
-          total: 30
+          total: "30.00"
         }
       ]
     },
@@ -1880,7 +1880,7 @@ const data = {
         {
           method_id: "flat_rate",
           method_title: "Flat Rate",
-          total: 20
+          total: "20.00"
         }
       ]
     }
@@ -1953,7 +1953,7 @@ $data = [
                 [
                     'method_id' => 'flat_rate',
                     'method_title' => 'Flat Rate',
-                    'total' => 30
+                    'total' => '30.00'
                 ]
             ]
         ],
@@ -1999,7 +1999,7 @@ $data = [
                 [
                     'method_id' => 'flat_rate',
                     'method_title' => 'Flat Rate',
-                    'total' => 20
+                    'total' => '20.00'
                 ]
             ]
         ]
@@ -2066,7 +2066,7 @@ data = {
                 {
                     "method_id": "flat_rate",
                     "method_title": "Flat Rate",
-                    "total": 30
+                    "total": "30.00"
                 }
             ]
         },
@@ -2112,7 +2112,7 @@ data = {
                 {
                     "method_id": "flat_rate",
                     "method_title": "Flat Rate",
-                    "total": 20
+                    "total": "20.00"
                 }
             ]
         }
@@ -2178,7 +2178,7 @@ data = {
         {
           method_id: "flat_rate",
           method_title: "Flat Rate",
-          total: 30
+          total: "30.00"
         }
       ]
     },
@@ -2224,7 +2224,7 @@ data = {
         {
           method_id: "flat_rate",
           method_title: "Flat Rate",
-          total: 20
+          total: "20.00"
         }
       ]
     }
