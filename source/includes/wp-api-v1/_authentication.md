@@ -356,12 +356,12 @@ If you are having trouble generating a correct signature, you'll want to review 
 
 ### OAuth tips ###
 
-* The OAuth parameters must be added as query string parameters and *not* included in the Authorization header. This is because there is no reliable cross-platform way to get the raw request headers in WordPress.
+* The OAuth parameters may be added as query string parameters or included in the Authorization header.
+* Note there is no reliable cross-platform way to get the raw request headers in WordPress, so query string should be more reliable in some cases.
 * The required parameters are: `oauth_consumer_key`, `oauth_timestamp`, `oauth_nonce`, `oauth_signature`, and `oauth_signature_method`. `oauth_version` is not required and should be omitted.
-* The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on [generating nonces on the Twitter REST API forums](https://dev.twitter.com/discussions/12445).
+* The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key.
 * The OAuth timestamp should be the unix timestamp at the time of the request. The REST API will deny any requests that include a timestamp outside of a 15 minute window to prevent replay attacks.
 * You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a `www` sub-domain, you should use it for requests)
-* You may test your generated signature using LinkedIn's [OAuth test console](http://developer.linkedinlabs.com/oauth-test/) -- leave the member token/secret blank.
-* Twitter has great instructions on [generating signatures](https://dev.twitter.com/docs/auth/creating-signature) with OAuth 1.0a, but remember tokens are not used with this implementation.
-* Note that the request body is *not* signed as per the OAuth spec, see [Google's OAuth 1.0 extension](https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html) for details on why.
-* If including parameters in your request, it saves a lot of trouble if you can order your query string items alphabetically.
+* Note that the request body is *not* signed as per the OAuth spec.
+* If including parameters in your request, it saves a lot of trouble if you can order your items alphabetically.
+* Authorization header is supported starting WooCommerce 3.0.
