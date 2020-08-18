@@ -354,7 +354,7 @@ In PHP you can use the [hash_hmac](http://php.net/manual/en/function.hash-hmac.p
 
 HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.
 
-If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/api/class-wc-rest-authentication.php#L141) can also be helpful in understanding how to properly generate the signature.
+If you are having trouble generating a correct signature, you'll want to review the string you are signing for encoding errors. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/class-wc-rest-authentication.php#L185) can also be helpful in understanding how to properly generate the signature.
 
 ### OAuth tips ###
 

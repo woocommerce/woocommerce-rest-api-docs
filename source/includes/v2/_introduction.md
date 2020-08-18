@@ -135,7 +135,7 @@ when encoded:
 
 8) Generate the signature using the string to key and your consumer secret key
 
-If you are having trouble generating a correct signature, you'll want to review your string to sign for errors with encoding. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/api/class-wc-api-authentication.php#L177) can also be helpful in understanding how to properly generate the signature.
+If you are having trouble generating a correct signature, you'll want to review your string to sign for errors with encoding. The [authentication source](https://github.com/woocommerce/woocommerce/blob/master/includes/class-wc-rest-authentication.php#L185) can also be helpful in understanding how to properly generate the signature.
 
 #### OAuth Tips ####
 
