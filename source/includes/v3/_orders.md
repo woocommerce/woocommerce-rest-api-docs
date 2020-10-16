@@ -1142,6 +1142,8 @@ woocommerce.get("orders").parsed_response
 
 This API lets you make changes to an order.
 
+To remove a fee item, send the `id` of the item and `name` set to `null`.
+
 ### HTTP Request ###
 
 <div class="api-endpoint">
