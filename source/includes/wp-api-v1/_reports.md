@@ -194,7 +194,7 @@ woocommerce.get("reports/sales", query).parsed_response
 | `total_items`       | integer | Total of items purchased. <i class="label label-info">read-only</i>   |
 | `total_tax`         | string  | Total charged for taxes. <i class="label label-info">read-only</i>    |
 | `total_shipping`    | string  | Total charged for shipping. <i class="label label-info">read-only</i> |
-| `total_refunds`     | integer | Total of refunded orders. <i class="label label-info">read-only</i>   |
+| `total_refunds`     | number | Total of refunded orders. <i class="label label-info">read-only</i>   |
 | `total_discount`    | integer | Total of coupons used. <i class="label label-info">read-only</i>      |
 | `totals_grouped_by` | string  | Group type. <i class="label label-info">read-only</i>                 |
 | `totals`            | array   | Totals. <i class="label label-info">read-only</i>                     |
