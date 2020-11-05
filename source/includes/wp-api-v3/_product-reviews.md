@@ -473,17 +473,17 @@ This API helps you delete a product review.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-delete">DELETE</i>
-		<h6>/wp-json/wc/v3/products/review/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/products/reviews/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X DELETE https://example.com/wp-json/wc/v3/products/review/34?force=true \
+curl -X DELETE https://example.com/wp-json/wc/v3/products/reviews/34?force=true \
 	-u consumer_key:consumer_secret
 ```
 
 ```javascript
-WooCommerce.delete("products/review/20", {
+WooCommerce.delete("products/reviews/20", {
   force: true
 })
   .then((response) => {
@@ -499,11 +499,11 @@ WooCommerce.delete("products/review/20", {
 ```
 
 ```python
-print(wcapi.delete("products/review/20", params={"force": True}).json())
+print(wcapi.delete("products/reviews/20", params={"force": True}).json())
 ```
 
 ```ruby
-woocommerce.delete("products/review/20", force: true).parsed_response
+woocommerce.delete("products/reviews/20", force: true).parsed_response
 ```
 
 > JSON response example:
