@@ -8,7 +8,9 @@ Pre-generated keys can be used to authenticate use of the REST API endpoints. Ne
 
 ### Generating API keys in the WordPress admin interface ###
 
-To create or manage keys for a specific WordPress user, go to WooCommerce > Settings > API > Keys/Apps.
+To create or manage keys for a specific WordPress user, go to WooCommerce > Settings > Advanced > REST API.
+
+*Note: Keys/Apps was found at WooCommerce > Settings > API > Key/Apps prior to WooCommerce 3.4.*
 
 ![WooCommerce REST API keys settings](images/woocommerce-api-keys-settings.png)
 
