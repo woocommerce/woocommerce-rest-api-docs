@@ -41,7 +41,7 @@ The payload is JSON encoded and for API resources (coupons, customers, orders, p
 
 ### Logging ###
 
-Requests/responses are logged using the WooCommerce loggin system. Each delivery log includes:
+Requests/responses are logged using the WooCommerce logging system. Each delivery log includes:
 
 * Request duration.
 * Request URL, method, headers, and body.
