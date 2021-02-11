@@ -4,18 +4,18 @@ The refunds API allows you to create, view, and delete individual refunds.
 
 ## Order refund properties ##
 
-| Attribute          | Type      | Description                                                                                                                      |
-|--------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
-| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                    |
-| `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                         |
-| `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                         |
-| `amount`           | string    | Refund amount.                                                                                                                   |
-| `reason`           | string    | Reason for refund.                                                                                                               |
-| `refunded_by`      | integer   | User ID of user who created the refund.                                                                                          |
-| `refunded_payment` | boolean   | If the payment was refunded via the API. See `api_refund`. <i class="label label-info">read-only</i>                             |
-| `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                         |
-| `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                 |
-| `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i> |
+| Attribute          | Type      | Description                                                                                                                                      |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                    |
+| `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                                         |
+| `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                                         |
+| `amount`           | string    | Total refund amount. Optional on creation, if missing it will be calculated by adding up the `refund_amount` of each line item, including taxes. |
+| `reason`           | string    | Reason for refund.                                                                                                                               |
+| `refunded_by`      | integer   | User ID of user who created the refund.                                                                                                          |
+| `refunded_payment` | boolean   | If the payment was refunded via the API. See `api_refund`. <i class="label label-info">read-only</i>                                             |
+| `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                                         |
+| `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                                 |
+| `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i>                 |
 
 ### Order refund - Meta data properties ###
 
@@ -43,14 +43,16 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `meta_data`    | array   | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                                        |
 | `sku`          | string  | Product SKU. <i class="label label-info">read-only</i>                                                                                          |
 | `price`        | string  | Product price. <i class="label label-info">read-only</i>                                                                                        |
+| `refund_total` | number  | The amount to refund for this line item, excluding taxes. <i class="label label-info">write-only</i>                                            |
 
 #### Order refund line item - Taxes properties ####
 
-| Attribute  | Type    | Description                                             |
-|------------|---------|---------------------------------------------------------|
-| `id`       | integer | Tax rate ID. <i class="label label-info">read-only</i>  |
-| `total`    | string  | Tax total. <i class="label label-info">read-only</i>    |
-| `subtotal` | string  | Tax subtotal. <i class="label label-info">read-only</i> |
+| Attribute      | Type    | Description                                                                    |
+|----------------|---------|--------------------------------------------------------------------------------|
+| `id`           | integer | Tax rate ID. <i class="label label-info">read-only</i>                         |
+| `total`        | string  | Tax total. <i class="label label-info">read-only</i>                           |
+| `subtotal`     | string  | Tax subtotal. <i class="label label-info">read-only</i>                        |
+| `refund_total` | number  | The amount to refund for this taxs. <i class="label label-info">write-only</i> |
 
 ## Create a refund ##
 
@@ -70,13 +72,41 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "amount": "10"
+  "order_refund": {
+    "amount": 30,
+    "line_items": [
+      {
+        "id": "111",
+        "refund_amount": 10,
+        "refund_tax": [
+          {
+            "id" "222",
+            "refund_amount": 20
+          }
+        ]
+      }
+    ]
+  }
 }'
 ```
 
 ```javascript
 const data = {
-  amount: "10"
+    "order_refund": {
+       "amount": 30,
+       "line_items": [
+         {
+            "id": "111",
+            "refund_amount": 10,
+            "refund_tax": [
+              {
+                "id" "222",
+                "refund_amount": 20
+              }
+            ]
+         }
+      ]
+    }
 };
 
 WooCommerce.post("orders/723/refunds", data)
@@ -91,7 +121,21 @@ WooCommerce.post("orders/723/refunds", data)
 ```php
 <?php
 $data = [
-    'amount' => '10'
+    'order_refund' => [
+        'amount' => 30,
+        'line_items' => [
+          [
+              'id' => '111',
+              'refund_amount' => 10,
+              'refund_tax' => [
+                 [
+                    'id' => '222',
+                    'amount' => 20
+                 ]
+              ]
+          ]
+        ]
+    ]
 ];
 
 print_r($woocommerce->post('orders/723/refunds', $data));
@@ -100,7 +144,21 @@ print_r($woocommerce->post('orders/723/refunds', $data));
 
 ```python
 data = {
-    "amount": "10"
+    "order_refund": {
+       "amount": 30,
+       "line_items": [
+         {
+            "id": "111",
+            "refund_amount": 10,
+            "refund_tax": [
+              {
+                "id" "222",
+                "refund_amount": 20
+              }
+            ]
+         }
+      ]
+    }
 }
 
 print(wcapi.post("orders/723/refunds", data).json())
@@ -108,7 +166,21 @@ print(wcapi.post("orders/723/refunds", data).json())
 
 ```ruby
 data = {
-  amount: "10"
+  order_refund: {
+       amount: 30,
+       line_items: [
+         {
+            id: "111",
+            refund_amount: 10,
+            refund_tax: [
+              {
+                id "222",
+                refund_amount: 20
+              }
+            ]
+         }
+      ]
+    }
 }
 
 woocommerce.post("orders/723/refunds", data).parsed_response
