@@ -204,7 +204,7 @@ woocommerce.get("reports/sales", query).parsed_response
 | Parameter  |  Type  |                                                    Description                                                    |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
-| `period`   | string | Report period. Default is `today`. Options: `week`, `month`, `last_month` and `year`                                |
+| `period`   | string | Report period. Default is `today`. Options: `week`, `month`, `last_month` and `year`                              |
 | `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.                             |
 | `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.                               |
 
