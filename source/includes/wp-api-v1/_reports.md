@@ -194,7 +194,7 @@ woocommerce.get("reports/sales", query).parsed_response
 | `total_items`       | integer | Total of items purchased. <i class="label label-info">read-only</i>   |
 | `total_tax`         | string  | Total charged for taxes. <i class="label label-info">read-only</i>    |
 | `total_shipping`    | string  | Total charged for shipping. <i class="label label-info">read-only</i> |
-| `total_refunds`     | number | Total of refunded orders. <i class="label label-info">read-only</i>   |
+| `total_refunds`     | number  | Total of refunded orders. <i class="label label-info">read-only</i>   |
 | `total_discount`    | integer | Total of coupons used. <i class="label label-info">read-only</i>      |
 | `totals_grouped_by` | string  | Group type. <i class="label label-info">read-only</i>                 |
 | `totals`            | array   | Totals. <i class="label label-info">read-only</i>                     |
@@ -204,7 +204,7 @@ woocommerce.get("reports/sales", query).parsed_response
 | Parameter  |  Type  |                                                    Description                                                    |
 |------------|--------|-------------------------------------------------------------------------------------------------------------------|
 | `context`  | string | Scope under which the request is made; determines fields present in response. Default is `view`. Options: `view`. |
-| `period`   | string | Report period. Default is `week`. Options: `week`, `month`, `last_month` and `year`                               |
+| `period`   | string | Report period. Default is today's date. Options: `week`, `month`, `last_month` and `year`                         |
 | `date_min` | string | Return sales for a specific start date, the date need to be in the YYYY-MM-DD format.                             |
 | `date_max` | string | Return sales for a specific end date, the date need to be in the YYYY-MM-DD format.                               |
 
