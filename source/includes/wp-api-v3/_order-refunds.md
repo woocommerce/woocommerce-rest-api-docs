@@ -9,7 +9,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `id`               | integer   | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                    |
 | `date_created`     | date-time | The date the order refund was created, in the site's timezone. <i class="label label-info">read-only</i>                                         |
 | `date_created_gmt` | date-time | The date the order refund was created, as GMT. <i class="label label-info">read-only</i>                                                         |
-| `amount`           | string    | Total refund amount. Optional on creation, if missing it will be calculated by adding up the `refund_amount` of each line item, including taxes. |
+| `amount`           | string    | Total refund amount. Optional. If this parameter is provided, it will take precedence over line item totals, even when total of line items does not matches with this amount. |
 | `reason`           | string    | Reason for refund.                                                                                                                               |
 | `refunded_by`      | integer   | User ID of user who created the refund.                                                                                                          |
 | `refunded_payment` | boolean   | If the payment was refunded via the API. See `api_refund`. <i class="label label-info">read-only</i>                                             |
@@ -52,7 +52,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `id`           | integer | Tax rate ID. <i class="label label-info">read-only</i>                         |
 | `total`        | string  | Tax total. <i class="label label-info">read-only</i>                           |
 | `subtotal`     | string  | Tax subtotal. <i class="label label-info">read-only</i>                        |
-| `refund_total` | number  | The amount to refund for this taxs. <i class="label label-info">write-only</i> |
+| `refund_total` | number  | The amount to refund for this tax. <i class="label label-info">write-only</i>  |
 
 ## Create a refund ##
 
