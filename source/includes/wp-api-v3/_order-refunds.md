@@ -72,41 +72,35 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "order_refund": {
-    "amount": 30,
-    "line_items": [
-      {
-        "id": "111",
-        "refund_amount": 10,
-        "refund_tax": [
-          {
-            "id" "222",
-            "refund_amount": 20
-          }
-        ]
-      }
-    ]
-  }
+  "line_items": [
+    {
+      "id": "111",
+      "refund_amount": 10,
+      "refund_tax": [
+        {
+          "id" "222",
+          "refund_amount": 20
+        }
+      ]
+    }
 }'
 ```
 
 ```javascript
 const data = {
-    "order_refund": {
-       "amount": 30,
-       "line_items": [
-         {
-            "id": "111",
-            "refund_amount": 10,
-            "refund_tax": [
-              {
-                "id" "222",
-                "refund_amount": 20
-              }
-            ]
-         }
-      ]
-    }
+    amount: 30,
+    line_items: [
+      {
+         id: "111",
+         refund_amount: 10,
+         refund_tax: [
+           {
+             id: "222",
+             refund_amount: 20
+           }
+         ]
+      }
+   ]
 };
 
 WooCommerce.post("orders/723/refunds", data)
@@ -121,21 +115,19 @@ WooCommerce.post("orders/723/refunds", data)
 ```php
 <?php
 $data = [
-    'order_refund' => [
-        'amount' => 30,
-        'line_items' => [
-          [
-              'id' => '111',
-              'refund_amount' => 10,
-              'refund_tax' => [
-                 [
-                    'id' => '222',
-                    'amount' => 20
-                 ]
+     'amount' => 30,
+     'line_items' => [
+       [
+           'id' => '111',
+           'refund_amount' => 10,
+           'refund_tax' => [
+              [
+                 'id' => '222',
+                 'amount' => 20
               ]
-          ]
-        ]
-    ]
+           ]
+       ]
+     ]
 ];
 
 print_r($woocommerce->post('orders/723/refunds', $data));
@@ -144,21 +136,19 @@ print_r($woocommerce->post('orders/723/refunds', $data));
 
 ```python
 data = {
-    "order_refund": {
-       "amount": 30,
-       "line_items": [
-         {
-            "id": "111",
-            "refund_amount": 10,
-            "refund_tax": [
-              {
-                "id" "222",
-                "refund_amount": 20
-              }
-            ]
-         }
-      ]
-    }
+    "amount": 30,
+    "line_items": [
+      {
+         "id": "111",
+         "refund_amount": 10,
+         "refund_tax": [
+           {
+             "id" "222",
+             "refund_amount": 20
+           }
+         ]
+      }
+   ]
 }
 
 print(wcapi.post("orders/723/refunds", data).json())
@@ -166,21 +156,19 @@ print(wcapi.post("orders/723/refunds", data).json())
 
 ```ruby
 data = {
-  order_refund: {
-       amount: 30,
-       line_items: [
+  amount: 30,
+  line_items: [
+    {
+       id: "111",
+       refund_amount: 10,
+       refund_tax: [
          {
-            id: "111",
-            refund_amount: 10,
-            refund_tax: [
-              {
-                id "222",
-                refund_amount: 20
-              }
-            ]
+           id "222",
+           refund_amount: 20
          }
-      ]
+       ]
     }
+ ]
 }
 
 woocommerce.post("orders/723/refunds", data).parsed_response
