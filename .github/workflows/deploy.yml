@@ -2,7 +2,7 @@ name: Deploy on push
 on: push
 jobs:
   build-and-deploy:
-    if: github.repository_owner == 'woocommerce'
+    if: github.repository_owner == 'woocommerce' && github.ref == 'refs/heads/trunk'
     name: Build and deploy
     runs-on: [ubuntu-latest]
     steps:
