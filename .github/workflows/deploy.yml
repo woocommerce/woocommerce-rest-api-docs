@@ -7,7 +7,7 @@ jobs:
   build-and-deploy:
     if: github.repository_owner == 'woocommerce'
     name: Build and deploy
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
