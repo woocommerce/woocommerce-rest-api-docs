@@ -1,0 +1,23 @@
+name: Deploy on push
+on:
+  push:
+    branches:
+      - trunk
+jobs:
+  build-and-deploy:
+    if: github.repository_owner == 'woocommerce'
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build
+      run: ./build.sh
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        target_branch: gh-pages
+        build_dir: build
