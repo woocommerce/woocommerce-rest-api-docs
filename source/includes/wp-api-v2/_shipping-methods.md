@@ -10,7 +10,7 @@ The shipping methods API allows you to view individual shipping methods.
 | `title`       | string | Shipping method title. <i class="label label-info">read-only</i>       |
 | `description` | string | Shipping method description. <i class="label label-info">read-only</i> |
 
-## Retrieve an shipping method ##
+## Retrieve a shipping method ##
 
 This API lets you retrieve and view a specific shipping method.
 
