@@ -72,14 +72,15 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
+  "amount": "30",  
   "line_items": [
     {
       "id": "111",
-      "refund_amount": 10,
+      "refund_total": 10,
       "refund_tax": [
         {
           "id" "222",
-          "refund_amount": 20
+          "refund_total": 20
         }
       ]
     }
@@ -88,15 +89,15 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
 
 ```javascript
 const data = {
-    amount: 30,
+    amount: "30",
     line_items: [
       {
          id: "111",
-         refund_amount: 10,
+         refund_total: 10,
          refund_tax: [
            {
              id: "222",
-             refund_amount: 20
+             refund_total: 20
            }
          ]
       }
@@ -115,11 +116,11 @@ WooCommerce.post("orders/723/refunds", data)
 ```php
 <?php
 $data = [
-     'amount' => 30,
+     'amount' => '30',
      'line_items' => [
        [
            'id' => '111',
-           'refund_amount' => 10,
+           'refund_total' => 10,
            'refund_tax' => [
               [
                  'id' => '222',
@@ -136,15 +137,15 @@ print_r($woocommerce->post('orders/723/refunds', $data));
 
 ```python
 data = {
-    "amount": 30,
+    "amount": "30",
     "line_items": [
       {
          "id": "111",
-         "refund_amount": 10,
+         "refund_total": 10,
          "refund_tax": [
            {
              "id" "222",
-             "refund_amount": 20
+             "refund_total": 20
            }
          ]
       }
@@ -156,15 +157,15 @@ print(wcapi.post("orders/723/refunds", data).json())
 
 ```ruby
 data = {
-  amount: 30,
+  amount: "30",
   line_items: [
     {
        id: "111",
-       refund_amount: 10,
+       refund_total: 10,
        refund_tax: [
          {
            id "222",
-           refund_amount: 20
+           refund_total: 20
          }
        ]
     }
