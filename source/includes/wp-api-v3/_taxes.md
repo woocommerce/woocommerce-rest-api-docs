@@ -517,7 +517,7 @@ woocommerce.get("taxes").parsed_response
 | `per_page` | integer | Maximum number of items to be returned in result set.                                                                                      |
 | `offset`   | integer | Offset the result set by a specific number of items.                                                                                       |
 | `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                                                 |
-| `orderby`  | string  | Sort collection by object attribute. Default is `order`. Options: `id` and `order`.                                                        |
+| `orderby`  | string  | Sort collection by object attribute. Default is `order`. Options: `id`, `order` and `priority`.                                            |
 | `class`    | string  | Retrieve only tax rates of this Tax class.                                                                                                 |
 
 ## Update a tax rate ##
