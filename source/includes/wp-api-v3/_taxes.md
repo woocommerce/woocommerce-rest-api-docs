@@ -11,8 +11,8 @@ The taxes API allows you to create, view, update, and delete individual tax rate
 | `state`    | string  | State code.                                                                                                                                                                     |
 | `postcode` | string  | Postcode/ZIP. Deprecated (doesn't support multiple values), `postcodes` should be used instead.                                                                                 |
 | `city`     | string  | City name. Deprecated (doesn't support multiple values), `cities` should be used instead.                                                                                       |
-| `postcodes`| string  | Postcodes/ZIPs.                                                                                                                                                                 |
-| `cities`   | string  | City names.                                                                                                                                                                     |
+| `postcodes`| string[]  | Postcodes/ZIPs.                                                                                                                                                                 |
+| `cities`   | string[]  | City names.                                                                                                                                                                     |
 | `rate`     | string  | Tax rate.                                                                                                                                                                       |
 | `name`     | string  | Tax rate name.                                                                                                                                                                  |
 | `priority` | integer | Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is `1`. |
