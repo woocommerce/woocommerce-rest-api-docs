@@ -6070,7 +6070,10 @@ woocommerce.get("").parsed_response
                 "id",
                 "include",
                 "title",
-                "slug"
+                "slug",
+                "price",
+                "popularity",
+                "rating"
               ],
               "description": "Sort collection by object attribute.",
               "type": "string"

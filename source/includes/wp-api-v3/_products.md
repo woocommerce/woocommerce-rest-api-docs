@@ -1473,7 +1473,7 @@ woocommerce.get("products").parsed_response
 | `include`        | array   | Limit result set to specific ids.                                                                                                       |
 | `offset`         | integer | Offset the result set by a specific number of items.                                                                                    |
 | `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                             |
-| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                           |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title`, `slug`, `price`, `popularity` and `rating`. Default is `date`.                           |
 | `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                     |
 | `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                   |
 | `slug`           | string  | Limit result set to products with a specific slug.                                                                                      |
