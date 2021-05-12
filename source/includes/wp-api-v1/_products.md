@@ -1913,6 +1913,7 @@ woocommerce.get("products").parsed_response
 | `search`         | string  | Limit results to those matching a string.                                                                                                       |
 | `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                     |
 | `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                    |
+| `dates_are_gmt`  | boolean | Interpret `after` and `before` as UTC dates when `true`.                                                                                        |
 | `exclude`        | string  | Ensure result set excludes specific ids.                                                                                                        |
 | `include`        | string  | Limit result set to specific ids.                                                                                                               |
 | `offset`         | integer | Offset the result set by a specific number of items.                                                                                            |
