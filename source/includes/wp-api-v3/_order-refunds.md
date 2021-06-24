@@ -16,6 +16,7 @@ The refunds API allows you to create, view, and delete individual refunds.
 | `meta_data`        | array     | Meta data. See [Order refund - Meta data properties](#order-refund-meta-data-properties)                                                         |
 | `line_items`       | array     | Line items data. See [Order refund - Line items properties](#order-refund-line-items-properties)                                                 |
 | `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i>                 |
+| `api_restock`      | boolean   | When true, items are restocked. Default is `true`. <i class="label label-info">write-only</i>                                                    |
 
 ### Order refund - Meta data properties ###
 
