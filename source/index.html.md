@@ -9,6 +9,7 @@ language_tabs:
   - ruby: Ruby
 
 toc_footers:
+  - <a href="https://woocommerce.com/careers/?utm_source=developer+resource+sites&utm_medium=devdocs&utm_campaign=woo+careers&utm_content=wc+core+rest+api+docs" target="_blank">We're hiring!</a>
   - <a href="https://github.com/woocommerce/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a>
   - <a href="https://github.com/woocommerce/woocommerce-rest-api">REST API Source on GitHub</a>
   - <a href="https://github.com/woocommerce/woocommerce/issues?labels=API&amp;page=1&amp;state=open">REST API Issues</a>
