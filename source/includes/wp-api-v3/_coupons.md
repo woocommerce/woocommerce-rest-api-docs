@@ -392,20 +392,23 @@ woocommerce.get("coupons").parsed_response
 
 #### Available parameters ####
 
-| Parameter  | Type    | Description                                                                                                                  |
-| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
-| `page`     | integer | Current page of the collection. Default is `1`.                                                                              |
-| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
-| `search`   | string  | Limit results to those matching a string.                                                                                    |
-| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
-| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
-| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                     |
-| `include`  | array   | Limit result set to specific ids.                                                                                            |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                                         |
-| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
-| `orderby`  | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
-| `code`     | string  | Limit result set to resources with a specific code.                                                                          |
+| Parameter         | Type    | Description                                                                                                                  |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`         | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `page`            | integer | Current page of the collection. Default is `1`.                                                                              |
+| `per_page`        | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
+| `search`          | string  | Limit results to those matching a string.                                                                                    |
+| `after`           | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
+| `before`          | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
+| `modified_after`  | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                   |
+| `modified_before` | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                   |
+| `dates_are_gmt`   | boolean | Whether to consider GMT post dates when limiting response by published or modified date.                                     |
+| `exclude`         | array   | Ensure result set excludes specific IDs.                                                                                     |
+| `include`         | array   | Limit result set to specific ids.                                                                                            |
+| `offset`          | integer | Offset the result set by a specific number of items.                                                                         |
+| `order`           | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
+| `orderby`         | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                |
+| `code`            | string  | Limit result set to resources with a specific code.                                                                          |
 
 ## Update a coupon ##
 
