@@ -76,7 +76,7 @@ WooCommerce.post("products/categories", data)
 ```php
 <?php
 $data = [
-    "name' => 'Clothing',
+    'name' => 'Clothing',
     'image' => [
         'src' => 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg'
     ]
