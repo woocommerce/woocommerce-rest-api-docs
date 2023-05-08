@@ -456,7 +456,8 @@ wcapi = API(
     url="http://example.com",
     consumer_key="consumer_key",
     consumer_secret="consumer_secret",
-    version="v2"
+    version="v2",
+    user_agent="sample.org", # Your sample user agent
 )
 ```
 

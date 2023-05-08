@@ -227,7 +227,8 @@ wcapi = API(
     consumer_key="consumer_key", # Your consumer key
     consumer_secret="consumer_secret", # Your consumer secret
     wp_api=True, # Enable the WP REST API integration
-    version="wc/v1" # WooCommerce WP REST API version
+    version="wc/v1", # WooCommerce WP REST API version
+    user_agent="sample.org", # Your sample user agent
 )
 ```
 

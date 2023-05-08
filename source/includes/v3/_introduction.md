@@ -480,7 +480,8 @@ wcapi = API(
     url="http://example.com", # Your store URL
     consumer_key="consumer_key", # Your consumer key
     consumer_secret="consumer_secret", # Your consumer secret
-    version="v3" # WooCommerce API version
+    version="v3", # WooCommerce API version
+    user_agent="sample.org", # Your sample user agent
 )
 ```
 
