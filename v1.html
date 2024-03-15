@@ -1,0 +1,2276 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>WooCommerce REST API Documentation v1</title>
+
+    <link rel="icon" href="images/favicon-32x32-6b5978bc.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192-7c01c093.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180-e5124fb6.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270-73493183.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-88a957d3.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-c275c2f6.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KCYZ2CYMS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8KCYZ2CYMS', {
+        'content_group' : 'WooCommerce REST API Docs',
+      });
+    </script>
+  </head>
+
+  <body class="v1 has-warning" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-95f5c1ab.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+        </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#schema" class="toc-h2 toc-link" data-title="Schema">Schema</a>
+                  </li>
+                  <li>
+                    <a href="#version" class="toc-h2 toc-link" data-title="Version">Version</a>
+                  </li>
+                  <li>
+                    <a href="#responses" class="toc-h2 toc-link" data-title="Responses">Responses</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
+                  </li>
+                  <li>
+                    <a href="#http-verbs" class="toc-h2 toc-link" data-title="HTTP Verbs">HTTP Verbs</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#json-p-support" class="toc-h2 toc-link" data-title="JSON-P Support">JSON-P Support</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#endpoints" class="toc-h1 toc-link" data-title="Endpoints">Endpoints</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#index" class="toc-h2 toc-link" data-title="Index">Index</a>
+                  </li>
+                  <li>
+                    <a href="#coupons" class="toc-h2 toc-link" data-title="Coupons">Coupons</a>
+                  </li>
+                  <li>
+                    <a href="#customers" class="toc-h2 toc-link" data-title="Customers">Customers</a>
+                  </li>
+                  <li>
+                    <a href="#orders" class="toc-h2 toc-link" data-title="Orders">Orders</a>
+                  </li>
+                  <li>
+                    <a href="#products" class="toc-h2 toc-link" data-title="Products">Products</a>
+                  </li>
+                  <li>
+                    <a href="#reports" class="toc-h2 toc-link" data-title="Reports">Reports</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="toc-h1 toc-link" data-title="Troubleshooting">Troubleshooting</a>
+          </li>
+          <li>
+            <a href="#tools" class="toc-h1 toc-link" data-title="Tools">Tools</a>
+          </li>
+          <li>
+            <a href="#learn-more" class="toc-h1 toc-link" data-title="Learn More">Learn More</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="https://github.com/woocommerce/woocommerce-rest-api-docs">Contributing to WC REST API Docs</a></li>
+            <li><a href="https://github.com/woocommerce/woocommerce/tree/master/includes/rest-api">REST API Source on GitHub</a></li>
+            <li><a href="https://github.com/woocommerce/woocommerce/issues?labels=API&amp;page=1&amp;state=open">REST API Issues</a></li>
+            <li><a href="https://docs.woocommerce.com/documentation/plugins/woocommerce/">WooCommerce Documentation</a></li>
+            <li><a href="https://github.com/woocommerce/woocommerce">WooCommerce Repository</a></li>
+            <li><a href="https://github.com/tripit/slate">Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>With v2.1, WooCommerce includes a REST API that allows store data to be accessed in either JSON or XML format. The current version is read-only (with a single exception for updating the status of an order), but future versions will allow updating, creating, and deleting resources.</p>
+<h2 id='requirements'>Requirements</h2>
+<p>You must be using WooCommerce 2.1 and the REST API must be enabled under WooCommerce &gt; Settings. You must enable pretty permalinks (default permalinks will not work).</p>
+<h2 id='schema'>Schema</h2>
+<p>The API is accessible via this endpoint:</p>
+
+<p><code>https://www.example.com/wc-api/v1/</code></p>
+
+<p>You may access the API over either HTTP or HTTPS. HTTPS is recommended where possible, and the API index will declare if the site supports SSL or not.</p>
+<h2 id='version'>Version</h2>
+<p>The current version is <code>v1</code> and takes a first-order position in endpoint URLs. This will only change for major releases.</p>
+<h2 id='responses'>Responses</h2>
+<p>The default response format is JSON. You can change this to XML by setting the HTTP <code>ACCEPT</code> header to either <code>application/xml</code> or <code>text/xml</code>. Successful requests will return a <code>200 OK</code> HTTP status. Note that XML responses are slightly different in structure.</p>
+
+<p>Some general information about responses:</p>
+
+<ul>
+<li><p>Dates are returned in <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> format in UTC timezone: <code>YYYY-MM-DDTHH:MM:SSZ</code></p></li>
+<li><p>Resource IDs are returned as integers.</p></li>
+<li><p>Any decimal monetary amount, such as prices or totals, are returned as strings with two decimal places. The decimal separator (typically either <code>.</code> or <code>,</code>) is controlled by the site and is included in the API index. This is by design, in order to make localization of API data easier for the client. You may need to account for this in your implemetation if you will be doing calculations with the returned data (e.g. convert string amounts with commas as the decimal place before performing any calculations)</p></li>
+<li><p>Other amounts, such as item counts, are returned as integers.</p></li>
+<li><p>Blank fields are generally included as <code>null</code> instead of being blank strings or omitted.</p></li>
+</ul>
+<h2 id='authentication'>Authentication</h2>
+<p>There are two ways to authenticate with the API, depending on whether the site supports SSL or not.  Remember that the Index endpoint will indicate if the site supports SSL or not.</p>
+<h3 id='over-https'>Over HTTPS</h3>
+<p>You may use <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a> by providing the API Consumer Key as the username and the API Consumer Secret as the password:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ curl https://www.example.com/wc-api/v1/orders \
+    -u consumer_key:consumer_secret
+</code></pre></div>
+<p>Occasionally some servers may not properly parse the Authorization header (if you see a &quot;Consumer key is missing&quot; error when authenticating over SSL, you have a server issue). In WooCommerce 2.1.7+, you may provide the consumer key/secret as query string parameters:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ curl https://www.example.com/wc-api/v1/orders?consumer_key=123&amp;consumer_secret=abc
+</code></pre></div><h3 id='over-http'>Over HTTP</h3>
+<p>You must use <a href="http://tools.ietf.org/html/rfc5849">OAuth 1.0a &quot;one-legged&quot; authentication</a> to ensure API credentials cannot be intercepted. Typically you may use any standard OAuth 1.0a library in your language of choice to handle the authentication, or generate the necessary parameters by following these instructions.</p>
+<h4 id='generating-an-oauth-signature'>Generating an OAuth signature</h4>
+<p>1) Set the HTTP method for the request:</p>
+
+<p><code>GET</code></p>
+
+<p>2) Set your base request URI -- this is the full request URI without query string parameters -- and URL encode according to RFC 3986:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>http://www.example.com/wc-api/v1/orders
+</code></pre></div>
+<p>when encoded:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders
+</code></pre></div>
+<p>3) Collect and normalize your query string parameters. This includes all <code>oauth_*</code> parameters except for the signature. Parameters should be normalized by URL encoding according to RFC 3986 (<code>rawurlencode</code> in PHP) and percent(<code>%</code>) characters should be double-encoded (e.g. <code>%</code> becomes <code>%25</code>.</p>
+
+<p>4) Sort the parameters in byte-order (<code>uksort( $params, &#39;strcmp&#39; )</code> in PHP)</p>
+
+<p>5) Join each parameter with an encoded equals sign (<code>%3D</code>):</p>
+
+<p><code>oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>6) Join each parameter key/value with an encoded ampersand (<code>%26</code>):</p>
+
+<p><code>oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>7) Form the string to sign by joining the HTTP method, encoded base request URI, and encoded parameter string with an unencoded ampersand symbol (&amp;):</p>
+
+<p><code>GET&amp;http%3A%2F%2Fwww.example.com%2Fwc-api%2Fv1%2Forders&amp;oauth_consumer_key%3Dabc123%26oauth_signature_method%3DHMAC-SHA1</code></p>
+
+<p>8) Generate the signature using the string to key and your consumer secret key</p>
+
+<p>If you are having trouble generating a correct signature, you&#39;ll want to review your string to sign for errors with encoding. The <a href="https://github.com/woocommerce/woocommerce/blob/master/includes/class-wc-rest-authentication.php#L185">authentication source</a> can also be helpful in understanding how to properly generate the signature.</p>
+<h4 id='oauth-tips'>OAuth Tips</h4>
+<ul>
+<li><p>The OAuth parameters must be added as query string parameters and <em>not</em> include in the Authorization header.</p></li>
+<li><p>The require parameters are: <code>oauth_consumer_key</code>, <code>oauth_timestamp</code>, <code>oauth_nonce</code>, <code>oauth_signature</code>, and <code>oauth_signature_method</code>. <code>oauth_version</code> is not required and must be omitted.</p></li>
+<li><p>HMAC-SHA1 or HMAC-SHA256 are the only accepted hash algorithms.</p></li>
+<li><p>The OAuth nonce can be any randomly generated 32 character (recommended) string that is unique to the consumer key. Read more suggestions on <a href="https://dev.twitter.com/discussions/12445">generating a nonce</a> on the Twitter API forums.</p></li>
+<li><p>The OAuth timestamp should be the unix timestamp at the time of the request. The API will deny any requests that include a timestamp that is outside of a 15 minute window to prevent replay attacks.</p></li>
+<li><p>You must use the store URL provided by the index when forming the base string used for the signature, as this is what the server will use. (e.g. if the store URL includes a <code>www</code> sub-domain, you should use it for requests)</p></li>
+<li><p>Some OAuth libraries add an ampersand to the provided secret key before generating the signature. This does not adhere to the OAuth spec and the ampersand should be removed prior to generating the signature.</p></li>
+<li><p>You may test your generated signature using LinkedIn&#39;s <a href="http://developer.linkedin.com/oauth-test-console">OAuth test console</a> -- leave the member token/secret blank.</p></li>
+<li><p>Twitter has great instructions on <a href="https://dev.twitter.com/docs/auth/creating-signature">generating a signature</a> with OAuth 1.0a, but remember tokens are not used with this implementation.</p></li>
+<li><p>Note that the request body is <em>not</em> signed as per the OAuth spec, see <a href="https://oauth.googlecode.com/svn/spec/ext/body_hash/1.0/oauth-bodyhash.html">Google&#39;s OAuth 1.0 extension</a> for details on why.</p></li>
+</ul>
+<h2 id='parameters'>Parameters</h2>
+<p>API endpoints may take optional parameters which can be passed as an HTTP query string parameter:</p>
+
+<p><code>GET /orders?status=completed</code></p>
+
+<p>All endpoints accept a <code>filter</code> parameter that scopes individual filters using brackets, like date filtering:</p>
+
+<p><code>GET /orders?filter[created_at_min]=2013-11-01</code></p>
+
+<p>Multiple <code>filter</code> parameters can be included and intermixed with other parameters:</p>
+
+<p><code>GET /orders?status=completed&amp;filter[created_at_min]=2013-11-01&amp;filter[created_at_max]=2013-11-30</code></p>
+
+<p>You can do a keyword search using the <code>q</code> filter parameter:</p>
+
+<p><code>GET /products?filter[q]=search-keyword</code></p>
+
+<p>Resource meta is excluded by default, but can be included with the <code>meta</code> filter parameter:</p>
+
+<p><code>GET /orders?filter[meta]=true</code></p>
+
+<p>Protected meta (meta whose key is prefixed with an underscore) is not included in the response. The <code>reports</code> endpoint does not support meta.</p>
+
+<p>You may limit the fields returned in the response using the <code>fields</code> parameter:</p>
+
+<p><code>GET /orders?fields=id</code></p>
+
+<p>To include multiple fields, separate them with commas:</p>
+
+<p><code>GET /orders?fields=id,status</code></p>
+
+<p>You can specify sub-fields using dot-notation:</p>
+
+<p><code>GET /orders?fields=id,status,payment_details.method_title</code></p>
+
+<p>Sub-fields can&#39;t be limited for resources that have multiple structs, like an order&#39;s line items. For example, this will return just the line items, but each line item will have the full set of information, not just the product ID:</p>
+
+<p><code>GET /orders?fields=line_items.product_id</code></p>
+
+<p>Some general guidelines when using parameters:</p>
+
+<ul>
+<li><p>Dates should be provided in <a href="http://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> format in UTC timezone: <code>YYYY-MM-DDTHH:MM:SSZ</code>. You may omit the time and timezone if desired.</p></li>
+<li><p>When using the <code>q</code> filter for searching, search terms should be URL-encoded as they will be decoded internally with <a href="http://us3.php.net/manual/en/function.urldecode.php"><code>urldecode</code></a></p></li>
+</ul>
+<h2 id='errors'>Errors</h2>
+<p>Occasionally you might encounter errors when accessing the API. There are four possible types:</p>
+
+<ul>
+<li>Invalid requests, such as using an unsupported HTTP method will result in <code>400 Bad Request</code>:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_unsupported_method",
+      "message" : "Unsupported request method"
+    }
+  ]
+}
+</code></pre></div>
+<ul>
+<li>Authentication or permission errors, such as incorrect API keys will result in <code>401 Unauthorized</code>:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_authentication_error",
+      "message" : "Consumer Key is invalid"
+    }
+  ]
+}
+</code></pre></div>
+<ul>
+<li>Requests to resources that don&#39;t exist or are missing required parameters will result in <code>404 Not Found</code>:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_invalid_order",
+      "message" : "Invalid order"
+    }
+  ]
+}
+</code></pre></div>
+<ul>
+<li>Requests that cannot be processed due to a server error will result in <code>500 Internal Server Error</code>:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_invalid_handler",
+      "message" : "The handler for the route is invalid"
+    }
+  ]
+}
+</code></pre></div>
+<p>Errors return both an appropriate HTTP status code and response object which contains a <code>code</code> and <code>message</code> attribute. If an endpoint has any custom errors, they are documented with that endpoint.</p>
+<h2 id='http-verbs'>HTTP Verbs</h2>
+<p>The API uses the appropriate HTTP verb for each action:</p>
+
+<ul>
+<li><code>HEAD</code> - Can be used for any endpoint to return just the HTTP header information</li>
+<li> <code>GET</code> - Used for retrieving resources</li>
+<li> <code>PUT</code> - Used for updating resources, currently only supported for the <code>orders/#{id}</code> endpoint.</li>
+</ul>
+
+<p>In future version of the API, <code>POST</code> and <code>DELETE</code> will be supported.</p>
+<h2 id='pagination'>Pagination</h2>
+<p>Requests that return multiple items will be paginated to 10 items by default. This default can be changed by the site administrator by changing the <code>posts_per_page</code> option. Alternatively the items per page can be specifed with the <code>?filter[limit]</code> parameter:</p>
+
+<p><code>GET /orders?filter[limit]=15</code></p>
+
+<p>You can specify further pages with the <code>?page</code> parameter:</p>
+
+<p><code>GET /orders?page=2</code></p>
+
+<p>You may also specify the offset from the first resource using the <code>?filter[offset]</code> parameter:</p>
+
+<p><code>GET /orders?filter[offset]=5</code></p>
+
+<p>Page number is 1-based and ommiting the <code>?page</code> parameter will return the first page.</p>
+
+<p>The total number of resources and pages are always included in the <code>X-WC-Total</code> and <code>X-WC-TotalPages</code> HTTP headers.</p>
+<h3 id='link-header'>Link Header</h3>
+<p>Pagination info is included in the <a href="http://tools.ietf.org/html/rfc5988">Link Header</a>. It&#39;s recommended that you follow these values instead of building your own URLs where possible.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Link: &lt;https://www.example.com/wc-api/v1/products?page=2&gt;; rel="next",
+&lt;https://www.example.com/wc-api/v1/products?page=3&gt;; rel="last"`
+</code></pre></div>
+<p><em>Linebreak included for readability</em></p>
+
+<p>The possible <code>rel</code> values are:</p>
+
+<ul>
+<li><code>next</code> - Shows the URL of the immediate next page of results</li>
+<li><code>last</code> - Shows the URL of the last page of results</li>
+<li><code>first</code> - Shows the URL of the first page of results</li>
+<li><code>prev</code> - Shows the URL of the immediate previous page of results</li>
+</ul>
+<h2 id='json-p-support'>JSON-P Support</h2>
+<p>The API supports JSON-P by default. You can specify the callback using the <code>?_jsonp</code> parameter for <code>GET</code> requests to have the response wrapped in a JSON function:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>GET /orders/count?_jsonp=ordersCount
+
+ordersCount({"count":8})
+</code></pre></div>
+<p>If the site administrator has chosen to disable it, you will receive a<code>400 Bad Request</code> error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_jsonp_disabled",
+      "message" : "JSONP support is disabled on this site"
+    }
+  ]
+}
+</code></pre></div>
+<p>If your callback contains invalid characters, you will receive a <code>400 Bad Request</code> error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_jsonp_callback_invalid",
+      "message" : "The JSONP callback function is invalid"
+    }
+  ]
+}
+</code></pre></div><h1 id='endpoints'>Endpoints</h1>
+<p>The API supports 5 primary resources, each with a related set of endpoints.</p>
+<h2 id='index'>Index</h2>
+<p>The API index provides information about the endpoints available for the site, as well as store-specific information. No authentication is required to access the API index, however if the REST API is disabled, you will receive a <code>404 Not Found</code> error:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "errors" : [
+    {
+      "code" : "woocommerce_api_disabled",
+      "message" : "The WooCommerce API is disabled on this site"
+    }
+  ]
+}
+</code></pre></div><h3 id='store-properties'>Store Properties</h3>
+<ul>
+<li><code>routes</code>: a list of available endpoints for the site keyed by relative URL. Each endpoint specifies the HTTP methods supported as well as the canonical URL.</li>
+<li><code>dimension_unit</code>: the unit set for product dimensions. Valid units are <code>cm</code>, <code>m</code>, <code>cm</code>, <code>mm</code>, <code>in</code>, and <code>yd</code></li>
+<li><code>tax_included</code>: true if prices include tax, false otherwise</li>
+<li><code>ssl_enabled</code>: true if SSL is enabled for the site, false otherwise</li>
+<li><code>timezone</code>: the site&#39;s timezone</li>
+<li> <code>currency_format</code>: the currency symbol, HTML encoded</li>
+<li> <code>weight_unit</code>: the unit set for product weights. Valid units are <code>kg</code>, <code>g</code>, <code>lbs</code>, <code>oz</code></li>
+<li> <code>description</code>: the site&#39;s description</li>
+<li> <code>name</code>: the name of the site</li>
+<li> <code>URL</code>: the site&#39;s URL</li>
+<li> <code>permalinks_enabled</code>: whether pretty permalinks are enabled on the site, if this is false, the API will not function correctly</li>
+<li> <code>wc_version</code>: the active WooCommerce version</li>
+</ul>
+<h3 id='get'><code>GET /</code></h3>
+<p>Retrieve a set of store information:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "store" : {
+    "routes" : {
+      "/customers" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/customers"
+        }
+      },
+      "/coupons/count" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/coupons/count"
+        }
+      },
+      "/orders/count" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/orders/count"
+        }
+      },
+      "/products/&lt;id&gt;/reviews" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/coupons/code/&lt;code&gt;" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/orders/&lt;id&gt;/notes" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/customers/count" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/customers/count"
+        }
+      },
+      "/customers/&lt;id&gt;" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/reports" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/reports"
+        }
+      },
+      "/reports/sales" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/reports/sales"
+        }
+      },
+      "/products/count" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/products/count"
+        }
+      },
+      "/coupons/&lt;id&gt;" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/"
+        }
+      },
+      "/products" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/products"
+        }
+      },
+      "/orders/&lt;id&gt;" : {
+        "supports" : [
+          "HEAD",
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH"
+        ],
+        "accepts_data" : true
+      },
+      "/customers/&lt;id&gt;/orders" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/products/&lt;id&gt;" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ]
+      },
+      "/orders" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/orders"
+        }
+      },
+      "/coupons" : {
+        "supports" : [
+          "HEAD",
+          "GET"
+        ],
+        "meta" : {
+          "self" : "https://www.example.com/wc-api/v1/coupons"
+        }
+      }
+    },
+    "meta" : {
+      "dimension_unit" : "in",
+      "tax_included" : false,
+      "ssl_enabled" : true,
+      "timezone" : "America/New_York",
+      "currency_format" : "&amp;#36;",
+      "weight_unit" : "oz",
+      "links" : {
+        "help" : "http://docs.woocommerce.com/document/woocommerce-rest-api/"
+      },
+      "currency" : "USD",
+      "permalinks_enabled" : true,
+
+    },
+    "description" : "WooCommerce All the Things!",
+    "name" : "WooCommerce",
+    "URL" : "http://www.example.com"
+  }
+}
+</code></pre></div><h2 id='coupons'>Coupons</h2><h3 id='coupon-properties'>Coupon Properties</h3>
+<ul>
+<li><code>expiry_date</code>: the date the coupon is expired</li>
+<li><code>individual_use</code>: true if the coupon may only be used individually, false otherwise</li>
+<li><code>exclude_product_category_ids</code>: a list of product category IDs that this coupon cannot be applied to</li>
+<li><code>amount</code>: the amount of the coupon</li>
+<li><code>code</code>: the coupon&#39;s code that is entered at the cart/checkout page to apply the discount</li>
+</ul>
+
+<p>@TODO</p>
+<h3 id='get-coupons'><code>GET /coupons</code></h3>
+<p>Retrieve a list of coupons:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>"coupons" : [
+    {
+      "expiry_date" : "2013-11-22T00:00:00Z",
+      "individual_use" : false,
+      "exclude_product_category_ids" : [],
+      "amount" : "5.00",
+      "code" : "test123",
+      "product_category_ids" : [
+        22
+      ],
+      "updated_at" : "2013-11-23T21:08:10Z",
+      "limit_usage_to_x_items" : 0,
+      "product_ids" : [
+        73
+      ],
+      "exclude_sale_items" : false,
+      "type" : "fixed_cart",
+      "apply_before_tax" : false,
+      "minimum_amount" : "0.00",
+      "id" : 137,
+      "exclude_product_ids" : [],
+      "usage_limit" : null,
+      "usage_count" : 0,
+      "created_at" : "2013-11-18T15:38:53Z",
+      "usage_limit_per_user" : null,
+      "enable_free_shipping" : false,
+      "customer_emails" : []
+    }
+  ]
+}
+</code></pre></div><h3 id='get-coupons-count'><code>GET /coupons/count</code></h3>
+<p>Retrieve a count of all coupons:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "count" : 3
+}
+</code></pre></div><h3 id='get-coupons-id'><code>GET /coupons/#{id}</code></h3><h3 id='get-coupons-code-code'><code>GET /coupons/code/{code}</code></h3>
+<p>Retrieve a single coupon specified by it&#39;s ID or code.</p>
+
+<p>Note that coupon codes may contain spaces, dashes and underscores and should be URL-encoded.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "coupon" : {
+    "expiry_date" : "2013-11-22T00:00:00Z",
+    "individual_use" : false,
+    "exclude_product_category_ids" : [],
+    "amount" : "5.00",
+    "code" : "test123",
+    "product_category_ids" : [
+      22
+    ],
+    "updated_at" : "2013-11-23T21:08:10Z",
+    "limit_usage_to_x_items" : 0,
+    "product_ids" : [
+      73
+    ],
+    "exclude_sale_items" : false,
+    "type" : "fixed_cart",
+    "apply_before_tax" : false,
+    "minimum_amount" : "0.00",
+    "id" : 137,
+    "exclude_product_ids" : [],
+    "usage_limit" : null,
+    "usage_count" : 0,
+    "created_at" : "2013-11-18T15:38:53Z",
+    "usage_limit_per_user" : null,
+    "enable_free_shipping" : false,
+    "customer_emails" : []
+  }
+}
+</code></pre></div><h2 id='customers'>Customers</h2>
+<p>All endpoints (except for customer orders) support  date filtering via <code>created_at_min</code> and <code>created_at_max</code> as <code>?filter[]</code> parameters. e.g. <code>?filter[created_at_min]=2013-12-01</code></p>
+<h3 id='customer-properties'>Customer Properties</h3>
+<p>@TODO</p>
+<h3 id='get-customers'><code>GET /customers</code></h3>
+<p>Retrieve a list of customers:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "customers" : [
+    {
+      "id" : 4,
+      "last_order_date" : "2013-12-10T18:58:00Z",
+      "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "total_spent" : "0.00",
+      "created_at" : "2013-12-10T18:58:07Z",
+      "orders_count" : 0,
+      "billing_address" : {
+        "phone" : "215-523-4132",
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "email" : "thedon@mailinator.com",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "shipping_address" : {
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "first_name" : "Don",
+      "username" : "thedon",
+      "last_name" : "Draper",
+      "last_order_id" : "113",
+      "email" : "thedon@mailinator.com"
+    }
+  ]
+}
+</code></pre></div><h3 id='get-customers-count'><code>GET /customers/count</code></h3>
+<p>Retrieve a count of all customers:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "count" : 18
+}
+</code></pre></div><h3 id='get-customers-id'><code>GET /customers/#{id}</code></h3>
+<p>Retrieve a single customer specified by their ID:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "customer" : {
+    "id" : 4,
+    "last_order_date" : "2013-12-10T18:58:00Z",
+    "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+    "total_spent" : "0.00",
+    "created_at" : "2013-12-10T18:58:07Z",
+    "orders_count" : 0,
+    "billing_address" : {
+      "phone" : "215-523-4132",
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "email" : "thedon@mailinator.com",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    },
+    "shipping_address" : {
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    },
+    "first_name" : "Don",
+    "username" : "thedon",
+    "last_name" : "Draper",
+    "last_order_id" : "113",
+    "email" : "thedon@mailinator.com"
+  }
+}
+</code></pre></div><h3 id='get-customers-id-orders'><code>GET /customers/#{id}/orders</code></h3>
+<p>Retrieve a list of orders for a customer specified by their ID:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "orders" : [
+    {
+      "completed_at" : "2013-12-10T18:59:30Z",
+      "tax_lines" : [],
+      "status" : "processing",
+      "total" : "20.00",
+      "cart_discount" : "0.00",
+      "customer_ip" : "127.0.0.1",
+      "total_discount" : "0.00",
+      "updated_at" : "2013-12-10T18:59:30Z",
+      "currency" : "USD",
+      "total_shipping" : "0.00",
+      "customer_user_agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
+      "line_items" : [
+        {
+          "product_id" : 31,
+          "quantity" : 1,
+          "id" : 7,
+          "subtotal" : "20.00",
+          "tax_class" : null,
+          "sku" : "",
+          "total" : "20.00",
+          "name" : "Ninja Silhouette",
+          "total_tax" : "0.00"
+        }
+      ],
+      "customer_id" : "4",
+      "total_tax" : "0.00",
+      "order_number" : "#113",
+      "shipping_methods" : "Free Shipping",
+      "shipping_address" : {
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "payment_details" : {
+        "method_title" : "Cheque Payment",
+        "method_id" : "cheque",
+        "paid" : false
+      },
+      "id" : 113,
+      "shipping_tax" : "0.00",
+      "cart_tax" : "0.00",
+      "fee_lines" : [],
+      "total_line_items_quantity" : 1,
+      "shipping_lines" : [
+        {
+          "method_title" : "Free Shipping",
+          "id" : 8,
+          "method_id" : "free_shipping",
+          "total" : "0.00"
+        }
+      ],
+      "customer" : {
+        "id" : 4,
+        "last_order_date" : "2013-12-10T18:58:00Z",
+        "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "total_spent" : "0.00",
+        "created_at" : "2013-12-10T18:58:07Z",
+        "orders_count" : 0,
+        "billing_address" : {
+          "phone" : "215-523-4132",
+          "city" : "New York",
+          "country" : "US",
+          "address_1" : "512 First Avenue",
+          "last_name" : "Draper",
+          "company" : "SDCP",
+          "postcode" : "12534",
+          "email" : "thedon@mailinator.com",
+          "address_2" : "",
+          "state" : "NY",
+          "first_name" : "Don"
+        },
+        "shipping_address" : {
+          "city" : "New York",
+          "country" : "US",
+          "address_1" : "512 First Avenue",
+          "last_name" : "Draper",
+          "company" : "SDCP",
+          "postcode" : "12534",
+          "address_2" : "",
+          "state" : "NY",
+          "first_name" : "Don"
+        },
+        "first_name" : "Don",
+        "username" : "thedon",
+        "last_name" : "Draper",
+        "last_order_id" : "113",
+        "email" : "thedon@mailinator.com"
+      },
+      "note" : "",
+      "coupon_lines" : [],
+      "order_discount" : "0.00",
+      "created_at" : "2013-12-10T18:58:00Z",
+      "view_order_url" : "https://www.example.com/my-account/view-order/113",
+      "billing_address" : {
+        "phone" : "215-523-4132",
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "email" : "thedon@mailinator.com",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      }
+    }
+  ]
+}
+</code></pre></div><h2 id='orders'>Orders</h2>
+<p>All endpoints (except for order notes) support the full set of date filters (<code>created_at_min</code>, <code>created_at_max</code>, <code>updated_at_min</code>, <code>updated_at_max</code>) as <code>?filter[]</code> parameters. e.g. <code>?filter[created_at_min]=2013-12-01</code></p>
+<h3 id='order-properties'>Order Properties</h3>
+<p>@TODO</p>
+<h3 id='get-orders'><code>GET /orders</code></h3>
+<p>Retrieve a list of orders</p>
+
+<p>You can use the <code>?status?</code> parameter to limit the orders returned to a specific order status. The default WooCommerce order statuses are <code>pending</code>, <code>on-hold</code>, <code>processing</code>, <code>completed</code>, <code>refunded</code>, <code>failed</code>, and <code>cancelled</code>. Custom order statuses are supported.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "orders" : [
+    {
+      "completed_at" : "2013-12-10T18:59:30Z",
+      "tax_lines" : [],
+      "status" : "processing",
+      "total" : "20.00",
+      "cart_discount" : "0.00",
+      "customer_ip" : "127.0.0.1",
+      "total_discount" : "0.00",
+      "updated_at" : "2013-12-10T18:59:30Z",
+      "currency" : "USD",
+      "total_shipping" : "0.00",
+      "customer_user_agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
+      "line_items" : [
+        {
+          "product_id" : 31,
+          "quantity" : 1,
+          "id" : 7,
+          "subtotal" : "20.00",
+          "tax_class" : null,
+          "sku" : "",
+          "total" : "20.00",
+          "name" : "Ninja Silhouette",
+          "total_tax" : "0.00"
+        }
+      ],
+      "customer_id" : "4",
+      "total_tax" : "0.00",
+      "order_number" : "#113",
+      "shipping_methods" : "Free Shipping",
+      "shipping_address" : {
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "payment_details" : {
+        "method_title" : "Cheque Payment",
+        "method_id" : "cheque",
+        "paid" : false
+      },
+      "id" : 113,
+      "shipping_tax" : "0.00",
+      "cart_tax" : "0.00",
+      "fee_lines" : [],
+      "total_line_items_quantity" : 1,
+      "shipping_lines" : [
+        {
+          "method_title" : "Free Shipping",
+          "id" : 8,
+          "method_id" : "free_shipping",
+          "total" : "0.00"
+        }
+      ],
+      "customer" : {
+        "id" : 4,
+        "last_order_date" : "2013-12-10T18:58:00Z",
+        "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+        "total_spent" : "0.00",
+        "created_at" : "2013-12-10T18:58:07Z",
+        "orders_count" : 0,
+        "billing_address" : {
+          "phone" : "215-523-4132",
+          "city" : "New York",
+          "country" : "US",
+          "address_1" : "512 First Avenue",
+          "last_name" : "Draper",
+          "company" : "SDCP",
+          "postcode" : "12534",
+          "email" : "thedon@mailinator.com",
+          "address_2" : "",
+          "state" : "NY",
+          "first_name" : "Don"
+        },
+        "shipping_address" : {
+          "city" : "New York",
+          "country" : "US",
+          "address_1" : "512 First Avenue",
+          "last_name" : "Draper",
+          "company" : "SDCP",
+          "postcode" : "12534",
+          "address_2" : "",
+          "state" : "NY",
+          "first_name" : "Don"
+        },
+        "first_name" : "Don",
+        "username" : "thedon",
+        "last_name" : "Draper",
+        "last_order_id" : "113",
+        "email" : "thedon@mailinator.com"
+      },
+      "note" : "",
+      "coupon_lines" : [],
+      "order_discount" : "0.00",
+      "created_at" : "2013-12-10T18:58:00Z",
+      "view_order_url" : "https://www.example.com/my-account/view-order/113",
+      "billing_address" : {
+        "phone" : "215-523-4132",
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "email" : "thedon@mailinator.com",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      }
+    }
+  ]
+}
+</code></pre></div><h3 id='get-orders-count'><code>GET /orders/count</code></h3>
+<p>Retrieve a count of all orders:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "count" : 27
+}
+</code></pre></div><h3 id='get-orders-id'><code>GET /orders/#{id}</code></h3>
+<p>Retrieve a single order specified by it&#39;s ID:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "order" : {
+    "completed_at" : "2013-12-10T18:59:30Z",
+    "tax_lines" : [],
+    "status" : "processing",
+    "total" : "20.00",
+    "cart_discount" : "0.00",
+    "customer_ip" : "127.0.0.1",
+    "total_discount" : "0.00",
+    "updated_at" : "2013-12-10T18:59:30Z",
+    "currency" : "USD",
+    "total_shipping" : "0.00",
+    "customer_user_agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
+    "line_items" : [
+      {
+        "product_id" : 31,
+        "quantity" : 1,
+        "id" : 7,
+        "subtotal" : "20.00",
+        "tax_class" : null,
+        "sku" : "",
+        "total" : "20.00",
+        "name" : "Ninja Silhouette",
+        "total_tax" : "0.00"
+      }
+    ],
+    "customer_id" : "4",
+    "total_tax" : "0.00",
+    "order_number" : "#113",
+    "shipping_methods" : "Free Shipping",
+    "shipping_address" : {
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    },
+    "payment_details" : {
+      "method_title" : "Cheque Payment",
+      "method_id" : "cheque",
+      "paid" : false
+    },
+    "id" : 113,
+    "shipping_tax" : "0.00",
+    "cart_tax" : "0.00",
+    "fee_lines" : [],
+    "total_line_items_quantity" : 1,
+    "shipping_lines" : [
+      {
+        "method_title" : "Free Shipping",
+        "id" : 8,
+        "method_id" : "free_shipping",
+        "total" : "0.00"
+      }
+    ],
+    "customer" : {
+      "id" : 4,
+      "last_order_date" : "2013-12-10T18:58:00Z",
+      "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "total_spent" : "0.00",
+      "created_at" : "2013-12-10T18:58:07Z",
+      "orders_count" : 0,
+      "billing_address" : {
+        "phone" : "215-523-4132",
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "email" : "thedon@mailinator.com",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "shipping_address" : {
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "first_name" : "Don",
+      "username" : "thedon",
+      "last_name" : "Draper",
+      "last_order_id" : "113",
+      "email" : "thedon@mailinator.com"
+    },
+    "note" : "",
+    "coupon_lines" : [],
+    "order_discount" : "0.00",
+    "created_at" : "2013-12-10T18:58:00Z",
+    "view_order_url" : "https://www.example.com/my-account/view-order/113",
+    "billing_address" : {
+      "phone" : "215-523-4132",
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "email" : "thedon@mailinator.com",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    }
+  }
+}
+</code></pre></div><h3 id='put-orders-id-status-status'><code>PUT /orders/#{id}?status={status}</code></h3>
+<p>Update the status for an order specified by it&#39;s ID</p>
+
+<p>The request body should be JSON:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+    "status":"completed"
+}
+</code></pre></div>
+<p>If successful, the updated order is returned:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "order" : {
+    "completed_at" : "2013-12-10T18:59:30Z",
+    "tax_lines" : [],
+    "status" : "completed",
+    "total" : "20.00",
+    "cart_discount" : "0.00",
+    "customer_ip" : "127.0.0.1",
+    "total_discount" : "0.00",
+    "updated_at" : "2013-12-10T18:59:30Z",
+    "currency" : "USD",
+    "total_shipping" : "0.00",
+    "customer_user_agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
+    "line_items" : [
+      {
+        "product_id" : 31,
+        "quantity" : 1,
+        "id" : 7,
+        "subtotal" : "20.00",
+        "tax_class" : null,
+        "sku" : "",
+        "total" : "20.00",
+        "name" : "Ninja Silhouette",
+        "total_tax" : "0.00"
+      }
+    ],
+    "customer_id" : "4",
+    "total_tax" : "0.00",
+    "order_number" : "#113",
+    "shipping_methods" : "Free Shipping",
+    "shipping_address" : {
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    },
+    "payment_details" : {
+      "method_title" : "Cheque Payment",
+      "method_id" : "cheque",
+      "paid" : false
+    },
+    "id" : 113,
+    "shipping_tax" : "0.00",
+    "cart_tax" : "0.00",
+    "fee_lines" : [],
+    "total_line_items_quantity" : 1,
+    "shipping_lines" : [
+      {
+        "method_title" : "Free Shipping",
+        "id" : 8,
+        "method_id" : "free_shipping",
+        "total" : "0.00"
+      }
+    ],
+    "customer" : {
+      "id" : 4,
+      "last_order_date" : "2013-12-10T18:58:00Z",
+      "avatar_url" : "https://secure.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=96",
+      "total_spent" : "0.00",
+      "created_at" : "2013-12-10T18:58:07Z",
+      "orders_count" : 0,
+      "billing_address" : {
+        "phone" : "215-523-4132",
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "email" : "thedon@mailinator.com",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "shipping_address" : {
+        "city" : "New York",
+        "country" : "US",
+        "address_1" : "512 First Avenue",
+        "last_name" : "Draper",
+        "company" : "SDCP",
+        "postcode" : "12534",
+        "address_2" : "",
+        "state" : "NY",
+        "first_name" : "Don"
+      },
+      "first_name" : "Don",
+      "username" : "thedon",
+      "last_name" : "Draper",
+      "last_order_id" : "113",
+      "email" : "thedon@mailinator.com"
+    },
+    "note" : "",
+    "coupon_lines" : [],
+    "order_discount" : "0.00",
+    "created_at" : "2013-12-10T18:58:00Z",
+    "view_order_url" : "https://www.example.com/my-account/view-order/113",
+    "billing_address" : {
+      "phone" : "215-523-4132",
+      "city" : "New York",
+      "country" : "US",
+      "address_1" : "512 First Avenue",
+      "last_name" : "Draper",
+      "company" : "SDCP",
+      "postcode" : "12534",
+      "email" : "thedon@mailinator.com",
+      "address_2" : "",
+      "state" : "NY",
+      "first_name" : "Don"
+    }
+  }
+}
+</code></pre></div><h3 id='get-orders-id-notes'><code>GET /orders/#{id}/notes</code></h3>
+<p>Retrieve a list of notes for an order specified by it&#39;s ID:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "order_notes" : [
+    {
+      "note" : "Order status changed from processing to completed.",
+      "id" : "47",
+      "created_at" : "2013-12-10T20:08:06Z",
+      "customer_note" : false
+    },
+    {
+      "note" : "Order status changed from on-hold to processing.",
+      "id" : "46",
+      "created_at" : "2013-12-10T18:59:30Z",
+      "customer_note" : false
+    },
+    {
+      "note" : "Awaiting cheque payment Order status changed from pending to on-hold.",
+      "id" : "45",
+      "created_at" : "2013-12-10T18:58:23Z",
+      "customer_note" : false
+    }
+  ]
+}
+</code></pre></div><h2 id='products'>Products</h2>
+<p>All endpoints (except for reviews) support the full set of date filters (<code>created_at_min</code>, <code>created_at_max</code>, <code>updated_at_min</code>, <code>updated_at_max</code>) as <code>?filter[]</code> parameters. e.g. <code>?filter[created_at_min]=2013-12-01</code></p>
+<h3 id='product-properties'>Product Properties</h3>
+<p>@TODO</p>
+<h3 id='get-products'><code>GET /products</code></h3>
+<p>Retrieve a list of products</p>
+
+<p>You can use the <code>?type</code> parameter to specify that only certain product types should be returned. The default WooCommerce product types are: <code>simple</code>, <code>variable</code>, <code>grouped</code>,  and <code>external</code>. Custom product types are supported.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "products" : [
+    {
+      "related_ids" : [
+        87,
+        93,
+        96,
+        93,
+        83
+      ],
+      "variations" : [],
+      "categories" : [
+        "Music",
+        "Singles"
+      ],
+      "shipping_required" : true,
+      "id" : 99,
+      "parent" : [],
+      "regular_price" : "3.00",
+      "weight" : null,
+      "total_sales" : 0,
+      "sku" : "",
+      "rating_count" : 2,
+      "managing_stock" : false,
+      "title" : "Woo Single #2",
+      "backordered" : false,
+      "on_sale" : true,
+      "status" : "publish",
+      "download_limit" : 0,
+      "taxable" : false,
+      "reviews_allowed" : true,
+      "description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+      "purchaseable" : true,
+      "sale_price" : "2.00",
+      "type" : "simple",
+      "permalink" : "https://www.example.com/product/woo-single-2/",
+      "catalog_visibility" : "visible",
+      "download_expiry" : 0,
+      "dimensions" : {
+        "length" : "",
+        "height" : "",
+        "unit" : "in",
+        "width" : ""
+      },
+      "cross_sell_ids" : [],
+      "price" : "2.00",
+      "updated_at" : "2013-06-07T11:38:12Z",
+      "attributes" : [],
+      "shipping_class" : "",
+      "virtual" : false,
+      "downloadable" : false,
+      "upsell_ids" : [],
+      "created_at" : "2013-06-07T11:38:12Z",
+      "tax_class" : "",
+      "tags" : [],
+      "price_html" : "&lt;del&gt;&lt;span class=\"amount\"&gt;&amp;#36;3&lt;/span&gt;&lt;/del&gt; &lt;ins&gt;&lt;span class=\"amount\"&gt;&amp;#36;2&lt;/span&gt;&lt;/ins&gt;",
+      "in_stock" : true,
+      "sold_individually" : false,
+      "short_description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+      "downloads" : [],
+      "tax_status" : "taxable",
+      "average_rating" : "4.50",
+      "download_type" : "",
+      "shipping_taxable" : true,
+      "purchase_note" : "",
+      "shipping_class_id" : null,
+      "visible" : true,
+      "backorders_allowed" : false,
+      "images" : [
+        {
+          "position" : 0,
+          "id" : 100,
+          "created_at" : "2013-06-07T11:37:51Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/cd_6_angle.jpg",
+          "title" : "cd_6_angle",
+          "alt" : "",
+          "updated_at" : "2013-06-07T11:37:51Z"
+        },
+        {
+          "position" : 1,
+          "id" : 101,
+          "created_at" : "2013-06-07T11:38:03Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/cd_6_flat.jpg",
+          "title" : "cd_6_flat",
+          "alt" : "",
+          "updated_at" : "2013-06-07T11:38:03Z"
+        }
+      ],
+      "stock_quantity" : 0,
+      "featured" : false
+    }
+  ]
+}
+</code></pre></div><h3 id='get-products-count'><code>GET /products/count</code></h3>
+<p>Retrieve a count of all products</p>
+
+<p>You can use the <code>?type</code> parameter to specify that only certain product types should be returned. The default WooCommerce product types are: <code>simple</code>, <code>variable</code>, <code>grouped</code>,  and <code>external</code>. Custom product types are supported.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "count" : 23
+}
+</code></pre></div><h3 id='get-products-id'><code>GET /products/#{id}</code></h3>
+<p>Retrieve a product specified by it&#39;s ID</p>
+
+<p>Simple, Grouped, and External products will return a blank array for the <code>variations</code> property:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "product" : {
+    "related_ids" : [
+      93,
+      90,
+      93,
+      87,
+      83
+    ],
+    "variations" : [],
+    "categories" : [
+      "Music",
+      "Singles"
+    ],
+    "shipping_required" : true,
+    "id" : 99,
+    "parent" : [],
+    "regular_price" : "3.00",
+    "weight" : null,
+    "total_sales" : 0,
+    "sku" : "",
+    "rating_count" : 2,
+    "managing_stock" : false,
+    "title" : "Woo Single #2",
+    "backordered" : false,
+    "on_sale" : true,
+    "status" : "publish",
+    "download_limit" : 0,
+    "taxable" : false,
+    "reviews_allowed" : true,
+    "description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "purchaseable" : true,
+    "sale_price" : "2.00",
+    "type" : "simple",
+    "permalink" : "https://www.example.com/product/woo-single-2/",
+    "catalog_visibility" : "visible",
+    "download_expiry" : 0,
+    "dimensions" : {
+      "length" : "",
+      "height" : "",
+      "unit" : "in",
+      "width" : ""
+    },
+    "cross_sell_ids" : [],
+    "price" : "2.00",
+    "updated_at" : "2013-06-07T11:38:12Z",
+    "attributes" : [],
+    "shipping_class" : "",
+    "virtual" : false,
+    "downloadable" : false,
+    "upsell_ids" : [],
+    "created_at" : "2013-06-07T11:38:12Z",
+    "tax_class" : "",
+    "tags" : [],
+    "price_html" : "&lt;del&gt;&lt;span class=\"amount\"&gt;&amp;#36;3&lt;/span&gt;&lt;/del&gt; &lt;ins&gt;&lt;span class=\"amount\"&gt;&amp;#36;2&lt;/span&gt;&lt;/ins&gt;",
+    "in_stock" : true,
+    "sold_individually" : false,
+    "short_description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "downloads" : [],
+    "tax_status" : "taxable",
+    "average_rating" : "4.50",
+    "download_type" : "",
+    "shipping_taxable" : true,
+    "purchase_note" : "",
+    "shipping_class_id" : null,
+    "visible" : true,
+    "backorders_allowed" : false,
+    "images" : [
+      {
+        "position" : 0,
+        "id" : 100,
+        "created_at" : "2013-06-07T11:37:51Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/cd_6_angle.jpg",
+        "title" : "cd_6_angle",
+        "alt" : "",
+        "updated_at" : "2013-06-07T11:37:51Z"
+      },
+      {
+        "position" : 1,
+        "id" : 101,
+        "created_at" : "2013-06-07T11:38:03Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/cd_6_flat.jpg",
+        "title" : "cd_6_flat",
+        "alt" : "",
+        "updated_at" : "2013-06-07T11:38:03Z"
+      }
+    ],
+    "stock_quantity" : 0,
+    "featured" : false
+  }
+}
+</code></pre></div>
+<p>Variable products will return individual variations in the <code>variations</code> property:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "product" : {
+    "related_ids" : [
+      50,
+      60,
+      53,
+      19,
+      15
+    ],
+    "variations" : [
+      {
+        "attributes" : [
+          {
+            "option" : "black",
+            "name" : "Color"
+          }
+        ],
+        "weight" : null,
+        "sku" : "",
+        "backordered" : false,
+        "shipping_class" : "",
+        "image" : [
+          {
+            "position" : 0,
+            "id" : 43,
+            "created_at" : "2013-06-07T10:59:40Z",
+            "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_front.jpg",
+            "title" : "hoodie_7_front",
+            "alt" : "",
+            "updated_at" : "2013-06-07T10:59:40Z"
+          }
+        ],
+        "updated_at" : "2013-06-07T11:00:28Z",
+        "downloads" : [],
+        "downloadable" : false,
+        "regular_price" : "35.00",
+        "permalink" : "https://www.example.com/product/ship-your-idea-2/?attribute_pa_color=black",
+        "stock_quantity" : 0,
+        "shipping_class_id" : null,
+        "taxable" : false,
+        "tax_status" : "taxable",
+        "download_expiry" : 0,
+        "id" : 41,
+        "virtual" : false,
+        "on_sale" : false,
+        "download_limit" : 0,
+        "in_stock" : true,
+        "sale_price" : null,
+        "created_at" : "2013-06-07T11:00:28Z",
+        "price" : "35.00",
+        "visible" : true,
+        "dimensions" : {
+          "length" : "",
+          "height" : "",
+          "unit" : "in",
+          "width" : ""
+        },
+        "tax_class" : "",
+        "purchaseable" : true
+      },
+      {
+        "attributes" : [
+          {
+            "option" : "blue",
+            "name" : "Color"
+          }
+        ],
+        "weight" : null,
+        "sku" : "",
+        "backordered" : false,
+        "shipping_class" : "",
+        "image" : [
+          {
+            "position" : 0,
+            "id" : 46,
+            "created_at" : "2013-06-07T11:00:01Z",
+            "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_1_front.jpg",
+            "title" : "hoodie_1_front",
+            "alt" : "",
+            "updated_at" : "2013-06-07T11:00:01Z"
+          }
+        ],
+        "updated_at" : "2013-06-07T11:00:28Z",
+        "downloads" : [],
+        "downloadable" : false,
+        "regular_price" : "35.00",
+        "permalink" : "https://www.example.com/product/ship-your-idea-2/?attribute_pa_color=blue",
+        "stock_quantity" : 0,
+        "shipping_class_id" : null,
+        "taxable" : false,
+        "tax_status" : "taxable",
+        "download_expiry" : 0,
+        "id" : 42,
+        "virtual" : false,
+        "on_sale" : true,
+        "download_limit" : 0,
+        "in_stock" : true,
+        "sale_price" : "30.00",
+        "created_at" : "2013-06-07T11:00:28Z",
+        "price" : "30.00",
+        "visible" : true,
+        "dimensions" : {
+          "length" : "",
+          "height" : "",
+          "unit" : "in",
+          "width" : ""
+        },
+        "tax_class" : "",
+        "purchaseable" : true
+      }
+    ],
+    "categories" : [
+      "Clothing",
+      "Hoodies"
+    ],
+    "shipping_required" : true,
+    "id" : 40,
+    "parent" : [],
+    "regular_price" : "0.00",
+    "weight" : null,
+    "total_sales" : 1,
+    "sku" : "",
+    "rating_count" : 3,
+    "managing_stock" : false,
+    "title" : "Ship Your Idea",
+    "backordered" : false,
+    "on_sale" : true,
+    "status" : "publish",
+    "download_limit" : 0,
+    "taxable" : false,
+    "reviews_allowed" : true,
+    "description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "purchaseable" : true,
+    "sale_price" : null,
+    "type" : "variable",
+    "permalink" : "https://www.example.com/product/ship-your-idea-2/",
+    "catalog_visibility" : "visible",
+    "download_expiry" : 0,
+    "dimensions" : {
+      "length" : "",
+      "height" : "",
+      "unit" : "in",
+      "width" : ""
+    },
+    "cross_sell_ids" : [
+      22
+    ],
+    "price" : "30.00",
+    "updated_at" : "2013-06-07T11:00:28Z",
+    "attributes" : [
+      {
+        "position" : "0",
+        "visible" : false,
+        "variation" : true,
+        "options" : [
+          "Black",
+          "Blue"
+        ],
+        "name" : "Color"
+      }
+    ],
+    "shipping_class" : "",
+    "virtual" : false,
+    "downloadable" : false,
+    "upsell_ids" : [],
+    "created_at" : "2013-06-07T11:00:28Z",
+    "tax_class" : "",
+    "tags" : [],
+    "price_html" : "&lt;span class=\"from\"&gt;From: &lt;/span&gt;&lt;del&gt;&lt;span class=\"amount\"&gt;&amp;#36;35&lt;/span&gt;&lt;/del&gt; &lt;ins&gt;&lt;span class=\"amount\"&gt;&amp;#36;30&lt;/span&gt;&lt;/ins&gt;",
+    "in_stock" : true,
+    "sold_individually" : false,
+    "short_description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "downloads" : [],
+    "tax_status" : "taxable",
+    "average_rating" : "4.00",
+    "download_type" : "",
+    "shipping_taxable" : true,
+    "purchase_note" : "",
+    "shipping_class_id" : null,
+    "visible" : true,
+    "backorders_allowed" : false,
+    "images" : [
+      {
+        "position" : 0,
+        "id" : 43,
+        "created_at" : "2013-06-07T10:59:40Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_front.jpg",
+        "title" : "hoodie_7_front",
+        "alt" : "",
+        "updated_at" : "2013-06-07T10:59:40Z"
+      },
+      {
+        "position" : 1,
+        "id" : 44,
+        "created_at" : "2013-06-07T10:59:54Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_back.jpg",
+        "title" : "hoodie_7_back",
+        "alt" : "",
+        "updated_at" : "2013-06-07T10:59:54Z"
+      },
+      {
+        "position" : 2,
+        "id" : 45,
+        "created_at" : "2013-06-07T11:00:00Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_1_back.jpg",
+        "title" : "hoodie_1_back",
+        "alt" : "",
+        "updated_at" : "2013-06-07T11:00:00Z"
+      },
+      {
+        "position" : 3,
+        "id" : 46,
+        "created_at" : "2013-06-07T11:00:01Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_1_front.jpg",
+        "title" : "hoodie_1_front",
+        "alt" : "",
+        "updated_at" : "2013-06-07T11:00:01Z"
+      }
+    ],
+    "stock_quantity" : 0,
+    "featured" : false
+  }
+}
+</code></pre></div>
+<p>Individual product variations will return a slightly different format than a regular product, with the parent variable product data in the <code>parent</code> attribute:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "product" : {
+    "related_ids" : [
+      60,
+      50,
+      53,
+      47,
+      19
+    ],
+    "variations" : [],
+    "categories" : [
+      "Clothing",
+      "Hoodies"
+    ],
+    "shipping_required" : true,
+    "id" : 41,
+    "parent" : {
+      "related_ids" : [
+        56,
+        19,
+        34,
+        60,
+        19
+      ],
+      "variations" : [],
+      "categories" : [
+        "Clothing",
+        "Hoodies"
+      ],
+      "shipping_required" : true,
+      "id" : 40,
+      "parent" : [],
+      "regular_price" : "0.00",
+      "weight" : null,
+      "total_sales" : 1,
+      "sku" : "",
+      "rating_count" : 3,
+      "managing_stock" : false,
+      "title" : "Ship Your Idea",
+      "backordered" : false,
+      "on_sale" : true,
+      "status" : "publish",
+      "download_limit" : 0,
+      "taxable" : false,
+      "reviews_allowed" : true,
+      "description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+      "purchaseable" : true,
+      "sale_price" : null,
+      "type" : "variable",
+      "permalink" : "https://www.example.com/product/ship-your-idea-2/",
+      "catalog_visibility" : "visible",
+      "download_expiry" : 0,
+      "dimensions" : {
+        "length" : "",
+        "height" : "",
+        "unit" : "in",
+        "width" : ""
+      },
+      "cross_sell_ids" : [
+        22
+      ],
+      "price" : "30.00",
+      "updated_at" : "2013-06-07T11:00:28Z",
+      "attributes" : [
+        {
+          "position" : "0",
+          "visible" : false,
+          "variation" : true,
+          "options" : [
+            "Black",
+            "Blue"
+          ],
+          "name" : "Color"
+        }
+      ],
+      "shipping_class" : "",
+      "virtual" : false,
+      "downloadable" : false,
+      "upsell_ids" : [],
+      "created_at" : "2013-06-07T11:00:28Z",
+      "tax_class" : "",
+      "tags" : [],
+      "price_html" : "&lt;span class=\"from\"&gt;From: &lt;/span&gt;&lt;del&gt;&lt;span class=\"amount\"&gt;&amp;#36;35&lt;/span&gt;&lt;/del&gt; &lt;ins&gt;&lt;span class=\"amount\"&gt;&amp;#36;30&lt;/span&gt;&lt;/ins&gt;",
+      "in_stock" : true,
+      "sold_individually" : false,
+      "short_description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+      "downloads" : [],
+      "tax_status" : "taxable",
+      "average_rating" : "4.00",
+      "download_type" : "",
+      "shipping_taxable" : true,
+      "purchase_note" : "",
+      "shipping_class_id" : null,
+      "visible" : true,
+      "backorders_allowed" : false,
+      "images" : [
+        {
+          "position" : 0,
+          "id" : 43,
+          "created_at" : "2013-06-07T10:59:40Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_front.jpg",
+          "title" : "hoodie_7_front",
+          "alt" : "",
+          "updated_at" : "2013-06-07T10:59:40Z"
+        },
+        {
+          "position" : 1,
+          "id" : 44,
+          "created_at" : "2013-06-07T10:59:54Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_back.jpg",
+          "title" : "hoodie_7_back",
+          "alt" : "",
+          "updated_at" : "2013-06-07T10:59:54Z"
+        },
+        {
+          "position" : 2,
+          "id" : 45,
+          "created_at" : "2013-06-07T11:00:00Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_1_back.jpg",
+          "title" : "hoodie_1_back",
+          "alt" : "",
+          "updated_at" : "2013-06-07T11:00:00Z"
+        },
+        {
+          "position" : 3,
+          "id" : 46,
+          "created_at" : "2013-06-07T11:00:01Z",
+          "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_1_front.jpg",
+          "title" : "hoodie_1_front",
+          "alt" : "",
+          "updated_at" : "2013-06-07T11:00:01Z"
+        }
+      ],
+      "stock_quantity" : 0,
+      "featured" : false
+    },
+    "regular_price" : "35.00",
+    "weight" : null,
+    "total_sales" : 1,
+    "sku" : "",
+    "rating_count" : 3,
+    "managing_stock" : false,
+    "title" : "Ship Your Idea",
+    "backordered" : false,
+    "on_sale" : false,
+    "status" : "publish",
+    "download_limit" : 0,
+    "taxable" : false,
+    "reviews_allowed" : true,
+    "description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "purchaseable" : true,
+    "sale_price" : null,
+    "type" : "variation",
+    "permalink" : "https://www.example.com/product/ship-your-idea-2/?attribute_pa_color=black",
+    "catalog_visibility" : "visible",
+    "download_expiry" : 0,
+    "dimensions" : {
+      "length" : "",
+      "height" : "",
+      "unit" : "in",
+      "width" : ""
+    },
+    "cross_sell_ids" : [
+      22
+    ],
+    "price" : "35.00",
+    "updated_at" : "2013-06-07T11:00:28Z",
+    "attributes" : [
+      {
+        "option" : "black",
+        "name" : "Color"
+      }
+    ],
+    "shipping_class" : "",
+    "virtual" : false,
+    "downloadable" : false,
+    "upsell_ids" : [],
+    "created_at" : "2013-06-07T11:00:28Z",
+    "tax_class" : "",
+    "tags" : [],
+    "price_html" : "&lt;span class=\"amount\"&gt;&amp;#36;35&lt;/span&gt;",
+    "in_stock" : true,
+    "sold_individually" : false,
+    "short_description" : "&lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.&lt;/p&gt;\n",
+    "downloads" : [],
+    "tax_status" : "taxable",
+    "average_rating" : "4.00",
+    "download_type" : "",
+    "shipping_taxable" : true,
+    "purchase_note" : "",
+    "shipping_class_id" : null,
+    "visible" : true,
+    "backorders_allowed" : false,
+    "images" : [
+      {
+        "position" : 0,
+        "id" : 43,
+        "created_at" : "2013-06-07T10:59:40Z",
+        "src" : "https://www.example.com/wp-content/uploads/2013/06/hoodie_7_front.jpg",
+        "title" : "hoodie_7_front",
+        "alt" : "",
+        "updated_at" : "2013-06-07T10:59:40Z"
+      }
+    ],
+    "stock_quantity" : 0,
+    "featured" : false
+  }
+}
+</code></pre></div><h3 id='get-products-id-reviews'><code>GET /products/#{id}/reviews</code></h3>
+<p>Retrieve a list of reviews for a product specified by it&#39;s ID:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "product_reviews" : [
+    {
+      "review" : "Ship it!",
+      "rating" : "3",
+      "id" : "13",
+      "created_at" : "2013-06-07T15:53:31Z",
+      "verified" : false,
+      "reviewer_name" : "Maria",
+      "reviewer_email" : "maria@example.com"
+    },
+    {
+      "review" : "This hoodie gets me lots of looks while out in public, I got the blue one and it's awesome. Not sure if people are looking at my hoodie only, or also at my rocking bod.",
+      "rating" : "5",
+      "id" : "12",
+      "created_at" : "2013-06-07T13:24:52Z",
+      "verified" : false,
+      "reviewer_name" : "Ryan",
+      "reviewer_email" : "ryan@example.com"
+    },
+    {
+      "review" : "Another great quality product that anyone who see's me wearing has asked where to purchase one of their own.",
+      "rating" : "4",
+      "id" : "11",
+      "created_at" : "2013-06-07T13:03:29Z",
+      "verified" : false,
+      "reviewer_name" : "Stuart",
+      "reviewer_email" : "stuart@example.com"
+    }
+  ]
+}
+</code></pre></div><h2 id='reports'>Reports</h2><h3 id='report-properties'>Report Properties</h3>
+<p>@TODO</p>
+<h3 id='get-reports'><code>GET /reports</code></h3>
+<p>Retrieve a simple list of available reports:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "reports" : [
+    "sales"
+  ]
+}
+</code></pre></div><h3 id='get-reports-sales'><code>GET /reports/sales</code></h3>
+<p>Retrieve a sales report</p>
+
+<p>You can specify either the period for which to retrieve sales or specify a start/end date. The supported periods are: <code>week</code>, <code>month</code>, <code>last_month</code>, and <code>year</code>. If you use an invalid period, <code>week</code> is used. If you don&#39;t specify a period, the current day is used.</p>
+
+<p><code>GET /reports/sales?filter[period]=month</code> will return sales for the current month</p>
+
+<p>To return sales for a specific start/end date, set the <code>date_min</code> and <code>date_max</code> filter parameter:</p>
+
+<p><code>GET /reports/sales?filter[date_min]=2013-12-01&amp;filter[date_max]=2013-12-09</code> will return sales between December 1st and December 9th, inclusive.</p>
+
+<p>If you don&#39;t specify an end date, the current date will be used.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+  "sales" : {
+    "total_shipping" : "0.00",
+    "total_orders" : 3,
+    "total_sales" : "87.00",
+    "totals_grouped_by" : "day",
+    "total_discount" : "0.00",
+    "totals" : {
+      "2013-12-02" : {
+        "orders" : 2,
+        "shipping" : "0.00",
+        "sales" : "67.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 4
+      },
+      "2013-12-08" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-01" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-07" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-06" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-05" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-04" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-10" : {
+        "orders" : 1,
+        "shipping" : "0.00",
+        "sales" : "20.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 1
+      },
+      "2013-12-03" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      },
+      "2013-12-09" : {
+        "orders" : 0,
+        "shipping" : "0.00",
+        "sales" : "0.00",
+        "tax" : "0.00",
+        "discount" : "0.00",
+        "items" : 0
+      }
+    },
+    "total_items" : 5,
+    "total_customers" : 1,
+    "average_sales" : "8.70",
+    "total_tax" : "0.00"
+  }
+}
+</code></pre></div><h1 id='troubleshooting'>Troubleshooting</h1>
+<ul>
+<li>Nginx - Older configurations of Nginx can cause issues with the API, see <a href="https://github.com/woocommerce/woocommerce/issues/5616#issuecomment-47338737">this issue</a> for details</li>
+</ul>
+<h1 id='tools'>Tools</h1>
+<ul>
+<li><a href="https://github.com/kloon/WooCommerce-REST-API-Client-Library">WooCommerce REST API Client Library</a> - A simple PHP client library by Gerhard Potgieter</li>
+<li><a href="https://code.google.com/p/cocoa-rest-client/">CocoaRestClient</a> - A free, easy to use Mac OS X GUI client for interacting with the API, most useful when your test store has SSL enabled.</li>
+<li><a href="https://itunes.apple.com/us/app/paw-http-client/id584653203?mt=12">Paw HTTP Client</a> - Another excellent HTTP client for Mac OS X</li>
+</ul>
+<h1 id='learn-more'>Learn More</h1>
+<ul>
+<li><a href="https://github.com/woocommerce/woocommerce/pull/4055">Initial REST API Implementation</a> - the GitHub issue for the initial implementation</li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+          </div>
+      </div>
+	</div>
+
+		<div id="warning-top">
+			<i class="info"></i> This documentation is for the WooCommerce API v1 which is now deprecated. <a href="http://woocommerce.github.io/woocommerce-rest-api-docs/">Please use the latest REST API version</a>.
+		</div>
+
+  </body>
+</html>
