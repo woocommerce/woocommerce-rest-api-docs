@@ -390,12 +390,12 @@ This API lets you make changes to a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wp-json/wc/v3/webhook/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v3/webhook/142 \
+curl -X PUT https://example.com/wp-json/wc/v3/webhooks/142 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
