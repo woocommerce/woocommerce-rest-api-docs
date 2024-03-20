@@ -202,7 +202,8 @@ wcapi = API(
     consumer_key="consumer_key",
     consumer_secret="consumer_secret",
     wp_api=True,
-    version="wc/v1"
+    version="wc/v1",
+    user_agent="sample.org", # Your sample user agent
 )
 ```
 
@@ -269,7 +270,8 @@ wcapi = API(
     consumer_secret="consumer_secret",
     wp_api=True,
     version="wc/v1",
-    query_string_auth=True // Force Basic Authentication as query string true and using under HTTPS
+    user_agent="sample.org", # Your sample user agent
+    query_string_auth=True # Force Basic Authentication as query string true and using under HTTPS
 )
 ```
 
