@@ -12,6 +12,13 @@ The following table shows API versions present in each major version of WooComme
 | `v2`        | 3.0.x or later | 4.4 or later | [v2 docs](wp-api-v2.html) |
 | `v1`        | 2.6.x or later | 4.4 or later | [v1 docs](wp-api-v1.html) |
 
+We also have a set of analytics endpoints, which currently exist under their own namespace (`wc-analytics`):
+
+| API Version    | WC Version     | WP Version   | Documentation                       |
+|----------------|----------------|--------------|-------------------------------------|
+| `wc-analytics` | 4.0.x or later | 5.3 or later | [Analytics docs](wc-analytics.html) |
+
+
 Prior to 2.6, WooCommerce had a REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
 
 | API Version | WC Version     | WP Version   | Documentation             |
