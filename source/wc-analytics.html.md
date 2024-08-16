@@ -20,6 +20,7 @@ toc_footers:
 includes:
   - wc-analytics/introduction
   - wc-analytics/authentication
+  - wc-analytics/index
 
 search: false
 ---
