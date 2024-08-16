@@ -431,17 +431,17 @@ woocommerce.post("reports").parsed_response
 
 This API lets you retrieve and view the product item sales, net revenue, and the corredsponding orders.
 
-### Products Reports properties ##
+### Products Reports properties ###
 
-| Attribute       | Type    | Description                                                                                                          |
-|-----------------|---------|----------------------------------------------------------------------------------------------------------------------|
-| `product_id`    | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                        |
-| `items_sold`    | integer | Number of items sold. <i class="label label-info">read-only</i>                                                                                                        |
-| `net_revenue`   | integer | Total Net sales of all items sold. <i class="label label-info">read-only</i>                  |
-| `orders_count`  | integer | Number of orders product appeared in. <i class="label label-info">read-only</i>                                  |
-| `extended_info` | object  | Extended info for the product. See [Product Reports - Extended Info properties](#product-reports-extended-info-properties)                            |
+| Attribute       | Type    | Description                                                                                                                |
+|-----------------|---------|----------------------------------------------------------------------------------------------------------------------------|
+| `product_id`    | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                              |
+| `items_sold`    | integer | Number of items sold. <i class="label label-info">read-only</i>                                                            |
+| `net_revenue`   | integer | Total Net sales of all items sold. <i class="label label-info">read-only</i>                                               |
+| `orders_count`  | integer | Number of orders product appeared in. <i class="label label-info">read-only</i>                                            |
+| `extended_info` | object  | Extended info for the product. See [Product Reports - Extended Info properties](#product-reports-extended-info-properties) |
 
-#### Product Reports - Extended Info properties ###
+#### Product Reports - Extended Info properties ####
 
 | Attribute          | Type    | Description                                |
 |--------------------|-------- |--------------------------------------------|
@@ -557,18 +557,175 @@ woocommerce.get("reports/products").parsed_response
 
 #### Available parameters ####
 
-| Parameter         | Type    | Description                                                                                                                                                               |
-|-------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`         | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.
-| `page`            | integer | Current page of the collection. Default is `1`.                                                                                                                           |
-| `per_page`        | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                    |
-| `after`           | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                               |
-| `before`          | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                              |
-| `order`           | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                               |
-| `orderby`         | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `items_sold`, `product_name`, `variations`, `sku`. Default is `date`. |
-| `force_cache_refresh` | boolean  | Force retrieval of fresh data instead of from the cache. |
-| `categories` | array  | Limit result to items from the specified categories. |
-| `products` | array  | Limit result to items with specified product ids. |
-| `match`         | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categorie`. Options: `all`, `any`. Default is `all`. |
-| `extended_info` | boolean  | Add additional piece of info about each product to the report. Default is `false`. |
+| Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                           |
+|-----------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                       |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                           |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                                                                                                                                                          |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                                                                                                                                                           |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `items_sold`, `product_name`, `variations`, `sku`. Default is `date`.                                                                                                                                                                            |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                                                                                                                                                              |
+| `categories`          | array   | Limit result to items from the specified categories.                                                                                                                                                                                                                                                                                  |
+| `products`            | array   | Limit result to items with specified product ids.                                                                                                                                                                                                                                                                                     |
+| `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categorie`. Options: `all`, `any`. Default is `all`. |
+| `extended_info`       | boolean | Add additional piece of info about each product to the report. Default is `false`.                                                                                                                                                                                                                                                    |
+
+## Products Stats ###
+
+This API helps you to view all the products.
+
+### Products Stats Reports properties ###
+
+| Attribute   | Type   | Description                                                                                                                                                                    |
+|-------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `totals`    | object | Totals data. See [Products Stats Reports - Totals properties](#products-stats-reports-totals-properties) <i class="label label-info">read-only</i>                             |
+| `intervals` | object | Reports data grouped by intervals. See [Products Stats Reports - Intervals properties](#products-stats-reports-intervals-properties) <i class="label label-info">read-only</i> |
+
+#### Products Stats Reports - Totals properties ####
+
+| Attribute      | Type    | Description                                                                                                                                                                          |
+|----------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `items_sold`   | integer | Number of product items sold. <i class="label label-info">read-only</i>                                                                                                              |
+| `net_revenue`  | integer | Net sales. <i class="label label-info">read-only</i>                                                                                                                                 |
+| `orders_count` | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                          |
+| `segments`     | array   | Reports data grouped by segment condition. See [Products Stats Reports - Segments properties](#products-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
+
+
+##### Products Stats Reports - Segments properties #####
+
+| Attribute    | Type    | Description                                                                                                                                                                                   |
+|--------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                              |
+| `subtotals`  | object  | Interval subtotals. See [Products Stats Reports - Totals properties](#products-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
+
+> Segments properties example
+
+```json
+[
+    {
+        "segment_id": 123,
+        "subtotals": {
+            "iitems_sold": 12,
+            "net_revenue": 110,
+            "orders_count": 3,
+        }
+    }
+]
+```
+
+#### Products Stats Reports - Intervals properties ####
+
+| Attribute        | Type   | Description                                                                                                                                                |
+|------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                                |
+| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                               |
+| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                               |
+| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                 |
+| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                 |
+| `subtotals`      | object | Interval subtotals. See [Products Stats Reports - Totals properties](#products-stats-reports-totals-properties). <i class="label label-info">read-only</i> |
+
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc-analytics/reports/products/stats</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc-analytics/reports/products/stats \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get("reports/products/stats")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+```
+
+```php
+<?php print_r($woocommerce->get('reports/products/stats')); ?>
+```
+
+```python
+print(wcapi.get("reports/products/stats").json())
+```
+
+```ruby
+woocommerce.get("reports/products/stats").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+    "totals": {
+        "items_sold": 0,
+        "net_revenue": 0,
+        "orders_count": 0,
+        "products_count": 0,
+        "variations_count": 0,
+        "segments": []
+    },
+    "intervals": [
+        {
+            "interval": "2024-33",
+            "date_start": "2024-08-12 00:00:00",
+            "date_start_gmt": "2024-08-12 00:00:00",
+            "date_end": "2024-08-13 08:04:37",
+            "date_end_gmt": "2024-08-13 08:04:37",
+            "subtotals": {
+                "items_sold": 0,
+                "net_revenue": 0,
+                "orders_count": 0,
+                "products_count": 0,
+                "variations_count": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-32",
+            "date_start": "2024-08-06 08:04:37",
+            "date_start_gmt": "2024-08-06 08:04:37",
+            "date_end": "2024-08-11 23:59:59",
+            "date_end_gmt": "2024-08-11 23:59:59",
+            "subtotals": {
+                "items_sold": 0,
+                "net_revenue": 0,
+                "orders_count": 0,
+                "products_count": 0,
+                "variations_count": 0,
+                "segments": []
+            }
+        }
+    ]
+}
+```
+
+#### Available parameters ####
+
+| Parameter             | Type    | Description                                                                                                                                                      |
+|-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                            |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                  |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                           |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                      |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                     |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                      |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `coupons`, `refunds`, `shipping`, `taxes`, `net_revenue`, `orders_count`, `items_sold`. Default is `date`. |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                         |
+| `categories`          | array   | Limit result to items from the specified categories.                                                                                                             |
+| `products`            | array   | Limit result to items with specified product ids.                                                                                                                |
+| `variations`          | array   | Limit result to items with specified variations ID.                                                                                                              |
+| `segmentby`           | string  | Segment the response by additional constraint. Options: `product`, `category`, `variation`.                                                                      |
+| `fields`              | array   | Limit stats fields to the specified items.                                                                                                                       |
+| `interval`            | string  | Time interval to use for buckets in the returned data. Options: `hour`, `day`, `week`, `month`, `quarter`, `year`.                                               |
 
