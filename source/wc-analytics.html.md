@@ -21,6 +21,7 @@ includes:
   - wc-analytics/introduction
   - wc-analytics/authentication
   - wc-analytics/index
+  - wc-analytics/reports
 
 search: false
 ---
