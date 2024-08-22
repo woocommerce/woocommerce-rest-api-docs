@@ -559,7 +559,7 @@ woocommerce.get("reports/products").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                           |
 |-----------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                       |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                           |
@@ -714,7 +714,7 @@ woocommerce.get("reports/products/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                      |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                            |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                            |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                  |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                           |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                      |
@@ -1057,7 +1057,7 @@ woocommerce.get("reports/revenue/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                    |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | cope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                          |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                          |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                         |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                    |
@@ -1069,3 +1069,171 @@ woocommerce.get("reports/revenue/stats").parsed_response
 | `date_type`           | string  | Override the "woocommerce_date_type" option that is used for the database date field considered for revenue reports. Options: `date_paid`, `date_created`, `date_completed`.                   |
 | `interval`            | string  | Time interval to use for buckets in the returned data. Options: `hour`, `day`, `week`, `month`, `quarter`, `year`.  Default is `week`.                                                         |
 
+
+## Orders ##
+
+This API lets you retrieve and view the orders revenue, total sales, etc.
+
+### Orders Reports properties ###
+
+| Attribute          | Type      | Description                                                                                                          |
+|--------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
+| `order_id`         | integer   | Order ID. <i class="label label-info">read-only</i>                                                                  |
+| `parent_id`        | integer   | Order parent ID. <i class="label label-info">read-only</i>                                                           |
+| `order_number`     | string    | Order number. <i class="label label-info">read-only</i>                                                              |
+| `date_created`     | date-time | Date the order was created, in the site's timezone. <i class="label label-info">read-only</i>                        |
+| `date_created_gmt` | date-time | Date the order was created, as GMT. <i class="label label-info">read-only</i>                                        |
+| `status`           | string    | Order status.  <i class="label label-info">read-only</i>                                                             |
+| `customer_id`      | integer   | Customer ID.  <i class="label label-info">read-only</i>                                                              |
+| `num_items_sold`   | integer   | Number of items sold.  <i class="label label-info">read-only</i>                                                     |
+| `net_total`        | float     | Net total revenue.  <i class="label label-info">read-only</i>                                                        |
+| `total_sales`      | float     | Total sales.  <i class="label label-info">read-only</i>                                                              |
+| `total_formatted`  | string    | Net total revenue (formatted).  <i class="label label-info">read-only</i>                                            |
+| `customer_type`    | string    | Returning or new customer.  <i class="label label-info">read-only</i>                                                |
+| `extended_info`    | object    | Extended info for the order. See [Orders Reports - Extended Info properties](#orders-reports-extended-info-properties) |
+
+#### Orders Reports - Extended Info properties ####
+
+| Attribute     | Type   | Description                                   |
+|---------------|--------|-----------------------------------------------|
+| `products`    | array  | List of order product IDs, names, quantities. |
+| `coupons`     | array  | List of order coupons.                        |
+| `customer`    | object | Order customer information.                   |
+| `attribution` | object | Order attribution information.                |
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc-analytics/reports/orders</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc-analytics/reports/orders \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get("reports/orders")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+```
+
+```php
+<?php print_r($woocommerce->get('reports/orders')); ?>
+```
+
+```python
+print(wcapi.get("reports/orders").json())
+```
+
+```ruby
+woocommerce.get("reports/orders").parsed_response
+```
+
+> JSON response example:
+
+```json
+[
+    {
+        "order_id": 106,
+        "parent_id": 0,
+        "date": "2024-07-24 08:00:19",
+        "date_created": "2024-07-24 07:57:01",
+        "date_created_gmt": "2024-07-24 07:57:01",
+        "status": "completed",
+        "customer_id": 1,
+        "net_total": 107,
+        "total_sales": 107,
+        "num_items_sold": 4,
+        "customer_type": "new",
+        "extended_info": {
+            "products": [
+                {
+                    "id": "62",
+                    "name": "Beanie",
+                    "quantity": "1"
+                },
+                {
+                    "id": "79",
+                    "name": "Beanie with Logo",
+                    "quantity": "1"
+                },
+                {
+                    "id": "64",
+                    "name": "Cap",
+                    "quantity": "1"
+                },
+                {
+                    "id": "63",
+                    "name": "Belt",
+                    "quantity": "1"
+                }
+            ],
+            "coupons": [],
+            "customer": {
+                "customer_id": 1,
+                "user_id": null,
+                "username": "",
+                "first_name": "Test 1",
+                "last_name": "L",
+                "email": "test1@example.com",
+                "date_last_active": "2024-07-24 07:57:01",
+                "date_registered": null,
+                "country": "TW",
+                "postcode": "999",
+                "city": "Taipei",
+                "state": "Taipei"
+            },
+            "attribution": {
+                "origin": "Direct"
+            }
+        },
+        "order_number": 106,
+        "total_formatted": "NT$107",
+        "_links": {
+            "order": [
+                {
+                    "href": "https://example.com/wp-json/wc-analytics/orders/106"
+                }
+            ]
+        }
+    }
+]
+```
+
+#### Available parameters ####
+
+| Parameter             | Type    | Description                                                                                                           |
+|-----------------------|---------|-----------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                       |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                           |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                          |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                           |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `num_items_sold`, `net_total`. Default is `date`.               |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                              |
+| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                |
+| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                          |
+| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                              |
+| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                        |
+| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                 |
+| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                           |
+| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                               |
+| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                         |
+| `status_is`           | array   | Limit result set to items that have the specified order status.                                                       |
+| `status_is_not`       | array   | Limit result set to items that don\'t have the specified order status.                                                |
+| `customer_type`       | array   | Limit result set to returning or new customers.                                                                       |
+| `refunds`             | array   | Limit result set to specific types of refunds.                                                                        |
+| `order_includes`      | array   | Limit result set to items that have the specified order ids.                                                          |
+| `order_excludes`      | array   | Limit result set to items that don't have the specified order ids.                                                    |
+| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                       |
+| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                 |
+| `extended_info`       | boolean | Add additional piece of info about each coupon to the report.                                                         |
