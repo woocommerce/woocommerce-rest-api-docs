@@ -569,7 +569,7 @@ woocommerce.get("reports/products").parsed_response
 | `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                                                                                                                                                              |
 | `categories`          | array   | Limit result to items from the specified categories.                                                                                                                                                                                                                                                                                  |
 | `products`            | array   | Limit result to items with specified product ids.                                                                                                                                                                                                                                                                                     |
-| `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categorie`. Options: `all`, `any`. Default is `all`. |
+| `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categories`. Options: `all`, `any`. Default is `all`. |
 | `extended_info`       | boolean | Add additional piece of info about each product to the report. Default is `false`.                                                                                                                                                                                                                                                    |
 
 ## Products Stats ###
@@ -1229,11 +1229,364 @@ woocommerce.get("reports/orders").parsed_response
 | `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                               |
 | `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                         |
 | `status_is`           | array   | Limit result set to items that have the specified order status.                                                       |
-| `status_is_not`       | array   | Limit result set to items that don\'t have the specified order status.                                                |
-| `customer_type`       | array   | Limit result set to returning or new customers.                                                                       |
-| `refunds`             | array   | Limit result set to specific types of refunds.                                                                        |
+| `status_is_not`       | array   | Limit result set to items that don't have the specified order status.                                                |
+| `customer_type`       | string  | Limit result set to returning or new customers.                                                                       |
+| `refunds`             | string  | Limit result set to specific types of refunds.                                                                        |
 | `order_includes`      | array   | Limit result set to items that have the specified order ids.                                                          |
 | `order_excludes`      | array   | Limit result set to items that don't have the specified order ids.                                                    |
 | `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                       |
 | `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                 |
 | `extended_info`       | boolean | Add additional piece of info about each coupon to the report.                                                         |
+
+## Orders Stats ###
+
+This API helps you to view all the orders stats.
+
+### Orders Stats Reports properties ###
+
+| Attribute   | Type   | Description                                                                                                                                                                  |
+|-------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `totals`    | object | Totals data. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties) <i class="label label-info">read-only</i>                             |
+| `intervals` | object | Reports data grouped by intervals. See [Orders Stats Reports - Intervals properties](#orders-stats-reports-intervals-properties) <i class="label label-info">read-only</i> |
+
+#### Orders Stats Reports - Totals properties ####
+
+| Attribute        | Type    | Description                                                                                                                                                                             |
+|------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `total_sales`         | integer | Total sales. <i class="label label-info">read-only</i>                                                                                                                             |
+| `net_revenue`         | integer | Net sales. <i class="label label-info">read-only</i>                                                                                                                               |
+| `orders_count`        | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                        |
+| `avg_order_value`     | integer | Average order value. <i class="label label-info">read-only</i>                                                                                                                     |
+| `avg_items_per_order` | integer | Average items per order. <i class="label label-info">read-only</i>                                                                                                                 |
+| `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                              |
+| `coupons`             | integer | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                            |
+| `coupons_count`       | integer | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                    |
+| `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                        |
+| `products`            | integer | Products sold. <i class="label label-info">read-only</i>                                                                                                                           |
+| `segments`            | array   | Reports data grouped by segment condition. See [Orders Stats Reports - Segments properties](#orders-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
+| `shipping`            | integer | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                       |
+| `taxes`               | integer | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                          |
+| `refunds`             | integer | Total of returns. <i class="label label-info">read-only</i>                                                                                                                        |
+| `gross_sales`         | integer | Gross sales. <i class="label label-info">read-only</i>                                                                                                                             |
+
+
+##### Orders Stats Reports - Segments properties #####
+
+| Attribute    | Type    | Description                                                                                                                                                                                   |
+|--------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                              |
+| `subtotals`  | object  | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
+
+> Segments properties example
+
+```json
+[
+    {
+        "segment_id": 123,
+        "subtotals": {
+            "total_sales": 100,
+            "net_revenue": 200,
+            "orders_count": 24,
+            "num_items_sold": 18,
+            "gross_sales": 100,
+            "avg_items_per_order": 100,
+            "avg_order_value": 100,
+            "coupons": 10,
+            "coupons_count": 8,
+            "total_customers": 100,
+            "products": 100,
+            "shipping": 20,
+            "taxes": 15,
+            "refunds": 0,
+        }
+    }
+]
+```
+
+#### Orders Stats Reports - Intervals properties ####
+
+| Attribute        | Type   | Description                                                                                                                                                |
+|------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                                |
+| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                               |
+| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                               |
+| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                 |
+| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                 |
+| `subtotals`      | object | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `products` atttribute. <i class="label label-info">read-only</i> |
+
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-get">GET</i>
+		<h6>/wp-json/wc-analytics/reports/orders/stats</h6>
+	</div>
+</div>
+
+```shell
+curl https://example.com/wp-json/wc-analytics/reports/orders/stats \
+	-u consumer_key:consumer_secret
+```
+
+```javascript
+WooCommerce.get("reports/orders/stats")
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+```
+
+```php
+<?php print_r($woocommerce->get('reports/orders/stats')); ?>
+```
+
+```python
+print(wcapi.get("reports/orders/stats").json())
+```
+
+```ruby
+woocommerce.get("reports/orders/stats").parsed_response
+```
+
+> JSON response example:
+
+```json
+{
+    "totals": {
+        "orders_count": 1,
+        "num_items_sold": 4,
+        "gross_sales": 107,
+        "total_sales": 107,
+        "coupons": 0,
+        "coupons_count": 0,
+        "refunds": 0,
+        "taxes": 0,
+        "shipping": 0,
+        "net_revenue": 107,
+        "avg_items_per_order": 4,
+        "avg_order_value": 107,
+        "total_customers": 1,
+        "products": 4,
+        "segments": []
+    },
+    "intervals": [
+        {
+            "interval": "2024-34",
+            "date_start": "2024-08-19 00:00:00",
+            "date_start_gmt": "2024-08-19 00:00:00",
+            "date_end": "2024-08-22 23:59:59",
+            "date_end_gmt": "2024-08-22 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-33",
+            "date_start": "2024-08-12 00:00:00",
+            "date_start_gmt": "2024-08-12 00:00:00",
+            "date_end": "2024-08-18 23:59:59",
+            "date_end_gmt": "2024-08-18 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-32",
+            "date_start": "2024-08-05 00:00:00",
+            "date_start_gmt": "2024-08-05 00:00:00",
+            "date_end": "2024-08-11 23:59:59",
+            "date_end_gmt": "2024-08-11 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-31",
+            "date_start": "2024-07-29 00:00:00",
+            "date_start_gmt": "2024-07-29 00:00:00",
+            "date_end": "2024-08-04 23:59:59",
+            "date_end_gmt": "2024-08-04 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-30",
+            "date_start": "2024-07-22 00:00:00",
+            "date_start_gmt": "2024-07-22 00:00:00",
+            "date_end": "2024-07-28 23:59:59",
+            "date_end_gmt": "2024-07-28 23:59:59",
+            "subtotals": {
+                "orders_count": 1,
+                "num_items_sold": 4,
+                "gross_sales": 107,
+                "total_sales": 107,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 107,
+                "avg_items_per_order": 4,
+                "avg_order_value": 107,
+                "total_customers": 1,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-29",
+            "date_start": "2024-07-15 00:00:00",
+            "date_start_gmt": "2024-07-15 00:00:00",
+            "date_end": "2024-07-21 23:59:59",
+            "date_end_gmt": "2024-07-21 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-28",
+            "date_start": "2024-07-08 00:00:00",
+            "date_start_gmt": "2024-07-08 00:00:00",
+            "date_end": "2024-07-14 23:59:59",
+            "date_end_gmt": "2024-07-14 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        },
+        {
+            "interval": "2024-27",
+            "date_start": "2024-07-01 00:00:00",
+            "date_start_gmt": "2024-07-01 00:00:00",
+            "date_end": "2024-07-07 23:59:59",
+            "date_end_gmt": "2024-07-07 23:59:59",
+            "subtotals": {
+                "orders_count": 0,
+                "num_items_sold": 0,
+                "gross_sales": 0,
+                "total_sales": 0,
+                "coupons": 0,
+                "coupons_count": 0,
+                "refunds": 0,
+                "taxes": 0,
+                "shipping": 0,
+                "net_revenue": 0,
+                "avg_items_per_order": 0,
+                "avg_order_value": 0,
+                "total_customers": 0,
+                "segments": []
+            }
+        }
+    ]
+}
+```
+
+#### Available parameters ####
+
+| Parameter             | Type    | Description                                                                                                                                                                                    |
+|-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                          |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                         |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                    |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                   |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                    |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `avg_order_value`. Default is `date`. |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                       |
+| `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categories`. Options: `all`, `any`. Default is `all`. |
+| `status_is`           | array   | Limit result set to items that have the specified order status.                                                       |
+| `status_is_not`       | array   | Limit result set to items that don't have the specified order status.                                                |
+| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                |
+| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                          |
+| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                              |
+| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                        |
+| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                 |
+| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                           |
+| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                               |
+| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                         |
+| `customer`            | string  | Alias for `customer_type` (deprecated).                                                                       |
+| `customer_type`       | string  | Limit result set to returning or new customers.                                                                       |
+| `refunds`             | string  | Limit result set to specific types of refunds.  Options: ``, `all`, `partial`, `full`, `none`. |
+| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                       |
+| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                 |
+| `segmentby`           | string  | Segment the response by additional constraint. Options: `product`, `category`, `variation`, `coupon`, `customer_type`.                                                                         |
