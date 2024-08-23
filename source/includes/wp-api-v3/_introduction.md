@@ -52,7 +52,7 @@ Some general information about responses:
 * Resource IDs are returned as integers.
 * Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places.
 * Other amounts, such as item counts, are returned as integers.
-* Blank fields are generally included as `null` or emtpy string instead of being omitted.
+* Blank fields are generally included as `null` or empty string instead of being omitted.
 
 ### JSONP Support ###
 

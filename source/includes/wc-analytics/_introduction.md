@@ -36,7 +36,7 @@ Some general information about responses:
 * Resource IDs are returned as integers.
 * Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places.
 * Other amounts, such as item counts, are returned as integers.
-* Blank fields are generally included as `null` or emtpy string instead of being omitted.
+* Blank fields are generally included as `null` or empty string instead of being omitted.
 
 ### JSONP Support ###
 
@@ -261,9 +261,8 @@ woocommerce = WooCommerce::API.new(
 Some useful tools you can use to access the API include:
 
 - [Insomnia](https://insomnia.rest) - Cross-platform GraphQL and REST client, available for Mac, Windows, and Linux.
-- [Postman](https://www.getpostman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
-- [RequestBin](https://requestbin.com) - Allows you test webhooks.
-- [Hookbin](https://hookbin.com/) - Another tool to test webhooks.
+- [Postman](https://www.postman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
+- [RequestBin](https://pipedream.com/requestbin) - Allows you test webhooks.
 
 ## Learn more ##
 

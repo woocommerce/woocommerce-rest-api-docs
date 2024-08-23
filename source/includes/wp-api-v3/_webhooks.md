@@ -53,7 +53,7 @@ Delivery logs can be accessed in "WooCommerce" > "Status" > "Logs".
 
 ### Visual interface ###
 
-You can find the Webhooks interface going to "WooCommerce" > "Settings" > "Advanced" > "Webhooks", see our [Visual Webhooks docs](https://docs.woocommerce.com/document/webhooks/) for more details.
+You can find the Webhooks interface going to "WooCommerce" > "Settings" > "Advanced" > "Webhooks", see our [Visual Webhooks docs](https://woocommerce.com/document/webhooks/) for more details.
 
 ## Webhook properties ##
 
