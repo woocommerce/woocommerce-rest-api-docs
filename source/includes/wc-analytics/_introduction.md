@@ -5,12 +5,10 @@ The `/wc-analytics` API is specific to the WooCommerce Analytics feature introdu
 Key characteristics of the `/wc-analytics` API include:
 
 - **Analytics-Focused**: Provides endpoints specifically for retrieving analytics and reporting data.
-- **Internally Used**: Primarily intended for internal use within WooCommerce, such as powering the Analytics section in the admin dashboard.
+- **Public and Extensible**: While it powers the internal WooCommerce Analytics section, it is a public API available for developers to integrate with, allowing for custom reporting and analytics extensions.
 - **Non-Versioned**: Currently, it does not use versioning, allowing WooCommerce developers to make changes as needed to support analytics features.
 
-To use the `/wc-analytics` API, you must enable WooCommerce Analytics in your store's settings. Although it is not part of the public API like `/wc/v3`, it can still be accessed and used for custom development and integrations.
-
-For more information about WooCommerce Analytics, see [WooCommerce Analytics documentation](https://woocommerce.com/document/woocommerce-analytics/).
+To use the `/wc-analytics` API, you must enable WooCommerce Analytics in your store's settings. For more information about WooCommerce Analytics, see [WooCommerce Analytics documentation](https://woocommerce.com/document/woocommerce-analytics/).
 
 ## Requirements ##
 
@@ -38,7 +36,7 @@ Some general information about responses:
 * Resource IDs are returned as integers.
 * Any decimal monetary amount, such as prices or totals, will be returned as strings with two decimal places.
 * Other amounts, such as item counts, are returned as integers.
-* Blank fields are generally included as `null` or emtpy string instead of being omitted.
+* Blank fields are generally included as `null` or empty string instead of being omitted.
 
 ### JSONP Support ###
 
@@ -263,9 +261,8 @@ woocommerce = WooCommerce::API.new(
 Some useful tools you can use to access the API include:
 
 - [Insomnia](https://insomnia.rest) - Cross-platform GraphQL and REST client, available for Mac, Windows, and Linux.
-- [Postman](https://www.getpostman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
-- [RequestBin](https://requestbin.com) - Allows you test webhooks.
-- [Hookbin](https://hookbin.com/) - Another tool to test webhooks.
+- [Postman](https://www.postman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
+- [RequestBin](https://pipedream.com/requestbin) - Allows you test webhooks.
 
 ## Learn more ##
 
