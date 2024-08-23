@@ -557,20 +557,20 @@ woocommerce.get("reports/products").parsed_response
 
 #### Available parameters ####
 
-| Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                           |
-|-----------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                            |
+|-----------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
-| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                       |
-| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                |
-| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                           |
-| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                                                                                                                                                          |
-| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                                                                                                                                                           |
-| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `items_sold`, `product_name`, `variations`, `sku`. Default is `date`.                                                                                                                                                                            |
-| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                                                                                                                                                              |
-| `categories`          | array   | Limit result to items from the specified categories.                                                                                                                                                                                                                                                                                  |
-| `products`            | array   | Limit result to items with specified product ids.                                                                                                                                                                                                                                                                                     |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                        |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                 |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                            |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                                                                                                                                                           |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                                                                                                                                                            |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `items_sold`, `product_name`, `variations`, `sku`. Default is `date`.                                                                                                                                                                             |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                                                                                                                                                               |
+| `categories`          | array   | Limit result to items from the specified categories.                                                                                                                                                                                                                                                                                   |
+| `products`            | array   | Limit result to items with specified product ids.                                                                                                                                                                                                                                                                                      |
 | `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categories`. Options: `all`, `any`. Default is `all`. |
-| `extended_info`       | boolean | Add additional piece of info about each product to the report. Default is `false`.                                                                                                                                                                                                                                                    |
+| `extended_info`       | boolean | Add additional piece of info about each product to the report. Default is `false`.                                                                                                                                                                                                                                                     |
 
 ## Products Stats ###
 
@@ -714,7 +714,7 @@ woocommerce.get("reports/products/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                      |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                            |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                           |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                  |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                           |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                      |
@@ -745,18 +745,18 @@ This API helps you to view all the revenue stats.
 
 | Attribute        | Type    | Description                                                                                                                                                                             |
 |------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `total_sales`         | integer | Total sales. <i class="label label-info">read-only</i>                                                                                                                             |
-| `net_revenue`         | integer | Net sales. <i class="label label-info">read-only</i>                                                                                                                               |
-| `coupons`             | integer | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                            |
-| `coupons_count`       | integer | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                    |
-| `shipping`            | integer | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                       |
-| `taxes`               | integer | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                          |
-| `refunds`             | integer | Total of returns. <i class="label label-info">read-only</i>                                                                                                                        |
+| `total_sales`         | number | Total sales. <i class="label label-info">read-only</i>                                                                                                                              |
+| `net_revenue`         | number | Net sales. <i class="label label-info">read-only</i>                                                                                                                                |
+| `coupons`             | number | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                             |
+| `coupons_count`       | number | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                     |
+| `shipping`            | number | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                        |
+| `taxes`               | number | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                           |
+| `refunds`             | number | Total of returns. <i class="label label-info">read-only</i>                                                                                                                         |
 | `orders_count`        | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                        |
 | `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                              |
-| `gross_sales`         | integer | Gross sales. <i class="label label-info">read-only</i>                                                                                                                             |
-| `avg_items_per_order` | integer | Average items per order. <i class="label label-info">read-only</i>                                                                                                                 |
-| `avg_order_value`     | integer | Average order value. <i class="label label-info">read-only</i>                                                                                                                     |
+| `gross_sales`         | number | Gross sales. <i class="label label-info">read-only</i>                                                                                                                              |
+| `avg_items_per_order` | number | Average items per order. <i class="label label-info">read-only</i>                                                                                                                  |
+| `avg_order_value`     | number | Average order value. <i class="label label-info">read-only</i>                                                                                                                      |
 | `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                        |
 | `products`            | integer | Products sold. <i class="label label-info">read-only</i>                                                                                                                           |
 | `segments`            | array   | Reports data grouped by segment condition. See [Revenue Stats Reports - Segments properties](#revenue-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
@@ -764,9 +764,9 @@ This API helps you to view all the revenue stats.
 
 ##### Revenue Stats Reports - Segments properties #####
 
-| Attribute    | Type    | Description                                                                                                                                                                                   |
-|--------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                              |
+| Attribute    | Type    | Description                                                                                                                                                                                 |
+|--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                            |
 | `subtotals`  | object  | Interval subtotals. See [Revenue Stats Reports - Totals properties](#revenue-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
 
 > Segments properties example
@@ -797,13 +797,13 @@ This API helps you to view all the revenue stats.
 
 #### Revenue Stats Reports - Intervals properties ####
 
-| Attribute        | Type   | Description                                                                                                                                                |
-|------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                                |
-| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                               |
-| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                               |
-| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                 |
-| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                 |
+| Attribute        | Type   | Description                                                                                                                                              |
+|------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                              |
+| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                             |
+| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                             |
+| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                               |
+| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                               |
 | `subtotals`      | object | Interval subtotals. See [Revenue Stats Reports - Totals properties](#revenue-stats-reports-totals-properties). <i class="label label-info">read-only</i> |
 
 
@@ -1057,7 +1057,7 @@ woocommerce.get("reports/revenue/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                    |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                          |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                         |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                         |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                    |
@@ -1076,20 +1076,20 @@ This API lets you retrieve and view the orders revenue, total sales, etc.
 
 ### Orders Reports properties ###
 
-| Attribute          | Type      | Description                                                                                                          |
-|--------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-| `order_id`         | integer   | Order ID. <i class="label label-info">read-only</i>                                                                  |
-| `parent_id`        | integer   | Order parent ID. <i class="label label-info">read-only</i>                                                           |
-| `order_number`     | string    | Order number. <i class="label label-info">read-only</i>                                                              |
-| `date_created`     | date-time | Date the order was created, in the site's timezone. <i class="label label-info">read-only</i>                        |
-| `date_created_gmt` | date-time | Date the order was created, as GMT. <i class="label label-info">read-only</i>                                        |
-| `status`           | string    | Order status.  <i class="label label-info">read-only</i>                                                             |
-| `customer_id`      | integer   | Customer ID.  <i class="label label-info">read-only</i>                                                              |
-| `num_items_sold`   | integer   | Number of items sold.  <i class="label label-info">read-only</i>                                                     |
-| `net_total`        | float     | Net total revenue.  <i class="label label-info">read-only</i>                                                        |
-| `total_sales`      | float     | Total sales.  <i class="label label-info">read-only</i>                                                              |
-| `total_formatted`  | string    | Net total revenue (formatted).  <i class="label label-info">read-only</i>                                            |
-| `customer_type`    | string    | Returning or new customer.  <i class="label label-info">read-only</i>                                                |
+| Attribute          | Type      | Description                                                                                                            |
+|--------------------|-----------|------------------------------------------------------------------------------------------------------------------------|
+| `order_id`         | integer   | Order ID. <i class="label label-info">read-only</i>                                                                    |
+| `parent_id`        | integer   | Order parent ID. <i class="label label-info">read-only</i>                                                             |
+| `order_number`     | string    | Order number. <i class="label label-info">read-only</i>                                                                |
+| `date_created`     | date-time | Date the order was created, in the site's timezone. <i class="label label-info">read-only</i>                          |
+| `date_created_gmt` | date-time | Date the order was created, as GMT. <i class="label label-info">read-only</i>                                          |
+| `status`           | string    | Order status.  <i class="label label-info">read-only</i>                                                               |
+| `customer_id`      | integer   | Customer ID.  <i class="label label-info">read-only</i>                                                                |
+| `num_items_sold`   | integer   | Number of items sold.  <i class="label label-info">read-only</i>                                                       |
+| `net_total`        | float     | Net total revenue.  <i class="label label-info">read-only</i>                                                          |
+| `total_sales`      | float     | Total sales.  <i class="label label-info">read-only</i>                                                                |
+| `total_formatted`  | string    | Net total revenue (formatted).  <i class="label label-info">read-only</i>                                              |
+| `customer_type`    | string    | Returning or new customer.  <i class="label label-info">read-only</i>                                                  |
 | `extended_info`    | object    | Extended info for the order. See [Orders Reports - Extended Info properties](#orders-reports-extended-info-properties) |
 
 #### Orders Reports - Extended Info properties ####
@@ -1210,33 +1210,33 @@ woocommerce.get("reports/orders").parsed_response
 
 #### Available parameters ####
 
-| Parameter             | Type    | Description                                                                                                           |
-|-----------------------|---------|-----------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. |
-| `page`                | integer | Current page of the collection. Default is `1`.                                                                       |
-| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                |
-| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                           |
-| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                          |
-| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                           |
-| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `num_items_sold`, `net_total`. Default is `date`.               |
-| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                              |
-| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                |
-| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                          |
-| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                              |
-| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                        |
-| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                 |
-| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                           |
-| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                               |
-| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                         |
-| `status_is`           | array   | Limit result set to items that have the specified order status.                                                       |
-| `status_is_not`       | array   | Limit result set to items that don't have the specified order status.                                                |
-| `customer_type`       | string  | Limit result set to returning or new customers.                                                                       |
-| `refunds`             | string  | Limit result set to specific types of refunds.                                                                        |
-| `order_includes`      | array   | Limit result set to items that have the specified order ids.                                                          |
-| `order_excludes`      | array   | Limit result set to items that don't have the specified order ids.                                                    |
-| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                       |
-| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                 |
-| `extended_info`       | boolean | Add additional piece of info about each coupon to the report.                                                         |
+| Parameter             | Type    | Description                                                                                                                                                                                          |
+|-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                               |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                      |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                               |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                          |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                         |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                          |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `num_items_sold`, `net_total`. Default is `date`.                                                                                              |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                             |
+| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                                                                                               |
+| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                                                                                                         |
+| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                                                                                                             |
+| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                                                                                                       |
+| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                                                                                                |
+| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                                                                                                          |
+| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                                                                                                              |
+| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                                                                                                        |
+| `status_is`           | array   | Limit result set to items that have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`.       |
+| `status_is_not`       | array   | Limit result set to items that don't have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`. |
+| `customer_type`       | string  | Limit result set to returning or new customers.                                                                                                                                                      |
+| `refunds`             | string  | Limit result set to specific types of refunds. Options: ``, `all`, `partial`, `full`, `none`.                                                                                                        |
+| `order_includes`      | array   | Limit result set to items that have the specified order ids.                                                                                                                                         |
+| `order_excludes`      | array   | Limit result set to items that don't have the specified order ids.                                                                                                                                   |
+| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                                                                                                      |
+| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                                                                                                |
+| `extended_info`       | boolean | Add additional piece of info about each coupon to the report.                                                                                                                                        |
 
 ## Orders Stats ###
 
@@ -1244,37 +1244,36 @@ This API helps you to view all the orders stats.
 
 ### Orders Stats Reports properties ###
 
-| Attribute   | Type   | Description                                                                                                                                                                  |
-|-------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Attribute   | Type   | Description                                                                                                                                                                |
+|-------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `totals`    | object | Totals data. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties) <i class="label label-info">read-only</i>                             |
 | `intervals` | object | Reports data grouped by intervals. See [Orders Stats Reports - Intervals properties](#orders-stats-reports-intervals-properties) <i class="label label-info">read-only</i> |
 
 #### Orders Stats Reports - Totals properties ####
 
-| Attribute        | Type    | Description                                                                                                                                                                             |
-|------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `total_sales`         | integer | Total sales. <i class="label label-info">read-only</i>                                                                                                                             |
-| `net_revenue`         | integer | Net sales. <i class="label label-info">read-only</i>                                                                                                                               |
-| `orders_count`        | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                        |
-| `avg_order_value`     | integer | Average order value. <i class="label label-info">read-only</i>                                                                                                                     |
-| `avg_items_per_order` | integer | Average items per order. <i class="label label-info">read-only</i>                                                                                                                 |
-| `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                              |
-| `coupons`             | integer | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                            |
-| `coupons_count`       | integer | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                    |
-| `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                        |
-| `products`            | integer | Products sold. <i class="label label-info">read-only</i>                                                                                                                           |
+| Attribute             | Type    | Description                                                                                                                                                                      |
+|-----------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `total_sales`         | number  | Total sales. <i class="label label-info">read-only</i>                                                                                                                           |
+| `net_revenue`         | number  | Net sales. <i class="label label-info">read-only</i>                                                                                                                             |
+| `orders_count`        | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                      |
+| `avg_order_value`     | number  | Average order value. <i class="label label-info">read-only</i>                                                                                                                   |
+| `avg_items_per_order` | number  | Average items per order. <i class="label label-info">read-only</i>                                                                                                               |
+| `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                            |
+| `coupons`             | number  | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                          |
+| `coupons_count`       | number  | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                  |
+| `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                      |
+| `products`            | number  | Products sold. <i class="label label-info">read-only</i>                                                                                                                         |
 | `segments`            | array   | Reports data grouped by segment condition. See [Orders Stats Reports - Segments properties](#orders-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
-| `shipping`            | integer | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                       |
-| `taxes`               | integer | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                          |
-| `refunds`             | integer | Total of returns. <i class="label label-info">read-only</i>                                                                                                                        |
-| `gross_sales`         | integer | Gross sales. <i class="label label-info">read-only</i>                                                                                                                             |
-
+| `shipping`            | number  | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                     |
+| `taxes`               | number  | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                        |
+| `refunds`             | number  | Total of returns. <i class="label label-info">read-only</i>                                                                                                                      |
+| `gross_sales`         | number  | Gross sales. <i class="label label-info">read-only</i>                                                                                                                           |
 
 ##### Orders Stats Reports - Segments properties #####
 
-| Attribute    | Type    | Description                                                                                                                                                                                   |
-|--------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                              |
+| Attribute    | Type    | Description                                                                                                                                                                               |
+|--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                          |
 | `subtotals`  | object  | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
 
 > Segments properties example
@@ -1305,13 +1304,13 @@ This API helps you to view all the orders stats.
 
 #### Orders Stats Reports - Intervals properties ####
 
-| Attribute        | Type   | Description                                                                                                                                                |
-|------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                                |
-| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                               |
-| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                               |
-| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                 |
-| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                 |
+| Attribute        | Type   | Description                                                                                                                                                                               |
+|------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `interval`       | string | Type of interval. <i class="label label-info">read-only</i>                                                                                                                               |
+| `date_start`     | string | The date the report start, in the site's timezone. <i class="label label-info">read-only</i>                                                                                              |
+| `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                                                              |
+| `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                |
+| `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                                                |
 | `subtotals`      | object | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `products` atttribute. <i class="label label-info">read-only</i> |
 
 
@@ -1563,30 +1562,30 @@ woocommerce.get("reports/orders/stats").parsed_response
 
 #### Available parameters ####
 
-| Parameter             | Type    | Description                                                                                                                                                                                    |
-|-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                          |
-| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                |
-| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                         |
-| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                    |
-| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                   |
-| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                    |
-| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `avg_order_value`. Default is `date`. |
-| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                       |
+| Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                            |
+|-----------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
+| `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                        |
+| `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                 |
+| `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                            |
+| `before`              | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                                                                                                                                                                           |
+| `order`               | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                                                                                                                                                                            |
+| `orderby`             | string  | Sort collection by object attribute. Options: `date`, `net_revenue`, `orders_count`, `avg_order_value`. Default is `date`.                                                                                                                                                                                                             |
+| `force_cache_refresh` | boolean | Force retrieval of fresh data instead of from the cache.                                                                                                                                                                                                                                                                               |
 | `match`               | string  | Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: `status_is`, `status_is_not`, `product_includes`, `product_excludes`, `coupon_includes`, `coupon_excludes`, `customer`, `categories`. Options: `all`, `any`. Default is `all`. |
-| `status_is`           | array   | Limit result set to items that have the specified order status.                                                       |
-| `status_is_not`       | array   | Limit result set to items that don't have the specified order status.                                                |
-| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                |
-| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                          |
-| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                              |
-| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                        |
-| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                 |
-| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                           |
-| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                               |
-| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                         |
-| `customer`            | string  | Alias for `customer_type` (deprecated).                                                                       |
-| `customer_type`       | string  | Limit result set to returning or new customers.                                                                       |
-| `refunds`             | string  | Limit result set to specific types of refunds.  Options: ``, `all`, `partial`, `full`, `none`. |
-| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                       |
-| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                 |
-| `segmentby`           | string  | Segment the response by additional constraint. Options: `product`, `category`, `variation`, `coupon`, `customer_type`.                                                                         |
+| `status_is`           | array   | Limit result set to items that have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`.                                                                                                                                         |
+| `status_is_not`       | array   | Limit result set to items that don't have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`.                                                                                                                                   |
+| `product_includes`    | array   | Limit result set to items that have the specified product(s) assigned.                                                                                                                                                                                                                                                                 |
+| `product_excludes`    | array   | Limit result set to items that don't have the specified product(s) assigned.                                                                                                                                                                                                                                                           |
+| `variation_includes`  | array   | Limit result set to items that have the specified variation(s) assigned.                                                                                                                                                                                                                                                               |
+| `variation_excludes`  | array   | Limit result set to items that don't have the specified variation(s) assigned.                                                                                                                                                                                                                                                         |
+| `coupon_includes`     | array   | Limit result set to items that have the specified coupon(s) assigned.                                                                                                                                                                                                                                                                  |
+| `coupon_excludes`     | array   | Limit result set to items that don't have the specified coupon(s) assigned.                                                                                                                                                                                                                                                            |
+| `tax_rate_includes`   | array   | Limit result set to items that have the specified tax rate(s) assigned.                                                                                                                                                                                                                                                                |
+| `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                                                                                                                                                                                                                                          |
+| `customer`            | string  | Alias for `customer_type` (deprecated). Options: `new`, `returning`.                                                                                                                                                                                                                                                                   |
+| `customer_type`       | string  | Limit result set to returning or new customers. Options: `new`, `returning`.                                                                                                                                                                                                                                                           |
+| `refunds`             | string  | Limit result set to specific types of refunds.  Options: ``, `all`, `partial`, `full`, `none`.                                                                                                                                                                                                                                         |
+| `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                                                                                                                                                                                                                                        |
+| `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                                                                                                                                                                                                                                  |
+| `segmentby`           | string  | Segment the response by additional constraint. Options: `product`, `category`, `variation`, `coupon`, `customer_type`.                                                                                                                                                                                                                 |
