@@ -437,7 +437,7 @@ This API lets you retrieve and view the product item sales, net revenue, and the
 |-----------------|---------|----------------------------------------------------------------------------------------------------------------------------|
 | `product_id`    | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                              |
 | `items_sold`    | integer | Number of items sold. <i class="label label-info">read-only</i>                                                            |
-| `net_revenue`   | integer | Total Net sales of all items sold. <i class="label label-info">read-only</i>                                               |
+| `net_revenue`   | number  | Total Net sales of all items sold. <i class="label label-info">read-only</i>                                               |
 | `orders_count`  | integer | Number of orders product appeared in. <i class="label label-info">read-only</i>                                            |
 | `extended_info` | object  | Extended info for the product. See [Product Reports - Extended Info properties](#product-reports-extended-info-properties) |
 
@@ -446,7 +446,7 @@ This API lets you retrieve and view the product item sales, net revenue, and the
 | Attribute          | Type    | Description                                |
 |--------------------|-------- |--------------------------------------------|
 | `name`             | string  | Product name.                              |
-| `price`            | integer | Product price.                             |
+| `price`            | number  | Product price.                             |
 | `image`            | string  | Product image.                             |
 | `permalink`        | string  | Product link.                              |
 | `category_ids`     | array   | Product category IDs.                      |
@@ -559,7 +559,7 @@ woocommerce.get("reports/products").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                            |
 |-----------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                                                                                                                                                             |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                        |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                 |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                            |
@@ -588,7 +588,7 @@ This API helps you to view all the products.
 | Attribute      | Type    | Description                                                                                                                                                                          |
 |----------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `items_sold`   | integer | Number of product items sold. <i class="label label-info">read-only</i>                                                                                                              |
-| `net_revenue`  | integer | Net sales. <i class="label label-info">read-only</i>                                                                                                                                 |
+| `net_revenue`  | number  | Net sales. <i class="label label-info">read-only</i>                                                                                                                                 |
 | `orders_count` | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                          |
 | `segments`     | array   | Reports data grouped by segment condition. See [Products Stats Reports - Segments properties](#products-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
 
@@ -597,8 +597,8 @@ This API helps you to view all the products.
 
 | Attribute    | Type    | Description                                                                                                                                                                                   |
 |--------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                              |
-| `subtotals`  | object  | Interval subtotals. See [Products Stats Reports - Totals properties](#products-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
+| `segment_id` | integer | Segment identifier. <i class="label label-info">read-only</i>                                                                                                                              |
+| `subtotals`  | object  | Interval subtotals. See [Products Stats Reports - Totals properties](#products-stats-reports-totals-properties), but without `segments` attribute. <i class="label label-info">read-only</i> |
 
 > Segments properties example
 
@@ -714,7 +714,7 @@ woocommerce.get("reports/products/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                      |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                           |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                     |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                  |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                           |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                      |
@@ -743,20 +743,20 @@ This API helps you to view all the revenue stats.
 
 #### Revenue Stats Reports - Totals properties ####
 
-| Attribute        | Type    | Description                                                                                                                                                                             |
-|------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `total_sales`         | number | Total sales. <i class="label label-info">read-only</i>                                                                                                                              |
-| `net_revenue`         | number | Net sales. <i class="label label-info">read-only</i>                                                                                                                                |
-| `coupons`             | number | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                             |
-| `coupons_count`       | number | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                     |
-| `shipping`            | number | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                        |
-| `taxes`               | number | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                           |
-| `refunds`             | number | Total of returns. <i class="label label-info">read-only</i>                                                                                                                         |
+| Attribute             | Type    | Description                                                                                                                                                                        |
+|-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `total_sales`         | number  | Total sales. <i class="label label-info">read-only</i>                                                                                                                             |
+| `net_revenue`         | number  | Net sales. <i class="label label-info">read-only</i>                                                                                                                               |
+| `coupons`             | number  | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                            |
+| `coupons_count`       | number  | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                    |
+| `shipping`            | number  | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                       |
+| `taxes`               | number  | Total of taxes. <i class="label label-info">read-only</i>                                                                                                                          |
+| `refunds`             | number  | Total of returns. <i class="label label-info">read-only</i>                                                                                                                        |
 | `orders_count`        | integer | Number of orders. <i class="label label-info">read-only</i>                                                                                                                        |
 | `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                              |
-| `gross_sales`         | number | Gross sales. <i class="label label-info">read-only</i>                                                                                                                              |
-| `avg_items_per_order` | number | Average items per order. <i class="label label-info">read-only</i>                                                                                                                  |
-| `avg_order_value`     | number | Average order value. <i class="label label-info">read-only</i>                                                                                                                      |
+| `gross_sales`         | number  | Gross sales. <i class="label label-info">read-only</i>                                                                                                                             |
+| `avg_items_per_order` | integer | Average items per order. <i class="label label-info">read-only</i>                                                                                                                 |
+| `avg_order_value`     | number  | Average order value. <i class="label label-info">read-only</i>                                                                                                                     |
 | `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                        |
 | `products`            | integer | Products sold. <i class="label label-info">read-only</i>                                                                                                                           |
 | `segments`            | array   | Reports data grouped by segment condition. See [Revenue Stats Reports - Segments properties](#revenue-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
@@ -766,8 +766,8 @@ This API helps you to view all the revenue stats.
 
 | Attribute    | Type    | Description                                                                                                                                                                                 |
 |--------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                            |
-| `subtotals`  | object  | Interval subtotals. See [Revenue Stats Reports - Totals properties](#revenue-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
+| `segment_id` | integer | Segment identifier. <i class="label label-info">read-only</i>                                                                                                                            |
+| `subtotals`  | object  | Interval subtotals. See [Revenue Stats Reports - Totals properties](#revenue-stats-reports-totals-properties), but without `segments` attribute. <i class="label label-info">read-only</i> |
 
 > Segments properties example
 
@@ -1057,7 +1057,7 @@ woocommerce.get("reports/revenue/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                    |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                         |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                         |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                         |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                    |
@@ -1087,7 +1087,7 @@ This API lets you retrieve and view the orders revenue, total sales, etc.
 | `customer_id`      | integer   | Customer ID.  <i class="label label-info">read-only</i>                                                                |
 | `num_items_sold`   | integer   | Number of items sold.  <i class="label label-info">read-only</i>                                                       |
 | `net_total`        | float     | Net total revenue.  <i class="label label-info">read-only</i>                                                          |
-| `total_sales`      | float     | Total sales.  <i class="label label-info">read-only</i>                                                                |
+| `total_sales`      | number    | Total sales.  <i class="label label-info">read-only</i>                                                                |
 | `total_formatted`  | string    | Net total revenue (formatted).  <i class="label label-info">read-only</i>                                              |
 | `customer_type`    | string    | Returning or new customer.  <i class="label label-info">read-only</i>                                                  |
 | `extended_info`    | object    | Extended info for the order. See [Orders Reports - Extended Info properties](#orders-reports-extended-info-properties) |
@@ -1212,7 +1212,7 @@ woocommerce.get("reports/orders").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                          |
 |-----------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                               |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                               |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                      |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                               |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                          |
@@ -1231,7 +1231,7 @@ woocommerce.get("reports/orders").parsed_response
 | `status_is`           | array   | Limit result set to items that have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`.       |
 | `status_is_not`       | array   | Limit result set to items that don't have the specified order status. Options: `any`, `trash`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed`, `checkout-draft`. |
 | `customer_type`       | string  | Limit result set to returning or new customers.                                                                                                                                                      |
-| `refunds`             | string  | Limit result set to specific types of refunds. Options: ``, `all`, `partial`, `full`, `none`.                                                                                                        |
+| `refunds`             | string  | Limit result set to specific types of refunds. Options: ` `, `all`, `partial`, `full`, `none`. Default is ` ` (empty string).                                                                         |
 | `order_includes`      | array   | Limit result set to items that have the specified order ids.                                                                                                                                         |
 | `order_excludes`      | array   | Limit result set to items that don't have the specified order ids.                                                                                                                                   |
 | `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                                                                                                      |
@@ -1261,7 +1261,7 @@ This API helps you to view all the orders stats.
 | `num_items_sold`      | integer | Items sold. <i class="label label-info">read-only</i>                                                                                                                            |
 | `coupons`             | number  | Amount discounted by coupons. <i class="label label-info">read-only</i>                                                                                                          |
 | `coupons_count`       | number  | Unique coupons count. <i class="label label-info">read-only</i>                                                                                                                  |
-| `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                      |
+| `total_customers`     | integer | Total customers. <i class="label label-info">read-only</i>                                                                                                                      |
 | `products`            | number  | Products sold. <i class="label label-info">read-only</i>                                                                                                                         |
 | `segments`            | array   | Reports data grouped by segment condition. See [Orders Stats Reports - Segments properties](#orders-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
 | `shipping`            | number  | Total of shipping. <i class="label label-info">read-only</i>                                                                                                                     |
@@ -1273,8 +1273,8 @@ This API helps you to view all the orders stats.
 
 | Attribute    | Type    | Description                                                                                                                                                                               |
 |--------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `segment_id` | integer | Segment identificator. <i class="label label-info">read-only</i>                                                                                                                          |
-| `subtotals`  | object  | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `segments` atttribute. <i class="label label-info">read-only</i> |
+| `segment_id` | integer | Segment identifier. <i class="label label-info">read-only</i>                                                                                                                          |
+| `subtotals`  | object  | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `segments` attribute. <i class="label label-info">read-only</i> |
 
 > Segments properties example
 
@@ -1311,7 +1311,7 @@ This API helps you to view all the orders stats.
 | `date_start_gmt` | string | The date the report start, as GMT. <i class="label label-info">read-only</i>                                                                                                              |
 | `date_end`       | string | The date the report end, in the site's timezone. <i class="label label-info">read-only</i>                                                                                                |
 | `date_end_gmt`   | string | The date the report end, as GMT. <i class="label label-info">read-only</i>                                                                                                                |
-| `subtotals`      | object | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `products` atttribute. <i class="label label-info">read-only</i> |
+| `subtotals`      | object | Interval subtotals. See [Orders Stats Reports - Totals properties](#orders-stats-reports-totals-properties), but without `products` attribute. <i class="label label-info">read-only</i> |
 
 
 ### HTTP request ###
@@ -1564,7 +1564,7 @@ woocommerce.get("reports/orders/stats").parsed_response
 
 | Parameter             | Type    | Description                                                                                                                                                                                                                                                                                                                            |
 |-----------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view.                                                                                                                                                                                                                 |
+| `context`             | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                                                                                                                                                           |
 | `page`                | integer | Current page of the collection. Default is `1`.                                                                                                                                                                                                                                                                                        |
 | `per_page`            | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                                                                                                                                                                 |
 | `after`               | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                                                                                                                                                                            |
@@ -1585,7 +1585,7 @@ woocommerce.get("reports/orders/stats").parsed_response
 | `tax_rate_excludes`   | array   | Limit result set to items that don't have the specified tax rate(s) assigned.                                                                                                                                                                                                                                                          |
 | `customer`            | string  | Alias for `customer_type` (deprecated). Options: `new`, `returning`.                                                                                                                                                                                                                                                                   |
 | `customer_type`       | string  | Limit result set to returning or new customers. Options: `new`, `returning`.                                                                                                                                                                                                                                                           |
-| `refunds`             | string  | Limit result set to specific types of refunds.  Options: ``, `all`, `partial`, `full`, `none`.                                                                                                                                                                                                                                         |
+| `refunds`             | string  | Limit result set to specific types of refunds.  Options: ` `, `all`, `partial`, `full`, `none`. Default is ` ` (empty string).                                                                                                                                                                                                         |
 | `attribute_is`        | array   | Limit result set to orders that include products with the specified attributes.                                                                                                                                                                                                                                                        |
 | `attribute_is_not`    | array   | Limit result set to orders that don't include products with the specified attributes.                                                                                                                                                                                                                                                  |
 | `segmentby`           | string  | Segment the response by additional constraint. Options: `product`, `category`, `variation`, `coupon`, `customer_type`.                                                                                                                                                                                                                 |
