@@ -1,42 +1,26 @@
-# Introduction #
+# Introduction to Analytics REST API#
 
-WooCommerce (WC) 2.6+ is fully integrated with the WordPress [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer) API. This allows WC data to be created, read, updated, and deleted using requests in JSON format and using WordPress REST API Authentication methods and standard HTTP verbs which are understood by most HTTP clients.
+The `/wc-analytics` API is specific to the WooCommerce Analytics feature introduced in WooCommerce `4.0`. It is used internally by WooCommerce to provide analytics data in the WooCommerce admin dashboard under the Analytics section. This namespace includes endpoints for accessing detailed reports on sales, revenue, orders, and other analytics metrics.
 
-The current WP REST API integration version is `v3` which takes a first-order position in endpoints. 
+Key characteristics of the `/wc-analytics` API include:
 
-The following table shows API versions present in each major version of WooCommerce:
+- **Analytics-Focused**: Provides endpoints specifically for retrieving analytics and reporting data.
+- **Public and Extensible**: While it powers the internal WooCommerce Analytics section, it is a public API available for developers to integrate with, allowing for custom reporting and analytics extensions.
+- **Non-Versioned**: Currently, it does not use versioning, allowing WooCommerce developers to make changes as needed to support analytics features.
 
-| API Version | WC Version     | WP Version   | Documentation             |
-|-------------|----------------|--------------|---------------------------|
-| `v3`        | 3.5.x or later | 4.4 or later | -                         |
-| `v2`        | 3.0.x or later | 4.4 or later | [v2 docs](wp-api-v2.html) |
-| `v1`        | 2.6.x or later | 4.4 or later | [v1 docs](wp-api-v1.html) |
-
-We also have a set of analytics endpoints, which currently exist under their own namespace (`wc-analytics`):
-
-| API Version    | WC Version     | WP Version   | Documentation                       |
-|----------------|----------------|--------------|-------------------------------------|
-| `wc-analytics` | 4.0.x or later | 5.3 or later | [Analytics docs](wc-analytics.html) |
-
-
-Prior to 2.6, WooCommerce had a REST API separate from WordPress which is now known as the legacy API. You can find the documentation for the legacy API separately.
-
-| API Version | WC Version     | WP Version   | Documentation             |
-|-------------|----------------|--------------|---------------------------|
-| `Legacy v3` | 2.4.x or later | 4.1 or later | [Legacy v3 docs](v3.html) |
-| `Legacy v2` | 2.2.x or later | 4.1 or later | [Legacy v2 docs](v2.html) |
-| `Legacy v1` | 2.1.x or later | 4.1 or later | [Legacy v1 docs](v1.html) |
+To use the `/wc-analytics` API, you must enable WooCommerce Analytics in your store's settings. For more information about WooCommerce Analytics, see [WooCommerce Analytics documentation](https://woocommerce.com/document/woocommerce-analytics/).
 
 ## Requirements ##
 
-To use the latest version of the REST API you must be using:
+To use the WooCommerce Analytics REST APIs, there are several requirements and considerations to ensure proper functionality and access. Here are the key requirements:
 
-* WooCommerce 3.5+.
-* WordPress 4.4+.
-* Pretty permalinks in `Settings > Permalinks` so that the custom endpoints are supported. __Default permalinks will not work.__
-* You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
+- WooCommerce 4.0+.
+- WordPress 5.3+.
+- **Enable WooCommerce Analytics**: Analytics must be enabled in the WooCommerce settings. This feature is part of the WooCommerce Admin and should be activated to use the `/wc-analytics` API endpoints.
+- Pretty permalinks in `Settings > Permalinks` so that the custom endpoints are supported. __Default permalinks will not work.__
+- You may access the API over either HTTP or HTTPS, but *HTTPS is recommended where possible*.
 
-If you use ModSecurity and see `501 Method Not Implemented` errors, see [this issue](https://github.com/woocommerce/woocommerce/issues/9838) for details.
+By meeting these requirements, you can effectively use the WooCommerce Analytics REST APIs to access and manage analytics data in your WooCommerce store. For detailed setup and configuration instructions, you can refer to the WooCommerce REST API documentation and WooCommerce support pages.
 
 <aside class="notice">
 	Please note that you are <strong>not</strong> required to install the <a href="https://wordpress.org/plugins/rest-api/" target="_blank">WP REST API (WP API)</a> plugin.
@@ -184,6 +168,8 @@ The possible `rel` values are:
 - [Python](https://pypi.python.org/pypi/WooCommerce) Library
 - [Ruby](https://rubygems.org/gems/woocommerce_api) Library
 
+**Please note that to access the `wc-analytics` namespace, the version must be specified as `wc-analytics` in the libraries.**
+
 ```javascript
 // Install:
 // npm install --save @woocommerce/woocommerce-rest-api
@@ -196,7 +182,7 @@ const WooCommerce = new WooCommerceRestApi({
   url: 'http://example.com', // Your store URL
   consumerKey: 'consumer_key', // Your consumer key
   consumerSecret: 'consumer_secret', // Your consumer secret
-  version: 'wc/v3' // WooCommerce WP REST API version
+  version: 'wc-analytics' // WooCommerce WP REST API version
 });
 ```
 
@@ -216,7 +202,7 @@ $woocommerce = new Client(
     'consumer_secret', // Your consumer secret
     [
         'wp_api' => true, // Enable the WP REST API integration
-        'version' => 'wc/v3' // WooCommerce WP REST API version
+        'version' => 'wc-analytics' // WooCommerce WP REST API version
     ]
 );
 ?>
@@ -234,7 +220,7 @@ wcapi = API(
     consumer_key="consumer_key", # Your consumer key
     consumer_secret="consumer_secret", # Your consumer secret
     wp_api=True, # Enable the WP REST API integration
-    version="wc/v3" # WooCommerce WP REST API version
+    version="wc-analytics" # WooCommerce WP REST API version
 )
 ```
 
@@ -251,7 +237,7 @@ woocommerce = WooCommerce::API.new(
   "consumer_secret", # Your consumer secret
   {
     wp_api: true, # Enable the WP REST API integration
-    version: "wc/v3" # WooCommerce WP REST API version
+    version: "wc-analytics" # WooCommerce WP REST API version
   }
 )
 ```
@@ -275,9 +261,8 @@ woocommerce = WooCommerce::API.new(
 Some useful tools you can use to access the API include:
 
 - [Insomnia](https://insomnia.rest) - Cross-platform GraphQL and REST client, available for Mac, Windows, and Linux.
-- [Postman](https://www.getpostman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
-- [RequestBin](https://requestbin.com) - Allows you test webhooks.
-- [Hookbin](https://hookbin.com/) - Another tool to test webhooks.
+- [Postman](https://www.postman.com/) - Cross-platform REST client, available for Mac, Windows, and Linux.
+- [RequestBin](https://pipedream.com/requestbin) - Allows you test webhooks.
 
 ## Learn more ##
 
