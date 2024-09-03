@@ -757,7 +757,7 @@ This API helps you to view all the revenue stats.
 | `gross_sales`         | number  | Gross sales. <i class="label label-info">read-only</i>                                                                                                                             |
 | `avg_items_per_order` | integer | Average items per order. <i class="label label-info">read-only</i>                                                                                                                 |
 | `avg_order_value`     | number  | Average order value. <i class="label label-info">read-only</i>                                                                                                                     |
-| `total_customers`     | integer | Total _customers. <i class="label label-info">read-only</i>                                                                                                                        |
+| `total_customers`     | integer | Total customers. <i class="label label-info">read-only</i>                                                                                                                        |
 | `products`            | integer | Products sold. <i class="label label-info">read-only</i>                                                                                                                           |
 | `segments`            | array   | Reports data grouped by segment condition. See [Revenue Stats Reports - Segments properties](#revenue-stats-reports-segments-properties) <i class="label label-info">read-only</i> |
 
