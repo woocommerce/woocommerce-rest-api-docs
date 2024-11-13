@@ -24,6 +24,7 @@ includes:
   - wp-api-v3/coupons
   - wp-api-v3/customers
   - wp-api-v3/orders
+  - wp-api-v3/order-actions
   - wp-api-v3/order-notes
   - wp-api-v3/order-refunds
   - wp-api-v3/products
