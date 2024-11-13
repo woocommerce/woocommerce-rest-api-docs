@@ -2,7 +2,7 @@
 
 The order actions API allows you to perform specific actions with existing orders like you can from the Edit Order screen in the web app.
 
-_Note: currently only one action is available, other actions will introduced at a later time._
+_Note: currently only one action is available, other actions will be introduced at a later time._
 
 ## Send order details to customer ##
 
