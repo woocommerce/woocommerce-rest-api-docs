@@ -1481,7 +1481,11 @@ woocommerce.get("products").parsed_response
 | `parent_exclude`  | array   | Limit result set to all items except those of a particular parent ID.                                                                                                     |
 | `slug`            | string  | Limit result set to products with a specific slug.                                                                                                                        |
 | `status`          | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`.                                   |
-| `type`            | string  | Limit result set to products assigned a specific type. Options: `simple`, `grouped`, `external` and `variable`.                                                           |
+| `include_status`  | string  | Limit result set to products with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `status` parameter. Options: `any`, `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
+| `exclude_status`  | string  | Exclude products from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `include_status` parameter. Options: `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
+| `type`            | string  | Limit result set to products assigned a specific type. Options: `simple`, `grouped`, `external` and `variable`.       |
+| `include_types`   | string  | Limit result set to products with any of the types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `type` parameter. Options: `simple`, `grouped`, `external` and `variable`.                                                           |
+| `exclude_types`   | string  | Exclude products from result set with any of the specified types. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `include_types` parameter. Options: `simple`, `grouped`, `external` and `variable`.                                                           |
 | `sku`             | string  | Limit result set to products with a specific SKU.                                                                                                                         |
 | `featured`        | boolean | Limit result set to featured products.                                                                                                                                    |
 | `category`        | string  | Limit result set to products assigned a specific category ID.                                                                                                             |
@@ -1494,6 +1498,8 @@ woocommerce.get("products").parsed_response
 | `min_price`       | string  | Limit result set to products based on a minimum price.                                                                                                                    |
 | `max_price`       | string  | Limit result set to products based on a maximum price.                                                                                                                    |
 | `stock_status`    | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                                                             |
+| `virtual`         | boolean | Limit result set to virtual products.                                                             |
+| `downloadable`    | boolean | Limit result set to downloadable products.                                                        |
 
 ## Duplicate product ##
 
