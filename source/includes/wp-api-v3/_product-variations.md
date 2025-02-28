@@ -624,12 +624,16 @@ woocommerce.get("products/22/variations").parsed_response
 | `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                   |
 | `slug`           | string  | Limit result set to products with a specific slug.                                                                                      |
 | `status`         | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`. |
+| `include_status` | string  | Limit result set to product variations with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `status` parameter. Options: `any`, `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
+| `exclude_status` | string  | Exclude product variations from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `include_status` parameter. Options: `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
 | `sku`            | string  | Limit result set to products with a specific SKU.                                                                                       |
 | `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
 | `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
 | `max_price`      | string  | Limit result set to products based on a maximum price.                                                                                  |
 | `stock_status`   | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                           |
+| `virtual`        | boolean | Limit result set to virtual product variations |
+| `downloadable`   | boolean | Limit result set to downloadable product variations. |
 
 ## Update a product variation ##
 
