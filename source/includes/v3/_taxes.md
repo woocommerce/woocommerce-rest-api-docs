@@ -42,7 +42,8 @@ curl -X POST https://example.com/wc-api/v3/taxes \
     "state": "AL",
     "rate": "4",
     "name": "State Tax",
-    "shipping": false
+    "shipping": false,
+    "class": "standard"
   }
 }'
 ```
