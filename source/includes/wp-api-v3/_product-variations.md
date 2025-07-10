@@ -31,7 +31,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `download_expiry`       | integer   | Number of days until access to downloadable files expires. Default is `-1`.                                         |
 | `tax_status`            | string    | Tax status. Options: `taxable`, `shipping` and `none`. Default is `taxable`.                                        |
 | `tax_class`             | string    | Tax class.                                                                                                          |
-| `manage_stock`          | boolean   | Stock management at variation level. Default is `false`.                                                            |
+| `manage_stock`          | boolean, string   | Stock management at variation level. Default is `false`.                                                            |
 | `stock_quantity`        | integer   | Stock quantity.                                                                                                     |
 | `stock_status`          | string    | Controls the stock status of the product. Options: `instock`, `outofstock`, `onbackorder`. Default is `instock`.    |
 | `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.     |
