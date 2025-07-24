@@ -8281,7 +8281,7 @@ woocommerce.get("").parsed_response
               "required": false,
               "default": false,
               "description": "Stock management at variation level.",
-              "type": "boolean"
+              "type": ["boolean", "string"]
             },
             "stock_quantity": {
               "required": false,
@@ -8575,7 +8575,7 @@ woocommerce.get("").parsed_response
             "manage_stock": {
               "required": false,
               "description": "Stock management at variation level.",
-              "type": "boolean"
+              "type": ["boolean", "string"]
             },
             "stock_quantity": {
               "required": false,
@@ -8856,7 +8856,7 @@ woocommerce.get("").parsed_response
             "manage_stock": {
               "required": false,
               "description": "Stock management at variation level.",
-              "type": "boolean"
+              "type": ["boolean", "string"]
             },
             "stock_quantity": {
               "required": false,
