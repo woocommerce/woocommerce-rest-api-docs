@@ -176,6 +176,60 @@ woocommerce.get("system_status/tools").parsed_response
     }
   },
   {
+    "id": "clear_expired_download_permissions",
+    "name": "Used-up download permissions",
+    "action": "Clean up download permissions",
+    "description": "This tool will delete expired download permissions and permissions with 0 remaining downloads.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/clear_expired_download_permissions"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "regenerate_product_lookup_tables",
+    "name": "Product lookup tables",
+    "action": "Regenerate",
+    "description": "This tool will regenerate product lookup table data. This process may take a while.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/regenerate_product_lookup_tables"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "repair_coupons_lookup_table",
+    "name": "Coupons lookup table",
+    "action": "Repair",
+    "description": "This tool will repair the coupons lookup table data with missing discount amounts. This process may take a while.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/repair_coupons_lookup_table"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
     "id": "recount_terms",
     "name": "Term counts",
     "action": "Recount terms",
@@ -230,6 +284,42 @@ woocommerce.get("system_status/tools").parsed_response
     }
   },
   {
+    "id": "clear_template_cache",
+    "name": "Clear template cache",
+    "action": "Clear",
+    "description": "<strong class=\"red\">Note:</strong> This tool will empty the template cache.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/clear_template_cache"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "clear_system_status_theme_info_cache",
+    "name": "Clear system status theme info cache",
+    "action": "Clear",
+    "description": "<strong class=\"red\">Note:</strong> This tool will empty the system status theme info cache.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/clear_system_status_theme_info_cache"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
     "id": "install_pages",
     "name": "Install WooCommerce pages",
     "action": "Install pages",
@@ -274,6 +364,78 @@ woocommerce.get("system_status/tools").parsed_response
       "self": [
         {
           "href": "https://example.com/wp-json/wc/v2/system_status/tools/reset_tracking"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "regenerate_thumbnails",
+    "name": "Regenerate shop thumbnails",
+    "action": "Regenerate",
+    "description": "This will regenerate all shop thumbnails to match your theme and/or image settings.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/regenerate_thumbnails"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "db_update_routine",
+    "name": "Update database",
+    "action": "Update database",
+    "description": "<strong class=\"red\">Note:</strong> This tool will update your WooCommerce database to the latest version. Please ensure you make sufficient backups before proceeding.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/db_update_routine"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "recreate_order_address_fts_index",
+    "name": "Re-create Order Address FTS index",
+    "action": "Recreate index",
+    "description": "This tool will recreate the full text search index for order addresses. If the index does not exist, it will try to create it.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/recreate_order_address_fts_index"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "verify_db_tables",
+    "name": "Verify base database tables",
+    "action": "Verify database",
+    "description": "Verify if all base database tables are present.",
+    "_links": {
+      "self": [
+        {
+          "href": "https://example.com/wp-json/wc/v2/system_status/tools/verify_db_tables"
         }
       ],
       "collection": [
