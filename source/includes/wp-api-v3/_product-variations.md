@@ -14,6 +14,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `description`           | string    | Variation description.                                                                                              |
 | `permalink`             | string    | Variation URL. <i class="label label-info">read-only</i>                                                            |
 | `sku`                   | string    | Unique identifier.                                                                                                  |
+| `global_unique_id`      | string    | GTIN, UPC, EAN or ISBN. A global unique identifier for the variation.                                               |
 | `price`                 | string    | Current variation price. <i class="label label-info">read-only</i>                                                  |
 | `regular_price`         | string    | Variation regular price.                                                                                            |
 | `sale_price`            | string    | Variation sale price.                                                                                               |
