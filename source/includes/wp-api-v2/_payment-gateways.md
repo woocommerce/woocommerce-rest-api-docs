@@ -28,7 +28,7 @@ The payment gateways API allows you to view, and update individual payment gatew
 | `tip`         | string | Additional help text shown to the user about the setting. <i class="label label-info">read-only</i>                                                                                             |
 | `placeholder` | string | Placeholder text to be displayed in text inputs. <i class="label label-info">read-only</i>                                                                                                      |
 
-## Retrieve an payment gateway ##
+## Retrieve a payment gateway ##
 
 This API lets you retrieve and view a specific payment gateway.
 
