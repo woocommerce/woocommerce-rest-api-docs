@@ -80,9 +80,6 @@ woocommerce.get("payment_gateways/bacs").parsed_response
   "enabled": true,
   "method_title": "BACS",
   "method_description": "Allows payments by BACS, more commonly known as direct bank/wire transfer.",
-    "method_supports": [
-      "products"
-    ],
   "method_supports": [
     "products"
   ],
