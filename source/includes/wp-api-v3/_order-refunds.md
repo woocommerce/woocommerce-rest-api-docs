@@ -119,7 +119,7 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
       "refund_total": 10,
       "refund_tax": [
         {
-          "id" "222",
+          "id": "222",
           "refund_total": 20
         }
       ]
@@ -184,7 +184,7 @@ data = {
          "refund_total": 10,
          "refund_tax": [
            {
-             "id" "222",
+             "id": "222",
              "refund_total": 20
            }
          ]
@@ -204,7 +204,7 @@ data = {
        refund_total: 10,
        refund_tax: [
          {
-           id "222",
+           id: "222",
            refund_total: 20
          }
        ]
