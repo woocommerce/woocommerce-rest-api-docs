@@ -21,6 +21,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `description`           | string    | Product description.                                                                                                 |
 | `short_description`     | string    | Product short description.                                                                                           |
 | `sku`                   | string    | Unique identifier.                                                                                                   |
+| `global_unique_id`      | string    | GTIN, UPC, EAN or ISBN - a unique identifier for each distinct product and service that can be purchased.            |
 | `price`                 | string    | Current product price. <i class="label label-info">read-only</i>                                                     |
 | `regular_price`         | string    | Product regular price.                                                                                               |
 | `sale_price`            | string    | Product sale price.                                                                                                  |
