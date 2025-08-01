@@ -356,24 +356,6 @@ woocommerce.get("system_status/tools").parsed_response
     }
   },
   {
-    "id": "reset_tracking",
-    "name": "Reset usage tracking settings",
-    "action": "Reset usage tracking settings",
-    "description": "This will reset your usage tracking settings, causing it to show the opt-in banner again and not sending any data.",
-    "_links": {
-      "self": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/system_status/tools/reset_tracking"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://example.com/wp-json/wc/v3/system_status/tools"
-        }
-      ]
-    }
-  },
-  {
     "id": "regenerate_thumbnails",
     "name": "Regenerate shop thumbnails",
     "action": "Regenerate",
