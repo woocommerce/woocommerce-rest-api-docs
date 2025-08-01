@@ -1018,6 +1018,12 @@ woocommerce.get("orders").parsed_response
         {
           "href": "https://example.com/wp-json/wc/v3/orders"
         }
+      ],
+	  "email_templates": [
+	    {
+	      "embeddable": true,
+	      "href": "http://example.com/wp-json/wc/v3/orders/723/actions/email_templates"
+	    }
       ]
     }
   },
@@ -1160,6 +1166,12 @@ woocommerce.get("orders").parsed_response
       "collection": [
         {
           "href": "https://example.com/wp-json/wc/v3/orders"
+        }
+      ],
+      "email_templates": [
+        {
+          "embeddable": true,
+          "href": "http://example.com/wp-json/wc/v3/orders/723/actions/email_templates"
         }
       ],
       "customer": [
