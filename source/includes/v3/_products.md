@@ -443,7 +443,7 @@ woocommerce.post("products", data).parsed_response
     "brands": [
       {
         "id": 99,
-        "name": "test",
+        "name": "Test",
         "slug": "test"
       }
     ],
