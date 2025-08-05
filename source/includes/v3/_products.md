@@ -58,6 +58,7 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `parent_id`                     | integer | Product parent ID (post_parent)                                                                                                                                                                                                                                  |
 | `categories`                    | array   | List of product categories names (`string`). In write-mode need to pass a array of categories IDs (`integer`) ([uses wp_set_object_terms()](http://codex.wordpress.org/Function_Reference/wp_set_object_terms))                                                  |
 | `tags`                          | array   | List of product tags names (`string`). In write-mode need to pass a array of tags IDs (`integer`) ([uses wp_set_object_terms()](http://codex.wordpress.org/Function_Reference/wp_set_object_terms))                                                              |
+| `brands`                        | array   | List of product brands. See [Brands Properties](#brands-properties). In write-mode pass an array of brand objects with `id` property ([uses wp_set_object_terms()](http://codex.wordpress.org/Function_Reference/wp_set_object_terms))                                                      |
 | `images`                        | array   | List of products images. See [Images Properties](#images-properties)                                                                                                                                                                                             |
 | `featured_src`                  | string  | Featured image URL <i class="label label-info">read-only</i>                                                                                                                                                                                                     |
 | `attributes`                    | array   | List of product attributes. See [Attributes Properties](#attributes-properties). Note: the attribute must be registered in WooCommerce before.                                                                                                                   |
@@ -102,6 +103,14 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 <aside class="notice">
 	<code>alt</code> and <code>title</code> attributes are writable starting from WooCommerce 2.5.
 </aside>
+
+### Brands Properties ###
+
+| Attribute |   Type  |                                      Description                                       |
+| --------- | ------- | -------------------------------------------------------------------------------------- |
+| `id`      | integer | Brand ID <i class="label label-info">required for write operations</i>                |
+| `name`    | string  | Brand name <i class="label label-info">read-only</i>                                  |
+| `slug`    | string  | Brand slug <i class="label label-info">read-only</i>                                  |
 
 ### Attributes Properties ###
 
@@ -197,6 +206,14 @@ curl -X POST https://example.com/wc-api/v3/products \
       9,
       14
     ],
+    "brands": [
+      {
+        "id": 15
+      },
+      {
+        "id": 16
+      }
+    ],
     "images": [
       {
         "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
@@ -222,6 +239,14 @@ var data = {
     categories: [
       9,
       14
+    ],
+    brands: [
+      {
+        id: 15
+      },
+      {
+        id: 16
+      }
     ],
     images: [
       {
@@ -254,6 +279,14 @@ $data = [
             9,
             14
         ],
+        'brands' => [
+            [
+                'id' => 15
+            ],
+            [
+                'id' => 16
+            ]
+        ],
         'images' => [
             [
                 'src' => 'http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg',
@@ -283,6 +316,14 @@ data = {
             9,
             14
         ],
+        "brands": [
+            {
+                "id": 15
+            },
+            {
+                "id": 16
+            }
+        ],
         "images": [
             {
                 "src": "http://example.com/wp-content/uploads/2015/01/premium-quality-front.jpg",
@@ -310,6 +351,14 @@ data = {
     categories: [
       9,
       14
+    ],
+    brands: [
+      {
+        id: 15
+      },
+      {
+        id: 16
+      }
     ],
     images: [
       {
@@ -391,6 +440,13 @@ woocommerce.post("products", data).parsed_response
       "T-shirts"
     ],
     "tags": [],
+    "brands": [
+      {
+        "id": 99,
+        "name": "Test",
+        "slug": "test"
+      }
+    ],
     "images": [
       {
         "id": 547,
@@ -442,6 +498,14 @@ curl -X POST https://example.com/wc-api/v3/products \
     "categories": [
       9,
       14
+    ],
+    "brands": [
+      {
+        "id": 15
+      },
+      {
+        "id": 16
+      }
     ],
     "images": [
       {
@@ -529,6 +593,14 @@ var data = {
     categories: [
       9,
       14
+    ],
+    brands: [
+      {
+        id: 15
+      },
+      {
+        id: 16
+      }
     ],
     images: [
       {
@@ -622,6 +694,14 @@ $data = [
             9,
             14
         ],
+        'brands' => [
+            [
+                'id' => 15
+            ],
+            [
+                'id' => 16
+            ]
+        ],
         'images' => [
             [
                 'src' => 'http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg',
@@ -712,6 +792,14 @@ data = {
             9,
             14
         ],
+        "brands": [
+            {
+                "id": 15
+            },
+            {
+                "id": 16
+            }
+        ],
         "images": [
             {
                 "src": "http://example.com/wp-content/uploads/2015/01/ship-your-idea-black-front.jpg",
@@ -800,6 +888,14 @@ data = {
     categories: [
       9,
       14
+    ],
+    brands: [
+      {
+        id: 15
+      },
+      {
+        id: 16
+      }
     ],
     images: [
       {
@@ -943,6 +1039,13 @@ woocommerce.post("products", data).parsed_response
       "T-shirts"
     ],
     "tags": [],
+    "brands": [
+      {
+        "id": 99,
+        "name": "test",
+        "slug": "test"
+      }
+    ],
     "images": [
       {
         "id": 605,
@@ -1214,6 +1317,13 @@ woocommerce.get("products/546").parsed_response
       "T-shirts"
     ],
     "tags": [],
+    "brands": [
+      {
+        "id": 99,
+        "name": "test",
+        "slug": "test"
+      }
+    ],
     "images": [
       {
         "id": 547,
@@ -1763,6 +1873,13 @@ woocommerce.put("products/546", data).parsed_response
       "T-shirts"
     ],
     "tags": [],
+    "brands": [
+      {
+        "id": 99,
+        "name": "test",
+        "slug": "test"
+      }
+    ],
     "images": [
       {
         "id": 547,
