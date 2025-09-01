@@ -4,22 +4,22 @@ The taxes API allows you to create, view, update, and delete individual tax rate
 
 ## Tax rate properties ##
 
-| Attribute  |   Type  |                                                                                   Description                                                                                   |
-|------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`       | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                   |
-| `country`  | string  | Country ISO 3166 code. See [ISO 3166 Codes (Countries)](http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html) for more details                                              |
-| `state`    | string  | State code.                                                                                                                                                                     |
-| `postcode` | string  | Postcode/ZIP, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, `postcodes` should be used instead.                                                         |
-| `city`     | string  | City name, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, `postcodes` should be used instead.                                                            |
-| `postcodes`| string[]  | Postcodes/ZIPs. Introduced in WooCommerce 5.3.                                                                                                                                |
-| `cities`   | string[]  | City names. Introduced in WooCommerce 5.3.                                                                                                                                    |
-| `rate`     | string  | Tax rate.                                                                                                                                                                       |
-| `name`     | string  | Tax rate name.                                                                                                                                                                  |
+| Attribute  |   Type  | Description                                                                                                                                                                    |
+|------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`       | integer | Unique identifier for the resource. <i class="label label-info">read-only</i>                                                                                                  |
+| `country`  | string  | Country ISO 3166 code. See [ISO 3166 Codes (Countries)](http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html) for more details                                             |
+| `state`    | string  | State code.                                                                                                                                                                    |
+| `postcode` | string  | Postcode/ZIP, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, `postcodes` should be used instead.                                                        |
+| `city`     | string  | City name, it doesn't support multiple values. Deprecated as of WooCommerce 5.3, `postcodes` should be used instead.                                                           |
+| `postcodes`| string[]  | Postcodes/ZIPs. Introduced in WooCommerce 5.3.                                                                                                                                 |
+| `cities`   | string[]  | City names. Introduced in WooCommerce 5.3.                                                                                                                                     |
+| `rate`     | string  | Tax rate.                                                                                                                                                                      |
+| `name`     | string  | Tax rate name.                                                                                                                                                                 |
 | `priority` | integer | Tax priority. Only 1 matching rate per priority will be used. To define multiple tax rates for a single area you need to specify a different priority per rate. Default is `1`. |
-| `compound` | boolean | Whether or not this is a compound rate. Compound tax rates are applied on top of other tax rates. Default is `false`.                                                           |
-| `shipping` | boolean | Whether or not this tax rate also gets applied to shipping. Default is `true`.                                                                                                  |
-| `order`    | integer | Indicates the order that will appear in queries.                                                                                                                                |
-| `class`    | string  | Tax class. Default is `standard`.                                                                                                                                               |
+| `compound` | boolean | Whether or not this is a compound tax rate. Compound rates are applied on top of other tax rates. Default is `false`.                                                       |
+| `shipping` | boolean | Whether or not this tax rate also gets applied to shipping. Default is `true`.                                                                                                 |
+| `order`    | integer | Indicates the order that will appear in queries.                                                                                                                               |
+| `class`    | string  | Tax class. Default is `standard`.                                                                                                                                              |
 
 ## Create a tax rate ##
 

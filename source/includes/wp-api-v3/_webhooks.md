@@ -35,7 +35,7 @@ Delivery is performed using `wp_remote_post()` (HTTP POST) and processed in the 
 * `X-WC-Webhook-Event` - e.g. `updated`.
 * `X-WC-Webhook-Signature` - a base64 encoded HMAC-SHA256 hash of the payload.
 * `X-WC-Webhook-ID` - webhook's post ID.
-* `X-WC-Delivery-ID` - delivery log ID (a comment).
+* `X-WC-Webhook-Delivery-ID` - delivery log ID (a comment).
 
 The payload is JSON encoded and for API resources (coupons, customers, orders, products), the response is exactly the same as if requested via the REST API.
 
@@ -374,7 +374,7 @@ woocommerce.get("webhooks").parsed_response
 | `search`        | string  | Limit results to those matching a string.                                                                                     |
 | `after`         | string  | Limit response to resources published after a given ISO8601 compliant date.                                                   |
 | `before`        | string  | Limit response to resources published before a given ISO8601 compliant date.                                                  |
-| `dates_are_gmt` | boolean | Interpret `after` and `before` as UTC dates when `true`.                                                                      |
+| `dates_are_gmt` | boolean | Whether to interpret dates as GMT dates when limiting response by published date.                                             |
 | `exclude`       | array   | Ensure result set excludes specific IDs.                                                                                      |
 | `include`       | array   | Limit result set to specific ids.                                                                                             |
 | `offset`        | integer | Offset the result set by a specific number of items.                                                                          |
@@ -391,12 +391,12 @@ This API lets you make changes to a webhook.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-put">PUT</i>
-		<h6>/wp-json/wc/v3/webhook/&lt;id&gt;</h6>
+		<h6>/wp-json/wc/v3/webhooks/&lt;id&gt;</h6>
 	</div>
 </div>
 
 ```shell
-curl -X PUT https://example.com/wp-json/wc/v3/webhook/142 \
+curl -X PUT https://example.com/wp-json/wc/v3/webhooks/142 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{

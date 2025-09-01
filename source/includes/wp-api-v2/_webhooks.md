@@ -35,7 +35,7 @@ Delivery is performed using `wp_remote_post()` (HTTP POST) and processed in the 
 * `X-WC-Webhook-Event` - e.g. `updated`.
 * `X-WC-Webhook-Signature` - a base64 encoded HMAC-SHA256 hash of the payload.
 * `X-WC-Webhook-ID` - webhook's post ID.
-* `X-WC-Delivery-ID` - delivery log ID (a comment).
+* `X-WC-Webhook-Delivery-ID` - delivery log ID (a comment).
 
 The payload is JSON encoded and for API resources (coupons, customers, orders, products), the response is exactly the same as if requested via the REST API.
 

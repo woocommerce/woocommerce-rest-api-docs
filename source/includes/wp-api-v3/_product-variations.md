@@ -14,6 +14,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `description`           | string    | Variation description.                                                                                              |
 | `permalink`             | string    | Variation URL. <i class="label label-info">read-only</i>                                                            |
 | `sku`                   | string    | Unique identifier.                                                                                                  |
+| `global_unique_id`      | string    | GTIN, UPC, EAN or ISBN. A global unique identifier for the variation.                                               |
 | `price`                 | string    | Current variation price. <i class="label label-info">read-only</i>                                                  |
 | `regular_price`         | string    | Variation regular price.                                                                                            |
 | `sale_price`            | string    | Variation sale price.                                                                                               |
@@ -31,7 +32,7 @@ The product variations API allows you to create, view, update, and delete indivi
 | `download_expiry`       | integer   | Number of days until access to downloadable files expires. Default is `-1`.                                         |
 | `tax_status`            | string    | Tax status. Options: `taxable`, `shipping` and `none`. Default is `taxable`.                                        |
 | `tax_class`             | string    | Tax class.                                                                                                          |
-| `manage_stock`          | boolean   | Stock management at variation level. Default is `false`.                                                            |
+| `manage_stock`          | boolean, string   | Stock management at variation level. Possible values are either a boolean or `parent`. Default is `false`. |
 | `stock_quantity`        | integer   | Stock quantity.                                                                                                     |
 | `stock_status`          | string    | Controls the stock status of the product. Options: `instock`, `outofstock`, `onbackorder`. Default is `instock`.    |
 | `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.     |
@@ -620,17 +621,21 @@ woocommerce.get("products/22/variations").parsed_response
 | `include`        | array   | Limit result set to specific ids.                                                                                                       |
 | `offset`         | integer | Offset the result set by a specific number of items.                                                                                    |
 | `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                             |
-| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                           |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `modified`, `id`, `include`, `title` and `slug`. Default is `date`.                          |
 | `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                     |
 | `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                   |
 | `slug`           | string  | Limit result set to products with a specific slug.                                                                                      |
 | `status`         | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`. |
+| `include_status` | string  | Limit result set to product variations with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `status` parameter. Options: `any`, `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
+| `exclude_status` | string  | Exclude product variations from result set with any of the specified statuses. Multiple statuses can be provided as a comma-separated list. Takes precedence over the `include_status` parameter. Options: `future`, `trash`, `draft`, `pending`, `private`, and `publish`.|
 | `sku`            | string  | Limit result set to products with a specific SKU.                                                                                       |
 | `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
 | `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
 | `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
 | `max_price`      | string  | Limit result set to products based on a maximum price.                                                                                  |
 | `stock_status`   | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                           |
+| `virtual`        | boolean | Limit result set to virtual product variations |
+| `downloadable`   | boolean | Limit result set to downloadable product variations. |
 
 ## Update a product variation ##
 

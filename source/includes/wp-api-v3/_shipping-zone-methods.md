@@ -645,7 +645,7 @@ WooCommerce.put("shipping/zones/5/methods/26", data)
 ```php
 <?php
 $data = [
-    'regular_price' => [
+    'settings' => [
         'cost' => '20.00'
     ]
 ];
@@ -656,7 +656,7 @@ print_r($woocommerce->put('shipping/zones/5/methods/26', $data));
 
 ```python
 data = {
-    "regular_price": {
+    "settings": {
         "cost": "20.00"
     }
 }
@@ -666,7 +666,7 @@ print(wcapi.put("shipping/zones/5/methods/26", data).json())
 
 ```ruby
 data = {
-  regular_price: {
+  settings: {
     "cost": "20.00"
   }
 }

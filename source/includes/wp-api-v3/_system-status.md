@@ -16,38 +16,38 @@ The system status API allows you to view all system status items.
 
 ### System status - Environment properties ###
 
-| Attribute                   | Type    | Description                                                                |
-| --------------------------- | ------- | -------------------------------------------------------------------------- |
-| `home_url`                  | string  | Home URL. <i class="label label-info">read-only</i>                        |
-| `site_url`                  | string  | Site URL. <i class="label label-info">read-only</i>                        |
-| `wc_version`                | string  | WooCommerce version. <i class="label label-info">read-only</i>             |
-| `log_directory`             | string  | Log directory. <i class="label label-info">read-only</i>                   |
-| `log_directory_writable`    | boolean | Is log directory writable? <i class="label label-info">read-only</i>       |
-| `wp_version`                | string  | WordPress version. <i class="label label-info">read-only</i>               |
-| `wp_multisite`              | boolean | Is WordPress multisite? <i class="label label-info">read-only</i>          |
-| `wp_memory_limit`           | integer | WordPress memory limit. <i class="label label-info">read-only</i>          |
-| `wp_debug_mode`             | boolean | Is WordPress debug mode active? <i class="label label-info">read-only</i>  |
-| `wp_cron`                   | boolean | Are WordPress cron jobs enabled? <i class="label label-info">read-only</i> |
-| `language`                  | string  | WordPress language. <i class="label label-info">read-only</i>              |
-| `server_info`               | string  | Server info. <i class="label label-info">read-only</i>                     |
-| `php_version`               | string  | PHP version. <i class="label label-info">read-only</i>                     |
-| `php_post_max_size`         | integer | PHP post max size. <i class="label label-info">read-only</i>               |
-| `php_max_execution_time`    | integer | PHP max execution time. <i class="label label-info">read-only</i>          |
-| `php_max_input_vars`        | integer | PHP max input vars. <i class="label label-info">read-only</i>              |
-| `curl_version`              | string  | cURL version. <i class="label label-info">read-only</i>                    |
-| `suhosin_installed`         | boolean | Is SUHOSIN installed? <i class="label label-info">read-only</i>            |
-| `max_upload_size`           | integer | Max upload size. <i class="label label-info">read-only</i>                 |
-| `mysql_version`             | string  | MySQL version. <i class="label label-info">read-only</i>                   |
-| `default_timezone`          | string  | Default timezone. <i class="label label-info">read-only</i>                |
+| Attribute                | Type    | Description                                                                |
+| ------------------------ | ------- | -------------------------------------------------------------------------- |
+| `home_url`               | string  | Home URL. <i class="label label-info">read-only</i>                        |
+| `site_url`               | string  | Site URL. <i class="label label-info">read-only</i>                        |
+| `version`                | string  | WooCommerce version. <i class="label label-info">read-only</i>             |
+| `log_directory`          | string  | Log directory. <i class="label label-info">read-only</i>                   |
+| `log_directory_writable` | boolean | Is log directory writable? <i class="label label-info">read-only</i>       |
+| `wp_version`             | string  | WordPress version. <i class="label label-info">read-only</i>               |
+| `wp_multisite`           | boolean | Is WordPress multisite? <i class="label label-info">read-only</i>          |
+| `wp_memory_limit`        | integer | WordPress memory limit. <i class="label label-info">read-only</i>          |
+| `wp_debug_mode`          | boolean | Is WordPress debug mode active? <i class="label label-info">read-only</i>  |
+| `wp_cron`                | boolean | Are WordPress cron jobs enabled? <i class="label label-info">read-only</i> |
+| `language`               | string  | WordPress language. <i class="label label-info">read-only</i>              |
+| `server_info`            | string  | Server info. <i class="label label-info">read-only</i>                     |
+| `php_version`            | string  | PHP version. <i class="label label-info">read-only</i>                     |
+| `php_post_max_size`      | integer | PHP post max size. <i class="label label-info">read-only</i>               |
+| `php_max_execution_time` | integer | PHP max execution time. <i class="label label-info">read-only</i>          |
+| `php_max_input_vars`     | integer | PHP max input vars. <i class="label label-info">read-only</i>              |
+| `curl_version`           | string  | cURL version. <i class="label label-info">read-only</i>                    |
+| `suhosin_installed`      | boolean | Is SUHOSIN installed? <i class="label label-info">read-only</i>            |
+| `max_upload_size`        | integer | Max upload size. <i class="label label-info">read-only</i>                 |
+| `mysql_version`          | string  | MySQL version. <i class="label label-info">read-only</i>                   |
+| `default_timezone`       | string  | Default timezone. <i class="label label-info">read-only</i>                |
 | `fsockopen_or_curl_enabled` | boolean | Is fsockopen/cURL enabled? <i class="label label-info">read-only</i>       |
-| `soapclient_enabled`        | boolean | Is SoapClient class enabled? <i class="label label-info">read-only</i>     |
-| `domdocument_enabled`       | boolean | Is DomDocument class enabled? <i class="label label-info">read-only</i>    |
-| `gzip_enabled`              | boolean | Is GZip enabled? <i class="label label-info">read-only</i>                 |
-| `mbstring_enabled`          | boolean | Is mbstring enabled? <i class="label label-info">read-only</i>             |
-| `remote_post_successful`    | boolean | Remote POST successful? <i class="label label-info">read-only</i>          |
-| `remote_post_response`      | string  | Remote POST response. <i class="label label-info">read-only</i>            |
-| `remote_get_successful`     | boolean | Remote GET successful? <i class="label label-info">read-only</i>           |
-| `remote_get_response`       | string  | Remote GET response. <i class="label label-info">read-only</i>             |
+| `soapclient_enabled`     | boolean | Is SoapClient class enabled? <i class="label label-info">read-only</i>     |
+| `domdocument_enabled`    | boolean | Is DomDocument class enabled? <i class="label label-info">read-only</i>    |
+| `gzip_enabled`           | boolean | Is GZip enabled? <i class="label label-info">read-only</i>                 |
+| `mbstring_enabled`       | boolean | Is mbstring enabled? <i class="label label-info">read-only</i>             |
+| `remote_post_successful` | boolean | Remote POST successful? <i class="label label-info">read-only</i>          |
+| `remote_post_response`   | string  | Remote POST response. <i class="label label-info">read-only</i>            |
+| `remote_get_successful`  | boolean | Remote GET successful? <i class="label label-info">read-only</i>           |
+| `remote_get_response`    | string  | Remote GET response. <i class="label label-info">read-only</i>             |
 
 ### System status - Database properties ###
 
