@@ -402,7 +402,7 @@ woocommerce.get("coupons").parsed_response
 | `before`          | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
 | `modified_after`  | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                   |
 | `modified_before` | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                   |
-| `dates_are_gmt`   | boolean | Whether to consider GMT post dates when limiting response by published or modified date.                                     |
+| `dates_are_gmt`   | boolean | Whether to interpret dates as GMT when limiting response by published or modified date.                                      |
 | `exclude`         | array   | Ensure result set excludes specific IDs.                                                                                     |
 | `include`         | array   | Limit result set to specific ids.                                                                                            |
 | `offset`          | integer | Offset the result set by a specific number of items.                                                                         |

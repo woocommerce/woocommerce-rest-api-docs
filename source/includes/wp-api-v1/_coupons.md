@@ -365,20 +365,21 @@ woocommerce.get("coupons").parsed_response
 
 #### Available parameters ####
 
-| Parameter  |   Type  |                                                  Description                                                  |
-|------------|---------|---------------------------------------------------------------------------------------------------------------|
-| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
-| `page`     | integer | Current page of the collection.                                                                               |
-| `per_page` | integer | Maximum number of items to be returned in result set.                                                         |
-| `search`   | string  | Limit results to those matching a string.                                                                     |
-| `after`    | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
-| `before`   | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
-| `exclude`  | string  | Ensure result set excludes specific ids.                                                                      |
-| `include`  | string  | Limit result set to specific ids.                                                                             |
-| `offset`   | integer | Offset the result set by a specific number of items.                                                          |
-| `order`    | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
-| `orderby`  | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
-| `code`     | string  | Limit result set to resources with a specific code.                                                           |
+| Parameter       |   Type  |                                                  Description                                                  |
+|-----------------|---------|---------------------------------------------------------------------------------------------------------------|
+| `context`       | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`.     |
+| `page`          | integer | Current page of the collection.                                                                               |
+| `per_page`      | integer | Maximum number of items to be returned in result set.                                                         |
+| `search`        | string  | Limit results to those matching a string.                                                                     |
+| `after`         | string  | Limit response to resources published after a given ISO8601 compliant date.                                   |
+| `before`        | string  | Limit response to resources published before a given ISO8601 compliant date.                                  |
+| `dates_are_gmt` | boolean | Interpret `after` and `before` as UTC dates when `true`.                                                      |
+| `exclude`       | string  | Ensure result set excludes specific ids.                                                                      |
+| `include`       | string  | Limit result set to specific ids.                                                                             |
+| `offset`        | integer | Offset the result set by a specific number of items.                                                          |
+| `order`         | string  | Order sort attribute ascending or descending. Default is `asc`. Options: `asc` and `desc`.                    |
+| `orderby`       | string  | Sort collection by object attribute. Default is `date`, Options: `date`, `id`, `include`, `title` and `slug`. |
+| `code`          | string  | Limit result set to resources with a specific code.                                                           |
 
 ## Update a coupon ##
 
