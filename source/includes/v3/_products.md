@@ -99,6 +99,9 @@ This section lists all API endpoints that can be used to create, edit or otherwi
 | `title`      | string  | Image title (attachment title)                                                         |
 | `alt`        | string  | Image alt text (attachment image alt text)                                             |
 | `position`   | integer | Image position. `0` means that the image is featured                                   |
+| `srcset`     | string  | Image srcset for responsive images <i class="label label-info">read-only</i>          |
+| `sizes`      | string  | Image sizes attribute for responsive images <i class="label label-info">read-only</i> |
+| `thumbnail`  | string  | Thumbnail image URL <i class="label label-info">read-only</i>                         |
 
 <aside class="notice">
 	<code>alt</code> and <code>title</code> attributes are writable starting from WooCommerce 2.5.
