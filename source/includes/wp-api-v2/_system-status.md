@@ -28,6 +28,7 @@ The system status API allows you to view all system status items.
 | `wp_memory_limit`           | integer | WordPress memory limit. <i class="label label-info">read-only</i>          |
 | `wp_debug_mode`             | boolean | Is WordPress debug mode active? <i class="label label-info">read-only</i>  |
 | `wp_cron`                   | boolean | Are WordPress cron jobs enabled? <i class="label label-info">read-only</i> |
+| `wp_environment_type`       | string  | WordPress environment type. <i class="label label-info">read-only</i>      |
 | `language`                  | string  | WordPress language. <i class="label label-info">read-only</i>              |
 | `server_info`               | string  | Server info. <i class="label label-info">read-only</i>                     |
 | `php_version`               | string  | PHP version. <i class="label label-info">read-only</i>                     |
@@ -152,6 +153,7 @@ woocommerce.get("system_status").parsed_response
     "wp_memory_limit": 134217728,
     "wp_debug_mode": true,
     "wp_cron": true,
+    "wp_environment_type": "production",
     "language": "en_US",
     "server_info": "Apache/2.4.18 (Ubuntu)",
     "php_version": "7.1.3-2+deb.sury.org~yakkety+1",
