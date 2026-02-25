@@ -32,13 +32,13 @@ curl -X POST https://example.com/wp-json/wc/v2/products/tags \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "name": "Leather Shoes"
+  "name": "Canvas Sneakers"
 }'
 ```
 
 ```javascript
 const data = {
-  name: "Leather Shoes"
+  name: "Canvas Sneakers"
 };
 
 WooCommerce.post("products/tags", data)
@@ -53,7 +53,7 @@ WooCommerce.post("products/tags", data)
 ```php
 <?php
 $data = [
-    'name' => 'Leather Shoes'
+    'name' => 'Canvas Sneakers'
 ];
 
 print_r($woocommerce->post('products/tags', $data));
@@ -62,7 +62,7 @@ print_r($woocommerce->post('products/tags', $data));
 
 ```python
 data = {
-    "name": "Leather Shoes"
+    "name": "Canvas Sneakers"
 }
 
 print(wcapi.post("products/tags", data).json())
@@ -70,7 +70,7 @@ print(wcapi.post("products/tags", data).json())
 
 ```ruby
 data = {
-  name: "Leather Shoes"
+  name: "Canvas Sneakers"
 }
 
 woocommerce.post("products/tags", data).parsed_response
@@ -81,8 +81,8 @@ woocommerce.post("products/tags", data).parsed_response
 ```json
 {
   "id": 34,
-  "name": "Leather Shoes",
-  "slug": "leather-shoes",
+  "name": "Canvas Sneakers",
+  "slug": "canvas-sneakers",
   "description": "",
   "count": 0,
   "_links": {
@@ -143,8 +143,8 @@ woocommerce.get("products/tags/34").parsed_response
 ```json
 {
   "id": 34,
-  "name": "Leather Shoes",
-  "slug": "leather-shoes",
+  "name": "Canvas Sneakers",
+  "slug": "canvas-sneakers",
   "description": "",
   "count": 0,
   "_links": {
@@ -206,8 +206,8 @@ woocommerce.get("products/tags").parsed_response
 [
   {
     "id": 34,
-    "name": "Leather Shoes",
-    "slug": "leather-shoes",
+    "name": "Canvas Sneakers",
+    "slug": "canvas-sneakers",
     "description": "",
     "count": 0,
     "_links": {
@@ -280,13 +280,13 @@ curl -X PUT https://example.com/wp-json/wc/v2/products/tags/34 \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "description": "Genuine leather."
+  "description": "Ethically sourced materials."
 }'
 ```
 
 ```javascript
 const data = {
-  description: "Genuine leather."
+  description: "Ethically sourced materials."
 };
 
 WooCommerce.put("products/tags/34", data)
@@ -301,7 +301,7 @@ WooCommerce.put("products/tags/34", data)
 ```php
 <?php
 $data = [
-    'description': 'Genuine leather.'
+    'description': 'Ethically sourced materials.'
 ];
 
 print_r($woocommerce->put('products/tags/34', $data));
@@ -310,7 +310,7 @@ print_r($woocommerce->put('products/tags/34', $data));
 
 ```python
 data = {
-    "description": "Genuine leather."
+    "description": "Ethically sourced materials."
 }
 
 print(wcapi.put("products/tags/34", data).json())
@@ -318,7 +318,7 @@ print(wcapi.put("products/tags/34", data).json())
 
 ```ruby
 data = {
-  description: "Genuine leather."
+  description: "Ethically sourced materials."
 }
 
 woocommerce.put("products/tags/34", data).parsed_response
@@ -329,9 +329,9 @@ woocommerce.put("products/tags/34", data).parsed_response
 ```json
 {
   "id": 34,
-  "name": "Leather Shoes",
-  "slug": "leather-shoes",
-  "description": "Genuine leather.",
+  "name": "Canvas Sneakers",
+  "slug": "canvas-sneakers",
+  "description": "Ethically sourced materials.",
   "count": 0,
   "_links": {
     "self": [
@@ -395,9 +395,9 @@ woocommerce.delete("products/tags/34", force: true).parsed_response
 ```json
 {
   "id": 34,
-  "name": "Leather Shoes",
-  "slug": "leather-shoes",
-  "description": "Genuine leather.",
+  "name": "Canvas Sneakers",
+  "slug": "canvas-sneakers",
+  "description": "Ethically sourced materials.",
   "count": 0,
   "_links": {
     "self": [
@@ -453,7 +453,7 @@ curl -X POST https://example.com//wp-json/wc/v2/products/tags/batch \
   "update": [
     {
       "id": 34,
-      "description": "Genuine leather."
+      "description": "Ethically sourced materials."
     }
   ],
   "delete": [
@@ -475,7 +475,7 @@ const data = {
   update: [
     {
       id: 34,
-      description: "Genuine leather."
+      description: "Ethically sourced materials."
     }
   ],
   delete: [
@@ -506,7 +506,7 @@ $data = [
     'update' => [
         [
             'id' => 34,
-            'description' => 'Genuine leather.'
+            'description' => 'Ethically sourced materials.'
         ]
     ],
     'delete' => [
@@ -531,7 +531,7 @@ data = {
     "update": [
         {
             "id": 34,
-            "description": "Genuine leather."
+            "description": "Ethically sourced materials."
         }
     ],
     "delete": [
@@ -555,7 +555,7 @@ data = {
   update: [
     {
       id: 34,
-      description: "Genuine leather."
+      description: "Ethically sourced materials."
     }
   ],
   delete: [
@@ -613,9 +613,9 @@ woocommerce.post("products/tags/batch", data).parsed_response
   "update": [
     {
       "id": 34,
-      "name": "Leather Shoes",
-      "slug": "leather-shoes",
-      "description": "Genuine leather.",
+      "name": "Canvas Sneakers",
+      "slug": "canvas-sneakers",
+      "description": "Ethically sourced materials.",
       "count": 0,
       "_links": {
         "self": [

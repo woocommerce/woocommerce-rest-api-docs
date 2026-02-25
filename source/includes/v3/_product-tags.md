@@ -33,7 +33,7 @@ curl -X POST https://example.com/wc-api/v3/products/tags \
 	-H "Content-Type: application/json" \
 	-d '{
   "product_tag": {
-    "name": "Leather Shoes"
+    "name": "Canvas Sneakers"
   }
 }'
 ```
@@ -41,7 +41,7 @@ curl -X POST https://example.com/wc-api/v3/products/tags \
 ```javascript
 var data = {
   product_tag: {
-    name: 'Leather Shoes'
+    name: 'Canvas Sneakers'
   }
 };
 
@@ -54,7 +54,7 @@ WooCommerce.post('products/tags', data, function(err, data, res) {
 <?php
 $data = [
     'product_tag': [
-        'name' => 'Leather Shoes'
+        'name' => 'Canvas Sneakers'
     ]
 ];
 
@@ -65,7 +65,7 @@ print_r($woocommerce->post('products/tags', $data));
 ```python
 data = {
     "product_tag": {
-        "name": "Leather Shoes"
+        "name": "Canvas Sneakers"
     }
 }
 
@@ -75,7 +75,7 @@ print(wcapi.post("products/tags", data).json())
 ```ruby
 data = {
   product_tag: {
-    name: "Leather Shoes"
+    name: "Canvas Sneakers"
   }
 }
 
@@ -88,8 +88,8 @@ woocommerce.post("products/tags", data).parsed_response
 {
   "product_tag": {
     "id": 37,
-    "name": "Leather Shoes",
-    "slug": "leather-shoes",
+    "name": "Canvas Sneakers",
+    "slug": "canvas-sneakers",
     "description": "",
     "count": 0
   }
@@ -140,8 +140,8 @@ woocommerce.get("products/tags/37").parsed_response
 {
   "product_tag": {
     "id": 37,
-    "name": "Leather Shoes",
-    "slug": "leather-shoes",
+    "name": "Canvas Sneakers",
+    "slug": "canvas-sneakers",
     "description": "",
     "count": 0
   }
@@ -193,8 +193,8 @@ woocommerce.get("products/tags").parsed_response
   "product_tags": [
     {
       "id": 37,
-      "name": "Leather Shoes",
-      "slug": "leather-shoes",
+      "name": "Canvas Sneakers",
+      "slug": "canvas-sneakers",
       "description": "",
       "count": 0
     },
@@ -232,7 +232,7 @@ curl -X PUT https://example.com/wc-api/v3/products/tags/37 \
 	-H "Content-Type: application/json" \
 	-d '{
   "product_tag": {
-    "description": "Genuine leather."
+    "description": "Ethically sourced materials."
   }
 }'
 ```
@@ -240,7 +240,7 @@ curl -X PUT https://example.com/wc-api/v3/products/tags/37 \
 ```javascript
 var data = {
   product_tag: {
-    description: 'Genuine leather.'
+    description: 'Ethically sourced materials.'
   }
 };
 
@@ -253,7 +253,7 @@ WooCommerce.put('products/tags/37', data, function(err, data, res) {
 <?php
 $data = [
     'product_tag': [
-        'description': 'Genuine leather.'
+        'description': 'Ethically sourced materials.'
     ]
 ];
 
@@ -264,7 +264,7 @@ print_r($woocommerce->put('products/tags/37', $data));
 ```python
 data = {
     "product_tag": {
-        "description": "Genuine leather."
+        "description": "Ethically sourced materials."
     }
 }
 
@@ -274,7 +274,7 @@ print(wcapi.put("products/tags/37", data).json())
 ```ruby
 data = {
   product_tag: {
-    description: "Genuine leather."
+    description: "Ethically sourced materials."
   }
 }
 
@@ -287,9 +287,9 @@ woocommerce.put("products/tags/37", data).parsed_response
 {
   "product_tag": {
     "id": 37,
-    "name": "Leather Shoes",
-    "slug": "leather-shoes",
-    "description": "Genuine leather.",
+    "name": "Canvas Sneakers",
+    "slug": "canvas-sneakers",
+    "description": "Ethically sourced materials.",
     "count": 0
   }
 }

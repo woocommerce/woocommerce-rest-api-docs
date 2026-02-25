@@ -88,7 +88,7 @@ woocommerce.get("products/tags/34", _jsonp: "tagDetails").parsed_response
 > Response:
 
 ```
-/**/tagDetails({"id":34,"name":"Leather Shoes","slug":"leather-shoes","description":"","count":0,"_links":{"self":[{"href":"https://example.com/wp-json/wc/v3/products/tags/34"}],"collection":[{"href":"https://example.com/wp-json/wc/v3/products/tags"}]}})%
+/**/tagDetails({"id":34,"name":"Canvas Sneakers","slug":"canvas-sneakers","description":"","count":0,"_links":{"self":[{"href":"https://example.com/wp-json/wc/v3/products/tags/34"}],"collection":[{"href":"https://example.com/wp-json/wc/v3/products/tags"}]}})%
 ```
 
 ## Errors ##
