@@ -65,6 +65,7 @@ The products API allows you to create, view, update, and delete individual, or a
 | `purchase_note`         | string    | Optional note to send the customer after purchase.                                                                   |
 | `categories`            | array     | List of categories. See [Product - Categories properties](#product-categories-properties)                            |
 | `tags`                  | array     | List of tags. See [Product - Tags properties](#product-tags-properties)                                              |
+| `brands`                | array     | List of product brands. See [Brands Properties](#brands-properties). In write-mode pass an array of brand objects with `id` property ([uses wp_set_object_terms()](http://codex.wordpress.org/Function_Reference/wp_set_object_terms))                                                      |
 | `images`                | array     | List of images. See [Product - Images properties](#product-images-properties)                                        |
 | `attributes`            | array     | List of attributes. See [Product - Attributes properties](#product-attributes-properties)                            |
 | `default_attributes`    | array     | Defaults variation attributes. See [Product - Default attributes properties](#product-default-attributes-properties) |
@@ -117,6 +118,15 @@ The products API allows you to create, view, update, and delete individual, or a
 | `src`               | string    | Image URL.                                                                                              |
 | `name`              | string    | Image name.                                                                                             |
 | `alt`               | string    | Image alternative text.                                                                                 |
+
+### Brands Properties ###
+
+| Attribute |   Type  |                                      Description                                       |
+| --------- | ------- | -------------------------------------------------------------------------------------- |
+| `id`      | integer | Brand ID <i class="label label-info">required for write operations</i>                |
+| `name`    | string  | Brand name <i class="label label-info">read-only</i>                                  |
+| `slug`    | string  | Brand slug <i class="label label-info">read-only</i>                                  |
+
 
 ### Product - Attributes properties ###
 
