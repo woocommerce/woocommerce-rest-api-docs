@@ -26,6 +26,8 @@ jobs:
       uses: actions/checkout@v4
     - name: Build
       run: ./build.sh
+    - name: Generate markdown for AI agents
+      run: ./build-markdown.sh
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload artifact
