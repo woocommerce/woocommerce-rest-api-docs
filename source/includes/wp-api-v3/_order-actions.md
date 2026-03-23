@@ -92,6 +92,8 @@ woocommerce.post("orders/723/actions/send_order_details", data).parsed_response
 
 This endpoint allows you to trigger an email to a customer about the status of their order. This is similar to the [`send_order_details`](#send-order-details-to-customer) endpoint, but allows you to specify which email template to send, based on which email templates are relevant to the order. For example, an order that is on hold has the `customer_on_hold_order` template available. A completed order that also has a partial refund has both the `customer_completed_order` and `customer_refunded_order` templates available. Specifying the `customer_invoice` template is the same as using the `send_order_details` endpoint.
 
+The `template_id` parameter is optional. When omitted, the server automatically selects the most appropriate email template based on the order's current status, falling back to `customer_invoice` if no status-specific template is available.
+
 ### HTTP request ###
 
 <div class="api-endpoint">
