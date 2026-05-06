@@ -47,4 +47,6 @@ includes:
   - wp-api-v2/system-status-tools
 
 search: false
+
+warning: <i class="info"></i> This documentation has moved. <a href="https://developer.woocommerce.com/docs/apis/rest-api/">View the new WooCommerce REST API documentation</a>.
 ---
