@@ -1,6 +1,12 @@
-# WooCommerce REST API Docs #
+# WooCommerce REST API Docs (DEPRECATED) #
 
-Repository of documentation REST API WooCommerce.
+> **NOTICE:** This repository is deprecated and only exists to serve legacy API documentation.
+>
+> The WooCommerce REST API documentation is now managed in the [WooCommerce monorepo](https://github.com/woocommerce/woocommerce/tree/trunk/docs/apis/rest-api).
+>
+> **View the current documentation at:** https://developer.woocommerce.com/docs/apis/rest-api/
+
+---
 
 This project is based on [Slate](https://github.com/tripit/slate).
 
