@@ -1,6 +1,8 @@
 ---
 title: WooCommerce REST API Documentation - WP REST API v3
 
+redirect: https://developer.woocommerce.com/docs/apis/rest-api/
+
 language_tabs:
   - shell: cURL
   - javascript: Node.js
@@ -53,4 +55,6 @@ includes:
   - wp-api-v3/data
 
 search: false
+
+warning: <i class="info"></i> This documentation has moved. <a href="https://developer.woocommerce.com/docs/apis/rest-api/">View the new WooCommerce REST API documentation</a>.
 ---

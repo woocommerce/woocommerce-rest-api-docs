@@ -1,6 +1,8 @@
 ---
 title: WooCommerce REST API Documentation - WP REST API v1
 
+redirect: https://developer.woocommerce.com/docs/apis/rest-api/
+
 language_tabs:
   - shell: cURL
   - javascript: Node.js
@@ -38,5 +40,5 @@ includes:
 
 search: false
 
-warning: <i class="info"></i> This documentation is for the WooCommerce REST API v1 which is deprecated since WooCommerce 3.0. <a href="http://woocommerce.github.io/woocommerce-rest-api-docs/">Please use the latest REST API version</a>.
+warning: <i class="info"></i> This documentation has moved. <a href="https://developer.woocommerce.com/docs/apis/rest-api/">View the new WooCommerce REST API documentation</a>.
 ---
