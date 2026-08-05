@@ -20,6 +20,7 @@ The order refunds API allows you to create, view, and delete individual refunds,
 | `fee_lines`        | array     | Fee lines data. See [Order refund - Fee lines properties](#order-refund-fee-lines-properties)                                                                                 |
 | `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i>                                              |
 | `api_restock`      | boolean   | When true, the selected line items are restocked Default is `true`. <i class="label label-info">write-only</i>                                                                |
+| `compute_totals`   | boolean   | When true, the server computes all monetary values from the line items (`id`-keyed, with the preview endpoint's tax-inclusive `refund_total` semantics); `amount` may be omitted or supplied as an override that must cover the line total and fit the remaining refundable amount. Default is `false`. Available as of WooCommerce 11.1.0. <i class="label label-info">write-only</i> |
 
 ### Order refund - Meta data properties ###
 
@@ -262,6 +263,120 @@ woocommerce.post("orders/723/refunds", data).parsed_response
 |----------------|---------|----------------------------------------------------------------|
 | `id`           | integer | The ID of the tax rate.                                        |
 | `refund_total` | number  | The amount of tax to refund for this line item. |
+
+## Preview a refund ##
+
+This API computes the totals a refund would have without creating it. The server owns the tax, rounding, and currency-precision math, so clients do not have to replicate it. Available as of WooCommerce 11.1.0.
+
+The request requires the same capability as creating a refund; API keys with read permissions receive a `401`.
+
+### HTTP request ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/wp-json/wc/v3/orders/&lt;id&gt;/refunds/preview</h6>
+	</div>
+</div>
+
+```shell
+curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds/preview \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "line_items": [
+    {
+      "line_item_id": 111,
+      "quantity": 2
+    }
+  ]
+}'
+```
+
+```javascript
+const data = {
+  line_items: [
+    {
+      line_item_id: 111,
+      quantity: 2
+    }
+  ]
+};
+
+WooCommerce.post("orders/723/refunds/preview", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+```
+
+> JSON response example:
+
+```json
+{
+  "breakdown": {
+    "products": {
+      "subtotal": "100.00",
+      "tax": "10.00",
+      "items": [
+        {
+          "id": 111,
+          "name": "Woo Album",
+          "product_id": 93,
+          "quantity": 2,
+          "subtotal": "100.00",
+          "tax": "10.00",
+          "total": "110.00"
+        }
+      ]
+    },
+    "shipping": {
+      "subtotal": "0.00",
+      "tax": "0.00",
+      "items": []
+    },
+    "fees": {
+      "subtotal": "0.00",
+      "tax": "0.00",
+      "items": []
+    }
+  },
+  "subtotal": "100.00",
+  "tax": "10.00",
+  "total": "110.00",
+  "max_refundable": "110.00"
+}
+```
+
+### Request properties ###
+
+| Attribute    | Type  | Description                                                                                     |
+|--------------|-------|-------------------------------------------------------------------------------------------------|
+| `line_items` | array | Line items to preview. Required, at least one entry. See properties below. Unknown keys are rejected. |
+
+### Preview line item properties ###
+
+| Attribute      | Type    | Description                                                                                                                                                                                                                              |
+|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `line_item_id` | integer | ID of the original order line item (product, shipping, or fee line). <i class="label label-info">required</i>                                                                                                                            |
+| `quantity`     | integer | Quantity to refund. Required when `refund_total` is omitted.                                                                                                                                                                             |
+| `refund_total` | number  | Tax-inclusive amount to refund for this line. Overrides `quantity` when both are sent. Must be non-zero and match the line's sign: negative for discount or credit lines, positive otherwise. Note this differs from the create endpoint, where `refund_total` is a net amount with taxes supplied separately via `refund_tax`. |
+
+### Response properties ###
+
+| Attribute        | Type   | Description                                                                                          |
+|------------------|--------|------------------------------------------------------------------------------------------------------|
+| `breakdown`      | object | Per-section breakdown with `products`, `shipping`, and `fees`, each carrying `subtotal`, `tax`, and `items`. |
+| `subtotal`       | string | Tax-exclusive total of the previewed refund.                                                         |
+| `tax`            | string | Tax portion of the previewed refund.                                                                 |
+| `total`          | string | Tax-inclusive total of the previewed refund.                                                         |
+| `max_refundable` | string | The order's remaining refundable amount.                                                             |
+
+### Errors ###
+
+Validation failures return `400` or `422` with one of these codes: `woocommerce_rest_quantity_exceeds_refundable`, `woocommerce_rest_line_item_already_refunded`, `woocommerce_rest_order_not_refundable`, `woocommerce_rest_preview_exceeds_max_refundable`, `woocommerce_rest_refund_total_exceeds_line`, `woocommerce_rest_invalid_refund_amount`, `woocommerce_rest_invalid_refund_total`, `woocommerce_rest_duplicate_line_item`, `woocommerce_rest_line_item_not_found`, `woocommerce_rest_missing_quantity_or_refund_total`. An unknown order returns `404` `woocommerce_rest_invalid_order_id`.
 
 ## Retrieve a refund ##
 
