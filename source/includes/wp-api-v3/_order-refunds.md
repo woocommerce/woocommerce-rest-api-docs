@@ -264,6 +264,10 @@ woocommerce.post("orders/723/refunds", data).parsed_response
 | `id`           | integer | The ID of the tax rate.                                        |
 | `refund_total` | number  | The amount of tax to refund for this line item. |
 
+<aside class="warning">
+Stores running WooCommerce below 11.1.0 silently drop the unknown <code>compute_totals</code> parameter and process the request with the classic behavior, where a quantity-only request creates a refund of <code>0.00</code> instead of the intended amount. Before sending computed-form requests, verify that the store supports the flag: send <code>OPTIONS /wp-json/wc/v3/orders/&lt;id&gt;/refunds</code> and check that <code>compute_totals</code> is listed in the endpoint arguments, or probe <code>POST /wp-json/wc/v3/orders/&lt;id&gt;/refunds/preview</code>, which returns <code>rest_no_route</code> with HTTP 404 on stores without support.
+</aside>
+
 ## Preview a refund ##
 
 This API computes the totals a refund would have without creating it. The server owns the tax, rounding, and currency-precision math, so clients do not have to replicate it. Available as of WooCommerce 11.1.0.
