@@ -20,7 +20,7 @@ The order refunds API allows you to create, view, and delete individual refunds,
 | `fee_lines`        | array     | Fee lines data. See [Order refund - Fee lines properties](#order-refund-fee-lines-properties)                                                                                 |
 | `api_refund`       | boolean   | When true, the payment gateway API is used to generate the refund. Default is `true`. <i class="label label-info">write-only</i>                                              |
 | `api_restock`      | boolean   | When true, the selected line items are restocked Default is `true`. <i class="label label-info">write-only</i>                                                                |
-| `compute_totals`   | boolean   | When true, the server computes all monetary values from the line items (`id`-keyed, with the preview endpoint's tax-inclusive `refund_total` semantics); `amount` may be omitted or supplied as an override that must cover the line total and fit the remaining refundable amount. Default is `false`. Available as of WooCommerce 11.1.0. <i class="label label-info">write-only</i> |
+| `compute_totals`   | boolean   | When true, the server computes per-line refund amounts and validates them against the order's refund history. See [Server-computed refunds](#server-computed-refunds-compute_totals). Default is `false`. Available as of WooCommerce 11.1.0. <i class="label label-info">write-only</i> |
 
 ### Order refund - Meta data properties ###
 
@@ -113,7 +113,7 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
 	-u consumer_key:consumer_secret \
 	-H "Content-Type: application/json" \
 	-d '{
-  "amount": "30",  
+  "amount": "30",
   "line_items": [
     {
       "id": "111",
@@ -125,6 +125,7 @@ curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
         }
       ]
     }
+  ]
 }'
 ```
 
@@ -264,13 +265,79 @@ woocommerce.post("orders/723/refunds", data).parsed_response
 | `id`           | integer | The ID of the tax rate.                                        |
 | `refund_total` | number  | The amount of tax to refund for this line item. |
 
+### Server-computed refunds (compute_totals) ###
+
+Available as of WooCommerce 11.1.0.
+
+Set `compute_totals` to `true` to have the server compute per-line refund amounts. Line items can send only `id` and `quantity`; the server derives the amount from the order's stored unit prices and taxes, caps it to the line's remaining refundable amount, and validates the request against the order's refund history. The refund `amount` is derived from the line items unless supplied explicitly.
+
+```shell
+curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
+	-u consumer_key:consumer_secret \
+	-H "Content-Type: application/json" \
+	-d '{
+  "compute_totals": true,
+  "line_items": [
+    {
+      "id": 111,
+      "quantity": 1
+    }
+  ]
+}'
+```
+
+```javascript
+const data = {
+  compute_totals: true,
+  line_items: [
+    {
+      id: 111,
+      quantity: 1
+    }
+  ]
+};
+
+WooCommerce.post("orders/723/refunds", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+```
+
+#### Line item parameters with `compute_totals` ####
+
+| Parameter      | Type    | Description |
+|----------------|---------|-------------|
+| `id`           | integer | The ID of the line item in the order. Required. Each line item may appear only once per request. |
+| `quantity`     | integer | Required as a positive whole number when `refund_total` is omitted; shipping and fee lines must use `1`. With an explicit `refund_total`, it is optional and can be `0` for an amount-only refund, but any supplied value must be a non-negative whole number and is still validated. |
+| `refund_total` | number  | Optional explicit amount for this line. Tax-inclusive when `refund_tax` is omitted (the server splits out the tax portion); tax-exclusive when `refund_tax` is supplied. When sent with `quantity`, this value determines the refund amount. The gross line refund, including any explicit tax, must be non-zero and match the line's sign. |
+| `refund_tax`   | array   | Optional explicit tax refunds. Requires an explicit `refund_total`; it cannot be combined with an automatically computed amount. Tax IDs must belong to the original line and may appear only once. See [Refund tax parameters](#refund-tax-parameters). |
+
+When `amount` is omitted, it is calculated from the line items. When supplied, it must be at least the calculated line-item total and no more than the order's remaining refundable amount.
+
+Common validation errors include:
+
+| Code | HTTP status | Condition |
+| ------ | ------------- | ----------- |
+| `woocommerce_rest_invalid_quantity` | 400 | A quantity does not meet the rules above, or a shipping or fee quantity is greater than `1`. |
+| `woocommerce_rest_duplicate_line_item` | 400 | A line item appears more than once. |
+| `woocommerce_rest_duplicate_tax_id` | 400 | A tax ID appears more than once within a line item. |
+| `woocommerce_rest_invalid_refund_amount` | 400 | The refund amount is non-positive or below the calculated line-item total, or an explicit tax amount is invalid. |
+| `woocommerce_rest_quantity_exceeds_refundable` | 422 | The requested quantity exceeds the line's remaining refundable quantity. |
+| `woocommerce_rest_refund_total_exceeds_remaining` | 422 | An explicit line amount exceeds that line's remaining refundable amount. |
+| `woocommerce_rest_refund_exceeds_remaining` | 422 | The final refund amount exceeds the order's remaining refundable amount. |
+
 <aside class="warning">
 Stores running WooCommerce below 11.1.0 silently drop the unknown <code>compute_totals</code> parameter and process the request with the classic behavior, where a quantity-only request creates a refund of <code>0.00</code> instead of the intended amount. Before sending computed-form requests, verify that the store supports the flag: send <code>OPTIONS /wp-json/wc/v3/orders/&lt;id&gt;/refunds</code> and check that <code>compute_totals</code> is listed in the endpoint arguments, or probe <code>POST /wp-json/wc/v3/orders/&lt;id&gt;/refunds/preview</code>, which returns <code>rest_no_route</code> with HTTP 404 on stores without support.
 </aside>
 
 ## Preview a refund ##
 
-This API computes the totals a refund would have without creating it. The server owns the tax, rounding, and currency-precision math, so clients do not have to replicate it. Available as of WooCommerce 11.1.0.
+Available as of WooCommerce 11.1.0.
+
+This API computes the totals a refund would have without creating it. It uses the same calculation engine as refund creation with `compute_totals`, so clients do not have to replicate tax, rounding, or currency-precision logic.
 
 The request requires the same capability as creating a refund; API keys with read permissions receive a `401`.
 
@@ -324,6 +391,7 @@ WooCommerce.post("orders/723/refunds/preview", data)
     "products": {
       "subtotal": "100.00",
       "tax": "10.00",
+      "total": "110.00",
       "items": [
         {
           "id": 111,
@@ -339,11 +407,13 @@ WooCommerce.post("orders/723/refunds/preview", data)
     "shipping": {
       "subtotal": "0.00",
       "tax": "0.00",
+      "total": "0.00",
       "items": []
     },
     "fees": {
       "subtotal": "0.00",
       "tax": "0.00",
+      "total": "0.00",
       "items": []
     }
   },
@@ -362,17 +432,17 @@ WooCommerce.post("orders/723/refunds/preview", data)
 
 ### Preview line item properties ###
 
-| Attribute      | Type    | Description                                                                                                                                                                                                                              |
-|----------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `line_item_id` | integer | ID of the original order line item (product, shipping, or fee line). <i class="label label-info">required</i>                                                                                                                            |
-| `quantity`     | integer | Quantity to refund. Required when `refund_total` is omitted.                                                                                                                                                                             |
-| `refund_total` | number  | Tax-inclusive amount to refund for this line. Overrides `quantity` when both are sent. Must be non-zero and match the line's sign: negative for discount or credit lines, positive otherwise. Note this differs from the create endpoint, where `refund_total` is a net amount with taxes supplied separately via `refund_tax`. |
+| Attribute      | Type    | Description |
+|----------------|---------|-------------|
+| `line_item_id` | integer | ID of the original order line item (product, shipping, or fee line). <i class="label label-info">required</i> |
+| `quantity`     | integer | Positive whole number of units to preview. Required when `refund_total` is omitted. Shipping and fee lines must use `1`. If supplied with `refund_total`, the quantity is still validated. |
+| `refund_total` | number  | Optional explicit tax-inclusive amount for this line. Must be non-zero and match the line's sign: negative for discount or credit lines, positive otherwise. When sent with `quantity`, this value determines the previewed amount. |
 
 ### Response properties ###
 
 | Attribute        | Type   | Description                                                                                          |
 |------------------|--------|------------------------------------------------------------------------------------------------------|
-| `breakdown`      | object | Per-section breakdown with `products`, `shipping`, and `fees`, each carrying `subtotal`, `tax`, and `items`. |
+| `breakdown`      | object | Per-section breakdown with `products`, `shipping`, and `fees`, each carrying `subtotal`, `tax`, `total`, and `items`. |
 | `subtotal`       | string | Tax-exclusive total of the previewed refund.                                                         |
 | `tax`            | string | Tax portion of the previewed refund.                                                                 |
 | `total`          | string | Tax-inclusive total of the previewed refund.                                                         |
@@ -380,7 +450,26 @@ WooCommerce.post("orders/723/refunds/preview", data)
 
 ### Errors ###
 
-Validation failures return `400` or `422` with one of these codes: `woocommerce_rest_quantity_exceeds_refundable`, `woocommerce_rest_line_item_already_refunded`, `woocommerce_rest_order_not_refundable`, `woocommerce_rest_preview_exceeds_max_refundable`, `woocommerce_rest_refund_total_exceeds_line`, `woocommerce_rest_invalid_refund_amount`, `woocommerce_rest_invalid_refund_total`, `woocommerce_rest_duplicate_line_item`, `woocommerce_rest_line_item_not_found`, `woocommerce_rest_missing_quantity_or_refund_total`. An unknown order returns `404` `woocommerce_rest_invalid_order_id`.
+Controller-generated validation errors include:
+
+| Code | HTTP status | Condition |
+| ------ | ------------- | ----------- |
+| `woocommerce_rest_invalid_refund_amount` | 400 | The aggregate preview total is not greater than zero. |
+| `woocommerce_rest_invalid_refund_total` | 400 | An explicit amount is zero, non-numeric, or has the wrong sign. |
+| `woocommerce_rest_invalid_quantity` | 400 | A shipping or fee quantity is not `1`. |
+| `woocommerce_rest_duplicate_line_item` | 400 | A line item appears more than once. |
+| `woocommerce_rest_line_item_not_found` | 400 | The line item does not belong to the order. |
+| `woocommerce_rest_unsupported_item_type` | 400 | The referenced item is not a product, shipping, or fee line. |
+| `woocommerce_rest_missing_quantity_or_refund_total` | 400 | A line item supplies neither a valid quantity nor an explicit amount. |
+| `woocommerce_rest_order_not_refundable` | 422 | The order cannot be refunded or has already been fully refunded. |
+| `woocommerce_rest_line_item_already_refunded` | 422 | The line item has already been fully refunded. |
+| `woocommerce_rest_quantity_exceeds_refundable` | 422 | The requested quantity exceeds the line's remaining refundable quantity. |
+| `woocommerce_rest_refund_total_exceeds_line` | 422 | An explicit amount exceeds the original line total. |
+| `woocommerce_rest_refund_total_exceeds_remaining` | 422 | An explicit amount exceeds the line's remaining refundable amount. |
+| `woocommerce_rest_preview_exceeds_max_refundable` | 422 | The preview total exceeds the order's remaining refundable amount. |
+| `woocommerce_rest_invalid_order_id` | 404 | The order does not exist. |
+
+REST schema, authentication, and permission failures can use WordPress REST API error codes instead. For example, an unknown request property returns `rest_invalid_param`, and a read-only API key receives HTTP 401.
 
 ## Retrieve a refund ##
 
