@@ -255,6 +255,7 @@ woocommerce = WooCommerce::API.new(
 
 ### Third party libraries ###
 
+- [Java](https://github.com/wtx-labs/woocommerce-api-client-java) Library
 - [Java](https://github.com/icoderman/wc-api-java) Library
 - [.NET](https://github.com/XiaoFaye/WooCommerce.NET) Library
 - [Android](https://github.com/gilokimu/WooDroid) Library
