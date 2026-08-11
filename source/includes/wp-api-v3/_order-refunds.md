@@ -269,7 +269,7 @@ woocommerce.post("orders/723/refunds", data).parsed_response
 
 Available as of WooCommerce 11.1.0.
 
-Set `compute_totals` to `true` to have the server compute per-line refund amounts. Line items can send only `id` and `quantity`; the server derives the amount from the order's stored unit prices and taxes, caps it to the line's remaining refundable amount, and validates the request against the order's refund history. The refund `amount` is derived from the line items unless supplied explicitly.
+Set `compute_totals` to `true` to have the server compute per-line refund amounts. Line items can be sent with just `id` and `quantity`; alternatively, you can supply explicit `refund_total` (and optionally `refund_tax`) to override the computed amount. The server derives the amount from the order's stored unit prices and taxes, caps it to the line's remaining refundable amount, and validates the request against the order's refund history. The refund `amount` is derived from the line items unless supplied explicitly.
 
 ```shell
 curl -X POST https://example.com/wp-json/wc/v3/orders/723/refunds \
